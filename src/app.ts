@@ -5,7 +5,6 @@ import bodyParser from "body-parser";
 import sequelize from "./config/db";
 import logger from "./utils/logger";
 
-
 dotenv.config();
 
 const app: Application = express();
@@ -19,8 +18,6 @@ app.use(
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
-
-
 
 app.use((req: Request, res: Response, next: NextFunction) => {
   res.on("finish", () => {
@@ -54,5 +51,7 @@ app.get("/", (req: Request, res: Response) => {
     message: "Hello Learnerkia",
   });
 });
+
+app.use("/api/v1", require("./routes/index.routes"));
 
 export default app;

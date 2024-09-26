@@ -2,39 +2,47 @@ import { DataTypes, Model, ModelStatic, Optional } from "sequelize";
 import sequelize from "../config/db";
 
 interface OrganizationAttributes {
-  id?: number;
+  id: string;
+  role: string;
   name: string;
   email: string;
   phone: string;
   preferredUrl: string;
   password: string;
-  referral?: string | number;
-  referralSource: string
+  referral?: string;
+  referralSource: string;
 }
 
 interface OrganizationCreationAttributes
   extends Optional<OrganizationAttributes, "id"> {}
 
-export class Assessment
+export class Organization
   extends Model<OrganizationAttributes, OrganizationCreationAttributes>
   implements OrganizationAttributes
 {
-  public id!: number;
+  public id!: string;
+  public role!: string;
   public name!: string;
   public email!: string;
-  public phone!: string
+  public phone!: string;
   public preferredUrl!: string;
   public password!: string;
-  public referral!: string | number;
+  public referral!: string;
   public referralSource!: string;
-  static associate: (models: {
-    Course: ModelStatic<Model<any, any>>;
-    Submission: ModelStatic<Model<any, any>>;
-  }) => void;
 }
 
-Assessment.init(
+Organization.init(
   {
+    id: {
+      type: DataTypes.UUID,
+      defaultValue: DataTypes.UUIDV4,
+      allowNull: false,
+      primaryKey: true,
+    },
+    role: {
+      type: DataTypes.STRING,
+      allowNull: false,
+    },
     name: {
       type: DataTypes.STRING,
       allowNull: false,
@@ -45,7 +53,7 @@ Assessment.init(
     },
     phone: {
       type: DataTypes.STRING,
-      allowNull: false
+      allowNull: false,
     },
     preferredUrl: {
       type: DataTypes.STRING,
@@ -57,7 +65,7 @@ Assessment.init(
     },
     referral: {
       type: DataTypes.STRING,
-      allowNull: false,
+      allowNull: true,
     },
     referralSource: {
       type: DataTypes.STRING,
@@ -67,7 +75,7 @@ Assessment.init(
   {
     sequelize,
     modelName: "Organization",
-    tableName: "organization",
+    tableName: "organizations",
     timestamps: true,
   }
 );

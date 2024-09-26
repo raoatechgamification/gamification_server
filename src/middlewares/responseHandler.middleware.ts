@@ -14,4 +14,13 @@ export class ResponseHandler {
       error,
     });
   }
+
+  static loginResponse(res: any, token: string, data: any, message: string = 'Success', statusCode: number = 200) {
+    return res.status(statusCode).json({
+      success: true,
+      message,
+      token,
+      data,
+    });
+  }
 }
