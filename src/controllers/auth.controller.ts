@@ -93,7 +93,7 @@ export class AuthController {
       });
 
       if (!registeredOrganization) {
-        return ResponseHandler.failure(res, "Email does not exist", 400);
+        return ResponseHandler.failure(res, "The email you entered does not exist", 400);
       }
 
       const checkPassword = await comparePassword(
@@ -102,7 +102,7 @@ export class AuthController {
       );
 
       if (!checkPassword) {
-        return ResponseHandler.failure(res, "Incorrect password", 400);
+        return ResponseHandler.failure(res, "You have entered an incorrect password", 400);
       }
 
       const payload = { ...registeredOrganization, role: "admin" };

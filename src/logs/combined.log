@@ -32,3 +32,8 @@
 2024-09-26 09:19:07 [info]: POST /login 400 - Request Body: {"email":"backendseun1@gmail.com","password":"Ollyy10$"}
 2024-09-26 09:19:12 [info]: POST /login 200 - Request Body: {"email":"backendseun@gmail.com","password":"Ollyy10$"}
 2024-09-26 09:21:58 [info]: POST /login 200 - Request Body: {"email":"backendseun@gmail.com","password":"Ollyy10$"}
+2024-09-26 11:13:20 [info]: GET /auth/login 200 - Request Body: {"email":"seunoduez@gmail.com","password":"Ollyy05$"}
+2024-09-26 11:13:24 [info]: POST /login 400 - Request Body: {"email":"seunoduez@gmail.com","password":"Ollyy05$"}
+2024-09-26 11:13:37 [info]: POST /login 400 - Request Body: {"email":"seunoduez@gmail.com","password":"Ollyyy05$"}
+2024-09-26 11:14:36 [info]: POST /login 400 - Request Body: {"email":"seunoduez@gmail.com","password":"Ollyy05$"}
+2024-09-26 11:14:46 [info]: POST /login 200 - Request Body: {"email":"seunoduez@gmail.com","password":"Ollyy10$"}
