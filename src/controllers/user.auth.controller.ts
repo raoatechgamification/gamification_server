@@ -41,6 +41,7 @@ export class UserAuthController {
         username,
         email,
         password,
+        // If organization, push the organization to the user's organizations array
       });
 
       const user = await User.findOne({
