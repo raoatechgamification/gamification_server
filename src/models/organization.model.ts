@@ -3,7 +3,7 @@ import sequelize from "../config/db";
 
 interface OrganizationAttributes {
   id: string;
-  role: string;
+  role?: string;
   name: string;
   email: string;
   phone: string;
@@ -41,6 +41,7 @@ Organization.init(
     },
     role: {
       type: DataTypes.STRING,
+      defaultValue: 'amdin',
       allowNull: false,
     },
     name: {

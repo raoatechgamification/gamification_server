@@ -5,7 +5,7 @@ import { Organization } from "../models/organization.model";
 import { hashPassword, comparePassword } from "../utils/hash";
 import { generateToken } from "../utils/jwt";
 
-export class AuthController {
+export class AdminAuthController {
   static async registerOrganization(
     req: Request,
     res: Response,
@@ -54,7 +54,6 @@ export class AuthController {
       password = await hashPassword(password);
       await Organization.create({
         id: uuidv4(),
-        role: "admin",
         name,
         email,
         phone,
@@ -93,7 +92,11 @@ export class AuthController {
       });
 
       if (!registeredOrganization) {
-        return ResponseHandler.failure(res, "The email you entered does not exist", 400);
+        return ResponseHandler.failure(
+          res,
+          "The email you entered does not exist",
+          400
+        );
       }
 
       const checkPassword = await comparePassword(
@@ -102,11 +105,15 @@ export class AuthController {
       );
 
       if (!checkPassword) {
-        return ResponseHandler.failure(res, "You have entered an incorrect password", 400);
+        return ResponseHandler.failure(
+          res,
+          "You have entered an incorrect password",
+          400
+        );
       }
 
-      const payload = { ...registeredOrganization, role: "admin" };
-      const token = await generateToken(payload);
+      // const payload = { ...registeredOrganization, role: "admin" };
+      const token = await generateToken(registeredOrganization);
 
       const organization = await Organization.findOne({
         where: { email },

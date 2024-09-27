@@ -4,9 +4,9 @@ import {
   loginOrganizationValidator,
 } from "../validators/organization.validator";
 
-import { AuthController } from "../controllers/auth.controller";
+import { AdminAuthController } from "../controllers/admin.auth.controller";
 
-const { registerOrganization, loginOrganization } = AuthController;
+const { registerOrganization, loginOrganization } = AdminAuthController;
 
 const router = Router();
 
