@@ -2,13 +2,14 @@ import { Request, Response, NextFunction } from "express";
 import { ResponseHandler } from "../middlewares/responseHandler.middleware";
 import { v4 as uuidv4 } from "uuid";
 import { User } from "../models/user.model";
+import { Organization } from "../models/organization.model";
 import { comparePassword, hashPassword } from "../utils/hash";
 import { generateToken } from "../utils/jwt";
 
 export class UserAuthController {
   static async registerUser(req: Request, res: Response, next: NextFunction) {
     try {
-      let { email, username, organization, password } = req.body;
+      let { email, username, organizationId, password } = req.body;
 
       const existingUser = await User.findOne({
         where: { email },
@@ -35,13 +36,28 @@ export class UserAuthController {
       }
 
       password = await hashPassword(password);
+      let organizations: string[] = [];
+
+      if (organizationId) {
+        const organizationDetails = await Organization.findOne({
+          where: { id: organizationId }
+        })
+
+        if (!organizationDetails) return ResponseHandler.failure(
+          res, 
+          "Organization does not exist",
+          400
+        )
+
+        organizations.push(organizationId);
+      }
 
       await User.create({
         id: uuidv4(),
         username,
         email,
         password,
-        // If organization, push the organization to the user's organizations array
+        organizations,
       });
 
       const user = await User.findOne({
@@ -64,18 +80,15 @@ export class UserAuthController {
     try {
       const { email, password } = req.body;
 
-      const user = await User.findOne({
+      const registeredUser = await User.findOne({
         where: { email },
       });
 
-      if (!user) {
+      if (!registeredUser) {
         return ResponseHandler.failure(res, "User does not exist"), 400;
       }
 
-      const checkPassword = await comparePassword(
-        password,
-        user.password
-      );
+      const checkPassword = await comparePassword(password, registeredUser.password);
 
       if (!checkPassword) {
         return ResponseHandler.failure(
@@ -85,7 +98,17 @@ export class UserAuthController {
         );
       }
 
-      const token = await generateToken(user);
+      const payload = {
+        id: registeredUser.id,
+        email: registeredUser.email, 
+        user: registeredUser.username,
+        phone: registeredUser.phone,
+        organizations: registeredUser.organizations,
+        firstName: registeredUser.firstName,
+        lastName: registeredUser.lastName
+      }
+
+      const token = await generateToken(payload);
       const learner = await User.findOne({
         where: { email },
         attributes: { exclude: ["password", "role"] },
@@ -95,7 +118,7 @@ export class UserAuthController {
         res,
         token,
         learner,
-        "You have successfully logged in"
+        "Login Successful"
       );
     } catch (error) {
       next(error);

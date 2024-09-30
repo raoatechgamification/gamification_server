@@ -37,3 +37,37 @@
 2024-09-26 11:13:37 [info]: POST /login 400 - Request Body: {"email":"seunoduez@gmail.com","password":"Ollyyy05$"}
 2024-09-26 11:14:36 [info]: POST /login 400 - Request Body: {"email":"seunoduez@gmail.com","password":"Ollyy05$"}
 2024-09-26 11:14:46 [info]: POST /login 200 - Request Body: {"email":"seunoduez@gmail.com","password":"Ollyy10$"}
+2024-09-30 14:13:52 [info]: POST /auth/user/register 200
+2024-09-30 14:47:51 [info]: POST /user/register 422
+2024-09-30 14:48:31 [info]: POST /user/register 422 - Request Body: {"email":"seun","password":"Omodaratan"}
+2024-09-30 14:48:41 [info]: POST /user/register 422 - Request Body: {"email":"seun@gmail.com","password":"Omodaratan"}
+2024-09-30 14:49:00 [info]: POST /user/register 422 - Request Body: {"email":"seun@gmail.com","password":"Omodaratan","username":"Omodaratan05"}
+2024-09-30 14:49:07 [info]: POST /user/register 422 - Request Body: {"email":"seun@gmail.com","password":"Omodaratan05","username":"Omodaratan05"}
+2024-09-30 14:49:14 [info]: POST /user/register 201 - Request Body: {"email":"seun@gmail.com","password":"Omodaratan05$#","username":"Omodaratan05"}
+2024-09-30 15:01:20 [info]: POST /user/register 400 - Request Body: {"email":"seun@gmail.com","password":"Omodaratan05$#","username":"Omodaratan05"}
+2024-09-30 15:01:28 [info]: POST /user/register 400 - Request Body: {"email":"seun05@gmail.com","password":"Omodaratan05$#","username":"Omodaratan05"}
+2024-09-30 15:01:36 [info]: POST /user/register 201 - Request Body: {"email":"seun05@gmail.com","password":"Omodaratan05$#","username":"Omodara"}
+2024-09-30 15:09:27 [info]: POST /user/register 400 - Request Body: {"email":"seun05@gmail.com","password":"Omodaratan05$#","username":"Omodara","organization":"7f2ab12e-b315-432c-8bfd-e4837d34734e"}
+2024-09-30 15:09:50 [info]: POST /user/register 400 - Request Body: {"email":"seun10@gmail.com","password":"Omodaratan05$#","username":"Omodara","organization":"7f2ab12e-b315-432c-8bfd-e4837d34734e"}
+2024-09-30 15:10:00 [info]: POST /user/register 201 - Request Body: {"email":"seun10@gmail.com","password":"Omodaratan05$#","username":"Omodaratan10","organization":"7f2ab12e-b315-432c-8bfd-e4837d34734e"}
+2024-09-30 15:11:04 [info]: POST /user/register 201 - Request Body: {"email":"seun100@gmail.com","password":"Omodaratan05$#","username":"Omodaratan100","organizationid":"7f2ab12e-b315-432c-8bfd-e4837d34734e"}
+2024-09-30 15:12:17 [info]: POST /user/register 201 - Request Body: {"email":"seun1005@gmail.com","password":"Omodaratan05$#","username":"Omodaratan1005","organizationid":"7f2ab12e-b315-432c-8bfd-e4837d34734"}
+2024-09-30 15:12:20 [info]: POST /user/register 400 - Request Body: {"email":"seun1005@gmail.com","password":"Omodaratan05$#","username":"Omodaratan1005","organizationid":"7f2ab12e-b315-432c-8bfd-e4837d34734"}
+2024-09-30 15:16:40 [info]: POST /user/register 201 - Request Body: {"email":"seun1005@gmail.com","password":"Omodaratan05$#","username":"Omodaratan1005","organizationid":"7f2ab12e-b315-432c-8bfd-e4837d34734"}
+2024-09-30 15:21:26 [info]: POST /user/register 400 - Request Body: {"email":"seun1005@gmail.com","password":"Omodaratan05$#","username":"Omodaratan1005","organizationid":"7f2ab12e-b315-432c-8bfd-e4837d34734"}
+2024-09-30 15:21:46 [info]: POST /user/register 400 - Request Body: {"email":"seun1005@gmail.com","password":"Omodaratan05$#","username":"Omodaratan1005","organizationid":"7f2ab12e-b315-432c-8bfd-e4837d34734"}
+2024-09-30 15:22:35 [info]: POST /user/register 201 - Request Body: {"email":"seun1005@gmail.com","password":"Omodaratan05$#","username":"Omodaratan1005","organizationid":"7f2ab12e-b315-432c-8bfd-e4837d34734"}
+2024-09-30 15:23:37 [info]: POST /user/register 422 - Request Body: {"email":"seun1005@gmail.com","password":"Omodaratan05$#","username":"Omodaratan1005","organizationId":"7f2ab12e-b315-432c-8bfd-e4837d34734"}
+2024-09-30 15:23:48 [info]: POST /user/register 201 - Request Body: {"email":"seun1005@gmail.com","password":"Omodaratan05$#","username":"Omodaratan1005","organizationId":"7f2ab12e-b315-432c-8bfd-e4837d34734e"}
+2024-09-30 15:26:40 [info]: POST /user/register 422 - Request Body: {"email":"seun1005@gmail.com","password":"Omodaratan05$#","username":"Omodaratan1005","organizationId":"7f2ab12e-b315-432c-8bfd-e4837d34734"}
+2024-09-30 15:26:54 [info]: POST /user/register 400 - Request Body: {"email":"seun1005@gmail.com","password":"Omodaratan05$#","username":"Omodaratan1005","organizationId":"7f2ab12e-b315-432c-8bfd-e4837d34734e"}
+2024-09-30 15:27:36 [info]: POST /user/register 201 - Request Body: {"email":"seun1005@gmail.com","password":"Omodaratan05$#","username":"Omodaratan1005","organizationId":"7f2ab12e-b315-432c-8bfd-e4837d34734e"}
+2024-09-30 15:29:01 [info]: POST /user/register 400 - Request Body: {"email":"seun1005@gmail.com","password":"Omodaratan05$#","username":"Omodaratan1005","organizationId":"7f2ab12e-b315-432c-8bfd-e4837d34734e"}
+2024-09-30 15:30:06 [info]: POST /user/register 201 - Request Body: {"email":"seun1005@gmail.com","password":"Omodaratan05$#","username":"Omodaratan1005","organizationId":"7f2ab12e-b315-432c-8bfd-e4837d34734e"}
+2024-09-30 15:31:27 [info]: POST /user/login 422
+2024-09-30 15:32:18 [info]: POST /user/login 400 - Request Body: {"email":"seun1005@gmail.com","password":"Ollyy"}
+2024-09-30 15:32:23 [info]: POST /user/login 400 - Request Body: {"email":"seun1005@gmail.com","password":"Ollyy10$"}
+2024-09-30 15:33:08 [info]: POST /api/v1/auth/user/login 500 - Request Body: {"email":"seun1005@gmail.com","password":"Omodaratan05$#"}
+2024-09-30 15:49:42 [info]: POST /api/v1/auth/user/login 500 - Request Body: {"email":"seun1005@gmail.com","password":"Omodaratan05$#"}
+2024-09-30 15:53:31 [info]: POST /api/v1/auth/user/login 500 - Request Body: {"email":"seun1005@gmail.com","password":"Omodaratan05$#"}
+2024-09-30 15:58:57 [info]: POST /user/login 200 - Request Body: {"email":"seun1005@gmail.com","password":"Omodaratan05$#"}

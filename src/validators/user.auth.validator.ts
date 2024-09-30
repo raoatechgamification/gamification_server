@@ -16,7 +16,7 @@ const errorResponse = (req: Request, res: Response, next: NextFunction) => {
 };
 
 export const registerUserValidator = [
-  body('email')
+  body("email")
     .notEmpty()
     .isEmail()
     .withMessage("Please provide a valid email"),
@@ -25,19 +25,22 @@ export const registerUserValidator = [
     .notEmpty()
     .isString()
     .isStrongPassword()
-    .withMessage("Please provide a strong password. Password must be at least eight characters, with uppercase and lowercase letter, and a special character"),
-  
+    .withMessage(
+      "Please provide a strong password. Password must be at least eight characters, with uppercase and lowercase letter, and a special character"
+    ),
+
   body("username")
     .notEmpty()
     .isString()
     .withMessage("Please provide your preferred username"),
 
-  body("organization")
+  body("organizationId")
     .optional()
-    .isString(),
+    .isUUID()
+    .withMessage("Invalid organization ID"),
 
-  errorResponse
-]
+  errorResponse,
+];
 
 export const loginUserValidator = [
   body("email")

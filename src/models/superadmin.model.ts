@@ -1,37 +1,33 @@
 import { DataTypes, Model, Optional } from "sequelize";
 import sequelize from "../config/db";
 
-interface UserAttributes {
+interface SuperAdminAttributes {
   id: string;
-  username: string;
+  username?: string;
+  email: string;
   firstName?: string;
   lastName?: string;
-  email: string;
-  phone?: string;
-  organizations?: string[];
   role?: string;
   password: string;
 }
 
-interface UserCreationAttributes
-  extends Optional<UserAttributes, "id"> {}
+interface SuperAdminCreationAttributes
+  extends Optional<SuperAdminAttributes, "id"> {}
 
-export class User
-  extends Model<UserAttributes, UserCreationAttributes>
-  implements UserAttributes
+export class SuperAdmin
+  extends Model<SuperAdminAttributes, SuperAdminCreationAttributes>
+  implements SuperAdminAttributes
 {
   public id!: string;
   public username!: string;
-  public firstName?: string;
-  public lastName?: string;
   public email!: string;
-  public phone?: string;
-  public organizations?: string[];
+  public firstName?: string | undefined;
+  public lastName?: string | undefined;
   public role!: string;
   public password!: string;
 }
 
-User.init(
+SuperAdmin.init(
   {
     id: {
       type: DataTypes.UUID,
@@ -41,31 +37,23 @@ User.init(
     },
     username: {
       type: DataTypes.STRING,
-      allowNull: false,
-    },
-    firstName: {
-      type: DataTypes.STRING,
-      allowNull: true,
-    },
-    lastName: {
-      type: DataTypes.STRING,
-      allowNull: true,
+      allowNull: true
     },
     email: {
       type: DataTypes.STRING,
       allowNull: false,
     },
-    phone: {
+    firstName: {
       type: DataTypes.STRING,
-      allowNull: true,
+      allowNull: true
     },
-    organizations: {
-      type: DataTypes.ARRAY(DataTypes.STRING),
-      allowNull: true,
+    lastName: {
+      type: DataTypes.STRING,
+      allowNull: true 
     },
     role: {
       type: DataTypes.STRING,
-      defaultValue: 'user',
+      defaultValue: 'superAdmin',
       allowNull: false
     },
     password: {
@@ -75,8 +63,8 @@ User.init(
   },
   {
     sequelize,
-    modelName: "User",
-    tableName: "users",
+    modelName: "SuperAdmin",
+    tableName: "super_admins",
     timestamps: true,
   }
 );
