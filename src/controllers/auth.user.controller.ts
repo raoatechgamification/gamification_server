@@ -1,8 +1,7 @@
 import { Request, Response, NextFunction } from "express";
 import { ResponseHandler } from "../middlewares/responseHandler.middleware";
-import { v4 as uuidv4 } from "uuid";
-import { User } from "../models/user.model";
-import { Organization } from "../models/organization.model";
+import User from "../models/user.model"; 
+import Organization from "../models/organization.model"; 
 import { comparePassword, hashPassword } from "../utils/hash";
 import { generateToken } from "../utils/jwt";
 
@@ -11,9 +10,7 @@ export class UserAuthController {
     try {
       let { email, username, organizationId, password } = req.body;
 
-      const existingUser = await User.findOne({
-        where: { email },
-      });
+      const existingUser = await User.findOne({ email });
 
       if (existingUser) {
         return ResponseHandler.failure(
@@ -23,9 +20,7 @@ export class UserAuthController {
         );
       }
 
-      const usernameExists = await User.findOne({
-        where: { username },
-      });
+      const usernameExists = await User.findOne({ username });
 
       if (usernameExists) {
         return ResponseHandler.failure(
@@ -36,38 +31,30 @@ export class UserAuthController {
       }
 
       password = await hashPassword(password);
-      let organizations: string[] = [];
 
       if (organizationId) {
-        const organizationDetails = await Organization.findOne({
-          where: { id: organizationId }
-        })
+        const organizationDetails = await Organization.findById(organizationId);
 
-        if (!organizationDetails) return ResponseHandler.failure(
-          res, 
-          "Organization does not exist",
-          400
-        )
-
-        organizations.push(organizationId);
+        if (!organizationDetails)
+          return ResponseHandler.failure(
+            res,
+            "Organization does not exist",
+            400
+          );
       }
 
-      await User.create({
-        id: uuidv4(),
+      const newUser = await User.create({
         username,
         email,
         password,
-        organizations,
+        organization: organizationId,
       });
 
-      const user = await User.findOne({
-        where: { email },
-        attributes: { exclude: ["password", "role"] },
-      });
+      const userResponse = await User.findById(newUser._id).select("-password -role");
 
       return ResponseHandler.success(
         res,
-        user,
+        userResponse,
         "User account created successfully",
         201
       );
@@ -80,15 +67,16 @@ export class UserAuthController {
     try {
       const { email, password } = req.body;
 
-      const registeredUser = await User.findOne({
-        where: { email },
-      });
+      const registeredUser = await User.findOne({ email });
 
       if (!registeredUser) {
-        return ResponseHandler.failure(res, "User does not exist"), 400;
+        return ResponseHandler.failure(res, "User does not exist", 400);
       }
 
-      const checkPassword = await comparePassword(password, registeredUser.password);
+      const checkPassword = await comparePassword(
+        password,
+        registeredUser.password
+      );
 
       if (!checkPassword) {
         return ResponseHandler.failure(
@@ -99,25 +87,24 @@ export class UserAuthController {
       }
 
       const payload = {
-        id: registeredUser.id,
-        email: registeredUser.email, 
-        user: registeredUser.username,
+        id: registeredUser._id, 
+        email: registeredUser.email,
+        username: registeredUser.username,
         phone: registeredUser.phone,
-        organizations: registeredUser.organizations,
+        organization: registeredUser.organization,
         firstName: registeredUser.firstName,
-        lastName: registeredUser.lastName
-      }
+        lastName: registeredUser.lastName,
+        role: registeredUser.role,
+      };
 
       const token = await generateToken(payload);
-      const learner = await User.findOne({
-        where: { email },
-        attributes: { exclude: ["password", "role"] },
-      });
+
+      const userResponse = await User.findById(registeredUser._id).select("-password -role");
 
       return ResponseHandler.loginResponse(
         res,
         token,
-        learner,
+        userResponse,
         "Login Successful"
       );
     } catch (error) {

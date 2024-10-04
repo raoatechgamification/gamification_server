@@ -1,5 +1,5 @@
 import { Request, Response, NextFunction } from "express";
-import { param, body, validationResult, query } from "express-validator";
+import { body, validationResult, query } from "express-validator";
 
 const errorResponse = (req: Request, res: Response, next: NextFunction) => {
   const errors = validationResult(req);
@@ -34,29 +34,28 @@ export const createOrganizationValidator = [
   body("preferredUrl")
     .notEmpty()
     .isString()
-    .withMessage("Please provide your preferred url"),
+    .isURL()
+    .withMessage("Please provide a valid url"),
 
   body("password")
     .notEmpty()
     .isString()
     .isStrongPassword()
-    .withMessage("Please provide a strong password. Password must be at least eight characters, with uppercase and lowercase letter, and a special character"),
+    .withMessage(
+      "Please provide a strong password. Password must be at least eight characters, with uppercase and lowercase letter, and a special character"
+    ),
 
   body("confirmPassword")
     .notEmpty()
     .isString()
     .withMessage("Please confirm your password"),
 
-  body("referral")
-    .optional()
-    .isString(),
+  body("referral").optional().isString().withMessage("Invalid referral"),
 
   body("referralSource")
     .notEmpty()
     .isString()
-    .withMessage(
-      "Kindly fill in how you heard about us"
-    ),
+    .withMessage("Kindly fill in how you heard about us"),
 
   errorResponse,
 ];

@@ -6,7 +6,6 @@ export const generateToken = (
   payload: any,
   expiresIn: string = "1h"
 ): Promise<string> => {
-  // return jwt.sign(payload, SECRET_KEY, { expiresIn });
   return new Promise((resolve, reject) => {
     jwt.sign(payload, SECRET_KEY, { expiresIn }, (error, token) => {
       if (error) {

@@ -1,7 +1,8 @@
 import { Request, Response, NextFunction } from "express";
 import { ResponseHandler } from "../middlewares/responseHandler.middleware";
-import { v4 as uuidv4 } from "uuid";
-import { Organization } from "../models/organization.model";
+import Organization, {
+  OrganizationDocument,
+} from "../models/organization.model"; 
 import { hashPassword, comparePassword } from "../utils/hash";
 import { generateToken } from "../utils/jwt";
 
@@ -12,21 +13,19 @@ export class AdminAuthController {
     next: NextFunction
   ) {
     try {
-      let {
-        name,
-        email,
-        phone,
-        preferredUrl,
-        password,
-        confirmPassword,
-        referral,
+      const {
+        name, 
+        email, 
+        phone, 
+        preferredUrl, 
+        password, 
+        confirmPassword, 
+        referral, 
         referralSource,
       } = req.body;
 
-      const emailExists = await Organization.findOne({
-        where: { email },
-      });
-
+      // Check for existing email
+      const emailExists = await Organization.findOne({ email });
       if (emailExists) {
         return ResponseHandler.failure(
           res,
@@ -35,10 +34,8 @@ export class AdminAuthController {
         );
       }
 
-      const phoneExists = await Organization.findOne({
-        where: { phone },
-      });
-
+      // Check for existing phone number
+      const phoneExists = await Organization.findOne({ phone });
       if (phoneExists) {
         return ResponseHandler.failure(
           res,
@@ -47,26 +44,31 @@ export class AdminAuthController {
         );
       }
 
+      // Check for password match
       if (password !== confirmPassword) {
         return ResponseHandler.failure(res, "Passwords do not match", 400);
       }
 
-      password = await hashPassword(password);
-      await Organization.create({
-        id: uuidv4(),
+      // Hash the password
+      const hashedPassword = await hashPassword(password);
+
+      // Create the new organization
+      const newOrganization = await Organization.create({
         name,
         email,
         phone,
         preferredUrl,
-        password,
+        password: hashedPassword, // Store the hashed password
         referral,
         referralSource,
+        role: "organization", // Set the role as needed
       });
 
-      const organization = await Organization.findOne({
-        where: { email },
-        attributes: { exclude: ["password", "role"] },
-      });
+      // Retrieve the created organization, excluding sensitive fields
+      const organization: OrganizationDocument | null =
+        await Organization.findById(newOrganization._id).select(
+          "-password -role"
+        ); // Exclude password and role
 
       return ResponseHandler.success(
         res,
@@ -87,9 +89,11 @@ export class AdminAuthController {
     try {
       const { email, password } = req.body;
 
-      const registeredOrganization = await Organization.findOne({
-        where: { email },
-      });
+      // Find the registered organization by email
+      const registeredOrganization: OrganizationDocument | null =
+        await Organization.findOne({
+          email,
+        });
 
       if (!registeredOrganization) {
         return ResponseHandler.failure(
@@ -99,12 +103,13 @@ export class AdminAuthController {
         );
       }
 
-      const checkPassword = await comparePassword(
+      // Compare the password
+      const isPasswordValid = await comparePassword(
         password,
         registeredOrganization.password
       );
 
-      if (!checkPassword) {
+      if (!isPasswordValid) {
         return ResponseHandler.failure(
           res,
           "You have entered an incorrect password",
@@ -112,18 +117,21 @@ export class AdminAuthController {
         );
       }
 
-      // const payload = { ...registeredOrganization, role: "admin" };
-      const token = await generateToken(registeredOrganization);
+      // Prepare the JWT payload
+      const payload = {
+        id: registeredOrganization._id,
+        role: registeredOrganization.role,
+        name: registeredOrganization.name,
+        email: registeredOrganization.email,
+        preferredUrl: registeredOrganization.preferredUrl,
+      };
 
-      const organization = await Organization.findOne({
-        where: { email },
-        attributes: { exclude: ["password", "role"] },
-      });
+      const token = await generateToken(payload);
 
       return ResponseHandler.loginResponse(
         res,
         token,
-        organization,
+        registeredOrganization,
         "You have successfully logged in"
       );
     } catch (error) {

@@ -1,29 +1,15 @@
-import { Sequelize } from "sequelize";
-import dotenv from 'dotenv';
+import mongoose from "mongoose";
 
-dotenv.config();
+const connectDB = async () => {
+  try {
+    const mongoURI =
+      process.env.MONGO_URI || "mongodb://localhost:27017/Gamification";
+    await mongoose.connect(mongoURI);
+    console.log("MongoDB connected successfully");
+  } catch (err) {
+    console.error("Failed to connect to MongoDB", err);
+    process.exit(1);
+  }
+};
 
-const database = process.env.DB_DATABASE;
-const user = process.env.DB_USERNAME;
-const password = process.env.DB_PASSWORD;
-const host = process.env.DB_HOST;
-
-if (!database || !user || !password) {
-  throw new Error(
-    "Missing required environment variables for database connection."
-  );
-}
-
-const sequelize = new Sequelize(database, user, password, {
-  host: host,
-  dialect: "postgres",
-});
-
-sequelize
-  .authenticate()
-  .then(() => console.log("Connection has been established successfully."))
-  .catch((error: any) =>
-    console.log("Unable to connect to the database:", error)
-  );
-
-export default sequelize;
+export default connectDB;

@@ -1,8 +1,8 @@
 import { Request, Response, NextFunction } from "express";
-import jwt from "jsonwebtoken";
 import { verifyToken } from "../utils/jwt";
-
-const SECRET_KEY = process.env.JWT_SECRET!;
+import User from '../models/user.model';
+import Organization from "../models/organization.model";
+import SuperAdmin from "../models/superadmin.model";
 
 export const authenticate = (
   req: Request,
@@ -13,7 +13,7 @@ export const authenticate = (
   if (!token) return res.status(401).json({ message: "Unauthorized access" });
 
   try {
-    const decoded = verifyToken(token);
+    const decoded = verifyToken(token) as typeof User;
     req.user = decoded;
     next();
   } catch (err) {
@@ -22,20 +22,42 @@ export const authenticate = (
 };
 
 export const authorize = (role: "user" | "admin" | "superAdmin") => {
-  return (req: Request, res: Response, next: NextFunction) => {
+  return async (req: Request, res: Response, next: NextFunction) => {
     const userRole = req.user?.role;
 
+    if (!userRole) {
+      return res.status(403).json({ message: 'No role found for user' });
+    }
+
     if (role === 'admin' && userRole === 'superAdmin') {
-      req.superAdmin = req.user;
+      const superAdmin = await SuperAdmin.findById(req.user?.id);
+      if (!superAdmin) {
+        return res.status(403).json({ message: "SuperAdmin not found" });
+      }
+      req.superAdmin = superAdmin; // Will not be null now
       return next();
     }
 
     if (userRole === role) {
-      if (role === 'admin') req.admin = req.user;
-      if (role === 'superAdmin') req.superAdmin = req.user;
+      if (role === 'admin') {
+        const admin = await Organization.findById(req.user?.id);
+        if (!admin) {
+          return res.status(403).json({ message: "Admin not found" });
+        }
+        req.admin = admin; // Will not be null now
+      }
+
+      if (role === 'superAdmin') {
+        const superAdmin = await SuperAdmin.findById(req.user?.id);
+        if (!superAdmin) {
+          return res.status(403).json({ message: "SuperAdmin not found" });
+        }
+        req.superAdmin = superAdmin; // Will not be null now
+      }
+
       return next();
     }
 
-    return res.status(403).json({ message: 'Forbidden access' });
+    return res.status(403).json({ message: "Forbidden access" });
   };
 };

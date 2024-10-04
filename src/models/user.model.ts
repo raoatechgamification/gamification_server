@@ -1,82 +1,59 @@
-import { DataTypes, Model, Optional } from "sequelize";
-import sequelize from "../config/db";
+import mongoose, { Schema, Document, Model } from 'mongoose';
 
-interface UserAttributes {
-  id: string;
-  username: string;
-  firstName?: string;
-  lastName?: string;
-  email: string;
-  phone?: string;
-  organizations?: string[];
-  role?: string;
-  password: string;
+export interface IUser extends Document {
+  username: string; 
+  firstName?: string; 
+  lastName?: string; 
+  email: string; 
+  phone?: string; 
+  organization?: mongoose.Schema.Types.ObjectId; 
+  role: string; 
+  password: string; 
 }
 
-interface UserCreationAttributes
-  extends Optional<UserAttributes, "id"> {}
-
-export class User
-  extends Model<UserAttributes, UserCreationAttributes>
-  implements UserAttributes
-{
-  public id!: string;
-  public username!: string;
-  public firstName?: string;
-  public lastName?: string;
-  public email!: string;
-  public phone?: string;
-  public organizations?: string[];
-  public role!: string;
-  public password!: string;
-}
-
-User.init(
+const UserSchema: Schema<IUser> = new Schema(
   {
-    id: {
-      type: DataTypes.UUID,
-      defaultValue: DataTypes.UUIDV4,
-      allowNull: false,
-      primaryKey: true,
-    },
     username: {
-      type: DataTypes.STRING,
-      allowNull: false,
+      type: String,
+      required: true, 
     },
     firstName: {
-      type: DataTypes.STRING,
-      allowNull: true,
+      type: String,
+      default: null, 
     },
     lastName: {
-      type: DataTypes.STRING,
-      allowNull: true,
+      type: String,
+      default: null, 
     },
     email: {
-      type: DataTypes.STRING,
-      allowNull: false,
+      type: String,
+      required: true, 
+      unique: true, 
     },
     phone: {
-      type: DataTypes.STRING,
-      allowNull: true,
+      type: String,
+      default: null, 
     },
-    organizations: {
-      type: DataTypes.ARRAY(DataTypes.STRING),
-      allowNull: true,
+    organization: {
+      type: mongoose.Schema.Types.ObjectId,
+      default: null, 
     },
     role: {
-      type: DataTypes.STRING,
-      defaultValue: 'user',
-      allowNull: false
+      type: String,
+      default: 'user', 
+      required: true, 
     },
     password: {
-      type: DataTypes.STRING,
-      allowNull: false,
+      type: String,
+      required: true, 
     },
   },
   {
-    sequelize,
-    modelName: "User",
-    tableName: "users",
-    timestamps: true,
+    timestamps: true, 
   }
 );
+
+const User: Model<IUser> = mongoose.model<IUser>('User', UserSchema);
+
+export default User;
+export type UserDocument = IUser; 

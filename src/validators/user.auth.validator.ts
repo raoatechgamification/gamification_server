@@ -1,5 +1,7 @@
 import { Request, Response, NextFunction } from "express";
-import { param, body, validationResult, query } from "express-validator";
+import { body, validationResult, query } from "express-validator";
+import { ObjectId } from "mongodb";
+
 
 const errorResponse = (req: Request, res: Response, next: NextFunction) => {
   const errors = validationResult(req);
@@ -36,8 +38,12 @@ export const registerUserValidator = [
 
   body("organizationId")
     .optional()
-    .isUUID()
-    .withMessage("Invalid organization ID"),
+    .custom((value) => {
+      if (!ObjectId.isValid(value)) {
+        throw new Error('Invalid organization id');
+      }
+      return true;
+    }),
 
   errorResponse,
 ];

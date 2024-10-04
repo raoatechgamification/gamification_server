@@ -1,70 +1,48 @@
-import { DataTypes, Model, Optional } from "sequelize";
-import sequelize from "../config/db";
+import mongoose, { Schema, Document, Model } from 'mongoose';
 
-interface SuperAdminAttributes {
-  id: string;
-  username?: string;
-  email: string;
-  firstName?: string;
-  lastName?: string;
-  role?: string;
-  password: string;
+interface ISuperAdmin extends Document {
+  username?: string; 
+  email: string; 
+  firstName?: string; 
+  lastName?: string; 
+  role: string; 
+  password: string; 
 }
 
-interface SuperAdminCreationAttributes
-  extends Optional<SuperAdminAttributes, "id"> {}
-
-export class SuperAdmin
-  extends Model<SuperAdminAttributes, SuperAdminCreationAttributes>
-  implements SuperAdminAttributes
-{
-  public id!: string;
-  public username!: string;
-  public email!: string;
-  public firstName?: string | undefined;
-  public lastName?: string | undefined;
-  public role!: string;
-  public password!: string;
-}
-
-SuperAdmin.init(
+const SuperAdminSchema: Schema<ISuperAdmin> = new Schema(
   {
-    id: {
-      type: DataTypes.UUID,
-      defaultValue: DataTypes.UUIDV4,
-      allowNull: false,
-      primaryKey: true,
-    },
     username: {
-      type: DataTypes.STRING,
-      allowNull: true
+      type: String,
+      default: null, 
     },
     email: {
-      type: DataTypes.STRING,
-      allowNull: false,
+      type: String,
+      required: true, 
+      unique: true, 
     },
     firstName: {
-      type: DataTypes.STRING,
-      allowNull: true
+      type: String,
+      default: null, 
     },
     lastName: {
-      type: DataTypes.STRING,
-      allowNull: true 
+      type: String,
+      default: null, 
     },
     role: {
-      type: DataTypes.STRING,
-      defaultValue: 'superAdmin',
-      allowNull: false
+      type: String,
+      default: 'superAdmin', 
+      required: true, 
     },
     password: {
-      type: DataTypes.STRING,
-      allowNull: false,
+      type: String,
+      required: true, 
     },
   },
   {
-    sequelize,
-    modelName: "SuperAdmin",
-    tableName: "super_admins",
-    timestamps: true,
+    timestamps: true, 
   }
 );
+
+const SuperAdmin: Model<ISuperAdmin> = mongoose.model<ISuperAdmin>('SuperAdmin', SuperAdminSchema);
+
+export default SuperAdmin;

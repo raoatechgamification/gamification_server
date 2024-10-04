@@ -1,82 +1,29 @@
-import { DataTypes, Model, ModelStatic, Optional } from "sequelize";
-import sequelize from "../config/db";
+import mongoose, { Document, Schema } from 'mongoose';
 
-interface OrganizationAttributes {
-  id: string;
-  role?: string;
+export interface OrganizationDocument extends Document {
   name: string;
   email: string;
   phone: string;
   preferredUrl: string;
-  password: string;
-  referral?: string;
+  referral: string;
   referralSource: string;
+  password: string; 
+  role: string; 
+  createdAt: Date; 
+  updatedAt: Date; 
 }
 
-interface OrganizationCreationAttributes
-  extends Optional<OrganizationAttributes, "id"> {}
+const organizationSchema = new Schema<OrganizationDocument>({
+  name: { type: String, required: true },
+  email: { type: String, required: true, unique: true }, 
+  phone: { type: String },
+  preferredUrl: { type: String },
+  referral: { type: String },
+  referralSource: { type: String },
+  password: { type: String, required: true }, 
+  role: { type: String, default: 'organization', required: true }, 
+}, {
+  timestamps: true, 
+});
 
-export class Organization
-  extends Model<OrganizationAttributes, OrganizationCreationAttributes>
-  implements OrganizationAttributes
-{
-  public id!: string;
-  public role!: string;
-  public name!: string;
-  public email!: string;
-  public phone!: string;
-  public preferredUrl!: string;
-  public password!: string;
-  public referral!: string;
-  public referralSource!: string;
-}
-
-Organization.init(
-  {
-    id: {
-      type: DataTypes.UUID,
-      defaultValue: DataTypes.UUIDV4,
-      allowNull: false,
-      primaryKey: true,
-    },
-    role: {
-      type: DataTypes.STRING,
-      defaultValue: 'amdin',
-      allowNull: false,
-    },
-    name: {
-      type: DataTypes.STRING,
-      allowNull: false,
-    },
-    email: {
-      type: DataTypes.STRING,
-      allowNull: false,
-    },
-    phone: {
-      type: DataTypes.STRING,
-      allowNull: false,
-    },
-    preferredUrl: {
-      type: DataTypes.STRING,
-      allowNull: false,
-    },
-    password: {
-      type: DataTypes.STRING,
-      allowNull: false,
-    },
-    referral: {
-      type: DataTypes.STRING,
-      allowNull: true,
-    },
-    referralSource: {
-      type: DataTypes.STRING,
-      allowNull: false,
-    },
-  },
-  {
-    sequelize,
-    modelName: "Organization",
-    tableName: "organizations",
-    timestamps: true,
-  }
-);
+export default mongoose.model<OrganizationDocument>('Organization', organizationSchema);

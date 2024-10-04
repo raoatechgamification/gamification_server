@@ -2,12 +2,14 @@ import express, { Application, Request, Response, NextFunction } from "express";
 import cors from "cors";
 import dotenv from "dotenv";
 import bodyParser from "body-parser";
-import sequelize from "./config/db";
+import connectDB from "./config/db";
 import logger from "./utils/logger";
 
 dotenv.config();
 
 const app: Application = express();
+
+connectDB();
 
 app.use(
   cors({
@@ -36,19 +38,11 @@ app.use((req: Request, res: Response, next: NextFunction) => {
   next();
 });
 
-sequelize
-  .sync({ alter: true })
-  .then(() => {
-    console.log("Database synchronized successfully.");
-  })
-  .catch((error: any) => {
-    console.error("Unable to synchronize the database:", error);
-  });
 
 app.get("/", (req: Request, res: Response) => {
   res.json({
     success: true,
-    message: "Hello Learnerkia",
+    message: "Welcome to Gamification API V1",
   });
 });
 

@@ -71,3 +71,92 @@
 2024-09-30 15:49:42 [info]: POST /api/v1/auth/user/login 500 - Request Body: {"email":"seun1005@gmail.com","password":"Omodaratan05$#"}
 2024-09-30 15:53:31 [info]: POST /api/v1/auth/user/login 500 - Request Body: {"email":"seun1005@gmail.com","password":"Omodaratan05$#"}
 2024-09-30 15:58:57 [info]: POST /user/login 200 - Request Body: {"email":"seun1005@gmail.com","password":"Omodaratan05$#"}
+2024-09-30 16:04:45 [info]: POST /super-admin/login 422
+2024-09-30 16:06:39 [info]: POST /super-admin/signup 200 - Request Body: {"email":"seun1005@gmail.com","password":"Omodaratan05$#"}
+2024-09-30 16:08:26 [info]: GET /auth/super-admin/login 200
+2024-09-30 16:08:32 [info]: POST /super-admin/login 422
+2024-09-30 16:08:50 [info]: POST /api/v1/auth/super-admin/login 500 - Request Body: {"email":"seun1005@gmail.com","password":"Omodaratan05$#"}
+2024-09-30 16:13:44 [info]: POST /user/login 200 - Request Body: {"email":"seun1005@gmail.com","password":"Omodaratan05$#"}
+2024-09-30 16:13:55 [info]: POST /super-admin/login 200 - Request Body: {"email":"seun1005@gmail.com","password":"Omodaratan05$#"}
+2024-10-02 17:39:54 [info]: POST /super-admin/login 200 - Request Body: {"email":"seun1005@gmail.com","password":"Omodaratan05$#"}
+2024-10-02 17:58:59 [info]: GET /organizations/view-all 200
+2024-10-02 17:59:21 [info]: GET /organizations/view-all 401
+2024-10-02 17:59:26 [info]: GET /organizations/view-all 200
+2024-10-02 17:59:38 [info]: POST /api/v1/auth/org/login 500 - Request Body: {"email":"seunoduez@gmail.com","password":"Ollyy10$"}
+2024-10-03 09:37:01 [info]: POST /org/login 200 - Request Body: {"email":"seunoduez@gmail.com","password":"Ollyy10$"}
+2024-10-03 09:38:03 [info]: GET /organizations/view-all 403
+2024-10-03 09:38:31 [info]: GET /organizations/view-all 403
+2024-10-03 09:38:41 [info]: POST /super-admin/login 200 - Request Body: {"email":"seun1005@gmail.com","password":"Omodaratan05$#"}
+2024-10-03 09:39:05 [info]: GET /organizations/view-all 200
+2024-10-03 10:09:03 [info]: GET /api/v1/super-admin/organizations/view-all 500
+2024-10-03 10:09:37 [info]: POST /api/v1/auth/user/register 500 - Request Body: {"email":"seun10050@gmail.com","password":"Omodaratan05$#","username":"Omodaratan1005","organizationId":"7f2ab12e-b315-432c-8bfd-e4837d34734e"}
+2024-10-03 10:10:45 [info]: POST /user/register 201 - Request Body: {"email":"seun10050@gmail.com","password":"Omodaratan05$#","username":"Omodaratan1005","organizationId":"7f2ab12e-b315-432c-8bfd-e4837d34734e"}
+2024-10-03 10:11:16 [info]: GET /organizations/view-all 200
+2024-10-03 10:16:42 [info]: GET /organizations/view-all 403
+2024-10-03 10:21:07 [info]: GET /users/view-all 401
+2024-10-03 10:21:31 [info]: GET /users/view-all 403
+2024-10-03 10:21:36 [info]: GET /users/view-all 403
+2024-10-03 10:21:58 [info]: GET /users/view-all 200
+2024-10-03 10:23:37 [info]: GET /users/view-all 200
+2024-10-03 15:49:45 [info]: POST /api/v1/auth/user/register 500 - Request Body: {"email":"seun10050@gmail.com","password":"Omodaratan05$#","username":"Omodaratan1005","organizationId":"7f2ab12e-b315-432c-8bfd-e4837d34734e"}
+2024-10-03 16:02:09 [info]: POST /user/register 422 - Request Body: {"email":"seun10050@gmail.com","password":"Omodaratan05$#","username":"Omodaratan1005","organizationId":"651bb32bf30d3c66a2a9e51f"}
+2024-10-03 16:02:23 [info]: POST /user/register 201 - Request Body: {"email":"seun10050@gmail.com","password":"Omodaratan05$#","username":"Omodaratan1005"}
+2024-10-03 16:04:18 [info]: POST /user/login 200 - Request Body: {"email":"seun10050@gmail.com","password":"Omodaratan05$#"}
+2024-10-03 16:18:17 [info]: POST /org/register 422
+2024-10-03 16:34:10 [info]: POST /org/register 422 - Request Body: {"name":"Doer Charity","email":"doercharity@gmail.com","phone":"09066318539","preferredUrl":"https:doer","password":"doer505","confirmPassword":"dodo","referralSource":"linkedin"}
+2024-10-03 16:34:39 [info]: POST /org/register 422 - Request Body: {"name":"Doer Charity","email":"doercharity@gmail.com","phone":"09066318539","preferredUrl":"https:doer","password":"doer505","confirmPassword":"dodo","referralSource":"linkedin"}
+2024-10-03 16:34:53 [info]: POST /org/register 422 - Request Body: {"name":"Doer Charity","email":"doercharity@gmail.com","phone":"09066318539","preferredUrl":"https:doer","password":"doer505$$$","confirmPassword":"dodo","referralSource":"linkedin"}
+2024-10-03 16:35:07 [info]: POST /org/register 422 - Request Body: {"name":"Doer Charity","email":"doercharity@gmail.com","phone":"09066318539","preferredUrl":"https:doer","password":"Doer505$$$","confirmPassword":"dodo","referralSource":"linkedin"}
+2024-10-03 16:35:15 [info]: POST /org/register 422 - Request Body: {"name":"Doer Charity","email":"doercharity@gmail.com","phone":"09066318539","preferredUrl":"https:doer.com","password":"Doer505$$$","confirmPassword":"dodo","referralSource":"linkedin"}
+2024-10-03 16:35:22 [info]: POST /org/register 400 - Request Body: {"name":"Doer Charity","email":"doercharity@gmail.com","phone":"09066318539","preferredUrl":"https://doer.com","password":"Doer505$$$","confirmPassword":"dodo","referralSource":"linkedin"}
+2024-10-03 16:35:35 [info]: POST /org/register 201 - Request Body: {"name":"Doer Charity","email":"doercharity@gmail.com","phone":"09066318539","preferredUrl":"https://doer.com","password":"Doer505$$$","confirmPassword":"Doer505$$$","referralSource":"linkedin"}
+2024-10-03 16:39:28 [info]: POST /org/login 200 - Request Body: {"email":"doercharity@gmail.com","password":"Doer505$$$"}
+2024-10-03 16:42:28 [info]: GET /organizations/view-all 403
+2024-10-03 16:43:15 [info]: GET /organizations/view-all 403
+2024-10-03 16:43:54 [info]: GET /organizations/view-all 401
+2024-10-03 16:44:29 [info]: POST /super-admin/login 400 - Request Body: {"email":"seun1005@gmail.com","password":"Omodaratan05$#"}
+2024-10-03 16:44:36 [info]: POST /super-admin/login 400 - Request Body: {"email":"seun1005@gmail.com","password":"Omodaratan05$#"}
+2024-10-03 16:45:06 [info]: POST /super-admin/signup 201 - Request Body: {"email":"seun1005@gmail.com","password":"Omodaratan05$#"}
+2024-10-03 16:45:40 [info]: POST /super-admin/login 200 - Request Body: {"email":"seun1005@gmail.com","password":"Omodaratan05$#"}
+2024-10-03 16:46:02 [info]: GET /organizations/view-all 403
+2024-10-03 16:46:07 [info]: GET /organizations/view-all 403
+2024-10-03 16:53:31 [info]: POST /super-admin/signup 400 - Request Body: {"email":"seun1005@gmail.com","password":"Omodaratan05$#"}
+2024-10-03 17:04:21 [info]: POST /super-admin/login 200 - Request Body: {"email":"seun1005@gmail.com","password":"Omodaratan05$#"}
+2024-10-03 17:04:54 [info]: GET /organizations/view-all 403
+2024-10-03 17:05:13 [info]: POST /super-admin/login 200 - Request Body: {"email":"seun1005@gmail.com","password":"Omodaratan05$#"}
+2024-10-03 17:08:33 [info]: POST /super-admin/signup 400 - Request Body: {"email":"seun1005@gmail.com","password":"Omodaratan05$#"}
+2024-10-03 17:08:42 [info]: POST /super-admin/login 200 - Request Body: {"email":"seun1005@gmail.com","password":"Omodaratan05$#"}
+2024-10-03 17:09:01 [info]: GET /organizations/view-all 403
+2024-10-03 17:10:11 [info]: GET /organizations/view-all 403
+2024-10-03 17:13:39 [info]: POST /super-admin/login 400 - Request Body: {"email":"seun05@gmail.com","password":"Omodaratan05$#"}
+2024-10-03 17:13:50 [info]: POST /super-admin/signup 201 - Request Body: {"email":"seun05@gmail.com","password":"Omodaratan05$#"}
+2024-10-03 17:13:57 [info]: POST /super-admin/login 200 - Request Body: {"email":"seun05@gmail.com","password":"Omodaratan05$#"}
+2024-10-03 17:14:25 [info]: GET /organizations/view-all 403
+2024-10-03 17:26:04 [info]: GET /organizations/view-all 403
+2024-10-03 17:27:57 [info]: GET /organizations/view-all 403
+2024-10-03 17:29:50 [info]: GET /organizations/view-all 403
+2024-10-03 17:30:33 [info]: GET /organizations/view-all 403
+2024-10-03 17:33:07 [info]: GET /organizations/view-all 403
+2024-10-04 14:33:34 [info]: GET /organizations/view-all 401
+2024-10-04 14:37:12 [info]: POST /info 404 - Request Body: {"name":"Add your name in the body"}
+2024-10-04 14:37:42 [info]: POST /super-admin/login 200 - Request Body: {"email":"seun1005@gmail.com","password":"Omodaratan05$#"}
+2024-10-04 14:38:07 [info]: GET /organizations/view-all 200
+2024-10-04 14:38:31 [info]: POST /org/login 200 - Request Body: {"email":"doercharity@gmail.com","password":"Doer505$$$"}
+2024-10-04 14:38:42 [info]: GET /organizations/view-all 403
+2024-10-04 14:38:53 [info]: POST /user/login 200 - Request Body: {"email":"seun10050@gmail.com","password":"Omodaratan05$#"}
+2024-10-04 14:39:21 [info]: GET /organizations/view-all 403
+2024-10-04 14:40:11 [info]: GET /organizations/view-all 200
+2024-10-04 14:40:21 [info]: GET /users/view-all 200
+2024-10-04 14:40:43 [info]: GET /users/view-all 403
+2024-10-04 14:41:06 [info]: POST /info 404 - Request Body: {"name":"Add your name in the body"}
+2024-10-04 14:41:13 [info]: GET /info 404 - Request Body: {"name":"Add your name in the body"}
+2024-10-04 14:41:20 [info]: GET / 200 - Request Body: {"name":"Add your name in the body"}
+2024-10-04 14:42:37 [info]: GET / 200 - Request Body: {"name":"Add your name in the body"}
+2024-10-04 14:45:27 [info]: GET /organizations/view-all 403
+2024-10-04 14:45:34 [info]: GET /organizations/view-all 403
+2024-10-04 14:46:06 [info]: GET /organizations/view-all 200
+2024-10-04 14:46:34 [info]: GET /organizations/view-all 200
+2024-10-04 14:47:46 [info]: GET /organizations/view-all 200
+2024-10-04 14:48:44 [info]: GET /organizations/view-all 403
+2024-10-04 14:49:23 [info]: GET /organizations/view-all 200
+2024-10-04 14:50:33 [info]: GET /organizations/view-all 200

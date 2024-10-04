@@ -10,13 +10,13 @@ import {
 } from "../validators/user.auth.validator";
 import { superAdminValidator } from "../validators/superadmin.validator";
 
-import { AdminAuthController } from "../controllers/admin.auth.controller";
-import { UserAuthController } from "../controllers/user.auth.controller";
-import { SuperAdminController } from "../controllers/superadmin.auth.controller";
+import { AdminAuthController } from "../controllers/auth.admin.controller";
+import { UserAuthController } from "../controllers/auth.user.controller";
+import { SuperAdminAuthController } from "../controllers/auth.superadmin.controller";
 
 const { registerOrganization, loginOrganization } = AdminAuthController;
 const { registerUser, loginUser } = UserAuthController;
-const { registerSuperAdmin, loginSuperAdmin } = SuperAdminController;
+const { registerSuperAdmin, loginSuperAdmin } = SuperAdminAuthController;
 
 const router = Router();
 
