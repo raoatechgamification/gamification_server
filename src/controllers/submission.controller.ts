@@ -9,7 +9,8 @@ export class SubmissionController {
   async submitAssessment(req: Request, res: Response) {
     try {
       const { answerText } = req.body;
-      const { assessmentId, learnerId } = req.params;
+      const { learnerId } = req.user._id
+      const { assessmentId } = req.params;
       const file = req.file;
 
       console.log("Answer Text", answerText);

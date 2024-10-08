@@ -9,7 +9,8 @@ import { s3 } from "../utils/upload.utils";
 export class AssessmentController {
   async createAssessment(req: Request, res: Response, next: NextFunction) {
     try {
-      const { title, question, highestAttainableScore, markingGuide } = req.body;
+      const { title, question, highestAttainableScore, markingGuide } =
+        req.body;
       const { courseId, instructorId } = req.params;
       const file = req.file;
 
@@ -36,14 +37,14 @@ export class AssessmentController {
         highestAttainableScore,
         file: fileUploadResult ? fileUploadResult.Location : null,
         courseId,
-        instructorId,  // Replaced `createdBy` with `instructorId` as per the model
+        instructorId, // Replaced `createdBy` with `instructorId` as per the model
       });
 
       await MarkingGuide.create({
-        assessmentId: assessment._id,  // Mongoose uses `_id`
+        assessmentId: assessment._id, // Mongoose uses `_id`
         question: markingGuide.question,
         expectedAnswer: markingGuide.expectedAnswer,
-        keywords: markingGuide.keywords.split(','), // Ensure it's an array of strings
+        keywords: markingGuide.keywords.split(","), // Ensure it's an array of strings
         maxScore: highestAttainableScore,
       });
 
@@ -58,13 +59,17 @@ export class AssessmentController {
     }
   }
 
-  async getSubmissionsForAssessment(req: Request, res: Response, next: NextFunction) {
+  async getSubmissionsForAssessment(
+    req: Request,
+    res: Response,
+    next: NextFunction
+  ) {
     try {
       const { assessmentId, instructorId } = req.params;
 
       const assessment = await Assessment.findOne({
         _id: assessmentId,
-        instructorId,  
+        instructorId,
       });
       if (!assessment) {
         return ResponseHandler.failure(
@@ -75,7 +80,7 @@ export class AssessmentController {
       }
 
       const submissions = await Submission.find({
-        assessmentId,  
+        assessmentId,
       });
 
       res.status(200).json({
