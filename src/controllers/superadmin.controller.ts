@@ -81,5 +81,13 @@ export class SuperAdminController {
       next(error);
     }
   }
+
+  static async customCreate (req: Request, res: Response, next: NextFunction) {
+    try {
+      
+    } catch (error) {
+      next(error)
+    }
+  }
 }
 

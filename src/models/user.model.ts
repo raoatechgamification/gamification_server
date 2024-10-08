@@ -9,6 +9,11 @@ export interface IUser extends Document {
   organization?: mongoose.Schema.Types.ObjectId; 
   role: string; 
   password: string; 
+  yearOfExperience?: number;
+  highestEducationLevel?: string;
+  gender?: string;
+  dateOfBirth?: Date;
+  phoneNumber?: string;
 }
 
 const UserSchema: Schema<IUser> = new Schema(
@@ -46,6 +51,26 @@ const UserSchema: Schema<IUser> = new Schema(
     password: {
       type: String,
       required: true, 
+    },
+    yearOfExperience: {
+      type: Number,
+      default: null, 
+    },
+    highestEducationLevel: {
+      type: String,
+      default: null, 
+    },
+    gender: {
+      type: String,
+      default: null, 
+    },
+    dateOfBirth: {
+      type: Date,
+      default: null, 
+    },
+    phoneNumber: {
+      type: String,
+      default: null, 
     },
   },
   {

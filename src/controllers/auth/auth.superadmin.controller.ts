@@ -1,8 +1,8 @@
 import { Request, Response, NextFunction } from "express";
-import { ResponseHandler } from "../middlewares/responseHandler.middleware";
-import SuperAdmin  from "../models/superadmin.model"; 
-import { comparePassword, hashPassword } from "../utils/hash";
-import { generateToken } from "../utils/jwt";
+import { ResponseHandler } from "../../middlewares/responseHandler.middleware";
+import SuperAdmin  from "../../models/superadmin.model"; 
+import { comparePassword, hashPassword } from "../../utils/hash";
+import { generateToken } from "../../utils/jwt";
 
 export class SuperAdminAuthController {
   static async registerSuperAdmin(

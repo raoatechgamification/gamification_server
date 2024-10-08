@@ -21,7 +21,7 @@ const organizationSchema = new Schema<OrganizationDocument>({
   referral: { type: String },
   referralSource: { type: String },
   password: { type: String, required: true }, 
-  role: { type: String, default: 'organization', required: true }, 
+  role: { type: String, default: 'admin', required: true }, 
 }, {
   timestamps: true, 
 });

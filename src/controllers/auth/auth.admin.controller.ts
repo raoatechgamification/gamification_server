@@ -1,10 +1,10 @@
 import { Request, Response, NextFunction } from "express";
-import { ResponseHandler } from "../middlewares/responseHandler.middleware";
+import { ResponseHandler } from "../../middlewares/responseHandler.middleware";
 import Organization, {
   OrganizationDocument,
-} from "../models/organization.model"; 
-import { hashPassword, comparePassword } from "../utils/hash";
-import { generateToken } from "../utils/jwt";
+} from "../../models/organization.model"; 
+import { hashPassword, comparePassword } from "../../utils/hash";
+import { generateToken } from "../../utils/jwt";
 
 export class AdminAuthController {
   static async registerOrganization(

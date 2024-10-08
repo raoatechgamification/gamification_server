@@ -1,9 +1,9 @@
 import { Request, Response, NextFunction } from "express";
-import { ResponseHandler } from "../middlewares/responseHandler.middleware";
-import User from "../models/user.model"; 
-import Organization from "../models/organization.model"; 
-import { comparePassword, hashPassword } from "../utils/hash";
-import { generateToken } from "../utils/jwt";
+import { ResponseHandler } from "../../middlewares/responseHandler.middleware";
+import User from "../../models/user.model"; 
+import Organization from "../../models/organization.model"; 
+import { comparePassword, hashPassword } from "../../utils/hash";
+import { generateToken } from "../../utils/jwt";
 
 export class UserAuthController {
   static async registerUser(req: Request, res: Response, next: NextFunction) {
