@@ -160,3 +160,53 @@
 2024-10-04 14:48:44 [info]: GET /organizations/view-all 403
 2024-10-04 14:49:23 [info]: GET /organizations/view-all 200
 2024-10-04 14:50:33 [info]: GET /organizations/view-all 200
+2024-10-08 20:41:10 [info]: POST /user/register 201 - Request Body: {"email":"seun10050@gmail.com","password":"Omodaratan05$#","username":"Omodaratan1005"}
+2024-10-08 20:44:16 [info]: POST /user/login 200 - Request Body: {"email":"seun10050@gmail.com","password":"Omodaratan05$#"}
+2024-10-08 20:45:08 [info]: POST /super-admin/signup 201 - Request Body: {"email":"seun@gmail.com","password":"Omodaratan05$#"}
+2024-10-08 20:45:42 [info]: POST /super-admin/login 200 - Request Body: {"email":"seun@gmail.com","password":"Omodaratan05$#"}
+2024-10-08 20:46:13 [info]: POST /org/register 201 - Request Body: {"name":"Doer Charity","email":"doercharity@gmail.com","phone":"09066318539","preferredUrl":"https://doer.com","password":"Doer505$$$","confirmPassword":"Doer505$$$","referralSource":"linkedin"}
+2024-10-08 20:46:20 [info]: POST /org/login 200 - Request Body: {"email":"doercharity@gmail.com","password":"Doer505$$$"}
+2024-10-08 21:01:11 [info]: POST /create/1 401 - Request Body: {"name":"Add your name in the body"}
+2024-10-08 21:01:34 [info]: POST /create/1 403 - Request Body: {"name":"Add your name in the body"}
+2024-10-08 21:03:03 [info]: POST /org/register 201 - Request Body: {"name":"Doer Charity","email":"doercharity@gmail.com","phone":"09066318539","preferredUrl":"https://doer.com","password":"Doer505$$$","confirmPassword":"Doer505$$$","referralSource":"linkedin"}
+2024-10-08 21:03:09 [info]: POST /org/login 200 - Request Body: {"email":"doercharity@gmail.com","password":"Doer505$$$"}
+2024-10-08 21:03:30 [info]: POST /org/login 200 - Request Body: {"email":"doercharity@gmail.com","password":"Doer505$$$"}
+2024-10-08 21:03:51 [info]: POST /create/1 422 - Request Body: {"name":"Add your name in the body"}
+2024-10-08 21:04:05 [info]: POST /create/67058ff7da294019ea513e63 422 - Request Body: {"name":"Add your name in the body"}
+2024-10-08 21:05:32 [info]: POST /create/67058ff7da294019ea513e63 201 - Request Body: {"title":"PhD Thesis Research","question":"How do water get hot","highestAttainableScore":10}
+2024-10-08 21:06:25 [info]: POST /create/87058gg7da2oo4019ea513e49 422 - Request Body: {"title":"PhD Thesis Research","question":"How do water get hot","highestAttainableScore":10}
+2024-10-08 21:06:38 [info]: POST /create/87058gg7da294019ea513e49 422 - Request Body: {"title":"PhD Thesis Research","question":"How do water get hot","highestAttainableScore":10}
+2024-10-08 21:06:50 [info]: POST /create/67058gg7da294019ea513e49 422 - Request Body: {"title":"PhD Thesis Research","question":"How do water get hot","highestAttainableScore":10}
+2024-10-08 21:07:04 [info]: POST /create/67058ff7da294019ea513e62 201 - Request Body: {"title":"PhD Thesis Research","question":"How do water get hot","highestAttainableScore":10}
+2024-10-08 21:26:43 [info]: POST /create 401 - Request Body: {"title":"An Introduction to Advanced Chemistry"}
+2024-10-08 21:27:54 [info]: POST /create 422 - Request Body: {"title":"An Introduction to Advanced Chemistry"}
+2024-10-08 21:29:36 [info]: POST /create 422 - Request Body: {"title":"An Introduction to Advanced Chemistry","objective":"To help students gain proper insight of advanced Chemistry","price":10000,"duration":"six months","lessonFormat":"PDF"}
+2024-10-08 21:32:11 [info]: POST /create 422 - Request Body: {"title":"An Introduction to Advanced Chemistry","objective":"To help students gain proper insight of advanced Chemistry","price":10000,"duration":"six months","lessonFormat":"PDF"}
+2024-10-08 21:34:19 [info]: POST /api/v1/course/create 500 - Request Body: {"title":"An Introduction to Advanced Chemistry","objective":"To help students gain proper insight of advanced Chemistry","price":10000,"duration":"six months","lessonFormat":"PDF"}
+2024-10-08 21:36:07 [info]: POST /create 201 - Request Body: {"title":"An Introduction to Advanced Chemistry","objective":"To help students gain proper insight of advanced Chemistry","price":10000,"duration":"six months","lessonFormat":"PDF"}
+2024-10-08 21:40:53 [info]: POST /create/67058ff7da294019ea513e62 404 - Request Body: {"title":"PhD Thesis Research","question":"How do water get hot","highestAttainableScore":10}
+2024-10-08 21:41:08 [info]: POST /create/670597b779856ce117f64a59 201 - Request Body: {"title":"PhD Thesis Research","question":"How do water get hot","highestAttainableScore":10}
+2024-10-08 21:45:03 [info]: PUT /assessment/submit/670598e4a4d086e88d5d30ab 200
+2024-10-08 21:45:15 [info]: POST /submit/670598e4a4d086e88d5d30ab 401
+2024-10-08 21:45:55 [info]: POST /submit/670598e4a4d086e88d5d30ab 401
+2024-10-08 21:47:05 [info]: POST /submit/670598e4a4d086e88d5d30ab 401
+2024-10-08 21:47:20 [info]: POST /user/login 200 - Request Body: {"email":"seun10050@gmail.com","password":"Omodaratan05$#"}
+2024-10-08 21:47:45 [info]: POST /submit/670598e4a4d086e88d5d30ab 422
+2024-10-08 21:48:23 [info]: POST /submit/670598e4a4d086e88d5d30ab 422
+2024-10-08 21:49:31 [info]: POST /api/v1/assessment/submit/670598e4a4d086e88d5d30ab 500 - Request Body: {"answerText":"This is my answer and submission to this assessment"}
+2024-10-08 21:52:21 [info]: POST /submit/670598e4a4d086e88d5d30ab 500 - Request Body: {"answerText":"This is my answer and submission to this assessment"}
+2024-10-08 21:53:14 [info]: POST /submit/670598e4a4d086e88d5d30ab 404 - Request Body: {"answerText":"This is my answer and submission to this assessment"}
+2024-10-08 21:53:25 [info]: POST /submit/670598e4a4d086e88d5d30aa 500 - Request Body: {"answerText":"This is my answer and submission to this assessment"}
+2024-10-08 21:54:32 [info]: POST /submit/670598e4a4d086e88d5d30aa 500 - Request Body: {"answerText":"This is my answer and submission to this assessment"}
+2024-10-08 21:56:11 [info]: POST /submit/670598e4a4d086e88d5d30aa 500 - Request Body: {"answerText":"This is my answer and submission to this assessment"}
+2024-10-08 21:57:32 [info]: POST /submit/670598e4a4d086e88d5d30aa 200 - Request Body: {"answerText":"This is my answer and submission to this assessment"}
+2024-10-08 21:58:03 [info]: POST /submit/670598e4a4d086e88d5d30aa 400 - Request Body: {"answerText":"This is my answer and submission to this assessment"}
+2024-10-08 21:58:52 [info]: POST /submit/670598e4a4d086e88d5d30aa 400 - Request Body: {"answerText":"This is my answer and submission to this assessment"}
+2024-10-09 09:20:30 [info]: PUT /profile/edit 401 - Request Body: {"yearOfExperience":5,"highestEducationLevel":"Bachelor of Science","gender":"female","dateOfBirth":"05-09-2000","username":"same_same","firstName":"Oluwaseun","lastName":"Odueso"}
+2024-10-09 09:20:46 [info]: POST /user/login 200 - Request Body: {"email":"seun10050@gmail.com","password":"Omodaratan05$#"}
+2024-10-09 09:21:46 [info]: PUT /profile/edit 404 - Request Body: {"yearOfExperience":5,"highestEducationLevel":"Bachelor of Science","gender":"female","dateOfBirth":"05-09-2000","username":"same_same","firstName":"Oluwaseun","lastName":"Odueso"}
+2024-10-09 09:21:56 [info]: PUT /profile/edit 404 - Request Body: {"yearOfExperience":5,"highestEducationLevel":"Bachelor of Science","gender":"female","dateOfBirth":"05-09-2000","username":"same_same","firstName":"Oluwaseun","lastName":"Odueso"}
+2024-10-09 09:24:01 [info]: PUT /profile/edit 200 - Request Body: {"yearOfExperience":5,"highestEducationLevel":"Bachelor of Science","gender":"female","dateOfBirth":"05-09-2000","username":"same_same","firstName":"Oluwaseun","lastName":"Odueso"}
+2024-10-09 09:29:18 [info]: PUT /profile/edit 200 - Request Body: {"yearOfExperience":5,"highestEducationLevel":"Bachelor of Science","gender":"female","dateOfBirth":"05-09-2000","username":"same_same","firstName":"Oluwaseun","lastName":"Odueso"}
+2024-10-09 09:29:49 [info]: PUT /profile/edit 200 - Request Body: {"yearOfExperience":5,"highestEducationLevel":"Bachelor of Science","gender":"female","dateOfBirth":"05-09-2000","username":"same_same","firstName":"Oluwaseun","lastName":"Odueso","phone":"09066318539"}
+2024-10-09 09:30:50 [info]: PUT /profile/edit 200 - Request Body: {"yearOfExperience":5,"highestEducationLevel":"Bachelor of Science","gender":"female","dateOfBirth":"05-09-2000","username":"same_same","firstName":"Oluwaseun","lastName":"Odueso","phone":"+2349066318539"}

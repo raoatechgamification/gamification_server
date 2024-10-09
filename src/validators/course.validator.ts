@@ -20,31 +20,27 @@ export const createCourseValidator = [
   body("title")
     .notEmpty()
     .isString()
-    .withMessage("Please provide an organization name"),
+    .withMessage("Please provide the course title"),
 
   body("objective")
     .notEmpty()
-    .isEmail()
-    .withMessage("Please provide a valid email"),
+    .isString()
+    .withMessage("Please provide the course objective"),
 
   body("price")
     .notEmpty()
-    .isString()
-    .withMessage("Please provide a phone number"),
+    .isNumeric()
+    .withMessage("Please provide the course price"),
 
   body("duration")
     .notEmpty()
     .isString()
-    .isURL()
-    .withMessage("Please provide a valid url"),
+    .withMessage("Please provide a the course duration"),
 
-  body("lessionFormat")
+  body("lessonFormat")
     .notEmpty()
     .isString()
-    .isStrongPassword()
-    .withMessage(
-      "Please provide a strong password. Password must be at least eight characters, with uppercase and lowercase letter, and a special character"
-    ),
+    .withMessage("Please provide the lessons format"),
 
   errorResponse,
 ];

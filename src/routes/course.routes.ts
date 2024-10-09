@@ -8,6 +8,11 @@ const { createCourse } = new CourseController();
 
 const router = Router();
 
-router.post("/create", ...createCourseValidator, createCourse);
+router.post(
+  "/create",
+  authenticate, 
+  authorize('admin'),
+  ...createCourseValidator, 
+  createCourse);
 
 export default router;

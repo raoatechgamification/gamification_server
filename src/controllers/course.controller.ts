@@ -5,7 +5,7 @@ import Course from "../models/course.model";
 export class CourseController {
   async createCourse(req: Request, res: Response, next: NextFunction) {
     try {
-      const { instructorId } = req.admin._id;
+      const instructorId = req.admin._id;
       const { title, objective, price, duration, lessonFormat } = req.body;
 
       const course = await Course.create({

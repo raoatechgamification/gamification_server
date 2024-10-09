@@ -12,8 +12,7 @@ export interface IUser extends Document {
   yearOfExperience?: number;
   highestEducationLevel?: string;
   gender?: string;
-  dateOfBirth?: Date;
-  phoneNumber?: string;
+  dateOfBirth?: string;
 }
 
 const UserSchema: Schema<IUser> = new Schema(
@@ -65,10 +64,6 @@ const UserSchema: Schema<IUser> = new Schema(
       default: null, 
     },
     dateOfBirth: {
-      type: Date,
-      default: null, 
-    },
-    phoneNumber: {
       type: String,
       default: null, 
     },

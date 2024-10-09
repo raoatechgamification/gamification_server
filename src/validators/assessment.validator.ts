@@ -1,7 +1,6 @@
 import { Request, Response, NextFunction } from "express";
 import { param, body, validationResult } from "express-validator";
 import { ObjectId } from "mongodb";
-// import { upload } from "../utils/upload.utils";
 
 
 const validateMarkingGuide = [
@@ -76,15 +75,6 @@ const errorResponse = (req: Request, res: Response, next: NextFunction) => {
 };
 
 export const createAssessmentValidator = [
-  param("instructorId")
-    .optional()
-    .custom((value) => {
-      if (!ObjectId.isValid(value)) {
-        throw new Error('Invalid organization id');
-      }
-      return true;
-    }),
-
   param("courseId")
     .optional()
     .custom((value) => {
@@ -119,15 +109,6 @@ export const createAssessmentValidator = [
 ];
 
 export const submissionValidator = [
-  param("learnerId")
-    .optional()
-    .custom((value) => {
-      if (!ObjectId.isValid(value)) {
-        throw new Error('Invalid learner id');
-      }
-      return true;
-    }),
-
   param("assessmentId")
     .optional()
     .custom((value) => {
@@ -156,15 +137,6 @@ export const gradeAssessmentValidator = [
       }
       return true;
     }),
-  param("instructorId")
-    .optional()
-    .custom((value) => {
-      if (!ObjectId.isValid(value)) {
-        throw new Error('Invalid instructor id');
-      }
-      return true;
-    }),
-
   body("score")
     .notEmpty()
     .isNumeric()
@@ -188,15 +160,6 @@ export const viewLearnersValidator = [
     .custom((value) => {
       if (!ObjectId.isValid(value)) {
         throw new Error('Invalid assessment id');
-      }
-      return true;
-    }),
-
-  param("instructorId")
-    .optional()
-    .custom((value) => {
-      if (!ObjectId.isValid(value)) {
-        throw new Error('Invalid instructor id');
       }
       return true;
     }),

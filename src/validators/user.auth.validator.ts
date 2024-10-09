@@ -2,7 +2,6 @@ import { Request, Response, NextFunction } from "express";
 import { body, validationResult } from "express-validator";
 import { ObjectId } from "mongodb";
 
-
 const errorResponse = (req: Request, res: Response, next: NextFunction) => {
   const errors = validationResult(req);
   if (!errors.isEmpty()) {
@@ -40,7 +39,7 @@ export const registerUserValidator = [
     .optional()
     .custom((value) => {
       if (!ObjectId.isValid(value)) {
-        throw new Error('Invalid organization id');
+        throw new Error("Invalid organization id");
       }
       return true;
     }),
@@ -60,4 +59,30 @@ export const loginUserValidator = [
     .withMessage("Please provide your password"),
 
   errorResponse,
+];
+
+export const editUserProfileValidator = [
+  body("yearOfExperience")
+    .isNumeric()
+    .withMessage("Please provide a valid years of experience"),
+
+  body("highestEducationLevel")
+    .isString()
+    .withMessage("Please select your highest education level"),
+
+  body("gender").isString().withMessage("Please select a gender option"),
+
+  body("dateOfBirth")
+    .isDate()
+    .withMessage("Please provide a valid date of birth"),
+
+  body("username").isString().withMessage("Please provide a valid username"),
+
+  body("firstName").isString().withMessage("Please provide a valid first name"),
+
+  body("lastName").isString().withMessage("Please provide a valid last name"),
+
+  body("phone")
+    .isMobilePhone("any")
+    .withMessage("Please provide a valid phone number"),
 ];

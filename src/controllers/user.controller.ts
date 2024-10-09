@@ -3,7 +3,7 @@ import { ResponseHandler } from "../middlewares/responseHandler.middleware";
 import User from "../models/user.model";
 
 export class UserController {
-  static async editProfile(req: Request, res: Response, next: NextFunction) {
+  async editProfile(req: Request, res: Response, next: NextFunction) {
     try {
       const {
         yearOfExperience,
@@ -13,10 +13,10 @@ export class UserController {
         username,
         firstName,
         lastName,
-        phoneNumber,
+        phone,
       } = req.body;
 
-      const userId = req.user._id;
+      const userId = req.user.id;
       const updatedUser = await User.findByIdAndUpdate(
         userId,
         {
@@ -28,7 +28,7 @@ export class UserController {
             username,
             firstName,
             lastName,
-            phoneNumber,
+            phone,
           },
         },
         { new: true, runValidators: true } 

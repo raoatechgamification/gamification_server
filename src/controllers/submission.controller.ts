@@ -9,12 +9,9 @@ export class SubmissionController {
   async submitAssessment(req: Request, res: Response) {
     try {
       const { answerText } = req.body;
-      const { learnerId } = req.user._id
+      const learnerId = req.user.id
       const { assessmentId } = req.params;
       const file = req.file;
-
-      console.log("Answer Text", answerText);
-      console.log("Assessment ID", assessmentId);
 
       const assessment = await Assessment.findById(assessmentId);
       if (!assessment) {
@@ -50,13 +47,6 @@ export class SubmissionController {
 
         fileUploadResult = await s3.upload(uploadParams).promise();
       }
-
-      console.log({
-        answerText,
-        learnerId: learnerId,
-        assessmentId: assessmentId,
-        submittedFile: fileUploadResult ? fileUploadResult.Location : null,
-      });
 
       const submission = await Submission.create({
         answerText,

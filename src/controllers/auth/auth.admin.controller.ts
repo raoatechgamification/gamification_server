@@ -61,7 +61,7 @@ export class AdminAuthController {
         password: hashedPassword, // Store the hashed password
         referral,
         referralSource,
-        role: "organization", // Set the role as needed
+        role: "admin", // Set the role as needed
       });
 
       // Retrieve the created organization, excluding sensitive fields

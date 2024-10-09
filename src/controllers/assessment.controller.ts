@@ -4,15 +4,22 @@ import { AIGradingService } from "../services/AIgrading.service";
 import MarkingGuide from "../models/markingGuide.model";
 import Assessment from "../models/assessment.model";
 import Submission from "../models/submission.model";
+import Course from "../models/course.model"
 import { s3 } from "../utils/upload.utils";
 
 export class AssessmentController {
   async createAssessment(req: Request, res: Response, next: NextFunction) {
     try {
-      const { title, question, highestAttainableScore, markingGuide } =
+      const { title, question, highestAttainableScore } =
         req.body;
-      const { courseId, instructorId } = req.params;
+      const { courseId } = req.params;
+      const instructorId = req.admin._id
       const file = req.file;
+
+      const course = await Course.findById(courseId)
+      if (!course) {
+        return ResponseHandler.failure(res, "Course not found", 404)
+      }
 
       let fileUploadResult: any = null;
 
@@ -37,16 +44,17 @@ export class AssessmentController {
         highestAttainableScore,
         file: fileUploadResult ? fileUploadResult.Location : null,
         courseId,
-        instructorId, // Replaced `createdBy` with `instructorId` as per the model
+        instructorId, 
       });
 
-      await MarkingGuide.create({
-        assessmentId: assessment._id, // Mongoose uses `_id`
-        question: markingGuide.question,
-        expectedAnswer: markingGuide.expectedAnswer,
-        keywords: markingGuide.keywords.split(","), // Ensure it's an array of strings
-        maxScore: highestAttainableScore,
-      });
+      // I'll handle marking guide in a separate controller
+      // await MarkingGuide.create({
+      //   assessmentId: assessment._id, 
+      //   question: markingGuide.question,
+      //   expectedAnswer: markingGuide.expectedAnswer,
+      //   keywords: markingGuide.keywords.split(","), 
+      //   maxScore: highestAttainableScore,
+      // });
 
       return ResponseHandler.success(
         res,
@@ -65,7 +73,8 @@ export class AssessmentController {
     next: NextFunction
   ) {
     try {
-      const { assessmentId, instructorId } = req.params;
+      const { assessmentId } = req.params;
+      const instructorId = req.admin._id
 
       const assessment = await Assessment.findOne({
         _id: assessmentId,
@@ -94,7 +103,8 @@ export class AssessmentController {
 
   async gradeSubmission(req: Request, res: Response, next: NextFunction) {
     try {
-      const { submissionId, instructorId } = req.params;
+      const { submissionId } = req.params;
+      const instructorId = req.admin._id
       const { score, comments, useAI } = req.body;
 
       const submission = await Submission.findById(submissionId);
