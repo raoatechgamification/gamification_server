@@ -9,7 +9,7 @@ import {
   viewLearnersValidator,
 } from "../validators/assessment.validator";
 
-import { upload } from "../utils/upload.utils";
+import { upload } from "../utils/s3upload.utils";
 
 const router = Router();
 

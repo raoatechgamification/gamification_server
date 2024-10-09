@@ -235,3 +235,11 @@
 2024-10-09 14:26:41 [info]: GET /submissions/6705908cda294019ea513e6c 200
 2024-10-09 14:26:57 [info]: GET /submissions/670590e8da294019ea513e72 200
 2024-10-09 14:27:13 [info]: GET /submissions/670598e4a4d086e88d5d30aa 200
+2024-10-09 17:40:34 [info]: POST /create/670597b779856ce117f64a59 401
+2024-10-09 17:41:07 [info]: POST /org/login 200 - Request Body: {"email":"doercharity@gmail.com","password":"Doer505$$$"}
+2024-10-09 17:42:04 [info]: POST /create/670597b779856ce117f64a59 401
+2024-10-09 17:42:23 [info]: POST /create/670597b779856ce117f64a59 201 - Request Body: {"title":"SS3 Assessment","question":"What is Geography?","highestAttainableScore":"7"}
+2024-10-09 17:53:20 [info]: GET /submissions/670598e4a4d086e88d5d30aa 200
+2024-10-09 17:58:11 [info]: POST /submit/6706b26f95ef2722933b2f54 401
+2024-10-09 17:58:30 [info]: POST /user/login 200 - Request Body: {"email":"seun10050@gmail.com","password":"Omodaratan05$#"}
+2024-10-09 18:00:00 [info]: POST /submit/6706b26f95ef2722933b2f54 200 - Request Body: {"answerText":"This is my answer and submission to this assessment"}

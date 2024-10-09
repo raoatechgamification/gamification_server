@@ -1,6 +1,5 @@
 import { Request, Response, NextFunction } from "express";
 import { param, body, validationResult } from "express-validator";
-import { ObjectId } from "mongodb";
 
 
 const validateMarkingGuide = [
@@ -76,13 +75,10 @@ const errorResponse = (req: Request, res: Response, next: NextFunction) => {
 
 export const createAssessmentValidator = [
   param("courseId")
-    .optional()
-    .custom((value) => {
-      if (!ObjectId.isValid(value)) {
-        throw new Error('Invalid course id');
-      }
-      return true;
-    }),
+    .notEmpty()
+    .withMessage('Course ID is required')
+    .isMongoId()
+    .withMessage('Course ID must be a valid MongoDB ObjectId'),
 
   body("title")
     .notEmpty()
@@ -110,13 +106,10 @@ export const createAssessmentValidator = [
 
 export const submissionValidator = [
   param("assessmentId")
-    .optional()
-    .custom((value) => {
-      if (!ObjectId.isValid(value)) {
-        throw new Error('Invalid assessment id');
-      }
-      return true;
-    }),
+    .notEmpty()
+    .withMessage('Assessment ID is required')
+    .isMongoId()
+    .withMessage('Assessment ID must be a valid MongoDB ObjectId'),
 
   body("answerText")
     .notEmpty()
@@ -130,13 +123,11 @@ export const submissionValidator = [
 
 export const gradeAssessmentValidator = [
   param("submissionId")
-    .optional()
-    .custom((value) => {
-      if (!ObjectId.isValid(value)) {
-        throw new Error('Invalid submission id');
-      }
-      return true;
-    }),
+    .notEmpty()
+    .withMessage('Submission ID is required')
+    .isMongoId()
+    .withMessage('Submission ID must be a valid MongoDB ObjectId'),
+
   body("score")
     .notEmpty()
     .isNumeric()
@@ -156,13 +147,10 @@ export const gradeAssessmentValidator = [
 
 export const viewLearnersValidator = [
   param("assessmentId")
-    .optional()
-    .custom((value) => {
-      if (!ObjectId.isValid(value)) {
-        throw new Error('Invalid assessment id');
-      }
-      return true;
-    }),
+    .notEmpty()
+    .withMessage('Assessment ID is required')
+    .isMongoId()
+    .withMessage('Assessment ID must be a valid MongoDB ObjectId'),
 
   errorResponse,
 ];

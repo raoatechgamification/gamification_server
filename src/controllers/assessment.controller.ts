@@ -4,55 +4,58 @@ import { AIGradingService } from "../services/AIgrading.service";
 import MarkingGuide from "../models/markingGuide.model";
 import Assessment from "../models/assessment.model";
 import Submission from "../models/submission.model";
-import Course from "../models/course.model"
-import { s3 } from "../utils/upload.utils";
+import Course from "../models/course.model";
+import { uploadToCloudinary } from "../utils/cloudinaryUpload"
+import { s3 } from "../utils/s3upload.utils";
 
 export class AssessmentController {
   async createAssessment(req: Request, res: Response, next: NextFunction) {
     try {
-      const { title, question, highestAttainableScore } =
-        req.body;
+      const { title, question, highestAttainableScore } = req.body;
       const { courseId } = req.params;
-      const instructorId = req.admin._id
+      const instructorId = req.admin._id;
       const file = req.file;
 
-      const course = await Course.findById(courseId)
+      const course = await Course.findById(courseId);
       if (!course) {
-        return ResponseHandler.failure(res, "Course not found", 404)
+        return ResponseHandler.failure(res, "Course not found", 404);
       }
 
       let fileUploadResult: any = null;
 
       if (file) {
-        const filename = `${Date.now()}-${file.originalname}`;
-        const fileStream = file.buffer;
-        const contentType = file.mimetype;
+        fileUploadResult = await uploadToCloudinary(file.buffer, file.mimetype, "assessment");
 
-        const uploadParams = {
-          Bucket: process.env.AWS_BUCKET!,
-          Key: filename,
-          Body: fileStream,
-          ContentType: contentType,
-        };
+        // const filename = `${Date.now()}-${file.originalname}`;
+        // const fileStream = file.buffer;
+        // const contentType = file.mimetype;
 
-        fileUploadResult = await s3.upload(uploadParams).promise();
+        // const uploadParams = {
+        //   Bucket: process.env.AWS_BUCKET!,
+        //   Key: filename,
+        //   Body: fileStream,
+        //   ContentType: contentType,
+        // };
+
+        // fileUploadResult = await s3.upload(uploadParams).promise();
       }
 
       const assessment = await Assessment.create({
         title,
         question,
         highestAttainableScore,
-        file: fileUploadResult ? fileUploadResult.Location : null,
+        file: fileUploadResult ? fileUploadResult.secure_url : null, 
+        // file: fileUploadResult ? fileUploadResult.Location : null,
         courseId,
-        instructorId, 
+        instructorId,
       });
 
       // I'll handle marking guide in a separate controller
       // await MarkingGuide.create({
-      //   assessmentId: assessment._id, 
+      //   assessmentId: assessment._id,
       //   question: markingGuide.question,
       //   expectedAnswer: markingGuide.expectedAnswer,
-      //   keywords: markingGuide.keywords.split(","), 
+      //   keywords: markingGuide.keywords.split(","),
       //   maxScore: highestAttainableScore,
       // });
 
@@ -74,7 +77,7 @@ export class AssessmentController {
   ) {
     try {
       const { assessmentId } = req.params;
-      const instructorId = req.admin._id
+      const instructorId = req.admin._id;
 
       const assessment = await Assessment.findOne({
         _id: assessmentId,
@@ -104,7 +107,7 @@ export class AssessmentController {
   async gradeSubmission(req: Request, res: Response, next: NextFunction) {
     try {
       const { submissionId } = req.params;
-      const instructorId = req.admin._id
+      const instructorId = req.admin._id;
       const { score, comments, useAI } = req.body;
 
       const submission = await Submission.findById(submissionId);
