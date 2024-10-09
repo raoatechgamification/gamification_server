@@ -243,3 +243,10 @@
 2024-10-09 17:58:11 [info]: POST /submit/6706b26f95ef2722933b2f54 401
 2024-10-09 17:58:30 [info]: POST /user/login 200 - Request Body: {"email":"seun10050@gmail.com","password":"Omodaratan05$#"}
 2024-10-09 18:00:00 [info]: POST /submit/6706b26f95ef2722933b2f54 200 - Request Body: {"answerText":"This is my answer and submission to this assessment"}
+2024-10-09 18:26:02 [info]: GET /assessment/grade/67059cbcf9b6aaee5b507873 200 - Request Body: {"score":"15","comment":"This is an average performance.","useAI":false}
+2024-10-09 18:26:27 [info]: PUT /grade/67059cbcf9b6aaee5b507873 403 - Request Body: {"score":"15","comment":"This is an average performance.","useAI":false}
+2024-10-09 18:27:33 [info]: PUT /grade/67059cbcf9b6aaee5b507873 403 - Request Body: {"score":"15","comment":"This is an average performance.","useAI":false}
+2024-10-09 18:27:49 [info]: PUT /grade/6706b69095ef2722933b2f5d 403 - Request Body: {"score":"15","comment":"This is an average performance.","useAI":false}
+2024-10-09 18:50:31 [info]: PUT /grade/6706b69095ef2722933b2f5d 403 - Request Body: {"score":"15","comment":"This is an average performance.","useAI":false}
+2024-10-09 19:26:31 [info]: PUT /grade/6706b69095ef2722933b2f5d 400 - Request Body: {"score":"15","comment":"This is an average performance.","useAI":false}
+2024-10-09 19:26:52 [info]: PUT /grade/6706b69095ef2722933b2f5d 200 - Request Body: {"score":"6","comment":"This is an average performance.","useAI":false}

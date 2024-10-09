@@ -1,3 +1,4 @@
+import mongoose from "mongoose";
 import { Request, Response, NextFunction } from "express";
 import { ResponseHandler } from "../middlewares/responseHandler.middleware";
 import { AIGradingService } from "../services/AIgrading.service";
@@ -6,7 +7,6 @@ import Assessment from "../models/assessment.model";
 import Submission from "../models/submission.model";
 import Course from "../models/course.model";
 import { uploadToCloudinary } from "../utils/cloudinaryUpload"
-import { s3 } from "../utils/s3upload.utils";
 
 export class AssessmentController {
   async createAssessment(req: Request, res: Response, next: NextFunction) {
@@ -108,6 +108,7 @@ export class AssessmentController {
     try {
       const { submissionId } = req.params;
       const instructorId = req.admin._id;
+      console.log("instructorId: ", instructorId)
       const { score, comments, useAI } = req.body;
 
       const submission = await Submission.findById(submissionId);
@@ -126,7 +127,8 @@ export class AssessmentController {
         );
       }
 
-      if (assessment.instructorId !== instructorId) {
+      console.log("assessment.instructorId: ", assessment.instructorId)
+      if (!new mongoose.Types.ObjectId(assessment.instructorId).equals(instructorId)) {
         return ResponseHandler.failure(
           res,
           "You are not authorized to grade this assessment",

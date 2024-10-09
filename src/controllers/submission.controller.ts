@@ -3,7 +3,6 @@ import Submission from "../models/submission.model";
 import Assessment from "../models/assessment.model";
 import { ResponseHandler } from "../middlewares/responseHandler.middleware";
 import { uploadToCloudinary } from "../utils/cloudinaryUpload";
-// import { s3 } from "../utils/s3upload.utils";
 import multer from "multer";
 
 export class SubmissionController {
