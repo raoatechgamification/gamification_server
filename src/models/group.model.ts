@@ -3,26 +3,26 @@ import mongoose, { Schema, Document, Model } from "mongoose";
 interface IGroup extends Document {
   name: string;
   basicCustomization: {
-    learnerTerm: string; // learner, staff, student, trainee, or user
+    learnerTerm: string; 
     learnerGroup: {
-      generalTerm: string; // class, group, or batch
-      groups: string[]; // List of group names
+      generalTerm: string; 
+      groups: string[]; 
     };
     subLearnerGroup: {
-      generalSubTerm: string; // facilitator, arm, or cohort
-      subGroups: { name: string }[]; // List of sub-group objects, each having a name
+      generalSubTerm: string; 
+      subGroups: { name: string }[]; 
     };
     instructor: {
-      generalInstructorTerm: string; // instructor, teacher, facilitator, trainer, or lecturer
-      names: string[]; // List of instructor names
+      generalInstructorTerm: string; 
+      names: string[]; 
     };
   };
   advancedCustomization: {
     academicProgram: {
-      maxMembersPerProgram: number; // Max number of members per program
+      maxMembersPerProgram: number; 
     };
-    idFormat: string; // learner, staff, student, trainee, user
-    personalization: string; // Any string value
+    idFormat: string; 
+    personalization: string; 
   };
 }
 

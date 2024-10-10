@@ -250,3 +250,12 @@
 2024-10-09 18:50:31 [info]: PUT /grade/6706b69095ef2722933b2f5d 403 - Request Body: {"score":"15","comment":"This is an average performance.","useAI":false}
 2024-10-09 19:26:31 [info]: PUT /grade/6706b69095ef2722933b2f5d 400 - Request Body: {"score":"15","comment":"This is an average performance.","useAI":false}
 2024-10-09 19:26:52 [info]: PUT /grade/6706b69095ef2722933b2f5d 200 - Request Body: {"score":"6","comment":"This is an average performance.","useAI":false}
+2024-10-10 13:57:28 [info]: POST /create/670597b779856ce117f64a59 201 - Request Body: {"title":"SS3 Assessment","question":"What is Geography?","highestAttainableScore":"7"}
+2024-10-10 14:56:19 [info]: POST /course/content/create/course 200
+2024-10-10 14:57:05 [info]: POST /course/content 200
+2024-10-10 14:57:21 [info]: POST /api/v1/course/create/content 500 - Request Body: {"courseId":"1","title":"This is the title","objectives":"This is the objective for this lesson","link":"https://www.youtube.com"}
+2024-10-10 14:59:40 [info]: POST /create/content 422 - Request Body: {"courseId":"1","title":"This is the title","objectives":"This is the objective for this lesson","link":"https://www.youtube.com"}
+2024-10-10 15:00:14 [info]: POST /create/content 422 - Request Body: {"courseId":"670597b779856ce117f64a58","title":"This is the title","objectives":"This is the objective for this lesson","link":"https://www.youtube.com"}
+2024-10-10 15:00:22 [info]: POST /create/content 422 - Request Body: {"courseId":"670597b779856ce117f64a59","title":"This is the title","objectives":"This is the objective for this lesson","link":"https://www.youtube.com"}
+2024-10-10 15:01:45 [info]: POST /create/content/670597b779856ce117f64a58 403 - Request Body: {"title":"This is the title","objectives":"This is the objective for this lesson","link":"https://www.youtube.com"}
+2024-10-10 15:02:00 [info]: POST /create/content/670597b779856ce117f64a59 200 - Request Body: {"title":"This is the title","objectives":"This is the objective for this lesson","link":"https://www.youtube.com"}

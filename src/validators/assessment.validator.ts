@@ -1,7 +1,6 @@
 import { Request, Response, NextFunction } from "express";
 import { param, body, validationResult } from "express-validator";
 
-
 const validateMarkingGuide = [
   body("markingGuide")
     .optional()
@@ -34,7 +33,6 @@ const validateMarkingGuide = [
       return true; 
     }),
 ];
-
 
 const validateOptionalFile = [
   (req: Request, res: Response, next: NextFunction) => {

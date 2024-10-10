@@ -108,7 +108,6 @@ export class AssessmentController {
     try {
       const { submissionId } = req.params;
       const instructorId = req.admin._id;
-      console.log("instructorId: ", instructorId)
       const { score, comments, useAI } = req.body;
 
       const submission = await Submission.findById(submissionId);
@@ -127,7 +126,6 @@ export class AssessmentController {
         );
       }
 
-      console.log("assessment.instructorId: ", assessment.instructorId)
       if (!new mongoose.Types.ObjectId(assessment.instructorId).equals(instructorId)) {
         return ResponseHandler.failure(
           res,
