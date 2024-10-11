@@ -5,30 +5,23 @@ const validateOptionalFile = [
   (req: Request, res: Response, next: NextFunction) => {
     if (req.files && Array.isArray(req.files)) {
       const allowedTypes = [
-        // Accept the following file types according to the design
-        // Image files
         "image/jpeg",
         "image/jpg",
         "image/png",
         "image/gif",
 
-        // PDF 
-        "application/pdf",
+        "application/pdf", // PDF
 
-        // Word documents
         "application/msword", // .doc
         "application/vnd.openxmlformats-officedocument.wordprocessingml.document", // .docx
 
-        // Excel files
         "application/vnd.ms-excel", // .xls
         "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet", // .xlsx
 
-        // PowerPoint files
         "application/vnd.ms-powerpoint", // .ppt
         "application/vnd.openxmlformats-officedocument.presentationml.presentation", // .pptx
 
-        // HTML/webpage files
-        "text/html",
+        "text/html", // HTML/webpage files
       ];
 
       for (const file of req.files) {
@@ -111,6 +104,44 @@ export const courseContentValidator = [
     .withMessage('Link must be a valid URL'),
   
   validateOptionalFile,
+
+  errorResponse
+];
+
+export const getCourseCurriculumValidator = [
+  param('courseId')
+    .isMongoId()
+    .withMessage('Invalid courseId'),
+
+  errorResponse
+]
+
+export const createAnnouncementValidator = [
+  param("courseId")
+    .isMongoId()
+    .withMessage("Invalid courseId"),
+
+  body("title")
+    .notEmpty()
+    .withMessage("Title is required")
+    .isString()
+    .withMessage("Title must be a string"),
+
+  body("details")
+    .notEmpty()
+    .withMessage("Details are required")
+    .isString()
+    .withMessage("Details must be a string"),
+
+  body("courseList")
+    .optional()
+    .isArray()
+    .withMessage("courseList must be an array"),
+
+  body("sendEmail")
+    .optional()
+    .isBoolean()
+    .withMessage("sendEmail must be a boolean"),
 
   errorResponse
 ];

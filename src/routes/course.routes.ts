@@ -5,10 +5,18 @@ import { CourseController } from "../controllers/course.controller";
 import {
   createCourseValidator,
   courseContentValidator,
+  createAnnouncementValidator,
+  getCourseCurriculumValidator,
 } from "../validators/course.validator";
 import { upload } from "../utils/s3upload.utils";
 
-const { createCourse, createCourseContent } = new CourseController();
+const { 
+  createCourse, 
+  createCourseContent, 
+  createAnnouncement,
+  getCourseCurriculum,
+  getAllAnnouncementsByCourse 
+} = new CourseController();
 
 const router = Router();
 
@@ -21,12 +29,27 @@ router.post(
 );
 
 router.post(
-  "/create/content/:courseId",
+  "/curriculum/:courseId",
   authenticate,
   authorize("admin"),
   upload.array("file", 10),
   ...courseContentValidator,
   createCourseContent
 );
+
+router.get(
+  "/curriculum/:courseId",
+  authenticate,
+  ...getCourseCurriculumValidator,
+  getCourseCurriculum
+);
+
+router.post(
+  "/announcement/:courseId",
+  authenticate,
+  authorize("admin"),
+  ...createAnnouncementValidator,
+  createAnnouncement
+)
 
 export default router;

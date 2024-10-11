@@ -3,6 +3,7 @@ import { Request, Response, NextFunction } from "express";
 import { ResponseHandler } from "../middlewares/responseHandler.middleware";
 import Course from "../models/course.model";
 import CourseContent from "../models/courseContent.model";
+import Announcement from "../models/announcement.model";
 import { uploadToCloudinary } from "../utils/cloudinaryUpload";
 
 export class CourseController {
@@ -84,6 +85,105 @@ export class CourseController {
       );
     } catch (error) {
       next(error);
+    }
+  }
+
+  async getCourseCurriculum (req: Request, res: Response, next: NextFunction) {
+    try {
+      const { courseId } = req.params;
+
+      const course = await Course.findById(courseId);
+      if ( !course ) {
+        return ResponseHandler.failure(
+          res,
+          "Course not found",
+          400
+        );
+      }
+
+      const curriculum = await CourseContent.find({ courseId });
+
+      return ResponseHandler.success(
+        res,
+        curriculum,
+        "Course curriculum fetched successfully"
+      );
+    } catch (error) {
+      next(error)
+    }
+  }
+
+  async createAnnouncement(req: Request, res: Response, next: NextFunction) {
+    try {
+      const instructorId = req.admin._id;
+      const { courseId } = req.params;
+      const { title, details, courseList = [], sendEmail } = req.body;
+
+      const validCourses = await Course.find({
+        _id: { $in: courseList },
+        instructorId: instructorId,
+      });
+
+      if (!validCourses.length) {
+        return ResponseHandler.failure(res, "No valid courses found", 400);
+      }
+
+      const announcements = await Promise.all(
+        validCourses.map((course) =>
+          Announcement.create({
+            title,
+            details,
+            courseIds: course._id,
+          })
+        )
+      );
+
+      if (sendEmail) {
+        for (const course of validCourses) {
+          const learners = course.learnerIds || [];
+  
+          for (const learnerId of learners) {
+            await NotificationController.createNotification({
+              userId: learnerId,
+              courseId: course._id,
+              message: `New announcement: ${title}`,
+            });
+          }
+        }
+      }
+
+      return ResponseHandler.success(
+        res,
+        announcements,
+        "Announcements created and notifications sent",
+        201
+      );
+    } catch (error) {
+      next(error);
+    }
+  }
+
+  async getAllAnnouncementsByCourse(req: Request, res: Response, next: NextFunction) {
+    try {
+      const { courseId } = req.params;
+
+      const course = await Course.findById(courseId);
+      if ( !course ) {
+        return ResponseHandler.failure(
+          res,
+          "Course not found",
+          400
+        );
+      }
+
+      const announcements = await Announcement.find({ courseId });
+
+      return ResponseHandler.success(
+        res,
+        announcements,
+        "Course announcements fetched successfully"
+      );    } catch (error) {
+      next(error)
     }
   }
 }

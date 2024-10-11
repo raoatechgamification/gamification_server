@@ -7,6 +7,7 @@ export interface CourseDocument extends Document {
   instructorId: string;
   duration: string;
   lessonFormat: string;
+  learnerIds?: string[];
 }
 
 const courseSchema = new Schema<CourseDocument>(
@@ -17,6 +18,7 @@ const courseSchema = new Schema<CourseDocument>(
     instructorId: { type: String, required: true }, 
     duration: { type: String, required: true }, 
     lessonFormat: { type: String, required: true }, 
+    learnerIds: { type: [String] }
   },
   {
     timestamps: true,
