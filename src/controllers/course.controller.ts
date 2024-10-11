@@ -4,7 +4,10 @@ import { ResponseHandler } from "../middlewares/responseHandler.middleware";
 import Course from "../models/course.model";
 import CourseContent from "../models/courseContent.model";
 import Announcement from "../models/announcement.model";
+import { NotificationController } from "../controllers/notification.controller";
 import { uploadToCloudinary } from "../utils/cloudinaryUpload";
+
+const { createNotification } = new NotificationController();
 
 export class CourseController {
   async createCourse(req: Request, res: Response, next: NextFunction) {
@@ -143,7 +146,7 @@ export class CourseController {
           const learners = course.learnerIds || [];
   
           for (const learnerId of learners) {
-            await NotificationController.createNotification({
+            await createNotification({
               userId: learnerId,
               courseId: course._id,
               message: `New announcement: ${title}`,
