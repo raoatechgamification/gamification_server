@@ -50,6 +50,13 @@ router.post(
   authorize("admin"),
   ...createAnnouncementValidator,
   createAnnouncement
-)
+);
+
+router.get(
+  "/announcement/:courseId", 
+  authenticate,
+  ...getCourseCurriculumValidator,
+  getAllAnnouncementsByCourse
+);
 
 export default router;
