@@ -259,3 +259,19 @@
 2024-10-10 15:00:22 [info]: POST /create/content 422 - Request Body: {"courseId":"670597b779856ce117f64a59","title":"This is the title","objectives":"This is the objective for this lesson","link":"https://www.youtube.com"}
 2024-10-10 15:01:45 [info]: POST /create/content/670597b779856ce117f64a58 403 - Request Body: {"title":"This is the title","objectives":"This is the objective for this lesson","link":"https://www.youtube.com"}
 2024-10-10 15:02:00 [info]: POST /create/content/670597b779856ce117f64a59 200 - Request Body: {"title":"This is the title","objectives":"This is the objective for this lesson","link":"https://www.youtube.com"}
+2024-10-14 06:39:12 [info]: GET /course/670597b779856ce117f64a59 200
+2024-10-14 06:39:32 [info]: GET /curriculum/670597b779856ce117f64a59 401
+2024-10-14 06:39:50 [info]: POST /user/login 200 - Request Body: {"email":"seun10050@gmail.com","password":"Omodaratan05$#"}
+2024-10-14 06:40:34 [info]: GET /curriculum/670597b779856ce117f64a59 200
+2024-10-14 06:41:18 [info]: GET /curriculum/670597b779856ce117f64a58 400
+2024-10-14 06:41:24 [info]: GET /curriculum/670597b779856ce117f64a59 200
+2024-10-14 06:43:19 [info]: POST /announcement/670597b779856ce117f64a59 401
+2024-10-14 06:43:37 [info]: POST /org/login 200 - Request Body: {"email":"doercharity@gmail.com","password":"Doer505$$$"}
+2024-10-14 06:44:51 [info]: POST /announcement/670597b779856ce117f64a59 422
+2024-10-14 06:48:23 [info]: POST /announcement/670597b779856ce117f64a59 201 - Request Body: {"title":"Course price increase","details":"The price of this course will be increased to #20,000 from November 2nd, 2024. Thank you.","courseList":["670597b779856ce117f64a59"]}
+2024-10-14 06:51:39 [info]: GET /announcement/670cb0a79ad3eb4a0a2021fd 400
+2024-10-14 06:53:04 [info]: GET /announcement/670597b779856ce117f64a59 200
+2024-10-14 06:55:15 [info]: GET /course/notifications/ 200
+2024-10-14 06:55:22 [info]: GET / 200
+2024-10-14 06:55:36 [info]: GET / 200
+2024-10-14 06:55:40 [info]: GET / 200
