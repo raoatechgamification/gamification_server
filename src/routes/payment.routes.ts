@@ -7,9 +7,10 @@ import {
 } from "../validators/payment.validator";
 
 const { 
-  payForCourse,
+  processPayment,
   addCard,
-  deleteCard
+  deleteCard,
+  verifyPayment
 } = PaymentController
 
 const router = Router();
@@ -18,7 +19,7 @@ router.post(
   "/pay",
   authenticate, 
   authorize('user'),
-  payForCourse
+  processPayment
 );
 
 router.post(
@@ -38,8 +39,8 @@ router.patch(
 
 router.get(
   "/verify-payment/:paymentId",
-  authenticateUser,
-  PaymentController.prototype.verifyPayment
+  authenticate,
+  verifyPayment
 );
 
 export default router;

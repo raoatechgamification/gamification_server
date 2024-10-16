@@ -128,10 +128,10 @@ class PaymentController {
         return res.status(404).json({ message: "User not found" });
       }
 
-      user.cards = user.cards.filter(
-        (card: { cardToken: string }) => card.cardToken !== cardToken
-      );
-      await user.save();
+      // user.cards = user.cards.filter(
+      //   (card: { cardToken: string }) => card.cardToken !== cardToken
+      // );
+      // await user.save();
 
       return res.status(200).json({ message: "Card deleted successfully" });
     } catch (error) {
