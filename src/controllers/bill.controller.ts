@@ -5,7 +5,7 @@ import { ResponseHandler } from "../middlewares/responseHandler.middleware";
 class BillController {
   async createBill(req: Request, res: Response, next: NextFunction) {
     try {
-      const { title, summary, amount, dueDate, billFor, assignee } = req.body;
+      const { title, summary, amount, dueDate, billFor, assigneeType, assignee } = req.body;
       const organizationId = req.admin._id;
 
       const bill = await Bill.create({
@@ -17,6 +17,9 @@ class BillController {
         billFor,
         assignee,
       });
+
+      // Assign bill
+      
 
       return ResponseHandler.success(res, bill, "Bill created successfully", 201);
     } catch (error) {
