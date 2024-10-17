@@ -2,6 +2,8 @@ import { Request, Response, NextFunction } from "express";
 import PaymentService from "../services/payment.service";
 import User from "../models/user.model";
 import CourseAccess from "../models/courseAssess.model";
+import Bill from "../models/bill.model";
+import AssignedBill from "../models/assignedBill.model";
 import { ResponseHandler } from "../middlewares/responseHandler.middleware";
 
 
@@ -50,13 +52,25 @@ class PaymentController {
 
   async processPayment(req: Request, res: Response, next: NextFunction) {
     try {
+      const { assignedBillId } = req.params;
+      const userId = req.user.id;
+
+      const assginedBill = await AssignedBill.findOne({ _id: assignedBillId });
+      if ( !assginedBill ) {
+        return ResponseHandler.failure(res, "No assigned bill found", 404);
+      }
+
+      const bill = await Bill.findOne({ _id: assginedBill.billId})
+      if ( !bill ) {
+        return ResponseHandler.failure(res, "No bill found", 404);
+      }
+
       const { courseId, cardToken, amount } = req.body;
-      const userId = req.user._id;
 
       const paymentResult = await PaymentService.processPayment(
         userId,
         cardToken,
-        amount,
+        bill.amount,
         courseId
       );
 
