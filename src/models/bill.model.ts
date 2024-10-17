@@ -24,6 +24,7 @@ const BillSchema = new Schema<BillDocument>(
     amount: { type: Number, required: true }, 
     dueDate: { type: Date, required: true }, 
     billFor: { type: String, required: true }, 
+
     // assignee: {
     //   terms: [{ 
     //     type: Schema.Types.ObjectId, 

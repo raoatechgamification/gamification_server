@@ -57,8 +57,6 @@ export class UserController {
       const paidBills = await AssignedBill.find({ assigneeId: userId, status: "paid" })
 
       if ( paidBills.length === 0 ) return ResponseHandler.failure(res, "Your payment history is empty", 404)
-
-      // const paidBills = await Payment.find({ userId })
       
       return ResponseHandler.success(
         res,
@@ -102,6 +100,8 @@ export class UserController {
       const userId = req.user.id;
 
       const dueBills = await AssignedBill.find({ assigneeId: userId, status: "unpaid" })
+
+      // The assigneeId can also be an organization, i.e. when assigneeType is 'group'
 
       if ( dueBills.length === 0 ) return ResponseHandler.failure(res, "Your payment history is empty", 404)
         
