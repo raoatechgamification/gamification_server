@@ -7,7 +7,13 @@ export interface BillDocument extends Document {
   amount: number;
   dueDate: Date;
   billFor: string;
-  assignee: string[];
+  // assignee: {
+  //   terms: Schema.Types.ObjectId[];
+  //   sessions: Schema.Types.ObjectId[];
+  //   individuals: Schema.Types.ObjectId[];
+  //   groups: Schema.Types.ObjectId[];
+  //   subgroups: Schema.Types.ObjectId[];
+  // };
 }
 
 const BillSchema = new Schema<BillDocument>(
@@ -18,7 +24,30 @@ const BillSchema = new Schema<BillDocument>(
     amount: { type: Number, required: true }, 
     dueDate: { type: Date, required: true }, 
     billFor: { type: String, required: true }, 
-    assignee: { type: [String], required: true }, 
+    // assignee: {
+    //   terms: [{ 
+    //     type: Schema.Types.ObjectId, 
+    //     // ref: 'Term', 
+    //     required: false }], 
+    //   sessions: [{ 
+    //     type: Schema.Types.ObjectId, 
+    //     // ref: 'Session', 
+    //     required: false }], 
+    //   individuals: [{ 
+    //     type: Schema.Types.ObjectId, 
+    //     ref: 'User', 
+    //     required: false }], 
+    //   groups: [{ 
+    //     type: Schema.Types.ObjectId, 
+    //     ref: 'Group', 
+    //     required: false 
+    //   }], 
+    //   subgroups: [{
+    //     type: Schema.Types.ObjectId,
+    //     // ref: 'Subgroup',
+    //     required: false
+    //   }]
+    // },
   },
   {
     timestamps: true,
