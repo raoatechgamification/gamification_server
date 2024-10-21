@@ -275,3 +275,25 @@
 2024-10-14 06:55:22 [info]: GET / 200
 2024-10-14 06:55:36 [info]: GET / 200
 2024-10-14 06:55:40 [info]: GET / 200
+2024-10-18 18:46:33 [info]: GET /users/view-all 401
+2024-10-21 15:58:44 [info]: POST /user/login 200 - Request Body: {"email":"seun10050@gmail.com","password":"Omodaratan05$#"}
+2024-10-21 16:02:55 [info]: POST /org/login 200 - Request Body: {"email":"doercharity@gmail.com","password":"Doer505$$$"}
+2024-10-21 16:49:36 [info]: POST /org/login 422
+2024-10-21 16:53:30 [info]: POST /api/v1/bill/ 500 - Request Body: {"title":"Bill for year two","summary":"This is the bill for the second year","amount":30000,"dueDate":"24, March, 2025","billFor":"candidatee"}
+2024-10-21 16:54:29 [info]: POST /org/login 200 - Request Body: {"email":"doercharity@gmail.com","password":"Doer505$$$"}
+2024-10-21 16:54:58 [info]: POST /api/v1/bill/ 500 - Request Body: {"title":"Bill for year two","summary":"This is the bill for the second year","amount":30000,"dueDate":"24, March, 2025","billFor":"candidatee"}
+2024-10-21 17:02:38 [info]: POST /api/v1/bill/ 500 - Request Body: {"title":"Bill for year two","summary":"This is the bill for the second year","amount":30000,"dueDate":"24, March, 2025","billFor":"candidatee"}
+2024-10-21 17:02:46 [info]: POST /api/v1/bill/ 500 - Request Body: {"title":"Bill for year two","summary":"This is the bill for the second year","amount":30000,"dueDate":"24, March, 2025","billFor":"candidatee"}
+2024-10-21 17:02:54 [info]: POST /org/login 200 - Request Body: {"email":"doercharity@gmail.com","password":"Doer505$$$"}
+2024-10-21 17:03:14 [info]: POST /api/v1/bill/ 500 - Request Body: {"title":"Bill for year two","summary":"This is the bill for the second year","amount":30000,"dueDate":"24, March, 2025","billFor":"candidatee"}
+2024-10-21 17:04:39 [info]: POST /api/v1/bill/ 500 - Request Body: {"title":"Bill for year two","summary":"This is the bill for the second year","amount":30000,"dueDate":"24, March, 2025","billFor":"candidatee"}
+2024-10-21 17:08:33 [info]: POST /api/v1/bill/ 500 - Request Body: {"title":"Bill for year two","summary":"This is the bill for the second year","amount":30000,"dueDate":"24, March, 2025","billFor":"candidatee"}
+2024-10-21 17:08:37 [info]: POST /api/v1/bill/ 500 - Request Body: {"title":"Bill for year two","summary":"This is the bill for the second year","amount":30000,"dueDate":"24, March, 2025","billFor":"candidatee"}
+2024-10-21 17:08:43 [info]: POST /api/v1/bill/ 500 - Request Body: {"title":"Bill for year two","summary":"This is the bill for the second year","amount":30000,"dueDate":"24, March, 2025","billFor":"candidatee"}
+2024-10-21 17:15:01 [info]: POST /api/v1/bill/ 500 - Request Body: {"title":"Bill for year two","summary":"This is the bill for the second year","amount":30000,"dueDate":"24, March, 2025","billFor":"candidatee"}
+2024-10-21 17:17:54 [info]: POST /api/v1/bill/ 500 - Request Body: {"title":"Bill for year two","summary":"This is the bill for the second year","amount":30000,"dueDate":"24, March, 2025","billFor":"candidatee"}
+2024-10-21 17:20:55 [info]: POST /api/v1/bill/ 500 - Request Body: {"title":"Bill for year two","summary":"This is the bill for the second year","amount":30000,"dueDate":"24, March, 2025","billFor":"candidatee","assignee":"67058ad58d0b7856b3a0a1e9"}
+2024-10-21 17:21:37 [info]: POST /api/v1/bill/ 500 - Request Body: {"title":"Bill for year two","summary":"This is the bill for the second year","amount":30000,"dueDate":"24, March, 2025","billFor":"candidatee","assignee":"67058ad58d0b7856b3a0a1e9"}
+2024-10-21 17:27:19 [info]: POST / 500 - Request Body: {"title":"Bill for year two","summary":"This is the bill for the second year","amount":30000,"dueDate":"24, March, 2025","billFor":"candidatee","assignee":"67058ad58d0b7856b3a0a1e9"}
+2024-10-21 17:29:56 [info]: POST / 500 - Request Body: {"title":"Bill for year two","summary":"This is the bill for the second year","amount":30000,"dueDate":"24, March, 2025","billFor":"candidate","assignee":"67058ad58d0b7856b3a0a1e9"}
+2024-10-21 17:35:40 [info]: POST / 201 - Request Body: {"title":"Bill for year two","summary":"This is the bill for the second year","amount":30000,"dueDate":"24, March, 2025","billFor":"candidate","assigneeType":"trainee","assignee":"67058ad58d0b7856b3a0a1e9"}

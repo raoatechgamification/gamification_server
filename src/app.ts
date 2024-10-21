@@ -38,7 +38,6 @@ app.use((req: Request, res: Response, next: NextFunction) => {
   next();
 });
 
-
 app.get("/", (req: Request, res: Response) => {
   res.json({
     success: true,
@@ -46,6 +45,8 @@ app.get("/", (req: Request, res: Response) => {
   });
 });
 
-app.use("/api/v1", require("./routes/index.routes"));
+import routes from "./routes/index.routes";
+// app.use("/api/v1", require("./routes/index.routes"));
+app.use("/api/v1", routes);
 
 export default app;

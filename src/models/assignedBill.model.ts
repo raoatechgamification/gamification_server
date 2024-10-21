@@ -5,7 +5,7 @@ export interface assignedBillDocument extends Document {
   assigneeId: Schema.Types.ObjectId;
   assigneeType: string;
   status: string;
-  paymentId: string;
+  paymentId?: string;
 }
 
 const assignedBillSchema = new Schema<assignedBillDocument>(

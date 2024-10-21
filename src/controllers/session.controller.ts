@@ -12,25 +12,55 @@ class SessionController {
       
       const { name, terms, bills, oneBillForAnEntireSession } = req.body;
 
-      const newSession = await Session.create({
+      const sessionData = {
         organizationId,
         name,
-        terms,
-        bills,
+        terms: oneBillForAnEntireSession ? [] : terms,  
         oneBillForAnEntireSession
-      });
+      };
+
+      const session = new Session(sessionData);
+      await session.save();
 
       if (oneBillForAnEntireSession) {
-        const { billId } = bills[0]; 
-        await AssignedBill.create({
-          billId,
-          assigneeId: newSession._id,
-          assigneeType: "session",
-          status: "pending"
-        });
+        // Case 1: One bill for the entire session
+        const billData = {
+          billId: bills[0].billId,
+          assigneeId: organizationId,  // Assuming admin/organization is the assignee
+          assigneeType: "organization",
+          status: "pending",
+        };
+        const assignedBill = new AssignedBill(billData);
+        await assignedBill.save();
+
+        // Attach bill to session
+        session.bills.push({ termName: "Full Session", billId: assignedBill.billId });
+        await session.save();
+
+      } else {
+        // Case 2: Separate bills for each term
+        for (let i = 0; i < terms.length; i++) {
+          const term = terms[i];
+          const billForTerm = bills[i];
+
+          // Create an assigned bill for each term
+          const billData = {
+            billId: billForTerm.billId,
+            assigneeId: organizationId,  // Assignee could be modified to users later if necessary
+            assigneeType: "organization",
+            status: "pending",
+          };
+          const assignedBill = new AssignedBill(billData);
+          await assignedBill.save();
+
+          // Attach bill to the corresponding term
+          session.bills.push({ termName: term.title, billId: assignedBill.billId });
+        }
+
+        await session.save();
       }
 
-      return ResponseHandler.success(res, newSession, "Session created successfully", 201);
+      return ResponseHandler.success(res, session, "Session created successfully", 201);
     } catch (error: any) {
       return ResponseHandler.failure(
         res, 

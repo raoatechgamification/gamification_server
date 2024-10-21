@@ -8,39 +8,28 @@ import {
 
 const { 
   processPayment,
-  addCard,
-  deleteCard,
-  verifyPayment
+  verifyPayment,
+  paymentWebhook
 } = PaymentController
 
 const router = Router();
 
 router.post(
-  "/pay",
+  "/process-payment/:assignedBillId",
   authenticate, 
   authorize('user'),
   processPayment
-);
-
-router.post(
-  "/add-card",
-  authenticate, 
-  authorize('user'),
-  ...cardValidator,
-  addCard 
-);
-
-router.patch(
-  "/delete-card/:cardToken",
-  authenticate,
-  authorize('user'),
-  deleteCard
 );
 
 router.get(
   "/verify-payment/:paymentId",
   authenticate,
   verifyPayment
+);
+
+router.post(
+  '/payment-webhook', 
+  paymentWebhook
 );
 
 export default router;

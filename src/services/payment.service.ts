@@ -1,42 +1,47 @@
+import mongoose from "mongoose";
 import axios from 'axios';
+
+interface PaymentData {
+  userId: string,
+  billId: string,
+  email: string,
+  amount: number,
+}
 
 class PaymentService {
   private flutterwaveBaseUrl = 'https://api.flutterwave.com/v3';
   private flutterwaveSecretKey = process.env.FLUTTERWAVE_SECRET_KEY;
 
-  async processPayment(
-    userId: string,
-    cardToken: string,
-    amount: number,
-    courseId: string
-  ) {
+  async processPayment( data: PaymentData ) {
     const paymentPayload = {
       tx_ref: `TX-${Date.now()}`,
-      amount,
-      currency: "USD",
-      redirect_url: "https://your-frontend-url.com/payment-redirect",
-      payment_type: "card",
-      card: {
-        token: cardToken,
-      },
+      amount: `${data.amount}`,
+      currency: "NGN",
+      redirect_url: "https://www.google.com",
       customer: {
-        id: userId,
+        id: data.userId,
+        email: data.email,
       },
+      customizations: {
+        title: "Gamification Due Bill Payment"
+      }
     };
 
     try {
-      const response = await axios.post(
-        "https://api.flutterwave.com/v3/payments",
+      const response = await axios.post( 
+        `${this.flutterwaveBaseUrl}/payments`,
         paymentPayload,
         {
           headers: {
-            Authorization: `Bearer ${process.env.FLUTTERWAVE_SECRET_KEY}`,
+            Authorization: `Bearer ${this.flutterwaveSecretKey}`,
+            "Content-Type": "application/json"
           },
         }
       );
 
       return response.data;
-    } catch (error) {
+    } catch (error: any) {
+      console.error(error.response?.data || error.message);
       throw new Error("Payment processing failed");
     }
   }
@@ -44,10 +49,10 @@ class PaymentService {
   async verifyPayment(paymentId: string) {
     try {
       const response = await axios.get(
-        `https://api.flutterwave.com/v3/transactions/${paymentId}/verify`,
+        `${this.flutterwaveBaseUrl}/transactions/${paymentId}/verify`,
         {
           headers: {
-            Authorization: `Bearer ${process.env.FLUTTERWAVE_SECRET_KEY}`,
+            Authorization: `Bearer ${this.flutterwaveSecretKey}`,
           },
         }
       );
@@ -56,39 +61,6 @@ class PaymentService {
     } catch (error) {
       throw new Error("Payment verification failed");
     }
-  }
-
-  async chargeCard(data: any) {
-    const url = `${this.flutterwaveBaseUrl}/charges?type=card`;
-    const config = {
-      headers: {
-        Authorization: `Bearer ${this.flutterwaveSecretKey}`,
-      },
-    };
-    const response = await axios.post(url, data, config);
-    return response.data;
-  }
-
-  async saveCard(data: any) {
-    const url = `${this.flutterwaveBaseUrl}/tokens`;
-    const config = {
-      headers: {
-        Authorization: `Bearer ${this.flutterwaveSecretKey}`,
-      },
-    };
-    const response = await axios.post(url, data, config);
-    return response.data;
-  }
-
-  async deleteCard(cardToken: string) {
-    const url = `${this.flutterwaveBaseUrl}/tokens/${cardToken}`;
-    const config = {
-      headers: {
-        Authorization: `Bearer ${this.flutterwaveSecretKey}`,
-      },
-    };
-    const response = await axios.delete(url, config);
-    return response.data;
   }
 }
 

@@ -1,6 +1,7 @@
-import mongoose, { Document, Schema } from 'mongoose';
+import mongoose, { Document, Schema, Types } from 'mongoose';
 
 export interface BillDocument extends Document {
+  _id: Types.ObjectId,
   organizationId: Schema.Types.ObjectId;
   title: string;
   summary: string;

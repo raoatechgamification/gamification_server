@@ -8,7 +8,6 @@ const {
   billHistory, 
   dueBills,  
   viewBill, 
-  addCard
 } = new UserController();
 
 const router = Router();
@@ -40,13 +39,6 @@ router.get(
   authenticate,
   authorize("user"),
   viewBill
-)
-
-router.post(
-  "/add-card",
-  authenticate,
-  authorize("user"),
-  addCard
 )
 
 export default router;

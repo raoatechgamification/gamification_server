@@ -118,16 +118,4 @@ export class UserController {
       });
     }
   }
-
-  async addCard (req: Request, res: Response, next: NextFunction) {
-    try {
-      // THis allows a user to add a payment card for future payments
-    } catch (error: any) {
-      return res.status(500).json({
-        success: false,
-        message: 'An error occurred adding new card',
-        error: error.message,
-      });
-    }
-  }
 }
