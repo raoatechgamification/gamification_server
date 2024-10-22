@@ -6,22 +6,39 @@ import AssignedBill from "../models/assignedBill.model";
 
 
 class SessionController {
-  async createSession (req: Request, res: Response) {
+  async createSession(req: Request, res: Response) {
     try {
-      const organizationId = req.admin._id
-      
+      const organizationId = req.admin._id;
       const { name, terms, bills, oneBillForAnEntireSession } = req.body;
-
+  
+      // Step 1: Validate the number of terms matches termsInSession
+      if (terms.length !== name.termsInSession) {
+        return ResponseHandler.failure(
+          res,
+          `The number of terms (${terms.length}) does not match termsInSession (${name.termsInSession}).`,
+          400
+        );
+      }
+  
+      // Step 2: Validate that when oneBillForAnEntireSession is false, the number of bills matches the number of terms
+      if (!oneBillForAnEntireSession && bills.length !== terms.length) {
+        return ResponseHandler.failure(
+          res,
+          `The number of bills (${bills.length}) does not match the number of terms (${terms.length}).`,
+          400
+        );
+      }
+  
       const sessionData = {
         organizationId,
         name,
-        terms: oneBillForAnEntireSession ? [] : terms,  
+        terms: oneBillForAnEntireSession ? [] : terms,
         oneBillForAnEntireSession
       };
-
+  
       const session = new Session(sessionData);
       await session.save();
-
+  
       if (oneBillForAnEntireSession) {
         // Case 1: One bill for the entire session
         const billData = {
@@ -32,34 +49,42 @@ class SessionController {
         };
         const assignedBill = new AssignedBill(billData);
         await assignedBill.save();
-
+  
         // Attach bill to session
         session.bills.push({ termName: "Full Session", billId: assignedBill.billId });
         await session.save();
-
       } else {
         // Case 2: Separate bills for each term
         for (let i = 0; i < terms.length; i++) {
           const term = terms[i];
           const billForTerm = bills[i];
-
+  
+          // Step 3: Ensure termName for the bill matches the term title
+          if (billForTerm.termName !== term.title) {
+            return ResponseHandler.failure(
+              res,
+              `Term name mismatch: The bill for term "${term.title}" should have termName "${term.title}".`,
+              400
+            );
+          }
+  
           // Create an assigned bill for each term
           const billData = {
             billId: billForTerm.billId,
-            assigneeId: organizationId,  // Assignee could be modified to users later if necessary
+            assigneeId: organizationId,
             assigneeType: "organization",
             status: "pending",
           };
           const assignedBill = new AssignedBill(billData);
           await assignedBill.save();
-
+  
           // Attach bill to the corresponding term
           session.bills.push({ termName: term.title, billId: assignedBill.billId });
         }
-
+  
         await session.save();
       }
-
+  
       return ResponseHandler.success(res, session, "Session created successfully", 201);
     } catch (error: any) {
       return ResponseHandler.failure(
@@ -67,10 +92,10 @@ class SessionController {
         "An error occurred, unable to create session.",
         500,
         error.message
-      )
+      );
     }
-  } 
-
+  }
+  
   async editSession (req: Request, res: Response) {
     try {
       const organizationId = req.admin._id

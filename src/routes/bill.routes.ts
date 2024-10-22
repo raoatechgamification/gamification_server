@@ -24,7 +24,7 @@ router.get("/view-all", authenticate, authorize("admin"), fetchAllBills);
 router.get(
   "/:billId",
   authenticate,
-  authorize("admin"),
+  // authorize("admin"),
   ...billIdValidator,
   viewBill
 );

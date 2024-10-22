@@ -33,11 +33,9 @@ const sessionSchema = new Schema<SessionDocument>(
       title: { type: String, required: true },
       commencementDate: { type: Date, required: true },
       endDate: { type: Date, required: true },
-      termsInSession: { type: Number, required: true}
     }],
     bills: [{
       termName: { type: String, required: true },
-      commencementDate: { type: Date, required: true },
       billId: { type: Schema.Types.ObjectId, required: true },
     }],
     oneBillForAnEntireSession: { type: Boolean, required: true}
