@@ -2,10 +2,9 @@ import { Request, Response, NextFunction } from "express";
 import PaymentService from "../services/payment.service";
 import User from "../models/user.model";
 import CourseAccess from "../models/courseAssess.model";
-import Bill from "../models/bill.model";
+import Bill, { BillDocument } from "../models/bill.model";
 import AssignedBill from "../models/assignedBill.model";
 import { ResponseHandler } from "../middlewares/responseHandler.middleware";
-import { BillDocument } from "../models/bill.model";
 
 
 class PaymentController {
