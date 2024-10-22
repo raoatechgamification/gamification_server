@@ -19,7 +19,7 @@ router.use("/course", courseRoutes);
 router.use("/group", groupRoutes);
 router.use("/user", userRoutes);
 router.use("/notifications", notificationRoutes);
-router.use("/payments", paymentRoutes);
+router.use("/payment", paymentRoutes);
 router.use("/bill", billRoutes);
 router.use("/session", sessionRoutes);
 

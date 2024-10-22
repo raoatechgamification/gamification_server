@@ -184,7 +184,7 @@ class SessionController {
       billId,
       assigneeId: organizationId,
       assigneeType: "organization",
-      status: "pending",
+      status: "unpaid",
     };
     const assignedBill = new AssignedBill(billData);
     await assignedBill.save();

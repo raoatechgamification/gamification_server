@@ -354,3 +354,18 @@
 2024-10-22 17:28:32 [info]: PUT /671794b1331ca56402cbf8e9 200 - Request Body: {"name":{"title":"2025 Academic Session for real","commencementDate":"2025-01-10T00:00:00.000Z","endDate":"2025-12-15T00:00:00.000Z","termsInSession":3},"oneBillForAnEntireSession":false,"terms":[{"title":"Term 1","commencementDate":"2025-01-10T00:00:00.000Z","endDate":"2025-04-10T00:00:00.000Z"},{"title":"Term 2","commencementDate":"2025-05-01T00:00:00.000Z","endDate":"2025-08-01T00:00:00.000Z"},{"title":"Term 3","commencementDate":"2025-05-01T00:00:00.000Z","endDate":"2025-08-01T00:00:00.000Z"}],"bills":[{"termName":"Term 1","billId":"67167e05af7f793b65da05c1"},{"termName":"Term 2","billId":"67167eb2c1c463c55854cc2d"},{"termName":"Term 3","billId":"67167f8e07738144203b1902"}]}
 2024-10-22 17:28:41 [info]: PUT /671794b1331ca56402cbf8e9 200 - Request Body: {"name":{"title":"2025 Academic Session","commencementDate":"2025-01-10T00:00:00.000Z","endDate":"2025-12-15T00:00:00.000Z","termsInSession":3},"oneBillForAnEntireSession":false,"terms":[{"title":"Term 1","commencementDate":"2025-01-10T00:00:00.000Z","endDate":"2025-04-10T00:00:00.000Z"},{"title":"Term 2","commencementDate":"2025-05-01T00:00:00.000Z","endDate":"2025-08-01T00:00:00.000Z"},{"title":"Term 3","commencementDate":"2025-05-01T00:00:00.000Z","endDate":"2025-08-01T00:00:00.000Z"}],"bills":[{"termName":"Term 1","billId":"67167e05af7f793b65da05c1"},{"termName":"Term 2","billId":"67167eb2c1c463c55854cc2d"},{"termName":"Term 3","billId":"67167f8e07738144203b1902"}]}
 2024-10-22 17:29:05 [info]: PUT /671794b1331ca56402cbf8e9 200 - Request Body: {"name":{"title":"2025 Academic Session for Year One and Two","commencementDate":"2025-01-10T00:00:00.000Z","endDate":"2025-12-15T00:00:00.000Z","termsInSession":3},"oneBillForAnEntireSession":false,"terms":[{"title":"Term 1","commencementDate":"2025-01-10T00:00:00.000Z","endDate":"2025-04-10T00:00:00.000Z"},{"title":"Term 2","commencementDate":"2025-05-01T00:00:00.000Z","endDate":"2025-08-01T00:00:00.000Z"},{"title":"Term 3","commencementDate":"2025-05-01T00:00:00.000Z","endDate":"2025-08-01T00:00:00.000Z"}],"bills":[{"termName":"Term 1","billId":"67167e05af7f793b65da05c1"},{"termName":"Term 2","billId":"67167eb2c1c463c55854cc2d"},{"termName":"Term 3","billId":"67167f8e07738144203b1902"}]}
+2024-10-22 17:47:10 [info]: POST /process-payment/671682dc2d478e92017d3718 401
+2024-10-22 17:47:34 [info]: POST /user/login 200 - Request Body: {"email":"seun10050@gmail.com","password":"Omodaratan05$#"}
+2024-10-22 17:47:39 [info]: POST /user/login 200 - Request Body: {"email":"seun10050@gmail.com","password":"Omodaratan05$#"}
+2024-10-22 17:48:31 [info]: POST /api/v1/payment/process-payment/671682dc2d478e92017d3718 500
+2024-10-22 17:53:23 [info]: POST /process-payment/671682dc2d478e92017d3718 200
+2024-10-22 18:02:31 [info]: POST /api/v1/payment/process-payment/671682dc2d478e92017d3718 500
+2024-10-22 18:04:30 [info]: POST /process-payment/671682dc2d478e92017d3718 302
+2024-10-22 18:06:00 [info]: POST /process-payment/671682dc2d478e92017d3718 200
+2024-10-22 18:11:33 [info]: POST /process-payment/671682dc2d478e92017d3718 200
+2024-10-22 18:21:53 [info]: POST /process-payment/671682dc2d478e92017d3718 200
+2024-10-22 18:28:36 [info]: POST /process-payment/671682dc2d478e92017d3718 200
+2024-10-22 18:29:38 [info]: POST /process-payment/671682dc2d478e92017d3718 302
+2024-10-22 18:30:42 [info]: POST /process-payment/671682dc2d478e92017d3718 200
+2024-10-22 18:49:38 [info]: POST /process-payment/671682dc2d478e92017d3718 200
+2024-10-22 18:53:25 [info]: POST /process-payment/671682dc2d478e92017d3718 200

@@ -21,4 +21,4 @@ const assignedBillSchema = new Schema<assignedBillDocument>(
   }
 );
 
-export default mongoose.model<assignedBillDocument>('assignedBill', assignedBillSchema);
+export default mongoose.model<assignedBillDocument>('AssignedBill', assignedBillSchema);
