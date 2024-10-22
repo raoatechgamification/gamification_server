@@ -2,4 +2,6 @@ node_modules
 .env 
 dist 
 test
-.github/workflows
+.github\workflows\node.js.yml
+
+node.js.yml
