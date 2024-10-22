@@ -23,7 +23,7 @@ router.post(
 );
 
 router.put(
-  "/edit/:sessionId",
+  "/:sessionId",
   authenticate,
   authorize("admin"),
   ...createOrEditSessionValidator,
