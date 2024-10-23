@@ -2,14 +2,14 @@ import express, { Application, Request, Response, NextFunction } from "express";
 import cors from "cors";
 import dotenv from "dotenv";
 import bodyParser from "body-parser";
-import connectDB from "./config/db";
+// import connectDB from "./config/db";
 import logger from "./utils/logger";
 
 dotenv.config();
 
 const app: Application = express();
 
-connectDB();
+// connectDB();
 
 app.use(
   cors({
