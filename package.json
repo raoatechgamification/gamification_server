@@ -6,7 +6,7 @@
     "build": "webpack --env APP_ENV=local --mode=development --progress",
     "build:dev": "webpack --env APP_ENV=development --mode=development --progress",
     "build:prod": "webpack --env APP_ENV=production --mode=production --progress",
-    "start": "nodemon src/server.ts",
+    "start": "node src/server.ts",
     "dev": "npx ts-node-dev --max-old-space-size=4096 src/server.ts",
     "compile": "npx tsc && node dist/server.js",
     "stage": "node dist/server.js",
