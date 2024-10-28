@@ -2,6 +2,7 @@ import mongoose from "mongoose";
 import axios from 'axios';
 
 interface PaymentData {
+  reference: string;
   userId: string,
   billId: string,
   email: string,
@@ -14,7 +15,7 @@ class PaymentService {
 
   async processPayment( data: PaymentData ) {
     const paymentPayload = {
-      tx_ref: `TX-${Date.now()}`,
+      tx_ref: data.reference,
       amount: `${data.amount}`,
       currency: "NGN",
       redirect_url: "https://www.google.com",
@@ -23,6 +24,7 @@ class PaymentService {
         email: data.email,
       },
       customizations: {
+        billId: data.billId,
         title: "Gamification Due Bill Payment"
       }
     };
@@ -39,6 +41,8 @@ class PaymentService {
         }
       );
 
+      console.log(response)
+
       return response.data;
     } catch (error: any) {
       console.error(error.response?.data || error.message);
@@ -48,6 +52,7 @@ class PaymentService {
 
   async verifyPayment(paymentId: string) {
     try {
+      console.log("B")
       const response = await axios.get(
         `${this.flutterwaveBaseUrl}/transactions/${paymentId}/verify`,
         {
@@ -56,9 +61,11 @@ class PaymentService {
           },
         }
       );
-
+      console.log("C")
+      console.log(response)
       return response.data;
-    } catch (error) {
+    } catch (error: any) {
+      console.error("Error details:", error.response?.data || error.message);
       throw new Error("Payment verification failed");
     }
   }

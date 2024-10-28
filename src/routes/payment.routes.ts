@@ -2,9 +2,7 @@ import { Router } from "express";
 import { authenticate, authorize } from "../middlewares/auth.middleware"; 
 
 import PaymentController from "../controllers/payment.controller";
-import {
-  cardValidator
-} from "../validators/payment.validator";
+
 
 const { 
   processPayment,
@@ -22,13 +20,13 @@ router.post(
 );
 
 router.get(
-  "/verify-payment/:paymentId",
+  "/verify-payment/:transactionId",
   authenticate,
   verifyPayment
 );
 
 router.post(
-  '/payment-webhook', 
+  '/webhook', 
   paymentWebhook
 );
 
