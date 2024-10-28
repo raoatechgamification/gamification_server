@@ -41,8 +41,6 @@ class PaymentService {
         }
       );
 
-      console.log(response)
-
       return response.data;
     } catch (error: any) {
       console.error(error.response?.data || error.message);
@@ -52,7 +50,6 @@ class PaymentService {
 
   async verifyPayment(paymentId: string) {
     try {
-      console.log("B")
       const response = await axios.get(
         `${this.flutterwaveBaseUrl}/transactions/${paymentId}/verify`,
         {
@@ -61,8 +58,7 @@ class PaymentService {
           },
         }
       );
-      console.log("C")
-      console.log(response)
+    
       return response.data;
     } catch (error: any) {
       console.error("Error details:", error.response?.data || error.message);

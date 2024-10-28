@@ -55,8 +55,6 @@ class PaymentController {
         reference,
       });
 
-      console.log("payment link", paymentResult.data.link);
-
       return ResponseHandler.success(
         res,
         paymentResult,
@@ -71,9 +69,7 @@ class PaymentController {
     const { transactionId } = req.params;
 
     try {
-      console.log("A")
       const verificationData = await PaymentService.verifyPayment(transactionId)
-      console.log(transactionId)
 
       // const url = `https://api.flutterwave.com/v3/transactions/${transactionId}/verify`;
 
@@ -121,14 +117,13 @@ class PaymentController {
         return res.status(403).json({ message: "Invalid signature" });
       }
 
-      const { event, data } = req.body;
+      // const { event, data } = req.body;
+      const data = req.body;
 
-      console.log("Webhook event: ", event)
-      console.log("Webhook data: ", data)
+      console.log("This is the request body", data)
 
-      if (event === "charge.completed") {
-        if (data.status === "successful") {
-          const userId = data.customer.id
+      if (data.status === "successful") {
+        const userId = data.customer.id
           const billId = data.customizations.billId
 
           await CourseAccess.create({
@@ -144,14 +139,41 @@ class PaymentController {
 
           // Send success notification to the user 
           console.log("Payment successful and completed");
-        } else if (data.status === "failed") {
-          await Payment.findByIdAndUpdate({
-            _id: data.customer.id,
-            status: "failed"
-          })
-          console.log("Payment failed:", data);
-        }
+      } else if (data.status === "failed") {
+        await Payment.findByIdAndUpdate({
+          _id: data.customer.id,
+          status: "failed"
+        })
+        console.log("Payment failed:", data);
       }
+
+
+      // if (webhookData.status === "successful") {
+      //   // if (data.status === "successful") {
+      //     const userId = data.customer.id
+      //     const billId = data.customizations.billId
+
+      //     await CourseAccess.create({
+      //       userId, 
+      //       billId,
+      //       hasAccess: true
+      //     })
+
+      //     await Payment.findByIdAndUpdate({
+      //       _id: userId,
+      //       status: "successful"
+      //     })
+
+      //     // Send success notification to the user 
+      //     console.log("Payment successful and completed");
+      //   } else if (data.status === "failed") {
+      //     await Payment.findByIdAndUpdate({
+      //       _id: data.customer.id,
+      //       status: "failed"
+      //     })
+      //     console.log("Payment failed:", data);
+      //   }
+      // }
 
       res.status(200).json({ status: "success" });
     } catch (error: any) {
