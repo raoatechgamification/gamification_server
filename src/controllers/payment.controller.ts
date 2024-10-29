@@ -124,29 +124,44 @@ class PaymentController {
 
       console.log("Webhook received with data (which is the request body)", data)
       if (data.status === "successful") {
-        const userId = data.customer.id
-        const billId = data.customizations.billId
+        console.log("Transaction reference: ", data.txRef)
 
-        await CourseAccess.create({
-          userId, 
-          billId,
-          hasAccess: true
-        })
+        // Find Payment and get details
+        const payment = await Payment.findOne({ reference: data.tx_ref})
 
-        await Payment.findByIdAndUpdate({
-          _id: userId,
-          status: "successful",
-          data,
-        })
+        if (payment) {
+          const userId = payment.userId
+          const billId = payment.billId
+
+          console.log("This is user and bill ids: ", userId, billId)
+
+          await CourseAccess.create({
+            userId, 
+            billId,
+            hasAccess: true
+          })
+
+          await Payment.findByIdAndUpdate(
+            userId,
+            { status: "successful", data},
+            { new: true }
+          )
 
           // Send success notification to the user 
-        console.log("Payment successful and completed");
+          console.log("Payment successful and completed");
+        }
       } else if (data.status === "failed") {
-        await Payment.findByIdAndUpdate({
-          _id: data.customer.id,
-          status: "failed",
-          data,
-        })
+        const payment = await Payment.findOne({ reference: data.tx_ref})
+        
+        if (payment) {
+          const userId = payment.userId
+
+          await Payment.findByIdAndUpdate(
+            userId,
+            { status: "failed", data },
+            { new: true }
+          );
+        }
         console.log("Payment failed:", data);
       }
 
