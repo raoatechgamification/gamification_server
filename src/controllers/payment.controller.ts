@@ -128,10 +128,10 @@ class PaymentController {
         return res.status(403).json({ message: "Invalid signature" });
       }
 
-      const { event, data } = req.body;
-      // const data = req.body;
+      // const { event, data } = req.body;
+      const data = req.body;
 
-      console.log("Webhook received with data", data)
+      console.log("Webhook received with data (which is the request body)", data)
       if (data.status === "successful") {
         const userId = data.customer.id
         const billId = data.customizations.billId
