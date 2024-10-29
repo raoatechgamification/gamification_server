@@ -109,7 +109,7 @@ class PaymentController {
   async paymentWebhook(req: Request, res: Response, next: NextFunction) {
     try {
       const hash = crypto
-        .createHmac("sha256", process.env.FLUTTERWAVE_SECRET_HASH!)
+        .createHmac("sha512", process.env.FLUTTERWAVE_SECRET_HASH!)
         .update(JSON.stringify(req.body))
         .digest("hex");
 
