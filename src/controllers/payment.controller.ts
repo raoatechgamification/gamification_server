@@ -108,20 +108,9 @@ class PaymentController {
   
   async paymentWebhook(req: Request, res: Response, next: NextFunction) {
     try {
-      // const hash = crypto
-      //   .createHmac("sha256", process.env.FLUTTERWAVE_SECRET_HASH as string)
-      //   .update(JSON.stringify(req.body))
-      //   .digest("hex");
-
-      // console.log("Generated hash:", hash);
-      // console.log("Flutterwave verif-hash header:", req.headers["verif-hash"]);
-
       const flutterwaveVerifHash = req.headers['verif-hash'];
       const secretHash = process.env.FLUTTERWAVE_SECRET_HASH;
       
-      console.log("Flutterwave verif-hash header:", flutterwaveVerifHash);
-      console.log("Expected secret hash:", secretHash);
-
       if (flutterwaveVerifHash !== secretHash) {
         console.log("Hash mismatch - Unauthorized request");
 
@@ -130,6 +119,8 @@ class PaymentController {
 
       // const { event, data } = req.body;
       const data = req.body;
+
+      if (req.statusCode) console.log("This is the status code of the request body: ", req.statusCode)
 
       console.log("Webhook received with data (which is the request body)", data)
       if (data.status === "successful") {
@@ -146,7 +137,6 @@ class PaymentController {
           _id: userId,
           status: "successful",
           data,
-          event
         })
 
           // Send success notification to the user 
@@ -156,7 +146,6 @@ class PaymentController {
           _id: data.customer.id,
           status: "failed",
           data,
-          event
         })
         console.log("Payment failed:", data);
       }
