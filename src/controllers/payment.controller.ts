@@ -108,15 +108,21 @@ class PaymentController {
   
   async paymentWebhook(req: Request, res: Response, next: NextFunction) {
     try {
-      const hash = crypto
-        .createHmac("sha256", process.env.FLUTTERWAVE_SECRET_HASH as string)
-        .update(JSON.stringify(req.body))
-        .digest("hex");
+      // const hash = crypto
+      //   .createHmac("sha256", process.env.FLUTTERWAVE_SECRET_HASH as string)
+      //   .update(JSON.stringify(req.body))
+      //   .digest("hex");
 
-      console.log("Generated hash:", hash);
-      console.log("Flutterwave verif-hash header:", req.headers["verif-hash"]);
+      // console.log("Generated hash:", hash);
+      // console.log("Flutterwave verif-hash header:", req.headers["verif-hash"]);
 
-      if (hash !== req.headers["verif-hash"]) {
+      const flutterwaveVerifHash = req.headers['verif-hash'];
+      const secretHash = process.env.FLUTTERWAVE_SECRET_HASH;
+      
+      console.log("Flutterwave verif-hash header:", flutterwaveVerifHash);
+      console.log("Expected secret hash:", secretHash);
+
+      if (flutterwaveVerifHash !== secretHash) {
         console.log("Hash mismatch - Unauthorized request");
 
         return res.status(403).json({ message: "Invalid signature" });
