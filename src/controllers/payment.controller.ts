@@ -111,7 +111,7 @@ class PaymentController {
       const hash = crypto
         .createHmac("sha256", process.env.FLUTTERWAVE_SECRET_HASH as string)
         .update(JSON.stringify(req.body))
-        .digest("base64");
+        .digest("hex");
 
       console.log("Generated hash:", hash);
       console.log("Flutterwave verif-hash header:", req.headers["verif-hash"]);
