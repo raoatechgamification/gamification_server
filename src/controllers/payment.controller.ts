@@ -105,74 +105,136 @@ class PaymentController {
     }
   }
 
-  
   async paymentWebhook(req: Request, res: Response, next: NextFunction) {
     try {
       const flutterwaveVerifHash = req.headers['verif-hash'];
       const secretHash = process.env.FLUTTERWAVE_SECRET_HASH;
-      
+  
       if (flutterwaveVerifHash !== secretHash) {
         console.log("Hash mismatch - Unauthorized request");
-
         return res.status(403).json({ message: "Invalid signature" });
       }
-
-      // const { event, data } = req.body;
+  
       const data = req.body;
-
-      if (req.statusCode) console.log("This is the status code of the request body: ", req.statusCode)
-
-      console.log("Webhook received with data (which is the request body)", data)
+      console.log("Webhook received with data (request body)", data);
+  
       if (data.status === "successful") {
-        console.log("Transaction reference: ", data.txRef)
-
-        // Find Payment and get details
-        const payment = await Payment.findOne({ reference: data.tx_ref})
-
+        console.log("Transaction reference:", data.txRef);
+  
+        // Retrieve the payment using the correct reference key
+        const payment = await Payment.findOne({ reference: data.txRef });
+  
         if (payment) {
-          const userId = payment.userId
-          const billId = payment.billId
-
-          console.log("This is user and bill ids: ", userId, billId)
-
+          const userId = payment.userId;
+          const billId = payment.billId;
+          console.log("User and Bill IDs:", userId, billId);
+  
           await CourseAccess.create({
-            userId, 
+            userId,
             billId,
             hasAccess: true
-          })
-
-          await Payment.findByIdAndUpdate(
-            userId,
-            { status: "successful", data},
+          });
+  
+          await Payment.updateOne(
+            { _id: payment._id }, // or { userId: userId } if unique
+            { status: "successful", data },
             { new: true }
-          )
-
-          // Send success notification to the user 
+          );
+  
           console.log("Payment successful and completed");
         }
       } else if (data.status === "failed") {
-        const payment = await Payment.findOne({ reference: data.tx_ref})
-        
+        const payment = await Payment.findOne({ reference: data.txRef });
+  
         if (payment) {
-          const userId = payment.userId
-
-          await Payment.findByIdAndUpdate(
-            userId,
+          await Payment.updateOne(
+            { _id: payment._id },
             { status: "failed", data },
             { new: true }
           );
         }
         console.log("Payment failed:", data);
       }
-
+  
       res.status(200).json({ status: "success" });
     } catch (error: any) {
-      res.status(500).json({ 
+      console.error("Error in payment webhook:", error);
+      res.status(500).json({
         message: "Server error",
-        error: error.message 
+        error: error.message
       });
     }
   }
+  
+
+  
+  // async paymentWebhook(req: Request, res: Response, next: NextFunction) {
+  //   try {
+  //     const flutterwaveVerifHash = req.headers['verif-hash'];
+  //     const secretHash = process.env.FLUTTERWAVE_SECRET_HASH;
+      
+  //     if (flutterwaveVerifHash !== secretHash) {
+  //       console.log("Hash mismatch - Unauthorized request");
+
+  //       return res.status(403).json({ message: "Invalid signature" });
+  //     }
+
+  //     // const { event, data } = req.body;
+  //     const data = req.body;
+
+  //     if (req.statusCode) console.log("This is the status code of the request body: ", req.statusCode)
+
+  //     console.log("Webhook received with data (which is the request body)", data)
+  //     if (data.status === "successful") {
+  //       console.log("Transaction reference: ", data.txRef)
+
+  //       // Find Payment and get details
+  //       const payment = await Payment.findOne({ reference: data.tx_ref})
+
+  //       if (payment) {
+  //         const userId = payment.userId
+  //         const billId = payment.billId
+
+  //         console.log("This is user and bill ids: ", userId, billId)
+
+  //         await CourseAccess.create({
+  //           userId, 
+  //           billId,
+  //           hasAccess: true
+  //         })
+
+  //         await Payment.findByIdAndUpdate(
+  //           userId,
+  //           { status: "successful", data},
+  //           { new: true }
+  //         )
+
+  //         // Send success notification to the user 
+  //         console.log("Payment successful and completed");
+  //       }
+  //     } else if (data.status === "failed") {
+  //       const payment = await Payment.findOne({ reference: data.tx_ref})
+        
+  //       if (payment) {
+  //         const userId = payment.userId
+
+  //         await Payment.findByIdAndUpdate(
+  //           userId,
+  //           { status: "failed", data },
+  //           { new: true }
+  //         );
+  //       }
+  //       console.log("Payment failed:", data);
+  //     }
+
+  //     res.status(200).json({ status: "success" });
+  //   } catch (error: any) {
+  //     res.status(500).json({ 
+  //       message: "Server error",
+  //       error: error.message 
+  //     });
+  //   }
+  // }
 
 
   // async verifyPayment(req: Request, res: Response, next: NextFunction) {
