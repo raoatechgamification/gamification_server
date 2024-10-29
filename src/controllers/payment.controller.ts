@@ -109,9 +109,9 @@ class PaymentController {
   async paymentWebhook(req: Request, res: Response, next: NextFunction) {
     try {
       const hash = crypto
-        .createHmac("sha512", process.env.FLUTTERWAVE_SECRET_HASH!)
+        .createHmac("sha256", process.env.FLUTTERWAVE_SECRET_HASH as string)
         .update(JSON.stringify(req.body))
-        .digest("hex");
+        .digest("base64");
 
       console.log("Generated hash:", hash);
       console.log("Flutterwave verif-hash header:", req.headers["verif-hash"]);
