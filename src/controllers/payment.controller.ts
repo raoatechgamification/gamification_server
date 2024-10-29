@@ -109,36 +109,41 @@ class PaymentController {
   async paymentWebhook(req: Request, res: Response, next: NextFunction) {
     try {
       const hash = crypto
-        .createHmac("sha256", process.env.FLUTTERWAVE_SECRET_HASH as string)
+        .createHmac("sha256", process.env.FLUTTERWAVE_SECRET_HASH!)
         .update(JSON.stringify(req.body))
         .digest("hex");
 
+      console.log("Generated hash:", hash);
+      console.log("Flutterwave verif-hash header:", req.headers["verif-hash"]);
+
       if (hash !== req.headers["verif-hash"]) {
+        console.log("Hash mismatch - Unauthorized request");
+
         return res.status(403).json({ message: "Invalid signature" });
       }
 
       // const { event, data } = req.body;
       const data = req.body;
 
-      console.log("This is the request body", data)
+      console.log("Webhook received with data", data)
 
       if (data.status === "successful") {
         const userId = data.customer.id
-          const billId = data.customizations.billId
+        const billId = data.customizations.billId
 
-          await CourseAccess.create({
-            userId, 
-            billId,
-            hasAccess: true
-          })
+        await CourseAccess.create({
+          userId, 
+          billId,
+          hasAccess: true
+        })
 
-          await Payment.findByIdAndUpdate({
-            _id: userId,
-            status: "successful"
-          })
+        await Payment.findByIdAndUpdate({
+          _id: userId,
+          status: "successful"
+        })
 
           // Send success notification to the user 
-          console.log("Payment successful and completed");
+        console.log("Payment successful and completed");
       } else if (data.status === "failed") {
         await Payment.findByIdAndUpdate({
           _id: data.customer.id,
@@ -146,34 +151,6 @@ class PaymentController {
         })
         console.log("Payment failed:", data);
       }
-
-
-      // if (webhookData.status === "successful") {
-      //   // if (data.status === "successful") {
-      //     const userId = data.customer.id
-      //     const billId = data.customizations.billId
-
-      //     await CourseAccess.create({
-      //       userId, 
-      //       billId,
-      //       hasAccess: true
-      //     })
-
-      //     await Payment.findByIdAndUpdate({
-      //       _id: userId,
-      //       status: "successful"
-      //     })
-
-      //     // Send success notification to the user 
-      //     console.log("Payment successful and completed");
-      //   } else if (data.status === "failed") {
-      //     await Payment.findByIdAndUpdate({
-      //       _id: data.customer.id,
-      //       status: "failed"
-      //     })
-      //     console.log("Payment failed:", data);
-      //   }
-      // }
 
       res.status(200).json({ status: "success" });
     } catch (error: any) {
