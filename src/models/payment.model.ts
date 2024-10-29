@@ -7,6 +7,7 @@ export interface PaymentDocument extends Document {
   status: string;
   reference: string;
   data?: {};
+  event?: string;
 }
 
 const PaymentSchema = new Schema<PaymentDocument>(
@@ -17,6 +18,7 @@ const PaymentSchema = new Schema<PaymentDocument>(
     status: { type: String },
     reference: { type: String, required: true},
     data: { type: Object },
+    event: { type: String },
   },
   {
     timestamps: true,

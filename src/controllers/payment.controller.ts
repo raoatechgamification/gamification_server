@@ -122,11 +122,10 @@ class PaymentController {
         return res.status(403).json({ message: "Invalid signature" });
       }
 
-      // const { event, data } = req.body;
-      const data = req.body;
+      const { event, data } = req.body;
+      // const data = req.body;
 
       console.log("Webhook received with data", data)
-
       if (data.status === "successful") {
         const userId = data.customer.id
         const billId = data.customizations.billId
@@ -139,7 +138,9 @@ class PaymentController {
 
         await Payment.findByIdAndUpdate({
           _id: userId,
-          status: "successful"
+          status: "successful",
+          data,
+          event
         })
 
           // Send success notification to the user 
@@ -147,7 +148,9 @@ class PaymentController {
       } else if (data.status === "failed") {
         await Payment.findByIdAndUpdate({
           _id: data.customer.id,
-          status: "failed"
+          status: "failed",
+          data,
+          event
         })
         console.log("Payment failed:", data);
       }
