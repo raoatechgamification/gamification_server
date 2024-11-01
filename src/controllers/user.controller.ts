@@ -50,7 +50,7 @@ export class UserController {
     }
   }
 
-  async billHistory (req: Request, res: Response, next: NextFunction) {
+  async billHistory (req: Request, res: Response) {
     try {
       const userId = req.user.id;
 
@@ -72,7 +72,7 @@ export class UserController {
     }
   }
 
-  async viewBill (req: Request, res: Response, next: NextFunction) {
+  async viewBill (req: Request, res: Response) {
     try {
       const { paymentId } = req.params;
       const userId = req.user.id;
@@ -95,7 +95,7 @@ export class UserController {
     }
   }
 
-  async dueBills (req: Request, res: Response, next: NextFunction) {
+  async dueBills (req: Request, res: Response) {
     try {
       const userId = req.user.id;
 

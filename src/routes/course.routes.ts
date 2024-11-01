@@ -8,14 +8,14 @@ import {
   createAnnouncementValidator,
   getCourseCurriculumValidator,
 } from "../validators/course.validator";
-import { upload } from "../utils/s3upload.utils";
+import { upload } from "../utils/upload.utils";
 
-const { 
-  createCourse, 
-  createCourseContent, 
+const {
+  createCourse,
+  createCourseContent,
   createAnnouncement,
   getCourseCurriculum,
-  getAllAnnouncementsByCourse 
+  getAllAnnouncementsByCourse,
 } = new CourseController();
 
 const router = Router();
@@ -53,7 +53,7 @@ router.post(
 );
 
 router.get(
-  "/announcement/:courseId", 
+  "/announcement/:courseId",
   authenticate,
   ...getCourseCurriculumValidator,
   getAllAnnouncementsByCourse

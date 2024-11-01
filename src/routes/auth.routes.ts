@@ -1,5 +1,9 @@
 import { Router } from "express";
 
+import { authenticate, authorize } from "../middlewares/auth.middleware";
+
+import { bulkUpload } from "../utils/upload.utils"
+
 import {
   createOrganizationValidator,
   loginOrganizationValidator,
@@ -15,7 +19,7 @@ import { UserAuthController } from "../controllers/auth/auth.user.controller";
 import { SuperAdminAuthController } from "../controllers/auth/auth.superadmin.controller";
 
 const { registerOrganization, loginOrganization } = AdminAuthController;
-const { registerUser, loginUser } = UserAuthController;
+const { registerUser, bulkCreateUsers, loginUser } = UserAuthController;
 const { registerSuperAdmin, loginSuperAdmin } = SuperAdminAuthController;
 
 const router = Router();
@@ -29,7 +33,20 @@ router.post(
 router.post("/org/login", ...loginOrganizationValidator, loginOrganization);
 
 // User Auth
-router.post("/user/register", ...registerUserValidator, registerUser);
+router.post(
+  "/user/register", 
+  ...registerUserValidator, 
+  registerUser
+);
+
+router.post(
+  "/bulk-create", 
+  authenticate,
+  authorize("admin"),
+  bulkUpload.single("file"),
+  bulkCreateUsers
+);
+
 router.post("/user/login", ...loginUserValidator, loginUser);
 
 // Super Admin Auth

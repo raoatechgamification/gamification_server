@@ -31,6 +31,34 @@ export const upload = multer({
   },
 });
 
+// export  const bulkUpload = multer({
+//   storage: multer.memoryStorage(),
+//   limits: {
+//     fileSize: 20 * 1024 * 1024,
+//   },
+
+//   fileFilter: (req: any, file: any, cb: any) => {
+//     const ext = path.extname(file.originalname);
+//     if (ext !== '.xlsx' && ext !== '.xls') {
+//       cb(new Error('Only Excel files are allowed'), false);
+//     } else {
+//       cb(null, true);
+//     }
+//   }
+// })
+
+const storage = multer.memoryStorage() 
+
+const fileFilter = (req: any, file: any, cb: any) => {
+  const ext = path.extname(file.originalname);
+  if (ext !== '.xlsx' && ext !== '.xls') {
+    cb(new Error('Only Excel files are allowed'), false);
+  } else {
+    cb(null, true);
+  }
+};
+export const bulkUpload = multer({ storage, fileFilter });
+
 export const s3 = new AWS.S3({
   accessKeyId: process.env.AWS_ACCESS_KEY_ID!,
   secretAccessKey: process.env.AWS_SECRET_ACCESS_KEY!,
