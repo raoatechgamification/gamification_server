@@ -123,8 +123,13 @@ export class UserAuthController {
         return;
       }
 
-      const createdUsers = await UserService.createUsersFromExcel(organizationId, req.file.path)
-      res.status(201).json({ status: true, error: "An error occurred while creating users"}) 
+      const createdUsers = await UserService.createUsersFromExcel(organizationId, req.file.buffer)
+
+      res.status(201).json({
+        success: true,
+        data: createdUsers,
+        message: "All users created successfully and emails sent with login details."
+      });
     } catch (error: any) {
       return res.status(500).json({
         success: false,

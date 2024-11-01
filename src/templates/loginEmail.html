@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{{Subject}}</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f9f9f9;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      justify-content: center;
+    }
+    .email-container {
+      width: 100%;
+      max-width: 600px;
+      background-color: #ffffff;
+      border-radius: 8px;
+      overflow: hidden;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      margin: 20px;
+    }
+    .header {
+      background-color: #ffffff;
+      padding: 20px;
+      text-align: center;
+      border-bottom: 1px solid #ddd;
+    }
+    .header img {
+      height: 50px; /* Adjust as necessary */
+    }
+    .content {
+      padding: 20px;
+      color: #333;
+      line-height: 1.6;
+    }
+    .content h1 {
+      font-size: 24px;
+      color: #333;
+    }
+    .content p {
+      margin: 10px 0;
+    }
+    .highlight-box {
+      background-color: #6c41b5;
+      color: #ffffff;
+      padding: 15px;
+      border-radius: 8px;
+      text-align: left;
+      margin-top: 20px;
+    }
+    .highlight-box p {
+      margin: 5px 0;
+    }
+    .footer {
+      text-align: center;
+      padding: 20px;
+      font-size: 12px;
+      color: #666;
+    }
+    .footer a {
+      color: #6c41b5;
+      text-decoration: none;
+    }
+    .social-icons {
+      margin-top: 10px;
+    }
+    .social-icons img {
+      width: 20px;
+      height: 20px;
+      margin: 0 5px;
+    }
+  </style>
+</head>
+<body>
+  <div class="email-container">
+    <!-- Header -->
+    <div class="header">
+      <img src="https://res.cloudinary.com/dldchwdkn/image/upload/v1730464458/gamai-logo_gzmck8.png" alt="RAOATECH IT-ELECTROMECH LIMITED Logo">
+    </div>
+
+    <!-- Main Content -->
+    <div class="content">
+      <h1>Welcome!</h1>
+      <p>Dear {{firstName}},</p>
+      <p>Congratulations! You have been on-boarded successfully by {{organizationName}} on Gamai.</p>
+      <p>Your details are given below:</p>
+      <p>Username: {{email}}</p>
+      <p>Password (temporary): {{password}}</p>
+    </div>
+
+    <!-- Highlight Box -->
+    <div class="highlight-box">
+      <p>Thank you,<br>Gamai Team</p>
+      <p>1A, Hughes Avenue, Sabo, Yaba, Lagos State.</p>
+      <div class="social-icons">
+        <a href="https://www.google.com"><img src="https://res.cloudinary.com/dldchwdkn/image/upload/v1730465481/new-twitter-logo-x_tz4vt6.avif" alt="Twitter"></a>
+        <a href="https://www.google.com"><img src="https://res.cloudinary.com/dldchwdkn/image/upload/v1730465665/facebook-icon_negl1m.webp" alt="Facebook"></a>
+        <a href="https://www.google.com"><img src="https://res.cloudinary.com/dldchwdkn/image/upload/v1730465761/linkedin-logo_hrtxeo.jpg" alt="LinkedIn"></a>
+      </div>
+    </div>
+
+    <!-- Footer -->
+    <div class="footer">
+      <p>This email was sent to <a href="mailto:olanrewaju@gmail.com">olanrewaju@gmail.com</a>. If you’d rather not receive this kind of email, you can <a href="#">unsubscribe</a> or <a href="#">manage your email preferences</a>.</p>
+    </div>
+  </div>
+</body>
+</html>

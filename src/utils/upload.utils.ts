@@ -1,5 +1,6 @@
 import multer from "multer";
 import AWS from "aws-sdk";
+import path from "path";
 import { Request } from 'express';
 
 export const upload = multer({
@@ -49,8 +50,8 @@ export const upload = multer({
 
 const storage = multer.memoryStorage() 
 
-const fileFilter = (req: any, file: any, cb: any) => {
-  const ext = path.extname(file.originalname);
+const fileFilter = (req: any, file: Express.Multer.File, cb: any) => {
+  const ext = path.extname(file.originalname).toLowerCase();
   if (ext !== '.xlsx' && ext !== '.xls') {
     cb(new Error('Only Excel files are allowed'), false);
   } else {
