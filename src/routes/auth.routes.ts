@@ -19,7 +19,7 @@ import { UserAuthController } from "../controllers/auth/auth.user.controller";
 import { SuperAdminAuthController } from "../controllers/auth/auth.superadmin.controller";
 
 const { registerOrganization, loginOrganization } = AdminAuthController;
-const { registerUser, bulkCreateUsers, loginUser } = UserAuthController;
+const { registerUser, bulkCreateUsers, createSingleUser, loginUser } = UserAuthController;
 const { registerSuperAdmin, loginSuperAdmin } = SuperAdminAuthController;
 
 const router = Router();
@@ -46,6 +46,13 @@ router.post(
   bulkUpload.single("file"),
   bulkCreateUsers
 );
+
+router.post(
+  "/single-create",
+  authenticate,
+  authorize,
+  createSingleUser
+)
 
 router.post("/user/login", ...loginUserValidator, loginUser);
 
