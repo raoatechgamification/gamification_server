@@ -398,3 +398,9 @@
 2024-10-28 15:42:34 [info]: POST /process-payment/671682dc2d478e92017d3718 200
 2024-10-28 15:43:37 [info]: GET /verify-payment/TX-67058ad58d0b7856b3a0a1e9-1730126552490 500
 2024-10-28 15:43:50 [info]: GET /verify-payment/TX-67058ad58d0b7856b3a0a1e9-1730126552490 500
+2024-11-01 15:00:09 [info]: POST /org/login 200 - Request Body: {"email":"doercharity@gmail.com","password":"Doer505$$$"}
+2024-11-01 15:15:01 [info]: POST /org/login 200 - Request Body: {"email":"doercharity@gmail.com","password":"Doer505$$$"}
+2024-11-01 15:19:37 [info]: POST /auth/user/bulk-create 200
+2024-11-01 15:20:12 [info]: POST /bulk-create 500
+2024-11-01 15:22:51 [info]: POST /bulk-create 500
+2024-11-01 16:07:43 [info]: POST /bulk-create 500

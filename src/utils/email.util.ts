@@ -6,8 +6,11 @@ export interface VariablesInterface {
   firstName: string,
   email: string,
   password: string,
-  subject: string
+  subject: string,
+  organizationName: string
 }
+
+console.log("Postmark API key", process.env.POSTMARK_API_TOKEN)
 
 const postmarkClient = new postmark.ServerClient(process.env.POSTMARK_API_TOKEN!);
 

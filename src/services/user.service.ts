@@ -2,10 +2,11 @@ import mongoose from 'mongoose';
 import XLSX from 'xlsx';
 import { hashPassword } from "../utils/hash"
 import User, { IUser } from '../models/user.model';
+import { OrganizationDocument } from "../models/organization.model"
 import { sendLoginEmail } from "./sendMail.service";
 
 class UserService {
-  async createUsersFromExcel(organizationId: mongoose.Schema.Types.ObjectId, buffer: Buffer): Promise<IUser[]> {
+  async createUsersFromExcel(organization: OrganizationDocument, buffer: Buffer): Promise<IUser[]> {
     const workbook = XLSX.read(buffer, { type: 'buffer' });
     const sheetName = workbook.SheetNames[0];
     const sheet = workbook.Sheets[sheetName];
@@ -31,7 +32,7 @@ class UserService {
       lastName: data.LastName || null,
       email: data.Email,
       phone: data.Phone,
-      organization: organizationId,
+      organization: organization.id,
       password: hashedDefaultPassword,
     }));
 
@@ -42,6 +43,7 @@ class UserService {
         email: user.email,
         firstName: user.firstName,
         password: defaultPassword,
+        organizationName: organization.name,
         subject: "Gamai - Your New Account Login Details"
       }
 

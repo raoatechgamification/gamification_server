@@ -115,7 +115,6 @@ export class UserAuthController {
 
   static async bulkCreateUsers (req: Request, res: Response) {
     try {
-      // Get organization name
       const organizationId = req.admin._id
 
       if (!req.file) {
@@ -123,7 +122,15 @@ export class UserAuthController {
         return;
       }
 
-      const createdUsers = await UserService.createUsersFromExcel(organizationId, req.file.buffer)
+      const organization = await Organization.findById(organizationId)
+      if (!organization) {
+        return res.status(400).json({
+          status: false,
+          message: "Organization not found"
+        })
+      }
+
+      const createdUsers = await UserService.createUsersFromExcel(organization, req.file.buffer)
 
       res.status(201).json({
         success: true,
