@@ -32,22 +32,6 @@ export const upload = multer({
   },
 });
 
-// export  const bulkUpload = multer({
-//   storage: multer.memoryStorage(),
-//   limits: {
-//     fileSize: 20 * 1024 * 1024,
-//   },
-
-//   fileFilter: (req: any, file: any, cb: any) => {
-//     const ext = path.extname(file.originalname);
-//     if (ext !== '.xlsx' && ext !== '.xls') {
-//       cb(new Error('Only Excel files are allowed'), false);
-//     } else {
-//       cb(null, true);
-//     }
-//   }
-// })
-
 const storage = multer.memoryStorage() 
 
 const fileFilter = (req: any, file: Express.Multer.File, cb: any) => {

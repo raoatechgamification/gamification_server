@@ -9,6 +9,8 @@ export interface IUser extends Document {
   organization?: mongoose.Schema.Types.ObjectId;
   role: string;
   password: string;
+  batch?: string;
+  userType?: string;
   yearOfExperience?: number;
   highestEducationLevel?: string;
   gender?: string;
@@ -25,6 +27,8 @@ const UserSchema: Schema<IUser> = new Schema(
     organization: { type: mongoose.Schema.Types.ObjectId, default: null, },
     role: { type: String, default: "user", required: true, },
     password: { type: String, required: true, },
+    batch: { type: String },
+    userType: { type: String },
     yearOfExperience: { type: Number, default: null, },
     highestEducationLevel: { type: String, default: null, },
     gender: { type: String, default: null, },

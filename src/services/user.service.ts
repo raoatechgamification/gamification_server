@@ -5,6 +5,7 @@ import User, { IUser } from '../models/user.model';
 import { OrganizationDocument } from "../models/organization.model"
 import { sendLoginEmail } from "./sendMail.service";
 
+
 class UserService {
   async createUsersFromExcel(organization: OrganizationDocument, buffer: Buffer): Promise<IUser[]> {
     const workbook = XLSX.read(buffer, { type: 'buffer' });

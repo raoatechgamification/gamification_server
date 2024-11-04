@@ -5,9 +5,75 @@ import Organization from "../../models/organization.model";
 import UserService from "../../services/user.service";
 import { comparePassword, hashPassword } from "../../utils/hash";
 import { generateToken } from "../../utils/jwt";
+import { sendLoginEmail } from "../../services/sendMail.service";
+
 
 export class UserAuthController {
-  static async registerUser (req: Request, res: Response, next: NextFunction) {
+  static async createSingleUser (req: Request, res: Response) {
+    try {
+      const { firstName, lastName, email, role, batch , password, sendEmail } = req.body;
+
+      const organizationId = req.admin._id
+      const organization = await Organization.findById(organizationId)
+      if (!organization) {
+        return res.status(400).json({
+          status: false,
+          message: "Organization not found"
+        })
+      }
+
+      const existingUser = await User.findOne({ email });
+      if (existingUser) {
+        return ResponseHandler.failure(
+          res,
+          `A user has been registered with this email`,
+          400
+        );
+      }
+
+      let hashedPassword
+
+      if (password) {
+        hashedPassword = await hashPassword(password);
+      } else hashedPassword = await hashPassword('Default@123') 
+
+      const newUser = await User.create({
+        firstName,
+        lastName, 
+        email, 
+        password: hashedPassword, 
+        batch,
+        userType: role
+      })
+
+      if (sendEmail) {
+        const emailVariables = {
+          email,
+          firstName,
+          password,
+          organizationName: organization.name,
+          subject: "Gamai - Your New Account Login Details"
+        }
+
+        await sendLoginEmail(emailVariables)
+      }
+
+      return ResponseHandler.success(
+        res,
+        newUser,
+        "User account created successfully",
+        201
+      )
+      
+    } catch (error: any) {
+      res.status(500).json({
+        message: "Server error",
+        error: error.message,
+      });
+    }
+  }
+
+  static async registerUser (req: Request, res: Response) {
     try {
       let { email, username, organizationId, password } = req.body;
 
@@ -59,12 +125,15 @@ export class UserAuthController {
         "User account created successfully",
         201
       );
-    } catch (error) {
-      next(error);
+    } catch (error: any) {
+      res.status(500).json({
+        message: "Server error",
+        error: error.message,
+      });
     }
   }
 
-  static async loginUser (req: Request, res: Response, next: NextFunction) {
+  static async loginUser (req: Request, res: Response) {
     try {
       const { email, password } = req.body;
 
@@ -108,8 +177,11 @@ export class UserAuthController {
         userResponse,
         "Login Successful"
       );
-    } catch (error) {
-      next(error);
+    } catch (error: any) {
+      res.status(500).json({
+        message: "Server error",
+        error: error.message,
+      });
     }
   }
 
