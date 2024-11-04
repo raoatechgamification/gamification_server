@@ -46,6 +46,8 @@ export class UserAuthController {
         userType: role
       })
 
+      const userResponse = await User.findById(newUser._id).select("-password -role");
+
       if (sendEmail) {
         const emailVariables = {
           email,
@@ -60,7 +62,7 @@ export class UserAuthController {
 
       return ResponseHandler.success(
         res,
-        newUser,
+        userResponse,
         "User account created successfully",
         201
       )

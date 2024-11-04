@@ -50,7 +50,7 @@ router.post(
 router.post(
   "/single-create",
   authenticate,
-  authorize,
+  authorize("admin"),
   createSingleUser
 )
 

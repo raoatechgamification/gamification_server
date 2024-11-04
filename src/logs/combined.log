@@ -407,3 +407,4 @@
 2024-11-04 12:41:06 [info]: POST /bulk-create 401
 2024-11-04 12:41:19 [info]: POST /org/login 200 - Request Body: {"email":"doercharity@gmail.com","password":"Doer505$$$"}
 2024-11-04 12:41:43 [info]: POST /bulk-create 500
+2024-11-04 16:59:37 [info]: POST /single-create 201 - Request Body: {"firstName":"Asake","lastName":"Odunlade","email":"asakeoooodun@gmail.com","role":"learner","batch":"2024","password":"Asaks","sendEmail":false}
