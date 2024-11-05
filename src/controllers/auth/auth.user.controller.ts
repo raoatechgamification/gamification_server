@@ -1,8 +1,8 @@
-import { Request, Response, NextFunction } from "express";
+import { Request, Response } from "express";
 import { ResponseHandler } from "../../middlewares/responseHandler.middleware";
 import User, { IUser } from "../../models/user.model";
 import Organization, {
-  OrganizationDocument,
+  IOrganization,
 } from "../../models/organization.model";
 import SuperAdmin, { ISuperAdmin } from "../../models/superadmin.model";
 import UserService from "../../services/user.service";
@@ -19,10 +19,11 @@ export class UserAuthController {
       const organizationId = req.admin._id;
       const organization = await Organization.findById(organizationId);
       if (!organization) {
-        return res.status(400).json({
-          status: false,
-          message: "Organization not found",
-        });
+        return ResponseHandler.failure(
+          res,
+          "Organization not found",
+          400
+        )
       }
 
       const existingUser = await User.findOne({ email });
@@ -72,10 +73,11 @@ export class UserAuthController {
         201
       );
     } catch (error: any) {
-      res.status(500).json({
-        message: "Server error",
-        error: error.message,
-      });
+      return ResponseHandler.failure(
+        res,
+        `Server error: ${error.message}`,
+        500
+      )
     }
   }
 
@@ -134,30 +136,27 @@ export class UserAuthController {
         201
       );
     } catch (error: any) {
-      res.status(500).json({
-        message: "Server error",
-        error: error.message,
-      });
+      return ResponseHandler.failure(
+        res,
+        `Server error: ${error.message}`,
+        500
+      )
     }
   }
 
   static async Login(req: Request, res: Response) {
     try {
-      // 1. Get email and password from request body
       const { email, password } = req.body;
 
-      // 2. Find account in User, Organization, or SuperAdmin collection
       const account =
-        (await User.findOne({ email }).select("-password")) ||
-        (await Organization.findOne({ email }).select("-password")) ||
-        (await SuperAdmin.findOne({ email }).select("-password"));
+        await User.findOne({ email }) ||
+        await Organization.findOne({ email }) ||
+        await SuperAdmin.findOne({ email });
 
-      // 3. If account does not exist, return error
       if (!account) {
         return ResponseHandler.failure(res, "Account does not exist", 400);
       }
 
-      // 4. Compare password
       const isCorrectPassword = await comparePassword(
         password,
         account.password
@@ -170,7 +169,6 @@ export class UserAuthController {
         );
       }
 
-      // 4. Compile token payload
       let tokenPayload;
       switch (account.role) {
         case "user":
@@ -186,23 +184,36 @@ export class UserAuthController {
           return ResponseHandler.failure(res, "Unknown role", 400);
       }
 
-      // 5. Generate payload
       const token = await generateToken(tokenPayload);
 
-      // 7. Return data to the client excluding the password
+      const { password: _omit, ...accountData } = account.toObject();
+
       return ResponseHandler.loginResponse(
         res,
         token,
-        account,
+        accountData,
         "Login Successful"
       );
     } catch (error: any) {
-      res.status(500).json({
-        message: "Server error",
-        error: error.message,
-      });
+      return ResponseHandler.failure(
+        res,
+        `Server error: ${error.message}`,
+        500
+      )
     }
   }
+
+  private static isUser(account: any): account is IUser {
+    return (account as IUser).role === 'user';
+  }
+  
+  private static isOrganization(account: any): account is IOrganization {
+    return (account as IOrganization).role === 'admin';
+  }
+  
+  private static isSuperAdmin(account: any): account is ISuperAdmin {
+    return (account as ISuperAdmin).role === 'superadmin';
+  }  
 
   private static getUserTokenPayload(account: IUser) {
     return {
@@ -210,14 +221,14 @@ export class UserAuthController {
       email: account.email,
       username: account.username,
       phone: account.phone,
-      organization: account.organization,
+      organizationId: account.organizationId,
       firstName: account.firstName,
       lastName: account.lastName,
       role: account.role,
     };
   }
 
-  private static getOrganizationTokenPayload(account: OrganizationDocument) {
+  private static getOrganizationTokenPayload(account: IOrganization) {
     return {
       id: account._id,
       role: account.role,
@@ -266,7 +277,7 @@ export class UserAuthController {
         email: registeredUser.email,
         username: registeredUser.username,
         phone: registeredUser.phone,
-        organization: registeredUser.organization,
+        organizationId: registeredUser.organizationId,
         firstName: registeredUser.firstName,
         lastName: registeredUser.lastName,
         role: registeredUser.role,

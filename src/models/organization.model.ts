@@ -1,6 +1,6 @@
-import mongoose, { Document, Schema } from 'mongoose';
+import mongoose, { Document, Model, Schema } from 'mongoose';
 
-export interface OrganizationDocument extends Document {
+export interface IOrganization extends Document {
   name: string;
   firstName?: string;
   lastName?: string;
@@ -16,7 +16,7 @@ export interface OrganizationDocument extends Document {
   updatedAt: Date; 
 }
 
-const organizationSchema = new Schema<OrganizationDocument>({
+const OrganizationSchema: Schema<IOrganization> = new Schema({
   name: { type: String, required: true },
   firstName: { type: String },
   lastName: { type: String},
@@ -32,4 +32,7 @@ const organizationSchema = new Schema<OrganizationDocument>({
   timestamps: true, 
 });
 
-export default mongoose.model<OrganizationDocument>('Organization', organizationSchema);
+const Organization: Model<IOrganization> = mongoose.model<IOrganization>("Organization", OrganizationSchema);
+
+export default Organization
+export type OrganizationDocument = IOrganization

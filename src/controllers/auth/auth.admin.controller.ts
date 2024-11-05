@@ -1,7 +1,7 @@
 import { Request, Response, NextFunction } from "express";
 import { ResponseHandler } from "../../middlewares/responseHandler.middleware";
 import Organization, {
-  OrganizationDocument,
+  IOrganization,
 } from "../../models/organization.model"; 
 import { hashPassword, comparePassword } from "../../utils/hash";
 import { generateToken } from "../../utils/jwt";
@@ -65,7 +65,7 @@ export class AdminAuthController {
       });
 
       // Retrieve the created organization, excluding sensitive fields
-      const organization: OrganizationDocument | null =
+      const organization: IOrganization | null =
         await Organization.findById(newOrganization._id).select(
           "-password -role"
         ); // Exclude password and role
@@ -90,7 +90,7 @@ export class AdminAuthController {
       const { email, password } = req.body;
 
       // Find the registered organization by email
-      const registeredOrganization: OrganizationDocument | null =
+      const registeredOrganization: IOrganization | null =
         await Organization.findOne({
           email,
         });

@@ -6,7 +6,7 @@ export interface IUser extends Document {
   lastName?: string;
   email: string;
   phone?: string;
-  organization?: mongoose.Schema.Types.ObjectId;
+  organizationId?: mongoose.Schema.Types.ObjectId;
   role: string;
   password: string;
   batch?: string;
@@ -24,7 +24,7 @@ const UserSchema: Schema<IUser> = new Schema(
     lastName: { type: String, default: null, },
     email: { type: String, required: true, unique: true, },
     phone: { type: String, default: null, },
-    organization: { type: mongoose.Schema.Types.ObjectId, default: null, },
+    organizationId: { type: mongoose.Schema.Types.ObjectId, default: null, },
     role: { type: String, default: "user", required: true, },
     password: { type: String, required: true, },
     batch: { type: String },

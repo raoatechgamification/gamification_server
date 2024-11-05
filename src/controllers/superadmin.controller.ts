@@ -1,8 +1,7 @@
 import { Request, Response, NextFunction } from "express";
 import { ResponseHandler } from "../middlewares/responseHandler.middleware";
 import Organization, { OrganizationDocument } from "../models/organization.model";
-import User, { IUser } from "../models/user.model"; 
-import { UserDocument } from "../models/user.model"; 
+import User, { IUser, UserDocument } from "../models/user.model"; 
 
 export class SuperAdminController {
   static async viewOrganizations(
@@ -52,8 +51,8 @@ export class SuperAdminController {
         users.map(async (user: UserDocument) => {
           let organizationInfo = null;
 
-          if (user.organization) {
-            const organization = await Organization.findById(user.organization);
+          if (user.organizationId) {
+            const organization = await Organization.findById(user.organizationId);
 
             if (organization) {
               organizationInfo = {
@@ -77,16 +76,24 @@ export class SuperAdminController {
       );
 
       return ResponseHandler.success(res, userData, "Users fetched successfully");
-    } catch (error) {
-      next(error);
+    } catch (error: any) {
+      return ResponseHandler.failure(
+        res,
+        `Server error: ${error.message}`,
+        500
+      )
     }
   }
 
   static async customCreate (req: Request, res: Response, next: NextFunction) {
     try {
       
-    } catch (error) {
-      next(error)
+    } catch (error: any) {
+      return ResponseHandler.failure(
+        res,
+        `Server error: ${error.message}`,
+        500
+      )
     }
   }
 }
