@@ -27,4 +27,45 @@ class AdminController {
       )
     }
   }
+
+  async editUserProfile (req: Request, res: Response) {
+    try {
+      const organizationId = req.admin._id
+
+      const userId = req.params.userId
+
+      const { firstName, lastName, batch, role } = req.body;
+
+      const updatedUser = await User.findByIdAndUpdate(
+        userId,
+        {
+          $set: {
+            firstName,
+            lastName,
+            batch,
+            role
+          },
+        },
+        { new: true, runValidators: true } 
+      )
+
+      if (!updatedUser) {
+        return ResponseHandler.failure(res, "User not found", 404);
+      }
+
+      return ResponseHandler.success(
+        res,
+        updatedUser,
+        "User details updated successfully"
+      );
+    } catch (error: any) {
+      return ResponseHandler.failure(
+        res,
+        `Server error: ${error.message}`,
+        500
+      )
+    }
+  }
 }
+
+export default new AdminController();
