@@ -1,25 +1,26 @@
 import { Request, Response, NextFunction } from "express";
 import { ResponseHandler } from "../../middlewares/responseHandler.middleware";
-import User from "../../models/user.model"; 
-import Organization from "../../models/organization.model"; 
+import User from "../../models/user.model";
+import Organization from "../../models/organization.model";
+import SuperAdmin from "../../models/superadmin.model";
 import UserService from "../../services/user.service";
 import { comparePassword, hashPassword } from "../../utils/hash";
 import { generateToken } from "../../utils/jwt";
 import { sendLoginEmail } from "../../services/sendMail.service";
 
-
 export class UserAuthController {
-  static async createSingleUser (req: Request, res: Response) {
+  static async createSingleUser(req: Request, res: Response) {
     try {
-      const { firstName, lastName, email, role, batch , password, sendEmail } = req.body;
+      const { firstName, lastName, email, role, batch, password, sendEmail } =
+        req.body;
 
-      const organizationId = req.admin._id
-      const organization = await Organization.findById(organizationId)
+      const organizationId = req.admin._id;
+      const organization = await Organization.findById(organizationId);
       if (!organization) {
         return res.status(400).json({
           status: false,
-          message: "Organization not found"
-        })
+          message: "Organization not found",
+        });
       }
 
       const existingUser = await User.findOne({ email });
@@ -31,22 +32,24 @@ export class UserAuthController {
         );
       }
 
-      let hashedPassword
+      let hashedPassword;
 
       if (password) {
         hashedPassword = await hashPassword(password);
-      } else hashedPassword = await hashPassword('Default@123') 
+      } else hashedPassword = await hashPassword("Default@123");
 
       const newUser = await User.create({
         firstName,
-        lastName, 
-        email, 
-        password: hashedPassword, 
+        lastName,
+        email,
+        password: hashedPassword,
         batch,
-        userType: role
-      })
+        userType: role,
+      });
 
-      const userResponse = await User.findById(newUser._id).select("-password -role");
+      const userResponse = await User.findById(newUser._id).select(
+        "-password -role"
+      );
 
       if (sendEmail) {
         const emailVariables = {
@@ -54,10 +57,10 @@ export class UserAuthController {
           firstName,
           password,
           organizationName: organization.name,
-          subject: "Gamai - Your New Account Login Details"
-        }
+          subject: "Gamai - Your New Account Login Details",
+        };
 
-        await sendLoginEmail(emailVariables)
+        await sendLoginEmail(emailVariables);
       }
 
       return ResponseHandler.success(
@@ -65,8 +68,7 @@ export class UserAuthController {
         userResponse,
         "User account created successfully",
         201
-      )
-      
+      );
     } catch (error: any) {
       res.status(500).json({
         message: "Server error",
@@ -75,7 +77,7 @@ export class UserAuthController {
     }
   }
 
-  static async registerUser (req: Request, res: Response) {
+  static async registerUser(req: Request, res: Response) {
     try {
       let { email, username, organizationId, password } = req.body;
 
@@ -119,7 +121,9 @@ export class UserAuthController {
         organization: organizationId,
       });
 
-      const userResponse = await User.findById(newUser._id).select("-password -role");
+      const userResponse = await User.findById(newUser._id).select(
+        "-password -role"
+      );
 
       return ResponseHandler.success(
         res,
@@ -135,7 +139,7 @@ export class UserAuthController {
     }
   }
 
-  static async loginUser (req: Request, res: Response) {
+  static async loginUser(req: Request, res: Response) {
     try {
       const { email, password } = req.body;
 
@@ -159,7 +163,7 @@ export class UserAuthController {
       }
 
       const payload = {
-        id: registeredUser._id, 
+        id: registeredUser._id,
         email: registeredUser.email,
         username: registeredUser.username,
         phone: registeredUser.phone,
@@ -171,7 +175,9 @@ export class UserAuthController {
 
       const token = await generateToken(payload);
 
-      const userResponse = await User.findById(registeredUser._id).select("-password -role");
+      const userResponse = await User.findById(registeredUser._id).select(
+        "-password -role"
+      );
 
       return ResponseHandler.loginResponse(
         res,
@@ -187,34 +193,38 @@ export class UserAuthController {
     }
   }
 
-  static async bulkCreateUsers (req: Request, res: Response) {
+  static async bulkCreateUsers(req: Request, res: Response) {
     try {
-      const organizationId = req.admin._id
+      const organizationId = req.admin._id;
 
       if (!req.file) {
         res.status(400).json({ success: false, error: "No file uploaded" });
         return;
       }
 
-      const organization = await Organization.findById(organizationId)
+      const organization = await Organization.findById(organizationId);
       if (!organization) {
         return res.status(400).json({
           status: false,
-          message: "Organization not found"
-        })
+          message: "Organization not found",
+        });
       }
 
-      const createdUsers = await UserService.createUsersFromExcel(organization, req.file.buffer)
+      const createdUsers = await UserService.createUsersFromExcel(
+        organization,
+        req.file.buffer
+      );
 
       res.status(201).json({
         success: true,
         data: createdUsers,
-        message: "All users created successfully and emails sent with login details."
+        message:
+          "All users created successfully and emails sent with login details.",
       });
     } catch (error: any) {
       return res.status(500).json({
         success: false,
-        message: 'An error occurred while creating bulk accounts',
+        message: "An error occurred while creating bulk accounts",
         error: error.message,
       });
     }

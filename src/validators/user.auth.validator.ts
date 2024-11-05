@@ -61,6 +61,25 @@ export const loginUserValidator = [
   errorResponse,
 ];
 
+export const changePasswordValidator = [
+  body("currentPassword")
+    .notEmpty()
+    .isString()
+    .withMessage("Please provide your current password"),
+
+  body("newPassword")
+    .notEmpty()
+    .withMessage('New password field cannot be empty')
+    .isString()
+    .withMessage('Password must be a string')
+    .isStrongPassword()
+    .withMessage(
+      "Password must be at least eight characters, with at least one uppercase and lowercase letter, and a special character"
+    ),
+
+  errorResponse,
+]
+
 export const editUserProfileValidator = [
   body("yearOfExperience")
     .isNumeric()

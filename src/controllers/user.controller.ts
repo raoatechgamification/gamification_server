@@ -1,5 +1,5 @@
 import { Request, Response, NextFunction } from "express";
-import { ResponseHandler } from "../middlewares/responseHandler.middleware";
+import { ResponseHandler } from "../middlewares/responseHandler.middleware"
 import User from "../models/user.model";
 import Payment from "../models/payment.model";
 import AssignedBill from "../models/bill.model";
@@ -138,7 +138,7 @@ export class UserController {
       if (!currentPasswordIsValid) {
         return ResponseHandler.failure(
           res,
-          "You have entered an incorrect password",
+          "The current password you entered is incorrect",
           400
         );
       }
@@ -146,6 +146,14 @@ export class UserController {
       const newHashedPassword = await hashPassword(newPassword)
       user.password = newHashedPassword;
       user.save()
+
+      const userResponse = await User.findById(user._id).select("-password -role");
+      return ResponseHandler.success(
+        res, 
+        userResponse,
+        "Your password has been updated successfully",
+        200 
+      )
     } catch (error: any) {
       res.status(500).json({
         message: "Server error",

@@ -408,3 +408,56 @@
 2024-11-04 12:41:19 [info]: POST /org/login 200 - Request Body: {"email":"doercharity@gmail.com","password":"Doer505$$$"}
 2024-11-04 12:41:43 [info]: POST /bulk-create 500
 2024-11-04 16:59:37 [info]: POST /single-create 201 - Request Body: {"firstName":"Asake","lastName":"Odunlade","email":"asakeoooodun@gmail.com","role":"learner","batch":"2024","password":"Asaks","sendEmail":false}
+2024-11-04 18:09:16 [info]: POST /single-create 400 - Request Body: {"firstName":"Asake","lastName":"Odunlade","email":"asakeoooodun@gmail.com","role":"learner","batch":"2024","password":"Asaks","sendEmail":false}
+2024-11-04 18:09:27 [info]: POST /single-create 500 - Request Body: {"firstName":"Asake","lastName":"Odunlade","email":"asakeoooodunn@gmail.com","role":"learner","batch":"2024","password":"Asaks","sendEmail":false}
+2024-11-04 18:10:34 [info]: POST /single-create 500 - Request Body: {"firstName":"Asake","lastName":"Odunlade","email":"asakeoooodunn@gmail.com","role":"learner","batch":"2024","password":"Asaks","sendEmail":false}
+2024-11-04 18:12:55 [info]: POST /single-create 500 - Request Body: {"firstName":"Asake","lastName":"Odunlade","email":"asakeoooodunn@gmail.com","role":"learner","batch":"2024","password":"Asaks","sendEmail":false}
+2024-11-04 18:14:02 [info]: POST /single-create 201 - Request Body: {"firstName":"Asake","lastName":"Odunlade","email":"asakeoooodunn@gmail.com","role":"learner","batch":"2024","password":"Asaks","sendEmail":false}
+2024-11-04 18:14:33 [info]: POST /user/login 200 - Request Body: {"firstName":"Asake","lastName":"Odunlade","email":"asakeoooodunn@gmail.com","role":"learner","batch":"2024","password":"Asaks","sendEmail":false}
+2024-11-04 18:15:02 [info]: POST /user/login 200 - Request Body: {"email":"asakeoooodunn@gmail.com","password":"Asaks"}
+2024-11-04 18:16:12 [info]: POST /single-create 400 - Request Body: {"firstName":"Asake","lastName":"Odunlade","email":"asakeoooodunn@gmail.com","role":"learner","batch":"2024","sendEmail":false}
+2024-11-04 18:16:27 [info]: POST /single-create 500 - Request Body: {"firstName":"Asake","lastName":"Odunlade","email":"asakeodunn@gmail.com","role":"learner","batch":"2024","sendEmail":false}
+2024-11-04 22:57:59 [info]: POST /single-create 500 - Request Body: {"firstName":"Asake","lastName":"Odunlade","email":"asakeodunn@gmail.com","role":"learner","batch":"2024","sendEmail":false}
+2024-11-04 22:59:35 [info]: POST /single-create 500 - Request Body: {"firstName":"Asake","lastName":"Odunlade","email":"asakeodunn@gmail.com","role":"learner","batch":"2024","sendEmail":false}
+2024-11-04 23:12:41 [info]: POST /single-create 500 - Request Body: {"firstName":"Asake","lastName":"Odunlade","email":"asakeodunn@gmail.com","role":"learner","batch":"2024","sendEmail":false}
+2024-11-04 23:12:55 [info]: POST /single-create 500 - Request Body: {"firstName":"Asake","lastName":"Odunlade","email":"asakeodunn@gmail.com","role":"learner","batch":"2024","sendEmail":false}
+2024-11-04 23:14:12 [info]: POST /single-create 500 - Request Body: {"firstName":"Asake","lastName":"Odunlade","email":"asakeodunn@gmail.com","role":"learner","batch":"2024","sendEmail":false}
+2024-11-04 23:15:16 [info]: POST /single-create 201 - Request Body: {"firstName":"Asake","lastName":"Odunlade","email":"asakeodunn@gmail.com","role":"learner","batch":"2024","sendEmail":false}
+2024-11-04 23:15:22 [info]: POST /single-create 400 - Request Body: {"firstName":"Asake","lastName":"Odunlade","email":"asakeodunn@gmail.com","role":"learner","batch":"2024","sendEmail":false}
+2024-11-04 23:15:32 [info]: POST /single-create 201 - Request Body: {"firstName":"Asake","lastName":"Odunlade","email":"asakeodunn2@gmail.com","role":"learner","batch":"2024","sendEmail":false}
+2024-11-04 23:15:45 [info]: POST /single-create 201 - Request Body: {"firstName":"Asake","lastName":"Odunlade","email":"asakeodunn3@gmail.com","role":"learner","batch":"2024","sendEmail":false}
+2024-11-04 23:15:52 [info]: POST /single-create 400 - Request Body: {"firstName":"Asake","lastName":"Odunlade","email":"asakeodunn3@gmail.com","role":"learner","batch":"2024","sendEmail":false}
+2024-11-04 23:16:02 [info]: POST /single-create 201 - Request Body: {"firstName":"Asake","lastName":"Odunlade","email":"asakeodunn4@gmail.com","role":"learner","batch":"2024","sendEmail":false}
+2024-11-04 23:20:49 [info]: PUT /change-password 403 - Request Body: {"currentPassword":"Default@123","newPassword":"titemiloluwa"}
+2024-11-04 23:22:03 [info]: POST /user/login 200 - Request Body: {"email":"asakeodunn4@gmail.com","password":"Default@123"}
+2024-11-04 23:23:54 [info]: PUT /change-password 400 - Request Body: {"currentPassword":"Default@123","newPassword":"titemiloluwa"}
+2024-11-04 23:24:07 [info]: POST /user/login 400 - Request Body: {"email":"asakeodunn4@gmail.com","password":"Default@123"}
+2024-11-05 13:34:17 [info]: POST /api/v1/auth/org/register 500 - Request Body: {"name":"Doer Charity","email":"doercharity@gmail.com","phone":"09066318539","preferredUrl":"https://doer.com","password":"Doer505$$$","confirmPassword":"Doer505$$$","referralSource":"linkedin"}
+2024-11-05 13:36:02 [info]: POST /api/v1/auth/org/register 500 - Request Body: {"name":"Doer Charity","email":"doercharity@gmail.com","phone":"09066318539","preferredUrl":"https://doer.com","password":"Doer505$$$","confirmPassword":"Doer505$$$","referralSource":"linkedin"}
+2024-11-05 13:36:48 [info]: POST /api/v1/auth/org/register 500 - Request Body: {"name":"Doer Charity","email":"doercharity@gmail.com","phone":"09066318539","preferredUrl":"https://doer.com","password":"Doer505$$$","confirmPassword":"Doer505$$$","referralSource":"linkedin"}
+2024-11-05 13:39:14 [info]: POST /org/register 201 - Request Body: {"name":"Doer Charity","email":"doercharity@gmail.com","phone":"09066318539","preferredUrl":"https://doer.com","password":"Doer505$$$","confirmPassword":"Doer505$$$","referralSource":"linkedin"}
+2024-11-05 13:43:06 [info]: POST /api/v1/auth/org/register 500 - Request Body: {"name":"Doer Charity","email":"doercharity@gmail.com","phone":"09066318539","preferredUrl":"https://doer.com","password":"Doer505$$$","confirmPassword":"Doer505$$$","referralSource":"linkedin"}
+2024-11-05 13:45:07 [info]: POST /org/register 201 - Request Body: {"name":"Doer Charity","email":"doercharity@gmail.com","phone":"09066318539","preferredUrl":"https://doer.com","password":"Doer505$$$","confirmPassword":"Doer505$$$","referralSource":"linkedin"}
+2024-11-05 13:53:57 [info]: POST /org/register 400 - Request Body: {"name":"Doer Charity","email":"doercharity@gmail.com","phone":"09066318539","preferredUrl":"https://doer.com","password":"Doer505$$$","confirmPassword":"Doer505$$$","referralSource":"linkedin"}
+2024-11-05 13:54:06 [info]: POST /org/login 200 - Request Body: {"email":"doercharity@gmail.com","password":"Doer505$$$"}
+2024-11-05 13:54:59 [info]: POST /single-create 201 - Request Body: {"firstName":"Asake","lastName":"Odunlade","email":"asakeoooodunn@gmail.com","role":"learner","batch":"2024","password":"Asaks","sendEmail":false}
+2024-11-05 13:55:41 [info]: POST /single-create 400 - Request Body: {"firstName":"Asake","lastName":"Odunlade","email":"asakeoooodunn@gmail.com","role":"learner","batch":"2024","sendEmail":false}
+2024-11-05 13:55:52 [info]: POST /single-create 201 - Request Body: {"firstName":"Asake","lastName":"Odunlade","email":"asakeodunn@gmail.com","role":"learner","batch":"2024","sendEmail":false}
+2024-11-05 13:59:09 [info]: POST /user/login 500 - Request Body: {"email":"seun10050@gmail.com","password":"Omodaratan05$#"}
+2024-11-05 13:59:40 [info]: POST /user/login 400 - Request Body: {"email":"seun10050@gmail.com","password":"Omodaratan05$#"}
+2024-11-05 14:00:23 [info]: POST /user/login 200 - Request Body: {"email":"asakeodunn@gmail.com","password":"Default@123"}
+2024-11-05 14:01:39 [info]: PUT /change-password 400 - Request Body: {"currentPassword":"Default@1234","newPassword":"ThisIsMyNewPassword0k!"}
+2024-11-05 14:02:33 [info]: PUT /change-password 400 - Request Body: {"currentPassword":"Default@1234","newPassword":"ThisIsMyNewPassword0k!"}
+2024-11-05 14:02:44 [info]: PUT /change-password 400 - Request Body: {"currentPassword":"Default@123#","newPassword":"ThisIsMyNewPassword0k!"}
+2024-11-05 14:10:06 [info]: PUT /change-password 422 - Request Body: {"currentPassword":"Default@123","newPassword":"This"}
+2024-11-05 14:11:27 [info]: PUT /change-password 422 - Request Body: {"currentPassword":"Default@123","newPassword":"This"}
+2024-11-05 14:11:42 [info]: PUT /change-password 422 - Request Body: {"currentPassword":"Default@123","newPassword":"ThisIsMyNewPassword0k!"}
+2024-11-05 14:12:44 [info]: PUT /change-password 200 - Request Body: {"currentPassword":"Default@123","newPassword":"ThisIsMyNewPassword0k!"}
+2024-11-05 14:15:19 [info]: PUT /change-password 400 - Request Body: {"currentPassword":"Default@123","newPassword":"ThisIsMyNewPassword0k!"}
+2024-11-05 14:15:32 [info]: PUT /change-password 400 - Request Body: {"currentPassword":"ThisIsMyNewPassword0k","newPassword":"ThisIsMyNewPassword0k!"}
+2024-11-05 14:15:39 [info]: PUT /change-password 400 - Request Body: {"currentPassword":"ThisIsMyNewPassword0k","newPassword":"ThisIsMyNewPassword0k!"}
+2024-11-05 14:15:45 [info]: PUT /change-password 400 - Request Body: {"currentPassword":"Default@123","newPassword":"ThisIsMyNewPassword0k!"}
+2024-11-05 14:16:53 [info]: PUT /change-password 200 - Request Body: {"currentPassword":"ThisIsMyNewPassword0k!","newPassword":"ThisIsMyNewPassword0k!"}
+2024-11-05 14:17:06 [info]: POST /user/login 400 - Request Body: {"email":"asakeodunn@gmail.com","password":"Default@123"}
+2024-11-05 14:17:13 [info]: POST /user/login 400 - Request Body: {"email":"asakeodunn@gmail.com","password":"userResponse"}
+2024-11-05 14:17:27 [info]: POST /user/login 200 - Request Body: {"email":"asakeodunn@gmail.com","password":"ThisIsMyNewPassword0k!"}
