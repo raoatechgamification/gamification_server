@@ -128,10 +128,15 @@ export class AdminAuthController {
 
       const token = await generateToken(payload);
 
+      const response = await Organization.findById(registeredOrganization._id).select(
+        "-password -role"
+      );
+
+
       return ResponseHandler.loginResponse(
         res,
         token,
-        registeredOrganization,
+        response,
         "You have successfully logged in"
       );
     } catch (error) {

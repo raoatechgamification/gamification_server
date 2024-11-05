@@ -461,3 +461,10 @@
 2024-11-05 14:17:06 [info]: POST /user/login 400 - Request Body: {"email":"asakeodunn@gmail.com","password":"Default@123"}
 2024-11-05 14:17:13 [info]: POST /user/login 400 - Request Body: {"email":"asakeodunn@gmail.com","password":"userResponse"}
 2024-11-05 14:17:27 [info]: POST /user/login 200 - Request Body: {"email":"asakeodunn@gmail.com","password":"ThisIsMyNewPassword0k!"}
+2024-11-05 14:55:18 [info]: POST /org/login 200 - Request Body: {"email":"doercharity@gmail.com","password":"Doer505$$$"}
+2024-11-05 16:20:17 [info]: POST /api/v1/auth/org/login 500 - Request Body: {"email":"doercharity@gmail.com","password":"Doer505$$$"}
+2024-11-05 16:20:43 [info]: POST /api/v1/auth/org/login 500 - Request Body: {"email":"doercharity@gmail.com","password":"Doer505$$$"}
+2024-11-05 16:21:43 [info]: POST /user/login 500 - Request Body: {"email":"asakeodunn@gmail.com","password":"ThisIsMyNewPassword0k!"}
+2024-11-05 16:23:28 [info]: POST /api/v1/auth/org/login 500 - Request Body: {"email":"doercharity@gmail.com","password":"Doer505$$$"}
+2024-11-05 16:27:03 [info]: POST /org/login 200 - Request Body: {"email":"doercharity@gmail.com","password":"Doer505$$$"}
+2024-11-05 16:27:16 [info]: POST /user/login 200 - Request Body: {"email":"asakeodunn@gmail.com","password":"ThisIsMyNewPassword0k!"}

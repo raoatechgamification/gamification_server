@@ -1,6 +1,6 @@
 import mongoose, { Schema, Document, Model } from 'mongoose';
 
-interface ISuperAdmin extends Document {
+export interface ISuperAdmin extends Document {
   username?: string; 
   email: string; 
   firstName?: string; 

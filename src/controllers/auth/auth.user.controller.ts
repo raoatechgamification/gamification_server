@@ -1,8 +1,10 @@
 import { Request, Response, NextFunction } from "express";
 import { ResponseHandler } from "../../middlewares/responseHandler.middleware";
-import User from "../../models/user.model";
-import Organization from "../../models/organization.model";
-import SuperAdmin from "../../models/superadmin.model";
+import User, { IUser } from "../../models/user.model";
+import Organization, {
+  OrganizationDocument,
+} from "../../models/organization.model";
+import SuperAdmin, { ISuperAdmin } from "../../models/superadmin.model";
 import UserService from "../../services/user.service";
 import { comparePassword, hashPassword } from "../../utils/hash";
 import { generateToken } from "../../utils/jwt";
@@ -137,6 +139,103 @@ export class UserAuthController {
         error: error.message,
       });
     }
+  }
+
+  static async Login(req: Request, res: Response) {
+    try {
+      // 1. Get email and password from request body
+      const { email, password } = req.body;
+
+      // 2. Find account in User, Organization, or SuperAdmin collection
+      const account =
+        (await User.findOne({ email }).select("-password")) ||
+        (await Organization.findOne({ email }).select("-password")) ||
+        (await SuperAdmin.findOne({ email }).select("-password"));
+
+      // 3. If account does not exist, return error
+      if (!account) {
+        return ResponseHandler.failure(res, "Account does not exist", 400);
+      }
+
+      // 4. Compare password
+      const isCorrectPassword = await comparePassword(
+        password,
+        account.password
+      );
+      if (!isCorrectPassword) {
+        return ResponseHandler.failure(
+          res,
+          "You have entered an incorrect password",
+          400
+        );
+      }
+
+      // 4. Compile token payload
+      let tokenPayload;
+      switch (account.role) {
+        case "user":
+          tokenPayload = UserAuthController.getUserTokenPayload(account);
+          break;
+        case "admin":
+          tokenPayload = UserAuthController.getOrganizationTokenPayload(account);
+          break;
+        case "superAdmin":
+          tokenPayload = UserAuthController.getSuperAdminTokenPayload(account);
+          break;
+        default:
+          return ResponseHandler.failure(res, "Unknown role", 400);
+      }
+
+      // 5. Generate payload
+      const token = await generateToken(tokenPayload);
+
+      // 7. Return data to the client excluding the password
+      return ResponseHandler.loginResponse(
+        res,
+        token,
+        account,
+        "Login Successful"
+      );
+    } catch (error: any) {
+      res.status(500).json({
+        message: "Server error",
+        error: error.message,
+      });
+    }
+  }
+
+  private static getUserTokenPayload(account: IUser) {
+    return {
+      id: account._id,
+      email: account.email,
+      username: account.username,
+      phone: account.phone,
+      organization: account.organization,
+      firstName: account.firstName,
+      lastName: account.lastName,
+      role: account.role,
+    };
+  }
+
+  private static getOrganizationTokenPayload(account: OrganizationDocument) {
+    return {
+      id: account._id,
+      role: account.role,
+      name: account.name,
+      email: account.email,
+      preferredUrl: account.preferredUrl,
+    };
+  }
+
+  private static getSuperAdminTokenPayload(account: ISuperAdmin) {
+    return {
+      id: account._id,
+      email: account.email,
+      username: account.username,
+      firstName: account.firstName,
+      lastName: account.lastName,
+      role: account.role,
+    };
   }
 
   static async loginUser(req: Request, res: Response) {

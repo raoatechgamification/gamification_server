@@ -49,7 +49,7 @@ export class SuperAdminAuthController {
       if (!superAdmin) {
         return ResponseHandler.failure(
           res,
-          "Super Admin does not exist with this email",
+          "Super Admin does not exist",
           400
         );
       }
