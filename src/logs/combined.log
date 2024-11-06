@@ -468,3 +468,20 @@
 2024-11-05 16:23:28 [info]: POST /api/v1/auth/org/login 500 - Request Body: {"email":"doercharity@gmail.com","password":"Doer505$$$"}
 2024-11-05 16:27:03 [info]: POST /org/login 200 - Request Body: {"email":"doercharity@gmail.com","password":"Doer505$$$"}
 2024-11-05 16:27:16 [info]: POST /user/login 200 - Request Body: {"email":"asakeodunn@gmail.com","password":"ThisIsMyNewPassword0k!"}
+2024-11-06 12:03:28 [info]: POST /login 422
+2024-11-06 12:03:49 [info]: POST /login 200 - Request Body: {"email":"asakeodunn@gmail.com","password":"ThisIsMyNewPassword0k!"}
+2024-11-06 12:04:27 [info]: POST /login 200 - Request Body: {"email":"doercharity@gmail.com","password":"Doer505$$$"}
+2024-11-06 12:05:10 [info]: POST /login 400 - Request Body: {"email":"seun@gmail.com","password":"Omodaratan05$#"}
+2024-11-06 12:05:33 [info]: POST /login 400 - Request Body: {"email":"asakeodunn@gmail.com","password":"ThisIsMyNewwPassword0k!"}
+2024-11-06 12:05:53 [info]: POST /login 200 - Request Body: {"email":"asakeodunn@gmail.com","password":"ThisIsMyNewPassword0k!"}
+2024-11-06 12:06:30 [info]: POST /super-admin/signup 201 - Request Body: {"email":"seun@gmail.com","password":"Omodaratan05$#"}
+2024-11-06 12:06:48 [info]: POST /super-admin/login 200 - Request Body: {"email":"seun@gmail.com","password":"Omodaratan05$#"}
+2024-11-06 12:07:08 [info]: POST /login 400 - Request Body: {"email":"seun@gmail.com","password":"Omodaratan05$$#"}
+2024-11-06 12:07:21 [info]: POST /login 400 - Request Body: {"email":"seun@gmaill.com","password":"Omodaratan05$#"}
+2024-11-06 12:07:29 [info]: POST /login 400 - Request Body: {"email":"seunn@gmail.com","password":"Omodaratan05$#"}
+2024-11-06 12:07:39 [info]: POST /login 400 - Request Body: {"email":"seun@gmail.com","password":"Omoodaratan05$#"}
+2024-11-06 12:07:44 [info]: POST /login 200 - Request Body: {"email":"seun@gmail.com","password":"Omodaratan05$#"}
+2024-11-06 12:07:52 [info]: POST /super-admin/login 200 - Request Body: {"email":"seun@gmail.com","password":"Omodaratan05$#"}
+2024-11-06 12:07:56 [info]: POST /super-admin/login 200 - Request Body: {"email":"seun@gmail.com","password":"Omodaratan05$#"}
+2024-11-06 12:07:59 [info]: POST /super-admin/login 200 - Request Body: {"email":"seun@gmail.com","password":"Omodaratan05$#"}
+2024-11-06 12:08:06 [info]: POST /login 200 - Request Body: {"email":"seun@gmail.com","password":"Omodaratan05$#"}

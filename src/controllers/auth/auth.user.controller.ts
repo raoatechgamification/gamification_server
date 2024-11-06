@@ -1,9 +1,7 @@
 import { Request, Response } from "express";
 import { ResponseHandler } from "../../middlewares/responseHandler.middleware";
 import User, { IUser } from "../../models/user.model";
-import Organization, {
-  IOrganization,
-} from "../../models/organization.model";
+import Organization, { IOrganization } from "../../models/organization.model";
 import SuperAdmin, { ISuperAdmin } from "../../models/superadmin.model";
 import UserService from "../../services/user.service";
 import { comparePassword, hashPassword } from "../../utils/hash";
@@ -19,11 +17,7 @@ export class UserAuthController {
       const organizationId = req.admin._id;
       const organization = await Organization.findById(organizationId);
       if (!organization) {
-        return ResponseHandler.failure(
-          res,
-          "Organization not found",
-          400
-        )
+        return ResponseHandler.failure(res, "Organization not found", 400);
       }
 
       const existingUser = await User.findOne({ email });
@@ -77,7 +71,7 @@ export class UserAuthController {
         res,
         `Server error: ${error.message}`,
         500
-      )
+      );
     }
   }
 
@@ -140,18 +134,18 @@ export class UserAuthController {
         res,
         `Server error: ${error.message}`,
         500
-      )
+      );
     }
   }
 
-  static async Login(req: Request, res: Response) {
+  static async login(req: Request, res: Response) {
     try {
       const { email, password } = req.body;
 
       const account =
-        await User.findOne({ email }) ||
-        await Organization.findOne({ email }) ||
-        await SuperAdmin.findOne({ email });
+        (await Organization.findOne({ email })) ||
+        (await User.findOne({ email })) ||
+        (await SuperAdmin.findOne({ email }));
 
       if (!account) {
         return ResponseHandler.failure(res, "Account does not exist", 400);
@@ -175,7 +169,8 @@ export class UserAuthController {
           tokenPayload = UserAuthController.getUserTokenPayload(account);
           break;
         case "admin":
-          tokenPayload = UserAuthController.getOrganizationTokenPayload(account);
+          tokenPayload =
+            UserAuthController.getOrganizationTokenPayload(account);
           break;
         case "superAdmin":
           tokenPayload = UserAuthController.getSuperAdminTokenPayload(account);
@@ -199,21 +194,21 @@ export class UserAuthController {
         res,
         `Server error: ${error.message}`,
         500
-      )
+      );
     }
   }
 
   private static isUser(account: any): account is IUser {
-    return (account as IUser).role === 'user';
+    return (account as IUser).role === "user";
   }
-  
+
   private static isOrganization(account: any): account is IOrganization {
-    return (account as IOrganization).role === 'admin';
+    return (account as IOrganization).role === "admin";
   }
-  
+
   private static isSuperAdmin(account: any): account is ISuperAdmin {
-    return (account as ISuperAdmin).role === 'superadmin';
-  }  
+    return (account as ISuperAdmin).role === "superadmin";
+  }
 
   private static getUserTokenPayload(account: IUser) {
     return {

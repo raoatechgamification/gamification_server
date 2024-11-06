@@ -11,9 +11,11 @@ import notificationRoutes from "./notification.routes";
 import paymentRoutes from "./payment.routes";
 import billRoutes from "./bill.routes";
 import sessionRoutes from "./session.routes";
+import adminRoutes from "./admin.routes";
 
 router.use("/auth", authRoutes);
 router.use("/super-admin", superAdminRoutes);
+router.use("/admin", adminRoutes);
 router.use("/assessment", assessmentRoutes);
 router.use("/course", courseRoutes);
 router.use("/group", groupRoutes);

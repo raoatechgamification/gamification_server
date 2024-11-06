@@ -60,7 +60,7 @@ export const createOrganizationValidator = [
   errorResponse,
 ];
 
-export const loginOrganizationValidator = [
+export const loginValidator = [
   body("email")
     .notEmpty()
     .isEmail()

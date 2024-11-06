@@ -6,7 +6,7 @@ import { bulkUpload } from "../utils/upload.utils"
 
 import {
   createOrganizationValidator,
-  loginOrganizationValidator,
+  loginValidator,
 } from "../validators/organization.auth.validator";
 import {
   registerUserValidator,
@@ -19,10 +19,16 @@ import { UserAuthController } from "../controllers/auth/auth.user.controller";
 import { SuperAdminAuthController } from "../controllers/auth/auth.superadmin.controller";
 
 const { registerOrganization, loginOrganization } = AdminAuthController;
-const { registerUser, bulkCreateUsers, createSingleUser, loginUser } = UserAuthController;
+const { registerUser, bulkCreateUsers, createSingleUser, loginUser, login } = UserAuthController;
 const { registerSuperAdmin, loginSuperAdmin } = SuperAdminAuthController;
 
 const router = Router();
+
+router.post(
+  "/login",
+  ...loginValidator,
+  login
+)
 
 // Organization Auth
 router.post(
@@ -30,15 +36,8 @@ router.post(
   ...createOrganizationValidator,
   registerOrganization
 );
-router.post("/org/login", ...loginOrganizationValidator, loginOrganization);
 
 // User Auth
-router.post(
-  "/user/register", 
-  ...registerUserValidator, 
-  registerUser
-);
-
 router.post(
   "/bulk-create", 
   authenticate,
@@ -54,10 +53,7 @@ router.post(
   createSingleUser
 )
 
-router.post("/user/login", ...loginUserValidator, loginUser);
-
 // Super Admin Auth
 router.post("/super-admin/signup", ...superAdminValidator, registerSuperAdmin);
-router.post("/super-admin/login", ...superAdminValidator, loginSuperAdmin);
 
 export default router;

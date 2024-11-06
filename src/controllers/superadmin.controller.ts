@@ -84,17 +84,5 @@ export class SuperAdminController {
       )
     }
   }
-
-  static async customCreate (req: Request, res: Response, next: NextFunction) {
-    try {
-      
-    } catch (error: any) {
-      return ResponseHandler.failure(
-        res,
-        `Server error: ${error.message}`,
-        500
-      )
-    }
-  }
 }
 
