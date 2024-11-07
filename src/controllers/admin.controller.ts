@@ -66,6 +66,24 @@ class AdminController {
       )
     }
   }
+
+  async viewAUserProfile (req: Request, res: Response ) {
+    try {
+      const organizationId = req.admin._id
+
+      const userId = req.params.userId;
+
+      // Assigned Bills History
+
+      // Payment History
+    } catch (error: any) {
+      return ResponseHandler.failure(
+        res,
+        `Server error: ${error.message}`,
+        500
+      )
+    }
+  }
 }
 
 export default new AdminController();

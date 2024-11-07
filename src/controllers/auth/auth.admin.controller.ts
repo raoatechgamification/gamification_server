@@ -89,7 +89,6 @@ export class AdminAuthController {
     try {
       const { email, password } = req.body;
 
-      // Find the registered organization by email
       const registeredOrganization: IOrganization | null =
         await Organization.findOne({
           email,
@@ -103,7 +102,6 @@ export class AdminAuthController {
         );
       }
 
-      // Compare the password
       const isPasswordValid = await comparePassword(
         password,
         registeredOrganization.password
@@ -117,7 +115,6 @@ export class AdminAuthController {
         );
       }
 
-      // Prepare the JWT payload
       const payload = {
         id: registeredOrganization._id,
         role: registeredOrganization.role,
@@ -130,8 +127,7 @@ export class AdminAuthController {
 
       const response = await Organization.findById(registeredOrganization._id).select(
         "-password -role"
-      );
-
+      )
 
       return ResponseHandler.loginResponse(
         res,

@@ -6,9 +6,9 @@ export interface IOrganization extends Document {
   lastName?: string;
   email: string;
   phone: string;
-  preferredUrl: string;
-  referral: string;
-  referralSource: string;
+  preferredUrl?: string;
+  referral?: string;
+  referralSource?: string;
   industry?: string;
   password: string; 
   role: string; 

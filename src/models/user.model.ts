@@ -28,7 +28,7 @@ const UserSchema: Schema<IUser> = new Schema(
     role: { type: String, default: "user", required: true, },
     password: { type: String, required: true, },
     batch: { type: String },
-    userType: { type: String },
+    userType: { type: String, default: "learner" },
     yearOfExperience: { type: Number, default: null, },
     highestEducationLevel: { type: String, default: null, },
     gender: { type: String, default: null, },

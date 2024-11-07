@@ -13,7 +13,7 @@ export class UserAuthController {
     try {
       const { firstName, lastName, email, role, batch, password, sendEmail } =
         req.body;
-
+3
       const organizationId = req.admin._id;
       const organization = await Organization.findById(organizationId);
       if (!organization) {

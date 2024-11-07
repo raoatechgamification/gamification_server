@@ -32,7 +32,7 @@ export const createOrganizationValidator = [
     .withMessage("Please provide a phone number"),
 
   body("preferredUrl")
-    .notEmpty()
+    .optional()
     .isString()
     .isURL()
     .withMessage("Please provide a valid url"),

@@ -1,12 +1,8 @@
-import { body, param } from 'express-validator';
-import { Request, Response, NextFunction } from 'express';
-import { validationResult } from 'express-validator';
+import { body, param } from "express-validator";
+import { Request, Response, NextFunction } from "express";
+import { validationResult } from "express-validator";
 
-const errorResponse = (
-  req: Request,
-  res: Response,
-  next: NextFunction
-) => {
+const errorResponse = (req: Request, res: Response, next: NextFunction) => {
   const errors = validationResult(req);
   if (!errors.isEmpty()) {
     return res.status(422).json({
@@ -16,148 +12,167 @@ const errorResponse = (
         message: error.msg,
       })),
     });
-    // return res.status(400).json({ errors: errors.array() });
   }
   next();
 };
 
-
 export const validateCreateGroup = [
-  body('name')
+  body("name")
     .notEmpty()
-    .withMessage('Group name is required')
+    .withMessage("Group name is required")
     .isString()
-    .withMessage('Group name must be a string'),
+    .withMessage("Group name must be a string"),
 
-  body('learnerTerm')
+  body("learnerTerm")
     .notEmpty()
-    .withMessage('Learner term is required')
-    .isIn(['learner', 'staff', 'student', 'trainee', 'user'])
-    .withMessage('Learner term must be one of: learner, staff, student, trainee, or user'),
+    .withMessage("Learner term is required")
+    .isIn(["learner", "staff", "student", "trainee", "user"])
+    .withMessage(
+      "Learner term must be one of: learner, staff, student, trainee, or user"
+    ),
 
-  body('generalLearnerGroupTerm')
+  body("generalLearnerGroupTerm")
     .notEmpty()
-    .withMessage('General learner group term is required')
-    .isIn(['class', 'group', 'batch'])
-    .withMessage('General learner group term must be one of: class, group, or batch'),
+    .withMessage("General learner group term is required")
+    .isIn(["class", "group", "batch"])
+    .withMessage(
+      "General learner group term must be one of: class, group, or batch"
+    ),
 
-  body('groups')
+  body("groups")
     .isArray({ min: 1 })
-    .withMessage('Groups must be a non-empty array')
-    .custom((groups) => groups.every((group: any) => typeof group === 'string'))
-    .withMessage('Each group must be a string'),
+    .withMessage("Groups must be a non-empty array")
+    .custom((groups) => groups.every((group: any) => typeof group === "string"))
+    .withMessage("Each group must be a string"),
 
-  body('generalSubLearnerGroupTerm')
+  body("generalSubLearnerGroupTerm")
     .notEmpty()
-    .withMessage('General sub-learner group term is required')
-    .isIn(['facilitator', 'arm', 'cohort'])
-    .withMessage('General sub-learner group term must be one of: facilitator, arm, or cohort'),
+    .withMessage("General sub-learner group term is required")
+    .isIn(["facilitator", "arm", "cohort"])
+    .withMessage(
+      "General sub-learner group term must be one of: facilitator, arm, or cohort"
+    ),
 
-  body('subGroups')
+  body("subGroups")
     .isArray({ min: 1 })
-    .withMessage('Sub-groups must be a non-empty array')
-    .custom((subGroups) => subGroups.every((subGroup: any) => typeof subGroup === 'string'))
-    .withMessage('Each sub-group must be a string'),
+    .withMessage("Sub-groups must be a non-empty array")
+    .custom((subGroups) =>
+      subGroups.every((subGroup: any) => typeof subGroup === "string")
+    )
+    .withMessage("Each sub-group must be a string"),
 
-  body('generalInstructorTerm')
+  body("generalInstructorTerm")
     .notEmpty()
-    .withMessage('General instructor term is required')
-    .isIn(['instructor', 'teacher', 'facilitator', 'trainer', 'lecturer'])
-    .withMessage('General instructor term must be one of: instructor, teacher, facilitator, trainer, or lecturer'),
+    .withMessage("General instructor term is required")
+    .isIn(["instructor", "teacher", "facilitator", "trainer", "lecturer"])
+    .withMessage(
+      "General instructor term must be one of: instructor, teacher, facilitator, trainer, or lecturer"
+    ),
 
-  body('instructorNames')
+  body("instructorNames")
     .isArray({ min: 1 })
-    .withMessage('Instructor names must be a non-empty array')
-    .custom((names) => names.every((name: any) => typeof name === 'string'))
-    .withMessage('Each instructor name must be a string'),
+    .withMessage("Instructor names must be a non-empty array")
+    .custom((names) => names.every((name: any) => typeof name === "string"))
+    .withMessage("Each instructor name must be a string"),
 
-  body('maxMembersPerProgram')
+  body("maxMembersPerProgram")
     .notEmpty()
-    .withMessage('Max members per program is required')
+    .withMessage("Max members per program is required")
     .isInt({ min: 1 })
-    .withMessage('Max members per program must be a positive integer'),
+    .withMessage("Max members per program must be a positive integer"),
 
-  body('idFormat')
+  body("idFormat")
     .notEmpty()
-    .withMessage('ID format is required')
-    .isIn(['learner', 'staff', 'student', 'trainee', 'user'])
-    .withMessage('ID format must be one of: learner, staff, student, trainee, or user'),
+    .withMessage("ID format is required")
+    .isIn(["learner", "staff", "student", "trainee", "user"])
+    .withMessage(
+      "ID format must be one of: learner, staff, student, trainee, or user"
+    ),
 
-  body('personalization')
+  body("personalization")
     .optional()
     .isString()
-    .withMessage('Personalization must be a string'),
+    .withMessage("Personalization must be a string"),
 
-  errorResponse
+  errorResponse,
 ];
 
 export const validateEditGroup = [
-  param('groupId')
+  param("groupId")
     .notEmpty()
-    .withMessage('Group ID is required')
+    .withMessage("Group ID is required")
     .isMongoId()
-    .withMessage('Group ID must be a valid MongoDB ObjectId'),
+    .withMessage("Group ID must be a valid MongoDB ObjectId"),
 
-  body('name')
+  body("name").optional().isString().withMessage("Group name must be a string"),
+
+  body("learnerTerm")
     .optional()
-    .isString()
-    .withMessage('Group name must be a string'),
+    .isIn(["learner", "staff", "student", "trainee", "user"])
+    .withMessage(
+      "Learner term must be one of: learner, staff, student, trainee, or user"
+    ),
 
-  body('learnerTerm')
+  body("generalLearnerGroupTerm")
     .optional()
-    .isIn(['learner', 'staff', 'student', 'trainee', 'user'])
-    .withMessage('Learner term must be one of: learner, staff, student, trainee, or user'),
+    .isIn(["class", "group", "batch"])
+    .withMessage(
+      "General learner group term must be one of: class, group, or batch"
+    ),
 
-  body('generalLearnerGroupTerm')
-    .optional()
-    .isIn(['class', 'group', 'batch'])
-    .withMessage('General learner group term must be one of: class, group, or batch'),
-
-  body('groups')
-    .optional()
-    .isArray()
-    .withMessage('Groups must be an array')
-    .custom((groups) => groups.every((group: any) => typeof group === 'string'))
-    .withMessage('Each group must be a string'),
-
-  body('generalSubLearnerGroupTerm')
-    .optional()
-    .isIn(['facilitator', 'arm', 'cohort'])
-    .withMessage('General sub-learner group term must be one of: facilitator, arm, or cohort'),
-
-  body('subGroups')
+  body("groups")
     .optional()
     .isArray()
-    .withMessage('Sub-groups must be an array')
-    .custom((subGroups) => subGroups.every((subGroup: any) => typeof subGroup === 'string'))
-    .withMessage('Each sub-group must be a string'),
+    .withMessage("Groups must be an array")
+    .custom((groups) => groups.every((group: any) => typeof group === "string"))
+    .withMessage("Each group must be a string"),
 
-  body('generalInstructorTerm')
+  body("generalSubLearnerGroupTerm")
     .optional()
-    .isIn(['instructor', 'teacher', 'facilitator', 'trainer', 'lecturer'])
-    .withMessage('General instructor term must be one of: instructor, teacher, facilitator, trainer, or lecturer'),
+    .isIn(["facilitator", "arm", "cohort"])
+    .withMessage(
+      "General sub-learner group term must be one of: facilitator, arm, or cohort"
+    ),
 
-  body('instructorNames')
+  body("subGroups")
     .optional()
     .isArray()
-    .withMessage('Instructor names must be an array')
-    .custom((names) => names.every((name: any) => typeof name === 'string'))
-    .withMessage('Each instructor name must be a string'),
+    .withMessage("Sub-groups must be an array")
+    .custom((subGroups) =>
+      subGroups.every((subGroup: any) => typeof subGroup === "string")
+    )
+    .withMessage("Each sub-group must be a string"),
 
-  body('maxMembersPerProgram')
+  body("generalInstructorTerm")
+    .optional()
+    .isIn(["instructor", "teacher", "facilitator", "trainer", "lecturer"])
+    .withMessage(
+      "General instructor term must be one of: instructor, teacher, facilitator, trainer, or lecturer"
+    ),
+
+  body("instructorNames")
+    .optional()
+    .isArray()
+    .withMessage("Instructor names must be an array")
+    .custom((names) => names.every((name: any) => typeof name === "string"))
+    .withMessage("Each instructor name must be a string"),
+
+  body("maxMembersPerProgram")
     .optional()
     .isInt({ min: 1 })
-    .withMessage('Max members per program must be a positive integer'),
+    .withMessage("Max members per program must be a positive integer"),
 
-  body('idFormat')
+  body("idFormat")
     .optional()
-    .isIn(['learner', 'staff', 'student', 'trainee', 'user'])
-    .withMessage('ID format must be one of: learner, staff, student, trainee, or user'),
+    .isIn(["learner", "staff", "student", "trainee", "user"])
+    .withMessage(
+      "ID format must be one of: learner, staff, student, trainee, or user"
+    ),
 
-  body('personalization')
+  body("personalization")
     .optional()
     .isString()
-    .withMessage('Personalization must be a string'),
+    .withMessage("Personalization must be a string"),
 
-  errorResponse
+  errorResponse,
 ];
