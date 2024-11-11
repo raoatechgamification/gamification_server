@@ -12,16 +12,93 @@ const { createNotification } = new NotificationController();
 export class CourseController {
   async createCourse(req: Request, res: Response, next: NextFunction) {
     try {
-      const instructorId = req.admin._id;
-      const { title, objective, price, duration, lessonFormat } = req.body;
+      const organisationId = req.admin._id;
+
+   
+      const files = req.files as Express.Multer.File[];
+
+
+
+      
+      const { 
+        
+        duration, 
+   
+        landingPageTitle,
+        serviceTitleDescription,
+        servicePicture,
+        serviceType,
+        serviceItem,
+        serviceItemDescription,
+        courseCode,
+        courseLevel,
+        startDate,
+        endDate,
+        numberOfHoursPerDay,
+        numberOfDaysPerWeek,
+        cost,
+        promo,
+        promoCode,
+        promoValue,
+        platformCharge,
+        actualCost,
+        sharing,
+        sharingValue,
+        paymentStartDate,
+        paymentEndDate,
+        paymentStartTime,
+        paymentEndTime,
+        curriculum,
+        teachingMethod 
+      } = req.body;
+
+      let Urls: string[] = [];
+
+      if (files && files.length > 0) {
+        for (let i = 0; i < files.length; i++) {
+          const file = files[i];
+          const uploadResult = await uploadToCloudinary(
+            file.buffer,
+            file.mimetype,
+            "course-content"
+          );
+          if (uploadResult && uploadResult.secure_url) {
+            Urls.push(uploadResult.secure_url);
+          }
+        }
+      }
+      
 
       const course = await Course.create({
-        title,
-        objective,
-        price,
-        instructorId,
-        duration,
-        lessonFormat,
+        duration, 
+        organisationId,
+   
+        landingPageTitle,
+        serviceTitleDescription,
+        servicePicture: Urls[0],
+        serviceType,
+        serviceItem,
+        serviceItemDescription,
+        courseCode,
+        courseLevel,
+        startDate,
+        endDate,
+        numberOfHoursPerDay,
+        numberOfDaysPerWeek,
+        cost,
+        promo,
+        promoCode,
+        promoValue,
+        platformCharge,
+        actualCost,
+        sharing,
+        sharingValue,
+        paymentStartDate,
+        paymentEndDate,
+        paymentStartTime,
+        paymentEndTime,
+        curriculum: Urls[1],
+        teachingMethod 
       });
 
       return ResponseHandler.success(
@@ -34,6 +111,28 @@ export class CourseController {
       next(error);
     }
   }
+
+
+    async getAllCourses(req: Request, res: Response, next: NextFunction) {
+      try {
+        const instructorId = req.admin._id; // Assuming `req.admin._id` contains the instructor's ID
+  
+        // Find all courses where the instructorId matches
+        const courses = await Course.find({ instructorId });
+        console.log(courses)
+        // Return the courses using a response handler
+        return ResponseHandler.success(
+          res,
+          courses,
+          "Courses retrieved successfully",
+          200
+        );
+      } catch (error) {
+        next(error);
+      }
+    }
+  
+  
 
   async createCourseContent(req: Request, res: Response, next: NextFunction) {
     try {

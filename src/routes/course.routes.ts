@@ -14,6 +14,7 @@ const {
   createCourse,
   createCourseContent,
   createAnnouncement,
+  getAllCourses,
   getCourseCurriculum,
   getAllAnnouncementsByCourse,
 } = new CourseController();
@@ -24,8 +25,17 @@ router.post(
   "/create",
   authenticate,
   authorize("admin"),
-  ...createCourseValidator,
+  upload.array("file", 10),
+  // ...createCourseValidator,
   createCourse
+);
+
+router.get(
+  "/get-all-courses",
+  authenticate,
+  authorize("admin"),
+  
+  getAllCourses
 );
 
 router.post(
