@@ -80,6 +80,7 @@ export const createCourseValidator = [
   errorResponse,
 ];
 
+
 export const courseContentValidator = [
   param("courseId")
     .isMongoId()
