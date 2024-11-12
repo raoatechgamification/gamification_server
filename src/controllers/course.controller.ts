@@ -115,11 +115,11 @@ export class CourseController {
 
     async getAllCourses(req: Request, res: Response, next: NextFunction) {
       try {
-        const instructorId = req.admin._id; // Assuming `req.admin._id` contains the instructor's ID
+        const organisationId = req.admin._id; // Assuming `req.admin._id` contains the instructor's ID
   
-        // Find all courses where the instructorId matches
-        const courses = await Course.find({ instructorId });
-        console.log(courses)
+        // Find all courses where the organisationId matches
+        const courses = await Course.find({ organisationId });
+
         // Return the courses using a response handler
         return ResponseHandler.success(
           res,
