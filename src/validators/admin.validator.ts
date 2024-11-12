@@ -35,17 +35,27 @@ export const adminEditUserProfileValidator = [
     .isString()
     .withMessage("Last name must be a string"),
 
-  body('batch')
+  body("batch")
     .notEmpty()
     .withMessage("Batch is required")
     .isString()
     .withMessage("Batch must be a string"),
 
-  body('role')
+  body("role")
     .notEmpty()
     .withMessage("User role is required")
     .isString()
     .withMessage("User role must be a string"),
 
-  errorResponse
-]
+  errorResponse,
+];
+
+export const userIdValidator = [
+  param("userId")
+    .notEmpty()
+    .withMessage("User ID is required")
+    .isMongoId()
+    .withMessage("User ID must be a valid MongoDB ObjectId"),
+
+  errorResponse,
+];

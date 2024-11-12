@@ -1,7 +1,7 @@
 import { Request, Response } from "express";
 import { ResponseHandler } from "../middlewares/responseHandler.middleware";
 import Payment from "../models/payment.model";
-import AssignedBill from "../models/bill.model";
+import AssignedBill from "../models/assignedBill.model";
 import User, { UserDocument } from "../models/user.model";
 
 class AdminController {
@@ -23,8 +23,7 @@ class AdminController {
         users.map(async (user) => {
           const paymentHistory = await Payment.find({ userId: user._id });
           const assignedBills = await AssignedBill.find({
-            organizationId,
-            "assignee.individuals": user._id,
+            assigneeId: user._id,
           });
           return { ...user.toObject(), paymentHistory, assignedBills };
         })
@@ -48,7 +47,7 @@ class AdminController {
     try {
       const organizationId = req.admin._id;
       const userId = req.params.userId;
-      const { firstName, lastName, batch, role } = req.body;
+      const { username, firstName, lastName, batch, role, yearOfExperience, highestEducationLevel, gender, dateOfBirth } = req.body;
 
       const user = await User.findOne({ _id: userId, organizationId });
 
@@ -62,7 +61,7 @@ class AdminController {
 
       const updatedUser = await User.findByIdAndUpdate(
         userId,
-        { $set: { firstName, lastName, batch, role } },
+        { $set: { username, firstName, lastName, batch, userType: role, yearOfExperience, highestEducationLevel, gender, dateOfBirth} },
         { new: true, runValidators: true }
       );
 

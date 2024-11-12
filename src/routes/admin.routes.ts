@@ -1,20 +1,31 @@
 import { Router } from "express";
 import { authenticate, authorize } from "../middlewares/auth.middleware";
 import AdminController from "../controllers/admin.controller";
-import { adminEditUserProfileValidator } from "../validators/admin.validator";
+import {
+  adminEditUserProfileValidator,
+  userIdValidator,
+} from "../validators/admin.validator";
 
-const { viewAllUsers, editUserProfile } = AdminController;
+const { viewAllUsers, editUserProfile, viewAUserProfile } = AdminController;
 
 const router = Router();
 
-router.get("/view-all-users", authenticate, authorize("admin"), viewAllUsers);
+router.get("/users", authenticate, authorize("admin"), viewAllUsers);
 
 router.put(
-  "/user-details",
+  "/user-details/:userId",
   authenticate,
   authorize("admin"),
   ...adminEditUserProfileValidator,
   editUserProfile
+);
+
+router.get(
+  "/user-profile/:userId",
+  authenticate,
+  authorize,
+  ...userIdValidator,
+  viewAUserProfile
 );
 
 export default router;

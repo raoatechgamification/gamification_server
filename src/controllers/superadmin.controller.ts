@@ -1,11 +1,15 @@
 import { Request, Response, NextFunction } from "express";
 import { ResponseHandler } from "../middlewares/responseHandler.middleware";
-import Organization, { OrganizationDocument } from "../models/organization.model";
-import User, { IUser, UserDocument } from "../models/user.model"; 
+import Payment from "../models/payment.model";
+import AssignedBill from "../models/assignedBill.model";
+import Organization, {
+  OrganizationDocument,
+} from "../models/organization.model";
+import User, { UserDocument } from "../models/user.model";
 
 export class SuperAdminController {
   static async viewOrganizations(
-    req: Request,
+    _req: Request,
     res: Response,
     next: NextFunction
   ) {
@@ -15,7 +19,7 @@ export class SuperAdminController {
       const organizationData = await Promise.all(
         organizations.map(async (org: OrganizationDocument) => {
           const totalCustomers = await User.countDocuments({
-            organization: org._id,
+            organizationId: org._id,
           });
 
           const formattedDate = new Date(org.createdAt).toLocaleDateString();
@@ -43,25 +47,29 @@ export class SuperAdminController {
     }
   }
 
-  static async viewUsers(req: Request, res: Response, next: NextFunction) {
+  static async viewUsers(_req: Request, res: Response, next: NextFunction) { 
     try {
       const users: UserDocument[] = await User.find();
-
-      const userData = await Promise.all(
+  
+      const usersWithDetails = await Promise.all(
         users.map(async (user: UserDocument) => {
           let organizationInfo = null;
-
           if (user.organizationId) {
-            const organization = await Organization.findById(user.organizationId);
-
+            const organization = await Organization.findById(user.organizationId).select("-password");
             if (organization) {
-              organizationInfo = {
-                organizationId: organization._id,
-                organizationName: organization.name,
-              };
+              organizationInfo = organization
             }
+            // if (organization) {
+            //   organizationInfo = {
+            //     organizationId: organization._id,
+            //     organizationName: organization.name,
+            //   };
+            // }
           }
-
+  
+          const paymentHistory = await Payment.find({ userId: user._id });
+          const assignedBills = await AssignedBill.find({ assigneeId: user._id });
+  
           return {
             id: user._id,
             username: user.username,
@@ -71,18 +79,210 @@ export class SuperAdminController {
             phone: user.phone,
             role: user.role,
             organization: organizationInfo,
+            paymentHistory,
+            assignedBills,
           };
         })
       );
-
-      return ResponseHandler.success(res, userData, "Users fetched successfully");
+  
+      return ResponseHandler.success(
+        res,
+        usersWithDetails,
+        "Users fetched successfully"
+      );
     } catch (error: any) {
       return ResponseHandler.failure(
         res,
         `Server error: ${error.message}`,
         500
-      )
+      );
+    }
+  }  
+
+  static async viewAnOrganization(req: Request, res: Response) {
+    try {
+      const { organizationId } = req.params;
+
+      const organization = await Organization.findOne({ _id: organizationId }).select(
+        "-password"
+      );
+
+      if (!organization) {
+        return ResponseHandler.failure(res, "Organization does not exist", 404);
+      }
+
+      return ResponseHandler.success(
+        res,
+        organization,
+        "Organization fetched successfully"
+      );
+    } catch (error: any) {
+      return ResponseHandler.failure(
+        res,
+        `Server error: ${error.message}`,
+        500
+      );
+    }
+  }
+
+  static async viewAUser(req: Request, res: Response) {
+    try {
+      const { userId } = req.params;
+
+      const user = await User.findOne({ _id: userId }).select(
+        "-password"
+      );
+
+      if (!user) {
+        return ResponseHandler.failure(res, "User does not exist", 404);
+      }
+
+      return ResponseHandler.success(res, user, "User fetched successfully");
+    } catch (error: any) {
+      return ResponseHandler.failure(
+        res,
+        `Server error: ${error.message}`,
+        500
+      );
+    }
+  }
+
+  static async updateAUser(req: Request, res: Response) {
+    try {
+      const { userId } = req.params;
+      const {
+        username,
+        firstName,
+        lastName,
+        batch,
+        role,
+        yearOfExperience,
+        highestEducationLevel,
+        gender,
+        dateOfBirth,
+      } = req.body;
+
+      const user = await User.findOne({ _id: userId })
+
+      if (!user) {
+        return ResponseHandler.failure(res, "User does not exist", 404);
+      }
+
+      const updatedUser = await User.findByIdAndUpdate(
+        userId,
+        {
+          $set: {
+            username,
+            firstName,
+            lastName,
+            batch,
+            userType: role,
+            yearOfExperience,
+            highestEducationLevel,
+            gender,
+            dateOfBirth,
+          },
+        },
+        { new: true, runValidators: true }
+      ).select(
+        "-password"
+      );
+
+      return ResponseHandler.success(
+        res,
+        updatedUser,
+        "User details updated successfully"
+      );
+    } catch (error: any) {
+      return ResponseHandler.failure(
+        res,
+        `Server error: ${error.message}`,
+        500
+      );
+    }
+  }
+
+  static async updateAnOrganization(req: Request, res: Response) {
+    try {
+      const { organizationId } = req.params;
+      const { name, firstName, lastName, preferredUrl, industry } =
+        req.body;
+
+      const organization = await Organization.findOne({ _id: organizationId });
+
+      if (!organization) {
+        return ResponseHandler.failure(res, "Organization does not exist", 404);
+      }
+
+      const updatedOrganization = await Organization.findByIdAndUpdate(
+        organizationId,
+        { $set: { name, firstName, lastName, preferredUrl, industry } },
+        { new: true, runValidators: true }
+      ).select(
+        "-password"
+      );
+
+      return ResponseHandler.success(
+        res,
+        updatedOrganization,
+        "Organization details updated successfully"
+      );
+    } catch (error: any) {
+      return ResponseHandler.failure(
+        res,
+        `Server error: ${error.message}`,
+        500
+      );
+    }
+  }
+
+  static async deleteAUser(req: Request, res: Response) {
+    try {
+      const { userId } = req.params;
+
+      const user = await User.findOne({ _id: userId });
+
+      if (!user) {
+        return ResponseHandler.failure(res, "User not found", 404);
+      }
+
+      await User.findByIdAndDelete(userId);
+
+      return ResponseHandler.success(
+        res,
+        "User deleted successfully"
+      );
+    } catch (error: any) {
+      return ResponseHandler.failure(
+        res,
+        `Server error: ${error.message}`,
+        500
+      );
+    }
+  }
+
+  static async deleteAnOrganization(req: Request, res: Response) {
+    try {
+      const { organizationId } = req.params;
+
+      const organization = await Organization.findOne({ _id: organizationId });
+
+      if (!organization) {
+        return ResponseHandler.failure(res, "Organization not found", 404);
+      }
+
+      await Organization.findByIdAndDelete(organizationId);
+
+      return ResponseHandler.success(
+        res,
+        "Organization deleted successfully"
+      );
+    } catch (error: any) {
+      return ResponseHandler.failure(
+        res,
+        `Server error: ${error.message}`,
+        500
+      );
     }
   }
 }
-

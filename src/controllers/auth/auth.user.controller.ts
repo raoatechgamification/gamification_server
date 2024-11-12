@@ -11,9 +11,13 @@ import { sendLoginEmail } from "../../services/sendMail.service";
 export class UserAuthController {
   static async createSingleUser(req: Request, res: Response) {
     try {
-      const { firstName, lastName, email, role, batch, password, sendEmail } =
+      let { firstName, lastName, email, role, batch, password, sendEmail } =
         req.body;
-3
+
+      if ( !password ) {
+        password = `${firstName}${lastName}@123#`
+      }
+
       const organizationId = req.admin._id;
       const organization = await Organization.findById(organizationId);
       if (!organization) {
@@ -29,17 +33,14 @@ export class UserAuthController {
         );
       }
 
-      let hashedPassword;
-
-      if (password) {
-        hashedPassword = await hashPassword(password);
-      } else hashedPassword = await hashPassword("Default@123");
+      const hashedPassword = await hashPassword(password);
 
       const newUser = await User.create({
         firstName,
         lastName,
         email,
         password: hashedPassword,
+        organizationId,
         batch,
         userType: role,
       });
@@ -54,7 +55,7 @@ export class UserAuthController {
           firstName,
           password,
           organizationName: organization.name,
-          subject: "Gamai - Your New Account Login Details",
+          subject: "Onboarding Email",
         };
 
         await sendLoginEmail(emailVariables);
@@ -141,7 +142,7 @@ export class UserAuthController {
   static async login(req: Request, res: Response) {
     try {
       const { email, password } = req.body;
-
+      
       const account =
         (await Organization.findOne({ email })) ||
         (await User.findOne({ email })) ||
@@ -155,6 +156,7 @@ export class UserAuthController {
         password,
         account.password
       );
+
       if (!isCorrectPassword) {
         return ResponseHandler.failure(
           res,

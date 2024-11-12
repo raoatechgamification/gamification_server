@@ -2,7 +2,7 @@ import { Router } from "express";
 
 import { authenticate, authorize } from "../middlewares/auth.middleware";
 
-import { bulkUpload } from "../utils/upload.utils"
+import { bulkUpload } from "../utils/upload.utils";
 
 import {
   createOrganizationValidator,
@@ -19,16 +19,13 @@ import { UserAuthController } from "../controllers/auth/auth.user.controller";
 import { SuperAdminAuthController } from "../controllers/auth/auth.superadmin.controller";
 
 const { registerOrganization, loginOrganization } = AdminAuthController;
-const { registerUser, bulkCreateUsers, createSingleUser, loginUser, login } = UserAuthController;
+const { registerUser, bulkCreateUsers, createSingleUser, loginUser, login } =
+  UserAuthController;
 const { registerSuperAdmin, loginSuperAdmin } = SuperAdminAuthController;
 
 const router = Router();
 
-router.post(
-  "/login",
-  ...loginValidator,
-  login
-)
+router.post("/login", ...loginValidator, login);
 
 // Organization Auth
 router.post(
@@ -39,7 +36,7 @@ router.post(
 
 // User Auth
 router.post(
-  "/bulk-create", 
+  "/bulk-create",
   authenticate,
   authorize("admin"),
   bulkUpload.single("file"),
@@ -51,7 +48,7 @@ router.post(
   authenticate,
   authorize("admin"),
   createSingleUser
-)
+);
 
 // Super Admin Auth
 router.post("/super-admin/signup", ...superAdminValidator, registerSuperAdmin);

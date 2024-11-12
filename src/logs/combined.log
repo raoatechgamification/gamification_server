@@ -485,3 +485,135 @@
 2024-11-06 12:07:56 [info]: POST /super-admin/login 200 - Request Body: {"email":"seun@gmail.com","password":"Omodaratan05$#"}
 2024-11-06 12:07:59 [info]: POST /super-admin/login 200 - Request Body: {"email":"seun@gmail.com","password":"Omodaratan05$#"}
 2024-11-06 12:08:06 [info]: POST /login 200 - Request Body: {"email":"seun@gmail.com","password":"Omodaratan05$#"}
+2024-11-07 09:02:05 [info]: POST /login 200 - Request Body: {"email":"seun@gmail.com","password":"Omodaratan05$#"}
+2024-11-07 09:02:43 [info]: POST /login 200 - Request Body: {"name":"Doer Charity","email":"doercharity@gmail.com","phone":"09066318539","preferredUrl":"https://doer.com","password":"Doer505$$$","confirmPassword":"Doer505$$$","referral":"","referralSource":"linkedin"}
+2024-11-07 09:03:06 [info]: POST /login 200 - Request Body: {"email":"doercharity@gmail.com","password":"Doer505$$$"}
+2024-11-07 09:04:06 [info]: GET /users 400
+2024-11-07 09:04:42 [info]: POST /single-create 401 - Request Body: {"firstName":"Asake","lastName":"Odunlade","email":"asakeodunn@gmail.com","role":"learner","batch":"2024","sendEmail":false}
+2024-11-07 09:04:57 [info]: POST /single-create 400 - Request Body: {"firstName":"Asake","lastName":"Odunlade","email":"asakeodunn@gmail.com","role":"learner","batch":"2024","sendEmail":false}
+2024-11-07 09:05:24 [info]: POST /single-create 201 - Request Body: {"firstName":"Alabi","lastName":"Odunlade","email":"alabi@gmail.com","role":"learner","batch":"2024","sendEmail":false}
+2024-11-07 09:05:33 [info]: GET /users 400
+2024-11-07 09:05:38 [info]: GET /users 400
+2024-11-07 09:08:25 [info]: POST /org/register 400 - Request Body: {"name":"Doer Charity","email":"doercharity@gmail.com","phone":"09066318539","preferredUrl":"https://doer.com","password":"Doer505$$$","confirmPassword":"Doer505$$$","referral":"","referralSource":"linkedin"}
+2024-11-07 09:08:57 [info]: POST /login 200 - Request Body: {"email":"doercharity@gmail.com","password":"Doer505$$$"}
+2024-11-07 09:09:33 [info]: POST /single-create 400 - Request Body: {"firstName":"Alabi","lastName":"Odunlade","email":"alabi@gmail.com","role":"learner","batch":"2024","sendEmail":false}
+2024-11-07 09:09:45 [info]: POST /single-create 201 - Request Body: {"firstName":"Alabi","lastName":"Odunlade","email":"alabii@gmail.com","role":"learner","batch":"2024","sendEmail":false}
+2024-11-07 09:10:42 [info]: GET /users 400
+2024-11-07 09:13:14 [info]: POST /single-create 201 - Request Body: {"firstName":"Alabi","lastName":"Odunlade","email":"alabii@gmail.com","role":"learner","batch":"2024","sendEmail":false}
+2024-11-07 09:17:06 [info]: POST /single-create 201 - Request Body: {"firstName":"Alabi","lastName":"Odunlade","email":"alabi@gmail.com","role":"learner","batch":"2024","sendEmail":false}
+2024-11-07 09:17:30 [info]: GET /users 200
+2024-11-07 10:20:52 [info]: POST /org/register 422 - Request Body: {"name":"olu Tosin","email":"olu@gmail.com","phone":"09066318579","password":"Doer505$$$","confirmPassword":"Doer505$$$"}
+2024-11-07 10:21:12 [info]: POST /org/register 201 - Request Body: {"name":"olu Tosin","email":"olu@gmail.com","phone":"09066318579","password":"Doer505$$$","confirmPassword":"Doer505$$$","referral":"","referralSource":"linkedin"}
+2024-11-07 10:22:48 [info]: POST /login 200 - Request Body: {"name":"olu Tosin","email":"olu@gmail.com","phone":"09066318579","password":"Doer505$$$","confirmPassword":"Doer505$$$","referral":"","referralSource":"linkedin"}
+2024-11-08 07:42:28 [info]: POST /login 200 - Request Body: {"email":"olu@gmail.com","password":"Doer505$$$"}
+2024-11-08 07:43:21 [info]: POST /single-create 201 - Request Body: {"firstName":"Alabi","lastName":"Odunlade","email":"seunodueso@gmail.com","role":"learner","batch":"2024","sendEmail":true}
+2024-11-08 13:08:47 [info]: POST /single-create 500 - Request Body: {"firstName":"Alabi","lastName":"Odunlade","email":"backendseun@gmail.com","role":"learner","batch":"2024","sendEmail":true}
+2024-11-08 13:12:05 [info]: POST /single-create 400 - Request Body: {"firstName":"Alabi","lastName":"Odunlade","email":"backendseun@gmail.com","role":"learner","batch":"2024","sendEmail":true}
+2024-11-08 13:14:10 [info]: POST /single-create 201 - Request Body: {"firstName":"Alabi","lastName":"Odunlade","email":"backendseun@gmail.com","role":"learner","batch":"2024","sendEmail":true}
+2024-11-08 13:35:46 [info]: POST /single-create 400 - Request Body: {"firstName":"Alabi","lastName":"Odunlade","email":"backendseun@gmail.com","role":"learner","batch":"2024","sendEmail":true}
+2024-11-08 13:36:35 [info]: POST /single-create 201 - Request Body: {"firstName":"Alabi","lastName":"Odunlade","email":"backendseun@gmail.com","role":"learner","batch":"2024","sendEmail":true}
+2024-11-08 14:18:20 [info]: POST /single-create 201 - Request Body: {"firstName":"Oluwaseun","lastName":"Odueso","email":"seunoduez@gmail.com","role":"learner","batch":"2024","sendEmail":true}
+2024-11-08 14:39:39 [info]: POST /single-create 201 - Request Body: {"firstName":"Oluwaseun","lastName":"Odueso","email":"seunoduez@gmail.com","role":"learner","batch":"2024","sendEmail":false}
+2024-11-08 14:41:12 [info]: POST /single-create 201 - Request Body: {"firstName":"Oluwaseun","lastName":"Odueso","email":"seunoduez@gmail.com","role":"learner","batch":"2024","sendEmail":true}
+2024-11-08 14:57:32 [info]: POST /single-create 201 - Request Body: {"firstName":"Oluwaseun","lastName":"Odueso","email":"seunoduez@gmail.com","role":"learner","batch":"2024","sendEmail":true}
+2024-11-08 15:07:04 [info]: POST /single-create 400 - Request Body: {"firstName":"Oluwaseun","lastName":"Odueso","email":"seunoduez@gmail.com","role":"learner","batch":"2024","sendEmail":true}
+2024-11-08 15:07:24 [info]: POST /single-create 201 - Request Body: {"firstName":"Oluwaseun","lastName":"Odueso","email":"seunoduez@gmail.com","role":"learner","batch":"2024","sendEmail":true}
+2024-11-08 15:18:55 [info]: POST /single-create 201 - Request Body: {"firstName":"Oluwaseun","lastName":"Odueso","email":"seunoduez@gmail.com","role":"learner","batch":"2024","sendEmail":true}
+2024-11-08 15:32:09 [info]: POST /single-create 201 - Request Body: {"firstName":"Oluwaseun","lastName":"Odueso","email":"seunoduez@gmail.com","role":"learner","batch":"2024","sendEmail":true}
+2024-11-08 15:35:15 [info]: POST /single-create 201 - Request Body: {"firstName":"Oluwaseun","lastName":"Odueso","email":"seunoduez@gmail.com","role":"learner","batch":"2024","sendEmail":true}
+2024-11-08 15:37:27 [info]: POST /single-create 201 - Request Body: {"firstName":"Oluwaseun","lastName":"Odueso","email":"seunoduez@gmail.com","role":"learner","batch":"2024","sendEmail":true}
+2024-11-08 15:40:51 [info]: POST /single-create 201 - Request Body: {"firstName":"Oluwaseun","lastName":"Odueso","email":"seunoduez@gmail.com","role":"learner","batch":"2024","sendEmail":true}
+2024-11-08 15:42:29 [info]: POST /single-create 201 - Request Body: {"firstName":"Oluwaseun","lastName":"Odueso","email":"seunoduez@gmail.com","role":"learner","batch":"2024","sendEmail":true}
+2024-11-08 15:45:20 [info]: POST /single-create 201 - Request Body: {"firstName":"Oluwaseun","lastName":"Odueso","email":"seunoduez@gmail.com","role":"learner","batch":"2024","sendEmail":true}
+2024-11-08 15:46:53 [info]: POST /single-create 201 - Request Body: {"firstName":"Oluwaseun","lastName":"Odueso","email":"seunoduez@gmail.com","role":"learner","batch":"2024","sendEmail":true}
+2024-11-08 15:49:58 [info]: POST /single-create 201 - Request Body: {"firstName":"Oluwaseun","lastName":"Odueso","email":"seunoduez@gmail.com","role":"learner","batch":"2024","sendEmail":true}
+2024-11-08 15:51:54 [info]: POST /single-create 201 - Request Body: {"firstName":"Oluwaseun","lastName":"Odueso","email":"seunoduez@gmail.com","role":"learner","batch":"2024","sendEmail":true}
+2024-11-08 15:54:27 [info]: POST /single-create 201 - Request Body: {"firstName":"Oluwaseun","lastName":"Odueso","email":"seunoduez@gmail.com","role":"learner","batch":"2024","sendEmail":true}
+2024-11-08 15:56:04 [info]: POST /single-create 201 - Request Body: {"firstName":"Oluwaseun","lastName":"Odueso","email":"seunoduez@gmail.com","role":"learner","batch":"2024","sendEmail":true}
+2024-11-08 16:05:08 [info]: POST /single-create 201 - Request Body: {"firstName":"Oluwaseun","lastName":"Odueso","email":"seunoduez@gmail.com","role":"learner","batch":"2024","sendEmail":true}
+2024-11-08 16:09:13 [info]: POST /single-create 201 - Request Body: {"firstName":"Oluwaseun","lastName":"Odueso","email":"seunoduez@gmail.com","role":"learner","batch":"2024","sendEmail":true}
+2024-11-08 16:18:32 [info]: POST /single-create 201 - Request Body: {"firstName":"Oluwaseun","lastName":"Odueso","email":"seunoduez@gmail.com","role":"learner","batch":"2024","sendEmail":true}
+2024-11-08 16:20:05 [info]: POST /single-create 201 - Request Body: {"firstName":"Oluwaseun","lastName":"Odueso","email":"seunoduez@gmail.com","role":"learner","batch":"2024","sendEmail":true}
+2024-11-08 16:22:54 [info]: POST /single-create 201 - Request Body: {"firstName":"Oluwaseun","lastName":"Odueso","email":"seunoduez@gmail.com","role":"learner","batch":"2024","sendEmail":true}
+2024-11-08 16:25:25 [info]: POST /single-create 201 - Request Body: {"firstName":"Oluwaseun","lastName":"Odueso","email":"seunoduez@gmail.com","role":"learner","batch":"2024","sendEmail":true}
+2024-11-08 16:38:50 [info]: POST /single-create 201 - Request Body: {"firstName":"Oluwaseun","lastName":"Odueso","email":"seunoduez@gmail.com","role":"learner","batch":"2024","sendEmail":true}
+2024-11-08 16:40:21 [info]: POST /single-create 201 - Request Body: {"firstName":"Oluwaseun","lastName":"Odueso","email":"seunoduez@gmail.com","role":"learner","batch":"2024","sendEmail":true}
+2024-11-08 16:45:08 [info]: POST /single-create 201 - Request Body: {"firstName":"Oluwaseun","lastName":"Odueso","email":"seunoduez@gmail.com","role":"learner","batch":"2024","sendEmail":true}
+2024-11-08 17:03:47 [info]: POST /single-create 201 - Request Body: {"firstName":"Oluwaseun","lastName":"Odueso","email":"seunoduez@gmail.com","role":"learner","batch":"2024","sendEmail":true}
+2024-11-08 17:14:36 [info]: POST /single-create 201 - Request Body: {"firstName":"Oluwaseun","lastName":"Odueso","email":"seunoduez@gmail.com","role":"learner","batch":"2024","sendEmail":true}
+2024-11-12 13:59:01 [info]: DELETE /users/672c868720a98e163a99d0cd 401
+2024-11-12 13:59:21 [info]: POST /login 500 - Request Body: {"email":"seun@gmail.com","password":"Omodaratan05$#"}
+2024-11-12 14:00:50 [info]: POST /login 500 - Request Body: {"email":"seun@gmail.com","password":"Omodaratan05$#"}
+2024-11-12 14:03:03 [info]: POST /login 500 - Request Body: {"email":"seun@gmail.com","password":"Omodaratan05$#"}
+2024-11-12 14:06:00 [info]: POST /login 500 - Request Body: {"email":"seun@gmail.com","password":"Omodaratan05$#"}
+2024-11-12 14:07:28 [info]: POST /login 500 - Request Body: {"email":"seun@gmail.com","password":"Omodaratan05$#"}
+2024-11-12 14:08:14 [info]: POST /login 500 - Request Body: {"email":"seun@gmail.com","password":"Omodaratan05$#"}
+2024-11-12 14:09:19 [info]: POST /login 500 - Request Body: {"email":"seun@gmail.com","password":"Omodaratan05$#"}
+2024-11-12 14:11:35 [info]: POST /login 500 - Request Body: {"email":"seun@gmail.com","password":"Omodaratan05$#"}
+2024-11-12 14:12:26 [info]: POST /login 200 - Request Body: {"email":"seun@gmail.com","password":"Omodaratan05$#"}
+2024-11-12 15:01:15 [info]: GET /users/672e38e95c46677e93504055 200
+2024-11-12 15:04:51 [info]: GET /users/672e38e95c46677e93504055 200
+2024-11-12 15:05:27 [info]: GET /users/672e38e95c46677e93504056 404
+2024-11-12 15:06:01 [info]: GET /users/672e38e95c46677e93504056 404
+2024-11-12 15:06:09 [info]: GET /users/672e38e95c46677e93504055 200
+2024-11-12 15:09:16 [info]: GET /super-admin/organizations/672e38e95c46677e93504055 200
+2024-11-12 15:09:50 [info]: GET /users/:userId 422
+2024-11-12 15:09:56 [info]: GET /super-admin/organizations/:organizationId 200
+2024-11-12 15:10:49 [info]: GET /organizations/:organizationId 422
+2024-11-12 15:10:54 [info]: GET /organizations/:organizationId 422
+2024-11-12 15:11:16 [info]: GET /organizations/672c868720a98e163a99d0cc 200
+2024-11-12 15:27:58 [info]: DELETE /organizations/672c769a9f823d82cc3e2813 404
+2024-11-12 15:29:06 [info]: DELETE /organizations/672c769a9f823d82cc3e2813 404
+2024-11-12 15:29:17 [info]: DELETE /organizations/672c769a9f823d82cc3e281 422
+2024-11-12 15:29:43 [info]: DELETE /organizations/:organizationId 422
+2024-11-12 15:30:02 [info]: DELETE /organizations/672c769a9f823d 422
+2024-11-12 15:30:07 [info]: DELETE /organizations/672c769a9f823d82cc3e2813 404
+2024-11-12 15:30:46 [info]: DELETE /organizations/672a11f17e2e2f21bed7876f 200
+2024-11-12 15:31:04 [info]: GET /organizations/672a11f17e2e2f21bed7876f 404
+2024-11-12 15:32:29 [info]: DELETE /organizations/672a11f17e2e2f21bed7876f 404
+2024-11-12 15:35:09 [info]: DELETE /users/672c868720a98e163a99d0cd 404
+2024-11-12 15:35:16 [info]: DELETE /users/:userId 422
+2024-11-12 15:35:20 [info]: DELETE /users/672e38e95c46677e93504055 200
+2024-11-12 15:35:32 [info]: DELETE /users/672e38e95c46677e93504055 404
+2024-11-12 15:35:42 [info]: GET /users/672e38e95c46677e93504055 404
+2024-11-12 15:40:08 [info]: GET /users/all 422
+2024-11-12 15:40:57 [info]: GET /userss/all 200
+2024-11-12 15:42:59 [info]: GET /userss/all 200
+2024-11-12 15:44:24 [info]: GET /userss/all 200
+2024-11-12 15:45:38 [info]: POST /single-create 401 - Request Body: {"firstName":"Oluwaseun","lastName":"Odueso","email":"seunoduez@gmail.com","role":"learner","batch":"2024","sendEmail":true}
+2024-11-12 15:47:29 [info]: POST /login 400 - Request Body: {"name":"Ajibade Org","email":"ajibadeemmanuel58@gmail.com","phone":"08178555400","preferredUrl":"https://ajy.com","password":"Emmanuel2001!","confirmPassword":"Emmanuel2001!","referral":"","referralSource":"linkedin"}
+2024-11-12 15:47:49 [info]: POST /login 200 - Request Body: {"email":"seun@gmail.com","password":"Omodaratan05$#"}
+2024-11-12 15:50:25 [info]: POST /org/register 400 - Request Body: {"name":"Timpel and Co.","email":"seunoduez@gmail.com","phone":"09066318539","preferredUrl":"https://ajy.com","password":"Timpearl05$$$","confirmPassword":"Emmanuel2001!","referral":"","referralSource":"linkedin"}
+2024-11-12 15:50:46 [info]: POST /org/register 201 - Request Body: {"name":"Timpel and Co.","email":"seunoduez@gmail.com","phone":"09066318539","preferredUrl":"https://ajy.com","password":"Timpearl05$$$","confirmPassword":"Timpearl05$$$","referral":"","referralSource":"linkedin"}
+2024-11-12 15:51:07 [info]: POST /login 200 - Request Body: {"name":"Timpel and Co.","email":"seunoduez@gmail.com","phone":"09066318539","preferredUrl":"https://ajy.com","password":"Timpearl05$$$","confirmPassword":"Timpearl05$$$","referral":"","referralSource":"linkedin"}
+2024-11-12 15:51:33 [info]: POST /login 200 - Request Body: {"name":"Timpel and Co.","email":"seunoduez@gmail.com","phone":"09066318539","preferredUrl":"https://ajy.com","password":"Timpearl05$$$","confirmPassword":"Timpearl05$$$","referral":"","referralSource":"linkedin"}
+2024-11-12 15:52:56 [info]: POST /single-create 201 - Request Body: {"firstName":"Oluwaseun","lastName":"Odueso","email":"seunoduez@gmail.com","role":"learner","batch":"2024","sendEmail":true}
+2024-11-12 15:56:16 [info]: PUT /users/67336bc3647164e69f6a8931 422
+2024-11-12 15:59:59 [info]: PUT /users/67336bc3647164e69f6a8931 422 - Request Body: {"yearOfExperience":5,"highestEducationLevell":"Higher National Diploma (HND)","gender":"female","dateOfBirth":"05-09-2000","username":"Timpel","firstName":"Oluwaseunayofunmi","lastName":"Odueso","batch":"2024 A","role":"learner"}
+2024-11-12 16:00:21 [info]: PUT /users/67336bc3647164e69f6a8931 422 - Request Body: {"yearOfExperience":5,"highestEducationLevel":"Higher National Diploma (HND)","gender":"female","dateOfBirth":"05/09/2000","username":"Timpel","firstName":"Oluwaseunayofunmi","lastName":"Odueso","batch":"2024 A","role":"learner"}
+2024-11-12 16:01:56 [info]: PUT /users/67336bc3647164e69f6a8931 200 - Request Body: {"yearOfExperience":5,"highestEducationLevel":"Higher National Diploma (HND)","gender":"female","dateOfBirth":"2000/09/05","username":"Timpel","firstName":"Oluwaseunayofunmi","lastName":"Odueso","batch":"2024 A","role":"learner"}
+2024-11-12 16:06:39 [info]: PUT /users/67336bc3647164e69f6a8931 200 - Request Body: {"yearOfExperience":5,"highestEducationLevel":"Honorary Professorship","gender":"female","dateOfBirth":"2000/09/05","username":"Timpel","firstName":"Oluwaseunayo","lastName":"Odueso","batch":"2024 A","role":"learner"}
+2024-11-12 16:07:52 [info]: PUT /users/:userId 422 - Request Body: {"yearOfExperience":5,"highestEducationLevel":"Honorary Professorship","gender":"female","dateOfBirth":"2000/09/05","username":"Timpel","firstName":"Oluwaseunayo","lastName":"Odueso","batch":"2024 A","role":"learner"}
+2024-11-12 16:08:23 [info]: PUT /users/67336bc3647164e69f6a8931 200 - Request Body: {"yearOfExperience":5,"highestEducationLevel":"Honorary Professorship","gender":"female","dateOfBirth":"2000/09/05","username":"Timpel","firstName":"Oluwaseunayo","lastName":"Odueso","batch":"2024 A","role":"learner"}
+2024-11-12 16:09:02 [info]: PUT /users/67336bc3647164e69f6a8931 200 - Request Body: {"yearOfExperience":5,"highestEducationLevel":"Honorary Professorship","gender":"female","dateOfBirth":"2000/09/05","username":"Timpel","firstName":"Oluwaseunayofunmi","lastName":"Odueso","batch":"2024 A","role":"learner"}
+2024-11-12 16:14:51 [info]: PUT /organizations/:organizationId 422 - Request Body: {"name":"The Organization","firstName":"Oluwaseunayofunmi","lastName":"Odueso","industry":"Information and Technology","yearOfExperience":3}
+2024-11-12 16:18:31 [info]: PUT /organizations/:organizationId 422 - Request Body: {"name":"The Organization","firstName":"Oluwaseunayofunmi","lastName":"Odueso","industry":"Information and Technology","preferredUrl":"https://www.timpel.com"}
+2024-11-12 16:18:49 [info]: PUT /organizations/67336b45647164e69f6a8929 200 - Request Body: {"name":"The Organization","firstName":"Oluwaseunayofunmi","lastName":"Odueso","industry":"Information and Technology","preferredUrl":"https://www.timpel.com"}
+2024-11-12 16:19:12 [info]: PUT /organizations/67336b45647164e69f6a8921 404 - Request Body: {"name":"The Organization","firstName":"Oluwaseunayofunmi","lastName":"Odueso","industry":"Information and Technology","preferredUrl":"https://www.timpel.com"}
+2024-11-12 16:19:23 [info]: PUT /organizations/67336b45647164e69f6a8929 200 - Request Body: {"name":"The Organization","firstName":"Oluwaseunayofunmi","lastName":"Odueso","industry":"Information and Technology","preferredUrl":"https://www.timpel.com"}
+2024-11-12 16:20:35 [info]: PUT /organizations/67336b45647164e69f6a8929 200 - Request Body: {"name":"The Timpel Organization","firstName":"Oluwaseunayofunmi","lastName":"Odueso","industry":"Information and Technology","preferredUrl":"https://www.timpel.com"}
+2024-11-12 16:21:04 [info]: PUT /organizations/67336b45647164e69f6a8929 200 - Request Body: {"name":"Timpel and Co.","firstName":"Oluwaseunayofunmi","lastName":"Odueso","industry":"Information and Technology","preferredUrl":"https://www.timpel.com"}
+2024-11-12 16:25:46 [info]: GET /organizations/view-all 401
+2024-11-12 16:25:55 [info]: GET /organizations/view-all 200
+2024-11-12 16:28:09 [info]: GET /users/view-all 401
+2024-11-12 16:28:18 [info]: GET /users/view-all 200
+2024-11-12 16:31:08 [info]: GET /organizations/view-all 200
+2024-11-12 16:31:31 [info]: GET /users/view-all 200
+2024-11-12 16:34:13 [info]: GET /organizations/view-all 200
+2024-11-12 16:34:17 [info]: GET /organizations/view-all 200
+2024-11-12 16:34:20 [info]: GET /organizations/view-all 200
+2024-11-12 16:39:43 [info]: GET /users/view-all 200
+2024-11-12 16:42:29 [info]: GET /users/view-all 200
+2024-11-12 16:44:06 [info]: GET /users/view-all 200
+2024-11-12 16:45:33 [info]: GET /users/view-all 200
+2024-11-12 16:46:59 [info]: GET /users/view-all 200

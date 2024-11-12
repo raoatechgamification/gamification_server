@@ -1,19 +1,21 @@
-import mongoose from 'mongoose';
-import XLSX from 'xlsx';
-import { hashPassword } from "../utils/hash"
-import User, { IUser } from '../models/user.model';
-import { OrganizationDocument } from "../models/organization.model"
+import mongoose from "mongoose";
+import XLSX from "xlsx";
+import { hashPassword } from "../utils/hash";
+import User, { IUser } from "../models/user.model";
+import { OrganizationDocument } from "../models/organization.model";
 import { sendLoginEmail } from "./sendMail.service";
 
-
 class UserService {
-  async createUsersFromExcel(organization: OrganizationDocument, buffer: Buffer): Promise<IUser[]> {
-    const workbook = XLSX.read(buffer, { type: 'buffer' });
+  async createUsersFromExcel(
+    organization: OrganizationDocument,
+    buffer: Buffer
+  ): Promise<IUser[]> {
+    const workbook = XLSX.read(buffer, { type: "buffer" });
     const sheetName = workbook.SheetNames[0];
     const sheet = workbook.Sheets[sheetName];
-    
+
     const userData = XLSX.utils.sheet_to_json(sheet);
-    const requiredFields = ['Email', 'Phone', 'FirstName'];
+    const requiredFields = ["Email", "Phone", "FirstName"];
 
     for (let i = 0; i < userData.length; i++) {
       const data: any = userData[i];
@@ -23,8 +25,8 @@ class UserService {
         }
       }
     }
-    
-    const defaultPassword = "DefaultPassword123";  
+
+    const defaultPassword = "DefaultPassword123";
     const hashedDefaultPassword = await hashPassword(defaultPassword);
 
     const users = userData.map((data: any) => ({
@@ -33,7 +35,7 @@ class UserService {
       lastName: data.LastName || null,
       email: data.Email,
       phone: data.Phone,
-      organization: organization.id,
+      organizationId: organization.id,
       password: hashedDefaultPassword,
     }));
 
@@ -45,10 +47,10 @@ class UserService {
         firstName: user.firstName,
         password: defaultPassword,
         organizationName: organization.name,
-        subject: "Gamai - Your New Account Login Details"
-      }
+        subject: "Onboarding Email",
+      };
 
-      await sendLoginEmail(emailVariables);  
+      await sendLoginEmail(emailVariables);
     }
 
     return createdUsers;

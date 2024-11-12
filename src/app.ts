@@ -4,6 +4,8 @@ import dotenv from "dotenv";
 import bodyParser from "body-parser";
 // import connectDB from "./config/db";
 import logger from "./utils/logger";
+import routes from "./routes/index.routes";
+
 
 dotenv.config();
 
@@ -45,7 +47,6 @@ app.get("/", (req: Request, res: Response) => {
   });
 });
 
-import routes from "./routes/index.routes";
 // app.use("/api/v1", require("./routes/index.routes"));
 app.use("/api/v1", routes);
 
