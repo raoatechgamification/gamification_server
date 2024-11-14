@@ -47,7 +47,7 @@ class AdminController {
     try {
       const organizationId = req.admin._id;
       const userId = req.params.userId;
-      const { username, firstName, lastName, batch, role, yearOfExperience, highestEducationLevel, gender, dateOfBirth } = req.body;
+      const { username, firstName, lastName, batch, role, yearsOfExperience, highestEducationLevel, gender, dateOfBirth } = req.body;
 
       const user = await User.findOne({ _id: userId, organizationId });
 
@@ -61,7 +61,7 @@ class AdminController {
 
       const updatedUser = await User.findByIdAndUpdate(
         userId,
-        { $set: { username, firstName, lastName, batch, userType: role, yearOfExperience, highestEducationLevel, gender, dateOfBirth} },
+        { $set: { username, firstName, lastName, batch, userType: role, yearsOfExperience, highestEducationLevel, gender, dateOfBirth} },
         { new: true, runValidators: true }
       );
 

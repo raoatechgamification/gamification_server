@@ -45,7 +45,7 @@ export const organizationIdValidator = [
     .notEmpty()
     .withMessage("Organization ID is required")
     .isMongoId()
-    .withMessage("Organization ID mush be a valid MongoDB ObjectId"),
+    .withMessage("Organization ID must be a valid MongoDB ObjectId"),
 
   errorResponse
 ]
@@ -87,7 +87,7 @@ export const updateUserValidator = [
     .isMongoId()
     .withMessage("Organization ID mush be a valid MongoDB ObjectId"),
 
-  body("yearOfExperience")
+  body("yearsOfExperience")
     .isNumeric()
     .withMessage("Please provide a valid years of experience"),
 
@@ -123,5 +123,116 @@ export const updateUserValidator = [
     .isString()
     .withMessage("Please provide user role type"),
 
+  errorResponse
+]
+
+export const validateOrganizationExportData = [
+  body('data')
+    .isArray({ min: 1 })
+    .withMessage('Data must be a non-empty array of objects'),
+  
+  body('data.*.name')
+    .isString()
+    .withMessage('Each item must have a "name" field of type string'),
+  
+  body('data.*.firstName')
+    .isString()
+    .withMessage('Each item must have a "firstName" field of type string'),
+
+  body('data.*.lastName')
+    .isString()
+    .withMessage('Each item must have a "lastName" field of type string'),
+
+  body('data.*.email')
+    .isEmail()
+    .withMessage('Each item must have a valid "email" field'),
+
+  body('data.*.phone')
+    .isString()
+    .withMessage('Each item must have a "phone" field of type string'),
+
+  body('data.*.preferredUrl')
+    .optional()
+    .isString()
+    .withMessage('Each item must have a "preferredUrl" field of type string'),
+
+  body('data.*.referral')
+    .optional()
+    .isString()
+    .withMessage('Each item must have a "referral" field of type string'),
+
+  body('data.*.referralSource')
+    .optional()
+    .isString()
+    .withMessage('Each item must have a "referralSource" field of type string'),
+
+  body('data.*.industry')
+    .optional()
+    .isString()
+    .withMessage('Each item must have a "industry" field of type string'),
+  
+  errorResponse
+]
+
+export const validateUserExportData = [
+  body('data')
+    .isArray({ min: 1 })
+    .withMessage('Data must be a non-empty array of objects'),
+  
+  body('data.*.username')
+    .isString()
+    .withMessage('Each item must have a "username" field of type string'),
+  
+  body('data.*.firstName')
+    .isString()
+    .withMessage('Each item must have a "firstName" field of type string'),
+
+  body('data.*.lastName')
+    .isString()
+    .withMessage('Each item must have a "lastName" field of type string'),
+
+  body('data.*.email')
+    .isEmail()
+    .withMessage('Each item must have a valid "email" field'),
+
+  body('data.*.phone')
+    .isString()
+    .withMessage('Each item must have a "phone" field of type string'),
+
+  body('data.*.organizationId')
+    .optional()
+    .isMongoId()
+    .withMessage('OrganizationId must be a valid MongoDB ObjectId'),
+
+  body('data.*.batch')
+    .optional()
+    .isString()
+    .withMessage('batch must be a string'),
+
+  body('data.*.userType')
+    .optional()
+    .isString()
+    .withMessage('userType must be a string'),
+
+  body('data.*.yearsOfExperience')
+    .optional()
+    .isNumeric()
+    .withMessage('yearsOfExperience must be an integer'),
+
+  body('data.*.highestEducationLevel')
+    .optional()
+    .isString()
+    .withMessage('highestEducationLevel must be a date'),
+
+  body('data.*.gender')
+    .optional()
+    .isString()
+    .withMessage('gender must be a string'),
+  
+  body('data.*.dateOfBirth')
+    .optional()
+    .isDate()
+    .withMessage('dateOfBirth must be a date'),
+  
   errorResponse
 ]

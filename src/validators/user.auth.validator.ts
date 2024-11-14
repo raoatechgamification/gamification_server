@@ -81,7 +81,7 @@ export const changePasswordValidator = [
 ];
 
 export const editUserProfileValidator = [
-  body("yearOfExperience")
+  body("yearsOfExperience")
     .isNumeric()
     .withMessage("Please provide a valid years of experience"),
 

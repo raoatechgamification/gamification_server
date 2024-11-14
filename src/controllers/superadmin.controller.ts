@@ -6,6 +6,7 @@ import Organization, {
   OrganizationDocument,
 } from "../models/organization.model";
 import User, { UserDocument } from "../models/user.model";
+import { exportDataAsCSV, exportDataAsExcel } from "../services/exportData.service";
 
 export class SuperAdminController {
   static async viewOrganizations(
@@ -156,7 +157,7 @@ export class SuperAdminController {
         lastName,
         batch,
         role,
-        yearOfExperience,
+        yearsOfExperience,
         highestEducationLevel,
         gender,
         dateOfBirth,
@@ -177,7 +178,7 @@ export class SuperAdminController {
             lastName,
             batch,
             userType: role,
-            yearOfExperience,
+            yearsOfExperience,
             highestEducationLevel,
             gender,
             dateOfBirth,
@@ -277,6 +278,32 @@ export class SuperAdminController {
         res,
         "Organization deleted successfully"
       );
+    } catch (error: any) {
+      return ResponseHandler.failure(
+        res,
+        `Server error: ${error.message}`,
+        500
+      );
+    }
+  }
+
+  static async exportDataAsCsvFile(req: Request, res: Response) {
+    try {
+      const { data } = req.body;
+       exportDataAsCSV(data, res)
+    } catch (error: any) {
+      return ResponseHandler.failure(
+        res,
+        `Server error: ${error.message}`,
+        500
+      );
+    }
+  }
+
+  static async exportDataAsExcelFile(req: Request, res: Response) {
+    try {
+      const { data } = req.body;
+      exportDataAsExcel(data, res)
     } catch (error: any) {
       return ResponseHandler.failure(
         res,
