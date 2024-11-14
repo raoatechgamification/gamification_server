@@ -84,7 +84,7 @@ router.delete(
   deleteAnOrganization
 );
 
-router.get(
+router.post(
   "/organizations/export/csv",
   authenticate,
   authorize("superAdmin"),
@@ -92,7 +92,7 @@ router.get(
   exportDataAsCsvFile
 );
 
-router.get(
+router.post(
   "/organizations/export/excel",
   authenticate,
   authorize("superAdmin"),
@@ -100,7 +100,7 @@ router.get(
   exportDataAsExcelFile
 );
 
-router.get(
+router.post(
   "/users/export/csv",
   authenticate,
   authorize("superAdmin"),
@@ -108,7 +108,7 @@ router.get(
   exportDataAsCsvFile
 );
 
-router.get(
+router.post(
   "/users/export/excel",
   authenticate,
   authorize("superAdmin"),

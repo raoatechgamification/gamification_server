@@ -290,7 +290,12 @@ export class SuperAdminController {
   static async exportDataAsCsvFile(req: Request, res: Response) {
     try {
       const { data } = req.body;
-       exportDataAsCSV(data, res)
+      if (!data || !Array.isArray(data)) {
+        return ResponseHandler.failure(res, "Invalid data format", 400);
+      }
+      res.setHeader("Content-Disposition", "attachment; filename=data.csv");
+      res.setHeader("Content-Type", "text/csv");
+      await exportDataAsCSV(data, res)
     } catch (error: any) {
       return ResponseHandler.failure(
         res,
@@ -303,7 +308,12 @@ export class SuperAdminController {
   static async exportDataAsExcelFile(req: Request, res: Response) {
     try {
       const { data } = req.body;
-      exportDataAsExcel(data, res)
+      if (!data || !Array.isArray(data)) {
+        return ResponseHandler.failure(res, "Invalid data format", 400);
+      }
+      res.setHeader("Content-Disposition", "attachment; filename=data.csv");
+      res.setHeader("Content-Type", "data.xlsx");
+      await exportDataAsExcel(data, res)
     } catch (error: any) {
       return ResponseHandler.failure(
         res,
