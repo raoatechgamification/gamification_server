@@ -10,22 +10,28 @@ import { Parser } from "json2csv";
 import ExcelJS from "exceljs";
 
 export class SuperAdminController {
-  static async viewOrganizations(
-    _req: Request,
-    res: Response,
-    next: NextFunction
-  ) {
+  static async viewOrganizations(req: Request, res: Response, next: NextFunction) {
     try {
-      const organizations: OrganizationDocument[] = await Organization.find();
-
+      const { startDate, endDate } = req.query;
+  
+      // Parse and validate date range
+      const filter: any = {};
+      if (startDate || endDate) {
+        filter.createdAt = {};
+        if (startDate) filter.createdAt.$gte = new Date(startDate as string);
+        if (endDate) filter.createdAt.$lte = new Date(endDate as string);
+      }
+  
+      const organizations: OrganizationDocument[] = await Organization.find(filter);
+  
       const organizationData = await Promise.all(
         organizations.map(async (org: OrganizationDocument) => {
           const totalCustomers = await User.countDocuments({
             organizationId: org._id,
           });
-
+  
           const formattedDate = new Date(org.createdAt).toLocaleDateString();
-
+  
           return {
             id: org._id,
             name: org.name,
@@ -39,7 +45,7 @@ export class SuperAdminController {
           };
         })
       );
-
+  
       return ResponseHandler.success(res, {
         message: "Organizations fetched successfully",
         data: organizationData,
@@ -48,11 +54,21 @@ export class SuperAdminController {
       next(error);
     }
   }
-
-  static async viewUsers(_req: Request, res: Response, next: NextFunction) {
+  
+  static async viewUsers(req: Request, res: Response, next: NextFunction) {
     try {
-      const users: UserDocument[] = await User.find();
-
+      const { startDate, endDate } = req.query;
+  
+      // Parse and validate date range
+      const filter: any = {};
+      if (startDate || endDate) {
+        filter.createdAt = {};
+        if (startDate) filter.createdAt.$gte = new Date(startDate as string);
+        if (endDate) filter.createdAt.$lte = new Date(endDate as string);
+      }
+  
+      const users: UserDocument[] = await User.find(filter);
+  
       const usersWithDetails = await Promise.all(
         users.map(async (user: UserDocument) => {
           let organizationInfo = null;
@@ -63,19 +79,13 @@ export class SuperAdminController {
             if (organization) {
               organizationInfo = organization;
             }
-            // if (organization) {
-            //   organizationInfo = {
-            //     organizationId: organization._id,
-            //     organizationName: organization.name,
-            //   };
-            // }
           }
-
+  
           const paymentHistory = await Payment.find({ userId: user._id });
           const assignedBills = await AssignedBill.find({
             assigneeId: user._id,
           });
-
+  
           return {
             id: user._id,
             username: user.username,
@@ -90,7 +100,7 @@ export class SuperAdminController {
           };
         })
       );
-
+  
       return ResponseHandler.success(
         res,
         usersWithDetails,
@@ -104,6 +114,102 @@ export class SuperAdminController {
       );
     }
   }
+  
+  
+  // static async viewOrganizations(
+  //   _req: Request,
+  //   res: Response,
+  //   next: NextFunction
+  // ) {
+  //   try {
+  //     const organizations: OrganizationDocument[] = await Organization.find();
+
+  //     const organizationData = await Promise.all(
+  //       organizations.map(async (org: OrganizationDocument) => {
+  //         const totalCustomers = await User.countDocuments({
+  //           organizationId: org._id,
+  //         });
+
+  //         const formattedDate = new Date(org.createdAt).toLocaleDateString();
+
+  //         return {
+  //           id: org._id,
+  //           name: org.name,
+  //           email: org.email,
+  //           phone: org.phone,
+  //           preferredUrl: org.preferredUrl,
+  //           referral: org.referral,
+  //           referralSource: org.referralSource,
+  //           totalCustomers,
+  //           registeredDate: formattedDate,
+  //         };
+  //       })
+  //     );
+
+  //     return ResponseHandler.success(res, {
+  //       message: "Organizations fetched successfully",
+  //       data: organizationData,
+  //     });
+  //   } catch (error) {
+  //     next(error);
+  //   }
+  // }
+
+  // static async viewUsers(_req: Request, res: Response, next: NextFunction) {
+  //   try {
+  //     const users: UserDocument[] = await User.find();
+
+  //     const usersWithDetails = await Promise.all(
+  //       users.map(async (user: UserDocument) => {
+  //         let organizationInfo = null;
+  //         if (user.organizationId) {
+  //           const organization = await Organization.findById(
+  //             user.organizationId
+  //           ).select("-password");
+  //           if (organization) {
+  //             organizationInfo = organization;
+  //           }
+  //           // if (organization) {
+  //           //   organizationInfo = {
+  //           //     organizationId: organization._id,
+  //           //     organizationName: organization.name,
+  //           //   };
+  //           // }
+  //         }
+
+  //         const paymentHistory = await Payment.find({ userId: user._id });
+  //         const assignedBills = await AssignedBill.find({
+  //           assigneeId: user._id,
+  //         });
+
+  //         return {
+  //           id: user._id,
+  //           username: user.username,
+  //           firstName: user.firstName,
+  //           lastName: user.lastName,
+  //           email: user.email,
+  //           phone: user.phone,
+  //           role: user.role,
+  //           organization: organizationInfo,
+  //           paymentHistory,
+  //           assignedBills,
+  //         };
+  //       })
+  //     );
+
+  //     return ResponseHandler.success(
+  //       res,
+  //       usersWithDetails,
+  //       "Users fetched successfully"
+  //     );
+  //   } catch (error: any) {
+  //     return ResponseHandler.failure(
+  //       res,
+  //       `Server error: ${error.message}`,
+  //       500
+  //     );
+  //   }
+  // }
 
   static async viewAnOrganization(req: Request, res: Response) {
     try {

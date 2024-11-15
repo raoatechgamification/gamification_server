@@ -760,3 +760,17 @@
 2024-11-15 13:33:59 [info]: POST /login 200 - Request Body: {"email":"seunodueso@gmail.com","password":"DefaultPassword123"}
 2024-11-15 13:40:08 [info]: POST /login 400 - Request Body: {"email":"seunodueso@gmail.com","password":"DefaultPassword123"}
 2024-11-15 13:40:24 [info]: POST /bulk-create 201
+2024-11-15 16:06:42 [info]: POST /login 200 - Request Body: {"email":"seun@gmail.com","password":"Omodaratan05$#"}
+2024-11-15 16:07:06 [info]: GET /users/view-all 200
+2024-11-15 16:07:30 [info]: GET /users/view-all/?startDate=2024-01-01&endDate=2024-12-31 200 - Query Params: {"startDate":"2024-01-01","endDate":"2024-12-31"}
+2024-11-15 16:07:30 [info]: GET /users/view-all/?startDate=2024-01-01&endDate=2024-12-31 200
+2024-11-15 16:07:57 [info]: GET /users/view-all/?startDate=2024-11-11&endDate=2024-11-13 200 - Query Params: {"startDate":"2024-11-11","endDate":"2024-11-13"}
+2024-11-15 16:07:57 [info]: GET /users/view-all/?startDate=2024-11-11&endDate=2024-11-13 200
+2024-11-15 16:08:23 [info]: GET /users/view-all/?startDate=2024-11-11&endDate=2024-11-15 200 - Query Params: {"startDate":"2024-11-11","endDate":"2024-11-15"}
+2024-11-15 16:08:23 [info]: GET /users/view-all/?startDate=2024-11-11&endDate=2024-11-15 200
+2024-11-15 16:08:34 [info]: GET /users/view-all/?startDate=2024-11-5&endDate=2024-11-15 200 - Query Params: {"startDate":"2024-11-5","endDate":"2024-11-15"}
+2024-11-15 16:08:34 [info]: GET /users/view-all/?startDate=2024-11-5&endDate=2024-11-15 200
+2024-11-15 16:09:10 [info]: GET /organizations/view-all/?startDate=2024-11-5&endDate=2024-11-15 200 - Query Params: {"startDate":"2024-11-5","endDate":"2024-11-15"}
+2024-11-15 16:09:10 [info]: GET /organizations/view-all/?startDate=2024-11-5&endDate=2024-11-15 200
+2024-11-15 16:09:24 [info]: GET /organizations/view-all/?startDate=2024-01-05&endDate=2024-11-15 200 - Query Params: {"startDate":"2024-01-05","endDate":"2024-11-15"}
+2024-11-15 16:09:24 [info]: GET /organizations/view-all/?startDate=2024-01-05&endDate=2024-11-15 200

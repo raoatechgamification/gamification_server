@@ -17,8 +17,6 @@ const {
   viewAnOrganization,
   updateAUser,
   updateAnOrganization,
-  deleteAUser,
-  deleteAnOrganization,
   exportUserDataAsCsvFile,
   exportUserDataAsExcelFile,
   exportOrganizationDataAsCsvFile,
@@ -67,22 +65,6 @@ router.put(
   ...updateOrganizationValidator,
   updateAnOrganization
 );
-
-// router.delete(
-//   "/users/:userId",
-//   authenticate,
-//   authorize("superAdmin"),
-//   ...userIdValidator,
-//   deleteAUser
-// );
-
-// router.delete(
-//   "/organizations/:organizationId",
-//   authenticate,
-//   authorize("superAdmin"),
-//   ...organizationIdValidator,
-//   deleteAnOrganization
-// );
 
 router.post(
   "/organizations/export/csv",
