@@ -8,8 +8,6 @@ import {
   organizationIdValidator,
   updateUserValidator,
   updateOrganizationValidator,
-  validateOrganizationExportData,
-  validateUserExportData,
 } from "../validators/superadmin.validator";
 
 const {
@@ -21,8 +19,10 @@ const {
   updateAnOrganization,
   deleteAUser,
   deleteAnOrganization,
-  exportDataAsCsvFile,
-  exportDataAsExcelFile,
+  exportUserDataAsCsvFile,
+  exportUserDataAsExcelFile,
+  exportOrganizationDataAsCsvFile,
+  exportOrganizationDataAsExcelFile,
 } = SuperAdminController;
 
 const router = Router();
@@ -68,52 +68,48 @@ router.put(
   updateAnOrganization
 );
 
-router.delete(
-  "/users/:userId",
-  authenticate,
-  authorize("superAdmin"),
-  ...userIdValidator,
-  deleteAUser
-);
+// router.delete(
+//   "/users/:userId",
+//   authenticate,
+//   authorize("superAdmin"),
+//   ...userIdValidator,
+//   deleteAUser
+// );
 
-router.delete(
-  "/organizations/:organizationId",
-  authenticate,
-  authorize("superAdmin"),
-  ...organizationIdValidator,
-  deleteAnOrganization
-);
+// router.delete(
+//   "/organizations/:organizationId",
+//   authenticate,
+//   authorize("superAdmin"),
+//   ...organizationIdValidator,
+//   deleteAnOrganization
+// );
 
 router.post(
   "/organizations/export/csv",
   authenticate,
   authorize("superAdmin"),
-  ...validateOrganizationExportData,
-  exportDataAsCsvFile
+  exportOrganizationDataAsCsvFile
 );
 
 router.post(
   "/organizations/export/excel",
   authenticate,
   authorize("superAdmin"),
-  ...validateOrganizationExportData,
-  exportDataAsExcelFile
+  exportOrganizationDataAsExcelFile
 );
 
 router.post(
   "/users/export/csv",
   authenticate,
   authorize("superAdmin"),
-  ...validateUserExportData,
-  exportDataAsCsvFile
+  exportUserDataAsCsvFile
 );
 
 router.post(
   "/users/export/excel",
   authenticate,
   authorize("superAdmin"),
-  ...validateUserExportData,
-  exportDataAsExcelFile
+  exportUserDataAsExcelFile
 );
 
 export default router;

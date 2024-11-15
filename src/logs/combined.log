@@ -739,3 +739,17 @@
 2024-11-14 16:20:58 [info]: POST /organizations/export/csv 200 - Request Body: {"data":[{"name":"Tiwa Tayo","firstName":"Tiwa","lastName":"Tayo","email":"tiwa@example.com","phone":"09066734519","preferredUrl":"www.example.com","referral":"Mr Akin","industry":"Information Technology"},{"name":"Tolu Bamgbola","firstName":"Tolu","lastName":"Bamgbola","email":"tolu@example.com","phone":"09065734519","preferredUrl":"www.example.com","referral":"Mr Akin","industry":"Information Technology"}]}
 2024-11-14 16:21:28 [info]: GET /super-admin/organizations/export/excel 200 - Request Body: {"data":[{"name":"Tiwa Tayo","firstName":"Tiwa","lastName":"Tayo","email":"tiwa@example.com","phone":"09066734519","preferredUrl":"www.example.com","referral":"Mr Akin","industry":"Information Technology"},{"name":"Tolu Bamgbola","firstName":"Tolu","lastName":"Bamgbola","email":"tolu@example.com","phone":"09065734519","preferredUrl":"www.example.com","referral":"Mr Akin","industry":"Information Technology"}]}
 2024-11-14 16:21:55 [info]: POST /organizations/export/excel 200 - Request Body: {"data":[{"name":"Tiwa Tayo","firstName":"Tiwa","lastName":"Tayo","email":"tiwa@example.com","phone":"09066734519","preferredUrl":"www.example.com","referral":"Mr Akin","industry":"Information Technology"},{"name":"Tolu Bamgbola","firstName":"Tolu","lastName":"Bamgbola","email":"tolu@example.com","phone":"09065734519","preferredUrl":"www.example.com","referral":"Mr Akin","industry":"Information Technology"}]}
+2024-11-14 18:19:16 [info]: POST /organizations/export/excel 200 - Request Body: {"data":[{"name":"Tiwa Tayo","firstName":"Tiwa","lastName":"Tayo","email":"tiwa@example.com","phone":"09066734519","preferredUrl":"www.example.com","referral":"Mr Akin","industry":"Information Technology"},{"name":"Tolu Bamgbola","firstName":"Tolu","lastName":"Bamgbola","email":"tolu@example.com","phone":"09065734519","preferredUrl":"www.example.com","referral":"Mr Akin","industry":"Information Technology"}]}
+2024-11-14 18:19:39 [info]: POST /organizations/export/csv 200 - Request Body: {"data":[{"name":"Tiwa Tayo","firstName":"Tiwa","lastName":"Tayo","email":"tiwa@example.com","phone":"09066734519","preferredUrl":"www.example.com","referral":"Mr Akin","industry":"Information Technology"},{"name":"Tolu Bamgbola","firstName":"Tolu","lastName":"Bamgbola","email":"tolu@example.com","phone":"09065734519","preferredUrl":"www.example.com","referral":"Mr Akin","industry":"Information Technology"}]}
+2024-11-14 18:24:28 [info]: GET /super-admin/organizations/export/excel 200
+2024-11-14 18:24:34 [info]: POST /organizations/export/excel 200
+2024-11-14 18:24:49 [info]: POST /organizations/export/csv 200
+2024-11-15 10:02:37 [info]: POST /organizations/export/csv 401
+2024-11-15 10:39:45 [info]: POST /organizations/export/csv 401
+2024-11-15 10:41:07 [info]: POST /organizations/export/csv 200
+2024-11-15 10:42:26 [info]: POST /organizations/export/excel 200
+2024-11-15 11:18:15 [info]: POST /organizations/export/csv 200
+2024-11-15 11:18:36 [info]: POST /organizations/export/excel 200
+2024-11-15 11:18:43 [info]: POST /organizations/export/excel 200
+2024-11-15 12:31:24 [info]: POST /organizations/export/csv 401
+2024-11-15 12:31:30 [info]: POST /organizations/export/excel 401
