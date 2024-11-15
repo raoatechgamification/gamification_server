@@ -76,6 +76,42 @@ export class UserAuthController {
     }
   }
 
+  static async bulkCreateUsers(req: Request, res: Response) {
+    try {
+      const organizationId = req.admin._id;
+
+      if (!req.file) {
+        res.status(400).json({ success: false, error: "No file uploaded" });
+        return;
+      }
+
+      const organization = await Organization.findById(organizationId);
+      if (!organization) {
+        return res.status(400).json({
+          status: false,
+          message: "Organization not found",
+        });
+      }
+
+      const createdUsers = await UserService.createUsersFromExcel(
+        organization,
+        req.file.buffer
+      );
+
+      res.status(201).json({
+        success: true,
+        message:
+          "Users created successfully and onboarding emails sent.",
+      });
+    } catch (error: any) {
+      return res.status(500).json({
+        success: false,
+        message: "An error occurred while creating bulk accounts",
+        error: error.message,
+      });
+    }
+  }
+
   static async registerUser(req: Request, res: Response) {
     try {
       let { email, username, organizationId, password } = req.body;
@@ -200,18 +236,6 @@ export class UserAuthController {
     }
   }
 
-  private static isUser(account: any): account is IUser {
-    return (account as IUser).role === "user";
-  }
-
-  private static isOrganization(account: any): account is IOrganization {
-    return (account as IOrganization).role === "admin";
-  }
-
-  private static isSuperAdmin(account: any): account is ISuperAdmin {
-    return (account as ISuperAdmin).role === "superadmin";
-  }
-
   private static getUserTokenPayload(account: IUser) {
     return {
       id: account._id,
@@ -295,43 +319,6 @@ export class UserAuthController {
     } catch (error: any) {
       res.status(500).json({
         message: "Server error",
-        error: error.message,
-      });
-    }
-  }
-
-  static async bulkCreateUsers(req: Request, res: Response) {
-    try {
-      const organizationId = req.admin._id;
-
-      if (!req.file) {
-        res.status(400).json({ success: false, error: "No file uploaded" });
-        return;
-      }
-
-      const organization = await Organization.findById(organizationId);
-      if (!organization) {
-        return res.status(400).json({
-          status: false,
-          message: "Organization not found",
-        });
-      }
-
-      const createdUsers = await UserService.createUsersFromExcel(
-        organization,
-        req.file.buffer
-      );
-
-      res.status(201).json({
-        success: true,
-        data: createdUsers,
-        message:
-          "All users created successfully and emails sent with login details.",
-      });
-    } catch (error: any) {
-      return res.status(500).json({
-        success: false,
-        message: "An error occurred while creating bulk accounts",
         error: error.message,
       });
     }

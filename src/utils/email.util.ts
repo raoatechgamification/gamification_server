@@ -11,9 +11,9 @@ export interface VariablesInterface {
   organizationName: string;
 }
 
-// const postmarkClient = new postmark.ServerClient(
-//   process.env.POSTMARK_API_TOKEN!
-// );
+const postmarkClient = new postmark.ServerClient(
+  process.env.POSTMARK_API_TOKEN!
+);
 
 function getEmailTemplate(templateName: string, variables: VariablesInterface) {
   const templatePath = path.join(__dirname, "../templates", templateName);
@@ -25,22 +25,22 @@ function getEmailTemplate(templateName: string, variables: VariablesInterface) {
   }, template);
 }
 
-// export async function sendEmail(templateName: string, variables: VariablesInterface) {
-//   if (!process.env.POSTMARK_API_TOKEN) {
-//     throw new Error("Postmark API token is missing");
-//   }
+export async function sendEmail(templateName: string, variables: VariablesInterface) {
+  if (!process.env.POSTMARK_API_TOKEN) {
+    throw new Error("Postmark API token is missing");
+  }
 
-//   const emailTemplate = getEmailTemplate(templateName, variables);
+  const emailTemplate = getEmailTemplate(templateName, variables);
 
-//   await postmarkClient.sendEmail({
-//     From: process.env.EMAIL_USER!,
-//     To: variables.email,
-//     Subject: variables.subject,
-//     HtmlBody: emailTemplate,
-//   });
-// }
+  await postmarkClient.sendEmail({
+    From: `Gamai Support <${process.env.EMAIL_USER}>`,
+    To: variables.email,
+    Subject: variables.subject,
+    HtmlBody: emailTemplate,
+  });
+}
 
-export async function sendEmail(
+export async function sendEmaill(
   templateName: string,
   variables: VariablesInterface
 ) {
