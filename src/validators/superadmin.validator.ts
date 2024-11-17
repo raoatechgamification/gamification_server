@@ -45,7 +45,7 @@ export const organizationIdValidator = [
     .notEmpty()
     .withMessage("Organization ID is required")
     .isMongoId()
-    .withMessage("Organization ID mush be a valid MongoDB ObjectId"),
+    .withMessage("Organization ID must be a valid MongoDB ObjectId"),
 
   errorResponse
 ]
@@ -87,7 +87,7 @@ export const updateUserValidator = [
     .isMongoId()
     .withMessage("Organization ID mush be a valid MongoDB ObjectId"),
 
-  body("yearOfExperience")
+  body("yearsOfExperience")
     .isNumeric()
     .withMessage("Please provide a valid years of experience"),
 

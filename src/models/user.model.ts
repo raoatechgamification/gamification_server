@@ -11,7 +11,7 @@ export interface IUser extends Document {
   password: string;
   batch?: string;
   userType?: string;
-  yearOfExperience?: number;
+  yearsOfExperience?: number;
   highestEducationLevel?: string;
   gender?: string;
   dateOfBirth?: string;
@@ -29,7 +29,7 @@ const UserSchema: Schema<IUser> = new Schema(
     password: { type: String, required: true, },
     batch: { type: String },
     userType: { type: String, default: "learner" },
-    yearOfExperience: { type: Number, default: null, },
+    yearsOfExperience: { type: Number, default: null, },
     highestEducationLevel: { type: String, default: null, },
     gender: { type: String, default: null, },
     dateOfBirth: { type: String, default: null, },

@@ -3,7 +3,12 @@ import { authenticate, authorize } from "../middlewares/auth.middleware";
 
 import { SuperAdminController } from "../controllers/superadmin.controller";
 
-import { userIdValidator, organizationIdValidator, updateUserValidator, updateOrganizationValidator } from "../validators/superadmin.validator"
+import {
+  userIdValidator,
+  organizationIdValidator,
+  updateUserValidator,
+  updateOrganizationValidator,
+} from "../validators/superadmin.validator";
 
 const {
   viewOrganizations,
@@ -12,8 +17,10 @@ const {
   viewAnOrganization,
   updateAUser,
   updateAnOrganization,
-  deleteAUser,
-  deleteAnOrganization,
+  exportUserDataAsCsvFile,
+  exportUserDataAsExcelFile,
+  exportOrganizationDataAsCsvFile,
+  exportOrganizationDataAsExcelFile,
 } = SuperAdminController;
 
 const router = Router();
@@ -25,12 +32,7 @@ router.get(
   viewOrganizations
 );
 
-router.get(
-  "/users/view-all", 
-  authenticate, 
-  authorize("superAdmin"), 
-  viewUsers
-);
+router.get("/users/view-all", authenticate, authorize("superAdmin"), viewUsers);
 
 router.get(
   "/users/:userId",
@@ -38,7 +40,7 @@ router.get(
   authorize("superAdmin"),
   ...userIdValidator,
   viewAUser
-)
+);
 
 router.get(
   "/organizations/:organizationId",
@@ -46,7 +48,7 @@ router.get(
   authorize("superAdmin"),
   ...organizationIdValidator,
   viewAnOrganization
-)
+);
 
 router.put(
   "/users/:userId",
@@ -54,7 +56,7 @@ router.put(
   authorize("superAdmin"),
   ...updateUserValidator,
   updateAUser
-)
+);
 
 router.put(
   "/organizations/:organizationId",
@@ -62,22 +64,34 @@ router.put(
   authorize("superAdmin"),
   ...updateOrganizationValidator,
   updateAnOrganization
-)
+);
 
-router.delete(
-  "/users/:userId",
+router.post(
+  "/organizations/export/csv",
   authenticate,
   authorize("superAdmin"),
-  ...userIdValidator,
-  deleteAUser
-)
+  exportOrganizationDataAsCsvFile
+);
 
-router.delete(
-  "/organizations/:organizationId",
+router.post(
+  "/organizations/export/excel",
   authenticate,
   authorize("superAdmin"),
-  ...organizationIdValidator,
-  deleteAnOrganization
-)
+  exportOrganizationDataAsExcelFile
+);
+
+router.post(
+  "/users/export/csv",
+  authenticate,
+  authorize("superAdmin"),
+  exportUserDataAsCsvFile
+);
+
+router.post(
+  "/users/export/excel",
+  authenticate,
+  authorize("superAdmin"),
+  exportUserDataAsExcelFile
+);
 
 export default router;

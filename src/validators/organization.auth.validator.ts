@@ -50,10 +50,13 @@ export const createOrganizationValidator = [
     .isString()
     .withMessage("Please confirm your password"),
 
-  body("referral").optional().isString().withMessage("Invalid referral"),
+  body("referral")
+    .optional()
+    .isString()
+    .withMessage("Invalid referral"),
 
   body("referralSource")
-    .notEmpty()
+    .optional()
     .isString()
     .withMessage("Kindly fill in how you heard about us"),
 

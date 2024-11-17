@@ -9,7 +9,7 @@ export class UserController {
   async editProfile(req: Request, res: Response, next: NextFunction) {
     try {
       const {
-        yearOfExperience,
+        yearsOfExperience,
         highestEducationLevel,
         gender,
         dateOfBirth,
@@ -24,7 +24,7 @@ export class UserController {
         userId,
         {
           $set: {
-            yearOfExperience,
+            yearsOfExperience,
             highestEducationLevel,
             gender,
             dateOfBirth,
