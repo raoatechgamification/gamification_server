@@ -1,10 +1,9 @@
 import { Request, Response, NextFunction } from "express";
 import { ResponseHandler } from "../../middlewares/responseHandler.middleware";
-import Organization, {
-  IOrganization,
-} from "../../models/organization.model"; 
+import Organization, { IOrganization } from "../../models/organization.model";
 import { hashPassword, comparePassword } from "../../utils/hash";
 import { generateToken } from "../../utils/jwt";
+import { sendOrganizationOnboardingMail } from "../../services/sendMail.service";
 
 export class AdminAuthController {
   static async registerOrganization(
@@ -14,17 +13,18 @@ export class AdminAuthController {
   ) {
     try {
       const {
-        name, 
-        email, 
-        phone, 
-        preferredUrl, 
-        password, 
-        confirmPassword, 
-        referral, 
+        name,
+        email,
+        phone,
+        preferredUrl,
+        password,
+        confirmPassword,
+        referral,
         referralSource,
       } = req.body;
+      
+      console.log("Organization password", password)
 
-      // Check for existing email
       const emailExists = await Organization.findOne({ email });
       if (emailExists) {
         return ResponseHandler.failure(
@@ -34,7 +34,6 @@ export class AdminAuthController {
         );
       }
 
-      // Check for existing phone number
       const phoneExists = await Organization.findOne({ phone });
       if (phoneExists) {
         return ResponseHandler.failure(
@@ -44,31 +43,36 @@ export class AdminAuthController {
         );
       }
 
-      // Check for password match
       if (password !== confirmPassword) {
         return ResponseHandler.failure(res, "Passwords do not match", 400);
       }
 
-      // Hash the password
       const hashedPassword = await hashPassword(password);
 
-      // Create the new organization
       const newOrganization = await Organization.create({
         name,
         email,
         phone,
         preferredUrl,
-        password: hashedPassword, // Store the hashed password
+        password: hashedPassword,
         referral,
         referralSource,
-        role: "admin", // Set the role as needed
+        role: "admin",
       });
 
-      // Retrieve the created organization, excluding sensitive fields
-      const organization: IOrganization | null =
-        await Organization.findById(newOrganization._id).select(
-          "-password -role"
-        ); // Exclude password and role
+      const organization: IOrganization | null = await Organization.findById(
+        newOrganization._id
+      ).select("-password");
+
+      const emailVariables = {
+        email,
+        password,
+        organizationName: name,
+        subject: "Welcome to Gamai!",
+      };
+
+      console.log("Sending email with password:", emailVariables.password);
+      await sendOrganizationOnboardingMail(emailVariables);
 
       return ResponseHandler.success(
         res,
@@ -83,7 +87,7 @@ export class AdminAuthController {
 
   static async loginOrganization(
     req: Request,
-    res: Response,
+    res: Response, 
     next: NextFunction
   ) {
     try {
@@ -125,9 +129,9 @@ export class AdminAuthController {
 
       const token = await generateToken(payload);
 
-      const response = await Organization.findById(registeredOrganization._id).select(
-        "-password -role"
-      )
+      const response = await Organization.findById(
+        registeredOrganization._id
+      ).select("-password -role");
 
       return ResponseHandler.loginResponse(
         res,
