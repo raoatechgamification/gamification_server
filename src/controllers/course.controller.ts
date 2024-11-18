@@ -15,15 +15,9 @@ export class CourseController {
       const organisationId = req.admin._id;
 
    
-      const files = req.files as Express.Multer.File[];
-
-
-
-      
+      const files = req.files as Express.Multer.File[];      
       const { 
-        
         duration, 
-   
         landingPageTitle,
         serviceTitleDescription,
         servicePicture,

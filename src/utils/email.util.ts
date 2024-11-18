@@ -11,6 +11,13 @@ export interface VariablesInterface {
   organizationName: string;
 }
 
+export interface OrganizationOnboardingVariablesInterface {
+  email: string;
+  password: string;
+  subject: string;
+  organizationName: string;
+}
+
 const postmarkClient = new postmark.ServerClient(
   process.env.POSTMARK_API_TOKEN!
 );
@@ -25,7 +32,7 @@ function getEmailTemplate(templateName: string, variables: VariablesInterface) {
   }, template);
 }
 
-export async function sendEmail(templateName: string, variables: VariablesInterface) {
+export async function sendEmail(templateName: string, variables: any) {
   if (!process.env.POSTMARK_API_TOKEN) {
     throw new Error("Postmark API token is missing");
   }

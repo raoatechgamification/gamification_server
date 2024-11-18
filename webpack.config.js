@@ -23,6 +23,7 @@ module.exports = (env, argv) => {
           { from: "package-lock.json" },
           { from: "env/default.json" },
           { from: `env/${env.APP_ENV}.json` },
+          { from: "src/templates", to: "templates" },
         ],
       }),
       new webpack.DefinePlugin({
