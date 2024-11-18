@@ -4,6 +4,7 @@ import { hashPassword } from "../utils/hash";
 import User, { IUser } from "../models/user.model";
 import { OrganizationDocument } from "../models/organization.model";
 import { sendLoginEmail } from "./sendMail.service";
+import { verifyEmailTemplate } from "utils/email";
 
 class UserService {
   async createUsersFromExcel(
@@ -50,6 +51,7 @@ class UserService {
         subject: "Onboarding Email",
       };
 
+     
       await sendLoginEmail(emailVariables);
     }
 
