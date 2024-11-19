@@ -8,10 +8,12 @@ import {
   createOrganizationValidator,
   loginValidator,
 } from "../validators/organization.auth.validator";
+
 import {
   registerUserValidator,
   loginUserValidator,
 } from "../validators/user.auth.validator";
+
 import { superAdminValidator } from "../validators/superadmin.validator";
 
 import { AdminAuthController } from "../controllers/auth/auth.admin.controller";
