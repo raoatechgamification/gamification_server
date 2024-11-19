@@ -791,3 +791,8 @@
 2024-11-18 02:05:27 [info]: POST /org/register 201 - Request Body: {"name":"Timpel and Co.","email":"seunodueso@gmail.com","phone":"09066318588","preferredUrl":"https://timpel.com","password":"Timpearl05$$$","confirmPassword":"Timpearl05$$$","referral":"","referralSource":"linkedin"}
 2024-11-18 02:07:14 [info]: POST /org/register 201 - Request Body: {"name":"Timpel and Co.","email":"seunodueso@gmail.com","phone":"09066318588","preferredUrl":"https://timpel.com","password":"Timpearl05$","confirmPassword":"Timpearl05$","referral":"","referralSource":"linkedin"}
 2024-11-18 02:14:01 [info]: POST /org/register 201 - Request Body: {"name":"Timpel and Co.","email":"seunodueso@gmail.com","phone":"09066318588","preferredUrl":"https://timpel.com","password":"Timpearl05$","confirmPassword":"Timpearl05$","referral":"","referralSource":"linkedin"}
+2024-11-18 15:02:47 [info]: POST /org/register 201 - Request Body: {"name":"Timpel and Co.","email":"backendseun@gmail.com","phone":"09066348588","preferredUrl":"https://timpel.com","password":"Timpearl05$","confirmPassword":"Timpearl05$","referral":"","referralSource":"linkedin"}
+2024-11-18 15:03:21 [info]: POST /login 200 - Request Body: {"name":"Timpel and Co.","email":"backendseun@gmail.com","phone":"09066348588","preferredUrl":"https://timpel.com","password":"Timpearl05$","confirmPassword":"Timpearl05$","referral":"","referralSource":"linkedin"}
+2024-11-18 15:04:21 [info]: POST /single-create 201 - Request Body: {"firstName":"Oluwaseun","lastName":"Odueso","email":"backendseun@gmail.com","role":"learner","batch":"2024","sendEmail":true}
+2024-11-18 15:06:35 [info]: POST /bulk-create 500
+2024-11-18 15:10:50 [info]: POST /bulk-create 201

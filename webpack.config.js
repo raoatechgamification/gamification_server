@@ -23,7 +23,10 @@ module.exports = (env, argv) => {
           { from: "package-lock.json" },
           { from: "env/default.json" },
           { from: `env/${env.APP_ENV}.json` },
-          { from: "src/templates", to: "templates" },
+          {
+            from: path.resolve(__dirname, 'src/templates'),
+            to: path.resolve(__dirname, 'dist/templates'), // Copy templates to the dist directory
+          },
         ],
       }),
       new webpack.DefinePlugin({
@@ -34,7 +37,7 @@ module.exports = (env, argv) => {
       __dirname: true,
     },
     resolve: {
-      extensions: [".ts", ".js", ".json"],
+      extensions: [".ts", ".js", ".json", ".html"],
     },
     module: {
       rules: [
@@ -44,6 +47,10 @@ module.exports = (env, argv) => {
               loader: "ts-loader",
             },
           ],
+        },
+        {
+          test: /\.html$/,
+          use: 'html-loader', // This allows Webpack to bundle HTML templates
         },
       ],
     },

@@ -23,7 +23,20 @@ const postmarkClient = new postmark.ServerClient(
 );
 
 function getEmailTemplate(templateName: string, variables: VariablesInterface) {
-  const templatePath = path.join(__dirname, "../templates", templateName);
+  // let templatePath;
+
+  // if (process.env.NODE_ENV === "production" || process.env.NODE_ENV === "staging") {
+  //   templatePath = path.join(process.cwd(), "dist/templates", templateName);
+  // } else {
+  //   templatePath = path.join(__dirname, "../templates", templateName);
+  // }
+
+  const templatePath = path.join(process.cwd(), "dist/templates", templateName);
+
+  if (!fs.existsSync(templatePath)) {
+    throw new Error(`Email template not found at ${templatePath}`);
+  }
+
   let template = fs.readFileSync(templatePath, "utf-8");
 
   return Object.entries(variables).reduce((acc, [key, value]) => {
