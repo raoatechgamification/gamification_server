@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Download Certificate</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f8f9fa;
+      padding: 20px;
+    }
+    form {
+      max-width: 400px;
+      margin: auto;
+      padding: 20px;
+      background: white;
+      border: 1px solid #ddd;
+      border-radius: 8px;
+    }
+    button {
+      background-color: #572E7F;
+      color: white;
+      padding: 10px 15px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+    button:hover {
+      background-color: #4b246f;
+    }
+  </style>
+</head>
+<body>
+  <h1>Download Certificate</h1>
+  <form id="downloadForm">
+    <label for="certificateId">Certificate ID:</label><br>
+    <input type="text" id="certificateId" name="certificateId" required><br><br>
+    <button type="submit">Download Certificate</button>
+  </form>
+
+  <script>
+    document.getElementById('downloadForm').addEventListener('submit', async (event) => {
+      event.preventDefault();
+      const certificateId = document.getElementById('certificateId').value;
+
+      if (!certificateId) {
+        alert('Please enter a Certificate ID');
+        return;
+      }
+
+      try {
+        const response = await fetch(`localhost:3000/api/v1/certificates/${certificateId}/download`, {
+          method: 'GET',
+        });
+        if (response.ok) {
+          const blob = await response.blob();
+          const url = window.URL.createObjectURL(blob);
+          const a = document.createElement('a');
+          a.href = url;
+          a.download = `Certificate-${certificateId}.pdf`;
+          a.click();
+          window.URL.revokeObjectURL(url);
+        } else {
+          const error = await response.json();
+          alert(`Error: ${error.message}`);
+        }
+      } catch (err) {
+        console.error(err);
+        alert('An error occurred while downloading the certificate.');
+      }
+    });
+  </script>
+</body>
+</html>
