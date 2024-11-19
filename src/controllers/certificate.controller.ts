@@ -76,6 +76,22 @@ class CertificateController {
     }
   }
 
+  async getAllCertificates(req: Request, res: Response) {
+    try {
+      const certificates = await Certificate.find({});
+      return ResponseHandler.success(
+        res, 
+        certificates, 
+      )
+    } catch (error: any) {
+      return ResponseHandler.failure(
+        res,
+        `Error retrieving all certificates: ${error.message}`,
+        500
+      );
+    }
+  }
+
   async downloadCertificate(req: Request, res: Response) {
     try {
       const { id } = req.params;

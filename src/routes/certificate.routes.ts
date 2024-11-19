@@ -6,7 +6,8 @@ import CertificateController from "../controllers/certificate.controller";
 const { 
   generateCertificate, 
   getCertificateById, 
-  downloadCertificate 
+  downloadCertificate,
+  getAllCertificates 
 } = CertificateController;
 
 
@@ -22,13 +23,20 @@ router.post(
 router.get(
   "/:id",
   authenticate,
-  generateCertificate
+  getCertificateById
 )
 
 router.get(
   "/:id/download",
   authenticate,
-  generateCertificate
+  downloadCertificate
+)
+
+router.get(
+  "/",
+  authenticate,
+  authorize("admin"),
+  getAllCertificates
 )
 
 
