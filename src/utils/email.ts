@@ -32,17 +32,15 @@ export const verifyEmailTemplate = (emailVariables: VariablesInterface) => {
     To: `${emailVariables.email}`,
     Subject: "We are thrilled to have you",
     HtmlBody: `<html lang="en">
-    <head>
-      <meta charset="UTF-8" />
-      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-      <title>Document</title>
-      <style>
-        @import url("https://fonts.googleapis.com/css2?family=Bai+Jamjuree:wght@600;700&display=swap");
-        @import url("https://fonts.googleapis.com/css2?family=Nunito+Sans:opsz,wght@6..12,400;6..12,600&display=swap");
-        table,
-        td,
-        div,
-        body {
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{{Subject}}</title>
+    <style>
+      /* Import Roboto font */
+      @import url("https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&display=swap");
+
+      body {
         font-family: "Roboto", Arial, sans-serif;
         background-color: #f4f4f9;
         margin: 0;
@@ -121,9 +119,9 @@ export const verifyEmailTemplate = (emailVariables: VariablesInterface) => {
         color: #2b80d5; /* Standard blue link color */
         /* text-decoration: underline; */
       }
-      </style>
-    </head>
-    <body>
+    </style>
+  </head>
+  <body>
     <div class="email-container">
       <!-- Header with Logo -->
       <div class="header">
@@ -140,7 +138,7 @@ export const verifyEmailTemplate = (emailVariables: VariablesInterface) => {
           <p>Dear {{firstName}},</p>
           <p>
             Congratulations! You have been on-boarded successfully by
-            ${emailVariables.organizationName} on Gamai.
+            {{organizationName}} on Gamai.
           </p>
           <p>Your details are given below:</p>
           <br/>
@@ -184,8 +182,7 @@ export const verifyEmailTemplate = (emailVariables: VariablesInterface) => {
       </div>
     </div>
   </body>
-  </html>
-  
-            `,
+</html>
+ `,
   });
 };
