@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Certificate of Completion</title>
+    <link rel="stylesheet" href="../styles/learnerCertificate.css" />
+  </head>
+  <body>
+    <div class="certificate-container">
+      <div class="certificate-border">
+        <div class="certificate-content">
+          <img
+            src="https://res.cloudinary.com/dldchwdkn/image/upload/v1730464458/gamai-logo_gzmck8.png"
+            alt="Company Logo"
+            class="logo"
+          />
+          <br>
+          <h1 class="certificate-title">Certificate of Completion</h1>
+          <br>
+          <p class="certifies-text">THIS CERTIFIES THAT</p>
+          <br>
+          <h2 class="trainee-name">{{ traineeName }}</h2>
+          <div class="line"></div>
+          <p class="awarded-date">AWARDED ON {{ date }}</p>
+          <br>
+          <div class="organization-signature">
+            <div class="organization">
+              <p class="organization-name">{{ nameOfOrganization }}</p>
+              <div class="line"></div>
+              <p>Organisation Name</p>
+            </div>
+
+            <div class="signature">
+              <img
+                src="signature-url.png"
+                alt="Signature"
+                class="signature-image"
+              />
+              <div class="line"></div>
+              <p>Signature</p>
+            </div>
+          </div>
+
+          <p class="completion-text">
+            HAS COMPLETED ALL THE REQUIREMENTS FOR THE COURSE
+            <strong>{{ nameOfCourse }}</strong>
+          </p>
+          <p class="footer-text">
+            Powered by
+            <a href="https://www.learnerkia.com" target="_blank">gamai</a>
+            from <a href="https://www.raoatech.com" target="_blank">raoatech</a>
+          </p>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

@@ -796,3 +796,23 @@
 2024-11-18 15:04:21 [info]: POST /single-create 201 - Request Body: {"firstName":"Oluwaseun","lastName":"Odueso","email":"backendseun@gmail.com","role":"learner","batch":"2024","sendEmail":true}
 2024-11-18 15:06:35 [info]: POST /bulk-create 500
 2024-11-18 15:10:50 [info]: POST /bulk-create 201
+2024-11-19 14:50:02 [info]: GET / 401
+2024-11-19 14:53:36 [info]: POST /login 200 - Request Body: {"email":"seun@gmail.com","password":"Omodaratan05$#"}
+2024-11-19 14:54:06 [info]: POST /login 200 - Request Body: {"email":"seunoduez@gmail.com","password":"Timpearl05$$$"}
+2024-11-19 14:54:56 [info]: GET / 200
+2024-11-19 15:04:51 [info]: POST / 500 - Request Body: {"organizationLogo":"https://res.cloudinary.com/dldchwdkn/image/upload/v1730464458/gamai-logo_gzmck8.png","organizationName":"Harvard University","certificateTitle":"Cyber Security 455","contentsBeforeRecipient":"This certifies that ","contentsAfterRecipient":"HAS COMPLETED ALL THE REQUIREMENTS FOR THE COURSE CYBER SECURITY 455","recipientName":"Oluwaseun Odueso","awardedOn":"JANUARY 12, 2026","expiryDate":"","authorizedHeadName":"Harvard University","authorizedSignature":"https://res.cloudinary.com/dldchwdkn/image/upload/v1731890144/x_mrq9z8.png"}
+2024-11-19 15:32:48 [info]: POST / 500 - Request Body: {"organizationLogo":"https://res.cloudinary.com/dldchwdkn/image/upload/v1730464458/gamai-logo_gzmck8.png","organizationName":"Harvard University","certificateTitle":"Cyber Secu8rity 455","contentsBeforeRecipient":"This certifies that ","contentsAfterRecipient":"HAS COMPLETED ALL THE REQUIREMENTS FOR THE COURSE CYBER SECURITY 455","recipientName":"Oluwaseun Odueso","awardedOn":"JANUARY 12, 2026","expiryDate":"","authorizedHeadName":"Harvard University","authorizedSignature":"https://res.cloudinary.com/dldchwdkn/image/upload/v1731890144/x_mrq9z8.png"}
+2024-11-19 15:34:32 [info]: POST / 201 - Request Body: {"organizationLogo":"https://res.cloudinary.com/dldchwdkn/image/upload/v1730464458/gamai-logo_gzmck8.png","organizationName":"Harvard University","certificateTitle":"Cyber Secu8rity 455","contentsBeforeRecipient":"This certifies that ","contentsAfterRecipient":"HAS COMPLETED ALL THE REQUIREMENTS FOR THE COURSE CYBER SECURITY 455","recipientName":"Oluwaseun Odueso","awardedOn":"JANUARY 12, 2026","expiryDate":"","authorizedHeadName":"Harvard University","authorizedSignature":"https://res.cloudinary.com/dldchwdkn/image/upload/v1731890144/x_mrq9z8.png"}
+2024-11-19 15:39:00 [info]: GET /CERT-1732026872157-O47EV80BA/download 401
+2024-11-19 15:39:06 [info]: GET /CERT-1732026872157-O47EV80BA/download 401
+2024-11-19 15:40:08 [info]: GET /CERT-1732026872157-O47EV80BA/download 500
+2024-11-19 15:40:50 [info]: GET /CERT-1732026872157-O47EV80BA/download 500
+2024-11-19 15:41:07 [info]: GET /673ca1f82fc18ec375a28e02/download 404
+2024-11-19 15:41:14 [info]: GET /673ca1f82fc18ec375a28e02/download 404
+2024-11-19 15:41:21 [info]: GET /673ca1f82fc18ec375a28e02/download 404
+2024-11-19 15:41:24 [info]: GET /673ca1f82fc18ec375a28e02/download 404
+2024-11-19 15:41:46 [info]: GET /CERT-1732026872157-O47EV80BA/download 500
+2024-11-19 15:49:32 [info]: GET /CERT-1732026872157-O47EV80BA/download 200
+2024-11-19 16:02:53 [info]: GET /CERT-1732026872157-O47EV80BA/download 304
+2024-11-20 09:18:44 [info]: GET /CERT-1732026872157-O47EV80BA/download 200
+2024-11-20 11:31:56 [info]: GET /CERT-1732026872157-O47EV80BA/download 200

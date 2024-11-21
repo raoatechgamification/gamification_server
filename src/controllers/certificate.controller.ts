@@ -19,7 +19,10 @@ class CertificateController {
         authorizedSignature,
       } = req.body;
 
+      const organizationId = req.admin._id;
+
       const newCertificate = new Certificate({
+        organizationId,
         organizationLogo,
         organizationName,
         certificateTitle,
@@ -31,15 +34,15 @@ class CertificateController {
         authorizedHeadName,
         authorizedSignature,
       });
-  
+
       const savedCertificate = await newCertificate.save();
 
       return ResponseHandler.success(
-        res, 
-        savedCertificate, 
+        res,
+        savedCertificate,
         "Certificate generated successfully",
         201
-      )
+      );
     } catch (error: any) {
       return ResponseHandler.failure(
         res,
@@ -53,20 +56,13 @@ class CertificateController {
     try {
       const { id } = req.params;
 
-      const certificate = await Certificate.findOne({ certificateId: id })
+      const certificate = await Certificate.findOne({ certificateId: id });
 
       if (!certificate) {
-        return ResponseHandler.failure(
-          res, 
-          "Certificate not found",
-          404
-        )
+        return ResponseHandler.failure(res, "Certificate not found", 404);
       }
 
-      return ResponseHandler.success(
-        res, 
-        certificate, 
-      )
+      return ResponseHandler.success(res, certificate);
     } catch (error: any) {
       return ResponseHandler.failure(
         res,
@@ -79,10 +75,7 @@ class CertificateController {
   async getAllCertificates(req: Request, res: Response) {
     try {
       const certificates = await Certificate.find({});
-      return ResponseHandler.success(
-        res, 
-        certificates, 
-      )
+      return ResponseHandler.success(res, certificates);
     } catch (error: any) {
       return ResponseHandler.failure(
         res,
@@ -97,23 +90,26 @@ class CertificateController {
       const { id } = req.params;
       const certificate = await Certificate.findOne({ certificateId: id });
 
+      console.log("Certificate data:", certificate);
+
       if (!certificate) {
-        return ResponseHandler.failure(
-          res, 
-          "Certificate not found",
-          404
-        )
+        return ResponseHandler.failure(res, "Certificate not found", 404);
       }
 
-      const pdfBuffer = generateCertificatePDF(certificate);
+      const pdfBuffer = await generateCertificatePDF(certificate);
 
-      res.setHeader('Content-Type', 'application/pdf');
-      res.setHeader('Content-Disposition', `attachment; filename=${certificate.certificateId}.pdf`);
+      res.setHeader("Content-Type", "application/pdf");
+      res.setHeader(
+        "Content-Disposition",
+        `attachment; filename=${certificate.certificateId}.pdf`
+      );
       res.send(pdfBuffer);
     } catch (error: any) {
+      console.error("Error generating certificate PDF:", error.message);
+
       return ResponseHandler.failure(
         res,
-        `Error generating certificae PDF: ${error.message}`,
+        `Error generating certificate PDF: ${error.message}`,
         500
       );
     }

@@ -28,7 +28,7 @@ router.get(
 
 router.get(
   "/:id/download",
-  authenticate,
+  // authenticate,
   downloadCertificate
 )
 

@@ -50,7 +50,7 @@
       }
 
       try {
-        const response = await fetch(`localhost:3000/api/v1/certificates/${certificateId}/download`, {
+        const response = await fetch(`http://localhost:4000/api/v1/certificates/${certificateId}/download`, {
           method: 'GET',
         });
         if (response.ok) {

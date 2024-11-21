@@ -12,6 +12,7 @@ import paymentRoutes from "./payment.routes";
 import billRoutes from "./bill.routes";
 import sessionRoutes from "./session.routes";
 import adminRoutes from "./admin.routes";
+import certificateRoutes from "./certificate.routes";
 
 router.use("/auth", authRoutes);
 router.use("/super-admin", superAdminRoutes);
@@ -24,6 +25,7 @@ router.use("/notifications", notificationRoutes);
 router.use("/payments", paymentRoutes);
 router.use("/bill", billRoutes);
 router.use("/session", sessionRoutes);
+router.use("/certificates", certificateRoutes);
 
 router.use("/", (req, res) => {
   res.json({

@@ -1,6 +1,7 @@
 import mongoose, { Schema, Document, Model } from 'mongoose';
 
 export interface ICertificate extends Document {
+  organizationId: string;
   organizationLogo: string; // URL of the logo
   organizationName: string;
   certificateTitle: string;
@@ -9,7 +10,7 @@ export interface ICertificate extends Document {
   recipientName: string;
   awardedOn: Date;
   dateIssued: Date;
-  expiryDate: Date;
+  expiryDate?: Date;
   authorizedHeadName: string;
   authorizedSignature: string; // URL of the signature image
   certificateId: string; // Unique identifier
@@ -17,6 +18,7 @@ export interface ICertificate extends Document {
 
 const CertificateSchema: Schema<ICertificate> = new Schema(
   {
+    organizationId: { type: String, required: true },
     organizationLogo: { type: String, required: true },
     organizationName: { type: String, required: true },
     certificateTitle: { type: String, required: true },
@@ -25,10 +27,10 @@ const CertificateSchema: Schema<ICertificate> = new Schema(
     recipientName: { type: String, required: true },
     awardedOn: { type: Date, required: true },
     dateIssued: { type: Date, required: true, default: Date.now },
-    expiryDate: { type: Date, required: true },
+    expiryDate: { type: Date },
     authorizedHeadName: { type: String, required: true },
     authorizedSignature: { type: String, required: true },
-    certificateId: { type: String, required: true, unique: true },
+    certificateId: { type: String, unique: true },
   },
   {
     timestamps: true, 

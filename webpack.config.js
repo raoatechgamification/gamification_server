@@ -27,6 +27,10 @@ module.exports = (env, argv) => {
             from: path.resolve(__dirname, 'src/templates'),
             to: path.resolve(__dirname, 'dist/templates'), // Copy templates to the dist directory
           },
+          {
+            from: path.resolve(__dirname, 'src/styles'),
+            to: path.resolve(__dirname, 'dist/styles'), // Copy templates to the dist directory
+          },
         ],
       }),
       new webpack.DefinePlugin({
@@ -37,7 +41,7 @@ module.exports = (env, argv) => {
       __dirname: true,
     },
     resolve: {
-      extensions: [".ts", ".js", ".json", ".html"],
+      extensions: [".ts", ".js", ".json", ".html", ".css"],
     },
     module: {
       rules: [
