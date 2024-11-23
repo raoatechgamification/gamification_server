@@ -18,7 +18,7 @@ router.post('/',
     upload.array("file", 5),
          CreateLandingPage);
 router.get('/', authenticate, authorize("admin"),  GetAllLandingPages);
-router.get('/:id', authenticate, authorize("admin"),  GetLandingPageById);
+router.get('/:id', authenticate, authorize("admin"), GetLandingPageById);
 router.put('/:id', authenticate, authorize("admin"),  UpdateLandingPage);
 router.delete('/:id', authenticate, authorize("admin"),  DeleteLandingPage);
 

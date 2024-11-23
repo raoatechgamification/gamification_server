@@ -38,10 +38,10 @@ export class CourseController {
         actualCost,
         sharing,
         sharingValue,
-        paymentStartDate,
-        paymentEndDate,
-        paymentStartTime,
-        paymentEndTime,
+        visibilityStartDate,
+        visibilityEndDate,
+        visibilityStartTime,
+        visibilityEndTime,
         curriculum,
         teachingMethod 
       } = req.body;
@@ -87,10 +87,10 @@ export class CourseController {
         actualCost,
         sharing,
         sharingValue,
-        paymentStartDate,
-        paymentEndDate,
-        paymentStartTime,
-        paymentEndTime,
+        visibilityStartDate,
+        visibilityEndDate,
+        visibilityStartTime,
+        visibilityEndTime,
         curriculum: Urls[1],
         teachingMethod 
       });

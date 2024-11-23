@@ -23,10 +23,10 @@ export interface ISubService extends Document {
   actualCost?: number;
   sharing?: string;
   sharingValue?: number;
-  paymentStartDate?: Date;
-  paymentEndDate?: Date;
-  paymentStartTime?: string;
-  paymentEndTime?: string;
+  visibilityStartDate?: Date;
+  visibilityEndDate?: Date;
+  visibilityStartTime?: string;
+  visibilityEndTime?: string;
   curriculum?: string[];
   teachingMethod?: string;
 }
@@ -54,10 +54,10 @@ const SubServiceSchema = new Schema<ISubService>({
   actualCost: { type: Number },
   sharing: { type: String },
   sharingValue: { type: Number },
-  paymentStartDate: { type: Date },
-  paymentEndDate: { type: Date },
-  paymentStartTime: { type: String },
-  paymentEndTime: { type: String },
+  visibilityStartDate: { type: Date },
+  visibilityEndDate: { type: Date },
+  visibilityStartTime: { type: String },
+  visibilityEndTime: { type: String },
   curriculum: [{ type: String }],
   teachingMethod: { type: String },
   

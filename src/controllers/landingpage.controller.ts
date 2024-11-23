@@ -8,6 +8,7 @@ export class LandingPageController {
   async CreateLandingPage(req: Request, res: Response, next: NextFunction) {
     try {
       const files = req.files as Express.Multer.File[];
+      const organisationId = req.admin._id
       const {
         landingPageTitle,
         serviceTitleDescription,
@@ -29,10 +30,10 @@ export class LandingPageController {
         actualCost,
         sharing,
         sharingValue,
-        paymentStartDate,
-        paymentEndDate,
-        paymentStartTime,
-        paymentEndTime,
+        visibilityStartDate,
+        visibilityEndDate,
+        visibilityStartTime,
+        visibilityEndTime,
         teachingMethod,
         subservice,
       } = req.body;
@@ -63,11 +64,12 @@ export class LandingPageController {
           actualCost: Number(actualCost),
           sharing: Number(sharing),
           sharingValue: Number(sharingValue),
-          paymentStartDate,
-          paymentEndDate,
-          paymentStartTime,
-          paymentEndTime,
+          visibilityStartDate,
+          visibilityEndDate,
+          visibilityStartTime,
+          visibilityEndTime,
           teachingMethod,
+          organisationId
         });
       }
   
@@ -129,6 +131,7 @@ export class LandingPageController {
 
       // Create LandingPage
       const newLandingPage = await LandingPage.create({
+        organisationId,
         landingPageTitle,
         serviceTitleDescription,
         servicePicture: Urls[0], // Cloudinary URL for service picture
@@ -148,7 +151,8 @@ export class LandingPageController {
 
   async GetAllLandingPages(req: Request, res: Response, next: NextFunction) {
     try {
-      const landingPages = await LandingPage.find()
+      const organisationId = req.admin._id; 
+      const landingPages = await LandingPage.find({organisationId})
         .populate('course') // Populate course details
         .populate('subservice'); // Populate subservice details
       res.status(200).json({ data: landingPages });
