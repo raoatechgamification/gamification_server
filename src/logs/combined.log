@@ -791,3 +791,137 @@
 2024-11-18 02:05:27 [info]: POST /org/register 201 - Request Body: {"name":"Timpel and Co.","email":"seunodueso@gmail.com","phone":"09066318588","preferredUrl":"https://timpel.com","password":"Timpearl05$$$","confirmPassword":"Timpearl05$$$","referral":"","referralSource":"linkedin"}
 2024-11-18 02:07:14 [info]: POST /org/register 201 - Request Body: {"name":"Timpel and Co.","email":"seunodueso@gmail.com","phone":"09066318588","preferredUrl":"https://timpel.com","password":"Timpearl05$","confirmPassword":"Timpearl05$","referral":"","referralSource":"linkedin"}
 2024-11-18 02:14:01 [info]: POST /org/register 201 - Request Body: {"name":"Timpel and Co.","email":"seunodueso@gmail.com","phone":"09066318588","preferredUrl":"https://timpel.com","password":"Timpearl05$","confirmPassword":"Timpearl05$","referral":"","referralSource":"linkedin"}
+2024-11-21 15:36:16 [info]: POST /org/register 201 - Request Body: {"name":"Test and Co.","email":"test@gmail.com","phone":"09066318532","preferredUrl":"https://ajy.com","password":"Test2024!","confirmPassword":"Test2024!"}
+2024-11-21 15:37:40 [info]: POST /login 200 - Request Body: {"email":"test@gmail.com","password":"Test2024!"}
+2024-11-21 15:42:28 [info]: POST /landing-page 404 - Request Body: {"landingPageTitle":"My Landing Page","serviceTitleDescription":"Awesome services","serviceType":"Premium","serviceItem":"Consulting","serviceItemDescription":"Best consulting services","course":[{"title":"Course 1","price":100}],"subservice":[{"title":"Service 1","price":200}]}
+2024-11-21 15:44:55 [info]: POST /api/v1/landing-page 500 - Request Body: {"landingPageTitle":"My Landing Page","serviceTitleDescription":"Awesome services","serviceType":"Premium","serviceItem":"Consulting","serviceItemDescription":"Best consulting services","course":[{"title":"Course 1","price":100}],"subservice":[{"title":"Service 1","price":200}]}
+2024-11-21 15:48:15 [info]: POST / 201 - Request Body: {"landingPageTitle":"My Landing Page","serviceTitleDescription":"Awesome services","serviceType":"Premium","serviceItem":"Consulting","serviceItemDescription":"Best consulting services","course":[{"title":"Course 1","price":100}],"subservice":[{"title":"Service 1","price":200}]}
+2024-11-21 18:12:46 [info]: POST /api/v1/landing-page 500
+2024-11-21 18:14:56 [info]: POST /api/v1/landing-page 500
+2024-11-21 18:15:16 [info]: POST /api/v1/landing-page 500
+2024-11-22 11:26:27 [info]: POST / 403
+2024-11-22 11:29:00 [info]: POST /login 400 - Request Body: {"email":"test@gmail.com","password":"Test2024!"}
+2024-11-22 11:29:23 [info]: POST /login 400 - Request Body: {"email":"test@gmail.com","password":"Test2024!"}
+2024-11-22 11:30:10 [info]: POST /login 400 - Request Body: {"email":"test2@gmail.com","password":"Test2024!"}
+2024-11-22 11:30:29 [info]: POST /api/v1/auth/org/register 422 - Request Body: {"name":"Test and Co.","email":"test@gmail.com","phone":"09066318532","preferredUrl":"https://ajy.com","password":"Test2024!","confirmPassword":"Test2024!"}
+2024-11-22 11:31:02 [info]: POST /org/register 400 - Request Body: {"name":"Test and Co.","email":"ajibadeemmanuel58@gmail.com","phone":"09066318532","preferredUrl":"https://ajy.com","password":"Test2024!","confirmPassword":"Test2024!"}
+2024-11-22 11:31:11 [info]: POST /org/register 400 - Request Body: {"name":"Test and Co.","email":"ajibadeemmanuel58@gmail.com","phone":"09066318539","preferredUrl":"https://ajy.com","password":"Test2024!","confirmPassword":"Test2024!"}
+2024-11-22 11:31:22 [info]: POST /org/register 201 - Request Body: {"name":"Test and Co.","email":"ajibadeemmanuel58@gmail.com","phone":"09066318500","preferredUrl":"https://ajy.com","password":"Test2024!","confirmPassword":"Test2024!"}
+2024-11-22 11:31:49 [info]: POST /login 200 - Request Body: {"email":"ajibadeemmanuel58@gmail.com","password":"Test2024!"}
+2024-11-22 11:32:32 [info]: POST /api/v1/landing-page 500
+2024-11-22 11:34:18 [info]: POST /create 401
+2024-11-22 11:34:38 [info]: POST /api/v1/course/create 500 - Request Body: {"title":"title","objective":"objective","price":"20","duration":"duration","lessonFormat":"lessonFormat","landingPageTitle":"landingPageTitle 2","serviceTitleDescription":"serviceTitleDescription","serviceType":"serviceType","serviceItem":"serviceItem","serviceItemDescription":"serviceItemDescription","courseCode":"courseCode","courseLevel":"courseLevel","startDate":"startDate","endDate":"endDate","numberOfHoursPerDay":"10","numberOfDaysPerWeek":"10","cost":"100","promo":"10","promoCode":"promoCode","promoValue":"10","platformCharge":"10","actualCost":"10","sharing":"10","sharingValue":"10","paymentStartDate":"paymentStartDate","paymentEndDate":"paymentEndDate","paymentStartTime":"paymentStartTime","paymentEndTime":"paymentEndTime","teachingMethod":"teachingMethod"}
+2024-11-22 11:39:35 [info]: POST /api/v1/landing-page 500
+2024-11-22 11:42:14 [info]: POST / 201
+2024-11-22 11:48:55 [info]: POST / 201
+2024-11-22 11:51:35 [info]: POST / 201
+2024-11-22 13:08:55 [info]: POST / 201 - Request Body: {"landingPageTitle":"My Landing Page","serviceTitleDescription":"Awesome services","servicePicture":"https://example.com/image.png","serviceType":"Premium","serviceItem":"Consulting","serviceItemDescription":"Best consulting services","course":[{"courseCode":"Course 1","cost":100,"courseLevel":"Learn new skills"}],"subservice":[{"courseCode":"Service 1","cost":200,"courseLevel":"Premium support"}]}
+2024-11-22 13:31:37 [info]: POST /login 200 - Request Body: {"email":"ajibadeemmanuel58@gmail.com","password":"Test2024!"}
+2024-11-22 13:31:49 [info]: GET /get-all-courses 200
+2024-11-22 13:34:32 [info]: POST /create 201 - Request Body: {"landingPageTitle":"s","serviceTitleDescription":"s","serviceType":"online","serviceItem":"service item","serviceItemDescription":"h","courseCode":"d","courseLevel":"d","duration":"d","startDate":"2024-11-01","endDate":"2024-11-29","numberOfHoursPerDay":"0","numberOfDaysPerWeek":"0","cost":"0","promo":"0","promoCode":"","promoValue":"0","platformCharge":"0","actualCost":"0","sharing":"0","sharingValue":"0","paymentStartDate":"","paymentEndDate":"","paymentStartTime":"","paymentEndTime":"","teachingMethod":"offline"}
+2024-11-22 13:34:33 [info]: GET /get-all-courses 200
+2024-11-22 13:34:57 [info]: GET /get-all-courses 304
+2024-11-22 13:37:20 [info]: GET /get-all-courses 304
+2024-11-22 13:53:28 [info]: GET /get-all-courses 304
+2024-11-22 13:56:14 [info]: POST /api/v1/landing-page 500 - Request Body: {"landingPageTitle":"landing test","serviceTitleDescription":"test","serviceType":"online","serviceItem":"service item","serviceItemDescription":"test","courseCode":"test code","courseLevel":"d","duration":"d","startDate":"2024-11-08","endDate":"2024-11-27","numberOfHoursPerDay":"0","numberOfDaysPerWeek":"0","cost":"0","promo":"0","promoCode":"","promoValue":"0","platformCharge":"0","actualCost":"0","sharing":"0","sharingValue":"0","paymentStartDate":"","paymentEndDate":"","paymentStartTime":"","paymentEndTime":"","teachingMethod":"online"}
+2024-11-22 14:02:35 [info]: POST / 201 - Request Body: {"landingPageTitle":"landing test","serviceTitleDescription":"test","serviceType":"online","serviceItem":"service item","serviceItemDescription":"test","courseCode":"test code","courseLevel":"d","duration":"d","startDate":"2024-11-08","endDate":"2024-11-27","numberOfHoursPerDay":"0","numberOfDaysPerWeek":"0","cost":"0","promo":"0","promoCode":"","promoValue":"0","platformCharge":"0","actualCost":"0","sharing":"0","sharingValue":"0","paymentStartDate":"","paymentEndDate":"","paymentStartTime":"","paymentEndTime":"","teachingMethod":"online"}
+2024-11-22 14:02:36 [info]: GET /get-all-courses 304
+2024-11-22 14:04:06 [info]: GET /get-all-courses 304
+2024-11-22 14:54:27 [info]: GET /get-all-courses 304
+2024-11-22 14:55:54 [info]: GET /get-all-courses 304
+2024-11-22 14:59:40 [info]: GET /get-all-courses 304
+2024-11-22 15:00:06 [info]: GET /get-all-courses 304
+2024-11-22 15:00:15 [info]: GET /get-all-courses 401
+2024-11-22 15:00:16 [info]: GET /get-all-courses 304
+2024-11-22 15:00:39 [info]: GET /get-all-courses 304
+2024-11-22 15:01:00 [info]: GET /get-all-courses 304
+2024-11-22 15:01:25 [info]: GET /get-all-courses 304
+2024-11-22 15:01:35 [info]: GET /get-all-courses 304
+2024-11-22 15:01:50 [info]: GET /get-all-courses 304
+2024-11-22 15:08:08 [info]: GET /get-all-courses 304
+2024-11-22 15:09:22 [info]: GET /get-all-courses 304
+2024-11-22 15:09:54 [info]: GET /get-all-courses 304
+2024-11-22 15:10:44 [info]: GET /get-all-courses 304
+2024-11-22 15:11:05 [info]: GET /get-all-courses 304
+2024-11-22 15:11:56 [info]: GET /get-all-courses 304
+2024-11-22 15:13:56 [info]: GET /get-all-courses 304
+2024-11-22 15:14:26 [info]: GET /get-all-courses 304
+2024-11-22 15:19:23 [info]: GET /get-all-courses 304
+2024-11-22 15:19:24 [info]: GET /get-all-courses 304
+2024-11-22 15:20:47 [info]: GET /get-all-courses 304
+2024-11-22 15:22:48 [info]: GET /get-all-courses 304
+2024-11-22 15:23:47 [info]: GET /course/get-all-courses/ 404
+2024-11-22 15:23:48 [info]: GET /course/get-all-courses/ 404
+2024-11-22 15:23:50 [info]: GET /course/get-all-courses/ 404
+2024-11-22 15:23:54 [info]: GET /course/get-all-courses/ 404
+2024-11-22 15:25:06 [info]: GET /course/get-all-courses/ 404
+2024-11-22 15:26:05 [info]: GET /course/get-all-courses/ 404
+2024-11-22 15:27:26 [info]: GET /course/get-all-courses/ 404
+2024-11-22 15:27:30 [info]: GET /course/get-all-courses/ 404
+2024-11-22 15:28:25 [info]: GET /course/get-all-courses/ 404
+2024-11-22 15:28:26 [info]: GET /course/get-all-courses/ 404
+2024-11-22 15:28:28 [info]: GET /course/get-all-courses/ 404
+2024-11-22 15:28:40 [info]: GET /course/get-all-courses/ 404
+2024-11-22 15:30:05 [info]: GET /course/get-all-courses/ 404
+2024-11-22 15:30:06 [info]: GET /course/get-all-courses/ 404
+2024-11-22 15:30:37 [info]: GET /course/get-all-courses/ 404
+2024-11-22 15:30:41 [info]: GET /course/get-all-courses/ 404
+2024-11-22 15:31:12 [info]: GET /course/get-all-courses/ 404
+2024-11-22 15:31:13 [info]: GET /course/get-all-courses/ 404
+2024-11-22 15:31:15 [info]: GET /course/get-all-courses/ 404
+2024-11-22 15:31:19 [info]: GET /course/get-all-courses/ 404
+2024-11-22 15:34:05 [info]: GET /course/get-all-courses/ 404
+2024-11-22 15:34:06 [info]: GET /course/get-all-courses/ 404
+2024-11-22 15:34:26 [info]: GET /course/get-all-courses/ 404
+2024-11-22 15:34:57 [info]: GET /course/get-all-courses/ 404
+2024-11-22 15:36:15 [info]: GET /course/get-all-courses/ 404
+2024-11-22 15:36:16 [info]: GET /course/get-all-courses/ 404
+2024-11-22 15:36:18 [info]: GET /course/get-all-courses/ 404
+2024-11-22 15:36:21 [info]: GET / 401
+2024-11-22 15:36:23 [info]: GET /api/v1/landing-page 500
+2024-11-22 15:36:28 [info]: GET /api/v1/landing-page 500
+2024-11-22 15:36:32 [info]: GET /api/v1/landing-page 500
+2024-11-22 15:40:10 [info]: GET /api/v1/landing-page 500
+2024-11-22 15:40:12 [info]: GET /api/v1/landing-page 500
+2024-11-22 15:40:32 [info]: GET /api/v1/landing-page 500
+2024-11-22 15:40:36 [info]: GET /api/v1/landing-page 500
+2024-11-22 15:41:07 [info]: GET /api/v1/landing-page 500
+2024-11-22 15:43:03 [info]: GET /api/v1/landing-page 500
+2024-11-22 15:43:06 [info]: GET /api/v1/landing-page 500
+2024-11-22 15:48:51 [info]: GET / 401
+2024-11-22 15:49:12 [info]: GET /api/v1/landing-page 500
+2024-11-22 15:49:14 [info]: GET /api/v1/landing-page 500
+2024-11-22 15:49:19 [info]: GET /api/v1/landing-page 500
+2024-11-22 15:50:21 [info]: POST /login 200 - Request Body: {"email":"ajibadeemmanuel58@gmail.com","password":"Test2024!"}
+2024-11-22 15:50:31 [info]: GET /get-all-courses 304
+2024-11-22 15:50:47 [info]: GET /api/v1/landing-page 500
+2024-11-22 15:50:48 [info]: GET /api/v1/landing-page 500
+2024-11-22 15:50:51 [info]: GET /api/v1/landing-page 500
+2024-11-22 15:59:59 [info]: GET /api/v1/landing-page 500
+2024-11-22 16:00:00 [info]: GET /api/v1/landing-page 500
+2024-11-22 16:00:14 [info]: GET / 401
+2024-11-22 16:01:58 [info]: GET /api/v1/landing-page 500
+2024-11-22 16:02:00 [info]: GET /api/v1/landing-page 500
+2024-11-22 16:05:12 [info]: GET /api/v1/landing-page 500
+2024-11-22 16:08:15 [info]: GET / 200
+2024-11-22 16:36:48 [info]: GET / 304
+2024-11-22 16:37:15 [info]: GET / 304
+2024-11-22 16:37:18 [info]: GET / 304
+2024-11-22 16:41:16 [info]: GET / 304
+2024-11-22 16:42:25 [info]: GET / 304
+2024-11-22 16:43:25 [info]: GET / 304
+2024-11-22 16:43:47 [info]: GET / 304
+2024-11-22 16:49:05 [info]: GET / 401
+2024-11-22 16:49:06 [info]: GET / 304
+2024-11-22 16:49:13 [info]: GET / 304
+2024-11-22 16:49:15 [info]: GET / 304
+2024-11-22 16:49:17 [info]: GET / 304
+2024-11-22 16:49:21 [info]: GET / 304
+2024-11-22 16:49:30 [info]: GET / 304
+2024-11-22 16:49:58 [info]: GET / 304
+2024-11-22 16:50:50 [info]: GET / 401
+2024-11-22 16:50:52 [info]: GET / 200
+2024-11-22 16:51:27 [info]: GET / 304
+2024-11-22 16:51:37 [info]: GET / 401
+2024-11-22 16:53:25 [info]: GET / 304
+2024-11-22 17:04:42 [info]: GET / 304
