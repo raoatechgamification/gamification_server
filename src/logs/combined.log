@@ -1313,3 +1313,26 @@
 2024-11-24 15:44:29 [info]: GET /67430a8ed43b81d7884d3210 304
 2024-11-24 15:44:33 [info]: POST /landing-page/create-new-course-landing/67430a8ed43b81d7884d3210 200
 2024-11-24 15:45:21 [info]: GET /67430a8ed43b81d7884d3210 304
+2024-11-24 15:47:21 [info]: GET /67430a8ed43b81d7884d3210 304
+2024-11-24 15:47:30 [info]: POST /landing-page/create-new-course-landing/67430a8ed43b81d7884d3210 200
+2024-11-24 15:49:13 [info]: GET /67430a8ed43b81d7884d3210 304
+2024-11-24 15:49:42 [info]: GET /67430a8ed43b81d7884d3210 304
+2024-11-24 15:49:52 [info]: PUT /create-new-course-landing/67430a8ed43b81d7884d3210 200 - Request Body: {"courseCode":"LDP Test 222","courseLevel":"2","duration":"w","startDate":"2024-11-01","endDate":"2024-11-28","numberOfHoursPerDay":"0","numberOfDaysPerWeek":"0","cost":"0","promo":"0","promoCode":"","promoValue":"0","platformCharge":"0","actualCost":"0","sharing":"0","sharingValue":"0","visibilityStartDate":"2024-11-06","visibilityEndDate":"2024-11-27","visibilityStartTime":"18:27","visibilityEndTime":"20:28","teachingMethod":"online"}
+2024-11-24 15:50:51 [info]: GET /67430a8ed43b81d7884d3210 200
+2024-11-24 15:51:00 [info]: GET / 401
+2024-11-24 15:51:02 [info]: GET / 200
+2024-11-24 15:51:58 [info]: GET / 304
+2024-11-24 15:52:16 [info]: GET / 304
+2024-11-24 15:53:05 [info]: GET / 304
+2024-11-24 15:54:18 [info]: GET / 304
+2024-11-24 15:54:30 [info]: GET /67430a8ed43b81d7884d3210 401
+2024-11-24 15:55:05 [info]: GET /67430a8ed43b81d7884d3210 304
+2024-11-24 15:55:35 [info]: PUT /create-new-course-landing/67430a8ed43b81d7884d3210 200 - Request Body: {"courseCode":"LDP Test 222222","courseLevel":"2","duration":"w","startDate":"2024-11-14","endDate":"2024-11-21","numberOfHoursPerDay":"0","numberOfDaysPerWeek":"0","cost":"0","promo":"0","promoCode":"2","promoValue":"0","platformCharge":"0","actualCost":"0","sharing":"0","sharingValue":"0","visibilityStartDate":"2024-10-31","visibilityEndDate":"2024-11-27","visibilityStartTime":"17:55","visibilityEndTime":"19:55","teachingMethod":"online"}
+2024-11-24 15:55:57 [info]: GET /67430a8ed43b81d7884d3210 200
+2024-11-24 15:56:04 [info]: GET / 401
+2024-11-24 15:56:07 [info]: GET / 200
+2024-11-24 15:57:11 [info]: GET / 304
+2024-11-24 15:58:02 [info]: GET / 304
+2024-11-24 15:58:05 [info]: GET / 304
+2024-11-24 15:58:10 [info]: GET / 304
+2024-11-24 15:58:18 [info]: GET / 304
