@@ -87,7 +87,6 @@ export class LandingPageController {
           }
         }
       }
-      console.log(Urls);
   
       const courseIds: Types.ObjectId[] = [];
       const subserviceIds: Types.ObjectId[] = [];
@@ -149,6 +148,111 @@ export class LandingPageController {
     }
   }
 
+  async UpdateLandingPageWithCourse(req: Request, res: Response, next: NextFunction) {
+    try {
+      const { id } = req.params; // LandingPage ID
+     console.log(id)
+      const files = req.files as Express.Multer.File[]; // Uploaded files
+      const organisationId = req.admin._id; // Admin ID from authentication middleware
+  
+      const {
+        courseCode,
+        courseLevel,
+        duration,
+        startDate,
+        endDate,
+        numberOfHoursPerDay,
+        numberOfDaysPerWeek,
+        cost,
+        promo,
+        promoCode,
+        promoValue,
+        platformCharge,
+        actualCost,
+        sharing,
+        sharingValue,
+        visibilityStartDate,
+        visibilityEndDate,
+        visibilityStartTime,
+        visibilityEndTime,
+        teachingMethod,
+        
+      } = req.body;
+  
+      // Prepare the course data
+      let newCourseData = {
+        courseCode,
+        courseLevel,
+        duration,
+        startDate,
+        endDate,
+        numberOfHoursPerDay: Number(numberOfHoursPerDay),
+        numberOfDaysPerWeek: Number(numberOfDaysPerWeek),
+        cost: Number(cost),
+        promo: Number(promo),
+        promoCode,
+        promoValue: Number(promoValue),
+        platformCharge: Number(platformCharge),
+        actualCost: Number(actualCost),
+        sharing: Number(sharing),
+        sharingValue: Number(sharingValue),
+        visibilityStartDate,
+        visibilityEndDate,
+        visibilityStartTime,
+        visibilityEndTime,
+        teachingMethod,
+        organisationId,
+        curriculum: ""
+      };
+  
+      let Urls: string[] = [];
+      if (files && files.length > 0) {
+        for (let i = 0; i < files.length; i++) {
+          const file = files[i];
+          const uploadResult = await uploadToCloudinary(
+            file.buffer,
+            file.mimetype,
+            "course-content"
+          );
+          if (uploadResult && uploadResult.secure_url) {
+            Urls.push(uploadResult.secure_url);
+          }
+        }
+      }
+  
+      // Attach curriculum file if provided
+      if (Urls.length > 0) {
+        newCourseData["curriculum"] = Urls[0];
+      }
+  
+      // Create the new course
+      const newCourse = await Course.create(newCourseData);
+  
+      // Validate and update the LandingPage
+      const landingPage = await LandingPage.findById(id);
+     console.log(landingPage)
+      if (!landingPage) {
+        return res.status(404).json({
+          success: false,
+          message: `LandingPage with ID ${id} not found.`,
+        });
+      }
+  console.log(newCourse._id)
+      // Update the LandingPage with the new course
+      landingPage.course.push(newCourse._id as Types.ObjectId);
+      await landingPage.save();
+  
+      res.status(200).json({
+        success: true,
+        message: "New course created and added to the LandingPage.",
+        data: { course: newCourse, updatedLandingPage: landingPage },
+      });
+    } catch (error) {
+      next(error);
+    }
+  }
+  
+
   async GetAllLandingPages(req: Request, res: Response, next: NextFunction) {
     try {
       const organisationId = req.admin._id; 
@@ -178,59 +282,123 @@ export class LandingPageController {
     }
   }
 
-  // PUT - Update a Landing Page by ID
-  async UpdateLandingPage(req: Request, res: Response, next: NextFunction) {
+  async updateLandingPageDetails(req: Request, res: Response, next: NextFunction) {
+   
+
     try {
-      const landingPageId = req.params.id;
-      const { landingPageTitle, serviceTitleDescription, servicePicture, serviceType, serviceItem, serviceItemDescription, courses, subservices } = req.body;
-
-      // Update the Course information if provided
-      const courseIds = [];
-      for (const courseData of courses) {
-        let existingCourse = await Course.findOne({ courseCode: courseData.courseCode });
-        if (!existingCourse) {
-          existingCourse = new Course(courseData);
-          await existingCourse.save();
+      const { id } = req.params; // ID of the landing page to update
+      const {
+        landingPageTitle,
+        serviceTitleDescription,
+        serviceType,
+        serviceItem,
+        serviceItemDescription,
+        servicePicture: existingPicture, // If it's a Cloudinary URL
+      } = req.body;
+  
+      const updateData: Record<string, any> = {
+        landingPageTitle,
+        serviceTitleDescription,
+        serviceType,
+        serviceItem,
+        serviceItemDescription,
+      };
+  
+      const files = req.files as Express.Multer.File[];
+ 
+      // Handle servicePicture
+      let Urls: string[] = [];
+      if (files && files.length > 0) {
+        for (let i = 0; i < files.length; i++) {
+          const file = files[i];
+          const uploadResult = await uploadToCloudinary(
+            file.buffer,
+            file.mimetype,
+            "course-content"
+          );
+          if (uploadResult && uploadResult.secure_url) {
+            Urls.push(uploadResult.secure_url);
+            updateData.servicePicture = uploadResult.secure_url;
+          }
         }
-        courseIds.push(existingCourse._id);
       }
-
-      // Update the Service information if provided
-      const serviceIds = [];
-      for (const serviceData of subservices) {
-        let existingService = await Subservice.findOne({ title: serviceData.title });
-        if (!existingService) {
-          existingService = new Subservice(serviceData);
-          await existingService.save();
-        }
-        serviceIds.push(existingService._id);
-      }
-
+   
+  
+      // Update the landing page in the database
       const updatedLandingPage = await LandingPage.findByIdAndUpdate(
-        landingPageId,
-        {
-          landingPageTitle,
-          serviceTitleDescription,
-          servicePicture,
-          serviceType,
-          serviceItem,
-          serviceItemDescription,
-          course: courseIds,
-          subservice: serviceIds
-        },
-        { new: true }
+        id,
+        updateData,
+        { new: true, runValidators: true }
       );
-
+  
       if (!updatedLandingPage) {
-        return res.status(404).json({ message: 'Landing Page not found' });
+        return res
+          .status(404)
+          .json({ success: false, message: "Landing page not found" });
       }
-
-      console.log(updatedLandingPage)
-      res.status(200).json({ message: 'Landing Page updated successfully', data: updatedLandingPage });
+  
+      res
+        .status(200)
+        .json({ success: true, message: "Landing page updated", data: updatedLandingPage });
     } catch (error) {
       next(error);
     }
   }
+  
+
+  // PUT - Update a Landing Page by ID
+  // async UpdateLandingPage(req: Request, res: Response, next: NextFunction) {
+  //   try {
+  //     const landingPageId = req.params.id;
+  //     const { landingPageTitle, serviceTitleDescription, servicePicture, serviceType, serviceItem, serviceItemDescription, courses, subservices } = req.body;
+
+  //     // Update the Course information if provided
+  //     const courseIds = [];
+  //     for (const courseData of courses) {
+  //       let existingCourse = await Course.findOne({ courseCode: courseData.courseCode });
+  //       if (!existingCourse) {
+  //         existingCourse = new Course(courseData);
+  //         await existingCourse.save();
+  //       }
+  //       courseIds.push(existingCourse._id);
+  //     }
+
+  //     // Update the Service information if provided
+  //     const serviceIds = [];
+  //     for (const serviceData of subservices) {
+  //       let existingService = await Subservice.findOne({ title: serviceData.title });
+  //       if (!existingService) {
+  //         existingService = new Subservice(serviceData);
+  //         await existingService.save();
+  //       }
+  //       serviceIds.push(existingService._id);
+  //     }
+
+  //     const updatedLandingPage = await LandingPage.findByIdAndUpdate(
+  //       landingPageId,
+  //       {
+  //         landingPageTitle,
+  //         serviceTitleDescription,
+  //         servicePicture,
+  //         serviceType,
+  //         serviceItem,
+  //         serviceItemDescription,
+  //         course: courseIds,
+  //         subservice: serviceIds
+  //       },
+  //       { new: true }
+  //     );
+
+  //     if (!updatedLandingPage) {
+  //       return res.status(404).json({ message: 'Landing Page not found' });
+  //     }
+
+  //     console.log(updatedLandingPage)
+  //     res.status(200).json({ message: 'Landing Page updated successfully', data: updatedLandingPage });
+  //   } catch (error) {
+  //     next(error);
+  //   }
+  // }
 
   // DELETE - Delete a Landing Page by ID
   async DeleteLandingPage(req: Request, res: Response, next: NextFunction) {

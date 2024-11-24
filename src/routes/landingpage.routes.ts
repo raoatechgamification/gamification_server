@@ -9,7 +9,8 @@ const {CreateLandingPage,
     GetLandingPageById,
  GetAllLandingPages,
     DeleteLandingPage,
-    UpdateLandingPage
+    updateLandingPageDetails,
+    UpdateLandingPageWithCourse
 } = new LandingPageController();
 
 router.post('/', 
@@ -19,7 +20,8 @@ router.post('/',
          CreateLandingPage);
 router.get('/', authenticate, authorize("admin"),  GetAllLandingPages);
 router.get('/:id', authenticate, authorize("admin"), GetLandingPageById);
-router.put('/:id', authenticate, authorize("admin"),  UpdateLandingPage);
+router.patch('/:id', authenticate, authorize("admin"),  upload.array("file", 1), updateLandingPageDetails);
+router.put('/create-new-course-landing/:id', authenticate, authorize("admin"),  upload.array("file", 1), UpdateLandingPageWithCourse);
 router.delete('/:id', authenticate, authorize("admin"),  DeleteLandingPage);
 
 export default router;

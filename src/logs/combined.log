@@ -1065,3 +1065,251 @@
 2024-11-23 14:33:42 [info]: GET / 304
 2024-11-23 14:34:23 [info]: GET / 304
 2024-11-23 14:35:08 [info]: GET / 304
+2024-11-23 16:12:45 [info]: POST /login 200 - Request Body: {"email":"ajibadeemmanuel58@gmail.com","password":"Test2024!"}
+2024-11-23 16:12:47 [info]: GET / 304
+2024-11-23 16:13:03 [info]: GET / 304
+2024-11-23 16:19:02 [info]: POST /login 200 - Request Body: {"email":"test@gmail.com","password":"Test2024!"}
+2024-11-23 16:19:05 [info]: GET / 200
+2024-11-23 16:19:12 [info]: GET / 304
+2024-11-23 16:19:42 [info]: POST /login 200 - Request Body: {"email":"ajibadeemmanuel58@gmail.com","password":"Test2024!"}
+2024-11-23 16:22:53 [info]: GET / 304
+2024-11-23 16:32:19 [info]: GET / 304
+2024-11-23 16:40:01 [info]: POST /login 200 - Request Body: {"email":"ajibadeemmanuel58@gmail.com","password":"Test2024!"}
+2024-11-24 09:14:45 [info]: GET / 304
+2024-11-24 09:15:20 [info]: GET /6741d397b3707e3f028971ce 401
+2024-11-24 09:15:27 [info]: GET /6741d397b3707e3f028971ce 200
+2024-11-24 09:15:30 [info]: GET /6741d397b3707e3f028971ce 304
+2024-11-24 09:16:06 [info]: GET /6741d397b3707e3f028971ce 304
+2024-11-24 09:16:44 [info]: GET /6741d397b3707e3f028971ce 304
+2024-11-24 09:17:03 [info]: GET /6741d397b3707e3f028971ce 304
+2024-11-24 09:17:04 [info]: GET /6741d397b3707e3f028971ce 304
+2024-11-24 09:17:15 [info]: GET /6741d397b3707e3f028971ce 304
+2024-11-24 09:17:32 [info]: GET /6741d397b3707e3f028971ce 304
+2024-11-24 09:17:33 [info]: GET /6741d397b3707e3f028971ce 304
+2024-11-24 09:18:22 [info]: GET /6741d397b3707e3f028971ce 304
+2024-11-24 09:20:03 [info]: GET /6741d397b3707e3f028971ce 304
+2024-11-24 09:22:56 [info]: GET /6741d397b3707e3f028971ce 401
+2024-11-24 09:22:58 [info]: GET /6741d397b3707e3f028971ce 304
+2024-11-24 09:23:44 [info]: GET /6741d397b3707e3f028971ce 304
+2024-11-24 09:23:53 [info]: GET /6741d397b3707e3f028971ce 304
+2024-11-24 09:24:07 [info]: GET /6741d397b3707e3f028971ce 304
+2024-11-24 09:24:09 [info]: GET /6741d397b3707e3f028971ce 304
+2024-11-24 09:24:22 [info]: GET /6741d397b3707e3f028971ce 304
+2024-11-24 09:24:29 [info]: GET /6741d397b3707e3f028971ce 304
+2024-11-24 09:24:34 [info]: GET /6741d397b3707e3f028971ce 304
+2024-11-24 09:24:54 [info]: GET /6741d397b3707e3f028971ce 304
+2024-11-24 09:24:57 [info]: GET /6741d397b3707e3f028971ce 304
+2024-11-24 09:25:19 [info]: GET /6741d397b3707e3f028971ce 304
+2024-11-24 09:25:23 [info]: GET /6741d397b3707e3f028971ce 304
+2024-11-24 09:25:33 [info]: GET /6741d397b3707e3f028971ce 304
+2024-11-24 09:25:53 [info]: GET /6741d397b3707e3f028971ce 304
+2024-11-24 09:26:00 [info]: GET /6741d397b3707e3f028971ce 304
+2024-11-24 09:26:35 [info]: GET /6741d397b3707e3f028971ce 304
+2024-11-24 09:26:40 [info]: GET /6741d397b3707e3f028971ce 304
+2024-11-24 09:36:11 [info]: GET /6741d397b3707e3f028971ce 304
+2024-11-24 09:36:42 [info]: GET /6741d397b3707e3f028971ce 304
+2024-11-24 09:37:12 [info]: GET /6741d397b3707e3f028971ce 304
+2024-11-24 09:37:13 [info]: GET /6741d397b3707e3f028971ce 304
+2024-11-24 09:37:48 [info]: GET /6741d397b3707e3f028971ce 304
+2024-11-24 09:38:54 [info]: GET /6741d397b3707e3f028971ce 401
+2024-11-24 09:38:56 [info]: GET /6741d397b3707e3f028971ce 304
+2024-11-24 09:39:20 [info]: GET /6741d397b3707e3f028971ce 304
+2024-11-24 09:39:38 [info]: GET /6741d397b3707e3f028971ce 304
+2024-11-24 09:40:05 [info]: GET /6741d397b3707e3f028971ce 304
+2024-11-24 09:40:37 [info]: GET /6741d397b3707e3f028971ce 304
+2024-11-24 09:48:38 [info]: GET /6741d397b3707e3f028971ce 304
+2024-11-24 09:48:44 [info]: GET / 401
+2024-11-24 09:48:46 [info]: GET / 304
+2024-11-24 09:49:13 [info]: GET /6741d397b3707e3f028971ce 401
+2024-11-24 09:49:15 [info]: GET /6741d397b3707e3f028971ce 304
+2024-11-24 09:49:22 [info]: GET / 401
+2024-11-24 09:49:24 [info]: GET / 304
+2024-11-24 09:49:35 [info]: GET /6741d397b3707e3f028971ce 401
+2024-11-24 09:49:37 [info]: GET /6741d397b3707e3f028971ce 304
+2024-11-24 09:49:51 [info]: GET /6741d397b3707e3f028971ce 401
+2024-11-24 09:49:52 [info]: GET /6741d397b3707e3f028971ce 304
+2024-11-24 09:50:24 [info]: GET /6741d397b3707e3f028971ce 304
+2024-11-24 09:50:28 [info]: GET /6741d397b3707e3f028971ce 304
+2024-11-24 09:50:55 [info]: GET /6741d397b3707e3f028971ce 304
+2024-11-24 09:51:03 [info]: GET /6741d397b3707e3f028971ce 304
+2024-11-24 09:53:32 [info]: GET /6741d397b3707e3f028971ce 304
+2024-11-24 09:53:34 [info]: GET /6741d397b3707e3f028971ce 304
+2024-11-24 09:53:52 [info]: GET / 401
+2024-11-24 09:53:54 [info]: GET / 304
+2024-11-24 09:54:08 [info]: GET /6741d397b3707e3f028971ce 401
+2024-11-24 09:54:10 [info]: GET /6741d397b3707e3f028971ce 304
+2024-11-24 09:54:15 [info]: GET /6741d397b3707e3f028971ce 304
+2024-11-24 09:54:25 [info]: GET /6741d397b3707e3f028971ce 304
+2024-11-24 09:55:28 [info]: GET /6741d397b3707e3f028971ce 304
+2024-11-24 09:55:40 [info]: GET / 401
+2024-11-24 09:55:42 [info]: GET / 304
+2024-11-24 09:56:11 [info]: GET / 401
+2024-11-24 09:56:27 [info]: GET / 304
+2024-11-24 09:56:38 [info]: GET /6741d397b3707e3f028971ce 401
+2024-11-24 09:56:40 [info]: GET /6741d397b3707e3f028971ce 304
+2024-11-24 10:13:31 [info]: GET /6741d397b3707e3f028971ce 304
+2024-11-24 10:14:15 [info]: GET /6741d397b3707e3f028971ce 304
+2024-11-24 10:14:18 [info]: GET /6741d397b3707e3f028971ce 304
+2024-11-24 10:15:23 [info]: GET /6741d397b3707e3f028971ce 304
+2024-11-24 10:29:36 [info]: GET /6741d397b3707e3f028971ce 304
+2024-11-24 10:31:24 [info]: GET /6741d397b3707e3f028971ce 304
+2024-11-24 10:39:47 [info]: GET /6741d397b3707e3f028971ce 304
+2024-11-24 10:40:04 [info]: GET /6741d397b3707e3f028971ce 304
+2024-11-24 10:40:34 [info]: GET /6741d397b3707e3f028971ce 304
+2024-11-24 10:40:40 [info]: PATCH /6741d397b3707e3f028971ce 404
+2024-11-24 10:41:02 [info]: GET /6741d397b3707e3f028971ce 304
+2024-11-24 10:41:52 [info]: GET /6741d397b3707e3f028971ce 304
+2024-11-24 10:41:54 [info]: GET /6741d397b3707e3f028971ce 304
+2024-11-24 10:42:10 [info]: PATCH /6741d397b3707e3f028971ce 404
+2024-11-24 10:53:38 [info]: GET /6741d397b3707e3f028971ce 304
+2024-11-24 10:53:39 [info]: PATCH /api/v1/landing-page/6741d397b3707e3f028971ce 500 - Request Body: {"landingPageTitle":"Test 3","serviceTitleDescription":"Test 3 description"}
+2024-11-24 11:51:56 [info]: GET /6741d397b3707e3f028971ce 304
+2024-11-24 11:52:01 [info]: GET /6741d397b3707e3f028971ce 304
+2024-11-24 11:52:02 [info]: PATCH /api/v1/landing-page/6741d397b3707e3f028971ce 500 - Request Body: {"landingPageTitle":"Test 3","serviceTitleDescription":"Test 3 description"}
+2024-11-24 11:52:59 [info]: GET /6741d397b3707e3f028971ce 304
+2024-11-24 11:53:25 [info]: GET /6741d397b3707e3f028971ce 401
+2024-11-24 11:53:27 [info]: GET /6741d397b3707e3f028971ce 304
+2024-11-24 11:53:34 [info]: PATCH /6741d397b3707e3f028971ce 200 - Request Body: {"landingPageTitle":"Test three","serviceTitleDescription":"Test 3 description","servicePicture":"null","serviceType":"online","serviceItem":"service item","serviceItemDescription":"service item description"}
+2024-11-24 11:54:13 [info]: GET /6741d397b3707e3f028971ce 200
+2024-11-24 11:54:27 [info]: GET /6741d397b3707e3f028971ce 401
+2024-11-24 11:54:29 [info]: GET /6741d397b3707e3f028971ce 304
+2024-11-24 11:59:51 [info]: GET /6741d397b3707e3f028971ce 304
+2024-11-24 12:00:14 [info]: PATCH /api/v1/landing-page/6741d397b3707e3f028971ce 500 - Request Body: {"landingPageTitle":"Test three","serviceTitleDescription":"Test 3 description"}
+2024-11-24 12:01:05 [info]: GET /6741d397b3707e3f028971ce 304
+2024-11-24 12:02:09 [info]: GET /6741d397b3707e3f028971ce 304
+2024-11-24 12:03:15 [info]: GET /6741d397b3707e3f028971ce 304
+2024-11-24 12:03:20 [info]: PATCH /api/v1/landing-page/6741d397b3707e3f028971ce 500 - Request Body: {"landingPageTitle":"Test three","serviceTitleDescription":"Test 3 description","serviceType":"online","serviceItem":"service item","serviceItemDescription":"service item description"}
+2024-11-24 12:03:42 [info]: GET /6741d397b3707e3f028971ce 304
+2024-11-24 12:09:10 [info]: GET /6741d397b3707e3f028971ce 304
+2024-11-24 12:09:16 [info]: GET /6741d397b3707e3f028971ce 304
+2024-11-24 12:09:17 [info]: GET /6741d397b3707e3f028971ce 304
+2024-11-24 12:09:20 [info]: PATCH /api/v1/landing-page/6741d397b3707e3f028971ce 500 - Request Body: {"landingPageTitle":"Test three","serviceTitleDescription":"Test 3 description","serviceType":"online","serviceItem":"service item","serviceItemDescription":"service item description"}
+2024-11-24 12:09:58 [info]: GET /6741d397b3707e3f028971ce 304
+2024-11-24 12:12:13 [info]: GET /6741d397b3707e3f028971ce 304
+2024-11-24 12:12:48 [info]: GET /6741d397b3707e3f028971ce 304
+2024-11-24 12:12:58 [info]: GET /get-all-courses 200
+2024-11-24 12:14:22 [info]: POST / 201 - Request Body: {"landingPageTitle":"Test 4","serviceTitleDescription":"Test 4 description","serviceType":"online","serviceItem":"service item","serviceItemDescription":"Test 4","courseCode":"TST4","courseLevel":"1","duration":"2","startDate":"2024-11-11","endDate":"2024-11-25","numberOfHoursPerDay":"2","numberOfDaysPerWeek":"2","cost":"323","promo":"3","promoCode":"233","promoValue":"2","platformCharge":"2","actualCost":"2","sharing":"2","sharingValue":"2","visibilityStartDate":"2024-11-01","visibilityEndDate":"2024-11-26","visibilityStartTime":"12:18","visibilityEndTime":"18:14","teachingMethod":"online"}
+2024-11-24 12:14:28 [info]: GET / 200
+2024-11-24 12:14:45 [info]: GET / 304
+2024-11-24 12:14:54 [info]: GET /67430a8ed43b81d7884d3210 401
+2024-11-24 12:14:56 [info]: GET /67430a8ed43b81d7884d3210 200
+2024-11-24 12:15:28 [info]: GET /67430a8ed43b81d7884d3210 304
+2024-11-24 12:15:53 [info]: GET /67430a8ed43b81d7884d3210 304
+2024-11-24 12:15:55 [info]: GET /67430a8ed43b81d7884d3210 304
+2024-11-24 12:16:07 [info]: PATCH /67430a8ed43b81d7884d3210 200 - Request Body: {"landingPageTitle":"Test four","serviceTitleDescription":"Test 4 description","servicePicture":"null","serviceType":"online","serviceItem":"service item","serviceItemDescription":"Test 4"}
+2024-11-24 12:16:22 [info]: PATCH /api/v1/landing-page/67430a8ed43b81d7884d3210 500 - Request Body: {"landingPageTitle":"Test four","serviceTitleDescription":"Test 4 description"}
+2024-11-24 12:18:34 [info]: GET /67430a8ed43b81d7884d3210 200
+2024-11-24 12:18:36 [info]: PATCH /api/v1/landing-page/67430a8ed43b81d7884d3210 500 - Request Body: {"landingPageTitle":"Test four","serviceTitleDescription":"Test 4 description","servicePicture":"null","serviceType":"online","serviceItem":"service item","serviceItemDescription":"Test 4"}
+2024-11-24 12:21:53 [info]: GET /67430a8ed43b81d7884d3210 304
+2024-11-24 12:21:54 [info]: PATCH /67430a8ed43b81d7884d3210 200 - Request Body: {"landingPageTitle":"Test four","serviceTitleDescription":"Test 4 description","servicePicture":"null","serviceType":"online","serviceItem":"service item","serviceItemDescription":"Test 4"}
+2024-11-24 12:22:41 [info]: GET /67430a8ed43b81d7884d3210 200
+2024-11-24 12:22:51 [info]: GET /67430a8ed43b81d7884d3210 401
+2024-11-24 12:22:58 [info]: GET /67430a8ed43b81d7884d3210 304
+2024-11-24 12:23:02 [info]: GET /67430a8ed43b81d7884d3210 304
+2024-11-24 12:23:23 [info]: GET /67430a8ed43b81d7884d3210 304
+2024-11-24 12:23:27 [info]: PATCH /67430a8ed43b81d7884d3210 200 - Request Body: {"landingPageTitle":"Test fourrr","serviceTitleDescription":"Test 4 description","servicePicture":"null","serviceType":"online","serviceItem":"service item","serviceItemDescription":"Test 4"}
+2024-11-24 12:23:43 [info]: GET /67430a8ed43b81d7884d3210 401
+2024-11-24 12:23:45 [info]: GET /67430a8ed43b81d7884d3210 200
+2024-11-24 12:24:30 [info]: GET /67430a8ed43b81d7884d3210 304
+2024-11-24 12:25:45 [info]: GET /67430a8ed43b81d7884d3210 304
+2024-11-24 12:26:19 [info]: GET /67430a8ed43b81d7884d3210 304
+2024-11-24 12:27:12 [info]: GET /67430a8ed43b81d7884d3210 304
+2024-11-24 12:27:19 [info]: PATCH /api/v1/landing-page/67430a8ed43b81d7884d3210 500 - Request Body: {"landingPageTitle":"Test fourrr","serviceTitleDescription":"Test 4 description"}
+2024-11-24 12:28:58 [info]: GET /67430a8ed43b81d7884d3210 304
+2024-11-24 12:29:14 [info]: PATCH /api/v1/landing-page/67430a8ed43b81d7884d3210 500 - Request Body: {"landingPageTitle":"Test fourrr","serviceTitleDescription":"Test 4 description"}
+2024-11-24 12:29:56 [info]: GET /67430a8ed43b81d7884d3210 304
+2024-11-24 12:31:10 [info]: GET /67430a8ed43b81d7884d3210 304
+2024-11-24 12:31:15 [info]: PATCH /api/v1/landing-page/67430a8ed43b81d7884d3210 500 - Request Body: {"landingPageTitle":"Test fourrr","serviceTitleDescription":"Test 4 description"}
+2024-11-24 12:32:49 [info]: GET /67430a8ed43b81d7884d3210 304
+2024-11-24 12:33:09 [info]: GET /67430a8ed43b81d7884d3210 304
+2024-11-24 12:33:11 [info]: GET /67430a8ed43b81d7884d3210 304
+2024-11-24 12:33:21 [info]: PUT /api/v1/landing-page/67430a8ed43b81d7884d3210 500 - Request Body: {"landingPageTitle":"Test fourrr","serviceTitleDescription":"Test 4 description"}
+2024-11-24 12:33:31 [info]: GET /67430a8ed43b81d7884d3210 304
+2024-11-24 12:55:55 [info]: GET /67430a8ed43b81d7884d3210 304
+2024-11-24 12:56:00 [info]: PATCH /67430a8ed43b81d7884d3210 200 - Request Body: {"landingPageTitle":"Test fourrr","serviceTitleDescription":"Test 4 description","serviceType":"online","serviceItem":"service item","serviceItemDescription":"Test 4"}
+2024-11-24 12:56:46 [info]: GET /67430a8ed43b81d7884d3210 200
+2024-11-24 12:57:24 [info]: GET /67430a8ed43b81d7884d3210 401
+2024-11-24 12:57:26 [info]: GET /67430a8ed43b81d7884d3210 304
+2024-11-24 12:58:41 [info]: PATCH /67430a8ed43b81d7884d3210 200 - Request Body: {"landingPageTitle":"Test fourrr","serviceTitleDescription":"Test 4 description","serviceType":"online","serviceItem":"service item","serviceItemDescription":"Test 4"}
+2024-11-24 12:59:44 [info]: GET /67430a8ed43b81d7884d3210 200
+2024-11-24 12:59:56 [info]: GET /67430a8ed43b81d7884d3210 401
+2024-11-24 12:59:58 [info]: GET /67430a8ed43b81d7884d3210 304
+2024-11-24 13:00:50 [info]: GET /67430a8ed43b81d7884d3210 304
+2024-11-24 13:00:52 [info]: GET /67430a8ed43b81d7884d3210 304
+2024-11-24 13:05:24 [info]: GET /67430a8ed43b81d7884d3210 304
+2024-11-24 13:05:36 [info]: PATCH /67430a8ed43b81d7884d3210 200 - Request Body: {"landingPageTitle":"Test fourrr","serviceTitleDescription":"Test 4 description","serviceType":"online","serviceItem":"service item","serviceItemDescription":"Test 4"}
+2024-11-24 13:05:44 [info]: GET /67430a8ed43b81d7884d3210 200
+2024-11-24 13:05:58 [info]: GET /67430a8ed43b81d7884d3210 401
+2024-11-24 13:06:00 [info]: GET /67430a8ed43b81d7884d3210 304
+2024-11-24 13:06:20 [info]: PATCH /67430a8ed43b81d7884d3210 200 - Request Body: {"landingPageTitle":"Test four","serviceTitleDescription":"Test 4 description","serviceType":"online","serviceItem":"service item","serviceItemDescription":"Test 4"}
+2024-11-24 13:06:30 [info]: GET /67430a8ed43b81d7884d3210 401
+2024-11-24 13:06:32 [info]: GET /67430a8ed43b81d7884d3210 200
+2024-11-24 13:06:43 [info]: GET /67430a8ed43b81d7884d3210 304
+2024-11-24 13:07:46 [info]: GET / 200
+2024-11-24 13:07:47 [info]: GET / 304
+2024-11-24 13:09:49 [info]: GET / 304
+2024-11-24 13:21:20 [info]: GET / 304
+2024-11-24 13:25:33 [info]: GET / 304
+2024-11-24 13:25:38 [info]: GET /67430a8ed43b81d7884d3210 401
+2024-11-24 13:25:40 [info]: GET /67430a8ed43b81d7884d3210 304
+2024-11-24 13:25:55 [info]: PATCH /67430a8ed43b81d7884d3210 200 - Request Body: {"landingPageTitle":"Test four","serviceTitleDescription":"Test 4 descriptionnn","serviceType":"online","serviceItem":"service item","serviceItemDescription":"Test 4"}
+2024-11-24 13:26:24 [info]: GET / 401
+2024-11-24 13:26:26 [info]: GET / 200
+2024-11-24 13:26:56 [info]: GET /67430a8ed43b81d7884d3210 401
+2024-11-24 13:27:00 [info]: GET / 401
+2024-11-24 13:27:02 [info]: GET / 304
+2024-11-24 13:27:04 [info]: GET / 304
+2024-11-24 13:34:16 [info]: GET / 304
+2024-11-24 13:35:00 [info]: GET / 304
+2024-11-24 13:35:03 [info]: GET / 304
+2024-11-24 13:35:36 [info]: GET / 304
+2024-11-24 13:36:29 [info]: GET / 304
+2024-11-24 13:36:44 [info]: GET / 304
+2024-11-24 13:37:19 [info]: GET / 304
+2024-11-24 13:38:09 [info]: GET / 304
+2024-11-24 13:40:24 [info]: GET / 304
+2024-11-24 13:40:27 [info]: GET / 304
+2024-11-24 13:40:49 [info]: GET / 304
+2024-11-24 13:41:06 [info]: GET / 304
+2024-11-24 13:42:06 [info]: GET / 304
+2024-11-24 13:42:28 [info]: GET / 304
+2024-11-24 13:43:38 [info]: GET / 304
+2024-11-24 13:43:49 [info]: GET / 304
+2024-11-24 13:43:50 [info]: GET / 304
+2024-11-24 13:43:55 [info]: GET / 304
+2024-11-24 13:44:58 [info]: GET / 401
+2024-11-24 13:45:00 [info]: GET / 304
+2024-11-24 14:06:31 [info]: GET / 401
+2024-11-24 14:06:33 [info]: GET / 304
+2024-11-24 14:06:42 [info]: GET / 401
+2024-11-24 14:06:44 [info]: GET / 304
+2024-11-24 14:06:54 [info]: GET / 401
+2024-11-24 14:06:56 [info]: GET / 304
+2024-11-24 14:07:00 [info]: GET / 304
+2024-11-24 14:09:43 [info]: GET / 304
+2024-11-24 14:09:49 [info]: GET / 304
+2024-11-24 14:10:05 [info]: GET / 304
+2024-11-24 14:13:38 [info]: GET / 304
+2024-11-24 14:13:43 [info]: GET /67430a8ed43b81d7884d3210 401
+2024-11-24 14:13:45 [info]: GET /67430a8ed43b81d7884d3210 200
+2024-11-24 14:14:35 [info]: GET /67430a8ed43b81d7884d3210 304
+2024-11-24 14:20:42 [info]: GET /67430a8ed43b81d7884d3210 304
+2024-11-24 14:20:51 [info]: GET /67430a8ed43b81d7884d3210 304
+2024-11-24 14:20:53 [info]: GET /67430a8ed43b81d7884d3210 304
+2024-11-24 14:21:57 [info]: GET /67430a8ed43b81d7884d3210 304
+2024-11-24 14:22:11 [info]: GET /67430a8ed43b81d7884d3210 304
+2024-11-24 14:24:14 [info]: POST /landing-page/create-new-course-landing/67430a8ed43b81d7884d3210 200
+2024-11-24 14:24:33 [info]: GET / 401
+2024-11-24 14:24:35 [info]: GET / 304
+2024-11-24 14:24:56 [info]: GET / 304
+2024-11-24 14:25:04 [info]: GET / 304
+2024-11-24 15:24:29 [info]: GET / 304
+2024-11-24 15:35:15 [info]: GET /67430a8ed43b81d7884d3210 304
+2024-11-24 15:36:05 [info]: GET /67430a8ed43b81d7884d3210 304
+2024-11-24 15:41:01 [info]: GET /67430a8ed43b81d7884d3210 200
+2024-11-24 15:41:04 [info]: POST /landing-page/create-new-course-landing/67430a8ed43b81d7884d3210 200
+2024-11-24 15:41:35 [info]: GET /67430a8ed43b81d7884d3210 304
+2024-11-24 15:43:46 [info]: GET /67430a8ed43b81d7884d3210 304
+2024-11-24 15:44:29 [info]: GET /67430a8ed43b81d7884d3210 304
+2024-11-24 15:44:33 [info]: POST /landing-page/create-new-course-landing/67430a8ed43b81d7884d3210 200
+2024-11-24 15:45:21 [info]: GET /67430a8ed43b81d7884d3210 304
