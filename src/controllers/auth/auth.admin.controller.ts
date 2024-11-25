@@ -22,8 +22,6 @@ export class AdminAuthController {
         referral,
         referralSource,
       } = req.body;
-      
-      console.log("Organization password", password)
 
       const emailExists = await Organization.findOne({ email });
       if (emailExists) {
@@ -65,14 +63,14 @@ export class AdminAuthController {
       ).select("-password");
 
       const emailVariables = {
+        name,
         email,
         password,
-        organizationName: name,
         subject: "Welcome to Gamai!",
       };
 
-      console.log("Sending email with password:", emailVariables.password);
       await sendOrganizationOnboardingMail(emailVariables);
+      console.log("Sent email with email variables:", emailVariables);
 
       return ResponseHandler.success(
         res,
@@ -87,7 +85,7 @@ export class AdminAuthController {
 
   static async loginOrganization(
     req: Request,
-    res: Response, 
+    res: Response,
     next: NextFunction
   ) {
     try {

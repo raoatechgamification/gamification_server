@@ -15,7 +15,7 @@ export async function sendLoginEmail (mailPayload: VariablesInterface) {
 export async function sendOrganizationOnboardingMail (mailPayload: OrganizationOnboardingVariablesInterface) {
   try {
     await sendEmail(
-      "organizationOnboardingEmail.html", 
+      "organizationLogin.html", 
       mailPayload
     )
   } catch (error) {

@@ -816,3 +816,75 @@
 2024-11-19 16:02:53 [info]: GET /CERT-1732026872157-O47EV80BA/download 304
 2024-11-20 09:18:44 [info]: GET /CERT-1732026872157-O47EV80BA/download 200
 2024-11-20 11:31:56 [info]: GET /CERT-1732026872157-O47EV80BA/download 200
+2024-11-22 15:07:33 [info]: GET /user/program 200
+2024-11-22 15:08:04 [info]: GET /programs 401
+2024-11-22 15:11:21 [info]: POST /login 200 - Request Body: {"email":"seun@gmail.com","password":"Omodaratan05$#"}
+2024-11-22 15:11:52 [info]: POST /login 400 - Request Body: {"email":"seunoduez@gmail.com","password":"DefaultPassword123"}
+2024-11-22 15:12:05 [info]: POST /login 400 - Request Body: {"email":"backendseun@gmail.com","password":"DefaultPassword123"}
+2024-11-22 15:12:57 [info]: POST /login 400 - Request Body: {"email":"seunodueso@gmail.com","password":"DefaultPassword123"}
+2024-11-22 15:13:36 [info]: POST /single-create 401 - Request Body: {"firstName":"Oluwaseun","lastName":"Odueso","email":"seunoduez@gmail.com","role":"learner","batch":"2024","sendEmail":true}
+2024-11-22 15:13:57 [info]: POST /login 200 - Request Body: {"email":"seunoduez@gmail.com","password":"Timpearl05$$$"}
+2024-11-22 15:14:47 [info]: POST /single-create 400 - Request Body: {"firstName":"Oluwaseun","lastName":"Odueso","email":"seunoduez@gmail.com","role":"learner","batch":"2024","sendEmail":true}
+2024-11-22 15:18:05 [info]: POST /single-create 201 - Request Body: {"firstName":"Oluwaseun","lastName":"Odueso","email":"seunoduez@gmail.com","role":"learner","batch":"2024","sendEmail":true}
+2024-11-22 15:19:52 [info]: POST /login 400 - Request Body: {"email":"seunoduez@gmail.com","password":"OluwaseunOdueso@123#"}
+2024-11-22 15:23:43 [info]: POST /single-create 201 - Request Body: {"firstName":"Oluwaseun","lastName":"Odueso","email":"seunoduez@gmail.com","role":"learner","batch":"2024","sendEmail":true}
+2024-11-22 15:24:06 [info]: POST /login 400 - Request Body: {"email":"seunoduez@gmail.com","password":"OluwaseunOdueso@123#"}
+2024-11-22 15:24:16 [info]: POST /login 400 - Request Body: {"email":"seunoduez@gmail.com","password":"OluwaseunOdueso@123#"}
+2024-11-22 15:26:45 [info]: POST /login 400 - Request Body: {"email":"backendseun@gmail.com","password":"OluwaseunOdueso@123#"}
+2024-11-22 15:26:53 [info]: POST /login 400 - Request Body: {"email":"seunoduez@gmail.com","password":"OluwaseunOdueso@123#"}
+2024-11-22 15:27:00 [info]: POST /login 400 - Request Body: {"email":"seunodueso@gmail.com","password":"OluwaseunOdueso@123#"}
+2024-11-22 15:30:55 [info]: POST /single-create 201 - Request Body: {"firstName":"Oluwaseun","lastName":"Odueso","email":"backendSeun@gmail.com","role":"learner","batch":"2024","sendEmail":true}
+2024-11-22 15:31:36 [info]: POST /login 400 - Request Body: {"email":"backendseun@gmail.com","password":"OluwaseunOdueso@123#"}
+2024-11-22 15:36:16 [info]: POST /login 400 - Request Body: {"email":"backendseun@gmail.com","password":"OluwaseunOdueso@123#"}
+2024-11-22 15:40:34 [info]: POST /single-create 201 - Request Body: {"firstName":"Oluwaseun","lastName":"Odueso","email":"backendSeun@gmail.com","role":"learner","batch":"2024","sendEmail":true}
+2024-11-22 15:40:51 [info]: POST /login 400 - Request Body: {"email":"backendseun@gmail.com","password":"OluwaseunOdueso123#"}
+2024-11-22 15:42:17 [info]: POST /login 200 - Request Body: {"email":"seunoduez@gmail.com","password":"Timpearl05$$$"}
+2024-11-22 15:42:27 [info]: POST /login 200 - Request Body: {"email":"seun@gmail.com","password":"Omodaratan05$#"}
+2024-11-22 15:43:57 [info]: POST /login 400 - Request Body: {"email":"backendseun@gmail.com","password":"OluwaseunOdueso123#"}
+2024-11-22 15:44:04 [info]: POST /login 200 - Request Body: {"email":"seunoduez@gmail.com","password":"Timpearl05$$$"}
+2024-11-22 15:44:14 [info]: POST /login 200 - Request Body: {"email":"seun@gmail.com","password":"Omodaratan05$#"}
+2024-11-22 15:44:19 [info]: POST /login 200 - Request Body: {"email":"seun@gmail.com","password":"Omodaratan05$#"}
+2024-11-22 15:44:26 [info]: POST /login 400 - Request Body: {"email":"backendseun@gmail.com","password":"OluwaseunOdueso123#"}
+2024-11-22 15:45:23 [info]: POST /login 400 - Request Body: {"email":"backendseun@gmail.com","password":"OluwaseunOdueso123#"}
+2024-11-22 15:45:52 [info]: GET /programs 403
+2024-11-22 15:46:16 [info]: GET /programs 403
+2024-11-22 16:00:42 [info]: POST /single-create 403 - Request Body: {"firstName":"Oluwaseun","lastName":"Odueso","email":"backendSeun@gmail.com","role":"learner","password":"Tioluwani05$","batch":"2024","sendEmail":true}
+2024-11-22 16:00:54 [info]: POST /login 200 - Request Body: {"email":"seunoduez@gmail.com","password":"Timpearl05$$$"}
+2024-11-22 16:01:35 [info]: POST /single-create 400 - Request Body: {"firstName":"Oluwaseun","lastName":"Odueso","email":"backendSeun@gmail.com","role":"learner","password":"Tioluwani05$","batch":"2024","sendEmail":true}
+2024-11-22 16:02:05 [info]: POST /single-create 201 - Request Body: {"firstName":"Oluwaseun","lastName":"Odueso","email":"lola@gmail.com","role":"learner","password":"Tioluwani05$","batch":"2024","sendEmail":true}
+2024-11-22 16:02:19 [info]: POST /login 200 - Request Body: {"firstName":"Oluwaseun","lastName":"Odueso","email":"lola@gmail.com","role":"learner","password":"Tioluwani05$","batch":"2024","sendEmail":true}
+2024-11-22 16:06:15 [info]: GET /programs 500
+2024-11-22 16:13:34 [info]: GET /programs 200
+2024-11-25 10:36:23 [info]: POST /org/register 400 - Request Body: {"name":"Timpel and Co.","email":"seunoduez@gmail.com","phone":"09066318539","preferredUrl":"https://ajy.com","password":"Timpearl05$$$","confirmPassword":"Timpearl05$$$","referral":"","referralSource":"linkedin"}
+2024-11-25 10:36:51 [info]: POST /org/register 400 - Request Body: {"name":"Seun and Co.","email":"backendseun@gmail.com","phone":"09066318539","preferredUrl":"https://ajy.com","password":"Timpearl05$$$","confirmPassword":"Timpearl05$$$","referral":"","referralSource":"linkedin"}
+2024-11-25 10:37:06 [info]: POST /org/register 201 - Request Body: {"name":"Seun and Co.","email":"backendseun@gmail.com","phone":"09066318534","preferredUrl":"https://ajy.com","password":"Timpearl05$$$","confirmPassword":"Timpearl05$$$","referral":"","referralSource":"linkedin"}
+2024-11-25 10:41:03 [info]: POST /org/register 400 - Request Body: {"name":"Seun and Co.","email":"backendseun@gmail.com","phone":"09066318534","preferredUrl":"https://ajy.com","password":"Timpearl05$","confirmPassword":"Timpearl05$$$","referral":"","referralSource":"linkedin"}
+2024-11-25 10:41:11 [info]: POST /org/register 201 - Request Body: {"name":"Seun and Co.","email":"backendseun@gmail.com","phone":"09066318534","preferredUrl":"https://ajy.com","password":"Timpearl05$","confirmPassword":"Timpearl05$","referral":"","referralSource":"linkedin"}
+2024-11-25 11:11:19 [info]: POST /api/v1/auth/org/register 500 - Request Body: {"name":"Seun and Co.","email":"backendseun@gmail.com","phone":"09066318534","preferredUrl":"https://ajy.com","password":"Timpearl05$","confirmPassword":"Timpearl05$","referral":"","referralSource":"linkedin"}
+2024-11-25 11:13:54 [info]: POST /org/register 201 - Request Body: {"name":"Seun and Co.","email":"backendseun@gmail.com","phone":"09066318534","preferredUrl":"https://ajy.com","password":"Timpearl05$","confirmPassword":"Timpearl05$","referral":"","referralSource":"linkedin"}
+2024-11-25 11:15:38 [info]: POST /login 200 - Request Body: {"email":"seunoduez@gmail.com","password":"Timpearl05$$$"}
+2024-11-25 11:17:34 [info]: POST /single-create 201 - Request Body: {"firstName":"Oluwaseun","lastName":"Odueso","email":"backendseun@gmail.com","role":"learner","batch":"2024","sendEmail":true,"passwprd":"Tjokoni35#"}
+2024-11-25 11:22:36 [info]: POST /api/v1/auth/org/register 500 - Request Body: {"name":"Seun and Co.","email":"backendseun@gmail.com","phone":"09066318534","preferredUrl":"https://ajy.com","password":"Timpearl05$","confirmPassword":"Timpearl05$","referral":"","referralSource":"linkedin"}
+2024-11-25 11:24:40 [info]: POST /org/register 201 - Request Body: {"name":"Seun and Co.","email":"backendseun@gmail.com","phone":"09066318534","preferredUrl":"https://ajy.com","password":"Timpearl05$","confirmPassword":"Timpearl05$","referral":"","referralSource":"linkedin"}
+2024-11-25 11:28:10 [info]: POST /org/register 201 - Request Body: {"name":"Seun and Co.","email":"backendseun@gmail.com","phone":"09066318534","preferredUrl":"https://ajy.com","password":"Timpearl05$","confirmPassword":"Timpearl05$","referral":"","referralSource":"linkedin"}
+2024-11-25 13:00:56 [info]: GET /users 403
+2024-11-25 13:01:09 [info]: POST /login 200 - Request Body: {"name":"Seun and Co.","email":"backendseun@gmail.com","phone":"09066318534","preferredUrl":"https://timpel.com","password":"Timpearl05$","confirmPassword":"Timpearl05$","referral":"","referralSource":"linkedin"}
+2024-11-25 13:01:58 [info]: GET /users 403
+2024-11-25 13:02:05 [info]: GET /users 403
+2024-11-25 13:02:08 [info]: GET /users 403
+2024-11-25 13:02:24 [info]: POST /login 200 - Request Body: {"name":"Seun and Co.","email":"backendseun@gmail.com","phone":"09066318534","preferredUrl":"https://timpel.com","password":"Timpearl05$","confirmPassword":"Timpearl05$","referral":"","referralSource":"linkedin"}
+2024-11-25 13:08:02 [info]: GET /user-profile/67445b472f6a73926945f9f4 404
+2024-11-25 13:08:08 [info]: GET /users 400
+2024-11-25 13:09:56 [info]: GET /user-profile/67445b472f6a73926945f9f4 404
+2024-11-25 13:26:00 [info]: PUT /user-details/672c74c24145a14ac2aba7c9 403 - Request Body: {"firstName":"firstName","lastName":"lastName","batch":"2024 year 1","role":"instructor or learner"}
+2024-11-25 13:26:06 [info]: POST /login 200 - Request Body: {"name":"Seun and Co.","email":"backendseun@gmail.com","phone":"09066318534","preferredUrl":"https://timpel.com","password":"Timpearl05$","confirmPassword":"Timpearl05$","referral":"","referralSource":"linkedin"}
+2024-11-25 13:26:40 [info]: PUT /user-details/672c74c24145a14ac2aba7c9 404 - Request Body: {"firstName":"firstName","lastName":"lastName","batch":"2024 year 1","role":"instructor or learner"}
+2024-11-25 13:47:47 [info]: POST /single-create 400 - Request Body: {"firstName":"Oluwaseun","lastName":"Odueso","email":"seunodueso@gmail.com","role":"learner","batch":"2024","sendEmail":true,"passwprd":"Tjokoni35#"}
+2024-11-25 13:49:36 [info]: POST /single-create 201 - Request Body: {"firstName":"Oluwaseun","lastName":"Odueso","email":"seunodueso@gmail.com","role":"learner","batch":"2024","sendEmail":true,"passwprd":"Tjokoni35#"}
+2024-11-25 13:55:06 [info]: POST /single-create 201 - Request Body: {"firstName":"Oluwaseun","lastName":"Odueso","email":"seunodueso@gmail.com","role":"learner","batch":"2024","sendEmail":true,"passwprd":"Tjokoni35#"}
+2024-11-25 13:56:29 [info]: POST /single-create 201 - Request Body: {"firstName":"Oluwaseun","lastName":"Odueso","email":"seunodueso@gmail.com","role":"learner","batch":"2024","sendEmail":true,"passwprd":"Tjokoni35#"}
+2024-11-25 13:59:34 [info]: POST /single-create 201 - Request Body: {"firstName":"Oluwaseun","lastName":"Odueso","email":"seunodueso@gmail.com","role":"learner","batch":"2024","sendEmail":true,"passwprd":"Tjokoni35#"}
+2024-11-25 14:01:32 [info]: POST /single-create 201 - Request Body: {"firstName":"Oluwaseun","lastName":"Odueso","email":"seunodueso@gmail.com","role":"learner","batch":"2024","sendEmail":true,"passwprd":"Tjokoni35#"}
+2024-11-25 14:05:57 [info]: POST /single-create 201 - Request Body: {"firstName":"Oluwaseun","lastName":"Odueso","email":"seunodueso@gmail.com","role":"learner","batch":"2024","sendEmail":true,"passwprd":"Tjokoni35#"}
+2024-11-25 14:21:48 [info]: POST /single-create 201 - Request Body: {"firstName":"Oluwaseun","lastName":"Odueso","email":"seunodueso@gmail.com","role":"learner","batch":"2024","sendEmail":true,"passwprd":"Tjokoni35#"}
+2024-11-25 14:28:58 [info]: POST /single-create 201 - Request Body: {"firstName":"Oluwaseun","lastName":"Odueso","email":"seunodueso@gmail.com","role":"learner","batch":"2024","sendEmail":true,"passwprd":"Tjokoni35#"}

@@ -3,7 +3,7 @@ import { authenticate, authorize } from "../middlewares/auth.middleware";
 import { UserController } from "../controllers/user.controller";
 import { editUserProfileValidator, changePasswordValidator } from "../validators/user.auth.validator";
 
-const { editProfile, billHistory, dueBills, viewBill, updatePassword } =
+const { editProfile, billHistory, dueBills, viewBill, updatePassword, userPrograms } =
   new UserController();
 
 const router = Router();
@@ -29,5 +29,12 @@ router.put(
   ...changePasswordValidator,
   updatePassword
 );
+
+router.get(
+  "/programs",
+  authenticate,
+  authorize("user"),
+  userPrograms
+)
 
 export default router;

@@ -161,4 +161,73 @@ export class UserController {
       });
     }
   }
+
+  // async userPrograms (req: Request, res: Response) {
+  //   try {
+  //     const userId = req.user.id;
+
+  //     const user = await User.findById(userId)
+  //     if ( !user ) return ResponseHandler.failure(res, "User not found", 404);
+
+  //     const userPrograms = await User.find(userId).select("+ongoingPrograms +completedPrograms")
+  //     if (!userPrograms) {
+  //       return ResponseHandler.success(
+  //         res, 
+  //         "No have to ongoing nor completed programs. Enroll in a program today."
+  //       )
+  //     }
+
+  //     return ResponseHandler.success(
+  //       res, 
+  //       userPrograms,
+  //       "Your password has been updated successfully",
+  //       200 
+  //     )
+  //   } catch (error: any) {
+  //     res.status(500).json({
+  //       message: "Server error",
+  //       error: error.message,
+  //     });
+  //   }
+  // }
+
+  async userPrograms(req: Request, res: Response) {
+    try {
+      const userId = req.user.id;
+  
+      const user = await User.findById(userId).select(
+        "+ongoingPrograms +completedPrograms"
+      );
+  
+      if (!user) {
+        return ResponseHandler.failure(res, "User not found", 404);
+      }
+  
+      if (!user.ongoingPrograms?.length && !user.completedPrograms?.length) {
+        return ResponseHandler.success(
+          res,
+          null,
+          "You have no ongoing or completed programs. Enroll in a program today.",
+          200
+        );
+      }
+  
+      const userPrograms = {
+        ongoingPrograms: user.ongoingPrograms || [],
+        completedPrograms: user.completedPrograms || [],
+      };
+  
+      return ResponseHandler.success(
+        res,
+        userPrograms,
+        "Programs retrieved successfully",
+        200
+      );
+    } catch (error: any) {
+      console.error("Error retrieving user programs:", error.message);
+      return ResponseHandler.failure(res, "Server error", 500);
+    }
+  }  
+
+  
 }

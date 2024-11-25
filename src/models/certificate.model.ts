@@ -1,10 +1,11 @@
-import mongoose, { Schema, Document, Model } from 'mongoose';
+import mongoose, { Schema, Document, Model, Mongoose } from 'mongoose';
 
 export interface ICertificate extends Document {
-  organizationId: string;
+  organizationId: mongoose.Schema.Types.ObjectId;
   organizationLogo: string; // URL of the logo
   organizationName: string;
   certificateTitle: string;
+  courseId: mongoose.Schema.Types.ObjectId;
   contentsBeforeRecipient: string;
   contentsAfterRecipient: string;
   recipientName: string;
@@ -18,10 +19,11 @@ export interface ICertificate extends Document {
 
 const CertificateSchema: Schema<ICertificate> = new Schema(
   {
-    organizationId: { type: String, required: true },
+    organizationId: { type: mongoose.Schema.Types.ObjectId, required: true },
     organizationLogo: { type: String, required: true },
     organizationName: { type: String, required: true },
     certificateTitle: { type: String, required: true },
+    courseId: { type: Schema.Types.ObjectId, required: true },
     contentsBeforeRecipient: { type: String, required: true },
     contentsAfterRecipient: { type: String, required: true },
     recipientName: { type: String, required: true },

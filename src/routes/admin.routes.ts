@@ -23,7 +23,7 @@ router.put(
 router.get(
   "/user-profile/:userId",
   authenticate,
-  authorize,
+  authorize("admin"),
   ...userIdValidator,
   viewAUserProfile
 );

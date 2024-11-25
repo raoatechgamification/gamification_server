@@ -15,7 +15,7 @@ export interface OrganizationOnboardingVariablesInterface {
   email: string;
   password: string;
   subject: string;
-  organizationName: string;
+  name: string;
 }
 
 const postmarkClient = new postmark.ServerClient(

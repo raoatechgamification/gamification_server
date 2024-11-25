@@ -21,7 +21,7 @@ import { UserAuthController } from "../controllers/auth/auth.user.controller";
 import { SuperAdminAuthController } from "../controllers/auth/auth.superadmin.controller";
 
 const { registerOrganization, loginOrganization } = AdminAuthController;
-const { registerUser, bulkCreateUsers, createSingleUser, loginUser, login } =
+const { registerUser, bulkCreateUsers, createSingleUser, login } =
   UserAuthController;
 const { registerSuperAdmin, loginSuperAdmin } = SuperAdminAuthController;
 

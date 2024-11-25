@@ -1,6 +1,7 @@
 import { Request, Response, NextFunction } from "express";
 import { ResponseHandler } from "../middlewares/responseHandler.middleware";
 import Certificate from "../models/certificate.model";
+import Course from "../models/course.model";
 import { generateCertificatePDF } from "../services/certificate.service";
 
 class CertificateController {
@@ -94,6 +95,15 @@ class CertificateController {
 
       if (!certificate) {
         return ResponseHandler.failure(res, "Certificate not found", 404);
+      }
+
+      const course = await Course.findById( certificate.courseId )
+
+      const certificateVariables = {
+        traineeName: certificate.recipientName,
+        date: certificate.dateIssued,
+        organization: certificate.organizationName,
+        course: course?.title
       }
 
       const pdfBuffer = await generateCertificatePDF(certificate);
