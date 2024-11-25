@@ -8,7 +8,9 @@ export interface CourseDocument extends Document {
   organisationId: string;
   
   lessonFormat?: string;
-  learnerIds?: string[];
+  lessons: mongoose.Types.ObjectId[];
+  // learnerIds?: string[];
+  learnerIds: { userId: mongoose.Types.ObjectId; progress: number }[];
 
   duration: string;
   landingPageTitle: string;
@@ -48,7 +50,14 @@ const courseSchema = new Schema<CourseDocument>(
     instructorId: { type: String, required: false }, 
     duration: { type: String, required: false }, 
     lessonFormat: { type: String, required: false }, 
-    learnerIds: { type: [String] },
+    // learnerIds: { type: [String] },
+    lessons: [{ type: Schema.Types.ObjectId, ref: 'Lesson' }],
+    learnerIds: [
+      {
+        userId: { type: Schema.Types.ObjectId, ref: 'User' },
+        progress: { type: Number, default: 0 }, // Completion percentage for the course
+      },
+    ],
     landingPageTitle: {
       type: String,
       required: false,

@@ -2,7 +2,7 @@ import mongoose from "mongoose";
 import { Request, Response, NextFunction } from "express";
 import { ResponseHandler } from "../middlewares/responseHandler.middleware";
 import Course from "../models/course.model";
-import CourseContent from "../models/courseContent.model";
+import Lesson from "../models/lesson.model";
 import Announcement from "../models/announcement.model";
 import { NotificationController } from "../controllers/notification.controller";
 import { uploadToCloudinary } from "../utils/cloudinaryUpload";
@@ -106,28 +106,25 @@ export class CourseController {
     }
   }
 
+  async getAllCourses(req: Request, res: Response, next: NextFunction) {
+    try {
+      const organisationId = req.admin._id; // Assuming `req.admin._id` contains the instructor's ID
 
-    async getAllCourses(req: Request, res: Response, next: NextFunction) {
-      try {
-        const organisationId = req.admin._id; // Assuming `req.admin._id` contains the instructor's ID
-  
-        // Find all courses where the organisationId matches
-        const courses = await Course.find({ organisationId });
+      // Find all courses where the organisationId matches
+      const courses = await Course.find({ organisationId });
 
-        // Return the courses using a response handler
-        return ResponseHandler.success(
-          res,
-          courses,
-          "Courses retrieved successfully",
-          200
-        );
-      } catch (error) {
-        next(error);
-      }
+      // Return the courses using a response handler
+      return ResponseHandler.success(
+        res,
+        courses,
+        "Courses retrieved successfully",
+        200
+      );
+    } catch (error) {
+      next(error);
     }
+  }
   
-  
-
   async createCourseContent(req: Request, res: Response, next: NextFunction) {
     try {
       const instructorId = req.admin._id;
@@ -164,7 +161,7 @@ export class CourseController {
         }
       }
 
-      const courseContent = await CourseContent.create({
+      const courseContent = await Lesson.create({
         courseId,
         title,
         objectives,
@@ -172,7 +169,7 @@ export class CourseController {
         files: Urls,
       });
 
-      const curriculum = await CourseContent.find({ courseId });
+      const curriculum = await Lesson.find({ courseId });
 
       return ResponseHandler.success(
         res,
@@ -197,7 +194,7 @@ export class CourseController {
         );
       }
 
-      const curriculum = await CourseContent.find({ courseId });
+      const curriculum = await Lesson.find({ courseId });
 
       return ResponseHandler.success(
         res,
