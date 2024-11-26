@@ -1,15 +1,13 @@
-import mongoose, { Schema, model, Document } from 'mongoose';
+import { Schema, model, Document } from 'mongoose';
 
-export interface ICourse extends Document {
+export interface ISubService extends Document {
   title?: string;
   objective?: string;
   price?: number;
   instructorId?: string;
   organisationId?: string;
   lessonFormat?: string;
-  // learnerIds?: string[];
-  lessons: mongoose.Types.ObjectId[];
-  learnerIds: { userId: mongoose.Types.ObjectId; progress: number }[];
+  learnerIds?: string[];
   duration?: string;
   courseCode?: string;
   courseLevel?: string;
@@ -31,26 +29,16 @@ export interface ICourse extends Document {
   visibilityEndTime?: string;
   curriculum?: string[];
   teachingMethod?: string;
-  passMark: number;
-  maximumNumberOfTrials?: number
 }
 
-const CourseSchema = new Schema<ICourse>({
+const SubServiceSchema = new Schema<ISubService>({
   title: { type: String, required: false },
   objective: { type: String, required: false },
   price: { type: Number, required: false },
   instructorId: { type: String, required: false },
   organisationId: { type: String, required: false },
   lessonFormat: { type: String, required: false },
-  // learnerIds: [{ type: String }],
-  lessons: [{ type: Schema.Types.ObjectId, ref: 'Lesson' }],
-  learnerIds: [
-    {
-      userId: { type: Schema.Types.ObjectId, ref: 'User' },
-      progress: { type: Number, default: 0 }, // Completion percentage for the course
-    },
-  ],
-
+  learnerIds: [{ type: String }],
   duration: { type: String, required: false },
   courseCode: { type: String, required: false },
   courseLevel: { type: String, required: false },
@@ -72,9 +60,7 @@ const CourseSchema = new Schema<ICourse>({
   visibilityEndTime: { type: String },
   curriculum: [{ type: String }],
   teachingMethod: { type: String },
-  passMark: {type: Number, required: false},
-  maximumNumberOfTrials: {type: Number, required: false}
+  
 });
 
-const Course = model<ICourse>('Course', CourseSchema);
-export default Course
+export const Subservice = model<ISubService>('Subservice', SubServiceSchema);

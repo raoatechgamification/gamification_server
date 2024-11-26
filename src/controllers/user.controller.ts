@@ -3,6 +3,8 @@ import { ResponseHandler } from "../middlewares/responseHandler.middleware"
 import User from "../models/user.model";
 import Payment from "../models/payment.model";
 import AssignedBill from "../models/bill.model";
+import Course from "../models/course.model";
+import Lesson from "../models/lesson.model"
 import { comparePassword, hashPassword } from "../utils/hash"
 
 export class UserController {
@@ -225,9 +227,75 @@ export class UserController {
       );
     } catch (error: any) {
       console.error("Error retrieving user programs:", error.message);
-      return ResponseHandler.failure(res, "Server error", 500);
+      return ResponseHandler.failure(res, "Error retrieving user programs", 500);
     }
   }  
 
-  
+  async enrolledCoursesWithProgress(req: Request, res: Response) {
+    try {
+      const { userId } = req.params;
+
+      const courses = await Course.find({ 'enrolledUsers.userId': userId })
+      .populate('lessons')
+      .select('title description enrolledUsers');
+    
+      const result = courses.map(course => {
+        const userProgress = course.learnerIds.find(u => u.userId.toString() === userId)?.progress || 0;
+        return {
+          courseId: course._id,
+          title: course.title,
+          description: course.objective,
+          progress: userProgress,
+        };
+      });
+
+      res.json(result);
+    } catch (error: any) {
+      console.error("Error fetching enrolled courses", error.message);
+      return ResponseHandler.failure(res, "Error fetching enrolled courses", 500);
+    }
+  }
+
+  async lessonsWithProgress(req: Request, res: Response) {
+    try {
+      const { courseId, userId } = req.params;
+      const lessons = await Lesson.find({ courseId: courseId });
+
+      const result = lessons.map(lesson => ({
+        lessonId: lesson._id,
+        title: lesson.title,
+        completed: lesson.completedBy.includes(userId),
+      }));
+
+      res.json(result);
+    } catch (error: any) {
+      console.error("Error fetching lessons", error.message);
+      return ResponseHandler.failure(res, "Error fetching lessons", 500);
+    }
+  }
+
+  async markLessonAsComplete(req: Request, res: Response) {
+    try {
+      const { lessonId } = req.params;
+      const { userId } = req.body;
+
+      await Lesson.findByIdAndUpdate(lessonId, { $addToSet: { completedBy: userId } });
+
+      // Update course progress
+      const lesson = await Lesson.findById(lessonId).populate('course');
+      const totalLessons = await Lesson.countDocuments({ course: lesson?.course });
+      const completedLessons = await Lesson.countDocuments({ course: lesson?.course, completedBy: userId });
+      const progress = Math.floor((completedLessons / totalLessons) * 100);
+
+      await Course.findOneAndUpdate(
+        { _id: lesson?.course, 'enrolledUsers.userId': userId },
+        { $set: { 'enrolledUsers.$.progress': progress } }
+      );
+
+      res.json({ message: 'Lesson marked as complete.' });
+    } catch (error: any) {
+      console.error("Error fetching lessons", error.message);
+      return ResponseHandler.failure(res, "Server error", 500);
+    }
+  }
 }

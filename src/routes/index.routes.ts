@@ -14,6 +14,7 @@ import sessionRoutes from "./session.routes";
 import adminRoutes from "./admin.routes";
 import certificateRoutes from "./certificate.routes";
 
+import LandingPageRoute from "./landingpage.routes"
 router.use("/auth", authRoutes);
 router.use("/super-admin", superAdminRoutes);
 router.use("/admin", adminRoutes);
@@ -26,6 +27,7 @@ router.use("/payments", paymentRoutes);
 router.use("/bill", billRoutes);
 router.use("/session", sessionRoutes);
 router.use("/certificates", certificateRoutes);
+router.use("/landing-page", LandingPageRoute)
 
 router.use("/", (req, res) => {
   res.json({

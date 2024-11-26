@@ -1,5 +1,5 @@
 import mongoose, { Schema, Document, Model } from "mongoose";
-import { CourseDocument } from "../models/course.model";
+import { ICourse } from "../models/course.model";
 
 export interface IUser extends Document {
   username?: string;
@@ -16,8 +16,8 @@ export interface IUser extends Document {
   highestEducationLevel?: string;
   gender?: string;
   dateOfBirth?: string;
-  ongoingPrograms?: CourseDocument[];
-  completedPrograms?: CourseDocument[];
+  ongoingPrograms?: ICourse[];
+  completedPrograms?: ICourse[];
 }
 
 const UserSchema: Schema<IUser> = new Schema(

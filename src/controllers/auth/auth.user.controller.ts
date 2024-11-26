@@ -7,6 +7,7 @@ import UserService from "../../services/user.service";
 import { comparePassword, hashPassword } from "../../utils/hash";
 import { generateToken } from "../../utils/jwt";
 import { sendLoginEmail } from "../../services/sendMail.service";
+import {verifyEmailTemplate} from "../../utils/email"
 
 export class UserAuthController {
   static async createSingleUser(req: Request, res: Response) {
@@ -49,7 +50,7 @@ export class UserAuthController {
       const userResponse = await User.findById(newUser._id).select(
         "-password -role"
       );
-
+      const url = `https://staging-gamification.netlify.app/auth/login`
       if (sendEmail) {
         const emailVariables = {
           email,
@@ -58,8 +59,8 @@ export class UserAuthController {
           organizationName: organization.name,
           subject: "Onboarding Email",
         };
-
-        await sendLoginEmail(emailVariables);
+        await verifyEmailTemplate(emailVariables)
+        // await sendLoginEmail(emailVariables);
       }
 
       return ResponseHandler.success(

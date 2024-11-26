@@ -497,23 +497,23 @@
 2024-11-11 10:40:32 [info]: POST /api/v1/course/create 500
 2024-11-11 10:41:56 [info]: POST /api/v1/course/create 500
 2024-11-11 10:42:50 [info]: POST /api/v1/course/create 500
-2024-11-11 10:50:12 [info]: POST /api/v1/course/create 500 - Request Body: {"title":"title","objective":"objective","price":"20","duration":"duration","lessonFormat":"lessonFormat","landingPageTitle":"landingPageTitle","serviceTitleDescription":"serviceTitleDescription","serviceType":"serviceType","serviceItem":"serviceItem","serviceItemDescription":"serviceItemDescription","courseCode":"courseCode","courseLevel":"courseLevel","startDate":"startDate","endDate":"endDate","numberOfHoursPerDay":"numberOfHoursPerDay","numberOfDaysPerWeek":"numberOfDaysPerWeek","cost":"cost","promo":"promo","promoCode":"promoCode","promoValue":"promoValue","platformCharge":"platformCharge","actualCost":"10","sharing":"sharing","sharingValue":"sharingValue","paymentStartDate":"paymentStartDate","paymentEndDate":"paymentEndDate","paymentStartTime":"paymentStartTime","paymentEndTime":"paymentEndTime","teachingMethod":"teachingMethod"}
-2024-11-11 10:52:40 [info]: POST /api/v1/course/create 500 - Request Body: {"title":"title","objective":"objective","price":"20","duration":"duration","lessonFormat":"lessonFormat","landingPageTitle":"landingPageTitle","serviceTitleDescription":"serviceTitleDescription","serviceType":"serviceType","serviceItem":"serviceItem","serviceItemDescription":"serviceItemDescription","courseCode":"courseCode","courseLevel":"courseLevel","startDate":"startDate","endDate":"endDate","numberOfHoursPerDay":"numberOfHoursPerDay","numberOfDaysPerWeek":"10","cost":"cost","promo":"promo","promoCode":"promoCode","promoValue":"promoValue","platformCharge":"platformCharge","actualCost":"10","sharing":"sharing","sharingValue":"sharingValue","paymentStartDate":"paymentStartDate","paymentEndDate":"paymentEndDate","paymentStartTime":"paymentStartTime","paymentEndTime":"paymentEndTime","teachingMethod":"teachingMethod"}
-2024-11-11 10:56:42 [info]: POST /api/v1/course/create 500 - Request Body: {"title":"title","objective":"objective","price":"20","duration":"duration","lessonFormat":"lessonFormat","landingPageTitle":"landingPageTitle","serviceTitleDescription":"serviceTitleDescription","serviceType":"serviceType","serviceItem":"serviceItem","serviceItemDescription":"serviceItemDescription","courseCode":"courseCode","courseLevel":"courseLevel","startDate":"startDate","endDate":"endDate","numberOfHoursPerDay":"numberOfHoursPerDay","numberOfDaysPerWeek":"10","cost":"cost","promo":"promo","promoCode":"promoCode","promoValue":"promoValue","platformCharge":"platformCharge","actualCost":"10","sharing":"sharing","sharingValue":"sharingValue","paymentStartDate":"paymentStartDate","paymentEndDate":"paymentEndDate","paymentStartTime":"paymentStartTime","paymentEndTime":"paymentEndTime","teachingMethod":"teachingMethod"}
-2024-11-11 10:58:32 [info]: POST /api/v1/course/create 500 - Request Body: {"title":"title","objective":"objective","price":"20","duration":"duration","lessonFormat":"lessonFormat","landingPageTitle":"landingPageTitle","serviceTitleDescription":"serviceTitleDescription","serviceType":"serviceType","serviceItem":"serviceItem","serviceItemDescription":"serviceItemDescription","courseCode":"courseCode","courseLevel":"courseLevel","startDate":"startDate","endDate":"endDate","numberOfHoursPerDay":"10","numberOfDaysPerWeek":"10","cost":"cost","promo":"promo","promoCode":"promoCode","promoValue":"promoValue","platformCharge":"platformCharge","actualCost":"10","sharing":"sharing","sharingValue":"sharingValue","paymentStartDate":"paymentStartDate","paymentEndDate":"paymentEndDate","paymentStartTime":"paymentStartTime","paymentEndTime":"paymentEndTime","teachingMethod":"teachingMethod"}
-2024-11-11 10:58:47 [info]: POST /api/v1/course/create 500 - Request Body: {"title":"title","objective":"objective","price":"20","duration":"duration","lessonFormat":"lessonFormat","landingPageTitle":"landingPageTitle","serviceTitleDescription":"serviceTitleDescription","serviceType":"serviceType","serviceItem":"serviceItem","serviceItemDescription":"serviceItemDescription","courseCode":"courseCode","courseLevel":"courseLevel","startDate":"startDate","endDate":"endDate","numberOfHoursPerDay":"10","numberOfDaysPerWeek":"10","cost":"100","promo":"promo","promoCode":"promoCode","promoValue":"promoValue","platformCharge":"platformCharge","actualCost":"10","sharing":"sharing","sharingValue":"sharingValue","paymentStartDate":"paymentStartDate","paymentEndDate":"paymentEndDate","paymentStartTime":"paymentStartTime","paymentEndTime":"paymentEndTime","teachingMethod":"teachingMethod"}
-2024-11-11 11:03:13 [info]: POST /api/v1/course/create 500 - Request Body: {"title":"title","objective":"objective","price":"20","duration":"duration","lessonFormat":"lessonFormat","landingPageTitle":"landingPageTitle","serviceTitleDescription":"serviceTitleDescription","serviceType":"serviceType","serviceItem":"serviceItem","serviceItemDescription":"serviceItemDescription","courseCode":"courseCode","courseLevel":"courseLevel","startDate":"startDate","endDate":"endDate","numberOfHoursPerDay":"10","numberOfDaysPerWeek":"10","cost":"100","promo":"10","promoCode":"promoCode","promoValue":"promoValue","platformCharge":"platformCharge","actualCost":"10","sharing":"sharing","sharingValue":"sharingValue","paymentStartDate":"paymentStartDate","paymentEndDate":"paymentEndDate","paymentStartTime":"paymentStartTime","paymentEndTime":"paymentEndTime","teachingMethod":"teachingMethod"}
-2024-11-11 11:04:09 [info]: POST /api/v1/course/create 500 - Request Body: {"title":"title","objective":"objective","price":"20","duration":"duration","lessonFormat":"lessonFormat","landingPageTitle":"landingPageTitle","serviceTitleDescription":"serviceTitleDescription","serviceType":"serviceType","serviceItem":"serviceItem","serviceItemDescription":"serviceItemDescription","courseCode":"courseCode","courseLevel":"courseLevel","startDate":"startDate","endDate":"endDate","numberOfHoursPerDay":"10","numberOfDaysPerWeek":"10","cost":"100","promo":"10","promoCode":"promoCode","promoValue":"10","platformCharge":"10","actualCost":"10","sharing":"sharing","sharingValue":"sharingValue","paymentStartDate":"paymentStartDate","paymentEndDate":"paymentEndDate","paymentStartTime":"paymentStartTime","paymentEndTime":"paymentEndTime","teachingMethod":"teachingMethod"}
-2024-11-11 11:05:03 [info]: POST /create 201 - Request Body: {"title":"title","objective":"objective","price":"20","duration":"duration","lessonFormat":"lessonFormat","landingPageTitle":"landingPageTitle","serviceTitleDescription":"serviceTitleDescription","serviceType":"serviceType","serviceItem":"serviceItem","serviceItemDescription":"serviceItemDescription","courseCode":"courseCode","courseLevel":"courseLevel","startDate":"startDate","endDate":"endDate","numberOfHoursPerDay":"10","numberOfDaysPerWeek":"10","cost":"100","promo":"10","promoCode":"promoCode","promoValue":"10","platformCharge":"10","actualCost":"10","sharing":"10","sharingValue":"10","paymentStartDate":"paymentStartDate","paymentEndDate":"paymentEndDate","paymentStartTime":"paymentStartTime","paymentEndTime":"paymentEndTime","teachingMethod":"teachingMethod"}
+2024-11-11 10:50:12 [info]: POST /api/v1/course/create 500 - Request Body: {"title":"title","objective":"objective","price":"20","duration":"duration","lessonFormat":"lessonFormat","landingPageTitle":"landingPageTitle","serviceTitleDescription":"serviceTitleDescription","serviceType":"serviceType","serviceItem":"serviceItem","serviceItemDescription":"serviceItemDescription","courseCode":"courseCode","courseLevel":"courseLevel","startDate":"startDate","endDate":"endDate","numberOfHoursPerDay":"numberOfHoursPerDay","numberOfDaysPerWeek":"numberOfDaysPerWeek","cost":"cost","promo":"promo","promoCode":"promoCode","promoValue":"promoValue","platformCharge":"platformCharge","actualCost":"10","sharing":"sharing","sharingValue":"sharingValue","visibilityStartDate":"visibilityStartDate","visibilityEndDate":"visibilityEndDate","visibilityStartTime":"visibilityStartTime","visibilityEndTime":"visibilityEndTime","teachingMethod":"teachingMethod"}
+2024-11-11 10:52:40 [info]: POST /api/v1/course/create 500 - Request Body: {"title":"title","objective":"objective","price":"20","duration":"duration","lessonFormat":"lessonFormat","landingPageTitle":"landingPageTitle","serviceTitleDescription":"serviceTitleDescription","serviceType":"serviceType","serviceItem":"serviceItem","serviceItemDescription":"serviceItemDescription","courseCode":"courseCode","courseLevel":"courseLevel","startDate":"startDate","endDate":"endDate","numberOfHoursPerDay":"numberOfHoursPerDay","numberOfDaysPerWeek":"10","cost":"cost","promo":"promo","promoCode":"promoCode","promoValue":"promoValue","platformCharge":"platformCharge","actualCost":"10","sharing":"sharing","sharingValue":"sharingValue","visibilityStartDate":"visibilityStartDate","visibilityEndDate":"visibilityEndDate","visibilityStartTime":"visibilityStartTime","visibilityEndTime":"visibilityEndTime","teachingMethod":"teachingMethod"}
+2024-11-11 10:56:42 [info]: POST /api/v1/course/create 500 - Request Body: {"title":"title","objective":"objective","price":"20","duration":"duration","lessonFormat":"lessonFormat","landingPageTitle":"landingPageTitle","serviceTitleDescription":"serviceTitleDescription","serviceType":"serviceType","serviceItem":"serviceItem","serviceItemDescription":"serviceItemDescription","courseCode":"courseCode","courseLevel":"courseLevel","startDate":"startDate","endDate":"endDate","numberOfHoursPerDay":"numberOfHoursPerDay","numberOfDaysPerWeek":"10","cost":"cost","promo":"promo","promoCode":"promoCode","promoValue":"promoValue","platformCharge":"platformCharge","actualCost":"10","sharing":"sharing","sharingValue":"sharingValue","visibilityStartDate":"visibilityStartDate","visibilityEndDate":"visibilityEndDate","visibilityStartTime":"visibilityStartTime","visibilityEndTime":"visibilityEndTime","teachingMethod":"teachingMethod"}
+2024-11-11 10:58:32 [info]: POST /api/v1/course/create 500 - Request Body: {"title":"title","objective":"objective","price":"20","duration":"duration","lessonFormat":"lessonFormat","landingPageTitle":"landingPageTitle","serviceTitleDescription":"serviceTitleDescription","serviceType":"serviceType","serviceItem":"serviceItem","serviceItemDescription":"serviceItemDescription","courseCode":"courseCode","courseLevel":"courseLevel","startDate":"startDate","endDate":"endDate","numberOfHoursPerDay":"10","numberOfDaysPerWeek":"10","cost":"cost","promo":"promo","promoCode":"promoCode","promoValue":"promoValue","platformCharge":"platformCharge","actualCost":"10","sharing":"sharing","sharingValue":"sharingValue","visibilityStartDate":"visibilityStartDate","visibilityEndDate":"visibilityEndDate","visibilityStartTime":"visibilityStartTime","visibilityEndTime":"visibilityEndTime","teachingMethod":"teachingMethod"}
+2024-11-11 10:58:47 [info]: POST /api/v1/course/create 500 - Request Body: {"title":"title","objective":"objective","price":"20","duration":"duration","lessonFormat":"lessonFormat","landingPageTitle":"landingPageTitle","serviceTitleDescription":"serviceTitleDescription","serviceType":"serviceType","serviceItem":"serviceItem","serviceItemDescription":"serviceItemDescription","courseCode":"courseCode","courseLevel":"courseLevel","startDate":"startDate","endDate":"endDate","numberOfHoursPerDay":"10","numberOfDaysPerWeek":"10","cost":"100","promo":"promo","promoCode":"promoCode","promoValue":"promoValue","platformCharge":"platformCharge","actualCost":"10","sharing":"sharing","sharingValue":"sharingValue","visibilityStartDate":"visibilityStartDate","visibilityEndDate":"visibilityEndDate","visibilityStartTime":"visibilityStartTime","visibilityEndTime":"visibilityEndTime","teachingMethod":"teachingMethod"}
+2024-11-11 11:03:13 [info]: POST /api/v1/course/create 500 - Request Body: {"title":"title","objective":"objective","price":"20","duration":"duration","lessonFormat":"lessonFormat","landingPageTitle":"landingPageTitle","serviceTitleDescription":"serviceTitleDescription","serviceType":"serviceType","serviceItem":"serviceItem","serviceItemDescription":"serviceItemDescription","courseCode":"courseCode","courseLevel":"courseLevel","startDate":"startDate","endDate":"endDate","numberOfHoursPerDay":"10","numberOfDaysPerWeek":"10","cost":"100","promo":"10","promoCode":"promoCode","promoValue":"promoValue","platformCharge":"platformCharge","actualCost":"10","sharing":"sharing","sharingValue":"sharingValue","visibilityStartDate":"visibilityStartDate","visibilityEndDate":"visibilityEndDate","visibilityStartTime":"visibilityStartTime","visibilityEndTime":"visibilityEndTime","teachingMethod":"teachingMethod"}
+2024-11-11 11:04:09 [info]: POST /api/v1/course/create 500 - Request Body: {"title":"title","objective":"objective","price":"20","duration":"duration","lessonFormat":"lessonFormat","landingPageTitle":"landingPageTitle","serviceTitleDescription":"serviceTitleDescription","serviceType":"serviceType","serviceItem":"serviceItem","serviceItemDescription":"serviceItemDescription","courseCode":"courseCode","courseLevel":"courseLevel","startDate":"startDate","endDate":"endDate","numberOfHoursPerDay":"10","numberOfDaysPerWeek":"10","cost":"100","promo":"10","promoCode":"promoCode","promoValue":"10","platformCharge":"10","actualCost":"10","sharing":"sharing","sharingValue":"sharingValue","visibilityStartDate":"visibilityStartDate","visibilityEndDate":"visibilityEndDate","visibilityStartTime":"visibilityStartTime","visibilityEndTime":"visibilityEndTime","teachingMethod":"teachingMethod"}
+2024-11-11 11:05:03 [info]: POST /create 201 - Request Body: {"title":"title","objective":"objective","price":"20","duration":"duration","lessonFormat":"lessonFormat","landingPageTitle":"landingPageTitle","serviceTitleDescription":"serviceTitleDescription","serviceType":"serviceType","serviceItem":"serviceItem","serviceItemDescription":"serviceItemDescription","courseCode":"courseCode","courseLevel":"courseLevel","startDate":"startDate","endDate":"endDate","numberOfHoursPerDay":"10","numberOfDaysPerWeek":"10","cost":"100","promo":"10","promoCode":"promoCode","promoValue":"10","platformCharge":"10","actualCost":"10","sharing":"10","sharingValue":"10","visibilityStartDate":"visibilityStartDate","visibilityEndDate":"visibilityEndDate","visibilityStartTime":"visibilityStartTime","visibilityEndTime":"visibilityEndTime","teachingMethod":"teachingMethod"}
 2024-11-11 12:14:22 [info]: GET /curriculum/6731d6cfafa97d8076c6b54e 200
 2024-11-11 13:00:55 [info]: POST /org/register 422 - Request Body: {"name":"Ajibade Org","email":"ajibadeemmanuel58@gmail.com","phone":"08178555400","preferredUrl":"https://ajy.com","password":"emmanuel2001!","confirmPassword":"emmanuel2001!","referral":"","referralSource":"linkedin"}
 2024-11-11 13:01:09 [info]: POST /org/register 400 - Request Body: {"name":"Ajibade Org","email":"ajibadeemmanuel58@gmail.com","phone":"08178555400","preferredUrl":"https://ajy.com","password":"Emmanuel2001!","confirmPassword":"emmanuel2001!","referral":"","referralSource":"linkedin"}
 2024-11-11 13:01:16 [info]: POST /org/register 201 - Request Body: {"name":"Ajibade Org","email":"ajibadeemmanuel58@gmail.com","phone":"08178555400","preferredUrl":"https://ajy.com","password":"Emmanuel2001!","confirmPassword":"Emmanuel2001!","referral":"","referralSource":"linkedin"}
 2024-11-11 13:02:23 [info]: POST /login 200 - Request Body: {"email":"ajibadeemmanuel58@gmail.com","password":"Emmanuel2001!"}
-2024-11-11 13:06:19 [info]: POST /create 201 - Request Body: {"title":"title","objective":"objective","price":"20","duration":"duration","lessonFormat":"lessonFormat","landingPageTitle":"landingPageTitle 2","serviceTitleDescription":"serviceTitleDescription","serviceType":"serviceType","serviceItem":"serviceItem","serviceItemDescription":"serviceItemDescription","courseCode":"courseCode","courseLevel":"courseLevel","startDate":"startDate","endDate":"endDate","numberOfHoursPerDay":"10","numberOfDaysPerWeek":"10","cost":"100","promo":"10","promoCode":"promoCode","promoValue":"10","platformCharge":"10","actualCost":"10","sharing":"10","sharingValue":"10","paymentStartDate":"paymentStartDate","paymentEndDate":"paymentEndDate","paymentStartTime":"paymentStartTime","paymentEndTime":"paymentEndTime","teachingMethod":"teachingMethod"}
+2024-11-11 13:06:19 [info]: POST /create 201 - Request Body: {"title":"title","objective":"objective","price":"20","duration":"duration","lessonFormat":"lessonFormat","landingPageTitle":"landingPageTitle 2","serviceTitleDescription":"serviceTitleDescription","serviceType":"serviceType","serviceItem":"serviceItem","serviceItemDescription":"serviceItemDescription","courseCode":"courseCode","courseLevel":"courseLevel","startDate":"startDate","endDate":"endDate","numberOfHoursPerDay":"10","numberOfDaysPerWeek":"10","cost":"100","promo":"10","promoCode":"promoCode","promoValue":"10","platformCharge":"10","actualCost":"10","sharing":"10","sharingValue":"10","visibilityStartDate":"visibilityStartDate","visibilityEndDate":"visibilityEndDate","visibilityStartTime":"visibilityStartTime","visibilityEndTime":"visibilityEndTime","teachingMethod":"teachingMethod"}
 2024-11-11 13:24:45 [info]: GET /get-all-courses 201
 2024-11-11 13:28:49 [info]: GET /get-all-courses 200
-2024-11-11 14:33:37 [info]: POST /create 201 - Request Body: {"title":"title","objective":"objective","price":"20","duration":"duration","lessonFormat":"lessonFormat","landingPageTitle":"landingPageTitle 2","serviceTitleDescription":"serviceTitleDescription","serviceType":"serviceType","serviceItem":"serviceItem","serviceItemDescription":"serviceItemDescription","courseCode":"courseCode","courseLevel":"courseLevel","startDate":"startDate","endDate":"endDate","numberOfHoursPerDay":"10","numberOfDaysPerWeek":"10","cost":"100","promo":"10","promoCode":"promoCode","promoValue":"10","platformCharge":"10","actualCost":"10","sharing":"10","sharingValue":"10","paymentStartDate":"paymentStartDate","paymentEndDate":"paymentEndDate","paymentStartTime":"paymentStartTime","paymentEndTime":"paymentEndTime","teachingMethod":"teachingMethod"}
+2024-11-11 14:33:37 [info]: POST /create 201 - Request Body: {"title":"title","objective":"objective","price":"20","duration":"duration","lessonFormat":"lessonFormat","landingPageTitle":"landingPageTitle 2","serviceTitleDescription":"serviceTitleDescription","serviceType":"serviceType","serviceItem":"serviceItem","serviceItemDescription":"serviceItemDescription","courseCode":"courseCode","courseLevel":"courseLevel","startDate":"startDate","endDate":"endDate","numberOfHoursPerDay":"10","numberOfDaysPerWeek":"10","cost":"100","promo":"10","promoCode":"promoCode","promoValue":"10","platformCharge":"10","actualCost":"10","sharing":"10","sharingValue":"10","visibilityStartDate":"visibilityStartDate","visibilityEndDate":"visibilityEndDate","visibilityStartTime":"visibilityStartTime","visibilityEndTime":"visibilityEndTime","teachingMethod":"teachingMethod"}
 2024-11-12 10:49:46 [info]: GET / 200
 2024-11-12 10:51:15 [info]: POST /login 200 - Request Body: {"email":"ajibadeemmanuel58@gmail.com","password":"Emmanuel2001!"}
 2024-11-12 10:51:16 [info]: GET / 304
@@ -558,7 +558,7 @@
 2024-11-12 14:33:32 [info]: GET / 304
 2024-11-12 14:34:47 [info]: GET / 304
 2024-11-12 14:34:54 [info]: GET / 304
-2024-11-12 15:19:43 [info]: POST /create 201 - Request Body: {"landingPageTitle":"first title","serviceTitleDescription":"first title description","serviceType":"online","serviceItem":"service item","serviceItemDescription":"service item description","courseCode":"CSC","courseLevel":"2","duration":"2","startDate":"2024-11-01","endDate":"2024-11-30","numberOfHoursPerDay":"2","numberOfDaysPerWeek":"2","cost":"200","promo":"1","promoCode":"","promoValue":"0","platformCharge":"0","actualCost":"0","sharing":"0","sharingValue":"0","paymentStartDate":"2024-11-01","paymentEndDate":"2024-11-28","paymentStartTime":"19:17","paymentEndTime":"19:18","teachingMethod":"offline"}
+2024-11-12 15:19:43 [info]: POST /create 201 - Request Body: {"landingPageTitle":"first title","serviceTitleDescription":"first title description","serviceType":"online","serviceItem":"service item","serviceItemDescription":"service item description","courseCode":"CSC","courseLevel":"2","duration":"2","startDate":"2024-11-01","endDate":"2024-11-30","numberOfHoursPerDay":"2","numberOfDaysPerWeek":"2","cost":"200","promo":"1","promoCode":"","promoValue":"0","platformCharge":"0","actualCost":"0","sharing":"0","sharingValue":"0","visibilityStartDate":"2024-11-01","visibilityEndDate":"2024-11-28","visibilityStartTime":"19:17","visibilityEndTime":"19:18","teachingMethod":"offline"}
 2024-11-12 15:29:35 [info]: GET /get-all-courses 401
 2024-11-12 15:29:41 [info]: GET /get-all-courses 200
 2024-11-12 15:31:29 [info]: GET /get-all-courses 304
@@ -791,6 +791,551 @@
 2024-11-18 02:05:27 [info]: POST /org/register 201 - Request Body: {"name":"Timpel and Co.","email":"seunodueso@gmail.com","phone":"09066318588","preferredUrl":"https://timpel.com","password":"Timpearl05$$$","confirmPassword":"Timpearl05$$$","referral":"","referralSource":"linkedin"}
 2024-11-18 02:07:14 [info]: POST /org/register 201 - Request Body: {"name":"Timpel and Co.","email":"seunodueso@gmail.com","phone":"09066318588","preferredUrl":"https://timpel.com","password":"Timpearl05$","confirmPassword":"Timpearl05$","referral":"","referralSource":"linkedin"}
 2024-11-18 02:14:01 [info]: POST /org/register 201 - Request Body: {"name":"Timpel and Co.","email":"seunodueso@gmail.com","phone":"09066318588","preferredUrl":"https://timpel.com","password":"Timpearl05$","confirmPassword":"Timpearl05$","referral":"","referralSource":"linkedin"}
+2024-11-21 15:36:16 [info]: POST /org/register 201 - Request Body: {"name":"Test and Co.","email":"test@gmail.com","phone":"09066318532","preferredUrl":"https://ajy.com","password":"Test2024!","confirmPassword":"Test2024!"}
+2024-11-21 15:37:40 [info]: POST /login 200 - Request Body: {"email":"test@gmail.com","password":"Test2024!"}
+2024-11-21 15:42:28 [info]: POST /landing-page 404 - Request Body: {"landingPageTitle":"My Landing Page","serviceTitleDescription":"Awesome services","serviceType":"Premium","serviceItem":"Consulting","serviceItemDescription":"Best consulting services","course":[{"title":"Course 1","price":100}],"subservice":[{"title":"Service 1","price":200}]}
+2024-11-21 15:44:55 [info]: POST /api/v1/landing-page 500 - Request Body: {"landingPageTitle":"My Landing Page","serviceTitleDescription":"Awesome services","serviceType":"Premium","serviceItem":"Consulting","serviceItemDescription":"Best consulting services","course":[{"title":"Course 1","price":100}],"subservice":[{"title":"Service 1","price":200}]}
+2024-11-21 15:48:15 [info]: POST / 201 - Request Body: {"landingPageTitle":"My Landing Page","serviceTitleDescription":"Awesome services","serviceType":"Premium","serviceItem":"Consulting","serviceItemDescription":"Best consulting services","course":[{"title":"Course 1","price":100}],"subservice":[{"title":"Service 1","price":200}]}
+2024-11-21 18:12:46 [info]: POST /api/v1/landing-page 500
+2024-11-21 18:14:56 [info]: POST /api/v1/landing-page 500
+2024-11-21 18:15:16 [info]: POST /api/v1/landing-page 500
+2024-11-22 11:26:27 [info]: POST / 403
+2024-11-22 11:29:00 [info]: POST /login 400 - Request Body: {"email":"test@gmail.com","password":"Test2024!"}
+2024-11-22 11:29:23 [info]: POST /login 400 - Request Body: {"email":"test@gmail.com","password":"Test2024!"}
+2024-11-22 11:30:10 [info]: POST /login 400 - Request Body: {"email":"test2@gmail.com","password":"Test2024!"}
+2024-11-22 11:30:29 [info]: POST /api/v1/auth/org/register 422 - Request Body: {"name":"Test and Co.","email":"test@gmail.com","phone":"09066318532","preferredUrl":"https://ajy.com","password":"Test2024!","confirmPassword":"Test2024!"}
+2024-11-22 11:31:02 [info]: POST /org/register 400 - Request Body: {"name":"Test and Co.","email":"ajibadeemmanuel58@gmail.com","phone":"09066318532","preferredUrl":"https://ajy.com","password":"Test2024!","confirmPassword":"Test2024!"}
+2024-11-22 11:31:11 [info]: POST /org/register 400 - Request Body: {"name":"Test and Co.","email":"ajibadeemmanuel58@gmail.com","phone":"09066318539","preferredUrl":"https://ajy.com","password":"Test2024!","confirmPassword":"Test2024!"}
+2024-11-22 11:31:22 [info]: POST /org/register 201 - Request Body: {"name":"Test and Co.","email":"ajibadeemmanuel58@gmail.com","phone":"09066318500","preferredUrl":"https://ajy.com","password":"Test2024!","confirmPassword":"Test2024!"}
+2024-11-22 11:31:49 [info]: POST /login 200 - Request Body: {"email":"ajibadeemmanuel58@gmail.com","password":"Test2024!"}
+2024-11-22 11:32:32 [info]: POST /api/v1/landing-page 500
+2024-11-22 11:34:18 [info]: POST /create 401
+2024-11-22 11:34:38 [info]: POST /api/v1/course/create 500 - Request Body: {"title":"title","objective":"objective","price":"20","duration":"duration","lessonFormat":"lessonFormat","landingPageTitle":"landingPageTitle 2","serviceTitleDescription":"serviceTitleDescription","serviceType":"serviceType","serviceItem":"serviceItem","serviceItemDescription":"serviceItemDescription","courseCode":"courseCode","courseLevel":"courseLevel","startDate":"startDate","endDate":"endDate","numberOfHoursPerDay":"10","numberOfDaysPerWeek":"10","cost":"100","promo":"10","promoCode":"promoCode","promoValue":"10","platformCharge":"10","actualCost":"10","sharing":"10","sharingValue":"10","visibilityStartDate":"visibilityStartDate","visibilityEndDate":"visibilityEndDate","visibilityStartTime":"visibilityStartTime","visibilityEndTime":"visibilityEndTime","teachingMethod":"teachingMethod"}
+2024-11-22 11:39:35 [info]: POST /api/v1/landing-page 500
+2024-11-22 11:42:14 [info]: POST / 201
+2024-11-22 11:48:55 [info]: POST / 201
+2024-11-22 11:51:35 [info]: POST / 201
+2024-11-22 13:08:55 [info]: POST / 201 - Request Body: {"landingPageTitle":"My Landing Page","serviceTitleDescription":"Awesome services","servicePicture":"https://example.com/image.png","serviceType":"Premium","serviceItem":"Consulting","serviceItemDescription":"Best consulting services","course":[{"courseCode":"Course 1","cost":100,"courseLevel":"Learn new skills"}],"subservice":[{"courseCode":"Service 1","cost":200,"courseLevel":"Premium support"}]}
+2024-11-22 13:31:37 [info]: POST /login 200 - Request Body: {"email":"ajibadeemmanuel58@gmail.com","password":"Test2024!"}
+2024-11-22 13:31:49 [info]: GET /get-all-courses 200
+2024-11-22 13:34:32 [info]: POST /create 201 - Request Body: {"landingPageTitle":"s","serviceTitleDescription":"s","serviceType":"online","serviceItem":"service item","serviceItemDescription":"h","courseCode":"d","courseLevel":"d","duration":"d","startDate":"2024-11-01","endDate":"2024-11-29","numberOfHoursPerDay":"0","numberOfDaysPerWeek":"0","cost":"0","promo":"0","promoCode":"","promoValue":"0","platformCharge":"0","actualCost":"0","sharing":"0","sharingValue":"0","visibilityStartDate":"","visibilityEndDate":"","visibilityStartTime":"","visibilityEndTime":"","teachingMethod":"offline"}
+2024-11-22 13:34:33 [info]: GET /get-all-courses 200
+2024-11-22 13:34:57 [info]: GET /get-all-courses 304
+2024-11-22 13:37:20 [info]: GET /get-all-courses 304
+2024-11-22 13:53:28 [info]: GET /get-all-courses 304
+2024-11-22 13:56:14 [info]: POST /api/v1/landing-page 500 - Request Body: {"landingPageTitle":"landing test","serviceTitleDescription":"test","serviceType":"online","serviceItem":"service item","serviceItemDescription":"test","courseCode":"test code","courseLevel":"d","duration":"d","startDate":"2024-11-08","endDate":"2024-11-27","numberOfHoursPerDay":"0","numberOfDaysPerWeek":"0","cost":"0","promo":"0","promoCode":"","promoValue":"0","platformCharge":"0","actualCost":"0","sharing":"0","sharingValue":"0","visibilityStartDate":"","visibilityEndDate":"","visibilityStartTime":"","visibilityEndTime":"","teachingMethod":"online"}
+2024-11-22 14:02:35 [info]: POST / 201 - Request Body: {"landingPageTitle":"landing test","serviceTitleDescription":"test","serviceType":"online","serviceItem":"service item","serviceItemDescription":"test","courseCode":"test code","courseLevel":"d","duration":"d","startDate":"2024-11-08","endDate":"2024-11-27","numberOfHoursPerDay":"0","numberOfDaysPerWeek":"0","cost":"0","promo":"0","promoCode":"","promoValue":"0","platformCharge":"0","actualCost":"0","sharing":"0","sharingValue":"0","visibilityStartDate":"","visibilityEndDate":"","visibilityStartTime":"","visibilityEndTime":"","teachingMethod":"online"}
+2024-11-22 14:02:36 [info]: GET /get-all-courses 304
+2024-11-22 14:04:06 [info]: GET /get-all-courses 304
+2024-11-22 14:54:27 [info]: GET /get-all-courses 304
+2024-11-22 14:55:54 [info]: GET /get-all-courses 304
+2024-11-22 14:59:40 [info]: GET /get-all-courses 304
+2024-11-22 15:00:06 [info]: GET /get-all-courses 304
+2024-11-22 15:00:15 [info]: GET /get-all-courses 401
+2024-11-22 15:00:16 [info]: GET /get-all-courses 304
+2024-11-22 15:00:39 [info]: GET /get-all-courses 304
+2024-11-22 15:01:00 [info]: GET /get-all-courses 304
+2024-11-22 15:01:25 [info]: GET /get-all-courses 304
+2024-11-22 15:01:35 [info]: GET /get-all-courses 304
+2024-11-22 15:01:50 [info]: GET /get-all-courses 304
+2024-11-22 15:08:08 [info]: GET /get-all-courses 304
+2024-11-22 15:09:22 [info]: GET /get-all-courses 304
+2024-11-22 15:09:54 [info]: GET /get-all-courses 304
+2024-11-22 15:10:44 [info]: GET /get-all-courses 304
+2024-11-22 15:11:05 [info]: GET /get-all-courses 304
+2024-11-22 15:11:56 [info]: GET /get-all-courses 304
+2024-11-22 15:13:56 [info]: GET /get-all-courses 304
+2024-11-22 15:14:26 [info]: GET /get-all-courses 304
+2024-11-22 15:19:23 [info]: GET /get-all-courses 304
+2024-11-22 15:19:24 [info]: GET /get-all-courses 304
+2024-11-22 15:20:47 [info]: GET /get-all-courses 304
+2024-11-22 15:22:48 [info]: GET /get-all-courses 304
+2024-11-22 15:23:47 [info]: GET /course/get-all-courses/ 404
+2024-11-22 15:23:48 [info]: GET /course/get-all-courses/ 404
+2024-11-22 15:23:50 [info]: GET /course/get-all-courses/ 404
+2024-11-22 15:23:54 [info]: GET /course/get-all-courses/ 404
+2024-11-22 15:25:06 [info]: GET /course/get-all-courses/ 404
+2024-11-22 15:26:05 [info]: GET /course/get-all-courses/ 404
+2024-11-22 15:27:26 [info]: GET /course/get-all-courses/ 404
+2024-11-22 15:27:30 [info]: GET /course/get-all-courses/ 404
+2024-11-22 15:28:25 [info]: GET /course/get-all-courses/ 404
+2024-11-22 15:28:26 [info]: GET /course/get-all-courses/ 404
+2024-11-22 15:28:28 [info]: GET /course/get-all-courses/ 404
+2024-11-22 15:28:40 [info]: GET /course/get-all-courses/ 404
+2024-11-22 15:30:05 [info]: GET /course/get-all-courses/ 404
+2024-11-22 15:30:06 [info]: GET /course/get-all-courses/ 404
+2024-11-22 15:30:37 [info]: GET /course/get-all-courses/ 404
+2024-11-22 15:30:41 [info]: GET /course/get-all-courses/ 404
+2024-11-22 15:31:12 [info]: GET /course/get-all-courses/ 404
+2024-11-22 15:31:13 [info]: GET /course/get-all-courses/ 404
+2024-11-22 15:31:15 [info]: GET /course/get-all-courses/ 404
+2024-11-22 15:31:19 [info]: GET /course/get-all-courses/ 404
+2024-11-22 15:34:05 [info]: GET /course/get-all-courses/ 404
+2024-11-22 15:34:06 [info]: GET /course/get-all-courses/ 404
+2024-11-22 15:34:26 [info]: GET /course/get-all-courses/ 404
+2024-11-22 15:34:57 [info]: GET /course/get-all-courses/ 404
+2024-11-22 15:36:15 [info]: GET /course/get-all-courses/ 404
+2024-11-22 15:36:16 [info]: GET /course/get-all-courses/ 404
+2024-11-22 15:36:18 [info]: GET /course/get-all-courses/ 404
+2024-11-22 15:36:21 [info]: GET / 401
+2024-11-22 15:36:23 [info]: GET /api/v1/landing-page 500
+2024-11-22 15:36:28 [info]: GET /api/v1/landing-page 500
+2024-11-22 15:36:32 [info]: GET /api/v1/landing-page 500
+2024-11-22 15:40:10 [info]: GET /api/v1/landing-page 500
+2024-11-22 15:40:12 [info]: GET /api/v1/landing-page 500
+2024-11-22 15:40:32 [info]: GET /api/v1/landing-page 500
+2024-11-22 15:40:36 [info]: GET /api/v1/landing-page 500
+2024-11-22 15:41:07 [info]: GET /api/v1/landing-page 500
+2024-11-22 15:43:03 [info]: GET /api/v1/landing-page 500
+2024-11-22 15:43:06 [info]: GET /api/v1/landing-page 500
+2024-11-22 15:48:51 [info]: GET / 401
+2024-11-22 15:49:12 [info]: GET /api/v1/landing-page 500
+2024-11-22 15:49:14 [info]: GET /api/v1/landing-page 500
+2024-11-22 15:49:19 [info]: GET /api/v1/landing-page 500
+2024-11-22 15:50:21 [info]: POST /login 200 - Request Body: {"email":"ajibadeemmanuel58@gmail.com","password":"Test2024!"}
+2024-11-22 15:50:31 [info]: GET /get-all-courses 304
+2024-11-22 15:50:47 [info]: GET /api/v1/landing-page 500
+2024-11-22 15:50:48 [info]: GET /api/v1/landing-page 500
+2024-11-22 15:50:51 [info]: GET /api/v1/landing-page 500
+2024-11-22 15:59:59 [info]: GET /api/v1/landing-page 500
+2024-11-22 16:00:00 [info]: GET /api/v1/landing-page 500
+2024-11-22 16:00:14 [info]: GET / 401
+2024-11-22 16:01:58 [info]: GET /api/v1/landing-page 500
+2024-11-22 16:02:00 [info]: GET /api/v1/landing-page 500
+2024-11-22 16:05:12 [info]: GET /api/v1/landing-page 500
+2024-11-22 16:08:15 [info]: GET / 200
+2024-11-22 16:36:48 [info]: GET / 304
+2024-11-22 16:37:15 [info]: GET / 304
+2024-11-22 16:37:18 [info]: GET / 304
+2024-11-22 16:41:16 [info]: GET / 304
+2024-11-22 16:42:25 [info]: GET / 304
+2024-11-22 16:43:25 [info]: GET / 304
+2024-11-22 16:43:47 [info]: GET / 304
+2024-11-22 16:49:05 [info]: GET / 401
+2024-11-22 16:49:06 [info]: GET / 304
+2024-11-22 16:49:13 [info]: GET / 304
+2024-11-22 16:49:15 [info]: GET / 304
+2024-11-22 16:49:17 [info]: GET / 304
+2024-11-22 16:49:21 [info]: GET / 304
+2024-11-22 16:49:30 [info]: GET / 304
+2024-11-22 16:49:58 [info]: GET / 304
+2024-11-22 16:50:50 [info]: GET / 401
+2024-11-22 16:50:52 [info]: GET / 200
+2024-11-22 16:51:27 [info]: GET / 304
+2024-11-22 16:51:37 [info]: GET / 401
+2024-11-22 16:53:25 [info]: GET / 304
+2024-11-22 17:04:42 [info]: GET / 304
+2024-11-23 07:59:47 [info]: GET /course/get-all-courses/ 404
+2024-11-23 07:59:48 [info]: GET /course/get-all-courses/ 404
+2024-11-23 07:59:50 [info]: GET /course/get-all-courses/ 404
+2024-11-23 07:59:53 [info]: GET / 401
+2024-11-23 07:59:56 [info]: GET / 304
+2024-11-23 08:00:05 [info]: GET /course/get-all-courses/ 404
+2024-11-23 08:00:06 [info]: GET /course/get-all-courses/ 404
+2024-11-23 08:00:43 [info]: GET /course/get-all-courses/ 404
+2024-11-23 08:00:47 [info]: GET /course/get-all-courses/ 404
+2024-11-23 08:02:38 [info]: GET /course/get-all-courses/ 404
+2024-11-23 08:08:01 [info]: GET /67407456c1733f8feec3086f 200
+2024-11-23 08:09:23 [info]: GET /67407456c1733f8feec3086f 304
+2024-11-23 08:11:12 [info]: GET /67407456c1733f8feec3086f 304
+2024-11-23 08:12:02 [info]: GET /67407456c1733f8feec3086f 304
+2024-11-23 08:24:29 [info]: GET /67407456c1733f8feec3086f 304
+2024-11-23 08:26:21 [info]: GET /67407456c1733f8feec3086f 304
+2024-11-23 08:26:38 [info]: GET / 401
+2024-11-23 08:26:40 [info]: GET / 304
+2024-11-23 08:27:39 [info]: GET /67407456c1733f8feec3086f 401
+2024-11-23 08:27:58 [info]: GET /67407456c1733f8feec3086f 304
+2024-11-23 08:28:17 [info]: GET / 401
+2024-11-23 08:28:22 [info]: GET / 304
+2024-11-23 08:28:38 [info]: GET /67407456c1733f8feec3086f 401
+2024-11-23 08:28:40 [info]: GET /67407456c1733f8feec3086f 304
+2024-11-23 08:29:08 [info]: POST /login 200 - Request Body: {"email":"ajibadeemmanuel58@gmail.com","password":"Test2024!"}
+2024-11-23 08:29:33 [info]: GET /get-all-courses 401
+2024-11-23 08:29:36 [info]: GET /get-all-courses 304
+2024-11-23 08:29:41 [info]: GET / 304
+2024-11-23 08:29:58 [info]: GET /67407456c1733f8feec3086f 401
+2024-11-23 08:30:00 [info]: GET /67407456c1733f8feec3086f 304
+2024-11-23 10:25:12 [info]: POST /login 500 - Request Body: {"email":"test@gmail.com","password":"Test2024!"}
+2024-11-23 10:28:09 [info]: POST /login 200 - Request Body: {"email":"test@gmail.com","password":"Test2024!"}
+2024-11-23 10:28:20 [info]: GET /get-all-courses 401
+2024-11-23 10:28:24 [info]: GET /get-all-courses 200
+2024-11-23 10:44:58 [info]: GET /67407456c1733f8feec3086f 401
+2024-11-23 10:45:07 [info]: GET /67407456c1733f8feec3086f 304
+2024-11-23 10:45:35 [info]: GET /67407456c1733f8feec3086f 304
+2024-11-23 10:45:51 [info]: GET / 401
+2024-11-23 10:45:53 [info]: GET / 304
+2024-11-23 10:47:24 [info]: GET / 304
+2024-11-23 10:47:32 [info]: GET / 304
+2024-11-23 10:47:52 [info]: GET / 304
+2024-11-23 10:48:29 [info]: GET / 304
+2024-11-23 10:48:43 [info]: GET / 304
+2024-11-23 10:50:03 [info]: GET / 304
+2024-11-23 10:50:08 [info]: GET / 304
+2024-11-23 10:50:18 [info]: GET /get-all-courses 304
+2024-11-23 10:52:45 [info]: GET /get-all-courses 304
+2024-11-23 10:53:54 [info]: GET /get-all-courses 304
+2024-11-23 10:53:57 [info]: GET /get-all-courses 304
+2024-11-23 11:09:52 [info]: POST / 201 - Request Body: {"landingPageTitle":"First Test","serviceTitleDescription":"first test description","serviceType":"online","serviceItem":"service item","serviceItemDescription":"service item description","courseCode":"TST","courseLevel":"1","duration":"2","startDate":"2024-11-01","endDate":"2024-11-13","numberOfHoursPerDay":"2","numberOfDaysPerWeek":"1","cost":"2","promo":"3","promoCode":"233","promoValue":"1","platformCharge":"1","actualCost":"99","sharing":"50","sharingValue":"50","visibilityStartDate":"2024-11-01","visibilityEndDate":"2024-11-28","visibilityStartTime":"03:09","visibilityEndTime":"04:09","teachingMethod":"online"}
+2024-11-23 11:09:53 [info]: GET / 200
+2024-11-23 11:11:13 [info]: GET / 304
+2024-11-23 11:20:59 [info]: GET / 401
+2024-11-23 11:21:47 [info]: GET / 200
+2024-11-23 11:22:49 [info]: GET / 401
+2024-11-23 11:22:51 [info]: GET / 304
+2024-11-23 11:23:28 [info]: GET / 401
+2024-11-23 11:23:30 [info]: GET / 304
+2024-11-23 11:24:48 [info]: GET / 401
+2024-11-23 11:24:50 [info]: GET / 304
+2024-11-23 11:26:43 [info]: GET / 401
+2024-11-23 11:28:26 [info]: GET / 304
+2024-11-23 11:32:04 [info]: GET / 304
+2024-11-23 11:43:19 [info]: GET / 304
+2024-11-23 11:47:01 [info]: GET / 304
+2024-11-23 11:49:36 [info]: GET / 200
+2024-11-23 11:49:55 [info]: GET / 304
+2024-11-23 11:50:36 [info]: GET / 304
+2024-11-23 11:50:55 [info]: GET / 304
+2024-11-23 11:50:57 [info]: GET / 304
+2024-11-23 11:51:27 [info]: GET / 304
+2024-11-23 11:52:19 [info]: GET / 304
+2024-11-23 11:52:28 [info]: GET / 304
+2024-11-23 11:53:13 [info]: GET / 304
+2024-11-23 11:53:14 [info]: GET / 304
+2024-11-23 11:53:39 [info]: GET / 304
+2024-11-23 11:53:40 [info]: GET / 304
+2024-11-23 11:56:24 [info]: GET / 304
+2024-11-23 11:56:29 [info]: GET / 304
+2024-11-23 11:57:33 [info]: GET / 304
+2024-11-23 11:57:34 [info]: GET / 304
+2024-11-23 11:57:35 [info]: GET / 304
+2024-11-23 11:59:45 [info]: GET / 304
+2024-11-23 11:59:58 [info]: GET / 304
+2024-11-23 12:00:25 [info]: GET / 304
+2024-11-23 12:00:40 [info]: GET / 304
+2024-11-23 12:01:47 [info]: GET / 304
+2024-11-23 12:02:41 [info]: GET / 304
+2024-11-23 12:02:42 [info]: GET / 304
+2024-11-23 12:03:04 [info]: GET / 304
+2024-11-23 12:03:20 [info]: GET / 401
+2024-11-23 12:06:00 [info]: GET / 304
+2024-11-23 12:12:39 [info]: GET / 304
+2024-11-23 12:12:57 [info]: GET / 304
+2024-11-23 12:13:12 [info]: GET / 304
+2024-11-23 12:13:17 [info]: GET / 304
+2024-11-23 12:13:55 [info]: GET / 304
+2024-11-23 12:13:58 [info]: GET / 304
+2024-11-23 12:16:48 [info]: GET / 200
+2024-11-23 12:18:03 [info]: GET / 304
+2024-11-23 12:18:41 [info]: GET / 304
+2024-11-23 12:18:53 [info]: GET / 304
+2024-11-23 12:19:01 [info]: GET / 304
+2024-11-23 12:19:30 [info]: GET / 200
+2024-11-23 12:19:46 [info]: GET / 304
+2024-11-23 12:19:50 [info]: GET / 304
+2024-11-23 12:19:58 [info]: GET / 304
+2024-11-23 12:20:20 [info]: GET / 304
+2024-11-23 12:23:28 [info]: GET / 304
+2024-11-23 12:23:31 [info]: GET / 304
+2024-11-23 12:23:49 [info]: GET / 304
+2024-11-23 12:24:11 [info]: GET / 304
+2024-11-23 12:24:29 [info]: GET / 401
+2024-11-23 12:24:32 [info]: GET / 304
+2024-11-23 12:25:12 [info]: GET / 200
+2024-11-23 12:26:20 [info]: GET / 304
+2024-11-23 12:26:21 [info]: GET / 304
+2024-11-23 12:26:53 [info]: GET / 304
+2024-11-23 12:27:05 [info]: GET / 401
+2024-11-23 12:27:06 [info]: GET / 304
+2024-11-23 13:33:56 [info]: GET / 304
+2024-11-23 13:45:31 [info]: GET / 401
+2024-11-23 14:07:30 [info]: GET /get-all-courses 304
+2024-11-23 14:07:35 [info]: POST / 201 - Request Body: {"landingPageTitle":"Test 3","serviceTitleDescription":"Test 3 description","serviceType":"online","serviceItem":"service item","serviceItemDescription":"service item description","courseCode":"TST 3","courseLevel":"3","duration":"2","startDate":"2024-11-01","endDate":"2024-11-30","numberOfHoursPerDay":"12","numberOfDaysPerWeek":"2","cost":"22","promo":"2","promoCode":"233","promoValue":"1","platformCharge":"1","actualCost":"1233","sharing":"2","sharingValue":"3","visibilityStartDate":"2024-11-01","visibilityEndDate":"2024-11-30","visibilityStartTime":"17:48","visibilityEndTime":"17:48","teachingMethod":"online"}
+2024-11-23 14:07:40 [info]: GET / 200
+2024-11-23 14:14:08 [info]: GET / 200
+2024-11-23 14:14:15 [info]: GET / 304
+2024-11-23 14:15:14 [info]: GET / 304
+2024-11-23 14:15:40 [info]: GET / 304
+2024-11-23 14:16:18 [info]: GET / 304
+2024-11-23 14:16:37 [info]: GET / 304
+2024-11-23 14:16:56 [info]: GET / 304
+2024-11-23 14:17:19 [info]: GET / 304
+2024-11-23 14:32:34 [info]: GET / 304
+2024-11-23 14:33:01 [info]: GET / 401
+2024-11-23 14:33:03 [info]: GET / 304
+2024-11-23 14:33:42 [info]: GET / 304
+2024-11-23 14:34:23 [info]: GET / 304
+2024-11-23 14:35:08 [info]: GET / 304
+2024-11-23 16:12:45 [info]: POST /login 200 - Request Body: {"email":"ajibadeemmanuel58@gmail.com","password":"Test2024!"}
+2024-11-23 16:12:47 [info]: GET / 304
+2024-11-23 16:13:03 [info]: GET / 304
+2024-11-23 16:19:02 [info]: POST /login 200 - Request Body: {"email":"test@gmail.com","password":"Test2024!"}
+2024-11-23 16:19:05 [info]: GET / 200
+2024-11-23 16:19:12 [info]: GET / 304
+2024-11-23 16:19:42 [info]: POST /login 200 - Request Body: {"email":"ajibadeemmanuel58@gmail.com","password":"Test2024!"}
+2024-11-23 16:22:53 [info]: GET / 304
+2024-11-23 16:32:19 [info]: GET / 304
+2024-11-23 16:40:01 [info]: POST /login 200 - Request Body: {"email":"ajibadeemmanuel58@gmail.com","password":"Test2024!"}
+2024-11-24 09:14:45 [info]: GET / 304
+2024-11-24 09:15:20 [info]: GET /6741d397b3707e3f028971ce 401
+2024-11-24 09:15:27 [info]: GET /6741d397b3707e3f028971ce 200
+2024-11-24 09:15:30 [info]: GET /6741d397b3707e3f028971ce 304
+2024-11-24 09:16:06 [info]: GET /6741d397b3707e3f028971ce 304
+2024-11-24 09:16:44 [info]: GET /6741d397b3707e3f028971ce 304
+2024-11-24 09:17:03 [info]: GET /6741d397b3707e3f028971ce 304
+2024-11-24 09:17:04 [info]: GET /6741d397b3707e3f028971ce 304
+2024-11-24 09:17:15 [info]: GET /6741d397b3707e3f028971ce 304
+2024-11-24 09:17:32 [info]: GET /6741d397b3707e3f028971ce 304
+2024-11-24 09:17:33 [info]: GET /6741d397b3707e3f028971ce 304
+2024-11-24 09:18:22 [info]: GET /6741d397b3707e3f028971ce 304
+2024-11-24 09:20:03 [info]: GET /6741d397b3707e3f028971ce 304
+2024-11-24 09:22:56 [info]: GET /6741d397b3707e3f028971ce 401
+2024-11-24 09:22:58 [info]: GET /6741d397b3707e3f028971ce 304
+2024-11-24 09:23:44 [info]: GET /6741d397b3707e3f028971ce 304
+2024-11-24 09:23:53 [info]: GET /6741d397b3707e3f028971ce 304
+2024-11-24 09:24:07 [info]: GET /6741d397b3707e3f028971ce 304
+2024-11-24 09:24:09 [info]: GET /6741d397b3707e3f028971ce 304
+2024-11-24 09:24:22 [info]: GET /6741d397b3707e3f028971ce 304
+2024-11-24 09:24:29 [info]: GET /6741d397b3707e3f028971ce 304
+2024-11-24 09:24:34 [info]: GET /6741d397b3707e3f028971ce 304
+2024-11-24 09:24:54 [info]: GET /6741d397b3707e3f028971ce 304
+2024-11-24 09:24:57 [info]: GET /6741d397b3707e3f028971ce 304
+2024-11-24 09:25:19 [info]: GET /6741d397b3707e3f028971ce 304
+2024-11-24 09:25:23 [info]: GET /6741d397b3707e3f028971ce 304
+2024-11-24 09:25:33 [info]: GET /6741d397b3707e3f028971ce 304
+2024-11-24 09:25:53 [info]: GET /6741d397b3707e3f028971ce 304
+2024-11-24 09:26:00 [info]: GET /6741d397b3707e3f028971ce 304
+2024-11-24 09:26:35 [info]: GET /6741d397b3707e3f028971ce 304
+2024-11-24 09:26:40 [info]: GET /6741d397b3707e3f028971ce 304
+2024-11-24 09:36:11 [info]: GET /6741d397b3707e3f028971ce 304
+2024-11-24 09:36:42 [info]: GET /6741d397b3707e3f028971ce 304
+2024-11-24 09:37:12 [info]: GET /6741d397b3707e3f028971ce 304
+2024-11-24 09:37:13 [info]: GET /6741d397b3707e3f028971ce 304
+2024-11-24 09:37:48 [info]: GET /6741d397b3707e3f028971ce 304
+2024-11-24 09:38:54 [info]: GET /6741d397b3707e3f028971ce 401
+2024-11-24 09:38:56 [info]: GET /6741d397b3707e3f028971ce 304
+2024-11-24 09:39:20 [info]: GET /6741d397b3707e3f028971ce 304
+2024-11-24 09:39:38 [info]: GET /6741d397b3707e3f028971ce 304
+2024-11-24 09:40:05 [info]: GET /6741d397b3707e3f028971ce 304
+2024-11-24 09:40:37 [info]: GET /6741d397b3707e3f028971ce 304
+2024-11-24 09:48:38 [info]: GET /6741d397b3707e3f028971ce 304
+2024-11-24 09:48:44 [info]: GET / 401
+2024-11-24 09:48:46 [info]: GET / 304
+2024-11-24 09:49:13 [info]: GET /6741d397b3707e3f028971ce 401
+2024-11-24 09:49:15 [info]: GET /6741d397b3707e3f028971ce 304
+2024-11-24 09:49:22 [info]: GET / 401
+2024-11-24 09:49:24 [info]: GET / 304
+2024-11-24 09:49:35 [info]: GET /6741d397b3707e3f028971ce 401
+2024-11-24 09:49:37 [info]: GET /6741d397b3707e3f028971ce 304
+2024-11-24 09:49:51 [info]: GET /6741d397b3707e3f028971ce 401
+2024-11-24 09:49:52 [info]: GET /6741d397b3707e3f028971ce 304
+2024-11-24 09:50:24 [info]: GET /6741d397b3707e3f028971ce 304
+2024-11-24 09:50:28 [info]: GET /6741d397b3707e3f028971ce 304
+2024-11-24 09:50:55 [info]: GET /6741d397b3707e3f028971ce 304
+2024-11-24 09:51:03 [info]: GET /6741d397b3707e3f028971ce 304
+2024-11-24 09:53:32 [info]: GET /6741d397b3707e3f028971ce 304
+2024-11-24 09:53:34 [info]: GET /6741d397b3707e3f028971ce 304
+2024-11-24 09:53:52 [info]: GET / 401
+2024-11-24 09:53:54 [info]: GET / 304
+2024-11-24 09:54:08 [info]: GET /6741d397b3707e3f028971ce 401
+2024-11-24 09:54:10 [info]: GET /6741d397b3707e3f028971ce 304
+2024-11-24 09:54:15 [info]: GET /6741d397b3707e3f028971ce 304
+2024-11-24 09:54:25 [info]: GET /6741d397b3707e3f028971ce 304
+2024-11-24 09:55:28 [info]: GET /6741d397b3707e3f028971ce 304
+2024-11-24 09:55:40 [info]: GET / 401
+2024-11-24 09:55:42 [info]: GET / 304
+2024-11-24 09:56:11 [info]: GET / 401
+2024-11-24 09:56:27 [info]: GET / 304
+2024-11-24 09:56:38 [info]: GET /6741d397b3707e3f028971ce 401
+2024-11-24 09:56:40 [info]: GET /6741d397b3707e3f028971ce 304
+2024-11-24 10:13:31 [info]: GET /6741d397b3707e3f028971ce 304
+2024-11-24 10:14:15 [info]: GET /6741d397b3707e3f028971ce 304
+2024-11-24 10:14:18 [info]: GET /6741d397b3707e3f028971ce 304
+2024-11-24 10:15:23 [info]: GET /6741d397b3707e3f028971ce 304
+2024-11-24 10:29:36 [info]: GET /6741d397b3707e3f028971ce 304
+2024-11-24 10:31:24 [info]: GET /6741d397b3707e3f028971ce 304
+2024-11-24 10:39:47 [info]: GET /6741d397b3707e3f028971ce 304
+2024-11-24 10:40:04 [info]: GET /6741d397b3707e3f028971ce 304
+2024-11-24 10:40:34 [info]: GET /6741d397b3707e3f028971ce 304
+2024-11-24 10:40:40 [info]: PATCH /6741d397b3707e3f028971ce 404
+2024-11-24 10:41:02 [info]: GET /6741d397b3707e3f028971ce 304
+2024-11-24 10:41:52 [info]: GET /6741d397b3707e3f028971ce 304
+2024-11-24 10:41:54 [info]: GET /6741d397b3707e3f028971ce 304
+2024-11-24 10:42:10 [info]: PATCH /6741d397b3707e3f028971ce 404
+2024-11-24 10:53:38 [info]: GET /6741d397b3707e3f028971ce 304
+2024-11-24 10:53:39 [info]: PATCH /api/v1/landing-page/6741d397b3707e3f028971ce 500 - Request Body: {"landingPageTitle":"Test 3","serviceTitleDescription":"Test 3 description"}
+2024-11-24 11:51:56 [info]: GET /6741d397b3707e3f028971ce 304
+2024-11-24 11:52:01 [info]: GET /6741d397b3707e3f028971ce 304
+2024-11-24 11:52:02 [info]: PATCH /api/v1/landing-page/6741d397b3707e3f028971ce 500 - Request Body: {"landingPageTitle":"Test 3","serviceTitleDescription":"Test 3 description"}
+2024-11-24 11:52:59 [info]: GET /6741d397b3707e3f028971ce 304
+2024-11-24 11:53:25 [info]: GET /6741d397b3707e3f028971ce 401
+2024-11-24 11:53:27 [info]: GET /6741d397b3707e3f028971ce 304
+2024-11-24 11:53:34 [info]: PATCH /6741d397b3707e3f028971ce 200 - Request Body: {"landingPageTitle":"Test three","serviceTitleDescription":"Test 3 description","servicePicture":"null","serviceType":"online","serviceItem":"service item","serviceItemDescription":"service item description"}
+2024-11-24 11:54:13 [info]: GET /6741d397b3707e3f028971ce 200
+2024-11-24 11:54:27 [info]: GET /6741d397b3707e3f028971ce 401
+2024-11-24 11:54:29 [info]: GET /6741d397b3707e3f028971ce 304
+2024-11-24 11:59:51 [info]: GET /6741d397b3707e3f028971ce 304
+2024-11-24 12:00:14 [info]: PATCH /api/v1/landing-page/6741d397b3707e3f028971ce 500 - Request Body: {"landingPageTitle":"Test three","serviceTitleDescription":"Test 3 description"}
+2024-11-24 12:01:05 [info]: GET /6741d397b3707e3f028971ce 304
+2024-11-24 12:02:09 [info]: GET /6741d397b3707e3f028971ce 304
+2024-11-24 12:03:15 [info]: GET /6741d397b3707e3f028971ce 304
+2024-11-24 12:03:20 [info]: PATCH /api/v1/landing-page/6741d397b3707e3f028971ce 500 - Request Body: {"landingPageTitle":"Test three","serviceTitleDescription":"Test 3 description","serviceType":"online","serviceItem":"service item","serviceItemDescription":"service item description"}
+2024-11-24 12:03:42 [info]: GET /6741d397b3707e3f028971ce 304
+2024-11-24 12:09:10 [info]: GET /6741d397b3707e3f028971ce 304
+2024-11-24 12:09:16 [info]: GET /6741d397b3707e3f028971ce 304
+2024-11-24 12:09:17 [info]: GET /6741d397b3707e3f028971ce 304
+2024-11-24 12:09:20 [info]: PATCH /api/v1/landing-page/6741d397b3707e3f028971ce 500 - Request Body: {"landingPageTitle":"Test three","serviceTitleDescription":"Test 3 description","serviceType":"online","serviceItem":"service item","serviceItemDescription":"service item description"}
+2024-11-24 12:09:58 [info]: GET /6741d397b3707e3f028971ce 304
+2024-11-24 12:12:13 [info]: GET /6741d397b3707e3f028971ce 304
+2024-11-24 12:12:48 [info]: GET /6741d397b3707e3f028971ce 304
+2024-11-24 12:12:58 [info]: GET /get-all-courses 200
+2024-11-24 12:14:22 [info]: POST / 201 - Request Body: {"landingPageTitle":"Test 4","serviceTitleDescription":"Test 4 description","serviceType":"online","serviceItem":"service item","serviceItemDescription":"Test 4","courseCode":"TST4","courseLevel":"1","duration":"2","startDate":"2024-11-11","endDate":"2024-11-25","numberOfHoursPerDay":"2","numberOfDaysPerWeek":"2","cost":"323","promo":"3","promoCode":"233","promoValue":"2","platformCharge":"2","actualCost":"2","sharing":"2","sharingValue":"2","visibilityStartDate":"2024-11-01","visibilityEndDate":"2024-11-26","visibilityStartTime":"12:18","visibilityEndTime":"18:14","teachingMethod":"online"}
+2024-11-24 12:14:28 [info]: GET / 200
+2024-11-24 12:14:45 [info]: GET / 304
+2024-11-24 12:14:54 [info]: GET /67430a8ed43b81d7884d3210 401
+2024-11-24 12:14:56 [info]: GET /67430a8ed43b81d7884d3210 200
+2024-11-24 12:15:28 [info]: GET /67430a8ed43b81d7884d3210 304
+2024-11-24 12:15:53 [info]: GET /67430a8ed43b81d7884d3210 304
+2024-11-24 12:15:55 [info]: GET /67430a8ed43b81d7884d3210 304
+2024-11-24 12:16:07 [info]: PATCH /67430a8ed43b81d7884d3210 200 - Request Body: {"landingPageTitle":"Test four","serviceTitleDescription":"Test 4 description","servicePicture":"null","serviceType":"online","serviceItem":"service item","serviceItemDescription":"Test 4"}
+2024-11-24 12:16:22 [info]: PATCH /api/v1/landing-page/67430a8ed43b81d7884d3210 500 - Request Body: {"landingPageTitle":"Test four","serviceTitleDescription":"Test 4 description"}
+2024-11-24 12:18:34 [info]: GET /67430a8ed43b81d7884d3210 200
+2024-11-24 12:18:36 [info]: PATCH /api/v1/landing-page/67430a8ed43b81d7884d3210 500 - Request Body: {"landingPageTitle":"Test four","serviceTitleDescription":"Test 4 description","servicePicture":"null","serviceType":"online","serviceItem":"service item","serviceItemDescription":"Test 4"}
+2024-11-24 12:21:53 [info]: GET /67430a8ed43b81d7884d3210 304
+2024-11-24 12:21:54 [info]: PATCH /67430a8ed43b81d7884d3210 200 - Request Body: {"landingPageTitle":"Test four","serviceTitleDescription":"Test 4 description","servicePicture":"null","serviceType":"online","serviceItem":"service item","serviceItemDescription":"Test 4"}
+2024-11-24 12:22:41 [info]: GET /67430a8ed43b81d7884d3210 200
+2024-11-24 12:22:51 [info]: GET /67430a8ed43b81d7884d3210 401
+2024-11-24 12:22:58 [info]: GET /67430a8ed43b81d7884d3210 304
+2024-11-24 12:23:02 [info]: GET /67430a8ed43b81d7884d3210 304
+2024-11-24 12:23:23 [info]: GET /67430a8ed43b81d7884d3210 304
+2024-11-24 12:23:27 [info]: PATCH /67430a8ed43b81d7884d3210 200 - Request Body: {"landingPageTitle":"Test fourrr","serviceTitleDescription":"Test 4 description","servicePicture":"null","serviceType":"online","serviceItem":"service item","serviceItemDescription":"Test 4"}
+2024-11-24 12:23:43 [info]: GET /67430a8ed43b81d7884d3210 401
+2024-11-24 12:23:45 [info]: GET /67430a8ed43b81d7884d3210 200
+2024-11-24 12:24:30 [info]: GET /67430a8ed43b81d7884d3210 304
+2024-11-24 12:25:45 [info]: GET /67430a8ed43b81d7884d3210 304
+2024-11-24 12:26:19 [info]: GET /67430a8ed43b81d7884d3210 304
+2024-11-24 12:27:12 [info]: GET /67430a8ed43b81d7884d3210 304
+2024-11-24 12:27:19 [info]: PATCH /api/v1/landing-page/67430a8ed43b81d7884d3210 500 - Request Body: {"landingPageTitle":"Test fourrr","serviceTitleDescription":"Test 4 description"}
+2024-11-24 12:28:58 [info]: GET /67430a8ed43b81d7884d3210 304
+2024-11-24 12:29:14 [info]: PATCH /api/v1/landing-page/67430a8ed43b81d7884d3210 500 - Request Body: {"landingPageTitle":"Test fourrr","serviceTitleDescription":"Test 4 description"}
+2024-11-24 12:29:56 [info]: GET /67430a8ed43b81d7884d3210 304
+2024-11-24 12:31:10 [info]: GET /67430a8ed43b81d7884d3210 304
+2024-11-24 12:31:15 [info]: PATCH /api/v1/landing-page/67430a8ed43b81d7884d3210 500 - Request Body: {"landingPageTitle":"Test fourrr","serviceTitleDescription":"Test 4 description"}
+2024-11-24 12:32:49 [info]: GET /67430a8ed43b81d7884d3210 304
+2024-11-24 12:33:09 [info]: GET /67430a8ed43b81d7884d3210 304
+2024-11-24 12:33:11 [info]: GET /67430a8ed43b81d7884d3210 304
+2024-11-24 12:33:21 [info]: PUT /api/v1/landing-page/67430a8ed43b81d7884d3210 500 - Request Body: {"landingPageTitle":"Test fourrr","serviceTitleDescription":"Test 4 description"}
+2024-11-24 12:33:31 [info]: GET /67430a8ed43b81d7884d3210 304
+2024-11-24 12:55:55 [info]: GET /67430a8ed43b81d7884d3210 304
+2024-11-24 12:56:00 [info]: PATCH /67430a8ed43b81d7884d3210 200 - Request Body: {"landingPageTitle":"Test fourrr","serviceTitleDescription":"Test 4 description","serviceType":"online","serviceItem":"service item","serviceItemDescription":"Test 4"}
+2024-11-24 12:56:46 [info]: GET /67430a8ed43b81d7884d3210 200
+2024-11-24 12:57:24 [info]: GET /67430a8ed43b81d7884d3210 401
+2024-11-24 12:57:26 [info]: GET /67430a8ed43b81d7884d3210 304
+2024-11-24 12:58:41 [info]: PATCH /67430a8ed43b81d7884d3210 200 - Request Body: {"landingPageTitle":"Test fourrr","serviceTitleDescription":"Test 4 description","serviceType":"online","serviceItem":"service item","serviceItemDescription":"Test 4"}
+2024-11-24 12:59:44 [info]: GET /67430a8ed43b81d7884d3210 200
+2024-11-24 12:59:56 [info]: GET /67430a8ed43b81d7884d3210 401
+2024-11-24 12:59:58 [info]: GET /67430a8ed43b81d7884d3210 304
+2024-11-24 13:00:50 [info]: GET /67430a8ed43b81d7884d3210 304
+2024-11-24 13:00:52 [info]: GET /67430a8ed43b81d7884d3210 304
+2024-11-24 13:05:24 [info]: GET /67430a8ed43b81d7884d3210 304
+2024-11-24 13:05:36 [info]: PATCH /67430a8ed43b81d7884d3210 200 - Request Body: {"landingPageTitle":"Test fourrr","serviceTitleDescription":"Test 4 description","serviceType":"online","serviceItem":"service item","serviceItemDescription":"Test 4"}
+2024-11-24 13:05:44 [info]: GET /67430a8ed43b81d7884d3210 200
+2024-11-24 13:05:58 [info]: GET /67430a8ed43b81d7884d3210 401
+2024-11-24 13:06:00 [info]: GET /67430a8ed43b81d7884d3210 304
+2024-11-24 13:06:20 [info]: PATCH /67430a8ed43b81d7884d3210 200 - Request Body: {"landingPageTitle":"Test four","serviceTitleDescription":"Test 4 description","serviceType":"online","serviceItem":"service item","serviceItemDescription":"Test 4"}
+2024-11-24 13:06:30 [info]: GET /67430a8ed43b81d7884d3210 401
+2024-11-24 13:06:32 [info]: GET /67430a8ed43b81d7884d3210 200
+2024-11-24 13:06:43 [info]: GET /67430a8ed43b81d7884d3210 304
+2024-11-24 13:07:46 [info]: GET / 200
+2024-11-24 13:07:47 [info]: GET / 304
+2024-11-24 13:09:49 [info]: GET / 304
+2024-11-24 13:21:20 [info]: GET / 304
+2024-11-24 13:25:33 [info]: GET / 304
+2024-11-24 13:25:38 [info]: GET /67430a8ed43b81d7884d3210 401
+2024-11-24 13:25:40 [info]: GET /67430a8ed43b81d7884d3210 304
+2024-11-24 13:25:55 [info]: PATCH /67430a8ed43b81d7884d3210 200 - Request Body: {"landingPageTitle":"Test four","serviceTitleDescription":"Test 4 descriptionnn","serviceType":"online","serviceItem":"service item","serviceItemDescription":"Test 4"}
+2024-11-24 13:26:24 [info]: GET / 401
+2024-11-24 13:26:26 [info]: GET / 200
+2024-11-24 13:26:56 [info]: GET /67430a8ed43b81d7884d3210 401
+2024-11-24 13:27:00 [info]: GET / 401
+2024-11-24 13:27:02 [info]: GET / 304
+2024-11-24 13:27:04 [info]: GET / 304
+2024-11-24 13:34:16 [info]: GET / 304
+2024-11-24 13:35:00 [info]: GET / 304
+2024-11-24 13:35:03 [info]: GET / 304
+2024-11-24 13:35:36 [info]: GET / 304
+2024-11-24 13:36:29 [info]: GET / 304
+2024-11-24 13:36:44 [info]: GET / 304
+2024-11-24 13:37:19 [info]: GET / 304
+2024-11-24 13:38:09 [info]: GET / 304
+2024-11-24 13:40:24 [info]: GET / 304
+2024-11-24 13:40:27 [info]: GET / 304
+2024-11-24 13:40:49 [info]: GET / 304
+2024-11-24 13:41:06 [info]: GET / 304
+2024-11-24 13:42:06 [info]: GET / 304
+2024-11-24 13:42:28 [info]: GET / 304
+2024-11-24 13:43:38 [info]: GET / 304
+2024-11-24 13:43:49 [info]: GET / 304
+2024-11-24 13:43:50 [info]: GET / 304
+2024-11-24 13:43:55 [info]: GET / 304
+2024-11-24 13:44:58 [info]: GET / 401
+2024-11-24 13:45:00 [info]: GET / 304
+2024-11-24 14:06:31 [info]: GET / 401
+2024-11-24 14:06:33 [info]: GET / 304
+2024-11-24 14:06:42 [info]: GET / 401
+2024-11-24 14:06:44 [info]: GET / 304
+2024-11-24 14:06:54 [info]: GET / 401
+2024-11-24 14:06:56 [info]: GET / 304
+2024-11-24 14:07:00 [info]: GET / 304
+2024-11-24 14:09:43 [info]: GET / 304
+2024-11-24 14:09:49 [info]: GET / 304
+2024-11-24 14:10:05 [info]: GET / 304
+2024-11-24 14:13:38 [info]: GET / 304
+2024-11-24 14:13:43 [info]: GET /67430a8ed43b81d7884d3210 401
+2024-11-24 14:13:45 [info]: GET /67430a8ed43b81d7884d3210 200
+2024-11-24 14:14:35 [info]: GET /67430a8ed43b81d7884d3210 304
+2024-11-24 14:20:42 [info]: GET /67430a8ed43b81d7884d3210 304
+2024-11-24 14:20:51 [info]: GET /67430a8ed43b81d7884d3210 304
+2024-11-24 14:20:53 [info]: GET /67430a8ed43b81d7884d3210 304
+2024-11-24 14:21:57 [info]: GET /67430a8ed43b81d7884d3210 304
+2024-11-24 14:22:11 [info]: GET /67430a8ed43b81d7884d3210 304
+2024-11-24 14:24:14 [info]: POST /landing-page/create-new-course-landing/67430a8ed43b81d7884d3210 200
+2024-11-24 14:24:33 [info]: GET / 401
+2024-11-24 14:24:35 [info]: GET / 304
+2024-11-24 14:24:56 [info]: GET / 304
+2024-11-24 14:25:04 [info]: GET / 304
+2024-11-24 15:24:29 [info]: GET / 304
+2024-11-24 15:35:15 [info]: GET /67430a8ed43b81d7884d3210 304
+2024-11-24 15:36:05 [info]: GET /67430a8ed43b81d7884d3210 304
+2024-11-24 15:41:01 [info]: GET /67430a8ed43b81d7884d3210 200
+2024-11-24 15:41:04 [info]: POST /landing-page/create-new-course-landing/67430a8ed43b81d7884d3210 200
+2024-11-24 15:41:35 [info]: GET /67430a8ed43b81d7884d3210 304
+2024-11-24 15:43:46 [info]: GET /67430a8ed43b81d7884d3210 304
+2024-11-24 15:44:29 [info]: GET /67430a8ed43b81d7884d3210 304
+2024-11-24 15:44:33 [info]: POST /landing-page/create-new-course-landing/67430a8ed43b81d7884d3210 200
+2024-11-24 15:45:21 [info]: GET /67430a8ed43b81d7884d3210 304
+2024-11-24 15:47:21 [info]: GET /67430a8ed43b81d7884d3210 304
+2024-11-24 15:47:30 [info]: POST /landing-page/create-new-course-landing/67430a8ed43b81d7884d3210 200
+2024-11-24 15:49:13 [info]: GET /67430a8ed43b81d7884d3210 304
+2024-11-24 15:49:42 [info]: GET /67430a8ed43b81d7884d3210 304
+2024-11-24 15:49:52 [info]: PUT /create-new-course-landing/67430a8ed43b81d7884d3210 200 - Request Body: {"courseCode":"LDP Test 222","courseLevel":"2","duration":"w","startDate":"2024-11-01","endDate":"2024-11-28","numberOfHoursPerDay":"0","numberOfDaysPerWeek":"0","cost":"0","promo":"0","promoCode":"","promoValue":"0","platformCharge":"0","actualCost":"0","sharing":"0","sharingValue":"0","visibilityStartDate":"2024-11-06","visibilityEndDate":"2024-11-27","visibilityStartTime":"18:27","visibilityEndTime":"20:28","teachingMethod":"online"}
+2024-11-24 15:50:51 [info]: GET /67430a8ed43b81d7884d3210 200
+2024-11-24 15:51:00 [info]: GET / 401
+2024-11-24 15:51:02 [info]: GET / 200
+2024-11-24 15:51:58 [info]: GET / 304
+2024-11-24 15:52:16 [info]: GET / 304
+2024-11-24 15:53:05 [info]: GET / 304
+2024-11-24 15:54:18 [info]: GET / 304
+2024-11-24 15:54:30 [info]: GET /67430a8ed43b81d7884d3210 401
+2024-11-24 15:55:05 [info]: GET /67430a8ed43b81d7884d3210 304
+2024-11-24 15:55:35 [info]: PUT /create-new-course-landing/67430a8ed43b81d7884d3210 200 - Request Body: {"courseCode":"LDP Test 222222","courseLevel":"2","duration":"w","startDate":"2024-11-14","endDate":"2024-11-21","numberOfHoursPerDay":"0","numberOfDaysPerWeek":"0","cost":"0","promo":"0","promoCode":"2","promoValue":"0","platformCharge":"0","actualCost":"0","sharing":"0","sharingValue":"0","visibilityStartDate":"2024-10-31","visibilityEndDate":"2024-11-27","visibilityStartTime":"17:55","visibilityEndTime":"19:55","teachingMethod":"online"}
+2024-11-24 15:55:57 [info]: GET /67430a8ed43b81d7884d3210 200
+2024-11-24 15:56:04 [info]: GET / 401
+2024-11-24 15:56:07 [info]: GET / 200
+2024-11-24 15:57:11 [info]: GET / 304
+2024-11-24 15:58:02 [info]: GET / 304
+2024-11-24 15:58:05 [info]: GET / 304
+2024-11-24 15:58:10 [info]: GET / 304
+2024-11-24 15:58:18 [info]: GET / 304
 2024-11-18 15:02:47 [info]: POST /org/register 201 - Request Body: {"name":"Timpel and Co.","email":"backendseun@gmail.com","phone":"09066348588","preferredUrl":"https://timpel.com","password":"Timpearl05$","confirmPassword":"Timpearl05$","referral":"","referralSource":"linkedin"}
 2024-11-18 15:03:21 [info]: POST /login 200 - Request Body: {"name":"Timpel and Co.","email":"backendseun@gmail.com","phone":"09066348588","preferredUrl":"https://timpel.com","password":"Timpearl05$","confirmPassword":"Timpearl05$","referral":"","referralSource":"linkedin"}
 2024-11-18 15:04:21 [info]: POST /single-create 201 - Request Body: {"firstName":"Oluwaseun","lastName":"Odueso","email":"backendseun@gmail.com","role":"learner","batch":"2024","sendEmail":true}

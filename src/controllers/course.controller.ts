@@ -38,10 +38,10 @@ export class CourseController {
         actualCost,
         sharing,
         sharingValue,
-        paymentStartDate,
-        paymentEndDate,
-        paymentStartTime,
-        paymentEndTime,
+        visibilityStartDate,
+        visibilityEndDate,
+        visibilityStartTime,
+        visibilityEndTime,
         curriculum,
         teachingMethod 
       } = req.body;
@@ -87,10 +87,10 @@ export class CourseController {
         actualCost,
         sharing,
         sharingValue,
-        paymentStartDate,
-        paymentEndDate,
-        paymentStartTime,
-        paymentEndTime,
+        visibilityStartDate,
+        visibilityEndDate,
+        visibilityStartTime,
+        visibilityEndTime,
         curriculum: Urls[1],
         teachingMethod 
       });
@@ -108,12 +108,10 @@ export class CourseController {
 
   async getAllCourses(req: Request, res: Response, next: NextFunction) {
     try {
-      const organisationId = req.admin._id; // Assuming `req.admin._id` contains the instructor's ID
+      const organisationId = req.admin._id; 
 
-      // Find all courses where the organisationId matches
       const courses = await Course.find({ organisationId });
 
-      // Return the courses using a response handler
       return ResponseHandler.success(
         res,
         courses,
