@@ -7,7 +7,6 @@ import UserService from "../../services/user.service";
 import { comparePassword, hashPassword } from "../../utils/hash";
 import { generateToken } from "../../utils/jwt";
 import { sendLoginEmail } from "../../services/sendMail.service";
-import bcrypt from "bcryptjs";
 
 export class UserAuthController {
   static async createSingleUser(req: Request, res: Response) {
@@ -38,7 +37,6 @@ export class UserAuthController {
         );
       }
 
-      console.log(`New account's password`, password);
       const hashedPassword = await hashPassword(password);
 
       const newUser = await User.create({
