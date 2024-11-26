@@ -1,23 +1,26 @@
 import mongoose, { Document, Schema } from 'mongoose';
 
-export interface lessonDocument extends Document {
+export interface CompletionDetails {
+  userId: mongoose.Types.ObjectId;
+  percentage: number;
+}
+
+export interface LessonDocument extends Document {
   courseId: mongoose.Types.ObjectId;
   title: string;
   objectives: string;
   link?: string;
   files?: string[];
-  // completedBy: mongoose.Types.ObjectId[];
-  completionDetails: { userId: mongoose.Types.ObjectId; percentage: number }[];
+  completionDetails: CompletionDetails[];
 }
 
-const lessonSchema = new Schema<lessonDocument>(
+const lessonSchema = new Schema<LessonDocument>(
   {
     courseId: { type: Schema.Types.ObjectId, ref: 'Course', required: true },
     title: { type: String, required: true },
     objectives: { type: String, required: true },
     link: { type: String }, 
     files: { type: [String] }, 
-    // completedBy: [{ type: Schema.Types.ObjectId, ref: 'User' }],
     completionDetails: [
       {
         userId: { type: Schema.Types.ObjectId, ref: 'User' },
@@ -30,4 +33,4 @@ const lessonSchema = new Schema<lessonDocument>(
   }
 );
 
-export default mongoose.model<lessonDocument>('lesson', lessonSchema);
+export default mongoose.model<LessonDocument>('lesson', lessonSchema);

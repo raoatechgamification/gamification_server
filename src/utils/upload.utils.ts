@@ -1,5 +1,4 @@
 import multer from "multer";
-import AWS from "aws-sdk";
 import path from "path";
 import { Request } from 'express';
 
@@ -43,8 +42,3 @@ const fileFilter = (req: any, file: Express.Multer.File, cb: any) => {
   }
 };
 export const bulkUpload = multer({ storage, fileFilter });
-
-export const s3 = new AWS.S3({
-  accessKeyId: process.env.AWS_ACCESS_KEY_ID!,
-  secretAccessKey: process.env.AWS_SECRET_ACCESS_KEY!,
-});
