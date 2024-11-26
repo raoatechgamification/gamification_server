@@ -22,7 +22,7 @@ const {
 const { submitAssessment } = new SubmissionController();
 
 router.post(
-  "/create/:courseId",
+  "/create",
   authenticate,
   authorize("admin"),
   upload.single("file"),

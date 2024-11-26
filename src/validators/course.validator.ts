@@ -82,10 +82,6 @@ export const createCourseValidator = [
 
 
 export const courseContentValidator = [
-  param("courseId")
-    .isMongoId()
-    .withMessage("Invalid courseId format. Please provide a valid courseId."),
-
   body("title")
     .notEmpty()
     .withMessage("Title is required")

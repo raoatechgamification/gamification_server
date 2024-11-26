@@ -12,14 +12,14 @@ export class AssessmentController {
   async createAssessment(req: Request, res: Response, next: NextFunction) {
     try {
       const { title, question, highestAttainableScore } = req.body;
-      const { courseId } = req.params;
+      // const { courseId } = req.params;
       const instructorId = req.admin._id;
       const file = req.file;
 
-      const course = await Course.findById(courseId);
-      if (!course) {
-        return ResponseHandler.failure(res, "Course not found", 404);
-      }
+      // const course = await Course.findById(courseId);
+      // if (!course) {
+      //   return ResponseHandler.failure(res, "Course not found", 404);
+      // }
 
       let fileUploadResult: any = null;
 
@@ -46,7 +46,6 @@ export class AssessmentController {
         highestAttainableScore,
         file: fileUploadResult ? fileUploadResult.secure_url : null, 
         // file: fileUploadResult ? fileUploadResult.Location : null,
-        courseId,
         instructorId,
       });
 

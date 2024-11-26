@@ -1,4 +1,3 @@
-import mongoose from "mongoose";
 import XLSX from "xlsx";
 import { hashPassword } from "../utils/hash";
 import User, { IUser } from "../models/user.model";

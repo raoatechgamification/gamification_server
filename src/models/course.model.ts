@@ -4,12 +4,13 @@ export interface ICourse extends Document {
   title?: string;
   objective?: string;
   price?: number;
-  instructorId?: string;
-  organisationId?: string;
+  tutorId?: Schema.Types.ObjectId
+  organizationId?: string;
   lessonFormat?: string;
   // learnerIds?: string[];
   lessons: mongoose.Types.ObjectId[];
-  learnerIds: { userId: mongoose.Types.ObjectId; progress: number }[];
+  learnerIds?: { userId: mongoose.Types.ObjectId; progress: number }[];
+  assessments?: mongoose.Types.ObjectId[]
   duration?: string;
   courseCode?: string;
   courseLevel?: string;
@@ -29,18 +30,17 @@ export interface ICourse extends Document {
   visibilityEndDate?: Date;
   visibilityStartTime?: string;
   visibilityEndTime?: string;
-  curriculum?: string[];
   teachingMethod?: string;
   passMark: number;
   maximumNumberOfTrials?: number
 }
 
 const CourseSchema = new Schema<ICourse>({
-  title: { type: String, required: false },
-  objective: { type: String, required: false },
-  price: { type: Number, required: false },
-  instructorId: { type: String, required: false },
-  organisationId: { type: String, required: false },
+  title: { type: String },
+  objective: { type: String },
+  price: { type: Number },
+  tutorId: { type: Schema.Types.ObjectId },
+  organizationId: { type: String, required: false },
   lessonFormat: { type: String, required: false },
   // learnerIds: [{ type: String }],
   lessons: [{ type: Schema.Types.ObjectId, ref: 'Lesson' }],
@@ -50,7 +50,7 @@ const CourseSchema = new Schema<ICourse>({
       progress: { type: Number, default: 0 }, // Completion percentage for the course
     },
   ],
-
+  assessments: [{ type: Schema.Types.ObjectId, ref: 'Assessment' }],
   duration: { type: String, required: false },
   courseCode: { type: String, required: false },
   courseLevel: { type: String, required: false },
@@ -70,7 +70,6 @@ const CourseSchema = new Schema<ICourse>({
   visibilityEndDate: { type: Date },
   visibilityStartTime: { type: String },
   visibilityEndTime: { type: String },
-  curriculum: [{ type: String }],
   teachingMethod: { type: String },
   passMark: {type: Number, required: false},
   maximumNumberOfTrials: {type: Number, required: false}

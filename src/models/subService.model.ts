@@ -5,7 +5,7 @@ export interface ISubService extends Document {
   objective?: string;
   price?: number;
   instructorId?: string;
-  organisationId?: string;
+  organizationId?: string;
   lessonFormat?: string;
   learnerIds?: string[];
   duration?: string;
@@ -36,7 +36,7 @@ const SubServiceSchema = new Schema<ISubService>({
   objective: { type: String, required: false },
   price: { type: Number, required: false },
   instructorId: { type: String, required: false },
-  organisationId: { type: String, required: false },
+  organizationId: { type: String, required: false },
   lessonFormat: { type: String, required: false },
   learnerIds: [{ type: String }],
   duration: { type: String, required: false },
