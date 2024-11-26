@@ -4,7 +4,8 @@ export interface ISuperAdmin extends Document {
   username?: string; 
   email: string; 
   firstName?: string; 
-  lastName?: string; 
+  lastName?: string;
+  phone?: string; 
   role: string; 
   password: string; 
 }
@@ -27,6 +28,9 @@ const SuperAdminSchema: Schema<ISuperAdmin> = new Schema(
     lastName: {
       type: String,
       default: null, 
+    },
+    phone: {
+      type: String,
     },
     role: {
       type: String,

@@ -1454,3 +1454,11 @@
 2024-11-26 15:14:56 [info]: POST /login 400 - Request Body: {"email":"backendseun@gmail.com","password":"OluwaseunOdueso123"}
 2024-11-26 15:15:01 [info]: POST /login 200 - Request Body: {"email":"backendseun@gmail.com","password":"OluwaseunOdueso123#"}
 2024-11-26 15:15:58 [info]: POST /login 200 - Request Body: {"email":"backendseun@gmail.com","password":"OluwaseunOdueso123#"}
+2024-11-26 16:13:04 [info]: POST /login 200 - Request Body: {"email":"backendseun@gmail.com","password":"OluwaseunOdueso123#"}
+2024-11-26 16:23:02 [info]: POST /bulk-create 401
+2024-11-26 16:23:33 [info]: POST /login 200 - Request Body: {"email":"seunoduez@gmail.com","password":"Timpearl05$$$"}
+2024-11-26 16:24:14 [info]: POST /bulk-create 500
+2024-11-26 16:27:39 [info]: POST /bulk-create 500
+2024-11-26 16:29:43 [info]: POST /bulk-create 500
+2024-11-26 16:30:56 [info]: POST /login 200 - Request Body: {"email":"seunoduez@gmail.com","password":"Timpearl05$$$"}
+2024-11-26 16:31:21 [info]: POST /bulk-create 201
