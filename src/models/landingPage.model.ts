@@ -15,7 +15,7 @@ export interface ILandingPage extends Document {
 const LandingPageSchema = new Schema<ILandingPage>(
   {
     organisationId: { type: String, required: false },
-    landingPageTitle: { type: String, required: false },
+    landingPageTitle: { type: String, required: false, unique: true},
     serviceTitleDescription: { type: String, required: false },
     servicePicture: { type: String, required: false},
     serviceType: { type: String, required: false },

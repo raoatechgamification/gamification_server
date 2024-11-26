@@ -18,12 +18,10 @@ export class CourseController {
       const files = req.files as Express.Multer.File[];      
       const { 
         duration, 
-        landingPageTitle,
-        serviceTitleDescription,
-        servicePicture,
-        serviceType,
-        serviceItem,
-        serviceItemDescription,
+        title,
+        description,
+        requirement,
+        topContent,
         courseCode,
         courseLevel,
         startDate,
@@ -64,15 +62,12 @@ export class CourseController {
       
 
       const course = await Course.create({
+        title,
+        description,
+        requirement,
+        topContent,
         duration, 
         organisationId,
-   
-        landingPageTitle,
-        serviceTitleDescription,
-        servicePicture: Urls[0],
-        serviceType,
-        serviceItem,
-        serviceItemDescription,
         courseCode,
         courseLevel,
         startDate,

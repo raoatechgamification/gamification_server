@@ -26,7 +26,7 @@ router.post(
   authenticate,
   authorize("admin"),
   upload.array("file", 10),
-  // ...createCourseValidator,
+  ...createCourseValidator,
   createCourse
 );
 

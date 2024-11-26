@@ -10,6 +10,10 @@ export class LandingPageController {
       const files = req.files as Express.Multer.File[];
       const organisationId = req.admin._id
       const {
+        title,
+        description,
+        requirement,
+        topContent,
         landingPageTitle,
         serviceTitleDescription,
         serviceType,
@@ -38,6 +42,18 @@ export class LandingPageController {
         subservice,
       } = req.body;
   
+
+      
+        // if(title){
+        //    const existingCourse = await Course.findOne({ title });
+        // if (existingCourse) {
+        //     return res.status(400).json({
+        //         success: false,
+        //         message: `A course with the title "${title}" already exists.`,
+        //     });
+        // }
+        // }
+       
       let { course } = req.body;
   
       // Ensure course is an array
@@ -49,6 +65,10 @@ export class LandingPageController {
       // If no course data exists, create one from the extracted fields
       if (course.length === 0) {
         course.push({
+          title,
+          description,
+          requirement,
+          topContent,
           courseCode,
           courseLevel,
           duration,
@@ -91,6 +111,10 @@ export class LandingPageController {
       const courseIds: Types.ObjectId[] = [];
       const subserviceIds: Types.ObjectId[] = [];
   
+      const existingLandingPage = await LandingPage.findOne({ landingPageTitle });
+      if (existingLandingPage) {
+        return res.status(400).json({ success: false, message: `A landing page with the title "${landingPageTitle}" already exists.` });
+      }
       // Create or fetch Courses
       for (const courseData of course) {
         if (courseData._id) {
@@ -104,6 +128,15 @@ export class LandingPageController {
           courseIds.push(existingCourse._id as Types.ObjectId);
         } else {
           // Create a new Course
+           if(title){
+           const existingCourse = await Course.findOne({ title });
+        if (existingCourse) {
+            return res.status(400).json({
+                success: false,
+                message: `A course with the title "${title}" already exists.`,
+            });
+        }
+        }
           courseData.curriculum = Urls[1];
           console.log(courseData, "courseData");
           const newCourse = await Course.create(courseData);
@@ -156,6 +189,10 @@ export class LandingPageController {
       const organisationId = req.admin._id; // Admin ID from authentication middleware
   
       const {
+        title,
+          description,
+          requirement,
+          topContent,
         courseCode,
         courseLevel,
         duration,
@@ -179,8 +216,19 @@ export class LandingPageController {
         
       } = req.body;
   
+      const existingCourse = await Course.findOne({ title });
+        if (existingCourse) {
+            return res.status(400).json({
+                success: false,
+                message: `A course with the title "${title}" already exists.`,
+            });
+        }
       // Prepare the course data
       let newCourseData = {
+        title,
+          description,
+          requirement,
+          topContent,
         courseCode,
         courseLevel,
         duration,

@@ -57,25 +57,25 @@ export const createCourseValidator = [
     .isString()
     .withMessage("Please provide the course title"),
 
-  body("objective")
-    .notEmpty()
-    .isString()
-    .withMessage("Please provide the course objective"),
+  // body("objective")
+  //   .notEmpty()
+  //   .isString()
+  //   .withMessage("Please provide the course objective"),
 
-  body("price")
+  body("cost")
     .notEmpty()
     .isNumeric()
     .withMessage("Please provide the course price"),
 
-  body("duration")
-    .notEmpty()
-    .isString()
-    .withMessage("Please provide a the course duration"),
+  // body("duration")
+  //   .notEmpty()
+  //   .isString()
+  //   .withMessage("Please provide a the course duration"),
 
-  body("lessonFormat")
-    .notEmpty()
-    .isString()
-    .withMessage("Please provide the lessons format"),
+  // body("lessonFormat")
+  //   .notEmpty()
+  //   .isString()
+  //   .withMessage("Please provide the lessons format"),
 
   errorResponse,
 ];

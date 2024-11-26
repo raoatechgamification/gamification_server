@@ -1336,3 +1336,497 @@
 2024-11-24 15:58:05 [info]: GET / 304
 2024-11-24 15:58:10 [info]: GET / 304
 2024-11-24 15:58:18 [info]: GET / 304
+2024-11-25 07:29:18 [info]: GET /users 401
+2024-11-25 07:29:19 [info]: GET /users 401
+2024-11-25 07:29:21 [info]: GET /users 401
+2024-11-25 07:29:25 [info]: GET /users 401
+2024-11-25 07:29:47 [info]: POST /login 200 - Request Body: {"email":"ajibadeemmanuel58@gmail.com","password":"Test2024!"}
+2024-11-25 07:29:51 [info]: GET / 304
+2024-11-25 07:31:50 [info]: GET /users 401
+2024-11-25 07:31:52 [info]: GET /users 400
+2024-11-25 07:31:55 [info]: GET /users 400
+2024-11-25 07:31:59 [info]: GET /users 400
+2024-11-25 07:33:09 [info]: GET /users 400
+2024-11-25 07:33:24 [info]: GET /users 401
+2024-11-25 07:33:32 [info]: GET /users 401
+2024-11-25 07:33:53 [info]: GET /users 401
+2024-11-25 07:33:55 [info]: GET /users 400
+2024-11-25 07:33:57 [info]: GET /users 400
+2024-11-25 07:34:02 [info]: GET /users 400
+2024-11-25 07:35:06 [info]: GET /users 400
+2024-11-25 07:35:07 [info]: GET /users 400
+2024-11-25 07:35:10 [info]: GET /users 400
+2024-11-25 07:35:14 [info]: GET /users 400
+2024-11-25 07:35:53 [info]: GET /users 400
+2024-11-25 07:35:55 [info]: GET /users 400
+2024-11-25 07:35:57 [info]: GET /users 400
+2024-11-25 07:36:02 [info]: GET /users 400
+2024-11-25 07:38:03 [info]: GET /users 401
+2024-11-25 07:38:05 [info]: GET /users 400
+2024-11-25 07:38:07 [info]: GET /users 400
+2024-11-25 07:38:12 [info]: GET /users 400
+2024-11-25 07:38:23 [info]: POST /single-create 201 - Request Body: {"firstName":"AJIBADE","lastName":"Emmanuel","email":"ajibadeemmanuel508@gmail.com","role":"admin","batch":"2024","sendEmail":false}
+2024-11-25 07:38:37 [info]: GET /users 401
+2024-11-25 07:38:39 [info]: GET /users 200
+2024-11-25 07:39:21 [info]: GET /users 304
+2024-11-25 07:39:23 [info]: GET /users 304
+2024-11-25 07:41:05 [info]: GET /users 304
+2024-11-25 07:41:07 [info]: GET /users 304
+2024-11-25 07:41:37 [info]: GET /users 304
+2024-11-25 07:41:38 [info]: GET /users 304
+2024-11-25 07:41:55 [info]: GET /users 304
+2024-11-25 07:43:12 [info]: GET /users 304
+2024-11-25 07:43:34 [info]: GET /users 304
+2024-11-25 07:43:57 [info]: GET /users 304
+2024-11-25 07:43:59 [info]: GET /users 304
+2024-11-25 07:44:47 [info]: GET /users 304
+2024-11-25 07:45:32 [info]: GET /users 304
+2024-11-25 07:45:49 [info]: GET /users 304
+2024-11-25 07:47:36 [info]: GET /users 304
+2024-11-25 08:00:01 [info]: GET /users 304
+2024-11-25 12:22:49 [info]: POST /login 200 - Request Body: {"email":"ajibadeemmanuel58@gmail.com","password":"Test2024!"}
+2024-11-25 12:22:59 [info]: GET / 304
+2024-11-25 12:23:51 [info]: GET / 304
+2024-11-25 12:26:02 [info]: GET / 401
+2024-11-25 12:26:24 [info]: GET / 304
+2024-11-25 12:27:15 [info]: GET / 304
+2024-11-25 12:28:07 [info]: GET / 304
+2024-11-25 12:29:20 [info]: GET / 304
+2024-11-25 12:29:38 [info]: GET / 304
+2024-11-25 12:29:44 [info]: GET / 304
+2024-11-25 12:29:56 [info]: GET / 304
+2024-11-25 12:30:12 [info]: GET / 304
+2024-11-25 12:30:35 [info]: GET / 304
+2024-11-25 12:30:47 [info]: GET / 304
+2024-11-25 12:31:17 [info]: GET / 304
+2024-11-25 12:31:27 [info]: GET / 304
+2024-11-25 12:31:39 [info]: GET / 304
+2024-11-25 12:35:08 [info]: GET / 304
+2024-11-25 12:36:19 [info]: GET / 304
+2024-11-25 12:37:17 [info]: GET / 304
+2024-11-25 12:39:41 [info]: GET / 304
+2024-11-25 12:39:54 [info]: GET / 304
+2024-11-25 12:45:36 [info]: GET / 401
+2024-11-25 12:46:07 [info]: GET / 304
+2024-11-25 12:46:12 [info]: GET / 401
+2024-11-25 12:46:14 [info]: GET / 304
+2024-11-25 12:47:08 [info]: GET / 401
+2024-11-25 12:47:11 [info]: GET / 304
+2024-11-25 12:48:18 [info]: GET / 304
+2024-11-25 12:48:44 [info]: GET / 304
+2024-11-25 12:49:04 [info]: GET / 304
+2024-11-25 12:49:08 [info]: GET / 304
+2024-11-25 12:49:15 [info]: GET / 304
+2024-11-25 12:52:39 [info]: GET / 304
+2024-11-25 12:52:54 [info]: GET / 304
+2024-11-25 12:53:06 [info]: GET / 304
+2024-11-25 12:53:11 [info]: GET / 304
+2024-11-25 12:54:51 [info]: GET / 304
+2024-11-25 12:54:56 [info]: GET / 304
+2024-11-25 12:55:20 [info]: GET / 304
+2024-11-25 12:55:25 [info]: GET / 304
+2024-11-25 12:55:39 [info]: GET / 304
+2024-11-25 12:57:02 [info]: GET / 304
+2024-11-25 12:57:27 [info]: GET / 304
+2024-11-25 12:58:00 [info]: GET / 304
+2024-11-25 12:58:23 [info]: GET / 304
+2024-11-25 12:58:51 [info]: GET / 304
+2024-11-25 12:59:08 [info]: GET / 304
+2024-11-25 12:59:15 [info]: GET / 304
+2024-11-25 12:59:53 [info]: GET / 304
+2024-11-25 13:00:21 [info]: GET / 304
+2024-11-25 13:08:31 [info]: GET / 304
+2024-11-25 13:08:49 [info]: GET / 401
+2024-11-25 13:08:51 [info]: GET / 304
+2024-11-25 13:09:05 [info]: GET / 304
+2024-11-25 13:09:22 [info]: GET / 304
+2024-11-25 13:09:28 [info]: GET / 304
+2024-11-25 13:09:50 [info]: GET / 304
+2024-11-25 13:10:00 [info]: GET / 304
+2024-11-25 13:10:28 [info]: GET / 304
+2024-11-25 13:10:32 [info]: GET / 304
+2024-11-25 13:12:02 [info]: GET / 304
+2024-11-25 13:12:25 [info]: GET / 304
+2024-11-25 13:13:10 [info]: GET / 304
+2024-11-25 13:13:35 [info]: GET / 304
+2024-11-25 13:13:36 [info]: GET / 304
+2024-11-25 13:14:17 [info]: GET / 304
+2024-11-25 13:14:30 [info]: GET / 304
+2024-11-25 13:15:33 [info]: GET / 304
+2024-11-25 13:16:00 [info]: GET / 304
+2024-11-25 13:16:52 [info]: GET / 304
+2024-11-25 13:17:42 [info]: GET / 304
+2024-11-25 13:18:11 [info]: GET / 304
+2024-11-25 13:21:47 [info]: GET / 304
+2024-11-25 13:22:23 [info]: GET / 304
+2024-11-25 13:22:34 [info]: GET / 304
+2024-11-25 13:22:46 [info]: GET / 304
+2024-11-25 13:22:58 [info]: GET / 304
+2024-11-25 13:23:11 [info]: GET / 304
+2024-11-25 13:23:12 [info]: GET / 304
+2024-11-25 13:23:36 [info]: GET / 304
+2024-11-25 13:23:38 [info]: GET / 304
+2024-11-25 13:23:59 [info]: GET / 304
+2024-11-25 13:24:20 [info]: GET / 304
+2024-11-25 13:24:35 [info]: GET / 304
+2024-11-25 13:24:46 [info]: GET / 304
+2024-11-25 13:25:08 [info]: GET / 304
+2024-11-25 13:25:19 [info]: GET / 304
+2024-11-25 13:34:44 [info]: GET / 304
+2024-11-25 13:36:04 [info]: GET / 304
+2024-11-25 13:36:23 [info]: GET / 304
+2024-11-25 13:36:44 [info]: GET / 304
+2024-11-25 13:37:30 [info]: GET / 304
+2024-11-25 13:37:52 [info]: GET / 304
+2024-11-25 13:38:46 [info]: GET / 304
+2024-11-25 13:39:14 [info]: GET / 304
+2024-11-25 13:39:19 [info]: GET / 304
+2024-11-25 13:39:35 [info]: GET / 304
+2024-11-25 13:39:53 [info]: GET / 304
+2024-11-25 13:40:14 [info]: GET / 304
+2024-11-25 13:40:47 [info]: GET / 304
+2024-11-25 13:41:02 [info]: GET / 304
+2024-11-25 13:41:05 [info]: GET / 304
+2024-11-25 13:41:51 [info]: GET / 304
+2024-11-25 13:42:36 [info]: GET / 304
+2024-11-25 13:43:02 [info]: GET / 304
+2024-11-25 13:43:22 [info]: GET / 304
+2024-11-25 13:45:55 [info]: GET / 304
+2024-11-25 13:47:07 [info]: GET / 304
+2024-11-25 13:47:29 [info]: GET / 304
+2024-11-25 13:47:41 [info]: GET / 304
+2024-11-25 13:50:32 [info]: GET / 304
+2024-11-25 13:51:44 [info]: GET / 304
+2024-11-25 13:52:09 [info]: GET / 304
+2024-11-25 13:52:37 [info]: GET / 304
+2024-11-25 13:52:47 [info]: GET / 304
+2024-11-25 13:53:04 [info]: GET / 304
+2024-11-25 13:53:30 [info]: GET / 304
+2024-11-25 13:53:47 [info]: GET / 304
+2024-11-25 13:54:23 [info]: GET / 304
+2024-11-25 13:55:14 [info]: GET / 304
+2024-11-25 13:55:18 [info]: GET / 304
+2024-11-25 13:58:08 [info]: GET / 304
+2024-11-25 13:58:16 [info]: GET / 304
+2024-11-25 14:08:20 [info]: GET / 304
+2024-11-25 14:08:27 [info]: POST /login 200 - Request Body: {"email":"ajibadeemmanuel58@gmail.com","password":"Test2024!"}
+2024-11-25 14:08:28 [info]: GET / 304
+2024-11-25 14:08:41 [info]: GET / 401
+2024-11-25 14:08:43 [info]: GET / 304
+2024-11-25 14:10:31 [info]: GET / 304
+2024-11-25 14:11:10 [info]: GET / 304
+2024-11-25 14:11:23 [info]: POST /login 200 - Request Body: {"email":"ajibadeemmanuel58@gmail.com","password":"Test2024!"}
+2024-11-25 14:11:24 [info]: GET / 304
+2024-11-25 14:12:00 [info]: GET / 401
+2024-11-25 14:12:02 [info]: GET / 304
+2024-11-25 14:12:17 [info]: POST /login 200 - Request Body: {"email":"ajibadeemmanuel58@gmail.com","password":"Test2024!"}
+2024-11-25 14:12:18 [info]: GET / 304
+2024-11-25 14:14:08 [info]: GET / 401
+2024-11-25 14:14:12 [info]: GET / 304
+2024-11-25 14:14:18 [info]: POST /login 200 - Request Body: {"email":"ajibadeemmanuel58@gmail.com","password":"Test2024!"}
+2024-11-25 14:14:19 [info]: GET / 304
+2024-11-25 14:15:59 [info]: GET / 401
+2024-11-25 14:16:01 [info]: GET / 304
+2024-11-25 14:16:10 [info]: POST /login 200 - Request Body: {"email":"ajibadeemmanuel58@gmail.com","password":"Test2024!"}
+2024-11-25 14:16:11 [info]: GET / 304
+2024-11-25 14:24:48 [info]: GET / 401
+2024-11-25 14:24:50 [info]: GET / 304
+2024-11-25 14:24:56 [info]: POST /login 200 - Request Body: {"email":"ajibadeemmanuel58@gmail.com","password":"Test2024!"}
+2024-11-25 14:24:57 [info]: GET / 304
+2024-11-25 14:25:21 [info]: GET / 401
+2024-11-25 14:25:23 [info]: GET / 304
+2024-11-25 14:25:56 [info]: GET / 304
+2024-11-25 14:25:58 [info]: GET / 304
+2024-11-25 14:28:33 [info]: GET / 304
+2024-11-25 14:29:10 [info]: GET / 304
+2024-11-25 14:29:32 [info]: GET / 304
+2024-11-25 14:29:55 [info]: GET /users 304
+2024-11-25 14:30:00 [info]: GET /users 304
+2024-11-25 14:30:01 [info]: GET / 304
+2024-11-25 14:30:25 [info]: GET / 304
+2024-11-25 14:30:25 [info]: GET / 304
+2024-11-25 14:30:35 [info]: POST /login 200 - Request Body: {"email":"ajibadeemmanuel58@gmail.com","password":"Test2024!"}
+2024-11-25 14:30:36 [info]: GET / 304
+2024-11-25 14:30:53 [info]: GET / 401
+2024-11-25 14:32:08 [info]: POST /login 200 - Request Body: {"email":"ajibadeemmanuel58@gmail.com","password":"Test2024!"}
+2024-11-25 14:33:02 [info]: GET / 401
+2024-11-25 15:18:32 [info]: POST /login 200 - Request Body: {"email":"ajibadeemmanuel58@gmail.com","password":"Test2024!"}
+2024-11-25 15:19:53 [info]: POST /login 200 - Request Body: {"email":"ajibadeemmanuel58@gmail.com","password":"Test2024!"}
+2024-11-25 15:20:06 [info]: GET / 304
+2024-11-25 15:20:45 [info]: POST /login 200 - Request Body: {"email":"ajibadeemmanuel58@gmail.com","password":"Test2024!"}
+2024-11-25 15:20:49 [info]: GET / 304
+2024-11-25 15:21:20 [info]: GET / 304
+2024-11-25 15:30:14 [info]: GET /get-all-courses 403
+2024-11-25 15:30:15 [info]: GET /get-all-courses 403
+2024-11-25 15:30:18 [info]: GET /get-all-courses 403
+2024-11-25 15:30:22 [info]: GET /get-all-courses 403
+2024-11-25 15:30:52 [info]: POST /login 200 - Request Body: {"email":"ajibadeemmanuel58@gmail.com","password":"Test2024!"}
+2024-11-25 15:30:57 [info]: GET / 304
+2024-11-25 15:31:41 [info]: GET / 200
+2024-11-25 15:32:52 [info]: GET / 304
+2024-11-25 15:34:29 [info]: GET / 304
+2024-11-25 16:02:02 [info]: GET / 304
+2024-11-25 16:02:14 [info]: GET / 304
+2024-11-25 16:02:20 [info]: GET /get-all-courses 200
+2024-11-25 16:05:00 [info]: GET /get-all-courses 304
+2024-11-25 16:05:26 [info]: GET /get-all-courses 304
+2024-11-26 11:35:37 [info]: GET /get-all-courses 200
+2024-11-26 11:35:38 [info]: GET /get-all-courses 304
+2024-11-26 11:35:57 [info]: POST /api/v1/landing-page 500 - Request Body: {"landingPageTitle":"landing test","serviceTitleDescription":"test","serviceType":"online","serviceItem":"service item","serviceItemDescription":"s","courseCode":"s","courseLevel":"s","duration":"0","startDate":"2024-11-06","endDate":"2024-11-28","numberOfHoursPerDay":"0","numberOfDaysPerWeek":"0","cost":"0","promo":"0","promoCode":"","promoValue":"0","platformCharge":"0","actualCost":"0","sharing":"0","sharingValue":"0","visibilityStartDate":"2024-11-08","visibilityEndDate":"2024-11-30","visibilityStartTime":"04:31","visibilityEndTime":"11:35","teachingMethod":"offline"}
+2024-11-26 11:36:31 [info]: GET /get-all-courses 304
+2024-11-26 11:41:18 [info]: GET /get-all-courses 403
+2024-11-26 11:41:19 [info]: GET /get-all-courses 403
+2024-11-26 11:41:21 [info]: GET /get-all-courses 403
+2024-11-26 11:41:25 [info]: GET /get-all-courses 403
+2024-11-26 11:41:39 [info]: POST / 403
+2024-11-26 11:41:51 [info]: GET /get-all-courses 403
+2024-11-26 11:41:52 [info]: GET /get-all-courses 403
+2024-11-26 11:41:54 [info]: GET /get-all-courses 403
+2024-11-26 11:41:58 [info]: GET /get-all-courses 403
+2024-11-26 11:42:01 [info]: POST / 403
+2024-11-26 11:46:23 [info]: POST /api/v1/auth/org/register 500 - Request Body: {"name":"AJIBADE Emmanuel","email":"ajibadeemmanuel58@gmail.com","phone":"09056983151","preferredUrl":"https://ajy.com","password":"Test2024!","confirmPassword":"Test2024!"}
+2024-11-26 11:46:59 [info]: POST /login 200 - Request Body: {"email":"ajibadeemmanuel58@gmail.com","password":"Test2024!"}
+2024-11-26 11:47:06 [info]: GET / 200
+2024-11-26 11:47:16 [info]: GET / 304
+2024-11-26 11:47:24 [info]: GET /get-all-courses 200
+2024-11-26 11:48:30 [info]: GET /get-all-courses 304
+2024-11-26 11:49:08 [info]: GET /get-all-courses 304
+2024-11-26 11:49:25 [info]: POST /api/v1/landing-page 500 - Request Body: {"landingPageTitle":"landing test","serviceTitleDescription":"test","serviceType":"online","serviceItem":"service item","serviceItemDescription":"service","courseCode":"TST","courseLevel":"2","duration":"0","startDate":"2024-11-01","endDate":"2024-11-30","numberOfHoursPerDay":"0","numberOfDaysPerWeek":"0","cost":"0","promo":"0","promoCode":"","promoValue":"0","platformCharge":"0","actualCost":"0","sharing":"0","sharingValue":"0","visibilityStartDate":"","visibilityEndDate":"","visibilityStartTime":"","visibilityEndTime":"","teachingMethod":"online"}
+2024-11-26 11:49:28 [info]: GET /get-all-courses 304
+2024-11-26 11:50:03 [info]: GET /get-all-courses 304
+2024-11-26 11:51:13 [info]: GET /get-all-courses 304
+2024-11-26 11:54:30 [info]: GET /get-all-courses 304
+2024-11-26 11:54:49 [info]: GET /get-all-courses 304
+2024-11-26 11:55:06 [info]: GET /get-all-courses 304
+2024-11-26 11:55:13 [info]: POST /api/v1/landing-page 500 - Request Body: {"landingPageTitle":"landing test","serviceTitleDescription":"test","serviceType":"online","serviceItem":"service item","serviceItemDescription":"service","courseCode":"TST","courseLevel":"2","duration":"0","startDate":"2024-11-01","endDate":"2024-11-30","numberOfHoursPerDay":"0","numberOfDaysPerWeek":"0","cost":"0","promo":"0","promoCode":"","promoValue":"0","platformCharge":"0","actualCost":"0","sharing":"0","sharingValue":"0","visibilityStartDate":"","visibilityEndDate":"","visibilityStartTime":"","visibilityEndTime":"","teachingMethod":"online"}
+2024-11-26 11:55:14 [info]: GET /get-all-courses 304
+2024-11-26 11:56:12 [info]: GET /get-all-courses 304
+2024-11-26 11:57:19 [info]: GET /get-all-courses 304
+2024-11-26 11:57:40 [info]: GET /get-all-courses 304
+2024-11-26 11:57:43 [info]: GET /get-all-courses 304
+2024-11-26 11:58:12 [info]: POST /api/v1/landing-page 500 - Request Body: {"landingPageTitle":"landing test","serviceTitleDescription":"test","serviceType":"online","serviceItem":"service item","serviceItemDescription":"service","courseCode":"TST","courseLevel":"2","duration":"0","startDate":"2024-11-01","endDate":"2024-11-30","numberOfHoursPerDay":"0","numberOfDaysPerWeek":"0","cost":"0","promo":"0","promoCode":"","promoValue":"0","platformCharge":"0","actualCost":"0","sharing":"0","sharingValue":"0","visibilityStartDate":"","visibilityEndDate":"","visibilityStartTime":"","visibilityEndTime":"","teachingMethod":"online"}
+2024-11-26 11:58:23 [info]: GET /get-all-courses 304
+2024-11-26 12:01:45 [info]: GET /get-all-courses 304
+2024-11-26 12:01:59 [info]: GET /get-all-courses 304
+2024-11-26 12:02:03 [info]: GET /get-all-courses 304
+2024-11-26 12:02:53 [info]: POST /api/v1/landing-page 500 - Request Body: {"landingPageTitle":"landing test","serviceTitleDescription":"test","serviceType":"online","serviceItem":"service item","serviceItemDescription":"service","title":"Test","description":"test","courseCode":"TST","courseLevel":"2","duration":"0","startDate":"2024-11-01","endDate":"2024-11-30","numberOfHoursPerDay":"0","numberOfDaysPerWeek":"0","cost":"0","promo":"0","promoCode":"","promoValue":"0","platformCharge":"0","actualCost":"0","sharing":"0","sharingValue":"0","visibilityStartDate":"","visibilityEndDate":"","visibilityStartTime":"","visibilityEndTime":"","teachingMethod":"online"}
+2024-11-26 12:03:07 [info]: GET /get-all-courses 304
+2024-11-26 12:05:07 [info]: GET /get-all-courses 304
+2024-11-26 12:05:18 [info]: GET /get-all-courses 304
+2024-11-26 12:56:37 [info]: GET /get-all-courses 403
+2024-11-26 12:56:38 [info]: GET /get-all-courses 403
+2024-11-26 12:56:47 [info]: GET /get-all-courses 403
+2024-11-26 12:56:55 [info]: GET /get-all-courses 403
+2024-11-26 12:56:58 [info]: GET /get-all-courses 403
+2024-11-26 12:56:59 [info]: GET /get-all-courses 403
+2024-11-26 12:57:01 [info]: GET /get-all-courses 403
+2024-11-26 12:57:05 [info]: GET /get-all-courses 403
+2024-11-26 12:58:51 [info]: POST / 403
+2024-11-26 12:59:37 [info]: POST /login 200 - Request Body: {"email":"ajibadeemmanuel58@gmail.com","password":"Test2024!"}
+2024-11-26 12:59:42 [info]: GET / 200
+2024-11-26 12:59:50 [info]: GET /get-all-courses 200
+2024-11-26 13:01:07 [info]: POST / 201 - Request Body: {"landingPageTitle":"landing test","serviceTitleDescription":"s","serviceType":"online","serviceItem":"service item","serviceItemDescription":"service","title":"test","description":"test","courseCode":"TST","courseLevel":"2","duration":"0","startDate":"2024-11-01","endDate":"2024-11-29","numberOfHoursPerDay":"0","numberOfDaysPerWeek":"0","cost":"0","promo":"0","promoCode":"","promoValue":"0","platformCharge":"0","actualCost":"0","sharing":"0","sharingValue":"0","visibilityStartDate":"","visibilityEndDate":"","visibilityStartTime":"","visibilityEndTime":"","teachingMethod":"online"}
+2024-11-26 13:01:09 [info]: GET / 200
+2024-11-26 13:02:41 [info]: GET / 304
+2024-11-26 13:03:09 [info]: GET / 304
+2024-11-26 13:03:16 [info]: GET / 304
+2024-11-26 13:04:05 [info]: GET / 304
+2024-11-26 13:07:08 [info]: GET / 304
+2024-11-26 13:07:10 [info]: GET / 304
+2024-11-26 13:07:21 [info]: GET / 304
+2024-11-26 13:07:29 [info]: GET / 401
+2024-11-26 13:07:31 [info]: GET / 304
+2024-11-26 13:08:09 [info]: GET / 304
+2024-11-26 13:11:48 [info]: GET / 304
+2024-11-26 13:12:14 [info]: GET / 304
+2024-11-26 13:12:18 [info]: GET / 304
+2024-11-26 13:14:33 [info]: GET / 304
+2024-11-26 13:14:38 [info]: GET / 304
+2024-11-26 13:15:27 [info]: GET / 304
+2024-11-26 13:16:48 [info]: GET / 304
+2024-11-26 13:17:10 [info]: GET / 304
+2024-11-26 13:17:13 [info]: GET / 304
+2024-11-26 13:17:42 [info]: GET / 304
+2024-11-26 13:19:12 [info]: GET / 304
+2024-11-26 13:20:35 [info]: GET / 304
+2024-11-26 13:21:56 [info]: GET / 200
+2024-11-26 13:22:03 [info]: GET /get-all-courses 200
+2024-11-26 13:24:02 [info]: GET /get-all-courses 304
+2024-11-26 13:24:28 [info]: GET /get-all-courses 304
+2024-11-26 13:29:54 [info]: GET /get-all-courses 304
+2024-11-26 13:30:00 [info]: GET /get-all-courses 304
+2024-11-26 13:30:13 [info]: GET /get-all-courses 304
+2024-11-26 13:31:07 [info]: GET /get-all-courses 304
+2024-11-26 13:31:08 [info]: GET /get-all-courses 304
+2024-11-26 13:31:34 [info]: GET /get-all-courses 304
+2024-11-26 13:31:35 [info]: GET /get-all-courses 304
+2024-11-26 13:31:53 [info]: GET /get-all-courses 304
+2024-11-26 13:31:55 [info]: GET /get-all-courses 304
+2024-11-26 13:32:21 [info]: GET /get-all-courses 304
+2024-11-26 13:32:23 [info]: GET /get-all-courses 304
+2024-11-26 13:33:09 [info]: GET /get-all-courses 304
+2024-11-26 13:34:03 [info]: GET /get-all-courses 304
+2024-11-26 13:34:46 [info]: GET /get-all-courses 304
+2024-11-26 13:35:01 [info]: GET /get-all-courses 304
+2024-11-26 13:35:05 [info]: POST / 201 - Request Body: {"landingPageTitle":"landing test","serviceTitleDescription":"landing test description","serviceType":"online","serviceItem":"service item","serviceItemDescription":"landing test","title":"TEST","description":"landing test TSES","courseCode":"TST","courseLevel":"2","duration":"0","startDate":"2024-11-01","endDate":"2024-11-30","numberOfHoursPerDay":"0","numberOfDaysPerWeek":"0","cost":"0","promo":"0","promoCode":"","promoValue":"0","platformCharge":"0","actualCost":"0","sharing":"0","sharingValue":"0","visibilityStartDate":"","visibilityEndDate":"","visibilityStartTime":"","visibilityEndTime":"","teachingMethod":"online"}
+2024-11-26 13:35:06 [info]: GET / 200
+2024-11-26 13:36:34 [info]: GET / 304
+2024-11-26 13:37:22 [info]: GET / 304
+2024-11-26 13:37:24 [info]: GET / 304
+2024-11-26 13:38:43 [info]: GET / 304
+2024-11-26 13:41:15 [info]: GET / 304
+2024-11-26 13:43:21 [info]: GET / 304
+2024-11-26 13:43:34 [info]: GET /6745c07964f12ebdee546859 401
+2024-11-26 13:43:35 [info]: GET /6745c07964f12ebdee546859 200
+2024-11-26 13:49:40 [info]: GET /6745c07964f12ebdee546859 304
+2024-11-26 13:49:41 [info]: GET /6745c07964f12ebdee546859 304
+2024-11-26 13:51:49 [info]: GET /6745c07964f12ebdee546859 304
+2024-11-26 13:54:12 [info]: GET /6745c07964f12ebdee546859 304
+2024-11-26 13:54:49 [info]: GET /6745c07964f12ebdee546859 304
+2024-11-26 13:54:50 [info]: GET /6745c07964f12ebdee546859 304
+2024-11-26 13:55:41 [info]: PUT /create-new-course-landing/6745c07964f12ebdee546859 200 - Request Body: {"title":"view Create","description":"view Createcdescription","courseCode":"vsc","courseLevel":"2","duration":"123","startDate":"2024-11-01","endDate":"2024-11-30","numberOfHoursPerDay":"0","numberOfDaysPerWeek":"0","cost":"0","promo":"0","promoCode":"","promoValue":"0","platformCharge":"0","actualCost":"0","sharing":"0","sharingValue":"0","visibilityStartDate":"","visibilityEndDate":"","visibilityStartTime":"","visibilityEndTime":"","teachingMethod":"offline"}
+2024-11-26 13:55:42 [info]: GET / 200
+2024-11-26 13:56:18 [info]: GET /get-all-courses 200
+2024-11-26 14:04:53 [info]: GET /get-all-courses 304
+2024-11-26 14:08:04 [info]: GET /get-all-courses 304
+2024-11-26 14:10:47 [info]: GET /get-all-courses 304
+2024-11-26 14:10:49 [info]: GET /get-all-courses 304
+2024-11-26 14:11:33 [info]: GET /get-all-courses 304
+2024-11-26 14:11:42 [info]: GET /get-all-courses 304
+2024-11-26 14:17:30 [info]: GET /get-all-courses 304
+2024-11-26 14:17:34 [info]: GET /get-all-courses 304
+2024-11-26 14:18:46 [info]: GET /get-all-courses 304
+2024-11-26 14:18:57 [info]: GET /get-all-courses 304
+2024-11-26 14:19:37 [info]: GET /get-all-courses 304
+2024-11-26 14:22:39 [info]: GET /get-all-courses 304
+2024-11-26 14:24:41 [info]: GET /get-all-courses 304
+2024-11-26 14:26:53 [info]: GET /get-all-courses 304
+2024-11-26 14:31:55 [info]: GET /get-all-courses 304
+2024-11-26 14:32:04 [info]: GET /get-all-courses 401
+2024-11-26 14:32:06 [info]: GET /get-all-courses 304
+2024-11-26 14:34:02 [info]: POST / 201 - Request Body: {"landingPageTitle":"landing test","serviceTitleDescription":"test","serviceType":"online","serviceItem":"service item","serviceItemDescription":"service","title":"CSCA","description":"title","requirement":"No Requirement","courseCode":"xsww","courseLevel":"2","duration":"12345678","startDate":"2024-11-01","endDate":"2024-11-30","numberOfHoursPerDay":"0","numberOfDaysPerWeek":"0","cost":"0","promo":"0","promoCode":"","promoValue":"0","platformCharge":"0","actualCost":"0","sharing":"0","sharingValue":"0","visibilityStartDate":"2024-11-30","visibilityEndDate":"2024-11-20","visibilityStartTime":"","visibilityEndTime":"","teachingMethod":"offline"}
+2024-11-26 14:34:03 [info]: GET / 200
+2024-11-26 14:35:02 [info]: GET / 304
+2024-11-26 14:35:10 [info]: GET /6745ce4a1ac97a5e1b020786 401
+2024-11-26 14:35:12 [info]: GET /6745ce4a1ac97a5e1b020786 200
+2024-11-26 14:36:02 [info]: PUT /api/v1/landing-page/create-new-course-landing/6745ce4a1ac97a5e1b020786 500 - Request Body: {"title":"Course 2","description":"Course 2 description","courseCode":"RQTT","courseLevel":"2","duration":"120","startDate":"2024-11-01","endDate":"2024-11-07","numberOfHoursPerDay":"0","numberOfDaysPerWeek":"0","cost":"0","promo":"0","promoCode":"","promoValue":"0","platformCharge":"0","actualCost":"0","sharing":"0","sharingValue":"0","visibilityStartDate":"","visibilityEndDate":"","visibilityStartTime":"","visibilityEndTime":"","teachingMethod":"online"}
+2024-11-26 14:36:07 [info]: PUT /api/v1/landing-page/create-new-course-landing/6745ce4a1ac97a5e1b020786 500 - Request Body: {"title":"Course 2","description":"Course 2 description","courseCode":"RQTT","courseLevel":"2","duration":"120","startDate":"2024-11-01","endDate":"2024-11-07","numberOfHoursPerDay":"0","numberOfDaysPerWeek":"0","cost":"0","promo":"0","promoCode":"","promoValue":"0","platformCharge":"0","actualCost":"0","sharing":"0","sharingValue":"0","visibilityStartDate":"","visibilityEndDate":"","visibilityStartTime":"","visibilityEndTime":"","teachingMethod":"online"}
+2024-11-26 14:36:08 [info]: PUT /api/v1/landing-page/create-new-course-landing/6745ce4a1ac97a5e1b020786 500 - Request Body: {"title":"Course 2","description":"Course 2 description","courseCode":"RQTT","courseLevel":"2","duration":"120","startDate":"2024-11-01","endDate":"2024-11-07","numberOfHoursPerDay":"0","numberOfDaysPerWeek":"0","cost":"0","promo":"0","promoCode":"","promoValue":"0","platformCharge":"0","actualCost":"0","sharing":"0","sharingValue":"0","visibilityStartDate":"","visibilityEndDate":"","visibilityStartTime":"","visibilityEndTime":"","teachingMethod":"online"}
+2024-11-26 14:36:13 [info]: PUT /api/v1/landing-page/create-new-course-landing/6745ce4a1ac97a5e1b020786 500 - Request Body: {"title":"Course 2","description":"Course 2 description","courseCode":"RQTT","courseLevel":"2","duration":"120","startDate":"2024-11-01","endDate":"2024-11-07","numberOfHoursPerDay":"0","numberOfDaysPerWeek":"0","cost":"0","promo":"0","promoCode":"","promoValue":"0","platformCharge":"0","actualCost":"0","sharing":"0","sharingValue":"0","visibilityStartDate":"","visibilityEndDate":"","visibilityStartTime":"","visibilityEndTime":"","teachingMethod":"online"}
+2024-11-26 14:36:28 [info]: GET /6745ce4a1ac97a5e1b020786 304
+2024-11-26 14:36:52 [info]: PUT /api/v1/landing-page/create-new-course-landing/6745ce4a1ac97a5e1b020786 500 - Request Body: {"title":"Course 2","description":"Course 2 description","courseCode":"RQTT","courseLevel":"2","duration":"120","startDate":"2024-11-01","endDate":"2024-11-07","numberOfHoursPerDay":"0","numberOfDaysPerWeek":"0","cost":"0","promo":"0","promoCode":"","promoValue":"0","platformCharge":"0","actualCost":"0","sharing":"0","sharingValue":"0","visibilityStartDate":"","visibilityEndDate":"","visibilityStartTime":"","visibilityEndTime":"","teachingMethod":"online"}
+2024-11-26 14:38:31 [info]: GET /6745ce4a1ac97a5e1b020786 304
+2024-11-26 14:38:35 [info]: PUT /create-new-course-landing/6745ce4a1ac97a5e1b020786 200 - Request Body: {"title":"Course 2","description":"Course 2 description","courseCode":"RQTT","courseLevel":"2","duration":"120","startDate":"2024-11-01","endDate":"2024-11-07","numberOfHoursPerDay":"0","numberOfDaysPerWeek":"0","cost":"0","promo":"0","promoCode":"","promoValue":"0","platformCharge":"0","actualCost":"0","sharing":"0","sharingValue":"0","visibilityStartDate":"","visibilityEndDate":"","visibilityStartTime":"","visibilityEndTime":"","teachingMethod":"online"}
+2024-11-26 14:38:36 [info]: GET / 200
+2024-11-26 14:39:33 [info]: GET / 304
+2024-11-26 14:39:44 [info]: GET /6745ce4a1ac97a5e1b020786 401
+2024-11-26 14:39:47 [info]: GET /6745ce4a1ac97a5e1b020786 200
+2024-11-26 14:39:57 [info]: GET /6745ce4a1ac97a5e1b020786 304
+2024-11-26 14:40:26 [info]: PUT /create-new-course-landing/6745ce4a1ac97a5e1b020786 200 - Request Body: {"title":"Course 2","description":"ss","courseCode":"RQTT","courseLevel":"2","duration":"120","startDate":"2024-11-01","endDate":"2024-12-06","numberOfHoursPerDay":"0","numberOfDaysPerWeek":"0","cost":"0","promo":"0","promoCode":"","promoValue":"0","platformCharge":"0","actualCost":"0","sharing":"0","sharingValue":"0","visibilityStartDate":"","visibilityEndDate":"","visibilityStartTime":"","visibilityEndTime":"","teachingMethod":"online"}
+2024-11-26 14:40:27 [info]: GET / 200
+2024-11-26 14:42:50 [info]: GET / 304
+2024-11-26 14:42:58 [info]: GET / 304
+2024-11-26 14:43:16 [info]: GET / 304
+2024-11-26 14:49:37 [info]: GET / 304
+2024-11-26 14:50:30 [info]: GET / 304
+2024-11-26 14:50:36 [info]: GET /get-all-courses 200
+2024-11-26 14:52:59 [info]: POST / 201 - Request Body: {"landingPageTitle":"landing test","serviceTitleDescription":"test","serviceType":"online","serviceItem":"service item","serviceItemDescription":"zz","title":"Course 2","description":"zsaassa","requirement":"No Requirement","courseCode":"asass","courseLevel":"ss","duration":"0","startDate":"2024-11-08","endDate":"2024-11-20","numberOfHoursPerDay":"0","numberOfDaysPerWeek":"0","cost":"0","promo":"0","promoCode":"","promoValue":"0","platformCharge":"0","actualCost":"0","sharing":"0","sharingValue":"0","visibilityStartDate":"","visibilityEndDate":"","visibilityStartTime":"","visibilityEndTime":"","teachingMethod":"offline"}
+2024-11-26 14:53:00 [info]: GET / 200
+2024-11-26 14:59:31 [info]: GET / 304
+2024-11-26 14:59:39 [info]: GET /6745d2ba0ec91c281d5851ea 401
+2024-11-26 14:59:41 [info]: GET /6745d2ba0ec91c281d5851ea 200
+2024-11-26 15:00:12 [info]: PUT /create-new-course-landing/6745d2ba0ec91c281d5851ea 400 - Request Body: {"title":"Course 2","description":"csd","courseCode":"RQTT","courseLevel":"2","duration":"120","startDate":"2024-11-01","endDate":"2024-11-22","numberOfHoursPerDay":"0","numberOfDaysPerWeek":"0","cost":"0","promo":"0","promoCode":"","promoValue":"0","platformCharge":"0","actualCost":"0","sharing":"0","sharingValue":"0","visibilityStartDate":"","visibilityEndDate":"","visibilityStartTime":"","visibilityEndTime":"","teachingMethod":"online"}
+2024-11-26 15:01:14 [info]: GET /6745d2ba0ec91c281d5851ea 304
+2024-11-26 15:01:16 [info]: GET /6745d2ba0ec91c281d5851ea 304
+2024-11-26 15:01:19 [info]: GET /6745d2ba0ec91c281d5851ea 304
+2024-11-26 15:01:26 [info]: GET /6745d2ba0ec91c281d5851ea 304
+2024-11-26 15:01:44 [info]: GET /6745d2ba0ec91c281d5851ea 304
+2024-11-26 15:02:15 [info]: GET /6745d2ba0ec91c281d5851ea 304
+2024-11-26 15:02:24 [info]: GET /6745d2ba0ec91c281d5851ea 304
+2024-11-26 15:02:25 [info]: PUT /create-new-course-landing/6745d2ba0ec91c281d5851ea 400 - Request Body: {"title":"Course 2","description":"csd","courseCode":"RQTT","courseLevel":"2","duration":"120","startDate":"2024-11-01","endDate":"2024-11-22","numberOfHoursPerDay":"0","numberOfDaysPerWeek":"0","cost":"0","promo":"0","promoCode":"","promoValue":"0","platformCharge":"0","actualCost":"0","sharing":"0","sharingValue":"0","visibilityStartDate":"","visibilityEndDate":"","visibilityStartTime":"","visibilityEndTime":"","teachingMethod":"online"}
+2024-11-26 15:02:39 [info]: GET /6745d2ba0ec91c281d5851ea 304
+2024-11-26 15:03:48 [info]: GET /6745d2ba0ec91c281d5851ea 304
+2024-11-26 15:03:57 [info]: PUT /create-new-course-landing/6745d2ba0ec91c281d5851ea 200 - Request Body: {"title":"Course 3","description":"csd","courseCode":"RQTT","courseLevel":"2","duration":"120","startDate":"2024-11-01","endDate":"2024-11-22","numberOfHoursPerDay":"0","numberOfDaysPerWeek":"0","cost":"0","promo":"0","promoCode":"","promoValue":"0","platformCharge":"0","actualCost":"0","sharing":"0","sharingValue":"0","visibilityStartDate":"","visibilityEndDate":"","visibilityStartTime":"","visibilityEndTime":"","teachingMethod":"online"}
+2024-11-26 15:03:59 [info]: GET / 200
+2024-11-26 15:06:23 [info]: GET / 304
+2024-11-26 15:06:46 [info]: GET / 304
+2024-11-26 15:06:50 [info]: GET /get-all-courses 200
+2024-11-26 15:09:12 [info]: POST / 400 - Request Body: {"landingPageTitle":"landing test","serviceTitleDescription":"t","serviceType":"offline","serviceItem":"service item","serviceItemDescription":"trertyy","title":"RQTyyy","description":"uyu","requirement":"No Requirement","courseCode":"RQTT","courseLevel":"2","duration":"0","startDate":"2024-11-01","endDate":"2024-11-30","numberOfHoursPerDay":"0","numberOfDaysPerWeek":"0","cost":"0","promo":"0","promoCode":"","promoValue":"0","platformCharge":"0","actualCost":"0","sharing":"0","sharingValue":"0","visibilityStartDate":"","visibilityEndDate":"","visibilityStartTime":"","visibilityEndTime":"","teachingMethod":"online"}
+2024-11-26 15:10:23 [info]: GET /get-all-courses 304
+2024-11-26 15:10:32 [info]: GET /get-all-courses 304
+2024-11-26 15:10:36 [info]: POST / 400 - Request Body: {"landingPageTitle":"landing test","serviceTitleDescription":"t","serviceType":"offline","serviceItem":"service item","serviceItemDescription":"trertyy","title":"RQTyyy","description":"uyu","requirement":"No Requirement","courseCode":"RQTT","courseLevel":"2","duration":"0","startDate":"2024-11-01","endDate":"2024-11-30","numberOfHoursPerDay":"0","numberOfDaysPerWeek":"0","cost":"0","promo":"0","promoCode":"","promoValue":"0","platformCharge":"0","actualCost":"0","sharing":"0","sharingValue":"0","visibilityStartDate":"","visibilityEndDate":"","visibilityStartTime":"","visibilityEndTime":"","teachingMethod":"online"}
+2024-11-26 15:10:58 [info]: POST / 201 - Request Body: {"landingPageTitle":"landing testyyy","serviceTitleDescription":"t","serviceType":"offline","serviceItem":"service item","serviceItemDescription":"trertyy","title":"RQTyyy","description":"uyu","requirement":"No Requirement","courseCode":"RQTT","courseLevel":"2","duration":"0","startDate":"2024-11-01","endDate":"2024-11-30","numberOfHoursPerDay":"0","numberOfDaysPerWeek":"0","cost":"0","promo":"0","promoCode":"","promoValue":"0","platformCharge":"0","actualCost":"0","sharing":"0","sharingValue":"0","visibilityStartDate":"","visibilityEndDate":"","visibilityStartTime":"","visibilityEndTime":"","teachingMethod":"online"}
+2024-11-26 15:11:00 [info]: GET / 200
+2024-11-26 15:11:17 [info]: GET / 304
+2024-11-26 15:11:48 [info]: GET / 304
+2024-11-26 15:11:52 [info]: GET / 304
+2024-11-26 15:12:33 [info]: GET / 304
+2024-11-26 15:15:48 [info]: GET / 304
+2024-11-26 15:15:50 [info]: GET / 304
+2024-11-26 15:16:43 [info]: GET / 304
+2024-11-26 15:16:59 [info]: GET /6741d397b3707e3f028971ce 401
+2024-11-26 15:17:02 [info]: GET /6741d397b3707e3f028971ce 200
+2024-11-26 15:17:14 [info]: PATCH /api/v1/landing-page/6741d397b3707e3f028971ce 500 - Request Body: {"landingPageTitle":"Test three","serviceTitleDescription":"Test 3 description"}
+2024-11-26 15:19:12 [info]: GET /6741d397b3707e3f028971ce 304
+2024-11-26 15:21:04 [info]: GET /6741d397b3707e3f028971ce 304
+2024-11-26 15:21:18 [info]: PATCH /6741d397b3707e3f028971ce 200 - Request Body: {"landingPageTitle":"Test three","serviceTitleDescription":"Test 3 description","serviceType":"online","serviceItem":"service item","serviceItemDescription":"service item description"}
+2024-11-26 15:22:01 [info]: PATCH /6741d397b3707e3f028971ce 200 - Request Body: {"landingPageTitle":"Test three","serviceTitleDescription":"Test 3 description","serviceType":"online","serviceItem":"service item","serviceItemDescription":"service item description"}
+2024-11-26 15:22:36 [info]: PATCH /api/v1/landing-page/6741d397b3707e3f028971ce 500 - Request Body: {"landingPageTitle":"Test three","serviceTitleDescription":"Test 3 description"}
+2024-11-26 15:23:18 [info]: PATCH /6741d397b3707e3f028971ce 200 - Request Body: {"landingPageTitle":"Test three","serviceTitleDescription":"Test 3 description","serviceType":"online","serviceItem":"service item","serviceItemDescription":"service item description"}
+2024-11-26 15:23:27 [info]: GET / 200
+2024-11-26 15:25:39 [info]: GET / 304
+2024-11-26 15:25:52 [info]: GET / 304
+2024-11-26 15:26:26 [info]: GET / 304
+2024-11-26 15:26:57 [info]: GET / 304
+2024-11-26 15:28:07 [info]: GET / 304
+2024-11-26 15:28:30 [info]: GET /6741d397b3707e3f028971ce 401
+2024-11-26 15:28:33 [info]: GET /6741d397b3707e3f028971ce 200
+2024-11-26 15:29:28 [info]: GET /6741d397b3707e3f028971ce 304
+2024-11-26 15:29:52 [info]: GET /6741d397b3707e3f028971ce 304
+2024-11-26 15:30:23 [info]: GET /6741d397b3707e3f028971ce 304
+2024-11-26 15:34:45 [info]: GET /6741d397b3707e3f028971ce 304
+2024-11-26 15:38:41 [info]: GET /6741d397b3707e3f028971ce 304
+2024-11-26 15:38:48 [info]: GET /6741d397b3707e3f028971ce 304
+2024-11-26 15:39:27 [info]: PUT /create-new-course-landing/6741d397b3707e3f028971ce 400 - Request Body: {"title":"Course 2","description":"2","courseCode":"RQTT","courseLevel":"2","duration":"120","startDate":"2024-11-01","endDate":"2024-11-29","numberOfHoursPerDay":"0","numberOfDaysPerWeek":"0","cost":"0","promo":"0","promoCode":"","promoValue":"0","platformCharge":"0","actualCost":"0","sharing":"0","sharingValue":"0","visibilityStartDate":"","visibilityEndDate":"","visibilityStartTime":"","visibilityEndTime":"","topContent":"true","teachingMethod":"online"}
+2024-11-26 15:39:36 [info]: PUT /create-new-course-landing/6741d397b3707e3f028971ce 400 - Request Body: {"title":"Course 2","description":"2","courseCode":"RQTT","courseLevel":"2","duration":"120","startDate":"2024-11-01","endDate":"2024-11-29","numberOfHoursPerDay":"0","numberOfDaysPerWeek":"0","cost":"0","promo":"0","promoCode":"","promoValue":"0","platformCharge":"0","actualCost":"0","sharing":"0","sharingValue":"0","visibilityStartDate":"","visibilityEndDate":"","visibilityStartTime":"","visibilityEndTime":"","topContent":"false","teachingMethod":"online"}
+2024-11-26 15:40:46 [info]: GET /6741d397b3707e3f028971ce 304
+2024-11-26 15:40:58 [info]: GET /6741d397b3707e3f028971ce 304
+2024-11-26 15:44:54 [info]: PUT /create-new-course-landing/6741d397b3707e3f028971ce 200 - Request Body: {"title":"Course 6","description":"2","courseCode":"RQTT","courseLevel":"2","duration":"120","startDate":"2024-11-01","endDate":"2024-11-29","numberOfHoursPerDay":"0","numberOfDaysPerWeek":"0","cost":"0","promo":"0","promoCode":"","promoValue":"0","platformCharge":"0","actualCost":"0","sharing":"0","sharingValue":"0","visibilityStartDate":"","visibilityEndDate":"","visibilityStartTime":"","visibilityEndTime":"","topContent":"true","teachingMethod":"online"}
+2024-11-26 15:44:56 [info]: GET / 200
+2024-11-26 15:46:27 [info]: GET / 304
+2024-11-26 15:46:35 [info]: GET /get-all-courses 200
+2024-11-26 15:48:18 [info]: GET /get-all-courses 304
+2024-11-26 15:48:19 [info]: GET /get-all-courses 304
+2024-11-26 15:49:54 [info]: GET /get-all-courses 304
+2024-11-26 15:50:27 [info]: POST / 400 - Request Body: {"landingPageTitle":"landing test","serviceTitleDescription":"q","serviceType":"online","serviceItem":"service item","serviceItemDescription":"q","title":"RQTqqe2","description":"cww","requirement":"No Requirement","courseCode":"RQTTw2","courseLevel":"2","duration":"0","startDate":"2024-11-01","endDate":"2024-11-28","numberOfHoursPerDay":"0","numberOfDaysPerWeek":"0","cost":"0","promo":"0","promoCode":"","promoValue":"0","platformCharge":"0","actualCost":"0","sharing":"0","sharingValue":"0","visibilityStartDate":"","visibilityEndDate":"","visibilityStartTime":"","visibilityEndTime":"","topContent":"undefined","teachingMethod":"offline"}
+2024-11-26 15:51:37 [info]: GET /get-all-courses 304
+2024-11-26 15:51:57 [info]: GET /get-all-courses 304
+2024-11-26 15:52:08 [info]: POST / 400 - Request Body: {"landingPageTitle":"landing test","serviceTitleDescription":"q","serviceType":"online","serviceItem":"service item","serviceItemDescription":"q","title":"RQTqqe2","description":"cww","requirement":"No Requirement","courseCode":"RQTTw2","courseLevel":"2","duration":"0","startDate":"2024-11-01","endDate":"2024-11-28","numberOfHoursPerDay":"0","numberOfDaysPerWeek":"0","cost":"0","promo":"0","promoCode":"","promoValue":"0","platformCharge":"0","actualCost":"0","sharing":"0","sharingValue":"0","visibilityStartDate":"","visibilityEndDate":"","visibilityStartTime":"","visibilityEndTime":"","topContent":"undefined","teachingMethod":"offline"}
+2024-11-26 15:52:38 [info]: GET /get-all-courses 401
+2024-11-26 15:53:52 [info]: GET /get-all-courses 304
+2024-11-26 15:54:56 [info]: GET /get-all-courses 304
+2024-11-26 15:55:01 [info]: GET /get-all-courses 304
+2024-11-26 15:55:39 [info]: POST / 400 - Request Body: {"landingPageTitle":"landing test","serviceTitleDescription":"aa","serviceType":"online","serviceItem":"service item","serviceItemDescription":"egb","title":"RQTqqwwww","description":"www","requirement":"No Requirement","courseCode":"RQTTw2www","courseLevel":"2","duration":"0","startDate":"2024-11-01","endDate":"2024-11-21","numberOfHoursPerDay":"0","numberOfDaysPerWeek":"0","cost":"0","promo":"0","promoCode":"","promoValue":"0","platformCharge":"0","actualCost":"0","sharing":"0","sharingValue":"0","visibilityStartDate":"","visibilityEndDate":"","visibilityStartTime":"","visibilityEndTime":"","topContent":"","teachingMethod":"online"}
+2024-11-26 15:56:48 [info]: POST / 400 - Request Body: {"landingPageTitle":"landing test","serviceTitleDescription":"aa","serviceType":"online","serviceItem":"service item","serviceItemDescription":"egb","title":"RQTqqwwwwwwwww","description":"www","requirement":"No Requirement","courseCode":"RQTTw2www","courseLevel":"2","duration":"0","startDate":"2024-11-01","endDate":"2024-11-21","numberOfHoursPerDay":"0","numberOfDaysPerWeek":"0","cost":"0","promo":"0","promoCode":"","promoValue":"0","platformCharge":"0","actualCost":"0","sharing":"0","sharingValue":"0","visibilityStartDate":"","visibilityEndDate":"","visibilityStartTime":"","visibilityEndTime":"","topContent":"true","teachingMethod":"online"}
+2024-11-26 15:56:50 [info]: GET /get-all-courses 304
+2024-11-26 15:57:50 [info]: GET /get-all-courses 304
+2024-11-26 16:02:08 [info]: GET /get-all-courses 304
+2024-11-26 16:02:54 [info]: GET /get-all-courses 304
+2024-11-26 16:06:08 [info]: POST / 400 - Request Body: {"landingPageTitle":"landing test","serviceTitleDescription":"rr","serviceType":"offline","serviceItem":"service item","serviceItemDescription":"bv","title":"RQTqqe2.","description":"j","requirement":"No Requirement","courseCode":"RQTTw2uu","courseLevel":"2","duration":"0","startDate":"2024-10-30","endDate":"2024-11-28","numberOfHoursPerDay":"0","numberOfDaysPerWeek":"0","cost":"0","promo":"0","promoCode":"","promoValue":"0","platformCharge":"0","actualCost":"0","sharing":"0","sharingValue":"0","visibilityStartDate":"","visibilityEndDate":"","visibilityStartTime":"","visibilityEndTime":"","topContent":"true","teachingMethod":"online"}
+2024-11-26 16:06:28 [info]: GET /get-all-courses 304
+2024-11-26 16:07:47 [info]: GET /get-all-courses 304
+2024-11-26 16:07:50 [info]: POST / 400 - Request Body: {"landingPageTitle":"landing test","serviceTitleDescription":"rr","serviceType":"offline","serviceItem":"service item","serviceItemDescription":"bv","title":"RQTqqe2.","description":"j","requirement":"No Requirement","courseCode":"RQTTw2uu","courseLevel":"2","duration":"0","startDate":"2024-10-30","endDate":"2024-11-28","numberOfHoursPerDay":"0","numberOfDaysPerWeek":"0","cost":"0","promo":"0","promoCode":"","promoValue":"0","platformCharge":"0","actualCost":"0","sharing":"0","sharingValue":"0","visibilityStartDate":"","visibilityEndDate":"","visibilityStartTime":"","visibilityEndTime":"","topContent":"true","teachingMethod":"online"}
+2024-11-26 16:11:53 [info]: GET /get-all-courses 304
+2024-11-26 16:12:08 [info]: POST / 201 - Request Body: {"landingPageTitle":"landing test","serviceTitleDescription":"rr","serviceType":"offline","serviceItem":"service item","serviceItemDescription":"bv","title":"RQTqqe2.","description":"j","requirement":"No Requirement","courseCode":"RQTTw2uu","courseLevel":"2","duration":"0","startDate":"2024-10-30","endDate":"2024-11-28","numberOfHoursPerDay":"0","numberOfDaysPerWeek":"0","cost":"0","promo":"0","promoCode":"","promoValue":"0","platformCharge":"0","actualCost":"0","sharing":"0","sharingValue":"0","visibilityStartDate":"","visibilityEndDate":"","visibilityStartTime":"","visibilityEndTime":"","topContent":"true","teachingMethod":"online"}
+2024-11-26 16:12:10 [info]: GET / 200
+2024-11-26 16:13:51 [info]: GET / 200
+2024-11-26 16:13:55 [info]: GET /get-all-courses 200
+2024-11-26 16:16:10 [info]: GET /get-all-courses 304
+2024-11-26 16:17:20 [info]: POST / 400 - Request Body: {"landingPageTitle":"landing test","serviceTitleDescription":"dds","serviceType":"online","serviceItem":"service item","serviceItemDescription":"wqqwqw","title":"RQTqqe2","description":"daeae","requirement":"No Requirement","courseCode":"RQTTw2","courseLevel":"2","duration":"0","startDate":"2024-11-01","endDate":"2024-11-29","numberOfHoursPerDay":"0","numberOfDaysPerWeek":"0","cost":"0","promo":"0","promoCode":"","promoValue":"0","platformCharge":"0","actualCost":"0","sharing":"0","sharingValue":"0","visibilityStartDate":"","visibilityEndDate":"","visibilityStartTime":"","visibilityEndTime":"","topContent":"true","teachingMethod":"offline"}
+2024-11-26 16:19:48 [info]: GET /get-all-courses 304
+2024-11-26 16:19:49 [info]: GET /get-all-courses 304
+2024-11-26 16:20:18 [info]: POST / 400 - Request Body: {"landingPageTitle":"landing test","serviceTitleDescription":"dds","serviceType":"online","serviceItem":"service item","serviceItemDescription":"wqqwqw","title":"RQTyyy","description":"daeae","requirement":"No Requirement","courseCode":"RQTTw2","courseLevel":"2","duration":"0","startDate":"2024-11-01","endDate":"2024-11-29","numberOfHoursPerDay":"0","numberOfDaysPerWeek":"0","cost":"0","promo":"0","promoCode":"","promoValue":"0","platformCharge":"0","actualCost":"0","sharing":"0","sharingValue":"0","visibilityStartDate":"","visibilityEndDate":"","visibilityStartTime":"","visibilityEndTime":"","topContent":"true","teachingMethod":"offline"}
+2024-11-26 16:21:00 [info]: POST / 400 - Request Body: {"landingPageTitle":"landing testsss","serviceTitleDescription":"dds","serviceType":"online","serviceItem":"service item","serviceItemDescription":"wqqwqw","title":"RQTyyy","description":"daeae","requirement":"No Requirement","courseCode":"RQTTw2","courseLevel":"2","duration":"0","startDate":"2024-11-01","endDate":"2024-11-29","numberOfHoursPerDay":"0","numberOfDaysPerWeek":"0","cost":"0","promo":"0","promoCode":"","promoValue":"0","platformCharge":"0","actualCost":"0","sharing":"0","sharingValue":"0","visibilityStartDate":"","visibilityEndDate":"","visibilityStartTime":"","visibilityEndTime":"","topContent":"true","teachingMethod":"offline"}
+2024-11-26 16:21:26 [info]: POST / 201 - Request Body: {"landingPageTitle":"landing testsss","serviceTitleDescription":"dds","serviceType":"online","serviceItem":"service item","serviceItemDescription":"wqqwqw","title":"RQTyyyww","description":"daeae","requirement":"No Requirement","courseCode":"RQTTw2","courseLevel":"2","duration":"0","startDate":"2024-11-01","endDate":"2024-11-29","numberOfHoursPerDay":"0","numberOfDaysPerWeek":"0","cost":"0","promo":"0","promoCode":"","promoValue":"0","platformCharge":"0","actualCost":"0","sharing":"0","sharingValue":"0","visibilityStartDate":"","visibilityEndDate":"","visibilityStartTime":"","visibilityEndTime":"","topContent":"true","teachingMethod":"offline"}
+2024-11-26 16:21:27 [info]: GET / 200
+2024-11-26 16:23:55 [info]: GET / 304
