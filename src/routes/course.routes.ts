@@ -3,7 +3,7 @@ import { authenticate, authorize } from "../middlewares/auth.middleware";
 
 import { CourseController } from "../controllers/course.controller";
 import {
-  createCourseValidator,
+  validateCreateCourse,
   courseContentValidator,
   createAnnouncementValidator,
   getCourseCurriculumValidator,
@@ -35,6 +35,7 @@ router.post(
   "/add",
   authenticate,
   authorize("admin"),
+  ...validateCreateCourse,
   createACourse
 )
 

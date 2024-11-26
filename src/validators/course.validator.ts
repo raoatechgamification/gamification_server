@@ -51,36 +51,6 @@ const errorResponse = (req: Request, res: Response, next: NextFunction) => {
   next();
 };
 
-export const createCourseValidator = [
-  body("title")
-    .notEmpty()
-    .isString()
-    .withMessage("Please provide the course title"),
-
-  body("objective")
-    .notEmpty()
-    .isString()
-    .withMessage("Please provide the course objective"),
-
-  body("price")
-    .notEmpty()
-    .isNumeric()
-    .withMessage("Please provide the course price"),
-
-  body("duration")
-    .notEmpty()
-    .isString()
-    .withMessage("Please provide a the course duration"),
-
-  body("lessonFormat")
-    .notEmpty()
-    .isString()
-    .withMessage("Please provide the lessons format"),
-
-  errorResponse,
-];
-
-
 export const courseContentValidator = [
   body("title")
     .notEmpty()
@@ -133,4 +103,87 @@ export const createAnnouncementValidator = [
     .withMessage("sendEmail must be a boolean"),
 
   errorResponse,
+];
+
+export const validateCreateCourse = [
+  body('title')
+    .notEmpty()
+    .withMessage('Title is required')
+    .isString()
+    .withMessage('Title must be a string'),
+
+  body('objective')
+    .notEmpty()
+    .withMessage('Objective is required')
+    .isString()
+    .withMessage('Objective must be a string'),
+
+  body('price')
+    .notEmpty()
+    .withMessage('Price is required')
+    .isFloat({ gt: 0 })
+    .withMessage('Price must be a positive number'),
+
+  body('instructorId')
+    .notEmpty()
+    .withMessage('Instructor ID is required')
+    .isMongoId()
+    .withMessage('Instructor ID must be a valid MongoDB ObjectId'),
+
+  body('duration')
+    .notEmpty()
+    .withMessage('Duration is required')
+    .isString()
+    .withMessage('Duration must be a string'),
+
+  body('lessonFormat')
+    .notEmpty()
+    .withMessage('Lesson format is required')
+    .isString()
+    .withMessage('Lesson format must be a string'),
+
+  body('lessons')
+    .notEmpty()
+    .withMessage('Lessons are required')
+    .isArray()
+    .withMessage('Lessons must be an array')
+    .custom((lessons) => {
+      if (!lessons.every((lesson: string) => /^[a-f\d]{24}$/i.test(lesson))) {
+        throw new Error('Lessons must be an array of valid MongoDB ObjectIds');
+      }
+      return true;
+    }),
+
+  body('assessments')
+    .optional({ nullable: true })
+    .isArray()
+    .withMessage('Assessments must be an array')
+    .custom((assessments) => {
+      if (!assessments.every((assessment: string) => /^[a-f\d]{24}$/i.test(assessment))) {
+        throw new Error('Assessments must be an array of valid MongoDB ObjectIds');
+      }
+      return true;
+    }),
+
+  body('announcements')
+    .notEmpty()
+    .withMessage('Announcements are required')
+    .isArray()
+    .withMessage('Announcements must be an array')
+    .custom((announcements) => {
+      if (
+        !announcements.every(
+          (announcement: { title: string; details: string }) =>
+            typeof announcement.title === 'string' &&
+            typeof announcement.details === 'string'
+        )
+      ) {
+        throw new Error(
+          'Each announcement must contain a title and details as strings'
+        );
+      }
+      return true;
+    }),
+
+  errorResponse
 ];

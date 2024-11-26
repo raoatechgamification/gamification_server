@@ -224,16 +224,18 @@ export class CourseController {
       }
 
       // Validate assessments
-      const validAssessments = await Assessment.find({
-        _id: { $in: assessments },
-        instructorId: adminId,
-      });
-      if (validAssessments.length !== assessments.length) {
-        return ResponseHandler.failure(
-          res,
-          "One or more assessments are invalid",
-          400
-        );
+      if (assessments) {
+        const validAssessments = await Assessment.find({
+          _id: { $in: assessments },
+          instructorId: adminId,
+        });
+        if (validAssessments.length !== assessments.length) {
+          return ResponseHandler.failure(
+            res,
+            "One or more assessments are invalid",
+            400
+          );
+        }
       }
 
       // Validate lessons
