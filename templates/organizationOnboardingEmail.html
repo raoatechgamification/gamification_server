@@ -1,37 +1,5 @@
-// import { config } from "dotenv";
-import { ObjectId } from "mongoose";
-import * as postmark from "postmark";
-
-// config();
-
-export interface VariablesInterface {
-    firstName: string;
-    email: string;
-    password: string;
-    subject: string;
-    organizationName: string;
-  }
-  
-  export interface OrganizationOnboardingVariablesInterface {
-    email: string;
-    password: string;
-    subject: string;
-    organizationName: string;
-  }
-
-
-
-  const postmarkClient = new postmark.ServerClient(
-    process.env.POSTMARK_API_TOKEN!
-  );
-
-export const verifyEmailTemplate = (emailVariables: VariablesInterface) => {
-
-  return postmarkClient.sendEmail({
-    From: "finkia@raoatech.com",
-    To: `${emailVariables.email}`,
-    Subject: "We are thrilled to have you",
-    HtmlBody: `<html lang="en">
+<!doctype html>
+<html lang="en">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -134,16 +102,15 @@ export const verifyEmailTemplate = (emailVariables: VariablesInterface) => {
       <div class="border-container">
         <!-- Main Content -->
         <div class="content">
-          <h1>Welcome!</h1>
-          <p>Dear {{firstName}},</p>
+          <!-- <h1>Welcome to Gamai!</h1> -->
+          <!-- <p>Dear {{organizationName}},</p> -->
           <p>
-            Congratulations! You have been on-boarded successfully by
-            {{organizationName}} on Gamai.
+            We're thrilled to welcome you to Gamai! Your account has been successfully created, and we're excited to have you on board.
           </p>
           <p>Your details are given below:</p>
           <br/>
           <p>Username: {{email}}</p>
-          <p>Password (temporary): {{password}}</p>
+          <p>Password: {{password}}</p>
         </div>
 
         <!-- Purple Box with Thank You Message and Footer Links -->
@@ -172,8 +139,7 @@ export const verifyEmailTemplate = (emailVariables: VariablesInterface) => {
 
           <div class="footer-text">
             <p>
-              This email was sent to
-              <a href="mailto:olanrewaju@gmail.com">olanrewaju@gmail.com</a>. If
+              This email was sent to {{email}}. If
               you’d rather not receive this kind of email, you can
               <a href="#">unsubscribe or manage your email preferences</a>.
             </p>
@@ -183,6 +149,3 @@ export const verifyEmailTemplate = (emailVariables: VariablesInterface) => {
     </div>
   </body>
 </html>
- `,
-  });
-};

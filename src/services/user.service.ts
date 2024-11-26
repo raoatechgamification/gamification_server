@@ -2,21 +2,28 @@ import mongoose from "mongoose";
 import XLSX from "xlsx";
 import { hashPassword } from "../utils/hash";
 import User, { IUser } from "../models/user.model";
-import { OrganizationDocument } from "../models/organization.model";
+import Organization, { OrganizationDocument } from "../models/organization.model";
+import SuperAdmin from "../models/superadmin.model";
 import { sendLoginEmail } from "./sendMail.service";
-import { verifyEmailTemplate } from "utils/email";
 
 class UserService {
   async createUsersFromExcel(
     organization: OrganizationDocument,
     buffer: Buffer
   ): Promise<IUser[]> {
+    const MAX_ENTRIES = 1000;
     const workbook = XLSX.read(buffer, { type: "buffer" });
     const sheetName = workbook.SheetNames[0];
     const sheet = workbook.Sheets[sheetName];
 
     const userData = XLSX.utils.sheet_to_json(sheet);
     const requiredFields = ["Email", "Phone", "FirstName"];
+
+    if (userData.length > MAX_ENTRIES) {
+      throw new Error(
+        `The file contains ${userData.length} entries, which exceeds the maximum allowed limit of ${MAX_ENTRIES}.`
+      );
+    }
 
     for (let i = 0; i < userData.length; i++) {
       const data: any = userData[i];

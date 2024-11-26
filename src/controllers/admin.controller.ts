@@ -81,10 +81,13 @@ class AdminController {
 
   async viewAUserProfile(req: Request, res: Response) {
     try {
+      console.log("The request went through")
       const organizationId = req.admin._id;
+      console.log(organizationId)
       const userId = req.params.userId;
+      console.log(userId)
 
-      const user = await User.findOne({ _id: userId, organizationId });
+      const user = await User.findOne({ _id: userId, organizationId }).select("-password");
 
       if (!user) {
         return ResponseHandler.failure(

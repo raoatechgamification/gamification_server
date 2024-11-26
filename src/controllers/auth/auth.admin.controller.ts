@@ -1,6 +1,8 @@
 import { Request, Response, NextFunction } from "express";
 import { ResponseHandler } from "../../middlewares/responseHandler.middleware";
 import Organization, { IOrganization } from "../../models/organization.model";
+import User from "../../models/user.model";
+import SuperAdmin from "../../models/superadmin.model"
 import { hashPassword, comparePassword } from "../../utils/hash";
 import { generateToken } from "../../utils/jwt";
 import { sendOrganizationOnboardingMail } from "../../services/sendMail.service";
@@ -22,14 +24,16 @@ export class AdminAuthController {
         referral,
         referralSource,
       } = req.body;
-      
-      console.log("Organization password", password)
 
-      const emailExists = await Organization.findOne({ email });
-      if (emailExists) {
+      const existingAccount = 
+        (await Organization.findOne({ email })) ||
+        (await User.findOne({ email })) ||
+        (await SuperAdmin.findOne({ email })) 
+
+      if (existingAccount) {
         return ResponseHandler.failure(
           res,
-          "An Organization with this email already exists",
+          "Email already registered",
           400
         );
       }
@@ -65,14 +69,14 @@ export class AdminAuthController {
       ).select("-password");
 
       const emailVariables = {
+        name,
         email,
         password,
-        organizationName: name,
         subject: "Welcome to Gamai!",
       };
 
-      console.log("Sending email with password:", emailVariables.password);
       await sendOrganizationOnboardingMail(emailVariables);
+      console.log("Sent email with email variables:", emailVariables);
 
       return ResponseHandler.success(
         res,
@@ -87,7 +91,7 @@ export class AdminAuthController {
 
   static async loginOrganization(
     req: Request,
-    res: Response, 
+    res: Response,
     next: NextFunction
   ) {
     try {

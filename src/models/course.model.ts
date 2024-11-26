@@ -1,21 +1,23 @@
-import { Schema, model, Document } from 'mongoose';
+import mongoose, { Schema, model, Document } from 'mongoose';
 
 export interface ICourse extends Document {
-  title: string;
-  description: string;
-  requirement?: string;
-  topContent?: string;
+  title?: string;
+  description?: string,
+  requirement?: string,
+  topContent?: boolean,
   objective?: string;
   price?: number;
   instructorId?: string;
-  organisationId: string;
+  organisationId?: string;
   lessonFormat?: string;
-  learnerIds?: string[];
-  duration: number;
+  // learnerIds?: string[];
+  lessons: mongoose.Types.ObjectId[];
+  learnerIds: { userId: mongoose.Types.ObjectId; progress: number }[];
+  duration?: string;
   courseCode?: string;
   courseLevel?: string;
-  startDate: Date;
-  endDate: Date;
+  startDate?: Date;
+  endDate?: Date;
   numberOfHoursPerDay?: number;
   numberOfDaysPerWeek?: number;
   cost?: number;
@@ -23,51 +25,59 @@ export interface ICourse extends Document {
   promoCode?: string;
   promoValue?: number;
   platformCharge?: number;
-  actualCost: number;
+  actualCost?: number;
   sharing?: string;
   sharingValue?: number;
   visibilityStartDate?: Date;
   visibilityEndDate?: Date;
   visibilityStartTime?: string;
   visibilityEndTime?: string;
-  curriculum: string[];
+  curriculum?: string[];
   teachingMethod?: string;
-  passMark?: number;
+  passMark: number;
   maximumNumberOfTrials?: number
 }
 
 const CourseSchema = new Schema<ICourse>({
-  title: { type: String, required: true, unique: true },
+  title: { type: String, required: false },
   description: { type: String, required: false },
   requirement: { type: String, required: false },
-  topContent: { type: String, required: false },
+  topContent: { type: Boolean, required: false },
   objective: { type: String, required: false },
   price: { type: Number, required: false },
   instructorId: { type: String, required: false },
-  organisationId: { type: String, required: true },
+  organisationId: { type: String, required: false },
   lessonFormat: { type: String, required: false },
-  learnerIds: [{ type: String }],
-  duration: { type: Number, required: true },
+  // learnerIds: [{ type: String }],
+  lessons: [{ type: Schema.Types.ObjectId, ref: 'Lesson' }],
+  learnerIds: [
+    {
+      userId: { type: Schema.Types.ObjectId, ref: 'User' },
+      progress: { type: Number, default: 0 }, // Completion percentage for the course
+    },
+  ],
+
+  duration: { type: String, required: false },
   courseCode: { type: String, required: false },
   courseLevel: { type: String, required: false },
-  startDate: { type: Date, required: true },
-  endDate: { type: Date, required: true },
+  startDate: { type: Date, required: false },
+  endDate: { type: Date, required: false },
   numberOfHoursPerDay: { type: Number, required: false },
   numberOfDaysPerWeek: { type: Number, required: false },
-  cost: { type: Number, required: true },
+  cost: { type: Number, required: false },
   promo: { type: String },
   promoCode: { type: String },
   promoValue: { type: Number },
   platformCharge: { type: Number },
-  actualCost: { type: Number, required:true },
+  actualCost: { type: Number },
   sharing: { type: String },
   sharingValue: { type: Number },
   visibilityStartDate: { type: Date },
   visibilityEndDate: { type: Date },
   visibilityStartTime: { type: String },
   visibilityEndTime: { type: String },
-  curriculum: [{ type: String, required: true }],
-  teachingMethod: { type: String, required:true },
+  curriculum: [{ type: String }],
+  teachingMethod: { type: String },
   passMark: {type: Number, required: false},
   maximumNumberOfTrials: {type: Number, required: false}
 });

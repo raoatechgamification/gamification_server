@@ -7,7 +7,6 @@ import UserService from "../../services/user.service";
 import { comparePassword, hashPassword } from "../../utils/hash";
 import { generateToken } from "../../utils/jwt";
 import { sendLoginEmail } from "../../services/sendMail.service";
-import {verifyEmailTemplate} from "../../utils/email"
 
 export class UserAuthController {
   static async createSingleUser(req: Request, res: Response) {
@@ -15,8 +14,8 @@ export class UserAuthController {
       let { firstName, lastName, email, role, batch, password, sendEmail } =
         req.body;
 
-      if ( !password ) {
-        password = `${firstName}${lastName}@123#`
+      if (!password) {
+        password = `${firstName}${lastName}123#`;
       }
 
       const organizationId = req.admin._id;
@@ -25,11 +24,15 @@ export class UserAuthController {
         return ResponseHandler.failure(res, "Organization not found", 400);
       }
 
-      const existingUser = await User.findOne({ email });
-      if (existingUser) {
+      const existingAccount = 
+        (await Organization.findOne({ email })) ||
+        (await User.findOne({ email })) ||
+        (await SuperAdmin.findOne({ email })) 
+
+      if (existingAccount) {
         return ResponseHandler.failure(
           res,
-          `A user has been registered with this email`,
+          "Email already registered",
           400
         );
       }
@@ -49,7 +52,7 @@ export class UserAuthController {
       const userResponse = await User.findById(newUser._id).select(
         "-password -role"
       );
-      const url = `https://staging-gamification.netlify.app/auth/login`
+
       if (sendEmail) {
         const emailVariables = {
           email,
@@ -58,8 +61,7 @@ export class UserAuthController {
           organizationName: organization.name,
           subject: "Onboarding Email",
         };
-        await verifyEmailTemplate(emailVariables)
-        // await sendLoginEmail(emailVariables);
+        await sendLoginEmail(emailVariables)
       }
 
       return ResponseHandler.success(
@@ -101,10 +103,16 @@ export class UserAuthController {
 
       res.status(201).json({
         success: true,
-        message:
-          "Users created successfully and onboarding emails sent.",
+        message: "Users created successfully and onboarding emails sent.",
       });
     } catch (error: any) {
+      if (error.message.includes("exceeds the maximum allowed limit")) {
+        return res.status(400).json({
+          success: false,
+          message: error.message, 
+        });
+      }
+
       return res.status(500).json({
         success: false,
         message: "An error occurred while creating bulk accounts",
@@ -179,11 +187,11 @@ export class UserAuthController {
   static async login(req: Request, res: Response) {
     try {
       const { email, password } = req.body;
-      
+
       const account =
         (await Organization.findOne({ email })) ||
         (await User.findOne({ email })) ||
-        (await SuperAdmin.findOne({ email }));
+        (await SuperAdmin.findOne({ email })) 
 
       if (!account) {
         return ResponseHandler.failure(res, "Account does not exist", 400);
@@ -204,16 +212,16 @@ export class UserAuthController {
 
       let tokenPayload;
       switch (account.role) {
-        case "user":
-          tokenPayload = UserAuthController.getUserTokenPayload(account);
-          break;
         case "admin":
-          tokenPayload =
-            UserAuthController.getOrganizationTokenPayload(account);
+          tokenPayload = UserAuthController.getOrganizationTokenPayload(account);
           break;
         case "superAdmin":
           tokenPayload = UserAuthController.getSuperAdminTokenPayload(account);
           break;
+        case "user":
+          tokenPayload = UserAuthController.getUserTokenPayload(account);
+          break;
+          
         default:
           return ResponseHandler.failure(res, "Unknown role", 400);
       }
@@ -271,57 +279,57 @@ export class UserAuthController {
     };
   }
 
-  static async loginUser(req: Request, res: Response) {
-    try {
-      const { email, password } = req.body;
+  // static async loginUser(req: Request, res: Response) {
+  //   try {
+  //     const { email, password } = req.body;
 
-      const registeredUser = await User.findOne({ email });
+  //     const registeredUser = await User.findOne({ email });
 
-      if (!registeredUser) {
-        return ResponseHandler.failure(res, "User does not exist", 400);
-      }
+  //     if (!registeredUser) {
+  //       return ResponseHandler.failure(res, "User does not exist", 400);
+  //     }
 
-      const checkPassword = await comparePassword(
-        password,
-        registeredUser.password
-      );
+  //     const checkPassword = await comparePassword(
+  //       password,
+  //       registeredUser.password
+  //     );
 
-      if (!checkPassword) {
-        return ResponseHandler.failure(
-          res,
-          "You have entered an incorrect password",
-          400
-        );
-      }
+  //     if (!checkPassword) {
+  //       return ResponseHandler.failure(
+  //         res,
+  //         "You have entered an incorrect password",
+  //         400
+  //       );
+  //     }
 
-      const payload = {
-        id: registeredUser._id,
-        email: registeredUser.email,
-        username: registeredUser.username,
-        phone: registeredUser.phone,
-        organizationId: registeredUser.organizationId,
-        firstName: registeredUser.firstName,
-        lastName: registeredUser.lastName,
-        role: registeredUser.role,
-      };
+  //     const payload = {
+  //       id: registeredUser._id,
+  //       email: registeredUser.email,
+  //       username: registeredUser.username,
+  //       phone: registeredUser.phone,
+  //       organizationId: registeredUser.organizationId,
+  //       firstName: registeredUser.firstName,
+  //       lastName: registeredUser.lastName,
+  //       role: registeredUser.role,
+  //     };
 
-      const token = await generateToken(payload);
+  //     const token = await generateToken(payload);
 
-      const userResponse = await User.findById(registeredUser._id).select(
-        "-password -role"
-      );
+  //     const userResponse = await User.findById(registeredUser._id).select(
+  //       "-password -role"
+  //     );
 
-      return ResponseHandler.loginResponse(
-        res,
-        token,
-        userResponse,
-        "Login Successful"
-      );
-    } catch (error: any) {
-      res.status(500).json({
-        message: "Server error",
-        error: error.message,
-      });
-    }
-  }
+  //     return ResponseHandler.loginResponse(
+  //       res,
+  //       token,
+  //       userResponse,
+  //       "Login Successful"
+  //     );
+  //   } catch (error: any) {
+  //     res.status(500).json({
+  //       message: "Server error",
+  //       error: error.message,
+  //     });
+  //   }
+  // }
 }
