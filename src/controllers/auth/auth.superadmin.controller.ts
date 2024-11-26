@@ -1,6 +1,8 @@
 import { Request, Response, NextFunction } from "express";
 import { ResponseHandler } from "../../middlewares/responseHandler.middleware";
 import SuperAdmin  from "../../models/superadmin.model"; 
+import Organization from "../../models/organization.model";
+import User from "../../models/user.model";
 import { comparePassword, hashPassword } from "../../utils/hash";
 import { generateToken } from "../../utils/jwt";
 
@@ -13,12 +15,15 @@ export class SuperAdminAuthController {
     try {
       let { email, password } = req.body;
 
-      const existingSuperAdmin = await SuperAdmin.findOne({ email });
+      const existingAccount = 
+        (await Organization.findOne({ email })) ||
+        (await User.findOne({ email })) ||
+        (await SuperAdmin.findOne({ email })) 
 
-      if (existingSuperAdmin) {
+      if (existingAccount) {
         return ResponseHandler.failure(
           res,
-          "Email already registered, kindly sign in to proceed",
+          "Email already registered",
           400
         );
       }

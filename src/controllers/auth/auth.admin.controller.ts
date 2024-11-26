@@ -1,6 +1,8 @@
 import { Request, Response, NextFunction } from "express";
 import { ResponseHandler } from "../../middlewares/responseHandler.middleware";
 import Organization, { IOrganization } from "../../models/organization.model";
+import User from "../../models/user.model";
+import SuperAdmin from "../../models/superadmin.model"
 import { hashPassword, comparePassword } from "../../utils/hash";
 import { generateToken } from "../../utils/jwt";
 import { sendOrganizationOnboardingMail } from "../../services/sendMail.service";
@@ -23,11 +25,15 @@ export class AdminAuthController {
         referralSource,
       } = req.body;
 
-      const emailExists = await Organization.findOne({ email });
-      if (emailExists) {
+      const existingAccount = 
+        (await Organization.findOne({ email })) ||
+        (await User.findOne({ email })) ||
+        (await SuperAdmin.findOne({ email })) 
+
+      if (existingAccount) {
         return ResponseHandler.failure(
           res,
-          "An Organization with this email already exists",
+          "Email already registered",
           400
         );
       }
