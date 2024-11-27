@@ -40,6 +40,7 @@ export class CourseController {
         visibilityEndDate,
         visibilityStartTime,
         visibilityEndTime,
+        courseImage,
         curriculum,
         teachingMethod 
       } = req.body;
@@ -86,7 +87,8 @@ export class CourseController {
         visibilityEndDate,
         visibilityStartTime,
         visibilityEndTime,
-        curriculum: Urls[1],
+        courseImage: Urls[1],
+        curriculum: Urls[2],
         teachingMethod 
       });
 

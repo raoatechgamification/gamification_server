@@ -32,6 +32,7 @@ export interface ICourse extends Document {
   visibilityEndDate?: Date;
   visibilityStartTime?: string;
   visibilityEndTime?: string;
+  courseImage: string[];
   curriculum?: string[];
   teachingMethod?: string;
   passMark: number;
@@ -76,6 +77,7 @@ const CourseSchema = new Schema<ICourse>({
   visibilityEndDate: { type: Date },
   visibilityStartTime: { type: String },
   visibilityEndTime: { type: String },
+  courseImage: [{type: String}],
   curriculum: [{ type: String }],
   teachingMethod: { type: String },
   passMark: {type: Number, required: false},

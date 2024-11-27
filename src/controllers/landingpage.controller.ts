@@ -137,7 +137,8 @@ export class LandingPageController {
             });
         }
         }
-          courseData.curriculum = Urls[1];
+         courseData.courseImage = Urls[1]
+          courseData.curriculum = Urls[2];
           console.log(courseData, "courseData");
           const newCourse = await Course.create(courseData);
           console.log(newCourse);
@@ -250,6 +251,7 @@ export class LandingPageController {
         visibilityEndTime,
         teachingMethod,
         organisationId,
+        courseImage: "",
         curriculum: ""
       };
   
@@ -270,7 +272,8 @@ export class LandingPageController {
   
       // Attach curriculum file if provided
       if (Urls.length > 0) {
-        newCourseData["curriculum"] = Urls[0];
+              newCourseData["courseImage"] = Urls[0];
+        newCourseData["curriculum"] = Urls[1];
       }
   
       // Create the new course
