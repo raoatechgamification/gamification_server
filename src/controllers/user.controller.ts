@@ -226,13 +226,9 @@ export class UserController {
       const courses = await Course.find({ "learnerIds.userId": userId }).populate("lessons");
   
       const result = courses.map((course) => {
-        const userProgress = course.learnerIds.find((u) => u.userId.toString() === userId)?.progress || 0;
-        return {
-          courseId: course._id,
-          title: course.title,
-          description: course.objective,
-          progress: userProgress,
-        };
+        const userProgress = course.learnerIds?.find(
+          (u) => u.userId.toString() === userId
+        )?.progress || 0;  // Default to 0 if not found
       });
   
       return ResponseHandler.success(res, result, "Enrolled courses retrieved successfully.", 200);
@@ -269,36 +265,98 @@ export class UserController {
       const userId = req.user?.id;
   
       // Update lesson completion
-      await Lesson.updateOne(
+      const lessonUpdateResult = await Lesson.updateOne(
         { _id: lessonId, "completionDetails.userId": userId },
         { $set: { "completionDetails.$.percentage": 100 } },
         { upsert: true }
       );
   
-      // Update course progress
+      if (lessonUpdateResult.matchedCount === 0) {
+        return ResponseHandler.failure(res, "Lesson not found or update failed", 404);
+      }
+  
+      // Retrieve the lesson to get courseIds
       const lesson = await Lesson.findById(lessonId);
       if (!lesson) return ResponseHandler.failure(res, "Lesson not found", 404);
   
-      const totalLessons = await Lesson.countDocuments({ courseId: lesson.courseId });
-      const completedLessons = await Lesson.countDocuments({
-        courseId: lesson.courseId,
-        "completionDetails.userId": userId,
-        "completionDetails.percentage": 100,
-      });
+      if (!lesson.courseIds || lesson.courseIds.length === 0) {
+        return ResponseHandler.failure(res, "Lesson does not belong to any course", 400);
+      }
   
-      const progress = Math.floor((completedLessons / totalLessons) * 100);
+      // Iterate through all related courses to update progress
+      const userProgressUpdates = await Promise.all(
+        lesson.courseIds.map(async (courseId) => {
+          const totalLessons = await Lesson.countDocuments({ courseIds: courseId });
+          const completedLessons = await Lesson.countDocuments({
+            courseIds: courseId,
+            "completionDetails.userId": userId,
+            "completionDetails.percentage": 100,
+          });
   
-      await Course.updateOne(
-        { _id: lesson.courseId, "learnerIds.userId": userId },
-        { $set: { "learnerIds.$.progress": progress } }
+          const progress = totalLessons > 0 ? Math.floor((completedLessons / totalLessons) * 100) : 0;
+  
+          const courseUpdateResult = await Course.updateOne(
+            { _id: courseId, "learnerIds.userId": userId },
+            { $set: { "learnerIds.$.progress": progress } }
+          );
+  
+          return {
+            courseId,
+            progress,
+            courseUpdated: courseUpdateResult.modifiedCount > 0,
+          };
+        })
       );
   
-      return ResponseHandler.success(res, { progress }, "Lesson marked as complete.", 200);
+      return ResponseHandler.success(
+        res,
+        { userProgressUpdates },
+        "Lesson marked as complete and progress updated for related courses.",
+        200
+      );
     } catch (error: any) {
       console.error("Error marking lesson as complete:", error.message);
       return ResponseHandler.failure(res, "Error marking lesson as complete", 500);
     }
   }
+  
+
+  // async markLessonAsComplete(req: Request, res: Response) {
+  //   try {
+  //     const { lessonId } = req.params;
+  //     const userId = req.user?.id;
+  
+  //     // Update lesson completion
+  //     await Lesson.updateOne(
+  //       { _id: lessonId, "completionDetails.userId": userId },
+  //       { $set: { "completionDetails.$.percentage": 100 } },
+  //       { upsert: true }
+  //     );
+  
+  //     // Update course progress
+  //     const lesson = await Lesson.findById(lessonId);
+  //     if (!lesson) return ResponseHandler.failure(res, "Lesson not found", 404);
+  
+  //     const totalLessons = await Lesson.countDocuments({ courseId: lesson.courseId });
+  //     const completedLessons = await Lesson.countDocuments({
+  //       courseId: lesson.courseId,
+  //       "completionDetails.userId": userId,
+  //       "completionDetails.percentage": 100,
+  //     });
+  
+  //     const progress = Math.floor((completedLessons / totalLessons) * 100);
+  
+  //     await Course.updateOne(
+  //       { _id: lesson.courseId, "learnerIds.userId": userId },
+  //       { $set: { "learnerIds.$.progress": progress } }
+  //     );
+  
+  //     return ResponseHandler.success(res, { progress }, "Lesson marked as complete.", 200);
+  //   } catch (error: any) {
+  //     console.error("Error marking lesson as complete:", error.message);
+  //     return ResponseHandler.failure(res, "Error marking lesson as complete", 500);
+  //   }
+  // }
 
   // async courseAndLessonProgress(req: Request, res: Response) {
   //   try {

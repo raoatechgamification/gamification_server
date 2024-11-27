@@ -2,10 +2,21 @@ import multer from "multer";
 import path from "path";
 import { Request } from 'express';
 
+const videoMimeTypes = [
+  "video/mp4",
+  "video/webm",
+  "video/ogg",
+  "video/avi",
+  "video/mkv",
+  "video/quicktime",
+  "video/x-msvideo", // AVI
+  "video/x-flv", // Flash Video
+];
+
 export const upload = multer({
   storage: multer.memoryStorage(),
   limits: {
-    fileSize: 10 * 1024 * 1024, 
+    fileSize: 5 * 1024 * 1024 * 1024, 
   },
   fileFilter: (req: Request, file: Express.Multer.File, cb) => {
     const allowedMimeTypes = [
@@ -16,6 +27,7 @@ export const upload = multer({
       "application/pdf",
       "application/msword",
       "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
+      ...videoMimeTypes
     ];
 
     if (allowedMimeTypes.includes(file.mimetype)) {
@@ -24,7 +36,7 @@ export const upload = multer({
       cb(
         new multer.MulterError(
           "LIMIT_UNEXPECTED_FILE",
-          "Invalid file type. Only images, PDFs, and documents are allowed."
+          "Invalid file type. Only images, PDFs, documents, and videos are allowed."
         )
       );
     }

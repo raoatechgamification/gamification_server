@@ -3,7 +3,7 @@ import { authenticate, authorize } from "../middlewares/auth.middleware";
 
 import { CourseController } from "../controllers/course.controller";
 import {
-  createCourseValidator,
+  validateCreateCourse,
   courseContentValidator,
   createAnnouncementValidator,
   getCourseCurriculumValidator,
@@ -12,10 +12,11 @@ import { upload } from "../utils/upload.utils";
 
 const {
   createCourse,
-  createCourseContent,
+  createACourse,
+  createLesson,
   createAnnouncement,
   getAllCourses,
-  getCourseCurriculum,
+  getCourseLessons,
   getAllAnnouncementsByCourse,
 } = new CourseController();
 
@@ -30,28 +31,35 @@ router.post(
   createCourse
 );
 
-router.get(
-  "/get-all-courses",
+router.post(
+  "/add",
   authenticate,
   authorize("admin"),
-  
+  ...validateCreateCourse,
+  createACourse
+)
+
+router.get(
+  "/all",
+  authenticate,
+  authorize("admin"),
   getAllCourses
 );
 
 router.post(
-  "/curriculum/:courseId",
+  "/lesson",
   authenticate,
   authorize("admin"),
   upload.array("file", 10),
   ...courseContentValidator,
-  createCourseContent
+  createLesson
 );
 
 router.get(
   "/curriculum/:courseId",
   authenticate,
   ...getCourseCurriculumValidator,
-  getCourseCurriculum
+  getCourseLessons
 );
 
 router.post(

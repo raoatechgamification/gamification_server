@@ -72,12 +72,6 @@ const errorResponse = (req: Request, res: Response, next: NextFunction) => {
 };
 
 export const createAssessmentValidator = [
-  param("courseId")
-    .notEmpty()
-    .withMessage('Course ID is required')
-    .isMongoId()
-    .withMessage('Course ID must be a valid MongoDB ObjectId'),
-
   body("title")
     .notEmpty()
     .isString()

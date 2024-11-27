@@ -8,7 +8,7 @@ export class LandingPageController {
   async CreateLandingPage(req: Request, res: Response, next: NextFunction) {
     try {
       const files = req.files as Express.Multer.File[];
-      const organisationId = req.admin._id
+      const organizationId = req.admin._id
       const {
         title,
         description,
@@ -89,7 +89,7 @@ export class LandingPageController {
           visibilityStartTime,
           visibilityEndTime,
           teachingMethod,
-          organisationId
+          organizationId
         });
       }
   
@@ -164,7 +164,7 @@ export class LandingPageController {
 
       // Create LandingPage
       const newLandingPage = await LandingPage.create({
-        organisationId,
+        organizationId,
         landingPageTitle,
         serviceTitleDescription,
         servicePicture: Urls[0], // Cloudinary URL for service picture
@@ -187,7 +187,7 @@ export class LandingPageController {
       const { id } = req.params; // LandingPage ID
      console.log(id)
       const files = req.files as Express.Multer.File[]; // Uploaded files
-      const organisationId = req.admin._id; // Admin ID from authentication middleware
+      const organizationId = req.admin._id; // Admin ID from authentication middleware
   
       const {
         title,
@@ -250,7 +250,7 @@ export class LandingPageController {
         visibilityStartTime,
         visibilityEndTime,
         teachingMethod,
-        organisationId,
+        organizationId,
         courseImage: "",
         curriculum: ""
       };
@@ -306,8 +306,8 @@ export class LandingPageController {
 
   async GetAllLandingPages(req: Request, res: Response, next: NextFunction) {
     try {
-      const organisationId = req.admin._id; 
-      const landingPages = await LandingPage.find({organisationId})
+      const organizationId = req.admin._id; 
+      const landingPages = await LandingPage.find({organizationId})
         .populate('course') // Populate course details
         .populate('subservice'); // Populate subservice details
       res.status(200).json({ data: landingPages });

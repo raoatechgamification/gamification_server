@@ -7,12 +7,14 @@ export interface ICourse extends Document {
   topContent?: boolean,
   objective?: string;
   price?: number;
-  instructorId?: string;
-  organisationId?: string;
+  tutorId?: Schema.Types.ObjectId
+  organizationId?: string;
   lessonFormat?: string;
+  instructorId: string;
   // learnerIds?: string[];
   lessons: mongoose.Types.ObjectId[];
-  learnerIds: { userId: mongoose.Types.ObjectId; progress: number }[];
+  learnerIds?: { userId: mongoose.Types.ObjectId; progress: number }[];
+  assessments?: mongoose.Types.ObjectId[]
   duration?: string;
   courseCode?: string;
   courseLevel?: string;
@@ -47,7 +49,9 @@ const CourseSchema = new Schema<ICourse>({
   objective: { type: String, required: false },
   price: { type: Number, required: false },
   instructorId: { type: String, required: false },
-  organisationId: { type: String, required: false },
+
+  tutorId: { type: Schema.Types.ObjectId },
+  organizationId: { type: String, required: false },
   lessonFormat: { type: String, required: false },
   // learnerIds: [{ type: String }],
   lessons: [{ type: Schema.Types.ObjectId, ref: 'Lesson' }],
@@ -57,7 +61,7 @@ const CourseSchema = new Schema<ICourse>({
       progress: { type: Number, default: 0 }, // Completion percentage for the course
     },
   ],
-
+  assessments: [{ type: Schema.Types.ObjectId, ref: 'Assessment' }],
   duration: { type: String, required: false },
   courseCode: { type: String, required: false },
   courseLevel: { type: String, required: false },
