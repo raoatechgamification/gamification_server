@@ -7,6 +7,7 @@ import {
   courseContentValidator,
   createAnnouncementValidator,
   getCourseCurriculumValidator,
+  createCourseValidator,
 } from "../validators/course.validator";
 import { upload } from "../utils/upload.utils";
 
