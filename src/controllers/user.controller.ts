@@ -3,8 +3,8 @@ import { ResponseHandler } from "../middlewares/responseHandler.middleware";
 import User from "../models/user.model";
 import Payment from "../models/payment.model";
 import AssignedBill from "../models/bill.model";
-import Course from "../models/course.model";
-import Lesson from "../models/lesson.model";
+import Course, { ICourse } from "../models/course.model";
+import Lesson, { LessonDocument } from "../models/lesson.model";
 import { comparePassword, hashPassword } from "../utils/hash";
 
 interface CompletionDetails {
@@ -17,6 +17,10 @@ interface Lesson {
   title: string;
   completionDetails: CompletionDetails[];
 }
+
+type PopulatedCourse = Omit<ICourse, "lessons"> & {
+  lessons: LessonDocument[];
+};
 
 export class UserController {
   async editProfile(req: Request, res: Response, next: NextFunction) {
@@ -219,24 +223,24 @@ export class UserController {
     }
   }
 
-  async enrolledCoursesWithProgress(req: Request, res: Response) {
-    try {
-      const { userId } = req.user;
+  // async enrolledCoursesWithProgress(req: Request, res: Response) {
+  //   try {
+  //     const { userId } = req.user;
   
-      const courses = await Course.find({ "learnerIds.userId": userId }).populate("lessons");
+  //     const courses = await Course.find({ "learnerIds.userId": userId }).populate("lessons");
   
-      const result = courses.map((course) => {
-        const userProgress = course.learnerIds?.find(
-          (u) => u.userId.toString() === userId
-        )?.progress || 0;  // Default to 0 if not found
-      });
+  //     const result = courses.map((course) => {
+  //       const userProgress = course.learnerIds?.find(
+  //         (u) => u.userId.toString() === userId
+  //       )?.progress || 0;  // Default to 0 if not found
+  //     });
   
-      return ResponseHandler.success(res, result, "Enrolled courses retrieved successfully.", 200);
-    } catch (error: any) {
-      console.error("Error fetching enrolled courses:", error.message);
-      return ResponseHandler.failure(res, "Error fetching enrolled courses", 500);
-    }
-  }
+  //     return ResponseHandler.success(res, result, "Enrolled courses retrieved successfully.", 200);
+  //   } catch (error: any) {
+  //     console.error("Error fetching enrolled courses:", error.message);
+  //     return ResponseHandler.failure(res, "Error fetching enrolled courses", 500);
+  //   }
+  // }
 
   async lessonsWithProgress(req: Request, res: Response) {
     try {
@@ -258,6 +262,114 @@ export class UserController {
       return ResponseHandler.failure(res, "Error fetching lessons", 500);
     }
   }
+  //   try {
+  //     const { userId } = req.user;
+  
+  //     // Fetch all courses where the user is enrolled
+  //     const courses = await Course.find({ "learnerIds.userId": userId })
+  //       .populate({
+  //         path: "lessons",
+  //         model: "Lesson", // Reference the Lesson model
+  //       })
+  //       .lean();
+  
+  //     // Prepare result with progress for each course and its lessons
+  //     const result = courses.map((course) => {
+  //       // Get the user's progress for the course
+  //       const courseProgress =
+  //         course.learnerIds?.find((learner) => learner.userId.toString() === userId)?.progress || 0;
+  
+  //       // Map lessons to include progress for the user
+  //       const lessons = course.lessons?.map((lesson) => ({
+  //         lessonId: lesson._id,
+  //         title: lesson.title,
+  //         completedPercentage:
+  //           lesson.completionDetails.find(
+  //             (completion) => completion.userId.toString() === userId
+  //           )?.percentage || 0,
+  //       }));
+  
+  //       return {
+  //         courseId: course._id,
+  //         courseTitle: course.title,
+  //         courseProgress,
+  //         lessons,
+  //       };
+  //     });
+  
+  //     return ResponseHandler.success(
+  //       res,
+  //       result,
+  //       "Enrolled courses with progress retrieved successfully.",
+  //       200
+  //     );
+  //   } catch (error: any) {
+  //     console.error("Error fetching enrolled courses with progress:", error.message);
+  //     return ResponseHandler.failure(
+  //       res,
+  //       "Error fetching enrolled courses with progress",
+  //       500
+  //     );
+  //   }
+  // }  
+
+  async enrolledCoursesWithProgress(req: Request, res: Response) {
+    try {
+      const { userId } = req.user; 
+  
+      // Fetch courses where the user is enrolled
+      const courses = await Course.find({ "learnerIds.userId": userId })
+        .populate({
+          path: "lessons",
+          model: Lesson,
+        })
+        .lean();
+  
+      // Type assertion for lessons after populate
+      const populatedCourses = courses.map((course) => ({
+        ...course,
+        lessons: course.lessons as unknown as LessonDocument[], // Use `unknown` to bypass type incompatibility
+      }));
+  
+      // Prepare the result with course and lesson progress
+      const result = populatedCourses.map((course) => {
+        // User's progress for the course
+        const courseProgress =
+          course.learnerIds?.find((learner) => learner.userId.toString() === userId)?.progress || 0;
+  
+        // User's progress for each lesson in the course
+        const lessons = course.lessons.map((lesson) => ({
+          lessonId: lesson._id,
+          title: lesson.title,
+          completedPercentage:
+            lesson.completionDetails.find((completion) => completion.userId.toString() === userId)
+              ?.percentage || 0,
+        }));
+  
+        return {
+          courseId: course._id,
+          courseTitle: course.title,
+          courseProgress,
+          lessons,
+        };
+      });
+  
+      return ResponseHandler.success(
+        res,
+        result,
+        "Enrolled courses with progress retrieved successfully.",
+        200
+      );
+    } catch (error: any) {
+      console.error("Error fetching enrolled courses with progress:", error.message);
+      return ResponseHandler.failure(
+        res,
+        "Error fetching enrolled courses with progress",
+        500
+      );
+    }
+  }
+  
 
   async markLessonAsComplete(req: Request, res: Response) {
     try {
@@ -319,7 +431,6 @@ export class UserController {
       return ResponseHandler.failure(res, "Error marking lesson as complete", 500);
     }
   }
-  
 
   // async markLessonAsComplete(req: Request, res: Response) {
   //   try {

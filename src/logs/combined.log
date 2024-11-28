@@ -1492,3 +1492,16 @@
 2024-11-27 00:32:11 [info]: POST /add 422 - Request Body: {"title":"Course for Doctors","price":"50000","instructorId":"67453884a835dc3c8062914d","duration":"six weeks","lessonFormat":".xls","lessons":["67462cc62316dfb7fad86d4"],"assessments":["6746287ee641d30376864b00"],"announcements":[{"title":"Become a doctor now","details":"This is your very chance to become a doctor"}]}
 2024-11-27 00:33:10 [info]: POST /add 422 - Request Body: {"title":"Beginners guide to Medicine","objective":"Introduction to Biology I","price":"50000","instructorId":"67453884a835dc3c8062914d","duration":"six weeks","lessonFormat":".xls","lessons":["67462cc62316dfb7fad86d4"],"assessments":["6746287ee641d30376864b00"],"announcements":[{"title":"Become a doctor now","details":"This is your very chance to become a doctor"}]}
 2024-11-27 00:33:54 [info]: POST /add 201 - Request Body: {"title":"Beginners guide to Medicine","objective":"Introduction to Biology I","price":"50000","instructorId":"67453884a835dc3c8062914d","duration":"six weeks","lessonFormat":".xls","lessons":["67462cc62316dfb7fad856d4"],"assessments":["6746287ee641d30376864b00"],"announcements":[{"title":"Become a doctor now","details":"This is your very chance to become a doctor"}]}
+2024-11-27 13:11:39 [info]: POST /add 201 - Request Body: {"title":"Beginners guide to Medicine","objective":"Introduction to Biology I","price":"50000","instructorId":"67453884a835dc3c8062914d","duration":"six weeks","lessonFormat":".xls","lessons":["67462cc62316dfb7fad856d4"],"assessments":["6746287ee641d30376864b00"],"announcements":[{"title":"Become a doctor now","details":"This is your very chance to become a doctor"}]}
+2024-11-27 13:12:45 [info]: GET /all 200
+2024-11-27 16:20:00 [info]: POST /lesson 200 - Request Body: {"title":"This is the title","objectives":"This is the objective for this lesson","link":"https://www.youtube.com"}
+2024-11-27 16:25:43 [info]: GET /programs 401
+2024-11-27 16:26:25 [info]: POST /login 400 - Request Body: {"email":"adesholaadetayoooo@gmail.com","password":"DefaultPassword123"}
+2024-11-27 16:26:41 [info]: POST /login 200 - Request Body: {"email":"lola@gmail.com","password":"Tioluwani05$"}
+2024-11-27 16:27:38 [info]: GET /programs 401
+2024-11-27 16:28:46 [info]: GET /programs 200
+2024-11-27 16:30:42 [info]: GET /courses 200
+2024-11-27 16:32:30 [info]: GET /courses/67407a57c1733f8feec30875/lessons 200
+2024-11-28 10:23:10 [info]: GET /courses 200
+2024-11-28 10:24:40 [info]: GET /courses/67465a31617d82f5b5bba5f8/lessons 200
+2024-11-28 10:49:22 [info]: GET /courses 200
