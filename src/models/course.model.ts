@@ -1,7 +1,6 @@
 import mongoose, { Schema, model, Document } from 'mongoose';
 
 export interface ICourse extends Document {
-  code: string;
   title?: string;
   description?: string,
   requirement?: string,
@@ -43,24 +42,21 @@ export interface ICourse extends Document {
 }
 
 const CourseSchema = new Schema<ICourse>({
-  code: { type: String, required: true, unique: true },
   title: { type: String, required: false },
   description: { type: String, required: false },
   requirement: { type: String, required: false },
   topContent: { type: Boolean, required: false },
   objective: { type: String, required: false },
-  // price: { type: Number, required: false },
   instructorId: { type: String, required: false },
 
   tutorId: { type: Schema.Types.ObjectId },
   organizationId: { type: String, required: false },
   lessonFormat: { type: String, required: false },
-  // learnerIds: [{ type: String }],
   lessons: [{ type: Schema.Types.ObjectId, ref: 'Lesson' }],
   learnerIds: [
     {
       userId: { type: Schema.Types.ObjectId, ref: 'User' },
-      progress: { type: Number, default: 0 }, // Completion percentage for the course
+      progress: { type: Number, default: 0 }, 
     },
   ],
   assessments: [{ type: Schema.Types.ObjectId, ref: 'Assessment' }],

@@ -272,7 +272,7 @@ export class CourseController {
       if (!price) price === "free"
       
       const courseData: any = {
-        code,
+        courseCode: code,
         title,
         objective,
         cost: price,
