@@ -1,9 +1,10 @@
 import mongoose, { Schema, model, Document } from 'mongoose';
 
 export interface ICourse extends Document {
+  code: string;
   title?: string;
   objective?: string;
-  price?: number;
+  // price?: number;
   tutorId?: Schema.Types.ObjectId
   organizationId?: string;
   lessonFormat?: string;
@@ -18,7 +19,7 @@ export interface ICourse extends Document {
   endDate?: Date;
   numberOfHoursPerDay?: number;
   numberOfDaysPerWeek?: number;
-  cost?: number;
+  cost?: number | string;
   promo?: string;
   promoCode?: string;
   promoValue?: number;
@@ -36,9 +37,10 @@ export interface ICourse extends Document {
 }
 
 const CourseSchema = new Schema<ICourse>({
+  code: { type: String, required: true, unique: true },
   title: { type: String },
   objective: { type: String },
-  price: { type: Number },
+  // price: { type: Number },
   tutorId: { type: Schema.Types.ObjectId },
   organizationId: { type: String, required: false },
   lessonFormat: { type: String, required: false },
@@ -58,7 +60,7 @@ const CourseSchema = new Schema<ICourse>({
   endDate: { type: Date, required: false },
   numberOfHoursPerDay: { type: Number, required: false },
   numberOfDaysPerWeek: { type: Number, required: false },
-  cost: { type: Number, required: false },
+  cost: { type: Number || String, required: false },
   promo: { type: String },
   promoCode: { type: String },
   promoValue: { type: Number },

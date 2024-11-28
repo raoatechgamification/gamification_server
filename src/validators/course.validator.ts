@@ -106,6 +106,18 @@ export const createAnnouncementValidator = [
 ];
 
 export const validateCreateCourse = [
+  body("code")
+    .notEmpty()
+    .withMessage("Course code is required")
+    .isString()
+    .withMessage("Course code must be a string"),
+
+  body("showInstructor")
+    .notEmpty()
+    .withMessage("A value for showInstructor is required")
+    .isBoolean()
+    .withMessage("showInstructor value must be boolean"),
+
   body('title')
     .notEmpty()
     .withMessage('Title is required')
@@ -154,36 +166,31 @@ export const validateCreateCourse = [
       return true;
     }),
 
-  body('assessments')
-    .optional({ nullable: true })
-    .isArray()
-    .withMessage('Assessments must be an array')
-    .custom((assessments) => {
-      if (!assessments.every((assessment: string) => /^[a-f\d]{24}$/i.test(assessment))) {
-        throw new Error('Assessments must be an array of valid MongoDB ObjectIds');
-      }
-      return true;
-    }),
+    body("assessments")
+      .optional({ nullable: true })
+      .isArray()
+      .withMessage("Assessments must be an array")
+      .custom((assessments) => {
+        if (assessments && !assessments.every((assessment: string) => /^[a-f\d]{24}$/i.test(assessment))) {
+          throw new Error("Assessments must be an array of valid MongoDB ObjectIds");
+        }
+        return true;
+      }),
 
-  body('announcements')
-    .notEmpty()
-    .withMessage('Announcements are required')
-    .isArray()
-    .withMessage('Announcements must be an array')
-    .custom((announcements) => {
-      if (
-        !announcements.every(
+    body("announcements")
+      .optional({ nullable: true })
+      .isArray()
+      .withMessage("Announcements must be an array")
+      .custom((announcements) => {
+        if (announcements && !announcements.every(
           (announcement: { title: string; details: string }) =>
-            typeof announcement.title === 'string' &&
-            typeof announcement.details === 'string'
-        )
-      ) {
-        throw new Error(
-          'Each announcement must contain a title and details as strings'
-        );
-      }
-      return true;
-    }),
+            typeof announcement.title === "string" &&
+            typeof announcement.details === "string"
+        )) {
+          throw new Error("Each announcement must contain a title and details as strings");
+        }
+        return true;
+      }),
 
   errorResponse
 ];
