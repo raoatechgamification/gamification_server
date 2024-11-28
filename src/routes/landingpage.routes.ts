@@ -16,12 +16,12 @@ const {CreateLandingPage,
 router.post('/', 
     authenticate,
     authorize("admin"), 
-    upload.array("file", 5),
+    upload.array("file", 3),
          CreateLandingPage);
 router.get('/', authenticate, authorize("admin"),  GetAllLandingPages);
 router.get('/:id', authenticate, authorize("admin"), GetLandingPageById);
 router.patch('/:id', authenticate, authorize("admin"),  upload.array("file", 1), updateLandingPageDetails);
-router.put('/create-new-course-landing/:id', authenticate, authorize("admin"),  upload.array("file", 1), UpdateLandingPageWithCourse);
+router.put('/create-new-course-landing/:id', authenticate, authorize("admin"),  upload.array("file", 2), UpdateLandingPageWithCourse);
 router.delete('/:id', authenticate, authorize("admin"),  DeleteLandingPage);
 
 export default router;

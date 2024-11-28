@@ -43,7 +43,7 @@ app.use((req: Request, res: Response, next: NextFunction) => {
 app.get("/", (req: Request, res: Response) => {
   res.json({
     success: true,
-    message: "Welcome to Gamification API V1..",
+    message: "Welcome to Gamification API V1.",
   });
 });
 

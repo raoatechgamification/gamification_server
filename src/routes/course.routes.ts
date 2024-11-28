@@ -7,6 +7,7 @@ import {
   courseContentValidator,
   createAnnouncementValidator,
   getCourseCurriculumValidator,
+  createCourseValidator,
 } from "../validators/course.validator";
 import { upload } from "../utils/upload.utils";
 
@@ -27,7 +28,7 @@ router.post(
   authenticate,
   authorize("admin"),
   upload.array("file", 10),
-  // ...createCourseValidator,
+  ...createCourseValidator,
   createCourse
 );
 

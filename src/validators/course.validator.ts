@@ -51,6 +51,36 @@ const errorResponse = (req: Request, res: Response, next: NextFunction) => {
   next();
 };
 
+export const createCourseValidator = [
+  body("title")
+    .notEmpty()
+    .isString()
+    .withMessage("Please provide the course title"),
+
+  // body("objective")
+  //   .notEmpty()
+  //   .isString()
+  //   .withMessage("Please provide the course objective"),
+
+  body("cost")
+    .notEmpty()
+    .isNumeric()
+    .withMessage("Please provide the course price"),
+
+  // body("duration")
+  //   .notEmpty()
+  //   .isString()
+  //   .withMessage("Please provide a the course duration"),
+
+  // body("lessonFormat")
+  //   .notEmpty()
+  //   .isString()
+  //   .withMessage("Please provide the lessons format"),
+
+  errorResponse,
+];
+
+
 export const courseContentValidator = [
   body("title")
     .notEmpty()

@@ -3,11 +3,15 @@ import mongoose, { Schema, model, Document } from 'mongoose';
 export interface ICourse extends Document {
   code: string;
   title?: string;
+  description?: string,
+  requirement?: string,
+  topContent?: boolean,
   objective?: string;
   // price?: number;
   tutorId?: Schema.Types.ObjectId
   organizationId?: string;
   lessonFormat?: string;
+  instructorId: string;
   // learnerIds?: string[];
   lessons: mongoose.Types.ObjectId[];
   learnerIds?: { userId: mongoose.Types.ObjectId; progress: number }[];
@@ -31,6 +35,8 @@ export interface ICourse extends Document {
   visibilityEndDate?: Date;
   visibilityStartTime?: string;
   visibilityEndTime?: string;
+  courseImage: string[];
+  curriculum?: string[];
   teachingMethod?: string;
   passMark: number;
   maximumNumberOfTrials?: number
@@ -38,9 +44,14 @@ export interface ICourse extends Document {
 
 const CourseSchema = new Schema<ICourse>({
   code: { type: String, required: true, unique: true },
-  title: { type: String },
-  objective: { type: String },
-  // price: { type: Number },
+  title: { type: String, required: false },
+  description: { type: String, required: false },
+  requirement: { type: String, required: false },
+  topContent: { type: Boolean, required: false },
+  objective: { type: String, required: false },
+  // price: { type: Number, required: false },
+  instructorId: { type: String, required: false },
+
   tutorId: { type: Schema.Types.ObjectId },
   organizationId: { type: String, required: false },
   lessonFormat: { type: String, required: false },
@@ -72,6 +83,8 @@ const CourseSchema = new Schema<ICourse>({
   visibilityEndDate: { type: Date },
   visibilityStartTime: { type: String },
   visibilityEndTime: { type: String },
+  courseImage: [{type: String}],
+  curriculum: [{ type: String }],
   teachingMethod: { type: String },
   passMark: {type: Number, required: false},
   maximumNumberOfTrials: {type: Number, required: false}
