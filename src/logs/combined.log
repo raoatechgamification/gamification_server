@@ -1505,3 +1505,7 @@
 2024-11-28 10:23:10 [info]: GET /courses 200
 2024-11-28 10:24:40 [info]: GET /courses/67465a31617d82f5b5bba5f8/lessons 200
 2024-11-28 10:49:22 [info]: GET /courses 200
+2024-11-28 10:53:51 [info]: GET /user/lessons/67462cc62316dfb7fad856d4/complete 200
+2024-11-28 10:54:10 [info]: PUT /lessons/67462cc62316dfb7fad856d4/complete 500
+2024-11-28 11:17:36 [info]: PUT /:courseId/lessons/67462cc62316dfb7fad856d4/complete 500
+2024-11-28 11:19:37 [info]: PUT /67463dbfd0265d85856053c2/lessons/67462cc62316dfb7fad856d4/complete 500

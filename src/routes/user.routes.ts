@@ -62,7 +62,7 @@ router.get(
 )
 
 router.put(
-  "/lessons/:lessonId/complete",
+  "/:courseId/lessons/:lessonId/complete",
   authenticate,
   authorize("user"),
   markLessonAsComplete
