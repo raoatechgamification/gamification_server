@@ -2,6 +2,7 @@ import mongoose, { Document, Schema } from 'mongoose';
 
 export interface CompletionDetails {
   userId: mongoose.Types.ObjectId;
+  courseId: mongoose.Types.ObjectId;
   percentage: number;
 }
 
@@ -26,7 +27,8 @@ const lessonSchema = new Schema<LessonDocument>(
     completionDetails: [
       {
         userId: { type: Schema.Types.ObjectId, ref: 'User' },
-        percentage: { type: Number, default: 0 }, // Completion percentage for the lesson
+        courseId: { type: Schema.Types.ObjectId, ref: "Course" },
+        percentage: { type: Number, default: 0 }, 
       },
     ],
   },

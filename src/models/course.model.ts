@@ -6,7 +6,7 @@ export interface ICourse extends Document {
   requirement?: string,
   topContent?: boolean,
   objective?: string;
-  price?: number;
+  // price?: number;
   tutorId?: Schema.Types.ObjectId
   organizationId?: string;
   lessonFormat?: string;
@@ -22,7 +22,7 @@ export interface ICourse extends Document {
   endDate?: Date;
   numberOfHoursPerDay?: number;
   numberOfDaysPerWeek?: number;
-  cost?: number;
+  cost?: number | string;
   promo?: string;
   promoCode?: string;
   promoValue?: number;
@@ -47,18 +47,16 @@ const CourseSchema = new Schema<ICourse>({
   requirement: { type: String, required: false },
   topContent: { type: Boolean, required: false },
   objective: { type: String, required: false },
-  price: { type: Number, required: false },
   instructorId: { type: String, required: false },
 
   tutorId: { type: Schema.Types.ObjectId },
   organizationId: { type: String, required: false },
   lessonFormat: { type: String, required: false },
-  // learnerIds: [{ type: String }],
   lessons: [{ type: Schema.Types.ObjectId, ref: 'Lesson' }],
   learnerIds: [
     {
       userId: { type: Schema.Types.ObjectId, ref: 'User' },
-      progress: { type: Number, default: 0 }, // Completion percentage for the course
+      progress: { type: Number, default: 0 }, 
     },
   ],
   assessments: [{ type: Schema.Types.ObjectId, ref: 'Assessment' }],
@@ -69,7 +67,7 @@ const CourseSchema = new Schema<ICourse>({
   endDate: { type: Date, required: false },
   numberOfHoursPerDay: { type: Number, required: false },
   numberOfDaysPerWeek: { type: Number, required: false },
-  cost: { type: Number, required: false },
+  cost: { type: Number || String, required: false },
   promo: { type: String },
   promoCode: { type: String },
   promoValue: { type: Number },

@@ -200,7 +200,8 @@ export class CourseController {
 
   async createACourse(req: Request, res: Response) {
     try {
-      const {
+      let {
+        code,
         title,
         objective,
         price,
@@ -210,20 +211,20 @@ export class CourseController {
         lessons,
         assessments,
         announcements,
+        showInstructor
       } = req.body;
 
       const adminId = req.admin._id;
 
-      // Validate `announcements` input
-      if (!Array.isArray(announcements)) {
+      const codeExists = await Course.findOne({ code })
+      if (codeExists) {
         return ResponseHandler.failure(
-          res,
-          "Announcements must be an array",
+          res, 
+          "Course code already exists",
           400
-        );
+        )
       }
 
-      // Validate assessments
       if (assessments) {
         const validAssessments = await Assessment.find({
           _id: { $in: assessments },
@@ -238,11 +239,11 @@ export class CourseController {
         }
       }
 
-      // Validate lessons
       const validLessons = await Lesson.find({
         _id: { $in: lessons },
         instructorId: adminId,
       });
+
       if (validLessons.length !== lessons.length) {
         return ResponseHandler.failure(
           res,
@@ -251,48 +252,61 @@ export class CourseController {
         );
       }
 
-      // Create announcements
-      const announcementIds = await Promise.all(
-        announcements.map(
-          async (announcement: { title: string; details: string }) => {
-            const newAnnouncement = await Announcement.create({
-              title: announcement.title,
-              details: announcement.details,
-              courseIds: [],
-            });
-            return newAnnouncement._id as mongoose.Types.ObjectId;
-          }
-        )
-      );
+      let announcementIds;      
 
-      // Create course
-      const newCourse = await Course.create({
+      if (announcements) {
+        announcementIds = await Promise.all(
+          announcements.map(
+            async (announcement: { title: string; details: string }) => {
+              const newAnnouncement = await Announcement.create({
+                title: announcement.title,
+                details: announcement.details,
+                courseIds: [],
+              });
+              return newAnnouncement._id as mongoose.Types.ObjectId;
+            }
+          )
+        );
+      }
+
+      if (!price) price === "free"
+      
+      const courseData: any = {
+        courseCode: code,
         title,
         objective,
-        price,
-        tutorId: instructorId, // The instructor teaching the course
-        organizationId: adminId, // The organization creating the course
+        cost: price,
+        organizationId: adminId,
         duration,
         lessonFormat,
         lessons,
         assessments,
         announcements: announcementIds,
-      });
-
-      // Update announcements with the course ID
-      await Announcement.updateMany(
-        { _id: { $in: announcementIds } },
-        { $push: { courseIds: newCourse._id } }
-      );
-
+        tutorId: instructorId,  
+      };
+  
+      const newCourse = await Course.create(courseData);
+  
+      if (announcements) {
+        await Announcement.updateMany(
+          { _id: { $in: announcementIds } },
+          { $push: { courseIds: newCourse._id } }
+        );
+      }
+  
       await Lesson.updateMany(
         { _id: { $in: lessons } },
         { $push: { courseIds: newCourse._id } }
       );
-
+  
+      const courseResponse = newCourse.toObject();  
+      if (!showInstructor) {
+        delete courseResponse.tutorId;  
+      }
+  
       return ResponseHandler.success(
         res,
-        newCourse,
+        courseResponse,  
         "Course created successfully",
         201
       );
