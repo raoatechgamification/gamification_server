@@ -80,7 +80,7 @@ export class UserController {
       if (paidBills.length === 0)
         return ResponseHandler.failure(
           res,
-          "Your payment history is empty",
+          "Your bill history is empty",
           404
         );
 

@@ -26,9 +26,11 @@ router.put(
   editProfile
 );
 
-router.get("/bill-history", authenticate, authorize("user"), billHistory);
+router.get("/payment-history", authenticate, authorize("user"), billHistory);
 
 router.get("/due-bills", authenticate, authorize("user"), dueBills);
+
+router.get("/bills", authenticate, authorize("user"))
 
 router.get("/view-bill/:paymentId", authenticate, authorize("user"), viewBill);
 

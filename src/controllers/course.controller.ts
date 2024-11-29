@@ -3,6 +3,7 @@ import { Request, Response, NextFunction } from "express";
 import { ResponseHandler } from "../middlewares/responseHandler.middleware";
 import Course from "../models/course.model";
 import Lesson from "../models/lesson.model";
+import User from "../models/user.model";
 import Announcement from "../models/announcement.model";
 import Assessment from "../models/assessment.model";
 import { NotificationController } from "../controllers/notification.controller";
@@ -320,39 +321,126 @@ export class CourseController {
     }
   }
 
-  // async createLessonsHelper(
-  //   lessons: Array<{ title: string; objectives: string[]; link: string; files: Express.Multer.File[] }>,
-  //   courseId: string,
-  //   instructorId: mongoose.Types.ObjectId
-  // ) {
-  //   const lessonIds: mongoose.Types.ObjectId[] = [];
-  //   for (const lesson of lessons) {
-  //     const Urls: string[] = [];
-
-  //     if (lesson.files && lesson.files.length > 0) {
-  //       for (const file of lesson.files) {
-  //         const uploadResult = await uploadToCloudinary(
-  //           file.buffer,
-  //           file.mimetype,
-  //           "course-content"
-  //         );
-  //         if (uploadResult && uploadResult.secure_url) {
-  //           Urls.push(uploadResult.secure_url);
-  //         }
+  // async assignCourseToUsers(req: Request, res: Response) {
+  //   try {
+  //     const { userIds } = req.body;
+  //     const { courseId } = req.params;
+  //     const adminId = req.admin._id;
+  
+  //     // Validate course existence
+  //     const course = await Course.findById(courseId);
+  //     if (!course) {
+  //       return ResponseHandler.failure(res, "Course not found", 404);
+  //     }
+  
+  //     // Validate users and ensure they belong to the admin's organization
+  //     const validUsers = await User.find({
+  //       _id: { $in: userIds },
+  //       organizationId: adminId,
+  //     });
+  
+  //     if (validUsers.length !== userIds.length) {
+  //       return ResponseHandler.failure(
+  //         res,
+  //         "One or more users do not exist or are not under your organization",
+  //         400
+  //       );
+  //     }
+  
+  //     // Separate already assigned users
+  //     const alreadyAssigned = [];
+  //     const toBeAssigned = [];
+  
+  //     for (const user of validUsers) {
+  //       if (user.assignedPrograms.includes(courseId)) {
+  //         alreadyAssigned.push(user._id);
+  //       } else {
+  //         toBeAssigned.push(user._id);
   //       }
   //     }
-
-  //     const newLesson = await Lesson.create({
-  //       courseId,
-  //       title: lesson.title,
-  //       objectives: lesson.objectives,
-  //       link: lesson.link,
-  //       files: Urls,
-  //     });
-  //     lessonIds.push(newLesson._id as mongoose.Types.ObjectId);
+  
+  //     // Assign course to users not already assigned
+  //     if (toBeAssigned.length > 0) {
+  //       await User.updateMany(
+  //         { _id: { $in: toBeAssigned } },
+  //         { $push: { assignedPrograms: courseId } }
+  //       );
+  //     }
+  
+  //     return ResponseHandler.success(
+  //       res,
+  //       {
+  //         alreadyAssigned,
+  //         newlyAssigned: toBeAssigned,
+  //       },
+  //       "Course assignment processed successfully",
+  //       200
+  //     );
+  //   } catch (error: any) {
+  //     console.error("Error assigning course to users:", error.message);
+  //     return ResponseHandler.failure(
+  //       res,
+  //       `Server error: ${error.message}`,
+  //       500
+  //     );
   //   }
-  //   return lessonIds;
-  // }
+  // }  
+
+  async assignCourseToUsers(req: Request, res: Response) {
+    try {
+      const { userIds } = req.body;
+      const { courseId } = req.params;
+      const adminId = req.admin._id;
+  
+      // Validate course existence
+      const course = await Course.findById(courseId);
+      if (!course) {
+        return ResponseHandler.failure(res, "Course not found", 404);
+      }
+  
+      // Validate users and ensure they belong to the admin's organization
+      const validUsers = await User.find({
+        _id: { $in: userIds },
+        organizationId: adminId,
+      });
+  
+      if (validUsers.length !== userIds.length) {
+        return ResponseHandler.failure(
+          res,
+          "One or more users do not exist or are not under your organization",
+          400
+        );
+      }
+  
+      // Prevent duplicate course assignments
+      const bulkUpdates = validUsers.map((user) => ({
+        updateOne: {
+          filter: { _id: user._id, assignedPrograms: { $ne: courseId } },
+          update: { $push: { assignedPrograms: courseId } },
+        },
+      }));
+  
+      const result = await User.bulkWrite(bulkUpdates);
+  
+      return ResponseHandler.success(
+        res,
+        {
+          matchedCount: result.matchedCount,
+          modifiedCount: result.modifiedCount,
+          upsertedCount: result.upsertedCount,
+        },
+        "Course assigned to users successfully",
+        200
+      );
+    } catch (error: any) {
+      console.error("Error assigning course to users:", error.message);
+      return ResponseHandler.failure(
+        res,
+        `Server error: ${error.message}`,
+        500
+      );
+    }
+  }  
 
   async getCourseLessons(req: Request, res: Response) {
     try {
