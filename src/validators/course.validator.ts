@@ -161,7 +161,7 @@ export const validateCreateCourse = [
     .withMessage('Objective must be a string'),
 
   body('price')
-    .notEmpty()
+    .optional()
     .withMessage('Price is required')
     .isFloat({ gt: 0 })
     .withMessage('Price must be a positive number'),

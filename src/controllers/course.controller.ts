@@ -346,6 +346,10 @@ export class CourseController {
       }
 
       console.log(course)
+      let status = "unpaid";
+      if (course.cost === "free") {
+        status = "free"
+      }
   
       const bulkUpdates = validUsers.map((user) => ({
         updateOne: {
@@ -358,7 +362,7 @@ export class CourseController {
               assignedPrograms: {
                 courseId: new mongoose.Types.ObjectId(courseId), 
                 dueDate: new Date(dueDate), 
-                status: "unpaid", 
+                status, 
                 amount: course.cost, 
               },
             },
