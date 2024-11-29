@@ -323,7 +323,7 @@ export class CourseController {
 
   async assignCourseToUsers(req: Request, res: Response) {
     try {
-      const { userIds, dueDate } = req.body; // Due date from request body
+      const { userIds, dueDate } = req.body; // `dueDate` must be passed in the request body
       const { courseId } = req.params;
       const adminId = req.admin._id;
   
@@ -347,27 +347,27 @@ export class CourseController {
         );
       }
   
-      // Prevent duplicate course assignments and add additional fields
+      // Prevent duplicate course assignments and update users
       const bulkUpdates = validUsers.map((user) => ({
         updateOne: {
           filter: {
             _id: user._id,
-            "assignedPrograms.courseId": { $ne: courseId }, // Ensure the course isn't already assigned
+            "assignedPrograms.courseId": { $ne: courseId }, // Prevent duplicate course assignment
           },
           update: {
             $push: {
               assignedPrograms: {
-                courseId: course._id,
-                dueDate: new Date(dueDate), // Ensure dueDate is properly handled
-                status: "unpaid",
-                amount: course.cost, // Assuming course.cost is available
+                courseId: new mongoose.Types.ObjectId(courseId), // Ensure proper ObjectId format
+                dueDate: new Date(dueDate), // Due date from request body
+                status: "unpaid", // Set default status to unpaid
+                amount: course.cost, // Use the course's cost
               },
             },
           },
         },
       }));
   
-      // Perform bulk update
+      // Execute the bulk write operation
       const result = await User.bulkWrite(bulkUpdates);
   
       return ResponseHandler.success(
@@ -388,7 +388,7 @@ export class CourseController {
         500
       );
     }
-  }
+  }  
 
   // async assignCourseToUsers(req: Request, res: Response) {
   //   try {
