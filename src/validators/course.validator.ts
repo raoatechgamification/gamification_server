@@ -101,7 +101,7 @@ export const courseContentValidator = [
   errorResponse,
 ];
 
-export const getCourseCurriculumValidator = [
+export const validateCourseId = [
   param("courseId").isMongoId().withMessage("Invalid courseId"),
 
   errorResponse,

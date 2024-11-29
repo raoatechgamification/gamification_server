@@ -31,7 +31,7 @@ function getEmailTemplate(templateName: string, variables: VariablesInterface) {
   //   templatePath = path.join(__dirname, "../templates", templateName);
   // }
 
-  const templatePath = path.join(process.cwd(), "dist/templates", templateName);
+  const templatePath = path.join(__dirname, "../templates", templateName);
 
   if (!fs.existsSync(templatePath)) {
     throw new Error(`Email template not found at ${templatePath}`);

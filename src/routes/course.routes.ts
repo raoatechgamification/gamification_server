@@ -6,7 +6,7 @@ import {
   validateCreateCourse,
   courseContentValidator,
   createAnnouncementValidator,
-  getCourseCurriculumValidator,
+  validateCourseId,
   createCourseValidator,
 } from "../validators/course.validator";
 import { upload } from "../utils/upload.utils";
@@ -14,6 +14,7 @@ import { upload } from "../utils/upload.utils";
 const {
   createCourse,
   createACourse,
+  assignCourseToUsers,
   createLesson,
   createAnnouncement,
   getAllCourses,
@@ -40,6 +41,14 @@ router.post(
   createACourse
 )
 
+router.post(
+  "/:courseId/assign",
+  authenticate,
+  authorize("admin"),
+  ...validateCourseId,
+  assignCourseToUsers
+)
+
 router.get(
   "/all",
   authenticate,
@@ -59,7 +68,7 @@ router.post(
 router.get(
   "/curriculum/:courseId",
   authenticate,
-  ...getCourseCurriculumValidator,
+  ...validateCourseId,
   getCourseLessons
 );
 
@@ -74,7 +83,7 @@ router.post(
 router.get(
   "/announcement/:courseId",
   authenticate,
-  ...getCourseCurriculumValidator,
+  ...validateCourseId,
   getAllAnnouncementsByCourse
 );
 

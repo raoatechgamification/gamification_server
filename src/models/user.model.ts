@@ -16,6 +16,12 @@ export interface IUser extends Document {
   highestEducationLevel?: string;
   gender?: string;
   dateOfBirth?: string;
+  assignedPrograms?: { 
+    courseId: mongoose.Schema.Types.ObjectId, 
+    dueDate: Date, 
+    status: string, 
+    amount: number
+  }[],
   ongoingPrograms?: ICourse[];
   completedPrograms?: ICourse[];
 }
@@ -36,6 +42,18 @@ const UserSchema: Schema<IUser> = new Schema(
     highestEducationLevel: { type: String, default: null, },
     gender: { type: String, default: null, },
     dateOfBirth: { type: String, default: null, },
+    assignedPrograms: [
+      {
+        courseId: mongoose.Schema.Types.ObjectId, 
+        dueDate: Date, 
+        status: { 
+          type: String,
+          enum: ["paid", "pending", "unpaid"],
+          required: true
+        }, 
+        amount: Number
+      },
+    ],
     ongoingPrograms: { type: [Object], default: null, },
     completedPrograms: { type: [Object], default: null, }
   }, {

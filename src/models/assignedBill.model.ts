@@ -11,7 +11,7 @@ export interface assignedBillDocument extends Document {
 const assignedBillSchema = new Schema<assignedBillDocument>(
   {
     billId: { type: Schema.Types.ObjectId, required: true},
-    assigneeId: { type: String, required: true },
+    assigneeId: { type: Schema.Types.ObjectId, required: true },
     assigneeType: { type: String, required: true },
     status: { type: String, required: true },
     paymentId: { type: String }
