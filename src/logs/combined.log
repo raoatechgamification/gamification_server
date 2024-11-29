@@ -2094,3 +2094,137 @@
 2024-11-27 11:31:18 [info]: GET / 304
 2024-11-27 11:31:55 [info]: GET / 304
 2024-11-27 11:31:56 [info]: GET / 304
+2024-11-27 14:12:35 [info]: GET /users 200
+2024-11-27 14:14:24 [info]: GET /users 304
+2024-11-27 14:20:13 [info]: GET /users 304
+2024-11-27 14:21:01 [info]: GET /users 304
+2024-11-27 14:21:19 [info]: GET /users 304
+2024-11-27 14:21:29 [info]: GET /users 304
+2024-11-27 14:27:47 [info]: GET /users 304
+2024-11-27 14:27:51 [info]: GET /users 304
+2024-11-27 14:28:10 [info]: GET /users 304
+2024-11-27 14:29:33 [info]: GET /users 304
+2024-11-27 14:32:39 [info]: GET /users 304
+2024-11-27 14:33:40 [info]: GET /users 401
+2024-11-27 14:33:42 [info]: GET /users 304
+2024-11-27 14:36:16 [info]: GET /users 304
+2024-11-27 14:36:44 [info]: GET /users 304
+2024-11-27 14:37:07 [info]: GET /users 304
+2024-11-27 14:37:12 [info]: GET /users 304
+2024-11-27 14:37:39 [info]: GET /users 304
+2024-11-27 14:44:44 [info]: GET / 200
+2024-11-27 14:44:45 [info]: GET /users 304
+2024-11-27 14:46:54 [info]: GET /users 304
+2024-11-27 14:47:33 [info]: GET /users 304
+2024-11-27 14:48:16 [info]: GET /users 304
+2024-11-27 14:48:55 [info]: GET /users 304
+2024-11-27 14:49:41 [info]: GET /users 304
+2024-11-27 14:49:58 [info]: GET /users 304
+2024-11-27 14:50:10 [info]: GET /users 304
+2024-11-27 14:50:36 [info]: POST /single-create 400 - Request Body: {"firstName":"AJIBADE","lastName":"Emmanuel","email":"ajibadeemmanuel58@gmail.com","role":"user"}
+2024-11-27 14:51:02 [info]: POST /single-create 201 - Request Body: {"firstName":"AJIBADE","lastName":"Emmanuel","email":"ajibadeemmanuel0@gmail.com","role":"user"}
+2024-11-27 14:51:15 [info]: POST /single-create 400 - Request Body: {"firstName":"AJIBADE","lastName":"Emmanuel","email":"ajibadeemmanuel0@gmail.com","role":"user"}
+2024-11-27 14:51:26 [info]: POST /single-create 400 - Request Body: {"firstName":"AJIBADE","lastName":"Emmanuel","email":"ajibadeemmanuel0@gmail.com","role":"user"}
+2024-11-27 14:52:19 [info]: POST /single-create 400 - Request Body: {"firstName":"AJIBADE","lastName":"Emmanuel","email":"ajibadeemmanuel0@gmail.com","role":"user"}
+2024-11-27 14:52:19 [info]: GET /users 200
+2024-11-27 14:53:10 [info]: GET /users 200
+2024-11-27 14:53:19 [info]: POST /single-create 201 - Request Body: {"firstName":"AJIBADE","lastName":"Emmanuel","email":"ajibadeemmanuel0@gmail.com","role":"user"}
+2024-11-27 14:53:51 [info]: GET /users 200
+2024-11-27 14:54:11 [info]: POST /single-create 400 - Request Body: {"firstName":"AJIBADE","lastName":"Emmanuel","email":"ajibadeemmanuel0@gmail.com","role":"user"}
+2024-11-27 14:54:44 [info]: POST /single-create 201 - Request Body: {"firstName":"AJIBADE","lastName":"Emmanuel","email":"ajibadeemmanuel51@gmail.com","role":"user","batch":"","sendEmail":false}
+2024-11-27 14:55:04 [info]: POST /single-create 201 - Request Body: {"firstName":"AJIBADE","lastName":"Emmanuel","email":"ajibadeemmanuel02@gmail.com","role":"user","batch":"","sendEmail":false}
+2024-11-27 15:03:34 [info]: GET /users 200
+2024-11-27 15:09:53 [info]: GET / 304
+2024-11-27 15:09:55 [info]: GET /users 304
+2024-11-27 15:21:15 [info]: GET / 304
+2024-11-27 15:21:17 [info]: GET /users 304
+2024-11-27 15:48:39 [info]: GET /users 304
+2024-11-27 15:48:56 [info]: POST /single-create 400 - Request Body: {"firstName":"AJIBADE","lastName":"Emmanuel","email":"ajibadeemmanuel02@gmail.com","role":"user","batch":"","sendEmail":false}
+2024-11-27 15:49:39 [info]: POST /single-create 400 - Request Body: {"firstName":"AJIBADE","lastName":"Emmanuel","email":"ajibadeemmanuel02@gmail.com","role":"user","batch":"","sendEmail":false}
+2024-11-27 15:50:03 [info]: GET /users 304
+2024-11-27 15:50:28 [info]: GET /users 304
+2024-11-27 15:50:52 [info]: GET /users 304
+2024-11-27 15:51:04 [info]: POST /single-create 201 - Request Body: {"firstName":"AJIBADE","lastName":"Emmanuel","email":"ajibadeemmanuel03@gmail.com","role":"user","batch":"","sendEmail":false}
+2024-11-27 15:53:05 [info]: GET /users 200
+2024-11-27 15:53:31 [info]: GET /users 401
+2024-11-27 15:53:33 [info]: GET /users 304
+2024-11-27 15:54:26 [info]: POST /single-create 201 - Request Body: {"firstName":"AJIBADE","lastName":"Emmanuel","email":"ajibadeemmanuel04@gmail.com","role":"user","batch":"","sendEmail":false}
+2024-11-27 15:54:40 [info]: POST /single-create 201 - Request Body: {"firstName":"AJIBADE","lastName":"Emmanuel","email":"ajibadeemmanuel06@gmail.com","role":"user","batch":"","sendEmail":false}
+2024-11-27 15:54:55 [info]: POST /single-create 201 - Request Body: {"firstName":"AJIBADE","lastName":"Emmanuel","email":"ajibadeemmanuel07@gmail.com","role":"user","batch":"","sendEmail":false}
+2024-11-27 15:55:23 [info]: POST /single-create 201 - Request Body: {"firstName":"AJIBADE","lastName":"Emmanuel","email":"ajibadeemmanuel09@gmail.com","role":"user","batch":"","sendEmail":false}
+2024-11-27 15:55:35 [info]: GET /users 401
+2024-11-27 15:55:39 [info]: GET /users 200
+2024-11-27 15:56:19 [info]: POST /single-create 201 - Request Body: {"firstName":"AJIBADE","lastName":"Emmanuel","email":"ajibadeemmanuel10@gmail.com","role":"user","batch":"","sendEmail":false}
+2024-11-27 15:56:37 [info]: POST /single-create 201 - Request Body: {"firstName":"AJIBADE","lastName":"Emmanuel","email":"ajibadeemmanuel11@gmail.com","role":"user","batch":"","sendEmail":false}
+2024-11-27 15:56:50 [info]: GET /users 401
+2024-11-27 15:56:54 [info]: GET /users 200
+2024-11-27 16:02:48 [info]: GET /users 200
+2024-11-27 16:03:04 [info]: POST /single-create 201 - Request Body: {"firstName":"AJIBADE","lastName":"Emmanuel","email":"richardsonmarcus520@gmail.com","role":"user","batch":"","sendEmail":false}
+2024-11-27 16:18:56 [info]: GET /users 304
+2024-11-27 16:19:55 [info]: GET /users 304
+2024-11-27 16:20:35 [info]: GET /users 304
+2024-11-27 16:21:30 [info]: GET /users 304
+2024-11-27 16:21:34 [info]: POST /single-create 201 - Request Body: {"firstName":"AJIBADE","lastName":"Emmanuel","email":"richardsonmarcus520@gmail.com","role":"user","batch":"","sendEmail":false}
+2024-11-27 16:22:20 [info]: GET /users 304
+2024-11-27 16:23:10 [info]: GET /users 401
+2024-11-27 16:23:16 [info]: GET /users 304
+2024-11-27 16:24:06 [info]: POST /single-create 201 - Request Body: {"firstName":"AJIBADE","lastName":"Emmanuel","email":"richardsonmarcus520@gmail.com","role":"user","batch":"","sendEmail":true}
+2024-11-27 16:24:34 [info]: GET /users 200
+2024-11-27 16:26:25 [info]: GET /users 304
+2024-11-27 16:26:52 [info]: GET /users 304
+2024-11-27 16:28:47 [info]: POST /login 200 - Request Body: {"email":"richardsonmarcus520@gmail.com","password":"AJIBADEEmmanuel123#"}
+2024-11-27 18:25:05 [info]: GET / 304
+2024-11-28 16:28:16 [info]: GET / 401
+2024-11-28 16:28:18 [info]: GET / 403
+2024-11-28 16:28:20 [info]: GET / 403
+2024-11-28 16:28:24 [info]: GET / 403
+2024-11-28 16:30:04 [info]: GET / 401
+2024-11-28 16:30:05 [info]: GET / 401
+2024-11-28 16:30:07 [info]: GET / 401
+2024-11-28 16:30:20 [info]: GET /users 401
+2024-11-28 16:30:25 [info]: GET /users 401
+2024-11-28 16:30:27 [info]: GET /users 401
+2024-11-28 16:30:31 [info]: GET /users 401
+2024-11-28 16:30:36 [info]: GET /course/get-all-courses 200
+2024-11-28 16:30:39 [info]: GET / 401
+2024-11-28 16:30:40 [info]: GET / 401
+2024-11-28 16:30:42 [info]: GET / 401
+2024-11-28 16:30:46 [info]: GET / 401
+2024-11-28 17:27:11 [info]: POST /login 200 - Request Body: {"email":"richardsonmarcus520@gmail.com","password":"AJIBADEEmmanuel123#"}
+2024-11-28 17:27:18 [info]: POST /login 200 - Request Body: {"email":"richardsonmarcus520@gmail.com","password":"AJIBADEEmmanuel123#"}
+2024-11-28 17:39:41 [info]: POST /login 200 - Request Body: {"email":"richardsonmarcus520@gmail.com","password":"AJIBADEEmmanuel123#"}
+2024-11-28 17:54:25 [info]: GET /courses 200
+2024-11-28 17:54:25 [info]: GET /courses 304
+2024-11-28 17:55:00 [info]: GET /courses 304
+2024-11-28 17:55:01 [info]: GET /courses 304
+2024-11-28 17:55:18 [info]: GET /courses 304
+2024-11-28 17:56:43 [info]: GET /courses 304
+2024-11-28 17:57:27 [info]: GET /programs 200
+2024-11-28 17:57:30 [info]: GET /programs 304
+2024-11-28 17:58:20 [info]: GET /programs 304
+2024-11-28 17:58:55 [info]: GET /programs 304
+2024-11-28 17:59:10 [info]: GET /programs 304
+2024-11-28 17:59:20 [info]: GET /programs 304
+2024-11-28 18:00:10 [info]: GET /programs 304
+2024-11-28 18:01:03 [info]: GET /programs 304
+2024-11-28 18:01:27 [info]: GET /programs 304
+2024-11-28 18:03:13 [info]: GET /programs 401
+2024-11-28 18:03:14 [info]: GET /programs 304
+2024-11-28 18:03:54 [info]: GET /programs 401
+2024-11-28 18:03:56 [info]: GET /programs 304
+2024-11-28 18:04:35 [info]: GET /programs 304
+2024-11-28 18:04:37 [info]: GET /programs 304
+2024-11-28 18:05:45 [info]: GET /programs 304
+2024-11-28 18:05:46 [info]: GET /programs 304
+2024-11-28 18:07:09 [info]: GET /programs 304
+2024-11-29 09:21:46 [info]: GET /programs 304
+2024-11-29 09:22:02 [info]: GET /programs 304
+2024-11-29 09:22:40 [info]: GET /programs 304
+2024-11-29 09:22:50 [info]: GET /programs 304
+2024-11-29 11:27:22 [info]: GET /programs 304
+2024-11-29 11:52:31 [info]: GET /programs 304
+2024-11-29 11:53:15 [info]: GET /programs 304
+2024-11-29 11:56:06 [info]: GET /programs 304
+2024-11-29 11:58:12 [info]: GET /programs 304
+2024-11-29 11:59:00 [info]: GET /programs 304
+2024-11-29 12:00:49 [info]: GET /programs 304
