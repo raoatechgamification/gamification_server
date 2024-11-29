@@ -162,9 +162,8 @@ export const validateCreateCourse = [
 
   body('price')
     .optional()
-    .withMessage('Price is required')
-    .isFloat({ gt: 0 })
-    .withMessage('Price must be a positive number'),
+    .isFloat({ gt: 1000 })
+    .withMessage('Price must be a greater than NGN1000'),
 
   body('instructorId')
     .notEmpty()

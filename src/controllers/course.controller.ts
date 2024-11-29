@@ -345,9 +345,8 @@ export class CourseController {
         );
       }
 
-      console.log(course)
       let status = "unpaid";
-      if (course.cost === "free") {
+      if (!course.cost) {
         status = "free"
       }
   
