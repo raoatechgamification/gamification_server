@@ -1,13 +1,12 @@
 import { Request, Response, NextFunction } from "express";
 import PaymentService from "../services/payment.service";
 import User from "../models/user.model";
-import CourseAccess from "../models/courseAssess.model";
+import Course, { ICourse } from "../models/course.model";
 import Bill, { BillDocument } from "../models/bill.model";
 import AssignedBill from "../models/assignedBill.model";
 import Payment from "../models/payment.model";
 import { ResponseHandler } from "../middlewares/responseHandler.middleware";
 import dotenv from "dotenv";
-import axios from "axios";
 dotenv.config();
 
 class PaymentController {
@@ -21,16 +20,24 @@ class PaymentController {
       }
 
       const { assignedBillId } = req.params;
-      const assginedBill = await AssignedBill.findOne({ _id: assignedBillId });
-      if (!assginedBill) {
-        return ResponseHandler.failure(res, "No assigned bill found", 404);
+
+      if (!user.assignedPrograms) {
+        return ResponseHandler.failure(res, "No assigned programs found for the user", 404);
       }
 
-      const bill: BillDocument | null = await Bill.findOne({
-        _id: assginedBill.billId,
-      });
-      if (!bill) {
-        return ResponseHandler.failure(res, "No bill found", 404);
+      const assignedBill = user.assignedPrograms.find(
+        (program) => program._id?.toString() === assignedBillId && program.status === "unpaid"
+      );
+
+      if (!assignedBill) {
+        return ResponseHandler.failure(res, "No matching unpaid assigned bill found", 404);
+      }
+      
+      const { courseId, amount } = assignedBill;
+
+      const course = await Course.findOne({ _id: courseId });
+      if (!course) {
+        return ResponseHandler.failure(res, "Course not found", 404);
       }
 
       const reference = `TX-${userId}-${Date.now()}`;
@@ -38,20 +45,25 @@ class PaymentController {
       const paymentPayload = {
         reference,
         userId,
-        billId: bill._id.toString(),
-        amount: bill.amount,
+        billId: assignedBillId,
         email: user.email,
+        amount,
       };
 
       const paymentResult = await PaymentService.processPayment(paymentPayload);
 
       await Payment.create({
         userId,
-        billId: bill._id,
         assignedBillId,
-        status: "outstanding",
+        courseId,
+        status: "pending",
         reference,
       });
+
+      await User.updateOne(
+        { _id: userId, "assignedPrograms._id": assignedBillId },
+        { $set: { "assignedPrograms.$.status": "pending" } }
+      );
 
       return ResponseHandler.success(
         res,
@@ -121,21 +133,14 @@ class PaymentController {
       console.log("Webhook received with data (request body)", data);
 
       if (data.status === "successful") {
+        const { txRef } = data
         console.log("Transaction reference:", data.txRef);
 
         // Retrieve the payment using the correct reference key
-        const payment = await Payment.findOne({ reference: data.txRef });
+        const payment = await Payment.findOne({ reference: txRef });
 
         if (payment) {
-          const userId = payment.userId;
-          const billId = payment.billId;
-          console.log("User and Bill IDs:", userId, billId);
-
-          // await CourseAccess.create({
-          //   userId,
-          //   billId,
-          //   hasAccess: true
-          // });
+          const { userId, assignedBillId, courseId } = payment;
 
           await Payment.updateOne(
             { _id: payment._id }, // or { userId: userId } if unique
@@ -143,15 +148,21 @@ class PaymentController {
             { new: true }
           );
 
-          await AssignedBill.updateOne(
-            { _id: billId },
-            { status: "paid" },
-            { paymentId: payment._id }
+          await User.updateOne(
+            { _id: userId, "assignedPrograms._id": assignedBillId },
+            { $set: { "assignedPrograms.$.status": "paid" } }
+          );
+
+          await Course.updateOne(
+            { _id: courseId },
+            { $addToSet: { learnerIds: { userId, progress: 0 } } }
           );
 
           console.log("Payment successful and completed");
         }
       } else if (data.status === "failed") {
+        const { txRef } = data;
+
         const payment = await Payment.findOne({ reference: data.txRef });
 
         if (payment) {

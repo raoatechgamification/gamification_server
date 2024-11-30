@@ -1,6 +1,14 @@
 import mongoose, { Schema, Document, Model } from "mongoose";
 import { ICourse } from "../models/course.model";
 
+export interface IAssignedProgram {
+  _id: Schema.Types.ObjectId; 
+  courseId: Schema.Types.ObjectId;
+  dueDate: Date;
+  status: "paid" | "pending" | "unpaid"; 
+  amount: number;
+}
+
 export interface IUser extends Document {
   username?: string;
   firstName?: string;
@@ -16,15 +24,25 @@ export interface IUser extends Document {
   highestEducationLevel?: string;
   gender?: string;
   dateOfBirth?: string;
-  assignedPrograms?: { 
-    courseId: mongoose.Schema.Types.ObjectId, 
-    dueDate: Date, 
-    status: string, 
-    amount: number
-  }[],
+  assignedPrograms?: IAssignedProgram[],
   ongoingPrograms?: ICourse[];
   completedPrograms?: ICourse[];
 }
+
+const AssignedProgramSchema = new Schema<IAssignedProgram>(
+  {
+    _id: { type: Schema.Types.ObjectId, auto: true }, 
+    courseId: { type: Schema.Types.ObjectId, ref: "Course", required: true },
+    dueDate: { type: Date, required: true },
+    status: { 
+      type: String, 
+      enum: ["paid", "pending", "unpaid"], 
+      required: true 
+    },
+    amount: { type: Number, required: true },
+  },
+  { _id: false } 
+);
 
 const UserSchema: Schema<IUser> = new Schema(
   {
@@ -42,18 +60,10 @@ const UserSchema: Schema<IUser> = new Schema(
     highestEducationLevel: { type: String, default: null, },
     gender: { type: String, default: null, },
     dateOfBirth: { type: String, default: null, },
-    assignedPrograms: [
-      {
-        courseId: mongoose.Schema.Types.ObjectId, 
-        dueDate: Date, 
-        status: { 
-          type: String,
-          enum: ["paid", "pending", "unpaid"],
-          required: true
-        }, 
-        amount: Number
-      },
-    ],
+    assignedPrograms: {
+      type: [AssignedProgramSchema], 
+      default: [],
+    },
     ongoingPrograms: { type: [Object], default: null, },
     completedPrograms: { type: [Object], default: null, }
   }, {
