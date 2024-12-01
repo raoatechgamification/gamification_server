@@ -2320,3 +2320,33 @@
 2024-11-29 15:05:27 [info]: GET /users 401
 2024-11-29 15:05:35 [info]: GET /users 304
 2024-11-29 15:22:33 [info]: GET /users 304
+2024-11-29 15:45:31 [info]: GET /users 200
+2024-11-29 16:48:45 [info]: POST /login 200 - Request Body: {"email":"richardsonmarcus520@gmail.com","password":"AJIBADEEmmanuel123#"}
+2024-11-29 16:49:09 [info]: GET /programs 304
+2024-11-29 17:01:17 [info]: GET /programs 304
+2024-11-29 17:02:25 [info]: GET /users 304
+2024-11-29 17:02:27 [info]: GET /programs 304
+2024-11-29 17:03:20 [info]: GET /programs 304
+2024-11-29 17:04:04 [info]: GET /programs 304
+2024-11-29 17:05:55 [info]: GET /programs 304
+2024-11-29 17:12:49 [info]: GET /programs 304
+2024-11-29 17:13:07 [info]: GET / 304
+2024-11-29 17:13:16 [info]: GET /users 304
+2024-11-29 17:20:32 [info]: GET /users 304
+2024-11-29 17:20:33 [info]: GET /programs 304
+2024-11-29 17:36:30 [info]: GET /users 304
+2024-11-29 17:36:33 [info]: GET /users 304
+2024-11-29 18:24:12 [info]: GET /users 304
+2024-11-29 18:24:15 [info]: GET /users 304
+2024-11-29 18:40:28 [info]: GET /users 304
+2024-11-29 18:40:31 [info]: GET /users 304
+2024-11-29 18:54:31 [info]: GET /users 304
+2024-11-29 18:54:34 [info]: GET /users 304
+2024-11-29 19:54:39 [info]: GET /users 304
+2024-11-29 19:54:42 [info]: GET /users 304
+2024-11-29 19:56:37 [info]: GET /users 304
+2024-11-29 19:56:48 [info]: POST /login 200 - Request Body: {"email":"richardsonmarcus520@gmail.com","password":"AJIBADEEmmanuel123#"}
+2024-11-29 19:56:51 [info]: GET /programs 304
+2024-11-29 19:57:00 [info]: POST /login 200 - Request Body: {"email":"ajibadeemmanuel58@gmail.com","password":"Test2024!"}
+2024-11-29 19:58:05 [info]: GET / 401
+2024-11-29 19:58:19 [info]: GET / 304
