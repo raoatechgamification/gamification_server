@@ -1,5 +1,5 @@
 import { Request, Response, NextFunction } from "express";
-import { param, body, validationResult } from "express-validator";
+import { param, body, validationResult, check } from "express-validator";
 
 const validateMarkingGuide = [
   body("markingGuide")
@@ -95,6 +95,77 @@ export const createAssessmentValidator = [
 
   errorResponse,
 ];
+
+export const createObjectiveAssessmentValidator = [
+  check('title')
+    .notEmpty()
+    .withMessage('Title is required'),
+  check('description')
+    .notEmpty()
+    .withMessage('Description is required'),
+  check('marksPerQuestion')
+    .isNumeric()
+    .withMessage('Marks per question must be a number')
+    .notEmpty()
+    .withMessage('Marks per question is required'),
+  check('numberOfTrials')
+    .optional()
+    .isNumeric()
+    .withMessage('Number of trials must be a number'),
+  check('purpose')
+    .optional()
+    .isString()
+    .withMessage('Purpose must be a string'),
+  check('passMark')
+    .isNumeric()
+    .withMessage('Pass mark must be a number')
+    .notEmpty()
+    .withMessage('Pass mark is required'),
+  check('duration')
+    .isNumeric()
+    .withMessage('Duration must be a number')
+    .notEmpty()
+    .withMessage('Duration is required'),
+  check('startDate')
+    .optional()
+    .isISO8601()
+    .withMessage('Start date must be a valid ISO8601 date'),
+  check('endDate')
+    .optional()
+    .isISO8601()
+    .withMessage('End date must be a valid ISO8601 date'),
+  check('assessmentCode')
+    .optional()
+    .isString()
+    .withMessage('Assessment code must be a string'),
+  check('questions')
+    .isArray()
+    .withMessage('Questions must be an array')
+    .notEmpty()
+    .withMessage('Questions are required'),
+  check('questions.*.question')
+    .notEmpty()
+    .withMessage('Each question must have a text'),
+  check('questions.*.type')
+    .isIn(['True or False', 'Yes or No', 'Fill in the Gap', 'Multichoice'])
+    .withMessage(
+      'Each question type must be one of True or False, Yes or No, Fill in the Gap, or Multichoice'
+    ),
+  check('questions.*.options')
+    .optional()
+    .isArray()
+    .withMessage('Options must be an array for multichoice questions'),
+  check('questions.*.answer')
+    .notEmpty()
+    .withMessage('Each question must have an answer'),
+  check('questions.*.score')
+    .isNumeric()
+    .withMessage('Each question score must be a number')
+    .notEmpty()
+    .withMessage('Each question must have a score'),
+  
+  errorResponse
+]
 
 export const submissionValidator = [
   param("assessmentId")

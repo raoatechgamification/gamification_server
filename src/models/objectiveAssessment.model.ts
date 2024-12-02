@@ -1,15 +1,7 @@
-import mongoose, { Schema, Document, Model } from 'mongoose';
+import mongoose, { Schema, Document } from 'mongoose';
 
-interface IQuestion {
-  question: string;
-  type: 'True or False' | 'Yes or No' | 'Fill in the Gap' | 'Multichoice';
-  options?: string[]; // Optional for non-multichoice questions
-  answer: string;
-  score: number;
-}
-
-interface IAssessment extends Document {
-  assessmentCode: string;
+// Define the interface for the Assessment document
+interface IObjectiveAssessment extends Document {
   title: string;
   description: string;
   marksPerQuestion: number;
@@ -20,31 +12,46 @@ interface IAssessment extends Document {
   duration: number;
   startDate?: Date;
   endDate?: Date;
-  questions: IQuestion[];
+  assessmentCode: string;
+  questions: {
+    question: string;
+    type: string;
+    options?: string[];
+    answer: string;
+    score: number;
+  }[];
 }
 
-const QuestionSchema = new Schema<IQuestion>({
-  question: { type: String, required: true },
-  type: { type: String, enum: ['True or False', 'Yes or No', 'Fill in the Gap', 'Multichoice'], required: true },
-  options: [{ type: String }],
-  answer: { type: String, required: true },
-  score: { type: Number, required: true },
-});
-
-const AssessmentSchema = new Schema<IAssessment>({
-  assessmentCode: { type: String, required: true },
+// Define the schema
+const objectiveAssessmentSchema = new Schema<IObjectiveAssessment>({
   title: { type: String, required: true },
   description: { type: String, required: true },
   marksPerQuestion: { type: Number, required: true },
-  numberOfTrials: { type: Number },
-  purpose: { type: String },
-  position: { type: Number, required: true, unique: true },
+  numberOfTrials: { type: Number, default: null },
+  purpose: { type: String, default: null },
+  position: { type: Number, required: true },
   passMark: { type: Number, required: true },
   duration: { type: Number, required: true },
-  startDate: { type: Date },
-  endDate: { type: Date },
-  questions: [QuestionSchema],
+  startDate: { type: Date, default: null },
+  endDate: { type: Date, default: null },
+  assessmentCode: { type: String, required: true },
+  questions: [
+    {
+      question: { type: String, required: true },
+      type: {
+        type: String,
+        enum: ['True or False', 'Yes or No', 'Fill in the Gap', 'Multichoice'],
+        required: true,
+      },
+      options: { type: [String], default: [] },
+      answer: { type: String, required: true },
+      score: { type: Number, required: true },
+    },
+  ],
 });
 
-const Assessment: Model<IAssessment> = mongoose.model('Assessment', AssessmentSchema);
-export default Assessment;
+const ObjectiveAssessment =
+  mongoose.models.ObjectiveAssessment ||
+  mongoose.model<IObjectiveAssessment>('ObjectiveAssessment', objectiveAssessmentSchema);
+
+export default ObjectiveAssessment;

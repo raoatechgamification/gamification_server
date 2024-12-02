@@ -5,6 +5,7 @@ import { SubmissionController } from "../controllers/submission.controller";
 import ObjectAssessmentController from "../controllers/objectiveAssessment.controller";
 import {
   createAssessmentValidator,
+  createObjectiveAssessmentValidator,
   submissionValidator,
   gradeAssessmentValidator,
   viewLearnersValidator,
@@ -34,9 +35,10 @@ router.post(
 );
 
 router.post(
-  '/objective',
+  '/:courseId/objective',
   authenticate,
   authorize("admin"),
+  ...createObjectiveAssessmentValidator,
   createObjectiveAssessment
 )
 
