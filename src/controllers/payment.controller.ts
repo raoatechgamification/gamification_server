@@ -10,7 +10,7 @@ import dotenv from "dotenv";
 dotenv.config();
 
 class PaymentController {
-  async processPayment(req: Request, res: Response, next: NextFunction) {
+  async processPayment(req: Request, res: Response) {
     try {
       const userId = req.user.id;
 
@@ -70,12 +70,16 @@ class PaymentController {
         paymentResult,
         "Payment link created"
       );
-    } catch (error) {
-      next(error);
+    } catch (error: any) {
+      return ResponseHandler.failure(
+        res,
+        `Server error: ${error.message}`,
+        500
+      );
     }
   }
 
-  async verifyPayment(req: Request, res: Response, next: NextFunction) {
+  async verifyPayment(req: Request, res: Response) {
     const { transactionId } = req.params;
 
     try {
@@ -119,7 +123,7 @@ class PaymentController {
     }
   }
 
-  async paymentWebhook(req: Request, res: Response, next: NextFunction) {
+  async paymentWebhook(req: Request, res: Response) {
     try {
       const flutterwaveVerifHash = req.headers["verif-hash"];
       const secretHash = process.env.FLUTTERWAVE_SECRET_HASH;
@@ -184,155 +188,6 @@ class PaymentController {
       });
     }
   }
-
-  // async paymentWebhook(req: Request, res: Response, next: NextFunction) {
-  //   try {
-  //     const flutterwaveVerifHash = req.headers['verif-hash'];
-  //     const secretHash = process.env.FLUTTERWAVE_SECRET_HASH;
-
-  //     if (flutterwaveVerifHash !== secretHash) {
-  //       console.log("Hash mismatch - Unauthorized request");
-
-  //       return res.status(403).json({ message: "Invalid signature" });
-  //     }
-
-  //     // const { event, data } = req.body;
-  //     const data = req.body;
-
-  //     if (req.statusCode) console.log("This is the status code of the request body: ", req.statusCode)
-
-  //     console.log("Webhook received with data (which is the request body)", data)
-  //     if (data.status === "successful") {
-  //       console.log("Transaction reference: ", data.txRef)
-
-  //       // Find Payment and get details
-  //       const payment = await Payment.findOne({ reference: data.tx_ref})
-
-  //       if (payment) {
-  //         const userId = payment.userId
-  //         const billId = payment.billId
-
-  //         console.log("This is user and bill ids: ", userId, billId)
-
-  //         await CourseAccess.create({
-  //           userId,
-  //           billId,
-  //           hasAccess: true
-  //         })
-
-  //         await Payment.findByIdAndUpdate(
-  //           userId,
-  //           { status: "successful", data},
-  //           { new: true }
-  //         )
-
-  //         // Send success notification to the user
-  //         console.log("Payment successful and completed");
-  //       }
-  //     } else if (data.status === "failed") {
-  //       const payment = await Payment.findOne({ reference: data.tx_ref})
-
-  //       if (payment) {
-  //         const userId = payment.userId
-
-  //         await Payment.findByIdAndUpdate(
-  //           userId,
-  //           { status: "failed", data },
-  //           { new: true }
-  //         );
-  //       }
-  //       console.log("Payment failed:", data);
-  //     }
-
-  //     res.status(200).json({ status: "success" });
-  //   } catch (error: any) {
-  //     res.status(500).json({
-  //       message: "Server error",
-  //       error: error.message
-  //     });
-  //   }
-  // }
-
-  // async verifyPayment(req: Request, res: Response, next: NextFunction) {
-  //   try {
-  //     const { paymentId } = req.params;
-  //     const paymentStatus = await PaymentService.verifyPayment(paymentId);
-
-  //     return ResponseHandler.success(
-  //       res,
-  //       paymentStatus,
-  //       "Payment status verified successfully"
-  //     );
-
-  //     // app.get('/payment-callback', async (req, res) => {
-  //     //   if (req.query.status === 'successful') {
-  //     //       const transactionDetails = await Transaction.find({ref: req.query.tx_ref});
-  //     //       const response = await flw.Transaction.verify({id: req.query.transaction_id});
-  //     //       if (
-  //     //           response.data.status === "successful"
-  //     //           && response.data.amount === transactionDetails.amount
-  //     //           && response.data.currency === "NGN") {
-  //     //           // Success! Confirm the customer's payment
-  //     //       } else {
-  //     //           // Inform the customer their payment was unsuccessful
-  //     //       }
-  //     //   }
-  //     // );
-
-  //     // Install with: npm i flutterwave-node-v3
-
-  //     // const Flutterwave = require('flutterwave-node-v3');
-  //     // const flw = new Flutterwave(process.env.FLW_PUBLIC_KEY, process.env.FLW_SECRET_KEY);
-  //     // flw.Transaction.verify({ id: transactionId })
-  //     //     .then((response) => {
-  //     //         if (
-  //     //             response.data.status === "successful"
-  //     //             && response.data.amount === expectedAmount
-  //     //             && response.data.currency === expectedCurrency) {
-  //     //             // Success! Confirm the customer's payment
-  //     //         } else {
-  //     //             // Inform the customer their payment was unsuccessful
-  //     //         }
-  //     //     })
-  //     //     .catch(console.log);
-  //   } catch (error) {
-  //     next(error);
-  //   }
-  // }
-
-  // async paymentWebhookkk(req: Request, res: Response, next: NextFunction) {
-  //   try {
-  //     const webhookData = req.body;
-
-  //     if (webhookData.status === "successfully") {
-  //       const paymentId = webhookData.transaction._id;
-
-  //       const paymentStatus = await PaymentService.verifyPayment(paymentId);
-
-  //       if (paymentStatus.status === "success") {
-  //         const userId = webhookData.customer.id;
-  //         const billId = webhookData.tx_ref;
-
-  //         await CourseAccess.create({
-  //           userId,
-  //           billId,
-  //           hasAccess: true,
-  //         });
-
-  //         return res.status(200).json({
-  //           status: "success",
-  //           message: "Payment verifed and access granted",
-  //         });
-  //       }
-  //     }
-
-  //     return res
-  //       .status(400)
-  //       .json({ status: "failure", message: "Invalid webhook event" });
-  //   } catch (error) {
-  //     next(error);
-  //   }
-  // }
 }
 
 export default new PaymentController();

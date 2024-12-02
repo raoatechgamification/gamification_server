@@ -2,6 +2,7 @@ import { Router } from "express";
 import { authenticate, authorize } from "../middlewares/auth.middleware";
 import { AssessmentController } from "../controllers/assessment.controller";
 import { SubmissionController } from "../controllers/submission.controller";
+import ObjectAssessmentController from "../controllers/objectiveAssessment.controller";
 import {
   createAssessmentValidator,
   submissionValidator,
@@ -19,6 +20,8 @@ const {
   gradeSubmission,
 } = new AssessmentController();
 
+const { createObjectiveAssessment } = ObjectAssessmentController;
+
 const { submitAssessment } = new SubmissionController();
 
 router.post(
@@ -29,6 +32,13 @@ router.post(
   ...createAssessmentValidator,
   createAssessmentHandler
 );
+
+router.post(
+  '/objective',
+  authenticate,
+  authorize("admin"),
+  createObjectiveAssessment
+)
 
 router.put(
   "/grade/:submissionId",
