@@ -160,11 +160,10 @@ export const validateCreateCourse = [
     .isString()
     .withMessage('Objective must be a string'),
 
-  body('price')
-    .notEmpty()
-    .withMessage('Price is required')
-    .isFloat({ gt: 0 })
-    .withMessage('Price must be a positive number'),
+  // body('price')
+  //   .optional()
+  //   .isFloat({ gt: 1000 })
+  //   .withMessage('Price must be a greater than NGN1000'),
 
   body('instructorId')
     .notEmpty()
@@ -184,17 +183,17 @@ export const validateCreateCourse = [
     .isString()
     .withMessage('Lesson format must be a string'),
 
-  body('lessons')
-    .notEmpty()
-    .withMessage('Lessons are required')
-    .isArray()
-    .withMessage('Lessons must be an array')
-    .custom((lessons) => {
-      if (!lessons.every((lesson: string) => /^[a-f\d]{24}$/i.test(lesson))) {
-        throw new Error('Lessons must be an array of valid MongoDB ObjectIds');
-      }
-      return true;
-    }),
+  // body('lessons')
+  //   .notEmpty()
+  //   .withMessage('Lessons are required')
+  //   .isArray()
+  //   .withMessage('Lessons must be an array')
+  //   .custom((lessons) => {
+  //     if (!lessons.every((lesson: string) => /^[a-f\d]{24}$/i.test(lesson))) {
+  //       throw new Error('Lessons must be an array of valid MongoDB ObjectIds');
+  //     }
+  //     return true;
+  //   }),
 
     body("assessments")
       .optional({ nullable: true })

@@ -239,19 +239,25 @@ export class CourseController {
           );
         }
       }
-
-      const validLessons = await Lesson.find({
+      let validLessons 
+      if(lessons){
+       validLessons = await Lesson.find({
         _id: { $in: lessons },
         instructorId: adminId,
       });
 
-      if (validLessons.length !== lessons.length) {
+if (validLessons.length !== lessons.length) {
         return ResponseHandler.failure(
           res,
           "One or more lessons are invalid",
           400
         );
       }
+
+      }
+      
+
+      
 
       let announcementIds;      
 
@@ -270,7 +276,7 @@ export class CourseController {
         );
       }
 
-      if (!price) price === "free"
+      if (price === 0) price === "free"
       
       const courseData: any = {
         courseCode: code,
@@ -323,17 +329,15 @@ export class CourseController {
 
   async assignCourseToUsers(req: Request, res: Response) {
     try {
-      const { userIds, dueDate } = req.body; // Due date from request body
+      const { userIds, dueDate } = req.body; 
       const { courseId } = req.params;
       const adminId = req.admin._id;
   
-      // Validate course existence
       const course = await Course.findById(courseId);
       if (!course) {
         return ResponseHandler.failure(res, "Course not found", 404);
       }
   
-      // Validate users and ensure they belong to the admin's organization
       const validUsers = await User.find({
         _id: { $in: userIds },
         organizationId: adminId,
@@ -346,28 +350,31 @@ export class CourseController {
           400
         );
       }
+
+      let status = "unpaid";
+      if (!course.cost) {
+        status = "free"
+      }
   
-      // Prevent duplicate course assignments and add additional fields
       const bulkUpdates = validUsers.map((user) => ({
         updateOne: {
           filter: {
             _id: user._id,
-            "assignedPrograms.courseId": { $ne: courseId }, // Ensure the course isn't already assigned
+            "assignedPrograms.courseId": { $ne: courseId }, 
           },
           update: {
             $push: {
               assignedPrograms: {
-                courseId: course._id,
-                dueDate: new Date(dueDate), // Ensure dueDate is properly handled
-                status: "unpaid",
-                amount: course.cost, // Assuming course.cost is available
+                courseId: new mongoose.Types.ObjectId(courseId), 
+                dueDate: new Date(dueDate), 
+                status, 
+                amount: course.cost, 
               },
             },
           },
         },
       }));
   
-      // Perform bulk update
       const result = await User.bulkWrite(bulkUpdates);
   
       return ResponseHandler.success(
@@ -388,63 +395,7 @@ export class CourseController {
         500
       );
     }
-  }
-
-  // async assignCourseToUsers(req: Request, res: Response) {
-  //   try {
-  //     const { userIds } = req.body;
-  //     const { courseId } = req.params;
-  //     const adminId = req.admin._id;
-  
-  //     // Validate course existence
-  //     const course = await Course.findById(courseId);
-  //     if (!course) {
-  //       return ResponseHandler.failure(res, "Course not found", 404);
-  //     }
-  
-  //     // Validate users and ensure they belong to the admin's organization
-  //     const validUsers = await User.find({
-  //       _id: { $in: userIds },
-  //       organizationId: adminId,
-  //     });
-  
-  //     if (validUsers.length !== userIds.length) {
-  //       return ResponseHandler.failure(
-  //         res,
-  //         "One or more users do not exist or are not under your organization",
-  //         400
-  //       );
-  //     }
-  
-  //     // Prevent duplicate course assignments
-  //     const bulkUpdates = validUsers.map((user) => ({
-  //       updateOne: {
-  //         filter: { _id: user._id, assignedPrograms: { $ne: courseId } },
-  //         update: { $push: { assignedPrograms: courseId } },
-  //       },
-  //     }));
-  
-  //     const result = await User.bulkWrite(bulkUpdates);
-  
-  //     return ResponseHandler.success(
-  //       res,
-  //       {
-  //         matchedCount: result.matchedCount,
-  //         modifiedCount: result.modifiedCount,
-  //         upsertedCount: result.upsertedCount,
-  //       },
-  //       "Course assigned to users successfully",
-  //       200
-  //     );
-  //   } catch (error: any) {
-  //     console.error("Error assigning course to users:", error.message);
-  //     return ResponseHandler.failure(
-  //       res,
-  //       `Server error: ${error.message}`,
-  //       500
-  //     );
-  //   }
-  // }  
+  }  
 
   async getCourseLessons(req: Request, res: Response) {
     try {

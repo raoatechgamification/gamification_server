@@ -2130,6 +2130,42 @@
 2024-11-29 14:29:00 [info]: POST /67465a31617d82f5b5bba5f8/assign 200 - Request Body: {"userIds":["67409ce32de7105d7831d2f9","6745d7d280ff57ccaf8941dd","6745e9c6884e5b0a2bdbdf4a"]}
 2024-11-29 15:09:15 [info]: POST /67465a31617d82f5b5bba5f8/assign 200 - Request Body: {"userIds":["67409ce32de7105d7831d2f9","6745d7d280ff57ccaf8941dd","6745e9c6884e5b0a2bdbdf4a"],"dueDate":"2024-12-31"}
 2024-11-29 15:09:26 [info]: POST /login 200 - Request Body: {"email":"lola@gmail.com","password":"Tioluwani05$"}
+2024-11-29 15:19:48 [info]: POST /67465a31617d82f5b5bba5f8/assign 200 - Request Body: {"userIds":["67409ce32de7105d7831d2f9","6745d7d280ff57ccaf8941dd","6745e9c6884e5b0a2bdbdf4a"],"dueDate":"2024-12-31"}
+2024-11-29 15:20:18 [info]: POST /67465a31617d82f5b5bba5f8/assign 200 - Request Body: {"userIds":["67409ce32de7105d7831d2f9","6745d7d280ff57ccaf8941dd","6745e9c6884e5b0a2bdbdf4a","6745e9c6884e5b0a2bdbdf49"],"dueDate":"2024-12-31"}
+2024-11-29 15:21:15 [info]: POST /login 400 - Request Body: {"email":"adike@gmail.com","password":"Tioluwani05$"}
+2024-11-29 15:21:59 [info]: POST /login 200 - Request Body: {"email":"adike@gmail.com","password":"DefaultPassword123"}
+2024-11-29 15:51:32 [info]: POST /67465a31617d82f5b5bba5f8/assign 400 - Request Body: {"userIds":["67409ce32de7105d7831d2f9","6745d7d280ff57ccaf8941dd","6745e9c6884e5b0a2bdbdf4a","6745e9c6884e5b0a2bdbdf49"],"dueDate":"2024-12-31"}
+2024-11-29 15:51:55 [info]: POST /67465a31617d82f5b5bba5f8/assign 200 - Request Body: {"userIds":["67409ce32de7105d7831d2f9","6745e9c6884e5b0a2bdbdf4a","6745e9c6884e5b0a2bdbdf49"],"dueDate":"2024-12-31"}
+2024-11-29 15:52:23 [info]: POST /67465a31617d82f5b5bba5f8/assign 200 - Request Body: {"userIds":["67409ce32de7105d7831d2f9","6745e9c6884e5b0a2bdbdf4a","6745e9c6884e5b0a2bdbdf49"],"dueDate":"2024-12-31"}
+2024-11-29 15:57:15 [info]: POST /add 401 - Request Body: {"title":"Beginners guide to Medicine","objective":"Introduction to Biology I","price":"50000","instructorId":"67453884a835dc3c8062914d","duration":"six weeks","lessonFormat":".xls","lessons":["67462cc62316dfb7fad856d4"],"assessments":["6746287ee641d30376864b00"],"announcements":[{"title":"Become a doctor now","details":"This is your very chance to become a doctor"}]}
+2024-11-29 15:57:24 [info]: POST /add 422 - Request Body: {"title":"Beginners guide to Medicine","objective":"Introduction to Biology I","price":"50000","instructorId":"67453884a835dc3c8062914d","duration":"six weeks","lessonFormat":".xls","lessons":["67462cc62316dfb7fad856d4"],"assessments":["6746287ee641d30376864b00"],"announcements":[{"title":"Become a doctor now","details":"This is your very chance to become a doctor"}]}
+2024-11-29 16:21:00 [info]: POST /add 201 - Request Body: {"code":"CS-501","showInstructor":true,"title":"Beginners guide to Medicine","objective":"Introduction to Biology I","price":"50000","instructorId":"67453884a835dc3c8062914d","duration":"six weeks","lessonFormat":".xls","lessons":["67462cc62316dfb7fad856d4"],"assessments":["6746287ee641d30376864b00"],"announcements":[{"title":"Become a doctor now","details":"This is your very chance to become a doctor"}]}
+2024-11-29 16:21:28 [info]: POST /6749dbdbe041149374b73df8/assign 200 - Request Body: {"userIds":["67409ce32de7105d7831d2f9","6745e9c6884e5b0a2bdbdf4a","6745e9c6884e5b0a2bdbdf49"],"dueDate":"2024-12-31"}
+2024-11-29 16:21:36 [info]: POST /login 200 - Request Body: {"email":"adike@gmail.com","password":"DefaultPassword123"}
+2024-11-29 16:26:37 [info]: POST /login 200 - Request Body: {"email":"adike@gmail.com","password":"DefaultPassword123"}
+2024-11-29 16:27:19 [info]: POST /6749dbdbe041149374b73df8/assign 200 - Request Body: {"userIds":["67409ce32de7105d7831d2f9","6745e9c6884e5b0a2bdbdf4a","6745e9c6884e5b0a2bdbdf49"],"dueDate":"2024-12-31"}
+2024-11-29 16:27:36 [info]: POST /add 422 - Request Body: {"code":"CS-501","showInstructor":true,"title":"Beginners guide to Medicine","objective":"Introduction to Biology I","instructorId":"67453884a835dc3c8062914d","duration":"six weeks","lessonFormat":".xls","lessons":["67462cc62316dfb7fad856d4"],"assessments":["6746287ee641d30376864b00"],"announcements":[{"title":"Become a doctor now","details":"This is your very chance to become a doctor"}]}
+2024-11-29 16:31:11 [info]: POST /add 201 - Request Body: {"code":"CS-501","showInstructor":true,"title":"Beginners guide to Medicine","objective":"Introduction to Biology I","instructorId":"67453884a835dc3c8062914d","duration":"six weeks","lessonFormat":".xls","lessons":["67462cc62316dfb7fad856d4"],"assessments":["6746287ee641d30376864b00"],"announcements":[{"title":"Become a doctor now","details":"This is your very chance to become a doctor"}]}
+2024-11-29 16:31:50 [info]: POST /6749de3e4fab0e184d35d16e/assign 200 - Request Body: {"userIds":["67409ce32de7105d7831d2f9","6745e9c6884e5b0a2bdbdf4a","6745e9c6884e5b0a2bdbdf49"],"dueDate":"2024-12-31"}
+2024-11-29 16:31:56 [info]: POST /login 200 - Request Body: {"email":"adike@gmail.com","password":"DefaultPassword123"}
+2024-11-29 16:33:49 [info]: POST /6749de3e4fab0e184d35d16e/assign 200 - Request Body: {"userIds":["67409ce32de7105d7831d2f9","6745e9c6884e5b0a2bdbdf4a","6745e9c6884e5b0a2bdbdf49"],"dueDate":"2024-12-31"}
+2024-11-29 16:34:30 [info]: POST /6749de3e4fab0e184d35d16e/assign 200 - Request Body: {"userIds":["67409ce32de7105d7831d2f9","6745e9c6884e5b0a2bdbdf4a","6745e9c6884e5b0a2bdbdf49"],"dueDate":"2024-12-31"}
+2024-11-29 16:34:41 [info]: POST /add 201 - Request Body: {"code":"CS-501","showInstructor":true,"title":"Beginners guide to Medicine","objective":"Introduction to Biology I","instructorId":"67453884a835dc3c8062914d","duration":"six weeks","lessonFormat":".xls","lessons":["67462cc62316dfb7fad856d4"],"assessments":["6746287ee641d30376864b00"],"announcements":[{"title":"Become a doctor now","details":"This is your very chance to become a doctor"}]}
+2024-11-29 16:35:15 [info]: POST /6749df10f80a388f00aeda21/assign 200 - Request Body: {"userIds":["67409ce32de7105d7831d2f9","6745e9c6884e5b0a2bdbdf4a","6745e9c6884e5b0a2bdbdf49"],"dueDate":"2024-12-31"}
+2024-11-29 16:35:23 [info]: POST /login 200 - Request Body: {"email":"adike@gmail.com","password":"DefaultPassword123"}
+2024-11-29 16:37:09 [info]: POST /add 201 - Request Body: {"code":"CS-501","showInstructor":true,"title":"Beginners guide to Medicine","objective":"Introduction to Biology I","instructorId":"67453884a835dc3c8062914d","duration":"six weeks","lessonFormat":".xls","lessons":["67462cc62316dfb7fad856d4"],"assessments":["6746287ee641d30376864b00"],"announcements":[{"title":"Become a doctor now","details":"This is your very chance to become a doctor"}]}
+2024-11-29 16:40:44 [info]: POST /add 201 - Request Body: {"code":"CS-501","showInstructor":true,"title":"Beginners guide to Medicine","objective":"Introduction to Biology I","instructorId":"67453884a835dc3c8062914d","duration":"six weeks","lessonFormat":".xls","lessons":["67462cc62316dfb7fad856d4"],"assessments":["6746287ee641d30376864b00"],"announcements":[{"title":"Become a doctor now","details":"This is your very chance to become a doctor"}]}
+2024-11-29 16:41:06 [info]: POST /6749e07b8f1bb9655ef9178a/assign 500 - Request Body: {"userIds":["67409ce32de7105d7831d2f9","6745e9c6884e5b0a2bdbdf4a","6745e9c6884e5b0a2bdbdg49"],"dueDate":"2024-12-31"}
+2024-11-29 16:42:01 [info]: POST /6749e07b8f1bb9655ef9178a/assign 200 - Request Body: {"userIds":["67409ce32de7105d7831d2f9","6745e9c6884e5b0a2bdbdf4a","6745e9c6884e5b0a2bdbdf49"],"dueDate":"2024-12-31"}
+2024-11-29 16:42:55 [info]: POST /login 200 - Request Body: {"email":"adike@gmail.com","password":"DefaultPassword123"}
+2024-11-29 16:59:29 [info]: POST /6749e07b8f1bb9655ef9178a/assign 200 - Request Body: {"userIds":["67409ce32de7105d7831d2f9","6745e9c6884e5b0a2bdbdf4a","6745e9c6884e5b0a2bdbdf48"],"dueDate":"2024-12-31"}
+2024-11-29 16:59:47 [info]: POST /6749e07b8f1bb9655ef9178a/assign 400 - Request Body: {"userIds":["67409ce32de7105d7831d2f9","6745e9c6884e5b0a2bdbdf4a","6745e9c6885e5b0a2bdbdf49"],"dueDate":"2024-12-31"}
+2024-11-29 17:00:06 [info]: POST /6749e07b8f1bb9655ef9178a/assign 400 - Request Body: {"userIds":["67409ce32de7105d7831d2f9","6745e9c6894e5b0a2bdbdf4a","6745e9c6884e5b0a2bdbdf49"],"dueDate":"2024-12-31"}
+2024-11-29 17:00:21 [info]: POST /6749e07b8f1bb9655ef9178a/assign 200 - Request Body: {"userIds":["67409ce32de7105d7831d2f9","6745e9c6884e5b0a2bdbdf4a","6745e9c6884e5b0a2bdbdf49"],"dueDate":"2024-12-31"}
+2024-11-29 17:00:28 [info]: POST /6749e07b8f1bb9655ef9178a/assign 400 - Request Body: {"userIds":["67409ce32de7105d7831d2f9","6745e9c6885e5b0a2bdbdf4a","6745e9c6884e5b0a2bdbdf49"],"dueDate":"2024-12-31"}
+2024-11-29 17:00:35 [info]: POST /6749e07b8f1bb9655ef9178a/assign 200 - Request Body: {"userIds":["67409ce32de7105d7831d2f9","6745e9c6884e5b0a2bdbdf4a","6745e9c6884e5b0a2bdbdf49"],"dueDate":"2024-12-31"}
+2024-11-29 17:00:43 [info]: POST /6749e07b8f1bb9655ef9178a/assign 500 - Request Body: {"userIds":["67409ce32de7105d7831d2f9","6745e9c688e5b0a2bdbdf4a","6745e9c6884e5b0a2bdbdf49"],"dueDate":"2024-12-31"}
+2024-11-29 17:00:50 [info]: POST /6749e07b8f1bb9655ef9178a/assign 200 - Request Body: {"userIds":["67409ce32de7105d7831d2f9","6745e9c6884e5b0a2bdbdf4a","6745e9c6884e5b0a2bdbdf49"],"dueDate":"2024-12-31"}
 2024-11-27 14:12:35 [info]: GET /users 200
 2024-11-27 14:14:24 [info]: GET /users 304
 2024-11-27 14:20:13 [info]: GET /users 304
@@ -2350,3 +2386,21 @@
 2024-11-29 19:57:00 [info]: POST /login 200 - Request Body: {"email":"ajibadeemmanuel58@gmail.com","password":"Test2024!"}
 2024-11-29 19:58:05 [info]: GET / 401
 2024-11-29 19:58:19 [info]: GET / 304
+2024-12-02 17:36:33 [info]: POST /login 200 - Request Body: {"email":"ajibadeemmanuel58@gmail.com","password":"Test2024!"}
+2024-12-02 17:36:41 [info]: GET / 304
+2024-12-02 17:37:25 [info]: GET / 304
+2024-12-02 17:38:21 [info]: GET / 304
+2024-12-02 17:38:32 [info]: GET / 304
+2024-12-02 17:40:00 [info]: GET / 304
+2024-12-02 17:40:03 [info]: GET / 304
+2024-12-02 17:40:26 [info]: GET / 401
+2024-12-02 17:41:02 [info]: GET / 304
+2024-12-02 17:52:08 [info]: GET / 401
+2024-12-02 17:52:10 [info]: GET / 304
+2024-12-02 17:52:56 [info]: POST /add 422 - Request Body: {"title":"Test 2","objective":"test 2","price":"2000","duration":"2","instructor":"67405d791a49e4a70bfd2d44","lessonFormat":"pdf"}
+2024-12-02 17:56:18 [info]: POST /add 422 - Request Body: {"title":"Test 2","objective":"test","price":"2000","duration":"2","instructor":"67405d791a49e4a70bfd2d44","lessonFormat":"pdf"}
+2024-12-02 17:57:31 [info]: POST /add 422 - Request Body: {"title":"Test 2","objective":"test","price":"2000","duration":"2","instructor":"67405d791a49e4a70bfd2d44","lessonFormat":"","courseCode":"Test 2"}
+2024-12-02 18:09:41 [info]: POST /add 422 - Request Body: {"title":"Test 2","objective":"test","price":"","duration":"2","instructorId":"67405d791a49e4a70bfd2d44","lessonFormat":"","code":"Test 2","showInstructor":true}
+2024-12-02 18:14:38 [info]: POST /add 201 - Request Body: {"title":"Test 2","objective":"Test 2","price":"","duration":"2","instructorId":"67405d791a49e4a70bfd2d44","lessonFormat":"pdf","code":"Test2","showInstructor":true}
+2024-12-02 18:16:05 [info]: POST /add 201 - Request Body: {"title":"Test 2","objective":"Test 2","price":"","duration":"2","instructorId":"67405d791a49e4a70bfd2d44","lessonFormat":"pdf","code":"Test2","showInstructor":true}
+2024-12-02 18:16:14 [info]: POST /add 201 - Request Body: {"title":"Test 2","objective":"Test 2","price":"","duration":"2","instructorId":"67405d791a49e4a70bfd2d44","lessonFormat":"pdf","code":"Test2","showInstructor":true}
