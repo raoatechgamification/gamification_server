@@ -7,6 +7,7 @@ export interface SubmissionDocument extends Document {
   submittedFile?: string;
   comments?: string; 
   score?: number; 
+  status?: string;
 }
 
 const submissionSchema = new Schema<SubmissionDocument>(
@@ -17,6 +18,7 @@ const submissionSchema = new Schema<SubmissionDocument>(
     submittedFile: { type: String }, 
     comments: { type: String }, 
     score: { type: Number, min: 0 }, 
+    status: { type: String }
   },
   {
     timestamps: true,
