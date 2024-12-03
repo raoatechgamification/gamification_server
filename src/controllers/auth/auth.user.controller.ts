@@ -61,6 +61,7 @@ export class UserAuthController {
           organizationName: organization.name,
           subject: "Onboarding Email",
         };
+      
         await sendLoginEmail(emailVariables)
       }
 

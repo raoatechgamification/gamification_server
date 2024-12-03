@@ -239,19 +239,25 @@ export class CourseController {
           );
         }
       }
-
-      const validLessons = await Lesson.find({
+      let validLessons 
+      if(lessons){
+       validLessons = await Lesson.find({
         _id: { $in: lessons },
         instructorId: adminId,
       });
 
-      if (validLessons.length !== lessons.length) {
+if (validLessons.length !== lessons.length) {
         return ResponseHandler.failure(
           res,
           "One or more lessons are invalid",
           400
         );
       }
+
+      }
+      
+
+      
 
       let announcementIds;      
 
@@ -270,7 +276,7 @@ export class CourseController {
         );
       }
 
-      if (!price) price === "free"
+      if (price === 0) price === "free"
       
       const courseData: any = {
         courseCode: code,

@@ -2190,6 +2190,254 @@
 2024-12-03 08:32:12 [info]: POST /login 200 - Request Body: {"email":"seunoduez@gmail.com","password":"Timpearl05$$$"}
 2024-12-03 08:34:06 [info]: POST /674ea0dcab4c91e5edb72073/submissions/674eb3a0e4fe5091f3fe1f68/grade 200
 2024-12-03 08:39:01 [info]: POST /674ea0dcab4c91e5edb72073/submissions/674eb3a0e4fe5091f3fe1f68/grade 200
+2024-11-27 14:12:35 [info]: GET /users 200
+2024-11-27 14:14:24 [info]: GET /users 304
+2024-11-27 14:20:13 [info]: GET /users 304
+2024-11-27 14:21:01 [info]: GET /users 304
+2024-11-27 14:21:19 [info]: GET /users 304
+2024-11-27 14:21:29 [info]: GET /users 304
+2024-11-27 14:27:47 [info]: GET /users 304
+2024-11-27 14:27:51 [info]: GET /users 304
+2024-11-27 14:28:10 [info]: GET /users 304
+2024-11-27 14:29:33 [info]: GET /users 304
+2024-11-27 14:32:39 [info]: GET /users 304
+2024-11-27 14:33:40 [info]: GET /users 401
+2024-11-27 14:33:42 [info]: GET /users 304
+2024-11-27 14:36:16 [info]: GET /users 304
+2024-11-27 14:36:44 [info]: GET /users 304
+2024-11-27 14:37:07 [info]: GET /users 304
+2024-11-27 14:37:12 [info]: GET /users 304
+2024-11-27 14:37:39 [info]: GET /users 304
+2024-11-27 14:44:44 [info]: GET / 200
+2024-11-27 14:44:45 [info]: GET /users 304
+2024-11-27 14:46:54 [info]: GET /users 304
+2024-11-27 14:47:33 [info]: GET /users 304
+2024-11-27 14:48:16 [info]: GET /users 304
+2024-11-27 14:48:55 [info]: GET /users 304
+2024-11-27 14:49:41 [info]: GET /users 304
+2024-11-27 14:49:58 [info]: GET /users 304
+2024-11-27 14:50:10 [info]: GET /users 304
+2024-11-27 14:50:36 [info]: POST /single-create 400 - Request Body: {"firstName":"AJIBADE","lastName":"Emmanuel","email":"ajibadeemmanuel58@gmail.com","role":"user"}
+2024-11-27 14:51:02 [info]: POST /single-create 201 - Request Body: {"firstName":"AJIBADE","lastName":"Emmanuel","email":"ajibadeemmanuel0@gmail.com","role":"user"}
+2024-11-27 14:51:15 [info]: POST /single-create 400 - Request Body: {"firstName":"AJIBADE","lastName":"Emmanuel","email":"ajibadeemmanuel0@gmail.com","role":"user"}
+2024-11-27 14:51:26 [info]: POST /single-create 400 - Request Body: {"firstName":"AJIBADE","lastName":"Emmanuel","email":"ajibadeemmanuel0@gmail.com","role":"user"}
+2024-11-27 14:52:19 [info]: POST /single-create 400 - Request Body: {"firstName":"AJIBADE","lastName":"Emmanuel","email":"ajibadeemmanuel0@gmail.com","role":"user"}
+2024-11-27 14:52:19 [info]: GET /users 200
+2024-11-27 14:53:10 [info]: GET /users 200
+2024-11-27 14:53:19 [info]: POST /single-create 201 - Request Body: {"firstName":"AJIBADE","lastName":"Emmanuel","email":"ajibadeemmanuel0@gmail.com","role":"user"}
+2024-11-27 14:53:51 [info]: GET /users 200
+2024-11-27 14:54:11 [info]: POST /single-create 400 - Request Body: {"firstName":"AJIBADE","lastName":"Emmanuel","email":"ajibadeemmanuel0@gmail.com","role":"user"}
+2024-11-27 14:54:44 [info]: POST /single-create 201 - Request Body: {"firstName":"AJIBADE","lastName":"Emmanuel","email":"ajibadeemmanuel51@gmail.com","role":"user","batch":"","sendEmail":false}
+2024-11-27 14:55:04 [info]: POST /single-create 201 - Request Body: {"firstName":"AJIBADE","lastName":"Emmanuel","email":"ajibadeemmanuel02@gmail.com","role":"user","batch":"","sendEmail":false}
+2024-11-27 15:03:34 [info]: GET /users 200
+2024-11-27 15:09:53 [info]: GET / 304
+2024-11-27 15:09:55 [info]: GET /users 304
+2024-11-27 15:21:15 [info]: GET / 304
+2024-11-27 15:21:17 [info]: GET /users 304
+2024-11-27 15:48:39 [info]: GET /users 304
+2024-11-27 15:48:56 [info]: POST /single-create 400 - Request Body: {"firstName":"AJIBADE","lastName":"Emmanuel","email":"ajibadeemmanuel02@gmail.com","role":"user","batch":"","sendEmail":false}
+2024-11-27 15:49:39 [info]: POST /single-create 400 - Request Body: {"firstName":"AJIBADE","lastName":"Emmanuel","email":"ajibadeemmanuel02@gmail.com","role":"user","batch":"","sendEmail":false}
+2024-11-27 15:50:03 [info]: GET /users 304
+2024-11-27 15:50:28 [info]: GET /users 304
+2024-11-27 15:50:52 [info]: GET /users 304
+2024-11-27 15:51:04 [info]: POST /single-create 201 - Request Body: {"firstName":"AJIBADE","lastName":"Emmanuel","email":"ajibadeemmanuel03@gmail.com","role":"user","batch":"","sendEmail":false}
+2024-11-27 15:53:05 [info]: GET /users 200
+2024-11-27 15:53:31 [info]: GET /users 401
+2024-11-27 15:53:33 [info]: GET /users 304
+2024-11-27 15:54:26 [info]: POST /single-create 201 - Request Body: {"firstName":"AJIBADE","lastName":"Emmanuel","email":"ajibadeemmanuel04@gmail.com","role":"user","batch":"","sendEmail":false}
+2024-11-27 15:54:40 [info]: POST /single-create 201 - Request Body: {"firstName":"AJIBADE","lastName":"Emmanuel","email":"ajibadeemmanuel06@gmail.com","role":"user","batch":"","sendEmail":false}
+2024-11-27 15:54:55 [info]: POST /single-create 201 - Request Body: {"firstName":"AJIBADE","lastName":"Emmanuel","email":"ajibadeemmanuel07@gmail.com","role":"user","batch":"","sendEmail":false}
+2024-11-27 15:55:23 [info]: POST /single-create 201 - Request Body: {"firstName":"AJIBADE","lastName":"Emmanuel","email":"ajibadeemmanuel09@gmail.com","role":"user","batch":"","sendEmail":false}
+2024-11-27 15:55:35 [info]: GET /users 401
+2024-11-27 15:55:39 [info]: GET /users 200
+2024-11-27 15:56:19 [info]: POST /single-create 201 - Request Body: {"firstName":"AJIBADE","lastName":"Emmanuel","email":"ajibadeemmanuel10@gmail.com","role":"user","batch":"","sendEmail":false}
+2024-11-27 15:56:37 [info]: POST /single-create 201 - Request Body: {"firstName":"AJIBADE","lastName":"Emmanuel","email":"ajibadeemmanuel11@gmail.com","role":"user","batch":"","sendEmail":false}
+2024-11-27 15:56:50 [info]: GET /users 401
+2024-11-27 15:56:54 [info]: GET /users 200
+2024-11-27 16:02:48 [info]: GET /users 200
+2024-11-27 16:03:04 [info]: POST /single-create 201 - Request Body: {"firstName":"AJIBADE","lastName":"Emmanuel","email":"richardsonmarcus520@gmail.com","role":"user","batch":"","sendEmail":false}
+2024-11-27 16:18:56 [info]: GET /users 304
+2024-11-27 16:19:55 [info]: GET /users 304
+2024-11-27 16:20:35 [info]: GET /users 304
+2024-11-27 16:21:30 [info]: GET /users 304
+2024-11-27 16:21:34 [info]: POST /single-create 201 - Request Body: {"firstName":"AJIBADE","lastName":"Emmanuel","email":"richardsonmarcus520@gmail.com","role":"user","batch":"","sendEmail":false}
+2024-11-27 16:22:20 [info]: GET /users 304
+2024-11-27 16:23:10 [info]: GET /users 401
+2024-11-27 16:23:16 [info]: GET /users 304
+2024-11-27 16:24:06 [info]: POST /single-create 201 - Request Body: {"firstName":"AJIBADE","lastName":"Emmanuel","email":"richardsonmarcus520@gmail.com","role":"user","batch":"","sendEmail":true}
+2024-11-27 16:24:34 [info]: GET /users 200
+2024-11-27 16:26:25 [info]: GET /users 304
+2024-11-27 16:26:52 [info]: GET /users 304
+2024-11-27 16:28:47 [info]: POST /login 200 - Request Body: {"email":"richardsonmarcus520@gmail.com","password":"AJIBADEEmmanuel123#"}
+2024-11-27 18:25:05 [info]: GET / 304
+2024-11-28 16:28:16 [info]: GET / 401
+2024-11-28 16:28:18 [info]: GET / 403
+2024-11-28 16:28:20 [info]: GET / 403
+2024-11-28 16:28:24 [info]: GET / 403
+2024-11-28 16:30:04 [info]: GET / 401
+2024-11-28 16:30:05 [info]: GET / 401
+2024-11-28 16:30:07 [info]: GET / 401
+2024-11-28 16:30:20 [info]: GET /users 401
+2024-11-28 16:30:25 [info]: GET /users 401
+2024-11-28 16:30:27 [info]: GET /users 401
+2024-11-28 16:30:31 [info]: GET /users 401
+2024-11-28 16:30:36 [info]: GET /course/get-all-courses 200
+2024-11-28 16:30:39 [info]: GET / 401
+2024-11-28 16:30:40 [info]: GET / 401
+2024-11-28 16:30:42 [info]: GET / 401
+2024-11-28 16:30:46 [info]: GET / 401
+2024-11-28 17:27:11 [info]: POST /login 200 - Request Body: {"email":"richardsonmarcus520@gmail.com","password":"AJIBADEEmmanuel123#"}
+2024-11-28 17:27:18 [info]: POST /login 200 - Request Body: {"email":"richardsonmarcus520@gmail.com","password":"AJIBADEEmmanuel123#"}
+2024-11-28 17:39:41 [info]: POST /login 200 - Request Body: {"email":"richardsonmarcus520@gmail.com","password":"AJIBADEEmmanuel123#"}
+2024-11-28 17:54:25 [info]: GET /courses 200
+2024-11-28 17:54:25 [info]: GET /courses 304
+2024-11-28 17:55:00 [info]: GET /courses 304
+2024-11-28 17:55:01 [info]: GET /courses 304
+2024-11-28 17:55:18 [info]: GET /courses 304
+2024-11-28 17:56:43 [info]: GET /courses 304
+2024-11-28 17:57:27 [info]: GET /programs 200
+2024-11-28 17:57:30 [info]: GET /programs 304
+2024-11-28 17:58:20 [info]: GET /programs 304
+2024-11-28 17:58:55 [info]: GET /programs 304
+2024-11-28 17:59:10 [info]: GET /programs 304
+2024-11-28 17:59:20 [info]: GET /programs 304
+2024-11-28 18:00:10 [info]: GET /programs 304
+2024-11-28 18:01:03 [info]: GET /programs 304
+2024-11-28 18:01:27 [info]: GET /programs 304
+2024-11-28 18:03:13 [info]: GET /programs 401
+2024-11-28 18:03:14 [info]: GET /programs 304
+2024-11-28 18:03:54 [info]: GET /programs 401
+2024-11-28 18:03:56 [info]: GET /programs 304
+2024-11-28 18:04:35 [info]: GET /programs 304
+2024-11-28 18:04:37 [info]: GET /programs 304
+2024-11-28 18:05:45 [info]: GET /programs 304
+2024-11-28 18:05:46 [info]: GET /programs 304
+2024-11-28 18:07:09 [info]: GET /programs 304
+2024-11-29 09:21:46 [info]: GET /programs 304
+2024-11-29 09:22:02 [info]: GET /programs 304
+2024-11-29 09:22:40 [info]: GET /programs 304
+2024-11-29 09:22:50 [info]: GET /programs 304
+2024-11-29 11:27:22 [info]: GET /programs 304
+2024-11-29 11:52:31 [info]: GET /programs 304
+2024-11-29 11:53:15 [info]: GET /programs 304
+2024-11-29 11:56:06 [info]: GET /programs 304
+2024-11-29 11:58:12 [info]: GET /programs 304
+2024-11-29 11:59:00 [info]: GET /programs 304
+2024-11-29 12:00:49 [info]: GET /programs 304
+2024-11-29 12:12:43 [info]: POST /login 200 - Request Body: {"email":"ajibadeemmanuel58@gmail.com","password":"Test2024!"}
+2024-11-29 12:12:57 [info]: GET / 200
+2024-11-29 12:13:46 [info]: POST /login 200 - Request Body: {"email":"ajibadeemmanuel58@gmail.com","password":"Test2024!"}
+2024-11-29 12:13:46 [info]: GET / 304
+2024-11-29 12:14:15 [info]: GET /course/get-all-courses 304
+2024-11-29 12:15:35 [info]: POST / 400 - Request Body: {"landingPageTitle":"landing testsss","serviceTitleDescription":"test","serviceType":"online","serviceItem":"service item","serviceItemDescription":"sss","title":"RQTqqe2cc","description":"s","requirement":"No Requirement","courseCode":"RQTTw2","courseLevel":"2","duration":"0","startDate":"2024-11-01","endDate":"2024-11-28","numberOfHoursPerDay":"0","numberOfDaysPerWeek":"0","cost":"0","promo":"0","promoCode":"","promoValue":"0","platformCharge":"0","actualCost":"0","sharing":"0","sharingValue":"0","visibilityStartDate":"","visibilityEndDate":"","visibilityStartTime":"","visibilityEndTime":"","topContent":"true","teachingMethod":"online"}
+2024-11-29 12:21:53 [info]: GET /course/get-all-courses 304
+2024-11-29 12:22:12 [info]: POST /login 200 - Request Body: {"email":"ajibadeemmanuel58@gmail.com","password":"Test2024!"}
+2024-11-29 12:22:26 [info]: GET / 304
+2024-11-29 12:23:55 [info]: GET / 304
+2024-11-29 12:23:56 [info]: GET / 304
+2024-11-29 13:11:09 [info]: GET /course/get-all-courses 304
+2024-11-29 13:14:49 [info]: GET /course/get-all-courses 304
+2024-11-29 13:14:54 [info]: GET / 304
+2024-11-29 13:15:06 [info]: GET / 304
+2024-11-29 13:15:29 [info]: GET /course/get-all-courses 304
+2024-11-29 13:15:48 [info]: POST / 400 - Request Body: {"landingPageTitle":"landing testsss","serviceTitleDescription":"test","serviceType":"online","serviceItem":"service item","serviceItemDescription":"sss","title":"RQTqqe2cc","description":"s","requirement":"No Requirement","courseCode":"RQTTw2","courseLevel":"2","duration":"0","startDate":"2024-11-01","endDate":"2024-11-28","numberOfHoursPerDay":"0","numberOfDaysPerWeek":"0","cost":"0","promo":"0","promoCode":"","promoValue":"0","platformCharge":"0","actualCost":"0","sharing":"0","sharingValue":"0","visibilityStartDate":"","visibilityEndDate":"","visibilityStartTime":"","visibilityEndTime":"","topContent":"true","teachingMethod":"online"}
+2024-11-29 13:16:23 [info]: POST / 201 - Request Body: {"landingPageTitle":"landing testsssf","serviceTitleDescription":"test","serviceType":"online","serviceItem":"service item","serviceItemDescription":"sss","title":"RQTqqe2ccff","description":"s","requirement":"No Requirement","courseCode":"RQTTw2f","courseLevel":"2","duration":"0","startDate":"2024-11-01","endDate":"2024-11-28","numberOfHoursPerDay":"0","numberOfDaysPerWeek":"0","cost":"0","promo":"0","promoCode":"","promoValue":"0","platformCharge":"0","actualCost":"0","sharing":"0","sharingValue":"0","visibilityStartDate":"","visibilityEndDate":"","visibilityStartTime":"","visibilityEndTime":"","topContent":"true","teachingMethod":"online"}
+2024-11-29 13:16:25 [info]: GET / 200
+2024-11-29 13:16:55 [info]: GET / 304
+2024-11-29 13:17:13 [info]: GET /6749b097bcf46db2d0b33cda 401
+2024-11-29 13:17:15 [info]: GET /6749b097bcf46db2d0b33cda 200
+2024-11-29 13:18:06 [info]: PUT /create-new-course-landing/6749b097bcf46db2d0b33cda 200 - Request Body: {"title":"Course 83","description":"33","courseCode":"RQTT9","courseLevel":"2","duration":"120","startDate":"2024-11-01","endDate":"2024-11-23","numberOfHoursPerDay":"0","numberOfDaysPerWeek":"0","cost":"0","promo":"0","promoCode":"","promoValue":"0","platformCharge":"0","actualCost":"0","sharing":"0","sharingValue":"0","visibilityStartDate":"","visibilityEndDate":"","visibilityStartTime":"","visibilityEndTime":"","topContent":"false","teachingMethod":"online"}
+2024-11-29 13:18:07 [info]: GET / 200
+2024-11-29 13:18:23 [info]: GET / 304
+2024-11-29 13:18:54 [info]: GET / 401
+2024-11-29 13:19:08 [info]: GET / 304
+2024-11-29 13:19:24 [info]: GET / 304
+2024-11-29 13:19:43 [info]: GET / 304
+2024-11-29 13:20:16 [info]: GET / 304
+2024-11-29 13:20:29 [info]: GET / 304
+2024-11-29 13:20:39 [info]: GET / 304
+2024-11-29 13:20:40 [info]: GET / 304
+2024-11-29 13:21:01 [info]: GET / 304
+2024-11-29 13:21:12 [info]: GET / 304
+2024-11-29 13:21:46 [info]: GET / 304
+2024-11-29 13:22:11 [info]: GET / 304
+2024-11-29 13:22:22 [info]: GET / 304
+2024-11-29 13:22:30 [info]: GET / 304
+2024-11-29 13:22:31 [info]: GET / 304
+2024-11-29 13:23:16 [info]: GET / 304
+2024-11-29 14:27:57 [info]: GET / 304
+2024-11-29 14:28:17 [info]: GET / 304
+2024-11-29 14:30:26 [info]: GET / 304
+2024-11-29 14:30:50 [info]: GET / 401
+2024-11-29 14:30:54 [info]: GET / 304
+2024-11-29 14:31:01 [info]: GET / 304
+2024-11-29 14:33:43 [info]: GET / 304
+2024-11-29 14:37:38 [info]: GET / 304
+2024-11-29 14:38:02 [info]: GET / 304
+2024-11-29 14:38:18 [info]: GET / 304
+2024-11-29 14:38:23 [info]: GET / 304
+2024-11-29 14:40:15 [info]: GET / 304
+2024-11-29 15:05:27 [info]: GET /users 401
+2024-11-29 15:05:35 [info]: GET /users 304
+2024-11-29 15:22:33 [info]: GET /users 304
+2024-11-29 15:45:31 [info]: GET /users 200
+2024-11-29 16:48:45 [info]: POST /login 200 - Request Body: {"email":"richardsonmarcus520@gmail.com","password":"AJIBADEEmmanuel123#"}
+2024-11-29 16:49:09 [info]: GET /programs 304
+2024-11-29 17:01:17 [info]: GET /programs 304
+2024-11-29 17:02:25 [info]: GET /users 304
+2024-11-29 17:02:27 [info]: GET /programs 304
+2024-11-29 17:03:20 [info]: GET /programs 304
+2024-11-29 17:04:04 [info]: GET /programs 304
+2024-11-29 17:05:55 [info]: GET /programs 304
+2024-11-29 17:12:49 [info]: GET /programs 304
+2024-11-29 17:13:07 [info]: GET / 304
+2024-11-29 17:13:16 [info]: GET /users 304
+2024-11-29 17:20:32 [info]: GET /users 304
+2024-11-29 17:20:33 [info]: GET /programs 304
+2024-11-29 17:36:30 [info]: GET /users 304
+2024-11-29 17:36:33 [info]: GET /users 304
+2024-11-29 18:24:12 [info]: GET /users 304
+2024-11-29 18:24:15 [info]: GET /users 304
+2024-11-29 18:40:28 [info]: GET /users 304
+2024-11-29 18:40:31 [info]: GET /users 304
+2024-11-29 18:54:31 [info]: GET /users 304
+2024-11-29 18:54:34 [info]: GET /users 304
+2024-11-29 19:54:39 [info]: GET /users 304
+2024-11-29 19:54:42 [info]: GET /users 304
+2024-11-29 19:56:37 [info]: GET /users 304
+2024-11-29 19:56:48 [info]: POST /login 200 - Request Body: {"email":"richardsonmarcus520@gmail.com","password":"AJIBADEEmmanuel123#"}
+2024-11-29 19:56:51 [info]: GET /programs 304
+2024-11-29 19:57:00 [info]: POST /login 200 - Request Body: {"email":"ajibadeemmanuel58@gmail.com","password":"Test2024!"}
+2024-11-29 19:58:05 [info]: GET / 401
+2024-11-29 19:58:19 [info]: GET / 304
+2024-12-02 17:36:33 [info]: POST /login 200 - Request Body: {"email":"ajibadeemmanuel58@gmail.com","password":"Test2024!"}
+2024-12-02 17:36:41 [info]: GET / 304
+2024-12-02 17:37:25 [info]: GET / 304
+2024-12-02 17:38:21 [info]: GET / 304
+2024-12-02 17:38:32 [info]: GET / 304
+2024-12-02 17:40:00 [info]: GET / 304
+2024-12-02 17:40:03 [info]: GET / 304
+2024-12-02 17:40:26 [info]: GET / 401
+2024-12-02 17:41:02 [info]: GET / 304
+2024-12-02 17:52:08 [info]: GET / 401
+2024-12-02 17:52:10 [info]: GET / 304
+2024-12-02 17:52:56 [info]: POST /add 422 - Request Body: {"title":"Test 2","objective":"test 2","price":"2000","duration":"2","instructor":"67405d791a49e4a70bfd2d44","lessonFormat":"pdf"}
+2024-12-02 17:56:18 [info]: POST /add 422 - Request Body: {"title":"Test 2","objective":"test","price":"2000","duration":"2","instructor":"67405d791a49e4a70bfd2d44","lessonFormat":"pdf"}
+2024-12-02 17:57:31 [info]: POST /add 422 - Request Body: {"title":"Test 2","objective":"test","price":"2000","duration":"2","instructor":"67405d791a49e4a70bfd2d44","lessonFormat":"","courseCode":"Test 2"}
+2024-12-02 18:09:41 [info]: POST /add 422 - Request Body: {"title":"Test 2","objective":"test","price":"","duration":"2","instructorId":"67405d791a49e4a70bfd2d44","lessonFormat":"","code":"Test 2","showInstructor":true}
+2024-12-02 18:14:38 [info]: POST /add 201 - Request Body: {"title":"Test 2","objective":"Test 2","price":"","duration":"2","instructorId":"67405d791a49e4a70bfd2d44","lessonFormat":"pdf","code":"Test2","showInstructor":true}
+2024-12-02 18:16:05 [info]: POST /add 201 - Request Body: {"title":"Test 2","objective":"Test 2","price":"","duration":"2","instructorId":"67405d791a49e4a70bfd2d44","lessonFormat":"pdf","code":"Test2","showInstructor":true}
+2024-12-02 18:16:14 [info]: POST /add 201 - Request Body: {"title":"Test 2","objective":"Test 2","price":"","duration":"2","instructorId":"67405d791a49e4a70bfd2d44","lessonFormat":"pdf","code":"Test2","showInstructor":true}
+2024-12-02 18:17:57 [info]: POST /add 201 - Request Body: {"title":"Test3","objective":"Test 2","price":0,"duration":"2","instructorId":"67405d791a49e4a70bfd2d44","lessonFormat":"pdf","code":"Test3","showInstructor":true}
+2024-12-03 13:06:01 [info]: POST /login 200 - Request Body: {"email":"ajibadeemmanuel58@gmail.com","password":"Test2024!"}
+2024-12-03 13:06:08 [info]: GET / 304
+2024-12-03 15:18:04 [info]: POST /objective 422 - Request Body: {"title":"","description":"","positionascreatedassessment":"","assessmentCode":"","marksPerQuestion":"","numberOfTrials":"","totalMark":"","passMark":"","startDate":"","endDate":"","duration":"","purpose":"","questions":[{"question":"how are you","type":"True or False","options":[],"score":2,"answer":"True"}]}
+2024-12-03 15:18:47 [info]: POST /objective 422 - Request Body: {"title":"","description":"","positionascreatedassessment":"","assessmentCode":"","marksPerQuestion":"","numberOfTrials":"","totalMark":"","passMark":"","startDate":"","endDate":"","duration":"","purpose":"","questions":[{"question":"hey","type":"True or False","options":[],"score":2,"answer":"True"}]}
+2024-12-03 15:19:26 [info]: POST /objective 422 - Request Body: {"title":"Course 2","description":"course 2","positionascreatedassessment":"aaq","assessmentCode":"qq","marksPerQuestion":"21","numberOfTrials":"2","totalMark":22,"passMark":1,"startDate":"2024-12-05","endDate":"2025-01-01","duration":22,"purpose":"","questions":[{"question":"hey","type":"True or False","options":[],"score":2,"answer":"True"}]}
+2024-12-03 15:21:28 [info]: POST /objective 422 - Request Body: {"title":"Course 2","description":"course 2","positionascreatedassessment":"aaq","assessmentCode":"qq","marksPerQuestion":"21","numberOfTrials":"2","totalMark":22,"passMark":1,"startDate":"2024-12-05","endDate":"2025-01-01","duration":22,"purpose":"","questions":[{"question":"hey","type":"True or False","options":[],"score":3,"answer":"True"}]}
+2024-12-03 15:27:04 [info]: POST /objective 201 - Request Body: {"title":"Course 2","description":"course 2","positionascreatedassessment":"aaq","assessmentCode":"qq","marksPerQuestion":"21","numberOfTrials":"2","totalMark":22,"passMark":1,"startDate":"2024-12-05","endDate":"2025-01-01","duration":22,"purpose":"","questions":[{"question":"hey","type":"True or False","options":[],"score":3,"answer":"True"}]}
+2024-12-03 15:30:54 [info]: POST /objective 201 - Request Body: {"title":"Course 2","description":"course 2","positionascreatedassessment":"aaq","assessmentCode":"qq","marksPerQuestion":"21","numberOfTrials":"2","totalMark":22,"passMark":1,"startDate":"2024-12-05","endDate":"2025-01-01","duration":22,"purpose":"","questions":[{"question":"hey","type":"True or False","options":[],"score":3,"answer":"True"}]}
+2024-12-03 15:40:05 [info]: POST /objective 201 - Request Body: {"title":"Course 2","description":"course 2","positionascreatedassessment":"aaq","assessmentCode":"qq","marksPerQuestion":"21","numberOfTrials":"2","totalMark":22,"passMark":1,"startDate":"2024-12-05","endDate":"2025-01-01","duration":22,"purpose":"","questions":[{"question":"hey","type":"True or False","options":[],"score":1,"answer":"True"}]}
 2024-12-03 17:58:40 [info]: POST /login 200 - Request Body: {"email":"seunoduez@gmail.com","password":"Timpearl05$$$"}
 2024-12-03 18:00:20 [info]: GET / 200
 2024-12-03 18:01:44 [info]: GET /submissions/674e9e0eab4c91e5edb7206a 404
@@ -2211,3 +2459,4 @@
 2024-12-03 18:23:12 [info]: GET /674ea0dcab4c91e5edb72073 500
 2024-12-03 18:25:57 [info]: GET /assessment/674ea0dcab4c91e5edb72073 200
 2024-12-03 18:26:24 [info]: GET /674ea0dcab4c91e5edb72073 200
+2024-12-03 18:31:19 [info]: GET /674ea0dcab4c91e5edb72073 200

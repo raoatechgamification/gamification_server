@@ -1,7 +1,7 @@
 import mongoose, { Schema, model, Document } from 'mongoose';
 
 export interface ICourse extends Document {
-  title?: string;
+title?: string;
   description?: string,
   requirement?: string,
   topContent?: boolean,

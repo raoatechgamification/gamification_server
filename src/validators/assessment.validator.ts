@@ -157,7 +157,7 @@ export const createObjectiveAssessmentValidator = [
   check('questions.*.answer')
     .notEmpty()
     .withMessage('Each question must have an answer'),
-  check('questions.*.mark')
+  check('questions.*.score')
     .isNumeric()
     .withMessage('Each question score must be a number')
     .notEmpty()
