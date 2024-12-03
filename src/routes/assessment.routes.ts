@@ -24,7 +24,9 @@ const {
 const { 
   createObjectiveAssessment, 
   takeAssessment, 
-  gradeObjectiveSubmission 
+  gradeObjectiveSubmission,
+  getAssessmentById,
+  getAllAssessmentsForOrganization
 } = ObjectAssessmentController;
 
 const { submitAssessment } = new SubmissionController();
@@ -83,6 +85,19 @@ router.post(
   upload.single("file"),
   ...submissionValidator,
   submitAssessment
+);
+
+router.get(
+  "/",
+  authenticate,
+  authorize("admin"),
+  getAllAssessmentsForOrganization
+);
+
+router.get(
+  "/:assessmentId",
+  authenticate,
+  getAssessmentById
 );
 
 export default router;

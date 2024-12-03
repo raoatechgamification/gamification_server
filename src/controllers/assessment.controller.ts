@@ -4,6 +4,7 @@ import { ResponseHandler } from "../middlewares/responseHandler.middleware";
 import { AIGradingService } from "../services/AIgrading.service";
 import MarkingGuide from "../models/markingGuide.model";
 import Assessment from "../models/assessment.model";
+import ObjectiveAssessment from "../models/objectiveAssessment.model";
 import Submission from "../models/submission.model";
 import Course from "../models/course.model";
 import { uploadToCloudinary } from "../utils/cloudinaryUpload"
@@ -79,12 +80,13 @@ export class AssessmentController {
   ) {
     try {
       const { assessmentId } = req.params;
-      const instructorId = req.admin._id;
+      const organizationId = req.admin._id;
 
-      const assessment = await Assessment.findOne({
+      const assessment = await ObjectiveAssessment.findOne({
         _id: assessmentId,
-        instructorId,
+        organizationId,
       });
+      
       if (!assessment) {
         return ResponseHandler.failure(
           res,

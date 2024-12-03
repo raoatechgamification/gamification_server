@@ -2190,3 +2190,24 @@
 2024-12-03 08:32:12 [info]: POST /login 200 - Request Body: {"email":"seunoduez@gmail.com","password":"Timpearl05$$$"}
 2024-12-03 08:34:06 [info]: POST /674ea0dcab4c91e5edb72073/submissions/674eb3a0e4fe5091f3fe1f68/grade 200
 2024-12-03 08:39:01 [info]: POST /674ea0dcab4c91e5edb72073/submissions/674eb3a0e4fe5091f3fe1f68/grade 200
+2024-12-03 17:58:40 [info]: POST /login 200 - Request Body: {"email":"seunoduez@gmail.com","password":"Timpearl05$$$"}
+2024-12-03 18:00:20 [info]: GET / 200
+2024-12-03 18:01:44 [info]: GET /submissions/674e9e0eab4c91e5edb7206a 404
+2024-12-03 18:04:00 [info]: GET /submissions/674e9e0eab4c91e5edb7206a 404
+2024-12-03 18:05:52 [info]: GET /submissions/674e9e0eab4c91e5edb7206a 404
+2024-12-03 18:06:10 [info]: GET /submissions/674e9e0eab4c91e5edb7206a 404
+2024-12-03 18:07:38 [info]: GET /submissions/674e9e0eab4c91e5edb7206a 404
+2024-12-03 18:11:14 [info]: GET /submissions/674ea0dcab4c91e5edb72073 404
+2024-12-03 18:11:20 [info]: GET /assessment/674ea0dcab4c91e5edb72073 200
+2024-12-03 18:15:53 [info]: POST /login 200 - Request Body: {"email":"seunoduez@gmail.com","password":"Timpearl05$$$"}
+2024-12-03 18:19:06 [info]: GET /674ea0dcab4c91e5edb72073 500
+2024-12-03 18:19:16 [info]: GET /674ea0dcab4c91e5edb72073 500
+2024-12-03 18:20:06 [info]: GET /674ea0dcab4c91e5edb72073 500
+2024-12-03 18:20:31 [info]: POST /create 201 - Request Body: {"title":"SS3 Assessment","question":"What is Geography?","highestAttainableScore":"7"}
+2024-12-03 18:20:50 [info]: GET /674ea0dcab4c91e5edb72073 500
+2024-12-03 18:21:47 [info]: GET /674ea0dcab4c91e5edb72073 500
+2024-12-03 18:21:53 [info]: GET /674ea0dcab4c91e5edb72073 500
+2024-12-03 18:21:55 [info]: GET /674ea0dcab4c91e5edb72073 500
+2024-12-03 18:23:12 [info]: GET /674ea0dcab4c91e5edb72073 500
+2024-12-03 18:25:57 [info]: GET /assessment/674ea0dcab4c91e5edb72073 200
+2024-12-03 18:26:24 [info]: GET /674ea0dcab4c91e5edb72073 200

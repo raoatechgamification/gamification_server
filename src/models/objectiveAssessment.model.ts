@@ -15,7 +15,7 @@ export interface AssessmentInterface {
 
 
 interface IObjectiveAssessment extends Document {
-  organizationId: string;
+  organizationId: Schema.Types.ObjectId;
   title: string;
   description: string;
   marksPerQuestion?: number; 
@@ -37,7 +37,7 @@ interface IObjectiveAssessment extends Document {
 }
 
 const objectiveAssessmentSchema = new Schema<IObjectiveAssessment>({
-  organizationId: { type: String, required: true},
+  organizationId: { type: Schema.Types.ObjectId, required: true},
   title: { type: String, required: true },
   description: { type: String, required: true },
   marksPerQuestion: { type: Number },
