@@ -2,9 +2,9 @@ import mongoose, { Document, Schema } from 'mongoose';
 
 export interface SubmissionAnswerInterface {
   questionId: string;
-  answer: string;
+  answer: string | boolean | number;
   isCorrect?: boolean; // Optional field for graded answers
-}8888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888
+}
 
 export interface SubmissionInterface {
   _id: string;
@@ -16,32 +16,44 @@ export interface SubmissionInterface {
   gradedAnswers?: SubmissionAnswerInterface[];
 }
 
-export interface SubmissionDocument extends Document {
-  answer: string;
-  learnerId: string;
-  assessmentId: string;
+export interface ISubmission extends Document {
+  answer: {
+    questionId: Schema.Types.ObjectId;
+    answer: Schema.Types.Mixed;
+    isCorrect?: boolean;
+  }[];
+  learnerId: Schema.Types.ObjectId;
+  courseId: Schema.Types.ObjectId;
+  assessmentId: Schema.Types.ObjectId;
   submittedFile?: string;
   comments?: string; 
-  gradedAnswers?: { questionId: string; answer: string; isCorrect: boolean }[];
+  gradedAnswers?: SubmissionAnswerInterface[];
   score?: number; 
   status?: 'Submitted' | 'Graded';
 }
 
-const submissionSchema = new Schema<SubmissionDocument>(
+const submissionSchema = new Schema<ISubmission>(
   {
-    answer: { type: String, required: true },
     learnerId: { type: String, required: true },
-    assessmentId: { type: String, required: true }, 
-    submittedFile: { type: String }, 
-    comments: { type: String }, 
-    gradedAnswers: [
+    courseId: { type: String, required: true }, 
+    assessmentId: { type: String, required: true },
+    answer: [
       {
-        questionId: { type: String },
-        answer: { type: String },
+        questionId: { type: String, required: true },
+        answer: { type: Schema.Types.Mixed, required: true }, 
         isCorrect: { type: Boolean },
       },
     ],
-    score: { type: Number, min: 0 }, 
+    submittedFile: { type: String },
+    comments: { type: String },
+    gradedAnswers: [
+      {
+        questionId: { type: String, required: true },
+        answer: { type: Schema.Types.Mixed, required: true },
+        isCorrect: { type: Boolean },
+      },
+    ],
+    score: { type: Number, min: 0 },
     status: { type: String, enum: ['Submitted', 'Graded'], default: 'Submitted' },
   },
   {
@@ -49,4 +61,33 @@ const submissionSchema = new Schema<SubmissionDocument>(
   }
 );
 
-export default mongoose.model<SubmissionDocument>('Submission', submissionSchema);
+// const submissionSchema = new Schema<ISubmission>(
+//   {
+//     learnerId: { type: Schema.Types.ObjectId, required: true },
+//     courseId: { type: Schema.Types.ObjectId, required: true },
+//     assessmentId: { type: Schema.Types.ObjectId, required: true },
+//     answer: [
+//       {
+//         questionId: { type: String, required: true },
+//         answer: { type: Schema.Types.Mixed, required: true }, 
+//         isCorrect: { type: Boolean },
+//       },
+//     ], 
+//     submittedFile: { type: String }, 
+//     comments: { type: String }, 
+//     gradedAnswers: [
+//       {
+//         questionId: { type: String },
+//         answer: { type: String },
+//         isCorrect: { type: Boolean },
+//       },
+//     ],
+//     score: { type: Number, min: 0 }, 
+//     status: { type: String, enum: ['Submitted', 'Graded'], default: 'Submitted' },
+//   },
+//   {
+//     timestamps: true,
+//   }
+// );
+
+export default mongoose.model<ISubmission>('Submission', submissionSchema);

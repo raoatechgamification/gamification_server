@@ -1,4 +1,5 @@
 import { Request, Response } from "express";
+import mongoose from 'mongoose';
 import ObjectiveAssessment from "../models/objectiveAssessment.model";
 import Submission from "../models/submission.model";
 import Course from "../models/course.model";
@@ -24,7 +25,6 @@ class ObjectAssessmentController {
 
       const organizationId = req.admin._id
   
-      // Validate questions
       if (!Array.isArray(questions) || questions.length === 0) {
         return ResponseHandler.failure(res, 'Questions are required.', 400);
       }
@@ -42,14 +42,11 @@ class ObjectAssessmentController {
         );
       }
   
-      // Determine position
       const lastAssessment = await ObjectiveAssessment.findOne().sort({ position: -1 });
       const position = lastAssessment ? lastAssessment.position + 1 : 1;
   
-      // Generate assessmentCode if not provided
       const code = assessmentCode || `EXT-${position}`;
   
-      // Create the assessment
       const newAssessment = new ObjectiveAssessment({
         organizationId,
         title,
@@ -84,8 +81,8 @@ class ObjectAssessmentController {
   }
 
   async takeAssessment(req: Request, res: Response) {
-    const { assessmentId } = req.params;
-    const { answers }: { answers: { questionId: string; answer: string }[] } = req.body;
+    const { courseId, assessmentId } = req.params;
+    const { answers }: { answers: { questionId: string; answer: string | boolean | number }[] } = req.body;
     const userId = req.user.id;
   
     try {
@@ -94,13 +91,11 @@ class ObjectAssessmentController {
         return ResponseHandler.failure(res, "Assessment not found", 404);
       }
   
-      // Get the course for the assessment
-      const course = await Course.findById(assessment.courseId);
+      const course = await Course.findById(courseId);
       if (!course) {
         return ResponseHandler.failure(res, "Course not found", 404);
       }
   
-      // Check if the user is enrolled and their progress
       const learner = course.learnerIds?.find(
         (learner) => learner.userId.toString() === userId?.toString()
       );
@@ -112,8 +107,8 @@ class ObjectAssessmentController {
       }
   
       // Validate answers
-      const questionIds = assessment.questions.map((q: AssessmentQuestionInterface) => q._id.toString());
-      const isValid = answers.every((answer) => questionIds.includes(answer.questionId));
+      const questionIds = assessment.questions.map((q: { _id: mongoose.Types.ObjectId }) => q._id.toString());
+      const isValid = answers.every((answer) => questionIds.includes(answer.questionId.toString()));
   
       if (!isValid) {
         return ResponseHandler.failure(res, "Invalid answers submitted", 400);
@@ -121,6 +116,7 @@ class ObjectAssessmentController {
   
       const submission = await Submission.create({
         learnerId: userId,
+        courseId,
         assessmentId,
         answer: answers,
         status: "Submitted",
@@ -130,7 +126,7 @@ class ObjectAssessmentController {
     } catch (error: any) {
       return ResponseHandler.failure(res, error.message || "Error submitting assessment", error.status || 500);
     }
-  }
+  }  
 
   async gradeObjectiveSubmission(req: Request, res: Response) {
     const { assessmentId, submissionId } = req.params;
@@ -166,11 +162,11 @@ class ObjectAssessmentController {
   
       // Grade the answers
       const gradedAnswers = submission.answer.map(
-        (answer: { questionId: string; answer: string }) => {
+        (answer: { questionId: any; answer: any }) => {
           const question = assessment.questions.find(
-            (q: AssessmentQuestionInterface) => q._id.toString() === answer.questionId
+            (q: AssessmentQuestionInterface) => q._id.toString() === answer.questionId.toString()
           );
-  
+      
           if (question) {
             const questionScore = question.mark ?? assessment.marksPerQuestion ?? 0;
             if (question.answer === answer.answer) {
@@ -178,7 +174,7 @@ class ObjectAssessmentController {
               return { ...answer, isCorrect: true };
             }
           }
-  
+      
           return { ...answer, isCorrect: false };
         }
       );
@@ -202,67 +198,6 @@ class ObjectAssessmentController {
       );
     }
   }
-  
-  
-  // async gradeObjectiveSubmission(req: Request, res: Response) {
-  //   const { assessmentId, submissionId } = req.params;
-  
-  //   try {
-  //     // Find the assessment
-  //     const assessment = await ObjectiveAssessment.findById(assessmentId);
-  //     if (!assessment) {
-  //       return ResponseHandler.failure(res, 'Assessment not found', 404);
-  //     }
-
-  //     if (!Array.isArray(assessment.questions)) {
-  //       return ResponseHandler.failure(res, "Assessment questions are invalid", 400);
-  //     }
-  
-  //     // Find the submission
-  //     const submission = await Submission.findById(submissionId);
-  //     if (!submission) {
-  //       return ResponseHandler.failure(res, 'Submission not found', 404);
-  //     }
-  
-  //     // Grade the submission
-  //     let totalScore = 0;
-  //     const gradedAnswers = submission.answer.map(
-  //       (answer: { questionId: string; answer: string }) => {
-  //         const question = assessment.questions.find(
-  //           (q) => q._id.toString() === answer.questionId
-  //         );
-  
-  //         if (question) {
-  //           const questionScore = question.mark ?? assessment.marksPerQuestion; // Use question mark if provided
-  //           if (question.answer === answer.answer) {
-  //             totalScore += questionScore; // Add score for correct answer
-  //             return { ...answer, isCorrect: true };
-  //           }
-  //         }
-  
-  //         return { ...answer, isCorrect: false };
-  //       }
-  //     );
-  
-  //     // Update the submission with grades
-  //     submission.score = totalScore;
-  //     submission.status = 'Graded';
-  //     submission.gradedAnswers = gradedAnswers;
-  //     await submission.save();
-  
-  //     return ResponseHandler.success(
-  //       res,
-  //       submission,
-  //       'Submission graded successfully'
-  //     );
-  //   } catch (error: any) {
-  //     return ResponseHandler.failure(
-  //       res,
-  //       error.message || 'Error grading submission',
-  //       error.status || 500
-  //     );
-  //   }
-  // }
 }
 
 export default new ObjectAssessmentController();

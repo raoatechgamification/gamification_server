@@ -3,13 +3,13 @@ import mongoose, { Schema, Document } from 'mongoose';
 export interface AssessmentQuestionInterface {
   _id: string;
   question: string;
-  answer: string; // Correct answer
+  answer: string; 
   mark?: number;
 }
 
 export interface AssessmentInterface {
   _id: string;
-  questions: AssessmentQuestionInterface[]; // Ensure 'questions' is an array
+  questions: AssessmentQuestionInterface[]; 
   marksPerQuestion?: number;
 }
 
@@ -32,11 +32,10 @@ interface IObjectiveAssessment extends Document {
     type: string;
     options?: string[];
     answer: string;
-    mark?: number; // Optional mark for each question
+    mark?: number; 
   }[];
 }
 
-// Define the schema
 const objectiveAssessmentSchema = new Schema<IObjectiveAssessment>({
   organizationId: { type: String, required: true},
   title: { type: String, required: true },
@@ -60,7 +59,7 @@ const objectiveAssessmentSchema = new Schema<IObjectiveAssessment>({
       },
       options: { type: [String], default: [] },
       answer: { type: String, required: true },
-      mark: { type: Number, default: null }, // Optional field
+      mark: { type: Number, default: null }, 
     },
   ],
 });

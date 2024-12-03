@@ -70,7 +70,7 @@ router.get(
 );
 
 router.post(
-  "/:assessmentId/take",
+  "/:courseId/:assessmentId/take",
   authenticate,
   authorize("user"),
   takeAssessment
