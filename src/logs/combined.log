@@ -2408,3 +2408,5 @@
 2024-12-02 18:16:05 [info]: POST /add 201 - Request Body: {"title":"Test 2","objective":"Test 2","price":"","duration":"2","instructorId":"67405d791a49e4a70bfd2d44","lessonFormat":"pdf","code":"Test2","showInstructor":true}
 2024-12-02 18:16:14 [info]: POST /add 201 - Request Body: {"title":"Test 2","objective":"Test 2","price":"","duration":"2","instructorId":"67405d791a49e4a70bfd2d44","lessonFormat":"pdf","code":"Test2","showInstructor":true}
 2024-12-02 18:17:57 [info]: POST /add 201 - Request Body: {"title":"Test3","objective":"Test 2","price":0,"duration":"2","instructorId":"67405d791a49e4a70bfd2d44","lessonFormat":"pdf","code":"Test3","showInstructor":true}
+2024-12-03 13:06:01 [info]: POST /login 200 - Request Body: {"email":"ajibadeemmanuel58@gmail.com","password":"Test2024!"}
+2024-12-03 13:06:08 [info]: GET / 304
