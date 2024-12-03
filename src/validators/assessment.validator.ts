@@ -104,12 +104,11 @@ export const createObjectiveAssessmentValidator = [
     .notEmpty()
     .withMessage('Description is required'),
   check('marksPerQuestion')
-    .isNumeric()
-    .withMessage('Marks per question must be a number')
-    .notEmpty()
-    .withMessage('Marks per question is required'),
-  check('numberOfTrials')
     .optional()
+    .isNumeric()
+    .withMessage('Marks per question must be a number'),
+  check('numberOfTrials')
+    .notEmpty()
     .isNumeric()
     .withMessage('Number of trials must be a number'),
   check('purpose')
@@ -158,7 +157,7 @@ export const createObjectiveAssessmentValidator = [
   check('questions.*.answer')
     .notEmpty()
     .withMessage('Each question must have an answer'),
-  check('questions.*.score')
+  check('questions.*.mark')
     .isNumeric()
     .withMessage('Each question score must be a number')
     .notEmpty()
