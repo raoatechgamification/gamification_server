@@ -152,6 +152,10 @@ class ObjectAssessmentController {
       if (!submission) {
         return ResponseHandler.failure(res, "Submission not found", 404);
       }
+
+      if (submission.status === "Graded") {
+        return ResponseHandler.failure(res, "Submission has already been graded", 400);
+      }
   
       // Ensure submission.answer is an array
       if (!Array.isArray(submission.answer)) {
