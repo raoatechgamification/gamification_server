@@ -9,7 +9,7 @@ import Course from "../models/course.model";
 import { uploadToCloudinary } from "../utils/cloudinaryUpload"
 
 export class AssessmentController {
-  async createAssessment(req: Request, res: Response, next: NextFunction) {
+  async createAssessment(req: Request, res: Response) {
     try {
       const { title, question, highestAttainableScore } = req.body;
       // const { courseId } = req.params;
@@ -64,15 +64,18 @@ export class AssessmentController {
         "Assessment created successfully",
         201
       );
-    } catch (error) {
-      next(error);
+    } catch (error: any) {
+      return ResponseHandler.failure(
+        res,
+        "Server error",
+        500
+      );
     }
   }
 
   async getSubmissionsForAssessment(
     req: Request,
     res: Response,
-    next: NextFunction
   ) {
     try {
       const { assessmentId } = req.params;
@@ -98,92 +101,100 @@ export class AssessmentController {
         message: "Submissions fetched successfully",
         data: submissions,
       });
-    } catch (error) {
-      next(error);
+    } catch (error: any) {
+      return ResponseHandler.failure(
+        res,
+        "Server error",
+        500
+      );
     }
   }
 
-  async gradeSubmission(req: Request, res: Response, next: NextFunction) {
-    try {
-      const { submissionId } = req.params;
-      const instructorId = req.admin._id;
-      const { score, comments, useAI } = req.body;
+  async gradeSubmission(req: Request, res: Response) {
+    // try {
+      // const { submissionId } = req.params;
+      // const instructorId = req.admin._id;
+      // const { score, comments, useAI } = req.body;
 
-      const submission = await Submission.findById(submissionId);
+      // const submission = await Submission.findById(submissionId);
 
-      if (!submission) {
-        return ResponseHandler.failure(res, "Submission not found", 404);
-      }
+      // if (!submission) {
+      //   return ResponseHandler.failure(res, "Submission not found", 404);
+      // }
 
-      const assessment = await Assessment.findById(submission.assessmentId);
+      // const assessment = await Assessment.findById(submission.assessmentId);
 
-      if (!assessment) {
-        return ResponseHandler.failure(
-          res,
-          "Associated assessment not found",
-          404
-        );
-      }
+      // if (!assessment) {
+      //   return ResponseHandler.failure(
+      //     res,
+      //     "Associated assessment not found",
+      //     404
+      //   );
+      // }
 
-      if (!new mongoose.Types.ObjectId(assessment.instructorId).equals(instructorId)) {
-        return ResponseHandler.failure(
-          res,
-          "You are not authorized to grade this assessment",
-          403
-        );
-      }
+      // if (!new mongoose.Types.ObjectId(assessment.instructorId).equals(instructorId)) {
+      //   return ResponseHandler.failure(
+      //     res,
+      //     "You are not authorized to grade this assessment",
+      //     403
+      //   );
+      // }
 
-      if (submission.score !== undefined && submission.score !== null) {
-        return ResponseHandler.failure(
-          res,
-          "Submission has already been graded.",
-          400
-        );
-      }
+      // if (submission.score !== undefined && submission.score !== null) {
+      //   return ResponseHandler.failure(
+      //     res,
+      //     "Submission has already been graded.",
+      //     400
+      //   );
+      // }
 
-      if (useAI) {
-        const markingGuide = await MarkingGuide.findOne({
-          assessmentId: assessment._id,
-        });
-        if (!markingGuide) {
-          return ResponseHandler.failure(res, "Marking guide not found", 404);
-        }
+      // if (useAI) {
+      //   const markingGuide = await MarkingGuide.findOne({
+      //     assessmentId: assessment._id,
+      //   });
+      //   if (!markingGuide) {
+      //     return ResponseHandler.failure(res, "Marking guide not found", 404);
+      //   }
 
-        const aiResult = await AIGradingService.gradeSubmission(
-          submission.answerText,
-          markingGuide.expectedAnswer,
-          markingGuide.keywords,
-          markingGuide.maxScore
-        );
+        // const aiResult = await AIGradingService.gradeSubmission(
+        //   submission.answer,
+        //   markingGuide.expectedAnswer,
+        //   markingGuide.keywords,
+        //   markingGuide.maxScore
+        // );
 
-        if (aiResult.error) {
-          return ResponseHandler.failure(res, "AI Grading failed", 500);
-        }
+      //   if (aiResult.error) {
+      //     return ResponseHandler.failure(res, "AI Grading failed", 500);
+      //   }
 
-        submission.score = aiResult.score;
-        submission.comments = aiResult.feedback;
-      } else {
-        if (score > assessment.highestAttainableScore) {
-          return ResponseHandler.failure(
-            res,
-            `Score cannot exceed the highest attainable score of ${assessment.highestAttainableScore}.`,
-            400
-          );
-        }
+      //   submission.score = aiResult.score;
+      //   submission.comments = aiResult.feedback;
+      // } else {
+      //   if (score > assessment.highestAttainableScore) {
+      //     return ResponseHandler.failure(
+      //       res,
+      //       `Score cannot exceed the highest attainable score of ${assessment.highestAttainableScore}.`,
+      //       400
+      //     );
+      //   }
 
-        submission.score = score;
-        submission.comments = comments;
-      }
+      //   submission.score = score;
+      //   submission.comments = comments;
+      // }
 
-      await submission.save();
+      // await submission.save();
 
-      return ResponseHandler.success(
-        res,
-        submission,
-        "Learner graded successfully"
-      );
-    } catch (error: any) {
-      next(error);
-    }
+      // return ResponseHandler.success(
+      //   res,
+      //   submission,
+      //   "Learner graded successfully"
+      // );
+    // } catch (error: any) {
+    //   return ResponseHandler.failure(
+    //     res,
+    //     "Server error",
+    //     500
+    //   );
+    // }
   }
 }

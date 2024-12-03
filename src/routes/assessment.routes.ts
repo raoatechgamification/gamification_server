@@ -2,8 +2,10 @@ import { Router } from "express";
 import { authenticate, authorize } from "../middlewares/auth.middleware";
 import { AssessmentController } from "../controllers/assessment.controller";
 import { SubmissionController } from "../controllers/submission.controller";
+import ObjectAssessmentController from "../controllers/objectiveAssessment.controller";
 import {
   createAssessmentValidator,
+  createObjectiveAssessmentValidator,
   submissionValidator,
   gradeAssessmentValidator,
   viewLearnersValidator,
@@ -19,6 +21,12 @@ const {
   gradeSubmission,
 } = new AssessmentController();
 
+const { 
+  createObjectiveAssessment, 
+  takeAssessment, 
+  gradeObjectiveSubmission 
+} = ObjectAssessmentController;
+
 const { submitAssessment } = new SubmissionController();
 
 router.post(
@@ -30,13 +38,28 @@ router.post(
   createAssessmentHandler
 );
 
+router.post(
+  '/objective',
+  authenticate,
+  authorize("admin"),
+  ...createObjectiveAssessmentValidator,
+  createObjectiveAssessment
+)
+
 router.put(
-  "/grade/:submissionId",
+  "/:submissionId/grade",
   authenticate,
   authorize("admin"),
   ...gradeAssessmentValidator,
   gradeSubmission
 );
+
+router.post(
+  '/:assessmentId/submissions/:submissionId/grade',
+  authenticate,
+  authorize("admin"),
+  gradeObjectiveSubmission
+)
 
 router.get(
   "/submissions/:assessmentId",
@@ -45,6 +68,13 @@ router.get(
   ...viewLearnersValidator,
   getSubmissionsForAssessment
 );
+
+router.post(
+  "/:courseId/:assessmentId/take",
+  authenticate,
+  authorize("user"),
+  takeAssessment
+)
 
 router.post(
   "/submit/:assessmentId",

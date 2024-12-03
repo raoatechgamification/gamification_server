@@ -6,12 +6,10 @@ title?: string;
   requirement?: string,
   topContent?: boolean,
   objective?: string;
-  // price?: number;
   tutorId?: Schema.Types.ObjectId
   organizationId?: string;
   lessonFormat?: string;
   instructorId: string;
-  // learnerIds?: string[];
   lessons: mongoose.Types.ObjectId[];
   learnerIds?: { userId: mongoose.Types.ObjectId; progress: number }[];
   assessments?: mongoose.Types.ObjectId[]
