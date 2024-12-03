@@ -1,10 +1,24 @@
 import mongoose, { Schema, Document } from 'mongoose';
 
-// Define the interface for the Assessment document
+export interface AssessmentQuestionInterface {
+  _id: string;
+  question: string;
+  answer: string; // Correct answer
+  mark?: number;
+}
+
+export interface AssessmentInterface {
+  _id: string;
+  questions: AssessmentQuestionInterface[]; // Ensure 'questions' is an array
+  marksPerQuestion?: number;
+}
+
+
 interface IObjectiveAssessment extends Document {
+  organizationId: string;
   title: string;
   description: string;
-  marksPerQuestion: number;
+  marksPerQuestion?: number; 
   numberOfTrials?: number;
   purpose?: string;
   position: number;
@@ -18,15 +32,16 @@ interface IObjectiveAssessment extends Document {
     type: string;
     options?: string[];
     answer: string;
-    score: number;
+    mark?: number; // Optional mark for each question
   }[];
 }
 
 // Define the schema
 const objectiveAssessmentSchema = new Schema<IObjectiveAssessment>({
+  organizationId: { type: String, required: true},
   title: { type: String, required: true },
   description: { type: String, required: true },
-  marksPerQuestion: { type: Number, required: true },
+  marksPerQuestion: { type: Number },
   numberOfTrials: { type: Number, default: null },
   purpose: { type: String, default: null },
   position: { type: Number, required: true },
@@ -45,7 +60,7 @@ const objectiveAssessmentSchema = new Schema<IObjectiveAssessment>({
       },
       options: { type: [String], default: [] },
       answer: { type: String, required: true },
-      score: { type: Number, required: true },
+      mark: { type: Number, default: null }, // Optional field
     },
   ],
 });
