@@ -2166,6 +2166,9 @@
 2024-11-29 17:00:35 [info]: POST /6749e07b8f1bb9655ef9178a/assign 200 - Request Body: {"userIds":["67409ce32de7105d7831d2f9","6745e9c6884e5b0a2bdbdf4a","6745e9c6884e5b0a2bdbdf49"],"dueDate":"2024-12-31"}
 2024-11-29 17:00:43 [info]: POST /6749e07b8f1bb9655ef9178a/assign 500 - Request Body: {"userIds":["67409ce32de7105d7831d2f9","6745e9c688e5b0a2bdbdf4a","6745e9c6884e5b0a2bdbdf49"],"dueDate":"2024-12-31"}
 2024-11-29 17:00:50 [info]: POST /6749e07b8f1bb9655ef9178a/assign 200 - Request Body: {"userIds":["67409ce32de7105d7831d2f9","6745e9c6884e5b0a2bdbdf4a","6745e9c6884e5b0a2bdbdf49"],"dueDate":"2024-12-31"}
+2024-12-02 08:54:39 [info]: POST /login 200 - Request Body: {"email":"backendseun@gmail.com","password":"OluwaseunOdueso123#"}
+2024-12-02 08:55:11 [info]: POST /login 200 - Request Body: {"email":"backendseun@gmail.com","password":"OluwaseunOdueso123#"}
+2024-12-02 08:56:03 [info]: POST /login 200 - Request Body: {"email":"backendseun@gmail.com","password":"OluwaseunOdueso123#"}
 2024-11-27 14:12:35 [info]: GET /users 200
 2024-11-27 14:14:24 [info]: GET /users 304
 2024-11-27 14:20:13 [info]: GET /users 304
