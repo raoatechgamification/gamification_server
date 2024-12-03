@@ -21,7 +21,11 @@ const {
   gradeSubmission,
 } = new AssessmentController();
 
-const { createObjectiveAssessment } = ObjectAssessmentController;
+const { 
+  createObjectiveAssessment, 
+  takeAssessment, 
+  gradeObjectiveSubmission 
+} = ObjectAssessmentController;
 
 const { submitAssessment } = new SubmissionController();
 
@@ -35,7 +39,7 @@ router.post(
 );
 
 router.post(
-  '/:courseId/objective',
+  '/objective',
   authenticate,
   authorize("admin"),
   ...createObjectiveAssessmentValidator,
@@ -43,12 +47,19 @@ router.post(
 )
 
 router.put(
-  "/grade/:submissionId",
+  "/:submissionId/grade",
   authenticate,
   authorize("admin"),
   ...gradeAssessmentValidator,
   gradeSubmission
 );
+
+router.post(
+  '/:assessmentId/submissions/:submissionId/grade',
+  authenticate,
+  authorize("admin"),
+  gradeObjectiveSubmission
+)
 
 router.get(
   "/submissions/:assessmentId",
@@ -57,6 +68,13 @@ router.get(
   ...viewLearnersValidator,
   getSubmissionsForAssessment
 );
+
+router.post(
+  "/:assessmentId/take",
+  authenticate,
+  authorize("user"),
+  takeAssessment
+)
 
 router.post(
   "/submit/:assessmentId",

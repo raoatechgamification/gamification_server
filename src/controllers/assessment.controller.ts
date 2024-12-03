@@ -9,7 +9,7 @@ import Course from "../models/course.model";
 import { uploadToCloudinary } from "../utils/cloudinaryUpload"
 
 export class AssessmentController {
-  async createAssessment(req: Request, res: Response, next: NextFunction) {
+  async createAssessment(req: Request, res: Response) {
     try {
       const { title, question, highestAttainableScore } = req.body;
       // const { courseId } = req.params;
@@ -64,15 +64,18 @@ export class AssessmentController {
         "Assessment created successfully",
         201
       );
-    } catch (error) {
-      next(error);
+    } catch (error: any) {
+      return ResponseHandler.failure(
+        res,
+        "Server error",
+        500
+      );
     }
   }
 
   async getSubmissionsForAssessment(
     req: Request,
     res: Response,
-    next: NextFunction
   ) {
     try {
       const { assessmentId } = req.params;
@@ -98,12 +101,16 @@ export class AssessmentController {
         message: "Submissions fetched successfully",
         data: submissions,
       });
-    } catch (error) {
-      next(error);
+    } catch (error: any) {
+      return ResponseHandler.failure(
+        res,
+        "Server error",
+        500
+      );
     }
   }
 
-  async gradeSubmission(req: Request, res: Response, next: NextFunction) {
+  async gradeSubmission(req: Request, res: Response) {
     try {
       const { submissionId } = req.params;
       const instructorId = req.admin._id;
@@ -150,7 +157,7 @@ export class AssessmentController {
         }
 
         const aiResult = await AIGradingService.gradeSubmission(
-          submission.answerText,
+          submission.answer,
           markingGuide.expectedAnswer,
           markingGuide.keywords,
           markingGuide.maxScore
@@ -183,7 +190,11 @@ export class AssessmentController {
         "Learner graded successfully"
       );
     } catch (error: any) {
-      next(error);
+      return ResponseHandler.failure(
+        res,
+        "Server error",
+        500
+      );
     }
   }
 }
