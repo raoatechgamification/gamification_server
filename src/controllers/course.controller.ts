@@ -164,9 +164,13 @@ export class CourseController {
           const file = files[i];
 
           if (file.size > 5 * 1024 * 1024 * 1024) {
-            return ResponseHandler.failure(res, "File exceeds maximum size of 5GB", 400);
+            return ResponseHandler.failure(
+              res,
+              "File exceeds maximum size of 5GB",
+              400
+            );
           }
-          
+
           const uploadResult = await uploadToCloudinary(
             file.buffer,
             file.mimetype,
@@ -212,21 +216,17 @@ export class CourseController {
         lessons,
         assessments,
         announcements,
-        showInstructor
+        showInstructor,
       } = req.body;
 
       const adminId = req.admin._id;
 
-      const codeExists = await Course.findOne({ courseCode: code })
+      const codeExists = await Course.findOne({ courseCode: code });
       if (codeExists) {
-        return ResponseHandler.failure(
-          res, 
-          "Course code already exists",
-          400
-        )
+        return ResponseHandler.failure(res, "Course code already exists", 400);
       }
 
-      console.log("Code exists:", codeExists)
+      console.log("Code exists:", codeExists);
 
       if (assessments) {
         const validAssessments = await Assessment.find({
@@ -241,13 +241,13 @@ export class CourseController {
           );
         }
       }
-      
-      let validLessons 
-      if(lessons){
-       validLessons = await Lesson.find({
-        _id: { $in: lessons },
-        instructorId: adminId,
-      });
+
+      let validLessons;
+      if (lessons) {
+        validLessons = await Lesson.find({
+          _id: { $in: lessons },
+          instructorId: adminId,
+        });
 
         if (validLessons.length !== lessons.length) {
           return ResponseHandler.failure(
@@ -256,9 +256,9 @@ export class CourseController {
             400
           );
         }
-      }      
+      }
 
-      let announcementIds;      
+      let announcementIds;
 
       if (announcements) {
         announcementIds = await Promise.all(
@@ -275,8 +275,8 @@ export class CourseController {
         );
       }
 
-      if (price === 0) price === "free"
-      
+      if (price === 0) price === "free";
+
       const courseData: any = {
         courseCode: code,
         title,
@@ -288,33 +288,33 @@ export class CourseController {
         lessons,
         assessments,
         announcements: announcementIds,
-        tutorId: instructorId,  
+        tutorId: instructorId,
       };
-  
+
       const newCourse = await Course.create(courseData);
-  
+
       if (announcements) {
         await Announcement.updateMany(
           { _id: { $in: announcementIds } },
           { $push: { courseIds: newCourse._id } }
         );
       }
-  
+
       if (lessons) {
         await Lesson.updateMany(
           { _id: { $in: lessons } },
           { $push: { courseIds: newCourse._id } }
         );
       }
-  
-      const courseResponse = newCourse.toObject();  
+
+      const courseResponse = newCourse.toObject();
       if (!showInstructor) {
-        delete courseResponse.tutorId;  
+        delete courseResponse.tutorId;
       }
-  
+
       return ResponseHandler.success(
         res,
-        courseResponse,  
+        courseResponse,
         "Course created successfully",
         201
       );
@@ -330,20 +330,20 @@ export class CourseController {
 
   async assignCourseToUsers(req: Request, res: Response) {
     try {
-      const { userIds, dueDate } = req.body; 
+      const { userIds, dueDate } = req.body;
       const { courseId } = req.params;
       const adminId = req.admin._id;
-  
+
       const course = await Course.findById(courseId);
       if (!course) {
         return ResponseHandler.failure(res, "Course not found", 404);
       }
-  
+
       const validUsers = await User.find({
         _id: { $in: userIds },
         organizationId: adminId,
       });
-  
+
       if (validUsers.length !== userIds.length) {
         return ResponseHandler.failure(
           res,
@@ -354,30 +354,30 @@ export class CourseController {
 
       let status = "unpaid";
       if (!course.cost) {
-        status = "free"
+        status = "free";
       }
-  
+
       const bulkUpdates = validUsers.map((user) => ({
         updateOne: {
           filter: {
             _id: user._id,
-            "assignedPrograms.courseId": { $ne: courseId }, 
+            "assignedPrograms.courseId": { $ne: courseId },
           },
           update: {
             $push: {
               assignedPrograms: {
-                courseId: new mongoose.Types.ObjectId(courseId), 
-                dueDate: new Date(dueDate), 
-                status, 
-                amount: course.cost, 
+                courseId: new mongoose.Types.ObjectId(courseId),
+                dueDate: new Date(dueDate),
+                status,
+                amount: course.cost,
               },
             },
           },
         },
       }));
-  
+
       const result = await User.bulkWrite(bulkUpdates);
-  
+
       return ResponseHandler.success(
         res,
         {
@@ -396,7 +396,7 @@ export class CourseController {
         500
       );
     }
-  }  
+  }
 
   async getCourseLessons(req: Request, res: Response) {
     try {
