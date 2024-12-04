@@ -24,7 +24,6 @@ const {
 const { 
   createObjectiveAssessment, 
   takeAndGradeAssessment,
-  gradeObjectiveSubmission,
   getAssessmentById,
   getAllAssessmentsForOrganization
 } = ObjectAssessmentController;
@@ -55,13 +54,6 @@ router.put(
   ...gradeAssessmentValidator,
   gradeSubmission
 );
-
-router.post(
-  '/:assessmentId/submissions/:submissionId/grade',
-  authenticate,
-  authorize("admin"),
-  gradeObjectiveSubmission
-)
 
 router.get(
   "/submissions/:assessmentId",

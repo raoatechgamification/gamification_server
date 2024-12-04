@@ -202,91 +202,91 @@ class ObjectAssessmentController {
     }
   }
 
-  async gradeObjectiveSubmission(req: Request, res: Response) {
-    const { assessmentId, submissionId } = req.params;
-    const organizationId = req.admin._id;
+  // async gradeObjectiveSubmission(req: Request, res: Response) {
+  //   const { assessmentId, submissionId } = req.params;
+  //   const organizationId = req.admin._id;
 
-    try {
-      const assessment = await ObjectiveAssessment.findOne({
-        _id: assessmentId,
-        organizationId,
-      });
-      if (!assessment) {
-        return ResponseHandler.failure(res, "Assessment not found", 404);
-      }
+  //   try {
+  //     const assessment = await ObjectiveAssessment.findOne({
+  //       _id: assessmentId,
+  //       organizationId,
+  //     });
+  //     if (!assessment) {
+  //       return ResponseHandler.failure(res, "Assessment not found", 404);
+  //     }
 
-      if (!Array.isArray(assessment.questions)) {
-        return ResponseHandler.failure(
-          res,
-          "Assessment questions are invalid",
-          400
-        );
-      }
+  //     if (!Array.isArray(assessment.questions)) {
+  //       return ResponseHandler.failure(
+  //         res,
+  //         "Assessment questions are invalid",
+  //         400
+  //       );
+  //     }
 
-      const submission = await Submission.findById(submissionId);
-      if (!submission) {
-        return ResponseHandler.failure(res, "Submission not found", 404);
-      }
+  //     const submission = await Submission.findById(submissionId);
+  //     if (!submission) {
+  //       return ResponseHandler.failure(res, "Submission not found", 404);
+  //     }
 
-      if (submission.status === "Graded") {
-        return ResponseHandler.failure(
-          res,
-          "Submission has already been graded",
-          400
-        );
-      }
+  //     if (submission.status === "Graded") {
+  //       return ResponseHandler.failure(
+  //         res,
+  //         "Submission has already been graded",
+  //         400
+  //       );
+  //     }
 
-      if (!Array.isArray(submission.answer)) {
-        return ResponseHandler.failure(
-          res,
-          "Submission answers are invalid",
-          400
-        );
-      }
+  //     if (!Array.isArray(submission.answer)) {
+  //       return ResponseHandler.failure(
+  //         res,
+  //         "Submission answers are invalid",
+  //         400
+  //       );
+  //     }
 
-      let totalScore = 0;
+  //     let totalScore = 0;
 
-      const gradedAnswers = submission.answer.map(
-        (answer: { questionId: any; answer: any }) => {
-          const question = assessment.questions.find(
-            (q: AssessmentQuestionInterface) =>
-              q._id.toString() === answer.questionId.toString()
-          );
+  //     const gradedAnswers = submission.answer.map(
+  //       (answer: { questionId: any; answer: any }) => {
+  //         const question = assessment.questions.find(
+  //           (q: AssessmentQuestionInterface) =>
+  //             q._id.toString() === answer.questionId.toString()
+  //         );
 
-          if (question) {
-            const questionScore =
-              question.mark ?? assessment.marksPerQuestion ?? 0;
-            if (question.answer === answer.answer) {
-              totalScore += questionScore; 
-              return { ...answer, isCorrect: true };
-            }
-          }
+  //         if (question) {
+  //           const questionScore =
+  //             question.mark ?? assessment.marksPerQuestion ?? 0;
+  //           if (question.answer === answer.answer) {
+  //             totalScore += questionScore; 
+  //             return { ...answer, isCorrect: true };
+  //           }
+  //         }
 
-          return { ...answer, isCorrect: false };
-        }
-      );
+  //         return { ...answer, isCorrect: false };
+  //       }
+  //     );
 
-      const passOrFail = totalScore >= assessment.passMark ? "Pass" : "Fail";
+  //     const passOrFail = totalScore >= assessment.passMark ? "Pass" : "Fail";
 
-      submission.score = totalScore;
-      submission.status = "Graded";
-      submission.gradedAnswers = gradedAnswers;
-      submission.passOrFail = passOrFail;
-      await submission.save();
+  //     submission.score = totalScore;
+  //     submission.status = "Graded";
+  //     submission.gradedAnswers = gradedAnswers;
+  //     submission.passOrFail = passOrFail;
+  //     await submission.save();
 
-      return ResponseHandler.success(
-        res,
-        submission,
-        "Submission graded successfully"
-      );
-    } catch (error: any) {
-      return ResponseHandler.failure(
-        res,
-        error.message || "Error grading submission",
-        error.status || 500
-      );
-    }
-  }
+  //     return ResponseHandler.success(
+  //       res,
+  //       submission,
+  //       "Submission graded successfully"
+  //     );
+  //   } catch (error: any) {
+  //     return ResponseHandler.failure(
+  //       res,
+  //       error.message || "Error grading submission",
+  //       error.status || 500
+  //     );
+  //   }
+  // }
 
   async getAllAssessmentsForOrganization(req: Request, res: Response) {
     const organizationId = req.admin._id;
