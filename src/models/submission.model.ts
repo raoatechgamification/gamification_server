@@ -3,14 +3,14 @@ import mongoose, { Document, Schema } from 'mongoose';
 export interface SubmissionAnswerInterface {
   questionId: string;
   answer: string | boolean | number;
-  isCorrect?: boolean; // Optional field for graded answers
+  isCorrect?: boolean; 
 }
 
 export interface SubmissionInterface {
   _id: string;
   learnerId: string;
   assessmentId: string;
-  answer: SubmissionAnswerInterface[]; // Ensure 'answer' is an array
+  answer: SubmissionAnswerInterface[]; 
   score?: number;
   status: string;
   gradedAnswers?: SubmissionAnswerInterface[];
@@ -64,34 +64,5 @@ const submissionSchema = new Schema<ISubmission>(
     timestamps: true,
   }
 );
-
-// const submissionSchema = new Schema<ISubmission>(
-//   {
-//     learnerId: { type: Schema.Types.ObjectId, required: true },
-//     courseId: { type: Schema.Types.ObjectId, required: true },
-//     assessmentId: { type: Schema.Types.ObjectId, required: true },
-//     answer: [
-//       {
-//         questionId: { type: String, required: true },
-//         answer: { type: Schema.Types.Mixed, required: true }, 
-//         isCorrect: { type: Boolean },
-//       },
-//     ], 
-//     submittedFile: { type: String }, 
-//     comments: { type: String }, 
-//     gradedAnswers: [
-//       {
-//         questionId: { type: String },
-//         answer: { type: String },
-//         isCorrect: { type: Boolean },
-//       },
-//     ],
-//     score: { type: Number, min: 0 }, 
-//     status: { type: String, enum: ['Submitted', 'Graded'], default: 'Submitted' },
-//   },
-//   {
-//     timestamps: true,
-//   }
-// );
 
 export default mongoose.model<ISubmission>('Submission', submissionSchema);
