@@ -42,14 +42,15 @@ const errorResponse = (req: Request, res: Response, next: NextFunction) => {
   if (!errors.isEmpty()) {
     return res.status(422).json({
       success: false,
-      errors: errors.array().map((error) => ({
-        field: error.type,
+      errors: errors.array().map((error: any) => ({
+        field: error.param,
         message: error.msg,
       })),
     });
   }
   next();
 };
+
 
 export const createCourseValidator = [
   body("title")

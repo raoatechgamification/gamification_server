@@ -217,7 +217,7 @@ export class CourseController {
 
       const adminId = req.admin._id;
 
-      const codeExists = await Course.findOne({ code })
+      const codeExists = await Course.findOne({ courseCode: code })
       if (codeExists) {
         return ResponseHandler.failure(
           res, 
@@ -225,6 +225,8 @@ export class CourseController {
           400
         )
       }
+
+      console.log("Code exists:", codeExists)
 
       if (assessments) {
         const validAssessments = await Assessment.find({
