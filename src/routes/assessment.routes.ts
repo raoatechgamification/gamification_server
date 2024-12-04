@@ -23,7 +23,6 @@ const {
 
 const { 
   createObjectiveAssessment, 
-  takeAssessment, 
   takeAndGradeAssessment,
   gradeObjectiveSubmission,
   getAssessmentById,
