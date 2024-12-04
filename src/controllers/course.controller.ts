@@ -298,10 +298,12 @@ export class CourseController {
         );
       }
   
-      await Lesson.updateMany(
-        { _id: { $in: lessons } },
-        { $push: { courseIds: newCourse._id } }
-      );
+      if (lessons) {
+        await Lesson.updateMany(
+          { _id: { $in: lessons } },
+          { $push: { courseIds: newCourse._id } }
+        );
+      }
   
       const courseResponse = newCourse.toObject();  
       if (!showInstructor) {
