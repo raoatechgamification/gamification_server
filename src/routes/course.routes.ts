@@ -11,6 +11,7 @@ import {
 } from "../validators/course.validator";
 import { upload } from "../utils/upload.utils";
 
+
 const {
   createCourse,
   createACourse,
@@ -21,6 +22,7 @@ const {
   getCourseLessons,
   getAllAnnouncementsByCourse,
 } = new CourseController();
+
 
 const router = Router();
 
