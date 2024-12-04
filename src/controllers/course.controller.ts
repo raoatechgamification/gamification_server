@@ -239,6 +239,7 @@ export class CourseController {
           );
         }
       }
+      
       let validLessons 
       if(lessons){
        validLessons = await Lesson.find({
@@ -246,18 +247,14 @@ export class CourseController {
         instructorId: adminId,
       });
 
-if (validLessons.length !== lessons.length) {
-        return ResponseHandler.failure(
-          res,
-          "One or more lessons are invalid",
-          400
-        );
-      }
-
-      }
-      
-
-      
+        if (validLessons.length !== lessons.length) {
+          return ResponseHandler.failure(
+            res,
+            "One or more lessons are invalid",
+            400
+          );
+        }
+      }      
 
       let announcementIds;      
 

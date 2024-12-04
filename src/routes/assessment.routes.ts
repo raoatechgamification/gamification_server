@@ -24,6 +24,7 @@ const {
 const { 
   createObjectiveAssessment, 
   takeAssessment, 
+  takeAndGradeAssessment,
   gradeObjectiveSubmission,
   getAssessmentById,
   getAllAssessmentsForOrganization
@@ -75,7 +76,7 @@ router.post(
   "/:courseId/:assessmentId/take",
   authenticate,
   authorize("user"),
-  takeAssessment
+  takeAndGradeAssessment
 )
 
 router.post(

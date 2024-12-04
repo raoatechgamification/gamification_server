@@ -29,7 +29,9 @@ export interface ISubmission extends Document {
   comments?: string; 
   gradedAnswers?: SubmissionAnswerInterface[];
   score?: number; 
+  percentageScore?: number;
   status?: 'Submitted' | 'Graded';
+  passOrFail?: 'Pass' | 'Fail'
 }
 
 const submissionSchema = new Schema<ISubmission>(
@@ -54,7 +56,9 @@ const submissionSchema = new Schema<ISubmission>(
       },
     ],
     score: { type: Number, min: 0 },
+    percentageScore: { type: Number, min: 0, max: 100 },
     status: { type: String, enum: ['Submitted', 'Graded'], default: 'Submitted' },
+    passOrFail: { type: String, enum: ["Pass", "Fail"], default: "Fail" },
   },
   {
     timestamps: true,
