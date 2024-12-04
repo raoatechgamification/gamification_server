@@ -10,7 +10,7 @@ title?: string;
   organizationId?: string;
   lessonFormat?: string;
   instructorId: string;
-  lessons: mongoose.Types.ObjectId[];
+  lessons?: mongoose.Types.ObjectId[];
   learnerIds?: { userId: mongoose.Types.ObjectId; progress: number }[];
   assessments?: mongoose.Types.ObjectId[]
   duration?: string;

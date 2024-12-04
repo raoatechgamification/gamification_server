@@ -23,8 +23,7 @@ const {
 
 const { 
   createObjectiveAssessment, 
-  takeAssessment, 
-  gradeObjectiveSubmission,
+  takeAndGradeAssessment,
   getAssessmentById,
   getAllAssessmentsForOrganization
 } = ObjectAssessmentController;
@@ -56,13 +55,6 @@ router.put(
   gradeSubmission
 );
 
-router.post(
-  '/:assessmentId/submissions/:submissionId/grade',
-  authenticate,
-  authorize("admin"),
-  gradeObjectiveSubmission
-)
-
 router.get(
   "/submissions/:assessmentId",
   authenticate,
@@ -75,7 +67,7 @@ router.post(
   "/:courseId/:assessmentId/take",
   authenticate,
   authorize("user"),
-  takeAssessment
+  takeAndGradeAssessment
 )
 
 router.post(

@@ -1,5 +1,6 @@
 import { Router } from "express";
 import { authenticate, authorize } from "../middlewares/auth.middleware";
+import AdminController from "../controllers/admin.controller";
 
 import { CourseController } from "../controllers/course.controller";
 import {
@@ -22,6 +23,8 @@ const {
   getCourseLessons,
   getAllAnnouncementsByCourse,
 } = new CourseController();
+
+const { getCourseReport } = AdminController
 
 
 const router = Router();
@@ -88,5 +91,12 @@ router.get(
   ...validateCourseId,
   getAllAnnouncementsByCourse
 );
+
+router.get(
+  "/:courseId/report",
+  authenticate,
+  authorize("admin"),
+  getCourseReport
+)
 
 export default router;

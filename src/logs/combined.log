@@ -2460,6 +2460,55 @@
 2024-12-03 18:25:57 [info]: GET /assessment/674ea0dcab4c91e5edb72073 200
 2024-12-03 18:26:24 [info]: GET /674ea0dcab4c91e5edb72073 200
 2024-12-03 18:31:19 [info]: GET /674ea0dcab4c91e5edb72073 200
+2024-12-03 18:44:19 [info]: POST /create 401
+2024-12-03 21:06:40 [info]: POST /login 200 - Request Body: {"email":"seunoduez@gmail.com","password":"Timpearl05$$$"}
+2024-12-03 21:06:56 [info]: POST /create 201 - Request Body: {"title":"Theory Assessment","question":"What is Biology","highestAttainableScore":"7"}
+2024-12-04 11:34:31 [info]: POST /login 200 - Request Body: {"email":"seunoduez@gmail.com","password":"Timpearl05$$$"}
+2024-12-04 11:35:20 [info]: POST /objective 201 - Request Body: {"title":"Mathematics Basics","description":"Basic concepts of algebra and geometry","marksPerQuestion":2,"numberOfTrials":3,"purpose":"Learning assessment","passMark":50,"duration":60,"startDate":"2024-11-25","endDate":"2024-12-01","questions":[{"question":"What is 2 + 2?","type":"Multichoice","options":["2","3","4","5"],"answer":"4","score":2},{"question":"True or False: Earth is flat.","type":"True or False","answer":"False","score":1}]}
+2024-12-04 12:16:12 [info]: POST /submit/6706b26f95ef2722933b2f54 401
+2024-12-04 12:18:32 [info]: POST /login 400 - Request Body: {"email":"backendseun@gmail.com","password":"OluwaseunOdueso@123"}
+2024-12-04 12:19:36 [info]: POST /login 400 - Request Body: {"email":"backendseun@gmail.com","password":"OluwaseunOdueso@123#"}
+2024-12-04 12:21:11 [info]: POST /login 400 - Request Body: {"email":"backendseun@gmail.com","password":"OluwaseunOdueso@123#"}
+2024-12-04 12:21:25 [info]: POST /login 200 - Request Body: {"email":"lola@gmail.com","password":"Tioluwani05$"}
+2024-12-04 12:24:20 [info]: POST /login 400 - Request Body: {"email":"backendseun@gmail.com","password":"DefaultPassword@123"}
+2024-12-04 12:24:50 [info]: POST /login 200 - Request Body: {"email":"backendseun@gmail.com","password":"OluwaseunOdueso123#"}
+2024-12-04 12:26:40 [info]: POST /submit/6706b26f95ef2722933b2f54 404 - Request Body: {"answerText":"This is my answer and submission to this assessment"}
+2024-12-04 12:29:21 [info]: POST /submit/674ea0dcab4c91e5edb72073 404 - Request Body: {"answerText":"This is my answer and submission to this assessment"}
+2024-12-04 12:31:51 [info]: POST /674876e040dc8e5df096c26d/674ea0dcab4c91e5edb72073/take 201 - Request Body: {"answers":[{"questionId":"674ea0dcab4c91e5edb72074","answer":"4"},{"questionId":"674ea0dcab4c91e5edb72075","answer":false},{"questionId":"674ea0dcab4c91e5edb72076","answer":false},{"questionId":"674ea0dcab4c91e5edb72077","answer":"Pacific Ocean"},{"questionId":"674ea0dcab4c91e5edb72078","answer":"yes"},{"questionId":"674ea0dcab4c91e5edb72079","answer":7}]}
+2024-12-04 12:47:05 [info]: POST /674876e040dc8e5df096c26d/674ea0dcab4c91e5edb72073/take 403 - Request Body: {"answers":[{"questionId":"674ea0dcab4c91e5edb72074","answer":"4"},{"questionId":"674ea0dcab4c91e5edb72075","answer":false},{"questionId":"674ea0dcab4c91e5edb72076","answer":false},{"questionId":"674ea0dcab4c91e5edb72077","answer":"Pacific Ocean"},{"questionId":"674ea0dcab4c91e5edb72078","answer":"yes"},{"questionId":"674ea0dcab4c91e5edb72079","answer":7}]}
+2024-12-04 12:53:55 [info]: POST /submit/674ea16c82093244d3d12600 404 - Request Body: {"answerText":"This is my answer and submission to this assessment"}
+2024-12-04 12:56:56 [info]: POST /submit/674ea16c82093244d3d12600 404 - Request Body: {"answerText":"This is my answer and submission to this assessment"}
+2024-12-04 12:57:51 [info]: POST /submit/674ea16c82093244d3d12600 404 - Request Body: {"answerText":"This is my answer and submission to this assessment"}
+2024-12-04 12:57:54 [info]: POST /submit/674ea16c82093244d3d12600 404 - Request Body: {"answerText":"This is my answer and submission to this assessment"}
+2024-12-04 12:58:57 [info]: POST /674876e040dc8e5df096c26d/674ea16c82093244d3d12600/take 400 - Request Body: {"answers":[{"questionId":"674ea0dcab4c91e5edb72074","answer":"4"},{"questionId":"674ea0dcab4c91e5edb72075","answer":false},{"questionId":"674ea0dcab4c91e5edb72076","answer":false},{"questionId":"674ea0dcab4c91e5edb72077","answer":"Pacific Ocean"},{"questionId":"674ea0dcab4c91e5edb72078","answer":"yes"},{"questionId":"674ea0dcab4c91e5edb72079","answer":7}]}
+2024-12-04 13:12:39 [info]: POST /674876e040dc8e5df096c26d/674ea16c82093244d3d12600/take 400 - Request Body: {"answers":[{"questionId":"674ea0dcab4c91e5edb72074","answer":"4"},{"questionId":"674ea0dcab4c91e5edb72075","answer":false},{"questionId":"674ea0dcab4c91e5edb72076","answer":false},{"questionId":"674ea0dcab4c91e5edb72077","answer":"Pacific Ocean"},{"questionId":"674ea0dcab4c91e5edb72078","answer":"yes"},{"questionId":"674ea0dcab4c91e5edb72079","answer":7}]}
+2024-12-04 13:19:43 [info]: POST /674876e040dc8e5df096c26d/674ea16c82093244d3d12600/take 201 - Request Body: {"answers":[{"questionId":"674ea16c82093244d3d12601","answer":"4"},{"questionId":"674ea16c82093244d3d12602","answer":false},{"questionId":"674ea16c82093244d3d12603","answer":false},{"questionId":"674ea16c82093244d3d12604","answer":"Pacific Ocean"},{"questionId":"674ea16c82093244d3d12605","answer":"yes"},{"questionId":"674ea16c82093244d3d12606","answer":7}]}
+2024-12-04 13:26:56 [info]: POST /674876e040dc8e5df096c26d/674ea16c82093244d3d12600/take 201 - Request Body: {"answers":[{"questionId":"674ea16c82093244d3d12601","answer":"5"},{"questionId":"674ea16c82093244d3d12602","answer":true},{"questionId":"674ea16c82093244d3d12603","answer":false},{"questionId":"674ea16c82093244d3d12604","answer":"Pacific Ocean"},{"questionId":"674ea16c82093244d3d12605","answer":"yes"},{"questionId":"674ea16c82093244d3d12606","answer":7}]}
+2024-12-04 13:28:38 [info]: POST /674876e040dc8e5df096c26d/674ea16c82093244d3d12600/take 201 - Request Body: {"answers":[{"questionId":"674ea16c82093244d3d12601","answer":"4"},{"questionId":"674ea16c82093244d3d12602","answer":false},{"questionId":"674ea16c82093244d3d12603","answer":false},{"questionId":"674ea16c82093244d3d12604","answer":"Pacific Ocean"},{"questionId":"674ea16c82093244d3d12605","answer":"yes"},{"questionId":"674ea16c82093244d3d12606","answer":7}]}
+2024-12-04 13:29:08 [info]: POST /674876e040dc8e5df096c26d/674ea16c82093244d3d12600/take 403 - Request Body: {"answers":[{"questionId":"674ea16c82093244d3d12601","answer":"4"},{"questionId":"674ea16c82093244d3d12602","answer":false},{"questionId":"674ea16c82093244d3d12603","answer":false},{"questionId":"674ea16c82093244d3d12604","answer":"Pacific Ocean"},{"questionId":"674ea16c82093244d3d12605","answer":"yes"},{"questionId":"674ea16c82093244d3d12606","answer":7}]}
+2024-12-04 15:06:09 [info]: POST /add 403 - Request Body: {"title":"Beginners guide to Medicine","objective":"Introduction to Biology I","price":"50000","instructorId":"67453884a835dc3c8062914d","duration":"six weeks","lessonFormat":".xls","assessments":["6746287ee641d30376864b00"]}
+2024-12-04 15:06:45 [info]: POST /login 200 - Request Body: {"email":"seunoduez@gmail.com","password":"Timpearl05$$$"}
+2024-12-04 15:07:22 [info]: POST /add 422 - Request Body: {"title":"Beginners guide to Medicine","objective":"Introduction to Biology I","price":"50000","instructorId":"67453884a835dc3c8062914d","duration":"six weeks","lessonFormat":".xls","assessments":["6746287ee641d30376864b00"]}
+2024-12-04 15:07:57 [info]: POST /add 422 - Request Body: {"code":"CZ-501","title":"Beginners guide to Medicine","objective":"Introduction to Biology I","price":"50000","instructorId":"67453884a835dc3c8062914d","duration":"six weeks","lessonFormat":".xls","assessments":["6746287ee641d30376864b00"]}
+2024-12-04 15:10:23 [info]: POST /add 201 - Request Body: {"code":"CZ-501","title":"Beginners guide to Medicine","objective":"Introduction to Biology I","price":"50000","instructorId":"67453884a835dc3c8062914d","duration":"six weeks","lessonFormat":".xls","assessments":["6746287ee641d30376864b00"],"showInstructor":false}
+2024-12-04 15:12:18 [info]: POST /add 422 - Request Body: {"code":"CZ-501","title":"Beginners guide to Medicine","objective":"Introduction to Biology I","price":"50000","instructorId":"67453884a835dc3c8062914d","duration":"six weeks","lessonFormat":".xls","assessments":["6746287ee641d30376864b00"]}
+2024-12-04 15:12:48 [info]: POST /add 422 - Request Body: {"title":"Beginners guide to Medicine","objective":"Introduction to Biology I","price":"50000","instructorId":"67453884a835dc3c8062914d","duration":"six weeks","lessonFormat":".xls","assessments":["6746287ee641d30376864b00"]}
+2024-12-04 15:13:52 [info]: POST /add 422 - Request Body: {"title":"Beginners guide to Medicine","objective":"Introduction to Biology I","price":"50000","instructorId":"67453884a835dc3c8062914d","duration":"six weeks","lessonFormat":".xls","assessments":["6746287ee641d30376864b00"]}
+2024-12-04 15:17:47 [info]: POST /add 422 - Request Body: {"title":"Beginners guide to Medicine","objective":"Introduction to Biology I","price":"50000","instructorId":"67453884a835dc3c8062914d","duration":"six weeks","lessonFormat":".xls","assessments":["6746287ee641d30376864b00"]}
+2024-12-04 15:19:17 [info]: POST /add 422 - Request Body: {"title":"Beginners guide to Medicine","objective":"Introduction to Biology I","price":"50000","instructorId":"67453884a835dc3c8062914d","duration":"six weeks","lessonFormat":".xls","assessments":["6746287ee641d30376864b00"]}
+2024-12-04 15:21:00 [info]: POST /add 422 - Request Body: {"title":"Beginners guide to Medicine","objective":"Introduction to Biology I","price":"50000","instructorId":"67453884a835dc3c8062914d","duration":"six weeks","lessonFormat":".xls","assessments":["6746287ee641d30376864b00"]}
+2024-12-04 15:23:13 [info]: POST /add 422 - Request Body: {"title":"Beginners guide to Medicine","objective":"Introduction to Biology I","price":"50000","instructorId":"67453884a835dc3c8062914d","duration":"six weeks","lessonFormat":".xls","assessments":["6746287ee641d30376864b00"]}
+2024-12-04 15:25:19 [info]: POST /add 422 - Request Body: {"title":"Beginners guide to Medicine","objective":"Introduction to Biology I","price":"50000","instructorId":"67453884a835dc3c8062914d","duration":"six weeks","lessonFormat":".xls","assessments":["6746287ee641d30376864b00"]}
+2024-12-04 15:27:14 [info]: POST /add 422 - Request Body: {"objective":"Introduction to Biology I","price":"50000","instructorId":"67453884a835dc3c8062914d","duration":"six weeks","lessonFormat":".xls","assessments":["6746287ee641d30376864b00"]}
+2024-12-04 15:27:32 [info]: POST /add 201 - Request Body: {"code":"CZ-501","title":"Beginners guide to Medicine","objective":"Introduction to Biology I","price":"50000","instructorId":"67453884a835dc3c8062914d","duration":"six weeks","lessonFormat":".xls","assessments":["6746287ee641d30376864b00"],"showInstructor":false}
+2024-12-04 15:27:47 [info]: POST /add 201 - Request Body: {"code":"CZ-501","title":"Beginners guide to Medicine","objective":"Introduction to Biology I","price":"50000","instructorId":"67453884a835dc3c8062914d","duration":"six weeks","lessonFormat":".xls","assessments":["6746287ee641d30376864b00"],"showInstructor":false}
+2024-12-04 15:29:35 [info]: POST /add 400 - Request Body: {"code":"CZ-501","title":"Beginners guide to Medicine","objective":"Introduction to Biology I","price":"50000","instructorId":"67453884a835dc3c8062914d","duration":"six weeks","lessonFormat":".xls","assessments":["6746287ee641d30376864b00"],"showInstructor":false}
+2024-12-04 15:38:38 [info]: POST /add 422 - Request Body: {"title":"Beginners guide to Medicine","objective":"Introduction to Biology I","price":"50000","instructorId":"67453884a835dc3c8062914d","duration":"six weeks","lessonFormat":".xls","assessments":["6746287ee641d30376864b00"],"showInstructor":false}
+2024-12-04 16:30:40 [info]: GET /674876e040dc8e5df096c26d/report 200
+2024-12-04 16:32:07 [info]: GET /674876e040dc8e5df096c26d/report?format=csv 200 - Query Params: {"format":"csv"}
+2024-12-04 16:32:07 [info]: GET /674876e040dc8e5df096c26d/report?format=csv 200
+2024-12-04 16:32:38 [info]: GET /674876e040dc8e5df096c26d/report?format=json 200 - Query Params: {"format":"json"}
+2024-12-04 16:32:38 [info]: GET /674876e040dc8e5df096c26d/report?format=json 200
 2024-12-03 19:01:14 [info]: POST /login 200 - Request Body: {"email":"ajibadeemmanuel58@gmail.com","password":"Test2024!"}
 2024-12-03 19:01:18 [info]: GET / 304
 2024-12-03 19:02:06 [info]: GET / 304
@@ -2606,3 +2655,25 @@
 2024-12-04 15:54:47 [info]: GET / 304
 2024-12-04 15:57:52 [info]: GET / 304
 2024-12-04 15:58:21 [info]: GET / 304
+2024-12-04 21:57:14 [info]: POST /api/v1/certificates 500 - Request Body: {"certificateTitle":"First test","recipientName":"Ajy","awardedOn":"28th December 2024","expiryDate":"28th December 2024"}
+2024-12-04 21:57:25 [info]: POST /api/v1/certificates 500 - Request Body: {"certificateTitle":"First test","recipientName":"Ajy","awardedOn":"28th December 2024","expiryDate":"28th December 2024"}
+2024-12-04 21:58:48 [info]: POST /api/v1/certificates 500 - Request Body: {"certificateTitle":"First test","recipientName":"Ajy","awardedOn":"28th December 2024","expiryDate":"28th December 2024"}
+2024-12-04 21:59:27 [info]: POST /api/v1/certificates 500 - Request Body: {"certificateTitle":"First test","recipientName":"Ajy","awardedOn":"28th December 2024","expiryDate":"28th December 2024"}
+2024-12-04 22:16:33 [info]: POST /api/v1/certificates 500 - Request Body: {"certificateTitle":"First test","recipientName":"Ajy","awardedOn":"28th December 2024","expiryDate":"28th December 2024"}
+2024-12-04 22:17:52 [info]: POST /api/v1/certificates 500 - Request Body: {"certificateTitle":"First test","recipientName":"Ajy","awardedOn":"28th December 2024","expiryDate":"28th December 2024"}
+2024-12-04 22:18:44 [info]: POST / 500 - Request Body: {"certificateTitle":"First test","recipientName":"Ajy","awardedOn":"28th December 2024","expiryDate":"28th December 2024","authorizedSignature1Name":"Ajibade","authorizedSignature1Title":"CEO","authorizedSignature2Name":"ajy","authorizedSignature2Title":"MANAGER"}
+2024-12-04 22:33:44 [info]: POST / 201 - Request Body: {"certificateTitle":"First test","recipientName":"Ajy","awardedOn":"28th December 2024","expiryDate":"28th December 2024","authorizedSignature1Name":"Ajibade","authorizedSignature1Title":"CEO","authorizedSignature2Name":"ajy","authorizedSignature2Title":"MANAGER"}
+2024-12-04 22:39:54 [info]: GET / 401
+2024-12-04 22:40:00 [info]: GET / 304
+2024-12-04 22:40:31 [info]: GET /course/get-all-courses 304
+2024-12-04 22:42:29 [info]: GET /course/get-all-courses 304
+2024-12-04 22:42:39 [info]: GET /course/get-all-courses 304
+2024-12-04 22:46:07 [info]: GET /course/get-all-courses 304
+2024-12-04 22:46:13 [info]: GET /course/get-all-courses 304
+2024-12-04 22:46:58 [info]: GET /course/get-all-courses 304
+2024-12-04 22:47:03 [info]: GET /course/get-all-courses 304
+2024-12-04 22:47:05 [info]: GET /course/get-all-courses 304
+2024-12-04 22:53:19 [info]: GET /course/get-all-courses 304
+2024-12-04 22:59:06 [info]: POST / 201 - Request Body: {"certificateTitle":"a","recipientName":"a","awardedOn":"a","expiryDate":"a","authorizedSignature1Name":"a","authorizedSignature1Title":"a","authorizedSignature2Name":"a","authorizedSignature2Title":"a"}
+2024-12-04 23:02:22 [info]: POST / 201 - Request Body: {"certificateTitle":"aaa","recipientName":"a","awardedOn":"a","expiryDate":"a","authorizedSignature1Name":"a","authorizedSignature1Title":"a","authorizedSignature2Name":"a","authorizedSignature2Title":"a"}
+2024-12-04 23:15:25 [info]: GET /course/get-all-courses 304

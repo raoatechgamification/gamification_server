@@ -6,7 +6,11 @@ import {
   userIdValidator,
 } from "../validators/admin.validator";
 
-const { viewAllUsers, editUserProfile, viewAUserProfile } = AdminController;
+const { 
+  viewAllUsers, 
+  editUserProfile, 
+  viewAUserProfile, 
+} = AdminController;
 
 const router = Router();
 
@@ -27,5 +31,6 @@ router.get(
   ...userIdValidator,
   viewAUserProfile
 );
+
 
 export default router;
