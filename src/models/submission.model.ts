@@ -1,10 +1,11 @@
 import mongoose, { Document, Schema } from 'mongoose';
 
-interface PopulatedAssessment {
+export interface PopulatedAssessment {
+  _id: string;
   highestAttainableScore: number;
 }
 
-interface PopulatedLearner {
+export interface PopulatedLearner {
   _id: string; 
   firstName: string;
   lastName: string;
@@ -39,16 +40,18 @@ export interface ISubmission extends Document {
     answer: Schema.Types.Mixed;
     isCorrect?: boolean;
   }[];
-  learnerId: Schema.Types.ObjectId;
+  learnerId: Schema.Types.ObjectId | PopulatedLearner;
   courseId: Schema.Types.ObjectId;
-  assessmentId: Schema.Types.ObjectId;
+  assessmentId: Schema.Types.ObjectId | PopulatedAssessment;
   submittedFile?: string;
   comments?: string; 
   gradedAnswers?: SubmissionAnswerInterface[];
   score?: number; 
+  maxObtainableMarks?: number;
   percentageScore?: number;
   status?: 'Submitted' | 'Graded';
-  passOrFail?: 'Pass' | 'Fail'
+  passOrFail?: 'Pass' | 'Fail',
+  createdAt: Date
 }
 
 const submissionSchema = new Schema<ISubmission>(
@@ -73,6 +76,7 @@ const submissionSchema = new Schema<ISubmission>(
       },
     ],
     score: { type: Number, min: 0 },
+    maxObtainableMarks: { type: Number, min: 0},
     percentageScore: { type: Number, min: 0, max: 100 },
     status: { type: String, enum: ['Submitted', 'Graded'], default: 'Submitted' },
     passOrFail: { type: String, enum: ["Pass", "Fail"], default: "Fail" },
