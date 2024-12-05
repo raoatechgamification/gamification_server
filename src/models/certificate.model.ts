@@ -2,40 +2,50 @@ import mongoose, { Schema, Document, Model, Mongoose } from 'mongoose';
 
 export interface ICertificate extends Document {
   organizationId: mongoose.Schema.Types.ObjectId;
-  organizationLogo: string; // URL of the logo
-  organizationName: string;
+  organizationLogo?: string; // URL of the logo
+  organizationName?: string;
   certificateTitle: string;
-  courseId: mongoose.Schema.Types.ObjectId;
-  contentsBeforeRecipient: string;
-  contentsAfterRecipient: string;
+  courseId?: mongoose.Schema.Types.ObjectId;
+  contentsBeforeRecipient?: string;
+  contentsAfterRecipient?: string;
   recipientName: string;
-  awardedOn: Date;
+  awardedOn: string;
   dateIssued: Date;
-  expiryDate?: Date;
-  authorizedHeadName: string;
-  authorizedSignature: string; // URL of the signature image
+  expiryDate?: String;
+  authorizedHeadName?: string;
+  authorizedSignature1?: string; // URL of the first signature
+  authorizedSignature1Name?: string;
+  authorizedSignature1Title?: string;
+  authorizedSignature2?: string; // URL of the second signature
+  authorizedSignature2Name?: string;
+  authorizedSignature2Title?: string;
   certificateId: string; // Unique identifier
 }
 
 const CertificateSchema: Schema<ICertificate> = new Schema(
   {
     organizationId: { type: mongoose.Schema.Types.ObjectId, required: true },
-    organizationLogo: { type: String, required: true },
-    organizationName: { type: String, required: true },
+    organizationLogo: { type: String },
+    organizationName: { type: String },
     certificateTitle: { type: String, required: true },
-    courseId: { type: Schema.Types.ObjectId, required: true },
-    contentsBeforeRecipient: { type: String, required: true },
-    contentsAfterRecipient: { type: String, required: true },
+    courseId: { type: Schema.Types.ObjectId },
+    contentsBeforeRecipient: { type: String },
+    contentsAfterRecipient: { type: String },
     recipientName: { type: String, required: true },
-    awardedOn: { type: Date, required: true },
+    awardedOn: { type: String, required: true },
     dateIssued: { type: Date, required: true, default: Date.now },
-    expiryDate: { type: Date },
-    authorizedHeadName: { type: String, required: true },
-    authorizedSignature: { type: String, required: true },
+    expiryDate: { type: String },
+    authorizedHeadName: { type: String },
+    authorizedSignature1: { type: String },
+    authorizedSignature1Name: { type: String },
+    authorizedSignature1Title: { type: String },
+    authorizedSignature2: { type: String },
+    authorizedSignature2Name: { type: String },
+    authorizedSignature2Title: { type: String },
     certificateId: { type: String, unique: true },
   },
   {
-    timestamps: true, 
+    timestamps: true,
   }
 );
 

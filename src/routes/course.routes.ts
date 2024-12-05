@@ -12,6 +12,7 @@ import {
 } from "../validators/course.validator";
 import { upload } from "../utils/upload.utils";
 
+
 const {
   createCourse,
   createACourse,
@@ -24,6 +25,7 @@ const {
 } = new CourseController();
 
 const { getCourseReport } = AdminController
+
 
 const router = Router();
 

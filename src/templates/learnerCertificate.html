@@ -10,11 +10,15 @@
     <div class="certificate-container">
       <div class="certificate-border">
         <div class="certificate-content">
-          <img
-            src="https://res.cloudinary.com/dldchwdkn/image/upload/v1730464458/gamai-logo_gzmck8.png"
-            alt="Company Logo"
-            class="logo"
-          />
+          <div class="logoAndName">
+            <img
+              src="https://res.cloudinary.com/dldchwdkn/image/upload/v1733311025/course-content/nl5rxjwlwpxyxfdiyo7q.png"
+              alt="Company Logo"
+              class="logo"
+            />
+            <h3>RAOATECH IT-ELECTROMECH LIMITED</h3>
+          </div>
+          
           <br>
           <h1 class="certificate-title">Certificate of Completion</h1>
           <br>
@@ -25,23 +29,41 @@
           <p class="awarded-date">AWARDED ON {{ date }}</p>
           <br>
           <div class="organization-signature">
-            <div class="organization">
-              <p class="organization-name">{{ organization }}</p>
-              <div class="line"></div>
-              <p>Organization Name</p>
-            </div>
-
             <div class="signature">
               <img
                 src="signature-url.png"
-                alt="Signature"
+                alt="Signature 1"
                 class="signature-image"
               />
               <div class="line"></div>
-              <p>Signature</p>
+              <p>{{Name 1}} {{title}}</p>
+            </div>
+            
+            <div class="">
+              <img
+                src="https://res.cloudinary.com/dldchwdkn/image/upload/v1733311850/course-content/kmhg34llpm3n97djhqdu.png"
+                alt="stature"
+                class="stature"
+              />
+             
+            </div>
+            <div class="signature">
+              <img
+                src="signature-url.png"
+                alt="Signature 2"
+                class="signature-image"
+              />
+              <div class="line"></div>
+              <p>{{Name 2}} {{title}}</p>
             </div>
           </div>
 
+          <div class="dateAndExpiry">
+            <p>Issues on: {{Issuess date}}</p>
+            <p>Expiry date: {{Expiry date}}</p>
+          </div>
+
+          
           <p class="completion-text">
             HAS COMPLETED ALL THE REQUIREMENTS FOR THE COURSE
             <strong>{{ course }}</strong>

@@ -8,6 +8,7 @@ import Announcement from "../models/announcement.model";
 import Assessment from "../models/assessment.model";
 import { NotificationController } from "../controllers/notification.controller";
 import { uploadToCloudinary } from "../utils/cloudinaryUpload";
+import ObjectiveAssessment from "../models/objectiveAssessment.model";
 
 const { createNotification } = new NotificationController();
 
@@ -215,6 +216,7 @@ export class CourseController {
         lessonFormat,
         lessons,
         assessments,
+        certificate,
         announcements,
         showInstructor,
       } = req.body;
@@ -228,19 +230,19 @@ export class CourseController {
 
       console.log("Code exists:", codeExists);
 
-      if (assessments) {
-        const validAssessments = await Assessment.find({
-          _id: { $in: assessments },
-          instructorId: adminId,
-        });
-        if (validAssessments.length !== assessments.length) {
-          return ResponseHandler.failure(
-            res,
-            "One or more assessments are invalid",
-            400
-          );
-        }
-      }
+      // if (assessments) {
+      //   const validAssessments = await ObjectiveAssessment.find({
+      //     _id: { $in: assessments },
+      //     instructorId: adminId,
+      //   });
+      //   if (validAssessments.length !== assessments.length) {
+      //     return ResponseHandler.failure(
+      //       res,
+      //       "One or more assessments are invalid",
+      //       400
+      //     );
+      //   }
+      // }
 
       let validLessons;
       if (lessons) {
@@ -287,6 +289,7 @@ export class CourseController {
         lessonFormat,
         lessons,
         assessments,
+        certificate,
         announcements: announcementIds,
         tutorId: instructorId,
       };

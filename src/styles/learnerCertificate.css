@@ -24,14 +24,32 @@ body {
 .certificate-content {
   text-align: center;
 }
+.logoAndName{
+  display: flex;
+  justify-content: center;
+}
+.logo{
+  margin-top: 8px;
+}
+.stature{
+  margin-bottom: 5%;
+}
+.logoAndName h3{
+  color: #78b5f2;
+  padding-left: 5px;
+}
+.certificate-content .logo{
+ width: 40px;
+ height: 40px;
+}
 
-.logo {
+/* .logo {
   width: 600px;
   height: auto;
   display: flex;
   flex-direction: column; 
   align-items: center;    
-}
+} */
 
 .certificate-title {
   font-family: 'Georgia', serif;
@@ -62,18 +80,26 @@ body {
   margin: 10px 0;
 }
 
-.organization-signature {
+.organization-signature, .dateAndExpiry {
   display: flex;
   justify-content: space-between;
-  margin: 20px 0;
-}
 
+  /* margin: 20px 0; */
+}
+.dateAndExpiry{
+  display: flex;
+  justify-content: space-between;
+}
 .organization,
 .signature {
   text-align: center;
   width: 40%;
+  margin-top: 5%;
 }
-
+.dateAndExpiry{
+  margin-left: 10%;
+  margin-right: 10%;
+}
 .organization-name {
   font-weight: bold;
   margin-bottom: 5px;

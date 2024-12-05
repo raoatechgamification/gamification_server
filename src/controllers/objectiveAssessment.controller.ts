@@ -52,6 +52,7 @@ class ObjectAssessmentController {
 
       const code = assessmentCode || `EXT-${position}`;
 
+      
       const newAssessment = new ObjectiveAssessment({
         organizationId,
         title,
@@ -68,6 +69,7 @@ class ObjectAssessmentController {
         position,
       });
 
+     
       await newAssessment.save();
 
       return ResponseHandler.success(
