@@ -2804,3 +2804,9 @@
 2024-12-05 13:41:33 [info]: GET / 304
 2024-12-05 13:41:36 [info]: POST /add 201 - Request Body: {"title":"Test 35y","objective":"g","price":"2000","duration":"2","instructorId":"67405d791a49e4a70bfd2d44","lessonFormat":"pdf","code":"RQTT335u","showInstructor":true,"assessments":["674f51724ae7c3f551bd0075"],"certificate":["673ca1f82fc18ec375a28e02"]}
 2024-12-05 13:42:06 [info]: GET / 304
+2024-12-05 13:43:48 [info]: GET / 304
+2024-12-05 13:44:08 [info]: GET / 304
+2024-12-05 13:44:12 [info]: GET / 304
+2024-12-05 13:44:16 [info]: GET / 304
+2024-12-05 13:44:20 [info]: POST /add 201 - Request Body: {"title":"Test 35yuu","objective":"h","price":"2000","duration":"2","instructorId":"67405d791a49e4a70bfd2d44","lessonFormat":"powerpoint","code":"RQTT335uu","showInstructor":true,"assessments":["674f51724ae7c3f551bd0075"],"certificate":["673ca1f82fc18ec375a28e02"]}
+2024-12-05 13:44:58 [info]: GET / 304
