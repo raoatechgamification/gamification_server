@@ -4,9 +4,8 @@ import Payment from "../models/payment.model";
 import AssignedBill from "../models/assignedBill.model";
 import User, { IUser } from "../models/user.model";
 import { ObjectId } from "mongoose";
-import { PopulatedSubmission } from "../models/submission.model";
 import Course from "../models/course.model";
-import Submission from "../models/submission.model";
+import Submission, { PopulatedLearner, PopulatedAssessment, PopulatedSubmission } from "../models/submission.model";
 import * as XLSX from "xlsx";
 
 class AdminController {
@@ -129,7 +128,7 @@ class AdminController {
     }
   }
 
-  async getCourseReport(req: Request, res: Response) {
+  async getCourseReeport(req: Request, res: Response) {
     try {
       const { courseId } = req.params;
   
@@ -240,6 +239,133 @@ class AdminController {
       res.status(500).json({ message: 'Failed to generate report', error: error.message });
     }
   }
+
+  async getCourseReport(req: Request, res: Response) {
+    try {
+      const { courseId } = req.params;
+  
+      // Fetch the course by ID
+      const course = await Course.findById(courseId).populate<{
+        learnerIds: { userId: string; progress: number }[];
+      }>('learnerIds');
+  
+      if (!course) {
+        return res.status(404).json({ message: 'Course not found' });
+      }
+  
+      // Extract learner IDs from the course
+      const learnerIds = course.learnerIds.map((learner) => learner.userId.toString());
+  
+      // Fetch users who are learners in this course
+      const users = await User.find({ _id: { $in: learnerIds } });
+  
+      // Fetch submissions for learners in this course
+      const submissions = await Submission.find({
+        learnerId: { $in: learnerIds },
+      })
+      .populate<{
+        learnerId: PopulatedLearner;
+        assessmentId: PopulatedAssessment;
+      }>('learnerId assessmentId');
+        // .populate<{ assessmentId: { highestAttainableScore: number } }>('assessmentId')
+        // .populate<{ learnerId: { _id: string; firstName: string; lastName: string } }>('learnerId');
+  
+
+
+      // Filter submissions to only keep the latest one per learner per assessment
+      
+      const latestSubmissionsMap = new Map<string, any>();
+      submissions.forEach((submission) => {
+        const key = `${submission.learnerId._id}_${submission.assessmentId._id}`;
+        if (!latestSubmissionsMap.has(key) || submission.createdAt > latestSubmissionsMap.get(key).createdAt
+      ) {
+          latestSubmissionsMap.set(key, submission);
+        }
+      });
+
+      const latestSubmissions = Array.from(latestSubmissionsMap.values());
+  
+      // Initialize counters
+      let completedCount = 0;
+      let incompleteCount = 0;
+      let successCount = 0;
+      let failureCount = 0;
+  
+      // Process user reports
+      const userReports = users.map((user: any) => {
+        const userSubmissions = latestSubmissions.filter(
+          (submission) => submission.learnerId && submission.learnerId._id.toString() === user._id.toString()
+        );
+  
+        const totalObtainedMarks = userSubmissions.reduce(
+          (sum, sub) => sum + (sub.score || 0),
+          0
+        );
+  
+        const maxObtainableMarks = userSubmissions.reduce(
+          (sum, sub) => sum + (sub.maxObtainableMarks || 0),
+          0
+        );
+  
+        const percentageScore =
+          maxObtainableMarks > 0
+            ? Math.round((totalObtainedMarks / maxObtainableMarks) * 100)
+            : 0;
+  
+        // Update completion and success metrics
+        completedCount += userSubmissions.length > 0 ? 1 : 0;
+        incompleteCount += userSubmissions.length === 0 ? 1 : 0;
+  
+        successCount += userSubmissions.filter((sub) => (sub.score || 0) > 0).length;
+        failureCount += userSubmissions.filter((sub) => (sub.score || 0) === 0).length;
+  
+        return {
+          firstName: user.firstName,
+          lastName: user.lastName,
+          totalObtainedMarks,
+          maxObtainableMarks,
+          percentageScore,
+        };
+      });
+  
+      // Calculate overall completion rates
+      const totalSubmissions = completedCount + incompleteCount;
+      const completion = {
+        percentageCompleted:
+          totalSubmissions > 0
+            ? Math.round((completedCount / totalSubmissions) * 100)
+            : 0,
+        percentageIncomplete:
+          totalSubmissions > 0
+            ? Math.round((incompleteCount / totalSubmissions) * 100)
+            : 0,
+      };
+  
+      // Calculate success rates
+      const totalAttempts = successCount + failureCount;
+      const successRate = {
+        successPercentage:
+          totalAttempts > 0
+            ? Math.round((successCount / totalAttempts) * 100)
+            : 0,
+        failurePercentage:
+          totalAttempts > 0
+            ? Math.round((failureCount / totalAttempts) * 100)
+            : 0,
+      };
+  
+      // Respond with the user report
+      res.json({
+        totalUsers: users.length,
+        completion,
+        successRate,
+        learnerReport: userReports,
+      });
+    } catch (error: any) {
+      console.error('Error generating report:', error);
+      res.status(500).json({ message: 'Failed to generate report', error: error.message });
+    }
+  }  
 }
 
 export default new AdminController();
