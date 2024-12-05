@@ -62,7 +62,7 @@ const submissionSchema = new Schema<ISubmission>(
         answer: { type: Schema.Types.Mixed, required: true }, 
         isCorrect: { type: Boolean },
       },
-    ],
+    ],  
     submittedFile: { type: String },
     comments: { type: String },
     gradedAnswers: [

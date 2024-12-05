@@ -97,14 +97,26 @@ class ObjectAssessmentController {
     const userId = req.user.id;
   
     try {
-      const assessment = await ObjectiveAssessment.findById(assessmentId);
-      if (!assessment) {
-        return ResponseHandler.failure(res, "Assessment not found", 404);
-      }
+      // const assessment = await ObjectiveAssessment.findById(assessmentId);
+      // if (!assessment) {
+      //   return ResponseHandler.failure(res, "Assessment not found", 404);
+      // }
   
       const course = await Course.findById(courseId);
       if (!course) {
         return ResponseHandler.failure(res, "Course not found", 404);
+      }
+
+      // A user or learner should only be able to take assessments for courses they are registered for.
+
+      const assessmentObjectId = new mongoose.Types.ObjectId(assessmentId);
+
+      if (!course.assessments?.includes(assessmentObjectId)) {
+        return ResponseHandler.failure(
+          res,
+          "This assessment does not belong to the specified course",
+          403
+        );
       }
   
       const learner = course.learnerIds?.find(
@@ -124,6 +136,11 @@ class ObjectAssessmentController {
           "You must complete at least 90% of the course to take this assessment",
           403
         );
+      }
+
+      const assessment = await ObjectiveAssessment.findById(assessmentId);
+      if (!assessment) {
+        return ResponseHandler.failure(res, "Assessment not found", 404);
       }
   
       const submissionCount = await Submission.countDocuments({
@@ -145,7 +162,7 @@ class ObjectAssessmentController {
         questionIds.includes(answer.questionId.toString())
       );
       if (!isValid) {
-        return ResponseHandler.failure(res, "Invalid answers submitted", 400);
+        return ResponseHandler.failure(res, "Invalid question IDs or answers submitted", 400);
       }
   
       let totalScore = 0;
