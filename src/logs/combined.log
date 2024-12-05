@@ -2509,3 +2509,12 @@
 2024-12-04 16:32:07 [info]: GET /674876e040dc8e5df096c26d/report?format=csv 200
 2024-12-04 16:32:38 [info]: GET /674876e040dc8e5df096c26d/report?format=json 200 - Query Params: {"format":"json"}
 2024-12-04 16:32:38 [info]: GET /674876e040dc8e5df096c26d/report?format=json 200
+2024-12-05 10:12:29 [info]: POST /login 200 - Request Body: {"email":"seunoduez@gmail.com","password":"Timpearl05$$$"}
+2024-12-05 10:12:58 [info]: GET /674876e040dc8e5df096c26d/report 500
+2024-12-05 11:55:37 [info]: GET /674876e040dc8e5df096c26d/report 200
+2024-12-05 12:28:39 [info]: GET /674876e040dc8e5df096c26d/report 200
+2024-12-05 14:05:20 [info]: GET /674876e040dc8e5df096c26d/report 200
+2024-12-05 14:10:17 [info]: POST /single-create 401 - Request Body: {"firstName":"Temitope","lastName":"Olaiya","email":"olaiyatemitope6@gmail.com","role":"learner","batch":"2024","sendEmail":true}
+2024-12-05 14:10:54 [info]: POST /single-create 201 - Request Body: {"firstName":"Temitope","lastName":"Olaiya","email":"olaiyatemitope6@gmail.com","role":"learner","batch":"2024","sendEmail":true}
+2024-12-05 14:11:42 [info]: POST /single-create 400 - Request Body: {"firstName":"Temitope","lastName":"Olaiya","email":"olaiyatemitope6@gmail.com","role":"learner","batch":"2024","sendEmail":true}
+2024-12-05 15:10:30 [info]: GET /674876e040dc8e5df096c26d/report 200 - Request Body: {"totalUsers":50,"completion":{"percentageCompleted":80,"percentageIncomplete":20},"successRate":{"successPercentage":75,"failurePercentage":25},"learnerReport":[{"firstName":"John","lastName":"Doe","totalObtainedMarks":85,"maxObtainableMarks":100,"percentageScore":85},{"firstName":"Jane","lastName":"Smith","totalObtainedMarks":70,"maxObtainableMarks":100,"percentageScore":70}]}

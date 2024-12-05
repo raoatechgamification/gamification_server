@@ -1,5 +1,22 @@
 import mongoose, { Document, Schema } from 'mongoose';
 
+interface PopulatedAssessment {
+  highestAttainableScore: number;
+}
+
+interface PopulatedLearner {
+  _id: string; 
+  firstName: string;
+  lastName: string;
+}
+
+export interface PopulatedSubmission {
+  learnerId: PopulatedLearner;
+  assessmentId: PopulatedAssessment; // The populated type
+  score: number;
+  passOrFail: string;
+}
+
 export interface SubmissionAnswerInterface {
   questionId: string;
   answer: string | boolean | number;
@@ -36,8 +53,8 @@ export interface ISubmission extends Document {
 
 const submissionSchema = new Schema<ISubmission>(
   {
-    learnerId: { type: String, required: true },
-    courseId: { type: String, required: true }, 
+    learnerId: { type: Schema.Types.ObjectId, ref: "User", required: true },
+    courseId: { type: Schema.Types.ObjectId, ref: "Assessment", required: true }, 
     assessmentId: { type: String, required: true },
     answer: [
       {
