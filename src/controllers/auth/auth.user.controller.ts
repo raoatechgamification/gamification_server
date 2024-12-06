@@ -3,6 +3,7 @@ import { ResponseHandler } from "../../middlewares/responseHandler.middleware";
 import User, { IUser } from "../../models/user.model";
 import Organization, { IOrganization } from "../../models/organization.model";
 import SuperAdmin, { ISuperAdmin } from "../../models/superadmin.model";
+import Group from "../../models/group.model";
 import UserService from "../../services/user.service";
 import { comparePassword, hashPassword } from "../../utils/hash";
 import { generateToken } from "../../utils/jwt";
@@ -19,7 +20,7 @@ export class UserAuthController {
         lastName,
         otherName,
         email,
-        phoneNumber,
+        phone,
         userId,
         groupId,
         gender,
@@ -41,6 +42,7 @@ export class UserAuthController {
       } = req.body;
 
       const image = req.file;
+      const organizationId = req.admin._id
 
       let fileUploadResult: any = null;
 
@@ -52,7 +54,6 @@ export class UserAuthController {
         password = `${firstName}${lastName}123#`;
       }
 
-      const organizationId = req.admin._id;
       const organization = await Organization.findById(organizationId);
       if (!organization) {
         return ResponseHandler.failure(res, "Organization not found", 400);
@@ -67,6 +68,17 @@ export class UserAuthController {
         return ResponseHandler.failure(res, "Email already registered", 400);
       }
 
+      if (groupId) {
+        const group = await Group.findOne({
+          _id: groupId,
+          organizationId
+        })
+  
+        if (!group) {
+          return ResponseHandler.failure(res, "Group not found for this organization", 400)
+        }
+      }
+
       const hashedPassword = await hashPassword(password);
 
       const newUser = await User.create({
@@ -74,7 +86,7 @@ export class UserAuthController {
         lastName,
         otherName,
         email,
-        phone: phoneNumber,
+        phone,
         groups: [groupId],
         userId,
         gender,
@@ -113,9 +125,9 @@ export class UserAuthController {
       }
 
       return res.status(201).json({
+        message: "User account created successfully",
         userResponse,
         loginUrl: `${process.env.FRONTENT_BASEURL}/auth/login`,
-        message: "User account created successfully",
       });
     } catch (error: any) {
       return ResponseHandler.failure(
