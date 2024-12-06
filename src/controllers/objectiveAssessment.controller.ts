@@ -130,13 +130,13 @@ class ObjectAssessmentController {
         learnerId: userId,
         assessmentId,
       });
-      // if (submissionCount >= assessment.numberOfTrials) {
-      //   return ResponseHandler.failure(
-      //     res,
-      //     "You have exceeded the number of allowed attempts for this assessment",
-      //     403
-      //   );
-      // }
+      if (submissionCount >= assessment.numberOfTrials) {
+        return ResponseHandler.failure(
+          res,
+          "You have exceeded the number of allowed attempts for this assessment",
+          403
+        );
+      }
   
       const questionIds = assessment.questions.map(
         (q: { _id: mongoose.Types.ObjectId }) => q._id.toString()
