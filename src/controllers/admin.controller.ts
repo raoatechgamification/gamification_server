@@ -2,10 +2,10 @@ import { Request, Response } from "express";
 import { ResponseHandler } from "../middlewares/responseHandler.middleware";
 import Payment from "../models/payment.model";
 import AssignedBill from "../models/assignedBill.model";
-import User, { IUser } from "../models/user.model";
-import { ObjectId } from "mongoose";
+import User from "../models/user.model";
 import Course from "../models/course.model";
-import Submission, { PopulatedLearner, PopulatedAssessment, PopulatedSubmission } from "../models/submission.model";
+import Submission, { PopulatedLearner, PopulatedAssessment } from "../models/submission.model";
+import { parse as json2csv } from 'json2csv';
 import * as XLSX from "xlsx";
 
 class AdminController {
@@ -243,6 +243,7 @@ class AdminController {
   async getCourseReport(req: Request, res: Response) {
     try {
       const { courseId } = req.params;
+      const { format } = req.query;
   
       // Fetch the course by ID
       const course = await Course.findById(courseId).populate<{
@@ -353,6 +354,22 @@ class AdminController {
             ? Math.round((failureCount / totalAttempts) * 100)
             : 0,
       };
+
+      if (format === 'csv') {
+        const csv = json2csv(userReports);
+        res.header('Content-Type', 'text/csv');
+        res.attachment('course_report.csv');
+        return res.send(csv);
+      } else if (format === 'excel') {
+        const worksheet = XLSX.utils.json_to_sheet(userReports);
+        const workbook = XLSX.utils.book_new();
+        XLSX.utils.book_append_sheet(workbook, worksheet, 'Report');
+        const buffer = XLSX.write(workbook, { type: 'buffer', bookType: 'xlsx' });
+  
+        res.header('Content-Type', 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
+        res.attachment('course_report.xlsx');
+        return res.send(buffer);
+      }
   
       // Respond with the user report
       res.json({
