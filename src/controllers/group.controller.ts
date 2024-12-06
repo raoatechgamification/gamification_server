@@ -19,8 +19,11 @@ export class GroupController {
         personalization,
       } = req.body;
 
+      const organizationId = req.admin._id;
+
       const newGroup = new Group({
         name,
+        organizationId,
         basicCustomization: {
           learnerTerm,
           learnerGroup: {

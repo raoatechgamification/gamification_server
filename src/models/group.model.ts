@@ -2,6 +2,7 @@ import mongoose, { Schema, Document, Model } from "mongoose";
 
 interface IGroup extends Document {
   name: string;
+  organizationId: mongoose.Schema.Types.ObjectId;
   basicCustomization: {
     learnerTerm: string; 
     learnerGroup: {
@@ -32,6 +33,7 @@ const GroupSchema: Schema<IGroup> = new Schema(
       type: String,
       required: true,
     },
+    organizationId: { type: mongoose.Schema.Types.ObjectId, required: true},
     basicCustomization: {
       learnerTerm: {
         type: String,
