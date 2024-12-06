@@ -94,64 +94,6 @@ class UserService {
 
     return users;
   }
-
-  // async createUsersFromExcel(
-  //   organization: OrganizationDocument,
-  //   buffer: Buffer
-  // ): Promise<IUser[]> {
-  //   const MAX_ENTRIES = 1000;
-  //   const workbook = XLSX.read(buffer, { type: "buffer" });
-  //   const sheetName = workbook.SheetNames[0];
-  //   const sheet = workbook.Sheets[sheetName];
-
-  //   const userData = XLSX.utils.sheet_to_json(sheet);
-  //   const requiredFields = ["Email", "Phone", "FirstName"];
-
-  //   if (userData.length > MAX_ENTRIES) {
-  //     throw new Error(
-  //       `The file contains ${userData.length} entries, which exceeds the maximum allowed limit of ${MAX_ENTRIES}.`
-  //     );
-  //   }
-
-  //   for (let i = 0; i < userData.length; i++) {
-  //     const data: any = userData[i];
-  //     for (const field of requiredFields) {
-  //       if (!data[field]) {
-  //         throw new Error(`Row ${i + 1}: Missing required field "${field}"`);
-  //       }
-  //     }
-  //   }
-
-  //   const defaultPassword = "DefaultPassword123";
-  //   const hashedDefaultPassword = await hashPassword(defaultPassword);
-
-  //   const users = userData.map((data: any) => ({
-  //     username: data.Username || null,
-  //     firstName: data.FirstName,
-  //     lastName: data.LastName || null,
-  //     email: data.Email,
-  //     phone: data.Phone,
-  //     organizationId: organization.id,
-  //     password: hashedDefaultPassword,
-  //   }));
-
-  //   const createdUsers = await User.insertMany(users);
-
-  //   for (const user of createdUsers) {
-  //     const emailVariables = {
-  //       email: user.email,
-  //       firstName: user.firstName,
-  //       password: defaultPassword,
-  //       organizationName: organization.name,
-  //       subject: "Onboarding Email",
-  //     };
-
-     
-  //     await sendLoginEmail(emailVariables);
-  //   }
-
-  //   return createdUsers;
-  // }
 }
 
 export default new UserService();

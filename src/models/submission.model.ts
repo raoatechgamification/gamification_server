@@ -1,5 +1,23 @@
 import mongoose, { Document, Schema } from 'mongoose';
 
+export interface PopulatedAssessment {
+  _id: string;
+  highestAttainableScore: number;
+}
+
+export interface PopulatedLearner {
+  _id: string; 
+  firstName: string;
+  lastName: string;
+}
+
+export interface PopulatedSubmission {
+  learnerId: PopulatedLearner;
+  assessmentId: PopulatedAssessment; // The populated type
+  score: number;
+  passOrFail: string;
+}
+
 export interface SubmissionAnswerInterface {
   questionId: string;
   answer: string | boolean | number;
@@ -22,22 +40,24 @@ export interface ISubmission extends Document {
     answer: Schema.Types.Mixed;
     isCorrect?: boolean;
   }[];
-  learnerId: Schema.Types.ObjectId;
+  learnerId: Schema.Types.ObjectId | PopulatedLearner;
   courseId: Schema.Types.ObjectId;
-  assessmentId: Schema.Types.ObjectId;
+  assessmentId: Schema.Types.ObjectId | PopulatedAssessment;
   submittedFile?: string;
   comments?: string; 
   gradedAnswers?: SubmissionAnswerInterface[];
   score?: number; 
+  maxObtainableMarks?: number;
   percentageScore?: number;
   status?: 'Submitted' | 'Graded';
-  passOrFail?: 'Pass' | 'Fail'
+  passOrFail?: 'Pass' | 'Fail',
+  createdAt: Date
 }
 
 const submissionSchema = new Schema<ISubmission>(
   {
-    learnerId: { type: String, required: true },
-    courseId: { type: String, required: true }, 
+    learnerId: { type: Schema.Types.ObjectId, ref: "User", required: true },
+    courseId: { type: Schema.Types.ObjectId, ref: "Assessment", required: true }, 
     assessmentId: { type: String, required: true },
     answer: [
       {
@@ -45,7 +65,7 @@ const submissionSchema = new Schema<ISubmission>(
         answer: { type: Schema.Types.Mixed, required: true }, 
         isCorrect: { type: Boolean },
       },
-    ],
+    ],  
     submittedFile: { type: String },
     comments: { type: String },
     gradedAnswers: [
@@ -56,6 +76,7 @@ const submissionSchema = new Schema<ISubmission>(
       },
     ],
     score: { type: Number, min: 0 },
+    maxObtainableMarks: { type: Number, min: 0},
     percentageScore: { type: Number, min: 0, max: 100 },
     status: { type: String, enum: ['Submitted', 'Graded'], default: 'Submitted' },
     passOrFail: { type: String, enum: ["Pass", "Fail"], default: "Fail" },

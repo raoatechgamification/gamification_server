@@ -97,14 +97,20 @@ class ObjectAssessmentController {
     const userId = req.user.id;
   
     try {
-      const assessment = await ObjectiveAssessment.findById(assessmentId);
-      if (!assessment) {
-        return ResponseHandler.failure(res, "Assessment not found", 404);
-      }
-  
       const course = await Course.findById(courseId);
       if (!course) {
         return ResponseHandler.failure(res, "Course not found", 404);
+      }
+  
+      // Convert assessmentId to ObjectId
+      const assessmentObjectId = new mongoose.Types.ObjectId(assessmentId);
+  
+      if (!course.assessments?.includes(assessmentObjectId)) {
+        return ResponseHandler.failure(
+          res,
+          "This assessment does not belong to the specified course",
+          403
+        );
       }
   
       // const learner = course.learnerIds?.find(
@@ -126,6 +132,145 @@ class ObjectAssessmentController {
       //   );
       // }
   
+      const assessment = await ObjectiveAssessment.findById(assessmentId);
+      if (!assessment) {
+        return ResponseHandler.failure(res, "Assessment not found", 404);
+      }
+  
+      const submissionCount = await Submission.countDocuments({
+        learnerId: userId,
+        assessmentId,
+      });
+      if (submissionCount >= assessment.numberOfTrials) {
+        return ResponseHandler.failure(
+          res,
+          "You have exceeded the number of allowed attempts for this assessment",
+          403
+        );
+      }
+  
+      const questionIds = assessment.questions.map((q: { _id: { toString: () => any; }; }) => q._id.toString());
+      const isValid = answers.every((answer) =>
+        questionIds.includes(answer.questionId.toString())
+      );
+      if (!isValid) {
+        return ResponseHandler.failure(res, "Invalid question IDs or answers submitted", 400);
+      }
+  
+      let totalScore = 0;
+      const gradedAnswers = answers.map((answer) => {
+        const question = assessment.questions.find(
+          (q: { _id: { toString: () => string; }; }) => q._id.toString() === answer.questionId.toString()
+        );
+  
+        if (question) {
+          const questionScore = question.mark ?? assessment.marksPerQuestion ?? 0;
+  
+          if (
+            String(question.answer).toLowerCase() ===
+            String(answer.answer).toLowerCase()
+          ) {
+            totalScore += questionScore;
+            return { ...answer, isCorrect: true };
+          }
+        }
+        return { ...answer, isCorrect: false };
+      });
+  
+      // Calculate maxObtainableMarks
+      const maxObtainableMarks = assessment.questions.reduce(
+        (sum: any, q: { mark: any; }) => sum + (q.mark ?? assessment.marksPerQuestion ?? 0),
+        0
+      );
+  
+      const percentageScore = Math.round((totalScore / maxObtainableMarks) * 100);
+      const passOrFail = percentageScore >= assessment.passMark ? "Pass" : "Fail";
+  
+      const submission = await Submission.create({
+        learnerId: userId,
+        courseId,
+        assessmentId,
+        answer: answers,
+        gradedAnswers,
+        score: totalScore,
+        percentageScore,
+        status: "Graded",
+        passOrFail,
+        maxObtainableMarks, 
+      });
+  
+      return ResponseHandler.success(
+        res,
+        { ...submission.toObject(), maxObtainableMarks }, // Include maxObtainableMarks in the response
+        "Assessment submitted and graded successfully",
+        201
+      );
+    } catch (error: any) {
+      return ResponseHandler.failure(
+        res,
+        error.message || "Error processing assessment",
+        error.status || 500
+      );
+    }
+  }
+  
+
+  async ttakeAndGradeAssessment(req: Request, res: Response) {
+    const { courseId, assessmentId } = req.params;
+    const {
+      answers,
+    }: {
+      answers: { questionId: string; answer: string | boolean | number }[];
+    } = req.body;
+    const userId = req.user.id;
+  
+    try {
+      // const assessment = await ObjectiveAssessment.findById(assessmentId);
+      // if (!assessment) {
+      //   return ResponseHandler.failure(res, "Assessment not found", 404);
+      // }
+  
+      const course = await Course.findById(courseId);
+      if (!course) {
+        return ResponseHandler.failure(res, "Course not found", 404);
+      }
+
+      // A user or learner should only be able to take assessments for courses they are registered for.
+
+      const assessmentObjectId = new mongoose.Types.ObjectId(assessmentId);
+
+      if (!course.assessments?.includes(assessmentObjectId)) {
+        return ResponseHandler.failure(
+          res,
+          "This assessment does not belong to the specified course",
+          403
+        );
+      }
+  
+      const learner = course.learnerIds?.find(
+        (learner) => learner.userId.toString() === userId?.toString()
+      );
+      if (!learner) {
+        return ResponseHandler.failure(
+          res,
+          "You are not enrolled in this course",
+          403
+        );
+      }
+  
+      if (learner.progress < 90) {
+        return ResponseHandler.failure(
+          res,
+          "You must complete at least 90% of the course to take this assessment",
+          403
+        );
+      }
+
+      const assessment = await ObjectiveAssessment.findById(assessmentId);
+      if (!assessment) {
+        return ResponseHandler.failure(res, "Assessment not found", 404);
+      }
+  
       const submissionCount = await Submission.countDocuments({
         learnerId: userId,
         assessmentId,
@@ -145,7 +290,7 @@ class ObjectAssessmentController {
         questionIds.includes(answer.questionId.toString())
       );
       if (!isValid) {
-        return ResponseHandler.failure(res, "Invalid answers submitted", 400);
+        return ResponseHandler.failure(res, "Invalid question IDs or answers submitted", 400);
       }
   
       let totalScore = 0;

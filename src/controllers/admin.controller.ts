@@ -2,9 +2,10 @@ import { Request, Response } from "express";
 import { ResponseHandler } from "../middlewares/responseHandler.middleware";
 import Payment from "../models/payment.model";
 import AssignedBill from "../models/assignedBill.model";
-import User, { IUser } from "../models/user.model";
+import User from "../models/user.model";
 import Course from "../models/course.model";
-import Submission from "../models/submission.model";
+import Submission, { PopulatedLearner, PopulatedAssessment } from "../models/submission.model";
+import { parse as json2csv } from 'json2csv';
 import * as XLSX from "xlsx";
 
 class AdminController {
@@ -127,108 +128,261 @@ class AdminController {
     }
   }
 
-  async getCourseReport(req: Request, res: Response) {
+  async getCourseReeport(req: Request, res: Response) {
     try {
       const { courseId } = req.params;
   
-      // Fetch course with learners and assessments
-      const course = await Course.findById(courseId)
-        .populate("learnerIds.userId")
-        .populate("assessments");
+      // Fetch the course by ID
+      const course = await Course.findById(courseId).populate<{
+        learnerIds: { userId: string; progress: number }[];
+      }>('learnerIds');
   
       if (!course) {
-        return res.status(404).json({ message: "Course not found" });
+        return res.status(404).json({ message: 'Course not found' });
       }
   
-      // Ensure `learnerIds` is defined and map only valid learners
-      const learnerIds = course.learnerIds ?? [];
-      const users = learnerIds.map((learner) => learner.userId).filter(Boolean); // Exclude undefined userIds
-      const totalUsers = users.length;
+      // Extract learner IDs from the course
+      const learnerIds = course.learnerIds.map((learner) => learner.userId.toString());
   
-      // Submissions for the course
-      const submissions = await Submission.find({ courseId }).populate("learnerId");
+      // Fetch users who are learners in this course
+      const users = await User.find({ _id: { $in: learnerIds } });
   
-      // Calculate stats
-      const completedCount = learnerIds.filter(
-        (learner) => learner.progress === 100
-      ).length;
-      const passCount = submissions.filter(
-        (submission) => submission.passOrFail === "Pass"
-      ).length;
+      // Fetch submissions for learners in this course
+      const submissions = await Submission.find({
+        learnerId: { $in: learnerIds },
+      })
+        .populate<{ assessmentId: { highestAttainableScore: number } }>('assessmentId')
+        .populate<{ learnerId: { _id: string; firstName: string; lastName: string } }>('learnerId');
   
-      const completionRate = totalUsers
-        ? Math.round((completedCount / totalUsers) * 100)
-        : 0;
-      const successRate = submissions.length
-        ? Math.round((passCount / submissions.length) * 100)
-        : 0;
+      // Initialize counters
+      let completedCount = 0;
+      let incompleteCount = 0;
+      let successCount = 0;
+      let failureCount = 0;
   
-      // Generate report data
-      const reportData = users.map((user: any) => {
-        const learner = learnerIds.find(
-          (learner) =>
-            learner.userId &&
-            learner.userId.toString() === user._id.toString()
-        );
-  
+      // Process user reports
+      const userReports = users.map((user: any) => {
         const userSubmissions = submissions.filter(
           (submission) =>
             submission.learnerId &&
-            submission.learnerId.toString() === user._id.toString()
+            submission.learnerId._id.toString() === user._id.toString()
         );
+  
+        const totalObtainedMarks = userSubmissions.reduce(
+          (sum, sub) => sum + (sub.score || 0),
+          0
+        );
+  
+        const maxObtainableMarks = userSubmissions.reduce(
+          (sum, sub) =>
+            sum +
+            (sub.assessmentId?.highestAttainableScore || 0),
+          0
+        );
+  
+        const percentageScore =
+          maxObtainableMarks > 0
+            ? Math.round((totalObtainedMarks / maxObtainableMarks) * 100)
+            : 0;
+  
+        // Update completion and success metrics
+        completedCount += userSubmissions.length > 0 ? 1 : 0;
+        incompleteCount += userSubmissions.length === 0 ? 1 : 0;
+  
+        successCount += userSubmissions.filter((sub) => (sub.score || 0) > 0).length;
+        failureCount += userSubmissions.filter((sub) => (sub.score || 0) === 0).length;
   
         return {
           firstName: user.firstName,
           lastName: user.lastName,
-          email: user.email,
-          phone: user.phone,
-          status: userSubmissions.length ? "Submitted" : "Not Submitted",
-          progress: learner?.progress ?? 0, // Fallback to 0 if progress is undefined
-          passOrFail: userSubmissions.length
-            ? userSubmissions[0].passOrFail
-            : null,
+          totalObtainedMarks,
+          maxObtainableMarks,
+          percentageScore,
         };
       });
   
-      // Response for API
-      if (req.query.format === "json") {
-        return res.json({
-          totalUsers,
-          completed: completedCount,
-          completionRate,
-          successRate,
-          data: reportData,
-        });
-      }
+      // Calculate overall completion rates
+      const totalSubmissions = completedCount + incompleteCount;
+      const completion = {
+        percentageCompleted:
+          totalSubmissions > 0
+            ? Math.round((completedCount / totalSubmissions) * 100)
+            : 0,
+        percentageIncomplete:
+          totalSubmissions > 0
+            ? Math.round((incompleteCount / totalSubmissions) * 100)
+            : 0,
+      };
   
-      // Export as CSV/Excel
-      const worksheet = XLSX.utils.json_to_sheet(reportData);
-      const workbook = XLSX.utils.book_new();
-      XLSX.utils.book_append_sheet(workbook, worksheet, "Course Report");
+      // Calculate success rates
+      const totalAttempts = successCount + failureCount;
+      const successRate = {
+        successPercentage:
+          totalAttempts > 0
+            ? Math.round((successCount / totalAttempts) * 100)
+            : 0,
+        failurePercentage:
+          totalAttempts > 0
+            ? Math.round((failureCount / totalAttempts) * 100)
+            : 0,
+      };
   
-      const fileType = req.query.format === "csv" ? "csv" : "xlsx";
-      const fileName = `Course_Report.${fileType}`;
-      const buffer =
-        fileType === "csv"
-          ? XLSX.write(workbook, { bookType: "csv", type: "buffer" })
-          : XLSX.write(workbook, { bookType: "xlsx", type: "buffer" });
-  
-      res.setHeader(
-        "Content-Disposition",
-        `attachment; filename=${fileName}`
-      );
-      res.setHeader(
-        "Content-Type",
-        fileType === "csv"
-          ? "text/csv"
-          : "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
-      );
-      return res.send(buffer);
-    } catch (error) {
-      console.error(error);
-      return res.status(500).json({ message: "Server error", error });
+      // Respond with the user report
+      res.json({
+        totalUsers: users.length,
+        completion,
+        successRate,
+        learnerReport: userReports,
+      });
+    } catch (error: any) {
+      console.error('Error generating report:', error);
+      res.status(500).json({ message: 'Failed to generate report', error: error.message });
     }
   }
+
+  async getCourseReport(req: Request, res: Response) {
+    try {
+      const { courseId } = req.params;
+      const { format } = req.query;
+  
+      // Fetch the course by ID
+      const course = await Course.findById(courseId).populate<{
+        learnerIds: { userId: string; progress: number }[];
+      }>('learnerIds');
+  
+      if (!course) {
+        return res.status(404).json({ message: 'Course not found' });
+      }
+  
+      // Extract learner IDs from the course
+      const learnerIds = course.learnerIds.map((learner) => learner.userId.toString());
+  
+      // Fetch users who are learners in this course
+      const users = await User.find({ _id: { $in: learnerIds } });
+  
+      // Fetch submissions for learners in this course
+      const submissions = await Submission.find({
+        learnerId: { $in: learnerIds },
+      })
+      .populate<{
+        learnerId: PopulatedLearner;
+        assessmentId: PopulatedAssessment;
+      }>('learnerId assessmentId');
+        // .populate<{ assessmentId: { highestAttainableScore: number } }>('assessmentId')
+        // .populate<{ learnerId: { _id: string; firstName: string; lastName: string } }>('learnerId');
+  
+
+
+      // Filter submissions to only keep the latest one per learner per assessment
+      
+      const latestSubmissionsMap = new Map<string, any>();
+      submissions.forEach((submission) => {
+        const key = `${submission.learnerId._id}_${submission.assessmentId._id}`;
+        if (!latestSubmissionsMap.has(key) || submission.createdAt > latestSubmissionsMap.get(key).createdAt
+      ) {
+          latestSubmissionsMap.set(key, submission);
+        }
+      });
+
+      const latestSubmissions = Array.from(latestSubmissionsMap.values());
+  
+      // Initialize counters
+      let completedCount = 0;
+      let incompleteCount = 0;
+      let successCount = 0;
+      let failureCount = 0;
+  
+      // Process user reports
+      const userReports = users.map((user: any) => {
+        const userSubmissions = latestSubmissions.filter(
+          (submission) => submission.learnerId && submission.learnerId._id.toString() === user._id.toString()
+        );
+  
+        const totalObtainedMarks = userSubmissions.reduce(
+          (sum, sub) => sum + (sub.score || 0),
+          0
+        );
+  
+        const maxObtainableMarks = userSubmissions.reduce(
+          (sum, sub) => sum + (sub.maxObtainableMarks || 0),
+          0
+        );
+  
+        const percentageScore =
+          maxObtainableMarks > 0
+            ? Math.round((totalObtainedMarks / maxObtainableMarks) * 100)
+            : 0;
+  
+        // Update completion and success metrics
+        completedCount += userSubmissions.length > 0 ? 1 : 0;
+        incompleteCount += userSubmissions.length === 0 ? 1 : 0;
+  
+        successCount += userSubmissions.filter((sub) => (sub.score || 0) > 0).length;
+        failureCount += userSubmissions.filter((sub) => (sub.score || 0) === 0).length;
+  
+        return {
+          firstName: user.firstName,
+          lastName: user.lastName,
+          totalObtainedMarks,
+          maxObtainableMarks,
+          percentageScore,
+        };
+      });
+  
+      // Calculate overall completion rates
+      const totalSubmissions = completedCount + incompleteCount;
+      const completion = {
+        percentageCompleted:
+          totalSubmissions > 0
+            ? Math.round((completedCount / totalSubmissions) * 100)
+            : 0,
+        percentageIncomplete:
+          totalSubmissions > 0
+            ? Math.round((incompleteCount / totalSubmissions) * 100)
+            : 0,
+      };
+  
+      // Calculate success rates
+      const totalAttempts = successCount + failureCount;
+      const successRate = {
+        successPercentage:
+          totalAttempts > 0
+            ? Math.round((successCount / totalAttempts) * 100)
+            : 0,
+        failurePercentage:
+          totalAttempts > 0
+            ? Math.round((failureCount / totalAttempts) * 100)
+            : 0,
+      };
+
+      if (format === 'csv') {
+        const csv = json2csv(userReports);
+        res.header('Content-Type', 'text/csv');
+        res.attachment('course_report.csv');
+        return res.send(csv);
+      } else if (format === 'excel') {
+        const worksheet = XLSX.utils.json_to_sheet(userReports);
+        const workbook = XLSX.utils.book_new();
+        XLSX.utils.book_append_sheet(workbook, worksheet, 'Report');
+        const buffer = XLSX.write(workbook, { type: 'buffer', bookType: 'xlsx' });
+  
+        res.header('Content-Type', 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
+        res.attachment('course_report.xlsx');
+        return res.send(buffer);
+      }
+  
+      // Respond with the user report
+      res.json({
+        totalUsers: users.length,
+        completion,
+        successRate,
+        learnerReport: userReports,
+      });
+    } catch (error: any) {
+      console.error('Error generating report:', error);
+      res.status(500).json({ message: 'Failed to generate report', error: error.message });
+    }
+  }  
 }
 
 export default new AdminController();

@@ -1,14 +1,10 @@
 import { Router } from "express";
-
 import { authenticate, authorize } from "../middlewares/auth.middleware";
-
 import { bulkUpload } from "../utils/upload.utils";
-
 import {
   createOrganizationValidator,
   loginValidator,
 } from "../validators/organization.auth.validator";
-
 import {
   registerUserValidator,
   loginUserValidator,
@@ -19,6 +15,8 @@ import { superAdminValidator } from "../validators/superadmin.validator";
 import { AdminAuthController } from "../controllers/auth/auth.admin.controller";
 import { UserAuthController } from "../controllers/auth/auth.user.controller";
 import { SuperAdminAuthController } from "../controllers/auth/auth.superadmin.controller";
+
+import { upload } from "../utils/upload.utils";
 
 const { registerOrganization, loginOrganization } = AdminAuthController;
 const { registerUser, bulkCreateUsers, createSingleUser, login } =
@@ -49,6 +47,7 @@ router.post(
   "/single-create",
   authenticate,
   authorize("admin"),
+  upload.single("image"),
   createSingleUser
 );
 

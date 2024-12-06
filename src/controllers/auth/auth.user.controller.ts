@@ -3,38 +3,80 @@ import { ResponseHandler } from "../../middlewares/responseHandler.middleware";
 import User, { IUser } from "../../models/user.model";
 import Organization, { IOrganization } from "../../models/organization.model";
 import SuperAdmin, { ISuperAdmin } from "../../models/superadmin.model";
+import Group from "../../models/group.model";
 import UserService from "../../services/user.service";
 import { comparePassword, hashPassword } from "../../utils/hash";
 import { generateToken } from "../../utils/jwt";
 import { sendLoginEmail } from "../../services/sendMail.service";
+import { uploadToCloudinary } from "../../utils/cloudinaryUpload";
+import dotenv from "dotenv";
+dotenv.config();
 
 export class UserAuthController {
   static async createSingleUser(req: Request, res: Response) {
     try {
-      let { firstName, lastName, email, role, batch, password, sendEmail } =
-        req.body;
+      let {
+        firstName,
+        lastName,
+        otherName,
+        email,
+        phone,
+        userId,
+        groupId,
+        gender,
+        dateOfBirth,
+        country,
+        address,
+        city,
+        LGA,
+        state,
+        officeAddress,
+        officeCity,
+        officeLGA,
+        officeState,
+        employerName,
+        role,
+        batch,
+        password,
+        sendEmail,
+      } = req.body;
+
+      const image = req.file;
+      const organizationId = req.admin._id
+
+      let fileUploadResult: any = null;
+
+      if (image) {
+        fileUploadResult = await uploadToCloudinary(image.buffer, image.mimetype, "userDisplayPictures")
+      }
 
       if (!password) {
         password = `${firstName}${lastName}123#`;
       }
 
-      const organizationId = req.admin._id;
       const organization = await Organization.findById(organizationId);
       if (!organization) {
         return ResponseHandler.failure(res, "Organization not found", 400);
       }
 
-      const existingAccount = 
+      const existingAccount =
         (await Organization.findOne({ email })) ||
         (await User.findOne({ email })) ||
-        (await SuperAdmin.findOne({ email })) 
+        (await SuperAdmin.findOne({ email }));
 
       if (existingAccount) {
-        return ResponseHandler.failure(
-          res,
-          "Email already registered",
-          400
-        );
+        return ResponseHandler.failure(res, "Email already registered", 400);
+      }
+
+      if (groupId) {
+        const group = await Group.findOne({
+          _id: groupId,
+          organizationId
+        })
+  
+        if (!group) {
+          return ResponseHandler.failure(res, "Group not found for this organization", 400)
+        }
       }
 
       const hashedPassword = await hashPassword(password);
@@ -42,7 +84,24 @@ export class UserAuthController {
       const newUser = await User.create({
         firstName,
         lastName,
+        otherName,
         email,
+        phone,
+        groups: [groupId],
+        userId,
+        gender,
+        dateOfBirth,
+        image: fileUploadResult ? fileUploadResult.secure_url : null,
+        country,
+        address,
+        city,
+        LGA,
+        state,
+        officeAddress,
+        officeCity,
+        officeLGA,
+        employerName,
+        officeState,
         password: hashedPassword,
         organizationId,
         batch,
@@ -61,16 +120,15 @@ export class UserAuthController {
           organizationName: organization.name,
           subject: "Onboarding Email",
         };
-      
-        await sendLoginEmail(emailVariables)
+
+        await sendLoginEmail(emailVariables);
       }
 
-      return ResponseHandler.success(
-        res,
+      return res.status(201).json({
+        message: "User account created successfully",
         userResponse,
-        "User account created successfully",
-        201
-      );
+        loginUrl: `${process.env.FRONTENT_BASEURL}/auth/login`,
+      });
     } catch (error: any) {
       return ResponseHandler.failure(
         res,
@@ -110,7 +168,7 @@ export class UserAuthController {
       if (error.message.includes("exceeds the maximum allowed limit")) {
         return res.status(400).json({
           success: false,
-          message: error.message, 
+          message: error.message,
         });
       }
 
@@ -189,10 +247,10 @@ export class UserAuthController {
     try {
       const { email, password } = req.body;
 
-      const account =
+      const account: any =
         (await Organization.findOne({ email })) ||
         (await User.findOne({ email })) ||
-        (await SuperAdmin.findOne({ email })) 
+        (await SuperAdmin.findOne({ email }));
 
       if (!account) {
         return ResponseHandler.failure(res, "Account does not exist", 400);
@@ -214,7 +272,8 @@ export class UserAuthController {
       let tokenPayload;
       switch (account.role) {
         case "admin":
-          tokenPayload = UserAuthController.getOrganizationTokenPayload(account);
+          tokenPayload =
+            UserAuthController.getOrganizationTokenPayload(account);
           break;
         case "superAdmin":
           tokenPayload = UserAuthController.getSuperAdminTokenPayload(account);
@@ -222,7 +281,7 @@ export class UserAuthController {
         case "user":
           tokenPayload = UserAuthController.getUserTokenPayload(account);
           break;
-          
+
         default:
           return ResponseHandler.failure(res, "Unknown role", 400);
       }
@@ -255,6 +314,8 @@ export class UserAuthController {
       organizationId: account.organizationId,
       firstName: account.firstName,
       lastName: account.lastName,
+      otherName: account.otherName,
+      image: account.image,
       role: account.role,
     };
   }
