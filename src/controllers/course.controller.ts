@@ -138,6 +138,34 @@ export class CourseController {
     }
   }
 
+  async getAllCoursesForUsers(req: Request, res: Response) {
+    try {
+      const courses = await Course.find(); // Fetch all courses without filtering by organizationId
+  
+      if (!courses || courses.length === 0) {
+        return ResponseHandler.success(
+          res,
+          [],
+          "No courses found. Start by creating a course!",
+          200
+        );
+      }
+  
+      return ResponseHandler.success(
+        res,
+        courses,
+        "Courses retrieved successfully",
+        200
+      );
+    } catch (error: any) {
+      return ResponseHandler.failure(
+        res,
+        `Server error: ${error.message}`,
+        500
+      );
+    }
+  }
+  
   async createLesson(req: Request, res: Response, next: NextFunction) {
     try {
       const instructorId = req.admin._id;

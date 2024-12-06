@@ -20,6 +20,7 @@ const {
   createLesson,
   createAnnouncement,
   getAllCourses,
+  getAllCoursesForUsers,
   getCourseLessons,
   getAllAnnouncementsByCourse,
 } = new CourseController();
@@ -59,6 +60,12 @@ router.get(
   authenticate,
   authorize("admin"),
   getAllCourses
+);
+
+router.get(
+  "/allCourses",
+  authenticate,
+  getAllCoursesForUsers,
 );
 
 router.post(
