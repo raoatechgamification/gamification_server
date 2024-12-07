@@ -3338,3 +3338,70 @@
 2024-12-07 09:19:02 [info]: GET /programs 304
 2024-12-07 09:19:06 [info]: GET /programs 304
 2024-12-07 09:20:09 [info]: GET /programs 304
+2024-12-07 11:52:04 [info]: GET /674f51724ae7c3f551bd0075 304
+2024-12-07 11:52:27 [info]: POST /login 200 - Request Body: {"email":"ajibadeemmanuel58@gmail.com","password":"Test2024!"}
+2024-12-07 11:52:30 [info]: GET / 304
+2024-12-07 11:59:41 [info]: POST / 201 - Request Body: {"certificateTitle":"Second test","recipientName":"Ajibade","awardedOn":"28th December 2024","expiryDate":"28th December 2024","authorizedSignature1Name":"Ajibade","authorizedSignature1Title":"CEO","authorizedSignature2Name":"ajy","authorizedSignature2Title":"MANAGER"}
+2024-12-07 11:59:58 [info]: POST / 201 - Request Body: {"certificateTitle":"Second test","recipientName":"Ajibade","awardedOn":"28th December 2024","expiryDate":"28th December 2024","authorizedSignature1Name":"Ajibade","authorizedSignature1Title":"CEO","authorizedSignature2Name":"ajy","authorizedSignature2Title":"MANAGER"}
+2024-12-07 16:42:34 [info]: GET / 200
+2024-12-07 16:42:52 [info]: GET / 200
+2024-12-07 16:43:01 [info]: POST /add 422 - Request Body: {"title":"","objective":"","price":"","duration":"","instructorId":"67405d791a49e4a70bfd2d44","lessonFormat":"","code":"","showInstructor":"true","assessments":"[\"674f51724ae7c3f551bd0075\"]","certificate":"[]"}
+2024-12-07 16:43:36 [info]: GET / 304
+2024-12-07 16:43:40 [info]: GET / 304
+2024-12-07 16:43:43 [info]: POST /add 422 - Request Body: {"title":"","objective":"","price":"","duration":"","instructorId":"67405d791a49e4a70bfd2d44","lessonFormat":"","code":"","showInstructor":"true","assessments":"[\"674f51724ae7c3f551bd0075\"]","certificate":"[]"}
+2024-12-07 16:47:04 [info]: GET / 304
+2024-12-07 16:47:08 [info]: GET / 304
+2024-12-07 16:47:12 [info]: POST /add 422 - Request Body: {"title":"","objective":"","price":"","duration":"","instructorId":"67405d791a49e4a70bfd2d44","lessonFormat":"","code":"","showInstructor":"true","assessments":"[\"6753281e20813aeb7e919969\"]","certificate":"[\"6750cab873f5768267e6290c\"]"}
+2024-12-07 16:47:34 [info]: GET / 304
+2024-12-07 16:48:06 [info]: GET / 304
+2024-12-07 17:00:45 [info]: GET / 304
+2024-12-07 17:00:53 [info]: GET / 304
+2024-12-07 17:00:57 [info]: POST /add 422 - Request Body: {"title":"Saturday test","objective":"sat","price":"2000","duration":"2","instructorId":"67405d791a49e4a70bfd2d44","lessonFormat":"powerpoint","code":"Sat","showInstructor":"true","assessments":"[\"6753281e20813aeb7e919969\"]","certificate":"[\"6750cab873f5768267e6290c\"]"}
+2024-12-07 17:01:23 [info]: POST /add 422 - Request Body: {"title":"Saturday test","objective":"sat","price":"2000","duration":"2","instructorId":"67405d791a49e4a70bfd2d44","lessonFormat":"powerpoint","code":"Sat","showInstructor":"true","assessments":"[\"6753281e20813aeb7e919969\"]","certificate":"[\"6750cab873f5768267e6290c\"]"}
+2024-12-07 17:02:04 [info]: GET / 304
+2024-12-07 17:02:33 [info]: GET / 304
+2024-12-07 17:02:50 [info]: GET / 304
+2024-12-07 17:03:05 [info]: GET / 304
+2024-12-07 17:03:08 [info]: POST /add 422 - Request Body: {"title":"Saturday test","objective":"sat","price":"2000","duration":"2","instructorId":"67405d791a49e4a70bfd2d44","lessonFormat":"powerpoint","code":"Sat","showInstructor":"true","assessments":"[\"6753281e20813aeb7e919969\"]","certificate":"[\"6750cab873f5768267e6290c\"]"}
+2024-12-07 17:03:23 [info]: POST /add 422 - Request Body: {"title":"Saturday test","objective":"sat","price":"2000","duration":"2","instructorId":"67405d791a49e4a70bfd2d44","lessonFormat":"powerpoint","code":"Sat","showInstructor":"true","assessments":"[\"6753281e20813aeb7e919969\"]","certificate":"[\"6750cab873f5768267e6290c\"]"}
+2024-12-07 17:03:37 [info]: POST /add 422 - Request Body: {"title":"Saturday test","objective":"sat","price":"2000","duration":"2","instructorId":"67405d791a49e4a70bfd2d44","lessonFormat":"powerpoint","code":"Sat","showInstructor":"true","assessments":"[\"6753281e20813aeb7e919969\"]","certificate":"[\"6750cab873f5768267e6290c\"]"}
+2024-12-07 17:03:49 [info]: GET / 304
+2024-12-07 17:08:04 [info]: GET / 304
+2024-12-07 17:08:06 [info]: POST /add 500 - Request Body: {"title":"Saturday test","objective":"sat","price":"2000","duration":"2","instructorId":"67405d791a49e4a70bfd2d44","lessonFormat":"powerpoint","code":"Sat","showInstructor":"true","assessments":["6753281e20813aeb7e919969"],"certificate":"[\"6750cab873f5768267e6290c\"]"}
+2024-12-07 17:08:44 [info]: GET / 304
+2024-12-07 17:09:32 [info]: GET / 304
+2024-12-07 17:09:44 [info]: GET / 304
+2024-12-07 17:10:04 [info]: GET / 304
+2024-12-07 17:10:15 [info]: POST /add 201 - Request Body: {"title":"Saturday test","objective":"sat","price":"2000","duration":"2","instructorId":"67405d791a49e4a70bfd2d44","lessonFormat":"powerpoint","code":"Sat","showInstructor":"true","assessments":["6753281e20813aeb7e919969"],"certificate":["6750cab873f5768267e6290c"]}
+2024-12-07 17:10:44 [info]: GET / 304
+2024-12-07 17:10:51 [info]: GET / 304
+2024-12-07 17:12:01 [info]: GET / 304
+2024-12-07 17:12:25 [info]: GET / 304
+2024-12-07 17:12:30 [info]: GET / 304
+2024-12-07 17:12:41 [info]: POST /add 201 - Request Body: {"title":"Saturday tests","objective":"fer","price":"2000","duration":"2","instructorId":"67405d791a49e4a70bfd2d44","lessonFormat":"pdf","code":"Sats","showInstructor":"true","assessments":["6753281e20813aeb7e919969"],"certificate":["6750cab873f5768267e6290c"]}
+2024-12-07 17:14:28 [info]: POST /login 200 - Request Body: {"email":"richardsonmarcus520@gmail.com","password":"AJIBADEEmmanuel123#"}
+2024-12-07 17:14:32 [info]: GET /programs 304
+2024-12-07 17:14:52 [info]: GET /allCourses 200
+2024-12-07 17:15:22 [info]: GET /allCourses 304
+2024-12-07 17:15:33 [info]: GET /allCourses 304
+2024-12-07 17:15:50 [info]: GET /allCourses 304
+2024-12-07 17:15:58 [info]: GET /allCourses 304
+2024-12-07 17:16:13 [info]: GET /allCourses 304
+2024-12-07 17:16:19 [info]: POST /login 200 - Request Body: {"email":"ajibadeemmanuel58@gmail.com","password":"Test2024!"}
+2024-12-07 17:16:22 [info]: GET / 304
+2024-12-07 17:16:40 [info]: GET /all 200
+2024-12-07 17:16:43 [info]: GET /users 200
+2024-12-07 17:17:09 [info]: POST /675473f960ee532f934b68c1/assign 200 - Request Body: {"userIds":["67473974eac1f0501f661879"],"dueDate":"12-31-2024"}
+2024-12-07 17:17:16 [info]: POST /login 200 - Request Body: {"email":"richardsonmarcus520@gmail.com","password":"AJIBADEEmmanuel123#"}
+2024-12-07 17:17:18 [info]: GET /programs 304
+2024-12-07 17:17:26 [info]: GET /allCourses 304
+2024-12-07 17:18:27 [info]: GET /allCourses 304
+2024-12-07 17:18:37 [info]: GET /allCourses 304
+2024-12-07 17:18:41 [info]: GET /allCourses 304
+2024-12-07 17:18:58 [info]: GET /allCourses 304
+2024-12-07 17:19:01 [info]: GET /allCourses 304
+2024-12-07 17:19:16 [info]: GET /allCourses 304
+2024-12-07 17:19:25 [info]: GET /allCourses 304
+2024-12-07 17:19:48 [info]: GET /allCourses 304
+2024-12-07 17:19:53 [info]: GET /allCourses 304
+2024-12-07 17:20:02 [info]: GET /allCourses 304

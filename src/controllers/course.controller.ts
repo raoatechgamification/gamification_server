@@ -234,6 +234,7 @@ export class CourseController {
 
   async createACourse(req: Request, res: Response) {
     try {
+      const files = req.files as Express.Multer.File[];
       let {
         code,
         title,
@@ -304,6 +305,22 @@ export class CourseController {
           )
         );
       }
+      let Urls: string[] = [];
+
+      if (files && files.length > 0) {
+        for (let i = 0; i < files.length; i++) {
+          const file = files[i];
+          const uploadResult = await uploadToCloudinary(
+            file.buffer,
+            file.mimetype,
+            "course-content"
+          );
+          if (uploadResult && uploadResult.secure_url) {
+            Urls.push(uploadResult.secure_url);
+          }
+        }
+      }
+
 
       if (price === 0) price === "free";
 
@@ -312,6 +329,7 @@ export class CourseController {
         title,
         objective,
         cost: price,
+        courseImage: Urls[0],
         organizationId: adminId,
         duration,
         lessonFormat,

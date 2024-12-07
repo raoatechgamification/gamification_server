@@ -281,14 +281,14 @@ export class LandingPageController {
   
       // Validate and update the LandingPage
       const landingPage = await LandingPage.findById(id);
-     console.log(landingPage)
+    
       if (!landingPage) {
         return res.status(404).json({
           success: false,
           message: `LandingPage with ID ${id} not found.`,
         });
       }
-  console.log(newCourse._id)
+  
       // Update the LandingPage with the new course
       landingPage.course.push(newCourse._id as Types.ObjectId);
       await landingPage.save();

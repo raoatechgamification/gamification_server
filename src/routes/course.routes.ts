@@ -43,6 +43,7 @@ router.post(
   "/add",
   authenticate,
   authorize("admin"),
+  upload.array("file", 10),
   ...validateCreateCourse,
   createACourse
 )
