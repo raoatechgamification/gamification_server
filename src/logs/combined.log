@@ -3329,3 +3329,12 @@
 2024-12-07 09:14:24 [info]: GET /all 200
 2024-12-07 09:15:06 [info]: POST /single-create 400 - Request Body: {"firstName":"AJIBADE","lastName":"Emmanuel","email":"ajibadeemmanuel58@gmail.com","password":"Test2024!","role":"user","batch":"","sendEmail":true}
 2024-12-07 09:15:36 [info]: POST /single-create 500 - Request Body: {"firstName":"AJIBADE","lastName":"Emmanuel","email":"ajibade58@gmail.com","password":"Test2024!","role":"user","batch":"ajibadeemmanuel58@gmail.com","sendEmail":true}
+2024-12-07 09:17:32 [info]: GET /users 401
+2024-12-07 09:17:32 [info]: GET /all 401
+2024-12-07 09:17:33 [info]: GET /all 304
+2024-12-07 09:17:34 [info]: GET /users 304
+2024-12-07 09:18:03 [info]: POST /single-create 201 - Request Body: {"firstName":"AJIBADE","lastName":"Emmanuel","email":"ajibade@gmail.com","password":"Test2024!","role":"user","batch":"ajibadeemmanuel58@gmail.com","sendEmail":true}
+2024-12-07 09:18:48 [info]: POST /login 200 - Request Body: {"email":"ajibade@gmail.com","password":"Test2024!"}
+2024-12-07 09:19:02 [info]: GET /programs 304
+2024-12-07 09:19:06 [info]: GET /programs 304
+2024-12-07 09:20:09 [info]: GET /programs 304
