@@ -16,7 +16,7 @@ export interface IUser extends Document {
   otherName?: string;
   email: string;
   phone?: string;
-  userId: string;
+  userId?: string;
   groups?: mongoose.Schema.Types.ObjectId[];
   organizationId?: mongoose.Schema.Types.ObjectId;
   role: string;
@@ -27,8 +27,8 @@ export interface IUser extends Document {
   highestEducationLevel?: string;
   gender?: string;
   dateOfBirth?: string;
-  image: string;
-  country: string;
+  image?: string;
+  country?: string;
   address?: string;
   city?: string;
   LGA?: string;
@@ -68,7 +68,7 @@ const UserSchema: Schema<IUser> = new Schema(
     otherName: { type: String, default: null },
     email: { type: String, required: true, unique: true, },
     phone: { type: String, default: null, unique: true },
-    userId: { type: String, required: true },
+    userId: { type: String, required: false },
     groups: [{ type: mongoose.Schema.Types.ObjectId }],
     organizationId: { type: mongoose.Schema.Types.ObjectId, default: null, },
     role: { type: String, default: "user", required: true, },
@@ -79,8 +79,8 @@ const UserSchema: Schema<IUser> = new Schema(
     highestEducationLevel: { type: String, default: null, },
     gender: { type: String, default: null, },
     dateOfBirth: { type: String, default: null, },
-    image: { type: String, required: true },
-    country: { type: String, required: true },
+    image: { type: String, required: false },
+    country: { type: String, required: false },
     address: { type: String },
     city: { type: String },
     LGA: { type: String },

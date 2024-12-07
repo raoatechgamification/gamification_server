@@ -3315,3 +3315,17 @@
 2024-12-06 19:23:58 [info]: POST /67519e12d9d748d34e59094d/674f51724ae7c3f551bd0075/take 201 - Request Body: {"answers":[{"questionId":"674f51724ae7c3f551bd0076","answer":"False"}]}
 2024-12-06 19:24:15 [info]: GET /674f51724ae7c3f551bd0075 304
 2024-12-06 19:25:54 [info]: GET /674f51724ae7c3f551bd0075 304
+2024-12-07 09:03:58 [info]: POST /login 200 - Request Body: {"email":"ajibadeemmanuel58@gmail.com","password":"Test2024!"}
+2024-12-07 09:05:40 [info]: POST /login 200 - Request Body: {"email":"ajibadeemmanuel58@gmail.com","password":"Test2024!"}
+2024-12-07 09:05:47 [info]: GET / 304
+2024-12-07 09:06:08 [info]: GET /all 200
+2024-12-07 09:06:10 [info]: GET /users 200
+2024-12-07 09:07:36 [info]: POST /single-create 500 - Request Body: {"firstName":"AJIBADE","lastName":"Emmanuel","email":"ajytest@gmail.com","password":"Test2024!","role":"user","batch":"ekeke","sendEmail":true}
+2024-12-07 09:10:05 [info]: GET /all 304
+2024-12-07 09:10:05 [info]: GET /users 304
+2024-12-07 09:14:16 [info]: GET /users 401
+2024-12-07 09:14:16 [info]: GET /all 401
+2024-12-07 09:14:20 [info]: GET /users 200
+2024-12-07 09:14:24 [info]: GET /all 200
+2024-12-07 09:15:06 [info]: POST /single-create 400 - Request Body: {"firstName":"AJIBADE","lastName":"Emmanuel","email":"ajibadeemmanuel58@gmail.com","password":"Test2024!","role":"user","batch":"","sendEmail":true}
+2024-12-07 09:15:36 [info]: POST /single-create 500 - Request Body: {"firstName":"AJIBADE","lastName":"Emmanuel","email":"ajibade58@gmail.com","password":"Test2024!","role":"user","batch":"ajibadeemmanuel58@gmail.com","sendEmail":true}
