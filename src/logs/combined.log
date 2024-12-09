@@ -2886,3 +2886,21 @@
 2024-12-09 11:47:00 [info]: POST /single-create 401
 2024-12-09 11:47:39 [info]: POST /single-create 201 - Request Body: {"firstName":"Timpel","lastName":"Timpearl","email":"seunodueso@gmail.com"}
 2024-12-09 11:55:05 [info]: POST /single-create 201 - Request Body: {"firstName":"Timpel","lastName":"Timpearl","email":"seunodueso@gmail.com","userId":"2024-08-01","password":"Timpearl05$$$","country":"United States of America","username":"Timpearl","otherName":"Timileyin","phone":"+2349066318539","userType":"learner","gender":"female","dateOfBirth":"05-04-2004","address":"38, Ogunlana street","city":"Alimosho","LGA":"Alimosho","state":"Lagos","officeAddress":"1A, Hughes Street","officeCity":"Alagomeji","officeLGA":"Yaba","officeState":"Lagos","employerName":"Mr Green","groupId":"67531925998dfac026b08f61","sendEmail":"false"}
+2024-12-09 14:46:29 [info]: POST /bulk-create 201
+2024-12-09 14:48:46 [info]: POST /login 200 - Request Body: {"email":"backendseun@gmail.com","password":"OluwaseunOdueso123#"}
+2024-12-09 14:49:00 [info]: POST /login 400 - Request Body: {"email":"shina@gmail.com","password":"OluwaseunOdueso123#"}
+2024-12-09 14:49:17 [info]: POST /login 200 - Request Body: {"email":"shina@gmail.com","password":"DefaultPassword123"}
+2024-12-09 14:49:42 [info]: POST /login 200 - Request Body: {"email":"faith@gmail.com","password":"DefaultPassword123"}
+2024-12-09 14:49:54 [info]: POST /login 200 - Request Body: {"email":"bimbo@gmail.com","password":"DefaultPassword123"}
+2024-12-09 15:20:30 [info]: POST /bulk-create 201
+2024-12-09 15:32:46 [info]: POST /login 200 - Request Body: {"email":"kishi@gmail.com","password":"Kishiii10#"}
+2024-12-09 16:26:04 [info]: POST /login 400 - Request Body: {"email":"kishi@gmail.com","password":"Kishiii10#"}
+2024-12-09 16:26:12 [info]: POST /bulk-create 500
+2024-12-09 16:28:00 [info]: POST /bulk-create 500
+2024-12-09 16:30:13 [info]: POST /bulk-create 500
+2024-12-09 16:34:34 [info]: POST /bulk-create 201
+2024-12-09 16:55:31 [info]: POST /bulk-create 500
+2024-12-09 16:56:21 [info]: POST /bulk-create 500
+2024-12-09 16:58:20 [info]: POST /bulk-create 500
+2024-12-09 16:58:44 [info]: POST /bulk-create 201
+2024-12-09 16:59:52 [info]: POST /login 200 - Request Body: {"email":"kishi@gmail.com","password":"Kishiii10#"}

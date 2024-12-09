@@ -213,7 +213,6 @@ class ObjectAssessmentController {
       );
     }
   }
-  
 
   async ttakeAndGradeAssessment(req: Request, res: Response) {
     const { courseId, assessmentId } = req.params;
@@ -225,20 +224,14 @@ class ObjectAssessmentController {
     const userId = req.user.id;
   
     try {
-      // const assessment = await ObjectiveAssessment.findById(assessmentId);
-      // if (!assessment) {
-      //   return ResponseHandler.failure(res, "Assessment not found", 404);
-      // }
-  
       const course = await Course.findById(courseId);
       if (!course) {
         return ResponseHandler.failure(res, "Course not found", 404);
       }
-
-      // A user or learner should only be able to take assessments for courses they are registered for.
-
+  
+      // Convert assessmentId to ObjectId
       const assessmentObjectId = new mongoose.Types.ObjectId(assessmentId);
-
+  
       if (!course.assessments?.includes(assessmentObjectId)) {
         return ResponseHandler.failure(
           res,
@@ -265,7 +258,7 @@ class ObjectAssessmentController {
           403
         );
       }
-
+  
       const assessment = await ObjectiveAssessment.findById(assessmentId);
       if (!assessment) {
         return ResponseHandler.failure(res, "Assessment not found", 404);
@@ -283,9 +276,7 @@ class ObjectAssessmentController {
         );
       }
   
-      const questionIds = assessment.questions.map(
-        (q: { _id: mongoose.Types.ObjectId }) => q._id.toString()
-      );
+      const questionIds = assessment.questions.map((q: { _id: { toString: () => any; }; }) => q._id.toString());
       const isValid = answers.every((answer) =>
         questionIds.includes(answer.questionId.toString())
       );
@@ -296,13 +287,11 @@ class ObjectAssessmentController {
       let totalScore = 0;
       const gradedAnswers = answers.map((answer) => {
         const question = assessment.questions.find(
-          (q: AssessmentQuestionInterface) =>
-            q._id.toString() === answer.questionId.toString()
+          (q: { _id: { toString: () => string; }; }) => q._id.toString() === answer.questionId.toString()
         );
   
         if (question) {
-          const questionScore =
-            question.mark ?? assessment.marksPerQuestion ?? 0;
+          const questionScore = question.mark ?? assessment.marksPerQuestion ?? 0;
   
           if (
             String(question.answer).toLowerCase() ===
@@ -315,11 +304,13 @@ class ObjectAssessmentController {
         return { ...answer, isCorrect: false };
       });
   
-      const maxScore = assessment.questions.reduce(
-        (sum: number, q: { mark: number }) => sum + (q.mark ?? assessment.marksPerQuestion ?? 0),
+      // Calculate maxObtainableMarks
+      const maxObtainableMarks = assessment.questions.reduce(
+        (sum: any, q: { mark: any; }) => sum + (q.mark ?? assessment.marksPerQuestion ?? 0),
         0
       );
-      const percentageScore = Math.round((totalScore / maxScore) * 100);
+  
+      const percentageScore = Math.round((totalScore / maxObtainableMarks) * 100);
       const passOrFail = percentageScore >= assessment.passMark ? "Pass" : "Fail";
   
       const submission = await Submission.create({
@@ -332,11 +323,12 @@ class ObjectAssessmentController {
         percentageScore,
         status: "Graded",
         passOrFail,
+        maxObtainableMarks, 
       });
   
       return ResponseHandler.success(
         res,
-        submission,
+        { ...submission.toObject(), maxObtainableMarks }, // Include maxObtainableMarks in the response
         "Assessment submitted and graded successfully",
         201
       );
