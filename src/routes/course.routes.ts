@@ -21,6 +21,7 @@ const {
   createAnnouncement,
   getAllCourses,
   getAllCoursesForUsers,
+  getSingleCourse,
   getCourseLessons,
   getAllAnnouncementsByCourse,
 } = new CourseController();
@@ -68,6 +69,7 @@ router.get(
   authenticate,
   getAllCoursesForUsers,
 );
+router.get("/:id", authenticate, getSingleCourse);
 
 router.post(
   "/lesson",

@@ -165,6 +165,40 @@ export class CourseController {
       );
     }
   }
+
+  async getSingleCourse(req: Request, res: Response) {
+    try {
+      const { id } = req.params; // Extract the course ID from the route parameters
+  
+      // Fetch the course by its ID
+      const course = await Course.findById(id);
+  
+      // If the course does not exist, return an appropriate response
+      if (!course) {
+        return ResponseHandler.success(
+          res,
+          null,
+          "Course not found",
+          404
+        );
+      }
+  
+      // If the course exists, return it in the response
+      return ResponseHandler.success(
+        res,
+        course,
+        "Course retrieved successfully",
+        200
+      );
+    } catch (error: any) {
+      return ResponseHandler.failure(
+        res,
+        `Server error: ${error.message}`,
+        500
+      );
+    }
+  }
+  
   
   async createLesson(req: Request, res: Response, next: NextFunction) {
     try {

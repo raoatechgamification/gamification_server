@@ -74,7 +74,7 @@ class CertificateController {
     try {
       const { id } = req.params;
 
-      const certificate = await Certificate.findOne({ certificateId: id });
+      const certificate = await Certificate.findOne({ _id: id });
 
       if (!certificate) {
         return ResponseHandler.failure(res, "Certificate not found", 404);
