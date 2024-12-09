@@ -20,6 +20,8 @@ const {
   createLesson,
   createAnnouncement,
   getAllCourses,
+  getAllCoursesForUsers,
+  getSingleCourse,
   getCourseLessons,
   getAllAnnouncementsByCourse,
 } = new CourseController();
@@ -42,6 +44,7 @@ router.post(
   "/add",
   authenticate,
   authorize("admin"),
+  upload.array("file", 10),
   ...validateCreateCourse,
   createACourse
 )
@@ -60,6 +63,13 @@ router.get(
   authorize("admin"),
   getAllCourses
 );
+
+router.get(
+  "/allCourses",
+  authenticate,
+  getAllCoursesForUsers,
+);
+router.get("/:id", authenticate, getSingleCourse);
 
 router.post(
   "/lesson",

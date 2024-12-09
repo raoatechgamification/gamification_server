@@ -113,41 +113,41 @@ class ObjectAssessmentController {
         );
       }
   
-      const learner = course.learnerIds?.find(
-        (learner) => learner.userId.toString() === userId?.toString()
-      );
-      if (!learner) {
-        return ResponseHandler.failure(
-          res,
-          "You are not enrolled in this course",
-          403
-        );
-      }
+      // const learner = course.learnerIds?.find(
+      //   (learner) => learner.userId.toString() === userId?.toString()
+      // );
+      // if (!learner) {
+      //   return ResponseHandler.failure(
+      //     res,
+      //     "You are not enrolled in this course",
+      //     403
+      //   );
+      // }
   
-      if (learner.progress < 90) {
-        return ResponseHandler.failure(
-          res,
-          "You must complete at least 90% of the course to take this assessment",
-          403
-        );
-      }
+      // if (learner.progress < 90) {
+      //   return ResponseHandler.failure(
+      //     res,
+      //     "You must complete at least 90% of the course to take this assessment",
+      //     403
+      //   );
+      // }
   
       const assessment = await ObjectiveAssessment.findById(assessmentId);
       if (!assessment) {
         return ResponseHandler.failure(res, "Assessment not found", 404);
       }
   
-      const submissionCount = await Submission.countDocuments({
-        learnerId: userId,
-        assessmentId,
-      });
-      if (submissionCount >= assessment.numberOfTrials) {
-        return ResponseHandler.failure(
-          res,
-          "You have exceeded the number of allowed attempts for this assessment",
-          403
-        );
-      }
+      // const submissionCount = await Submission.countDocuments({
+      //   learnerId: userId,
+      //   assessmentId,
+      // });
+      // if (submissionCount >= assessment.numberOfTrials) {
+      //   return ResponseHandler.failure(
+      //     res,
+      //     "You have exceeded the number of allowed attempts for this assessment",
+      //     403
+      //   );
+      // }
   
       const questionIds = assessment.questions.map((q: { _id: { toString: () => any; }; }) => q._id.toString());
       const isValid = answers.every((answer) =>

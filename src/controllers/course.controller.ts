@@ -138,6 +138,68 @@ export class CourseController {
     }
   }
 
+  async getAllCoursesForUsers(req: Request, res: Response) {
+    try {
+      const courses = await Course.find(); // Fetch all courses without filtering by organizationId
+  
+      if (!courses || courses.length === 0) {
+        return ResponseHandler.success(
+          res,
+          [],
+          "No courses found. Start by creating a course!",
+          200
+        );
+      }
+  
+      return ResponseHandler.success(
+        res,
+        courses,
+        "Courses retrieved successfully",
+        200
+      );
+    } catch (error: any) {
+      return ResponseHandler.failure(
+        res,
+        `Server error: ${error.message}`,
+        500
+      );
+    }
+  }
+
+  async getSingleCourse(req: Request, res: Response) {
+    try {
+      const { id } = req.params; // Extract the course ID from the route parameters
+  
+      // Fetch the course by its ID
+      const course = await Course.findById(id);
+  
+      // If the course does not exist, return an appropriate response
+      if (!course) {
+        return ResponseHandler.success(
+          res,
+          null,
+          "Course not found",
+          404
+        );
+      }
+  
+      // If the course exists, return it in the response
+      return ResponseHandler.success(
+        res,
+        course,
+        "Course retrieved successfully",
+        200
+      );
+    } catch (error: any) {
+      return ResponseHandler.failure(
+        res,
+        `Server error: ${error.message}`,
+        500
+      );
+    }
+  }
+  
+  
   async createLesson(req: Request, res: Response, next: NextFunction) {
     try {
       const instructorId = req.admin._id;
@@ -206,6 +268,7 @@ export class CourseController {
 
   async createACourse(req: Request, res: Response) {
     try {
+      const files = req.files as Express.Multer.File[];
       let {
         code,
         title,
@@ -276,6 +339,22 @@ export class CourseController {
           )
         );
       }
+      let Urls: string[] = [];
+
+      if (files && files.length > 0) {
+        for (let i = 0; i < files.length; i++) {
+          const file = files[i];
+          const uploadResult = await uploadToCloudinary(
+            file.buffer,
+            file.mimetype,
+            "course-content"
+          );
+          if (uploadResult && uploadResult.secure_url) {
+            Urls.push(uploadResult.secure_url);
+          }
+        }
+      }
+
 
       if (price === 0) price === "free";
 
@@ -284,6 +363,7 @@ export class CourseController {
         title,
         objective,
         cost: price,
+        courseImage: Urls[0],
         organizationId: adminId,
         duration,
         lessonFormat,
