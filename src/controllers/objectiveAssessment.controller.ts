@@ -19,6 +19,7 @@ class ObjectAssessmentController {
         numberOfTrials,
         purpose,
         passMark,
+        totalMark,
         duration,
         startDate,
         endDate,
@@ -61,6 +62,7 @@ class ObjectAssessmentController {
         numberOfTrials,
         purpose,
         passMark,
+        totalMark,
         duration,
         startDate,
         endDate,
@@ -137,17 +139,17 @@ class ObjectAssessmentController {
         return ResponseHandler.failure(res, "Assessment not found", 404);
       }
   
-      // const submissionCount = await Submission.countDocuments({
-      //   learnerId: userId,
-      //   assessmentId,
-      // });
-      // if (submissionCount >= assessment.numberOfTrials) {
-      //   return ResponseHandler.failure(
-      //     res,
-      //     "You have exceeded the number of allowed attempts for this assessment",
-      //     403
-      //   );
-      // }
+      const submissionCount = await Submission.countDocuments({
+        learnerId: userId,
+        assessmentId,
+      });
+      if (submissionCount >= (assessment.numberOfTrials ?? Infinity)) {
+        return ResponseHandler.failure(
+          res,
+          "You have exceeded the number of allowed attempts for this assessment",
+          403
+        );
+      }
   
       const questionIds = assessment.questions.map((q: { _id: { toString: () => any; }; }) => q._id.toString());
       const isValid = answers.every((answer) =>
