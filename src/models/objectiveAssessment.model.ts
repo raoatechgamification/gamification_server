@@ -22,6 +22,7 @@ interface IObjectiveAssessment extends Document {
   numberOfTrials?: number;
   purpose?: string;
   position: number;
+  totalMark: number;
   passMark: number;
   duration: number;
   startDate?: Date;
@@ -44,6 +45,7 @@ const objectiveAssessmentSchema = new Schema<IObjectiveAssessment>({
   numberOfTrials: { type: Number, default: null },
   purpose: { type: String, default: null },
   position: { type: Number, required: true },
+  totalMark: { type: Number, required: true },
   passMark: { type: Number, required: true },
   duration: { type: Number, required: true },
   startDate: { type: Date, default: null },
