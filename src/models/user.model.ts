@@ -69,7 +69,7 @@ const UserSchema: Schema<IUser> = new Schema(
     email: { type: String, required: true, unique: true, },
     phone: { type: String, unique: true, sparse: true },
     userId: { type: String, default: null },
-    groups: [{ type: mongoose.Schema.Types.ObjectId }],
+    groups: [{ type: mongoose.Schema.Types.ObjectId, sparse: true }],
     organizationId: { type: mongoose.Schema.Types.ObjectId, default: null, },
     role: { type: String, default: "user", required: true, },
     password: { type: String, required: true, },
