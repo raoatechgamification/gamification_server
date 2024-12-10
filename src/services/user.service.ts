@@ -318,7 +318,7 @@ class UserService {
         lastName: LastName,
         otherName: OtherName || null,
         email: Email,
-        phone: normalizedPhone || null,
+        phone: normalizedPhone || undefined,
         groups: groups.length ? groups : null,
         organizationId: organization.id,
         password: Password
