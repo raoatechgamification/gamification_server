@@ -128,6 +128,136 @@ class AdminController {
     }
   }
 
+  async getCourseReport(req: Request, res: Response) {
+    try {
+      const { courseId } = req.params;
+      const { format } = req.query;
+  
+      const course = await Course.findById(courseId).populate<{
+        learnerIds: { userId: string; progress: number }[];
+        assignedLearnersIds: { userId: string }[];
+      }>(['learnerIds', 'assignedLearnersIds']);
+  
+      if (!course) {
+        return res.status(404).json({ message: 'Course not found' });
+      }
+  
+      const submissions = await Submission.find({ courseId }).populate<{
+        learnerId: IUser;
+        assessmentId: PopulatedAssessment;
+      }>('learnerId assessmentId');
+  
+      // Create a map of submissions for quick lookup
+      const submissionMap = new Map<string, any>();
+      // submissions.forEach((submission) => {
+      //   const learnerId = submission.learnerId._id.toString();
+      //   submissionMap.set(learnerId, submission);
+      // });
+
+      submissions.forEach((submission) => {
+        const { learnerId } = submission;
+      
+        if (typeof learnerId === 'object' && '_id' in learnerId) {
+          const learnerIdStr = (learnerId as PopulatedLearner)._id.toString();
+          submissionMap.set(learnerIdStr, submission);
+        }
+      });
+  
+      let completedCount = 0;
+      let incompleteCount = 0;
+      let successCount = 0;
+      let failureCount = 0;
+  
+      const learnerReports = course.assignedLearnersIds.map(({ userId }) => {
+        const submission = submissionMap.get(userId.toString());
+  
+        if (submission) {
+          const { learnerId, score = 0, maxObtainableMarks = 0, passOrFail } = submission;
+  
+          const percentageScore = maxObtainableMarks > 0
+            ? Math.round((score / maxObtainableMarks) * 100)
+            : 0;
+  
+          completedCount += 1;
+          if (passOrFail === 'Pass') {
+            successCount += 1;
+          } else {
+            failureCount += 1;
+          }
+  
+          return {
+            userId: learnerId._id,
+            firstName: learnerId.firstName,
+            lastName: learnerId.lastName,
+            score,
+            maxObtainableMarks,
+            percentageScore,
+            passOrFail,
+          };
+        } else {
+          incompleteCount += 1;
+  
+          // Return a default entry for learners without submissions
+          return {
+            userId,
+            firstName: null,
+            lastName: null,
+            score: null,
+            maxObtainableMarks: null,
+            percentageScore: null,
+            passOrFail: null,
+          };
+        }
+      });
+  
+      const totalSubmissions = completedCount + incompleteCount;
+      const completion = {
+        percentageCompleted: totalSubmissions > 0
+          ? Math.round((completedCount / totalSubmissions) * 100)
+          : 0,
+        percentageIncomplete: totalSubmissions > 0
+          ? Math.round((incompleteCount / totalSubmissions) * 100)
+          : 0,
+      };
+  
+      const totalAttempts = successCount + failureCount;
+      const successRate = {
+        successPercentage: totalAttempts > 0
+          ? Math.round((successCount / totalAttempts) * 100)
+          : 0,
+        failurePercentage: totalAttempts > 0
+          ? Math.round((failureCount / totalAttempts) * 100)
+          : 0,
+      };
+  
+      if (format === 'csv') {
+        const csv = json2csv(learnerReports);
+        res.header('Content-Type', 'text/csv');
+        res.attachment('course_report.csv');
+        return res.send(csv);
+      } else if (format === 'excel') {
+        const worksheet = XLSX.utils.json_to_sheet(learnerReports);
+        const workbook = XLSX.utils.book_new();
+        XLSX.utils.book_append_sheet(workbook, worksheet, 'Report');
+        const buffer = XLSX.write(workbook, { type: 'buffer', bookType: 'xlsx' });
+  
+        res.header('Content-Type', 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
+        res.attachment('course_report.xlsx');
+        return res.send(buffer);
+      }
+  
+      res.json({
+        totalUsers: learnerReports.length,
+        completion,
+        successRate,
+        learnerReport: learnerReports,
+      });
+    } catch (error: any) {
+      console.error('Error generating report:', error);
+      res.status(500).json({ message: 'Failed to generate report', error: error.message });
+    }
+  }  
+
   // DO NOT DELETE! This is the original controller for course report when the payment has been implemented on the frontend
   async getCourseReportt(req: Request, res: Response) {
     try {
@@ -369,7 +499,7 @@ class AdminController {
   //   }
   // }  
   
-  async getCourseReport(req: Request, res: Response) {
+  async beforeTheChangeGetCourseReport(req: Request, res: Response) {
     try {
       const { courseId } = req.params;
       const { format } = req.query;
@@ -474,7 +604,6 @@ class AdminController {
       res.status(500).json({ message: 'Failed to generate report', error: error.message });
     }
   }
-  
 }
 
 export default new AdminController();
