@@ -3758,6 +3758,39 @@
 2024-12-10 14:44:24 [info]: GET /675825e2b46b67afa0509af2/report 200 - Request Body: {"totalUsers":50,"completion":{"percentageCompleted":80,"percentageIncomplete":20},"successRate":{"successPercentage":75,"failurePercentage":25},"learnerReport":[{"firstName":"John","lastName":"Doe","totalObtainedMarks":85,"maxObtainableMarks":100,"percentageScore":85},{"firstName":"Jane","lastName":"Smith","totalObtainedMarks":70,"maxObtainableMarks":100,"percentageScore":70}]}
 2024-12-10 14:44:56 [info]: GET /6751c012049e71e2f39ec8db/report 200 - Request Body: {"totalUsers":50,"completion":{"percentageCompleted":80,"percentageIncomplete":20},"successRate":{"successPercentage":75,"failurePercentage":25},"learnerReport":[{"firstName":"John","lastName":"Doe","totalObtainedMarks":85,"maxObtainableMarks":100,"percentageScore":85},{"firstName":"Jane","lastName":"Smith","totalObtainedMarks":70,"maxObtainableMarks":100,"percentageScore":70}]}
 2024-12-10 14:47:01 [info]: GET /6751c012049e71e2f39ec8db/report 200 - Request Body: {"totalUsers":50,"completion":{"percentageCompleted":80,"percentageIncomplete":20},"successRate":{"successPercentage":75,"failurePercentage":25},"learnerReport":[{"firstName":"John","lastName":"Doe","totalObtainedMarks":85,"maxObtainableMarks":100,"percentageScore":85},{"firstName":"Jane","lastName":"Smith","totalObtainedMarks":70,"maxObtainableMarks":100,"percentageScore":70}]}
+2024-12-10 16:43:45 [info]: POST /bulk-create 401
+2024-12-10 16:43:50 [info]: POST /login 200 - Request Body: {"email":"seunoduez@gmail.com","password":"Timpearl05$$$"}
+2024-12-10 16:44:18 [info]: POST /bulk-create 401
+2024-12-10 16:44:36 [info]: POST /bulk-create 201
+2024-12-10 16:46:41 [info]: POST /bulk-create 201
+2024-12-10 18:00:41 [info]: POST /bulk-create 500
+2024-12-10 18:02:19 [info]: POST /bulk-create 500
+2024-12-10 18:03:57 [info]: POST /bulk-create 201
+2024-12-10 18:05:49 [info]: POST /bulk-create 500
+2024-12-10 18:15:24 [info]: POST /bulk-create 400
+2024-12-10 18:22:13 [info]: POST /bulk-create 500
+2024-12-10 18:24:24 [info]: POST /bulk-create 400
+2024-12-10 18:26:32 [info]: POST /bulk-create 400
+2024-12-10 18:32:08 [info]: POST /bulk-create 401
+2024-12-10 18:32:19 [info]: POST /login 200 - Request Body: {"email":"seunoduez@gmail.com","password":"Timpearl05$$$"}
+2024-12-10 18:32:46 [info]: POST /bulk-create 400
+2024-12-10 18:36:51 [info]: POST /bulk-create 400
+2024-12-10 18:38:20 [info]: POST /bulk-create 400
+2024-12-10 18:38:26 [info]: POST /bulk-create 400
+2024-12-10 18:39:43 [info]: POST /bulk-create 400
+2024-12-10 18:39:50 [info]: POST /bulk-create 400
+2024-12-10 18:40:55 [info]: POST /bulk-create 400
+2024-12-10 18:43:41 [info]: POST /bulk-create 400
+2024-12-10 18:44:19 [info]: POST /bulk-create 400
+2024-12-10 18:44:49 [info]: POST /bulk-create 400
+2024-12-10 18:45:18 [info]: POST /bulk-create 400
+2024-12-10 18:45:57 [info]: POST /bulk-create 400
+2024-12-10 18:46:02 [info]: POST /bulk-create 400
+2024-12-10 18:47:26 [info]: POST /bulk-create 500
+2024-12-10 18:48:01 [info]: POST /bulk-create 400
+2024-12-10 19:02:24 [info]: POST /bulk-create 400
+2024-12-10 19:03:25 [info]: POST /bulk-create 400
+2024-12-10 19:03:38 [info]: POST /bulk-create 201
 2024-12-10 09:03:06 [info]: GET /users 401
 2024-12-10 09:03:08 [info]: GET /all 401
 2024-12-10 09:03:08 [info]: GET /report 401

@@ -141,12 +141,12 @@ export class UserAuthController {
   static async bulkCreateUsers(req: Request, res: Response) {
     try {
       const organizationId = req.admin._id;
-
+  
       if (!req.file) {
         res.status(400).json({ success: false, error: "No file uploaded" });
         return;
       }
-
+  
       const organization = await Organization.findById(organizationId);
       if (!organization) {
         return res.status(400).json({
@@ -154,24 +154,26 @@ export class UserAuthController {
           message: "Organization not found",
         });
       }
-
-      const createdUsers = await UserService.createUsersFromExcel(
-        organization,
-        req.file.buffer
-      );
-
-      res.status(201).json({
-        success: true,
-        message: "Users created successfully and onboarding emails sent.",
-      });
-    } catch (error: any) {
-      if (error.message.includes("exceeds the maximum allowed limit")) {
+  
+      const { duplicateEmails, duplicatePhones } =
+        await UserService.createUsersFromExcel(organization, req.file.buffer);
+  
+      if (duplicateEmails.length || duplicatePhones.length) {
         return res.status(400).json({
           success: false,
-          message: error.message,
+          message: "Duplicate entries found",
+          data: {
+            duplicateEmails,
+            duplicatePhones,
+          },
         });
       }
-
+  
+      res.status(201).json({
+        success: true,
+        message: "Users created successfully.",
+      });
+    } catch (error: any) {
       return res.status(500).json({
         success: false,
         message: "An error occurred while creating bulk accounts",
@@ -179,6 +181,52 @@ export class UserAuthController {
       });
     }
   }
+  
+
+  // static async bulkCreateUsers(req: Request, res: Response) {
+  //   try {
+  //     const organizationId = req.admin._id;
+
+  //     if (!req.file) {
+  //       res.status(400).json({ success: false, error: "No file uploaded" });
+  //       return;
+  //     }
+
+  //     const organization = await Organization.findById(organizationId);
+  //     if (!organization) {
+  //       return res.status(400).json({
+  //         status: false,
+  //         message: "Organization not found",
+  //       });
+  //     }
+
+  //     const createdUsers = await UserService.createUsersFromExcel(
+  //       organization,
+  //       req.file.buffer
+  //     );
+
+  //     console.log(createdUsers)
+
+  //     res.status(201).json({
+  //       success: true,
+  //       message: "Users created successfully and onboarding emails sent.",
+  //       data: createdUsers
+  //     });
+  //   } catch (error: any) {
+  //     if (error.message.includes("exceeds the maximum allowed limit")) {
+  //       return res.status(400).json({
+  //         success: false,
+  //         message: error.message,
+  //       });
+  //     }
+
+  //     return res.status(500).json({
+  //       success: false,
+  //       message: "An error occurred while creating bulk accounts",
+  //       error: error.message,
+  //     });
+  //   }
+  // }
 
   static async registerUser(req: Request, res: Response) {
     try {
