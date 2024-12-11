@@ -8,6 +8,7 @@ import {
   AssessmentInterface,
   AssessmentQuestionInterface,
 } from "../models/objectiveAssessment.model";
+import User from "../models/user.model";
 
 class ObjectAssessmentController {
   async createObjectiveAssessment(req: Request, res: Response) {
@@ -380,6 +381,64 @@ class ObjectAssessmentController {
       return ResponseHandler.failure(
         res,
         error.message || "Error retrieving assessment",
+        error.status || 500
+      );
+    }
+  }
+
+  async assessmentResultSlip(req: Request, res: Response) {
+    try {
+      // FIELDS
+      // 1. Course Name
+      // 2. Course Title
+      // 3. User first name
+      // 4. User last name
+      // 5. User id
+      // 6. Total Mark
+      // 7. Total obtainable mark
+      // 8. % of ontained total marks
+      // 9. status: Pass or Retake
+      // 10. picture
+
+      const { submissionId } = req.params;
+      const submission = await Submission.findById( submissionId )
+
+      if (!submission) {
+        return ResponseHandler.failure(
+          res,
+          "Submission not found",
+        )
+      }
+
+      const userId = submission.learnerId
+      const courseId = submission.courseId
+
+      const course = await Course.findById(courseId);
+      const user = await User.findById(userId);
+
+      const resultSlip = {
+        courseTitle: course?.description,
+        courseCode: course?.courseCode,
+        firstName: user?.firstName,
+        lastName: user?.lastName,
+        userId: user?.userId || null,
+        totalMark: submission.score,
+        totalObtainableMarks: submission.maxObtainableMarks,
+        percentageOfTotalObtainableMarks: submission.percentageScore,
+        status: submission.passOrFail,
+        picture: user?.image
+      }
+
+      return ResponseHandler.success(
+        res, 
+        resultSlip,
+        "Assessment result slip",
+        200
+      )
+    } catch (error: any) {
+      return ResponseHandler.failure(
+        res,
+        error.message || "Error processing assessment slip",
         error.status || 500
       );
     }
