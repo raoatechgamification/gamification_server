@@ -186,7 +186,7 @@ class AdminController {
           }
   
           return {
-            userId: learnerId._id,
+            userId: learnerId.userId,
             firstName: learnerId.firstName,
             lastName: learnerId.lastName,
             score,

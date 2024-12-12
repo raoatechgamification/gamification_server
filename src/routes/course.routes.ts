@@ -78,7 +78,7 @@ router.get(
   authenticate,
   getAllCoursesForUsers,
 );
-router.get("/:id", authenticate, getSingleCourse);
+router.get("/:courseId", authenticate, getSingleCourse);
 
 router.post(
   "/lesson",
