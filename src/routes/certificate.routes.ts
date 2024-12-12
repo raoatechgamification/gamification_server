@@ -8,7 +8,8 @@ const {
   generateCertificate, 
   getCertificateById, 
   downloadCertificate,
-  getAllCertificates 
+  getAllCertificates,
+  editCertificate
 } = CertificateController;
 
 
@@ -20,6 +21,14 @@ router.post(
   authorize("admin"),
   upload.array("file", 10),
   generateCertificate
+)
+
+router.put(
+  "/:id",
+  authenticate,
+  authorize("admin"),
+  upload.array("file", 10),
+  editCertificate
 )
 
 router.get(
