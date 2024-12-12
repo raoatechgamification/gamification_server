@@ -56,6 +56,7 @@ router.put(
   authenticate,
   authorize("admin"),
   ...assessmentIdValidator,
+  ...createObjectiveAssessmentValidator,
   editObjectiveAssessment
 )
 

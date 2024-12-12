@@ -119,26 +119,6 @@ class ObjectAssessmentController {
         return ResponseHandler.failure(res, "Assessment not found.", 404);
       }
   
-      // Validate questions array if provided
-      if (questions) {
-        if (!Array.isArray(questions) || questions.length === 0) {
-          return ResponseHandler.failure(res, "Questions are required.", 400);
-        }
-  
-        const invalidQuestion = questions.find(
-          (q: { question: string; mark?: number }) =>
-            !q.question || (q.mark !== undefined && q.mark <= 0)
-        );
-  
-        if (invalidQuestion) {
-          return ResponseHandler.failure(
-            res,
-            'Each question must have a valid "question" field, and the "mark" field (if provided) must be positive.',
-            400
-          );
-        }
-      }
-  
       // Update the assessment details
       assessment.title = title || assessment.title;
       assessment.description = description || assessment.description;
@@ -474,18 +454,6 @@ class ObjectAssessmentController {
 
   async assessmentResultSlip(req: Request, res: Response) {
     try {
-      // FIELDS
-      // 1. Course Name
-      // 2. Course Title
-      // 3. User first name
-      // 4. User last name
-      // 5. User id
-      // 6. Total Mark
-      // 7. Total obtainable mark
-      // 8. % of ontained total marks
-      // 9. status: Pass or Retake
-      // 10. picture
-
       const { submissionId } = req.params;
       const userId = req.user.id
 
