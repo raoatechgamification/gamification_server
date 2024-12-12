@@ -24,6 +24,7 @@ const {
   getSingleCourse,
   getCourseLessons,
   getAllAnnouncementsByCourse,
+  editCourse,
 } = new CourseController();
 
 const { getCourseReport } = AdminController
@@ -55,6 +56,14 @@ router.post(
   authorize("admin"),
   ...validateCourseId,
   assignCourseToUsers
+)
+
+router.put(
+  "/:courseId",
+  authenticate,
+  authorize("admin"),
+  ...validateCourseId,
+  editCourse
 )
 
 router.get(
