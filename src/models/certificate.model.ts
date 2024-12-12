@@ -20,10 +20,14 @@ export interface ICertificate extends Document {
   authorizedSignature2Name?: string;
   authorizedSignature2Title?: string;
   certificateId: string; // Unique identifier
+  logo1?: string;
+  logo2?: string;
+  organisationName: string;
 }
 
 const CertificateSchema: Schema<ICertificate> = new Schema(
   {
+    organisationName: { type: String, required: true },
     organizationId: { type: mongoose.Schema.Types.ObjectId, required: true },
     organizationLogo: { type: String },
     organizationName: { type: String },
@@ -43,6 +47,8 @@ const CertificateSchema: Schema<ICertificate> = new Schema(
     authorizedSignature2Name: { type: String },
     authorizedSignature2Title: { type: String },
     certificateId: { type: String, unique: true },
+    logo1: {type: String},
+    logo2: {type: String}
   },
   {
     timestamps: true,

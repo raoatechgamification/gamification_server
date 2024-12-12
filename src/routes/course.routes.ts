@@ -74,7 +74,7 @@ router.get(
 );
 
 router.get(
-  "/allCourses",
+  "/allCourses", 
   authenticate,
   getAllCoursesForUsers,
 );

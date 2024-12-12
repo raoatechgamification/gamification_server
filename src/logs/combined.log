@@ -4583,3 +4583,207 @@
 2024-12-12 15:10:18 [info]: GET /all 304
 2024-12-12 15:10:19 [info]: GET /675988f142ca9c381f5b66ba/report 304
 2024-12-12 15:10:19 [info]: GET /users 200
+2024-12-12 15:21:57 [info]: GET / 304
+2024-12-12 15:22:25 [info]: GET /null 500
+2024-12-12 15:22:26 [info]: GET /null 500
+2024-12-12 15:22:28 [info]: GET /null 500
+2024-12-12 15:22:32 [info]: GET /null 500
+2024-12-12 15:23:35 [info]: GET /null 500
+2024-12-12 15:23:36 [info]: GET /null 500
+2024-12-12 15:24:07 [info]: GET /null 500
+2024-12-12 15:24:11 [info]: GET /null 500
+2024-12-12 15:24:27 [info]: GET /null 500
+2024-12-12 15:24:36 [info]: GET /null 500
+2024-12-12 15:24:38 [info]: GET /null 500
+2024-12-12 15:24:42 [info]: GET /null 500
+2024-12-12 15:25:03 [info]: GET /null 500
+2024-12-12 15:25:04 [info]: GET /null 500
+2024-12-12 15:49:29 [info]: GET /6749b097bcf46db2d0b33cda 401
+2024-12-12 15:49:56 [info]: GET /allCourses 401
+2024-12-12 16:03:39 [info]: GET /allCourses 200
+2024-12-12 16:04:54 [info]: GET /allCourses 401
+2024-12-12 16:07:14 [info]: GET /allCourses 304
+2024-12-12 16:07:50 [info]: GET /allCourses 401
+2024-12-12 16:07:58 [info]: GET /allCourses 304
+2024-12-12 16:08:42 [info]: GET /allCourses 401
+2024-12-12 16:09:53 [info]: GET /allCourses 304
+2024-12-12 16:10:17 [info]: GET /allCourses 304
+2024-12-12 16:10:45 [info]: GET /allCourses 304
+2024-12-12 16:11:03 [info]: GET /allCourses 304
+2024-12-12 16:11:15 [info]: GET /allCourses 304
+2024-12-12 16:11:24 [info]: GET /allCourses 304
+2024-12-12 16:11:25 [info]: GET /allCourses 304
+2024-12-12 16:12:11 [info]: GET /all 401
+2024-12-12 16:12:16 [info]: GET /all 304
+2024-12-12 16:13:16 [info]: GET /all 304
+2024-12-12 16:13:17 [info]: GET /all 304
+2024-12-12 16:13:54 [info]: GET /all 401
+2024-12-12 16:13:55 [info]: GET /all 304
+2024-12-12 16:14:43 [info]: GET /all 401
+2024-12-12 16:14:44 [info]: GET /all 304
+2024-12-12 16:15:35 [info]: GET /all 304
+2024-12-12 16:16:37 [info]: GET /all 304
+2024-12-12 16:17:08 [info]: GET /all 304
+2024-12-12 16:17:09 [info]: GET /all 304
+2024-12-12 16:17:17 [info]: GET /all 304
+2024-12-12 16:18:00 [info]: GET /all 304
+2024-12-12 16:20:44 [info]: GET /all 304
+2024-12-12 16:23:10 [info]: GET /all 304
+2024-12-12 16:24:06 [info]: GET /all 304
+2024-12-12 16:24:16 [info]: GET /all 304
+2024-12-12 16:24:33 [info]: GET /all 304
+2024-12-12 16:24:35 [info]: GET /all 304
+2024-12-12 16:25:14 [info]: GET /all 304
+2024-12-12 16:25:38 [info]: GET /all 304
+2024-12-12 16:29:21 [info]: GET /all 304
+2024-12-12 16:38:40 [info]: GET /all 304
+2024-12-12 16:39:21 [info]: GET /all 304
+2024-12-12 16:39:54 [info]: GET /all 304
+2024-12-12 16:41:53 [info]: GET /all 304
+2024-12-12 16:42:39 [info]: GET /all 304
+2024-12-12 16:42:54 [info]: GET /all 304
+2024-12-12 16:48:14 [info]: GET /null 500
+2024-12-12 16:48:16 [info]: GET /null 500
+2024-12-12 16:48:20 [info]: GET /null 500
+2024-12-12 18:25:50 [info]: GET /null 401
+2024-12-12 18:25:51 [info]: GET /null 500
+2024-12-12 18:25:53 [info]: GET /null 500
+2024-12-12 18:25:57 [info]: GET /null 500
+2024-12-12 18:36:07 [info]: GET /null 500
+2024-12-12 18:36:09 [info]: GET /null 500
+2024-12-12 18:36:13 [info]: GET /null 500
+2024-12-12 18:37:34 [info]: GET /null 500
+2024-12-12 18:37:36 [info]: GET /null 500
+2024-12-12 18:37:38 [info]: GET /null 500
+2024-12-12 18:37:42 [info]: GET /null 500
+2024-12-12 18:37:44 [info]: POST /api/v1/certificates 500 - Request Body: {"organisationName":"Ajibade","certificateTitle":"3 logo test","recipientName":"Ajy","awardedOn":"28th December 2024","expiryDate":"28th December 2024","authorizedSignature1Name":"Ajy","authorizedSignature1Title":"a","authorizedSignature2Name":"a","authorizedSignature2Title":"a"}
+2024-12-12 18:38:01 [info]: GET / 304
+2024-12-12 18:38:59 [info]: GET / 304
+2024-12-12 18:39:08 [info]: GET /null 500
+2024-12-12 18:39:09 [info]: GET /null 500
+2024-12-12 18:39:11 [info]: GET /null 500
+2024-12-12 18:39:15 [info]: GET /null 500
+2024-12-12 18:40:21 [info]: POST /api/v1/certificates 500 - Request Body: {"organisationName":"Ajibade","certificateTitle":"3 logo test","recipientName":"Ajy","awardedOn":"28th December 2024","expiryDate":"28th December 2024","authorizedSignature1Name":"Ajy","authorizedSignature1Title":"a","authorizedSignature2Name":"a","authorizedSignature2Title":"a"}
+2024-12-12 18:41:01 [info]: GET /null 500
+2024-12-12 18:41:02 [info]: GET /null 500
+2024-12-12 18:41:47 [info]: GET /null 500
+2024-12-12 18:41:51 [info]: GET /null 500
+2024-12-12 18:41:56 [info]: GET /null 500
+2024-12-12 18:41:57 [info]: GET /null 500
+2024-12-12 18:41:59 [info]: GET /null 500
+2024-12-12 18:42:03 [info]: GET /null 500
+2024-12-12 18:42:13 [info]: POST / 201 - Request Body: {"organisationName":"Ajibade","certificateTitle":"3 logo test","recipientName":"Ajy","awardedOn":"28th December 2024","expiryDate":"28th December 2024","authorizedSignature1Name":"Ajy","authorizedSignature1Title":"a","authorizedSignature2Name":"a","authorizedSignature2Title":"a"}
+2024-12-12 18:42:14 [info]: GET / 200
+2024-12-12 18:45:09 [info]: GET /675b20749147a24fad3c0166 401
+2024-12-12 18:45:41 [info]: GET /675b20749147a24fad3c0166 500
+2024-12-12 18:48:26 [info]: GET /675b20749147a24fad3c0166 500
+2024-12-12 18:50:38 [info]: GET /675b20749147a24fad3c0166 500
+2024-12-12 18:59:55 [info]: GET /675b20749147a24fad3c0166 200
+2024-12-12 19:02:10 [info]: GET /675b20749147a24fad3c0166 304
+2024-12-12 19:02:42 [info]: PUT /675b20749147a24fad3c0166 200 - Request Body: {"organisationName":"Ajibade","certificateTitle":"3 logo test EDIT","recipientName":"Ajy","awardedOn":"28th December 2024","expiryDate":"28th December 2024","file":["https://res.cloudinary.com/dldchwdkn/image/upload/v1734025331/course-content/rhbynm47a3d6toedqoed.jpg","https://res.cloudinary.com/dldchwdkn/image/upload/v1734025332/course-content/vopufssoqzvysjwshdjm.png","https://res.cloudinary.com/dldchwdkn/image/upload/v1734025333/course-content/ah1h1kufkgdwpqpyfgjo.jpg"],"authorizedSignature1Name":"Ajy","authorizedSignature1Title":"a","authorizedSignature2Name":"a","authorizedSignature2Title":"a","logo2":"https://res.cloudinary.com/dldchwdkn/image/upload/v1734025333/course-content/ah1h1kufkgdwpqpyfgjo.jpg"}
+2024-12-12 19:02:43 [info]: GET / 200
+2024-12-12 19:03:02 [info]: GET /675b20749147a24fad3c0166 200
+2024-12-12 19:03:38 [info]: GET /675b20749147a24fad3c0166 304
+2024-12-12 19:05:37 [info]: GET /675b20749147a24fad3c0166 304
+2024-12-12 19:06:00 [info]: GET /675b20749147a24fad3c0166 304
+2024-12-12 19:06:37 [info]: PUT /675b20749147a24fad3c0166 200 - Request Body: {"organisationName":"Ajibade","certificateTitle":"3 logo test ","recipientName":"Ajy","awardedOn":"28th December 2024","expiryDate":"28th December 2024","file":["https://res.cloudinary.com/dldchwdkn/image/upload/v1734026563/course-content/qvs1kcvnrt3wjn0r3k4g.png","https://res.cloudinary.com/dldchwdkn/image/upload/v1734025332/course-content/vopufssoqzvysjwshdjm.png","https://res.cloudinary.com/dldchwdkn/image/upload/v1734025333/course-content/ah1h1kufkgdwpqpyfgjo.jpg"],"authorizedSignature1Name":"Ajy","authorizedSignature1Title":"a","authorizedSignature2Name":"a","authorizedSignature2Title":"a","logo2":"https://res.cloudinary.com/dldchwdkn/image/upload/v1734025333/course-content/ah1h1kufkgdwpqpyfgjo.jpg"}
+2024-12-12 19:06:38 [info]: GET / 200
+2024-12-12 19:06:48 [info]: GET /675b20749147a24fad3c0166 200
+2024-12-12 19:07:17 [info]: GET /675b20749147a24fad3c0166 401
+2024-12-12 19:07:22 [info]: GET /675b20749147a24fad3c0166 304
+2024-12-12 19:08:20 [info]: GET /675b20749147a24fad3c0166 304
+2024-12-12 19:15:44 [info]: GET /675b20749147a24fad3c0166 304
+2024-12-12 19:15:45 [info]: GET /675b20749147a24fad3c0166 304
+2024-12-12 19:16:30 [info]: PUT /675b20749147a24fad3c0166 200 - Request Body: {"organisationName":"Ajibade","certificateTitle":"3 logo test ","recipientName":"Ajy","awardedOn":"28th December 2024","expiryDate":"28th December 2024","file":["https://res.cloudinary.com/dldchwdkn/image/upload/v1734026798/course-content/uqhmi8vzfbdfu3i5eeuv.jpg","https://res.cloudinary.com/dldchwdkn/image/upload/v1734025332/course-content/vopufssoqzvysjwshdjm.png","https://res.cloudinary.com/dldchwdkn/image/upload/v1734025333/course-content/ah1h1kufkgdwpqpyfgjo.jpg"],"authorizedSignature1Name":"Ajy","authorizedSignature1Title":"a","authorizedSignature2Name":"a","authorizedSignature2Title":"a"}
+2024-12-12 19:16:32 [info]: GET / 200
+2024-12-12 19:16:41 [info]: GET /675b20749147a24fad3c0166 200
+2024-12-12 19:17:21 [info]: GET /675b20749147a24fad3c0166 304
+2024-12-12 19:18:18 [info]: PUT /675b20749147a24fad3c0166 200 - Request Body: {"organisationName":"Ajibade","certificateTitle":"3 logo test ","recipientName":"Ajy","awardedOn":"28th December 2024","expiryDate":"28th December 2024","authorizedSignature1Name":"Ajy","authorizedSignature1Title":"a","authorizedSignature2Name":"a","authorizedSignature2Title":"a"}
+2024-12-12 19:18:19 [info]: GET / 200
+2024-12-12 19:18:32 [info]: GET /675b20749147a24fad3c0166 200
+2024-12-12 19:19:28 [info]: PUT /675b20749147a24fad3c0166 200 - Request Body: {"organisationName":"Ajibade","certificateTitle":"3 logo test edit","recipientName":"Ajy","awardedOn":"28th December 2024","expiryDate":"28th December 2024","file":["https://res.cloudinary.com/dldchwdkn/image/upload/v1734027497/course-content/scdxd7mglypm5nndnl9g.jpg","https://res.cloudinary.com/dldchwdkn/image/upload/v1734027498/course-content/djyi9le9ew9hg6lvxjui.png","https://res.cloudinary.com/dldchwdkn/image/upload/v1734027499/course-content/sndbozpef43d6pyeyndl.png"],"authorizedSignature1Name":"Ajy","authorizedSignature1Title":"a","authorizedSignature2Name":"a","authorizedSignature2Title":"a"}
+2024-12-12 19:19:29 [info]: GET / 200
+2024-12-12 19:20:13 [info]: GET / 304
+2024-12-12 19:20:20 [info]: GET / 304
+2024-12-12 19:20:28 [info]: GET /675b20749147a24fad3c0166 200
+2024-12-12 19:20:42 [info]: GET /675b20749147a24fad3c0166 304
+2024-12-12 19:22:23 [info]: GET /675b20749147a24fad3c0166 304
+2024-12-12 19:23:02 [info]: GET / 304
+2024-12-12 19:23:06 [info]: GET /null 500
+2024-12-12 19:23:07 [info]: GET /null 500
+2024-12-12 19:23:09 [info]: GET /null 500
+2024-12-12 19:23:13 [info]: GET /null 500
+2024-12-12 19:24:45 [info]: GET /null 500
+2024-12-12 19:24:53 [info]: GET /null 500
+2024-12-12 19:24:55 [info]: GET /null 500
+2024-12-12 19:24:58 [info]: POST / 201 - Request Body: {"organisationName":"files test","certificateTitle":"File test","recipientName":"Ajibade","awardedOn":"28th December 2024","expiryDate":"28th December 2024","authorizedSignature1Name":"Ajibade","authorizedSignature1Title":"CEO","authorizedSignature2Name":"ajy","authorizedSignature2Title":"MANAGER"}
+2024-12-12 19:24:59 [info]: GET / 200
+2024-12-12 19:25:16 [info]: GET / 401
+2024-12-12 19:25:20 [info]: GET / 304
+2024-12-12 19:25:29 [info]: GET /675b2a7a0250cb000c676ff3 200
+2024-12-12 19:27:16 [info]: GET /null 500
+2024-12-12 19:27:20 [info]: GET /null 500
+2024-12-12 19:28:24 [info]: POST / 201 - Request Body: {"organisationName":"files test 2","certificateTitle":"File test","recipientName":"Ajibade","awardedOn":"28th December 2024","expiryDate":"28th December 2024","authorizedSignature1Name":"Ajibade","authorizedSignature1Title":"CEO","authorizedSignature2Name":"ajy","authorizedSignature2Title":"MANAGER"}
+2024-12-12 19:28:25 [info]: GET / 200
+2024-12-12 19:29:01 [info]: GET / 304
+2024-12-12 19:30:19 [info]: GET / 304
+2024-12-12 19:30:24 [info]: GET / 304
+2024-12-12 19:30:25 [info]: GET /null 500
+2024-12-12 19:30:26 [info]: GET /null 500
+2024-12-12 19:30:28 [info]: GET /null 500
+2024-12-12 19:30:32 [info]: GET /null 500
+2024-12-12 19:31:21 [info]: POST / 201 - Request Body: {"organisationName":"files test 3","certificateTitle":"File test","recipientName":"Ajibade","awardedOn":"28th December 2024","expiryDate":"28th December 2024","authorizedSignature1Name":"Ajibade","authorizedSignature1Title":"CEO","authorizedSignature2Name":"ajy","authorizedSignature2Title":"MANAGER"}
+2024-12-12 19:31:22 [info]: GET / 200
+2024-12-12 19:31:35 [info]: GET /675b2bf9a36549113b5b3511 200
+2024-12-12 19:32:30 [info]: GET /675b2bf9a36549113b5b3511 304
+2024-12-12 19:32:41 [info]: PUT /675b2bf9a36549113b5b3511 200 - Request Body: {"organisationName":"files test 3","certificateTitle":"File test","recipientName":"Ajibade","awardedOn":"28th December 2024","expiryDate":"28th December 2024","file":["https://res.cloudinary.com/dldchwdkn/image/upload/v1734028280/course-content/mxcawuessgr5qogwytnc.jpg","https://res.cloudinary.com/dldchwdkn/image/upload/v1734028281/course-content/mnxf5gxrjpfnoxa8pcuu.png","https://res.cloudinary.com/dldchwdkn/image/upload/v1734028282/course-content/kcztn1wbn3yipbp6sere.png"],"authorizedSignature1Name":"Ajibade","authorizedSignature1Title":"CEO","authorizedSignature2Name":"ajy","authorizedSignature2Title":"MANAGER"}
+2024-12-12 19:32:42 [info]: GET / 200
+2024-12-12 19:32:53 [info]: GET /675b2bf9a36549113b5b3511 200
+2024-12-12 19:34:57 [info]: GET /675b2bf9a36549113b5b3511 304
+2024-12-12 19:35:32 [info]: GET /675b2bf9a36549113b5b3511 304
+2024-12-12 19:35:56 [info]: GET /675b2bf9a36549113b5b3511 304
+2024-12-12 19:36:11 [info]: GET /675b2bf9a36549113b5b3511 401
+2024-12-12 19:36:14 [info]: GET /675b2bf9a36549113b5b3511 304
+2024-12-12 19:42:26 [info]: GET /675b2bf9a36549113b5b3511 304
+2024-12-12 19:42:35 [info]: PUT /675b2bf9a36549113b5b3511 200 - Request Body: {"organisationName":"files test 3","certificateTitle":"File test","recipientName":"Ajibade","awardedOn":"28th December 2024","expiryDate":"28th December 2024","authorizedSignature1Name":"Ajibade","authorizedSignature1Title":"CEO","authorizedSignature2Name":"ajy","authorizedSignature2Title":"MANAGER"}
+2024-12-12 19:42:36 [info]: GET / 200
+2024-12-12 19:43:02 [info]: GET / 304
+2024-12-12 19:44:34 [info]: GET / 304
+2024-12-12 19:44:45 [info]: GET /675b2bf9a36549113b5b3511 200
+2024-12-12 19:45:27 [info]: PUT /675b2bf9a36549113b5b3511 200 - Request Body: {"organisationName":"files test 3","certificateTitle":"File test","recipientName":"Ajibade","awardedOn":"28th December 2024","expiryDate":"28th December 2024","file":["https://res.cloudinary.com/dldchwdkn/image/upload/v1734028954/course-content/gnecby8lxxytfzw0sizr.jpg","https://res.cloudinary.com/dldchwdkn/image/upload/v1734028955/course-content/frzfirix36hot7gbpyzb.png","https://res.cloudinary.com/dldchwdkn/image/upload/v1734028956/course-content/pl4j0mvj24u4reuygoal.png"],"authorizedSignature1Name":"Ajibade","authorizedSignature1Title":"CEO","authorizedSignature2Name":"ajy","authorizedSignature2Title":"MANAGER"}
+2024-12-12 19:45:28 [info]: GET / 200
+2024-12-12 19:46:32 [info]: GET / 304
+2024-12-12 19:46:48 [info]: GET / 304
+2024-12-12 19:46:55 [info]: GET /675b2b48a36549113b5b3506 200
+2024-12-12 19:47:25 [info]: PUT /675b2b48a36549113b5b3506 200 - Request Body: {"organisationName":"files test 2","certificateTitle":"File test","recipientName":"Ajibade","awardedOn":"28th December 2024","expiryDate":"28th December 2024","file":["https://res.cloudinary.com/dldchwdkn/image/upload/v1734028104/course-content/jzzei2wuwnmzgn5bebra.jpg","https://res.cloudinary.com/dldchwdkn/image/upload/v1734028105/course-content/aeikjnpglltc5bi7lof8.png"],"authorizedSignature1Name":"Ajibade","authorizedSignature1Title":"CEO","authorizedSignature2Name":"ajy","authorizedSignature2Title":"MANAGER"}
+2024-12-12 19:47:25 [info]: GET / 200
+2024-12-12 19:47:54 [info]: GET /675b2b48a36549113b5b3506 200
+2024-12-12 19:48:46 [info]: PUT /675b2b48a36549113b5b3506 200 - Request Body: {"organisationName":"files test 2","certificateTitle":"File test","recipientName":"Ajibade","awardedOn":"28th December 2024","expiryDate":"28th December 2024","authorizedSignature1Name":"Ajibade","authorizedSignature1Title":"CEO","authorizedSignature2Name":"ajy","authorizedSignature2Title":"MANAGER"}
+2024-12-12 19:48:47 [info]: GET / 200
+2024-12-12 19:48:55 [info]: GET /675b2bf9a36549113b5b3511 200
+2024-12-12 19:49:05 [info]: GET / 304
+2024-12-12 19:49:08 [info]: GET /675b2b48a36549113b5b3506 200
+2024-12-12 19:50:52 [info]: GET /675b2b48a36549113b5b3506 304
+2024-12-12 19:51:57 [info]: PUT /675b2b48a36549113b5b3506 200 - Request Body: {"organisationName":"files test 2 test","certificateTitle":"File test 2 test","recipientName":"Ajibade","awardedOn":"28th December 2024","expiryDate":"28th December 2024","file":["https://res.cloudinary.com/dldchwdkn/image/upload/v1734029325/course-content/t2qv87uz4nzf0onjg5dn.jpg","https://res.cloudinary.com/dldchwdkn/image/upload/v1734029325/course-content/zxleg9o0u0ceqabsgnit.jpg","https://res.cloudinary.com/dldchwdkn/image/upload/v1734029327/course-content/fpatxghnxjdj5yb00l2i.jpg","https://res.cloudinary.com/dldchwdkn/image/upload/v1734029327/course-content/m4b6b4noslmjxnpev09g.jpg"],"authorizedSignature1Name":"Ajibade","authorizedSignature1Title":"CEO","authorizedSignature2Name":"ajy","authorizedSignature2Title":"MANAGER"}
+2024-12-12 19:51:58 [info]: GET / 200
+2024-12-12 19:52:09 [info]: GET / 304
+2024-12-12 19:52:13 [info]: GET /675b2b48a36549113b5b3506 200
+2024-12-12 19:55:23 [info]: GET /675b2b48a36549113b5b3506 304
+2024-12-12 19:55:37 [info]: GET / 304
+2024-12-12 19:55:39 [info]: GET /675ac6f93c6cacd9be976c20 304
+2024-12-12 19:55:45 [info]: GET / 304
+2024-12-12 19:55:48 [info]: GET /675b2bf9a36549113b5b3511 304
+2024-12-12 19:55:53 [info]: GET / 304
+2024-12-12 19:56:16 [info]: GET / 304
+2024-12-12 19:56:21 [info]: GET / 304
+2024-12-12 19:56:24 [info]: GET /675b2b48a36549113b5b3506 304
+2024-12-12 19:56:56 [info]: PUT /675b2b48a36549113b5b3506 200 - Request Body: {"organisationName":"files test 2","certificateTitle":"File test 2 test","recipientName":"Ajibade","awardedOn":"28th December 2024","expiryDate":"28th December 2024","authorizedSignature1Name":"Ajibade","authorizedSignature1Title":"CEO","authorizedSignature2Name":"ajy","authorizedSignature2Title":"MANAGER"}
+2024-12-12 19:56:56 [info]: GET / 200
+2024-12-12 19:57:02 [info]: GET /675b2bf9a36549113b5b3511 304
+2024-12-12 19:57:06 [info]: GET / 304
+2024-12-12 19:57:09 [info]: GET /675b2b48a36549113b5b3506 200
+2024-12-12 19:57:27 [info]: GET /675b2b48a36549113b5b3506 304
+2024-12-12 19:57:30 [info]: GET /675b2b48a36549113b5b3506 304
+2024-12-12 19:58:25 [info]: GET /675b2b48a36549113b5b3506 304
+2024-12-12 19:58:27 [info]: PUT /675b2b48a36549113b5b3506 200 - Request Body: {"organisationName":"files test 2 efiy","certificateTitle":"File test 2 test","recipientName":"Ajibade","awardedOn":"28th December 2024","expiryDate":"28th December 2024","file":["https://res.cloudinary.com/dldchwdkn/image/upload/v1734029813/course-content/bdwicnlazjctk81r4gmk.jpg","https://res.cloudinary.com/dldchwdkn/image/upload/v1734029815/course-content/amjggzixxmvtowtk6yak.jpg","https://res.cloudinary.com/dldchwdkn/image/upload/v1734029816/course-content/xugmhytt4auams4lkj9j.jpg","https://res.cloudinary.com/dldchwdkn/image/upload/v1734029817/course-content/weleksk6ucexbn6dd5ug.jpg"],"authorizedSignature1Name":"Ajibade","authorizedSignature1Title":"CEO","authorizedSignature2Name":"ajy","authorizedSignature2Title":"MANAGER"}
+2024-12-12 19:58:27 [info]: GET / 200
