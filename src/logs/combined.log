@@ -3891,3 +3891,14 @@
 2024-12-11 14:04:50 [info]: GET /675988f142ca9c381f5b66ba/report 200 - Request Body: {"totalUsers":50,"completion":{"percentageCompleted":80,"percentageIncomplete":20},"successRate":{"successPercentage":75,"failurePercentage":25},"learnerReport":[{"firstName":"John","lastName":"Doe","totalObtainedMarks":85,"maxObtainableMarks":100,"percentageScore":85},{"firstName":"Jane","lastName":"Smith","totalObtainedMarks":70,"maxObtainableMarks":100,"percentageScore":70}]}
 2024-12-11 14:05:17 [info]: POST /675988f142ca9c381f5b66ba/67594e45a8c3454b6bd62ad5/take 201 - Request Body: {"answers":[{"questionId":"67594e45a8c3454b6bd62ad6","answer":true},{"questionId":"67594e45a8c3454b6bd62ad7","answer":"Pacific Ocean"},{"questionId":"67594e45a8c3454b6bd62ad8","answer":"no"},{"questionId":"67594e45a8c3454b6bd62ad9","answer":"6"}]}
 2024-12-11 14:05:44 [info]: GET /675988f142ca9c381f5b66ba/report 200 - Request Body: {"totalUsers":50,"completion":{"percentageCompleted":80,"percentageIncomplete":20},"successRate":{"successPercentage":75,"failurePercentage":25},"learnerReport":[{"firstName":"John","lastName":"Doe","totalObtainedMarks":85,"maxObtainableMarks":100,"percentageScore":85},{"firstName":"Jane","lastName":"Smith","totalObtainedMarks":70,"maxObtainableMarks":100,"percentageScore":70}]}
+2024-12-12 09:25:16 [info]: GET /result-slip/67598e0c42ca9c381f5b677c 200
+2024-12-12 09:28:12 [info]: GET /result-slip/:submissionId 422
+2024-12-12 09:28:23 [info]: GET /result-slip/67598e0c42ca9c381f5b677d 500
+2024-12-12 09:28:39 [info]: GET /result-slip/67598e0c42ca9c381f5b677c 200
+2024-12-12 09:31:19 [info]: GET /result-slip/67598e0c42ca9c381f5b677c 200
+2024-12-12 09:31:49 [info]: GET /result-slip/67598e0c42ca9c381f5b677e 500
+2024-12-12 09:31:55 [info]: GET /result-slip/67598e0c42ca9c381f5b677c 200
+2024-12-12 10:03:26 [info]: GET / 401
+2024-12-12 10:03:38 [info]: GET / 200
+2024-12-12 10:59:06 [info]: GET /result-slip/67598e0c42ca9c381f5b677c 200
+2024-12-12 11:05:32 [info]: GET /result-slip/67598e0c42ca9c381f5b677c 200

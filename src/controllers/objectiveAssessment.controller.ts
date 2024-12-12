@@ -401,7 +401,12 @@ class ObjectAssessmentController {
       // 10. picture
 
       const { submissionId } = req.params;
-      const submission = await Submission.findById( submissionId )
+      const userId = req.user.id
+
+      const submission = await Submission.findOne({
+        _id: submissionId,
+        learnerId: userId
+      })
 
       if (!submission) {
         return ResponseHandler.failure(
@@ -410,23 +415,33 @@ class ObjectAssessmentController {
         )
       }
 
-      const userId = submission.learnerId
       const courseId = submission.courseId
 
       const course = await Course.findById(courseId);
       const user = await User.findById(userId);
 
+      let status = "Pass";
+      if (submission.passOrFail == "Fail") status = "Retake"
+
+      const formatDate = (date: Date) => {
+        const day = date.getDate().toString().padStart(2, "0");
+        const month = (date.getMonth() + 1).toString().padStart(2, "0");
+        const year = date.getFullYear();
+        return `${day}/${month}/${year}`;
+      };
+
       const resultSlip = {
-        courseTitle: course?.description,
+        courseTitle: course?.title,
         courseCode: course?.courseCode,
         firstName: user?.firstName,
         lastName: user?.lastName,
         userId: user?.userId || null,
-        totalMark: submission.score,
+        totalMarksObtained: submission.score,
         totalObtainableMarks: submission.maxObtainableMarks,
         percentageOfTotalObtainableMarks: submission.percentageScore,
-        status: submission.passOrFail,
-        picture: user?.image
+        status,
+        picture: user?.image,
+        resultGeneratedOn: formatDate(new Date()),
       }
 
       return ResponseHandler.success(

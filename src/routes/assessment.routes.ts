@@ -83,7 +83,7 @@ router.post(
   submitAssessment
 );
 
-router.post(
+router.get(
   "/result-slip/:submissionId",
   authenticate,
   authorize("user"),
