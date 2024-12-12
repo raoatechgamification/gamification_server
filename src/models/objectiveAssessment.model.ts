@@ -33,7 +33,7 @@ interface IObjectiveAssessment extends Document {
     type: string;
     options?: string[];
     answer: string;
-    mark?: number; 
+    mark: number; 
   }[];
 }
 
@@ -61,7 +61,7 @@ const objectiveAssessmentSchema = new Schema<IObjectiveAssessment>({
       },
       options: { type: [String], default: [] },
       answer: { type: String, required: true },
-      mark: { type: Number, default: null }, 
+      mark: { type: Number, required: true }, 
     },
   ],
 });

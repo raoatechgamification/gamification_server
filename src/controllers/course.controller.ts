@@ -436,7 +436,7 @@ export class CourseController {
       }
 
       let status = "unpaid";
-      if (!course.cost) {
+      if (!course.cost || course.cost === 0) {
         status = "free";
       }
 
@@ -460,6 +460,32 @@ export class CourseController {
       }));
 
       const result = await User.bulkWrite(bulkUpdates);
+
+      const learnersToAdd = validUsers.map((user) => ({
+        userId: user._id,
+        progress: 0,
+      }));
+
+      // Update course with assigned learners
+      const updateQuery: any = {
+          $addToSet: { assignedLearnersIds: { $each: validUsers.map((user) => ({ userId: user._id })) } },
+      };
+
+      // If the course is free, add to learnerIds as well
+      if (status === "free") {
+          updateQuery.$addToSet["learnerIds"] = { $each: learnersToAdd };
+      }
+
+      await Course.updateOne({ _id: courseId }, updateQuery);
+
+      // const userIdsToAssign = validUsers.map((user) => ({
+      //   userId: user._id,
+      // }));
+
+      // await Course.updateOne(
+      //   { _id: courseId },
+      //   { $addToSet: { assignedLearnersIds: { $each: userIdsToAssign } } }
+      // );
 
       return ResponseHandler.success(
         res,

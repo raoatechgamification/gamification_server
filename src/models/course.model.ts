@@ -12,6 +12,7 @@ title?: string;
   instructorId: string;
   lessons?: mongoose.Types.ObjectId[];
   learnerIds?: { userId: mongoose.Types.ObjectId; progress: number }[];
+  assignedLearnersIds?: { userId: mongoose.Types.ObjectId}[]
   assessments?: mongoose.Types.ObjectId[]
   certificate?: mongoose.Types.ObjectId[];
   duration?: string;
@@ -57,6 +58,9 @@ const CourseSchema = new Schema<ICourse>({
       userId: { type: Schema.Types.ObjectId, ref: 'User' },
       progress: { type: Number, default: 0 }, 
     },
+  ],
+  assignedLearnersIds: [
+    
   ],
   assessments: [{ type: Schema.Types.ObjectId, ref: 'Assessment' }],
   duration: { type: String, required: false },
