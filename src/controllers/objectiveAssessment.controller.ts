@@ -8,6 +8,7 @@ import {
   AssessmentInterface,
   AssessmentQuestionInterface,
 } from "../models/objectiveAssessment.model";
+import User from "../models/user.model";
 
 class ObjectAssessmentController {
   async createObjectiveAssessment(req: Request, res: Response) {
@@ -88,6 +89,72 @@ class ObjectAssessmentController {
       );
     }
   }
+
+  async editObjectiveAssessment(req: Request, res: Response) {
+    try {
+      const { assessmentId } = req.params; 
+      const {
+        title,
+        description,
+        marksPerQuestion,
+        numberOfTrials,
+        purpose,
+        passMark,
+        totalMark,
+        duration,
+        startDate,
+        endDate,
+        questions,
+        assessmentCode,
+      } = req.body;
+  
+      const organizationId = req.admin._id; 
+  
+      const assessment = await ObjectiveAssessment.findOne({
+        _id: assessmentId,
+        organizationId,
+      });
+  
+      if (!assessment) {
+        return ResponseHandler.failure(res, "Assessment not found.", 404);
+      }
+  
+      // Update the assessment details
+      assessment.title = title || assessment.title;
+      assessment.description = description || assessment.description;
+      assessment.marksPerQuestion = marksPerQuestion || assessment.marksPerQuestion;
+      assessment.numberOfTrials = numberOfTrials || assessment.numberOfTrials;
+      assessment.purpose = purpose || assessment.purpose;
+      assessment.passMark = passMark || assessment.passMark;
+      assessment.totalMark = totalMark || assessment.totalMark;
+      assessment.duration = duration || assessment.duration;
+      assessment.startDate = startDate || assessment.startDate;
+      assessment.endDate = endDate || assessment.endDate;
+      assessment.assessmentCode = assessmentCode || assessment.assessmentCode;
+  
+      // Replace questions if provided
+      if (questions) {
+        assessment.questions = questions;
+      }
+  
+      // Save updated assessment
+      await assessment.save();
+  
+      return ResponseHandler.success(
+        res,
+        assessment,
+        "Assessment updated successfully.",
+        200
+      );
+    } catch (error: any) {
+      return ResponseHandler.failure(
+        res,
+        error.message || "Error updating assessment.",
+        error.status || 500
+      );
+    }
+  }
+  
 
   async takeAndGradeAssessment(req: Request, res: Response) {
     const { courseId, assessmentId } = req.params;
@@ -380,6 +447,67 @@ class ObjectAssessmentController {
       return ResponseHandler.failure(
         res,
         error.message || "Error retrieving assessment",
+        error.status || 500
+      );
+    }
+  }
+
+  async assessmentResultSlip(req: Request, res: Response) {
+    try {
+      const { submissionId } = req.params;
+      const userId = req.user.id
+
+      const submission = await Submission.findOne({
+        _id: submissionId,
+        learnerId: userId
+      })
+
+      if (!submission) {
+        return ResponseHandler.failure(
+          res,
+          "Submission not found",
+        )
+      }
+
+      const courseId = submission.courseId
+
+      const course = await Course.findById(courseId);
+      const user = await User.findById(userId);
+
+      let status = "Pass";
+      if (submission.passOrFail == "Fail") status = "Retake"
+
+      const formatDate = (date: Date) => {
+        const day = date.getDate().toString().padStart(2, "0");
+        const month = (date.getMonth() + 1).toString().padStart(2, "0");
+        const year = date.getFullYear();
+        return `${day}/${month}/${year}`;
+      };
+
+      const resultSlip = {
+        courseTitle: course?.title,
+        courseCode: course?.courseCode,
+        firstName: user?.firstName,
+        lastName: user?.lastName,
+        userId: user?.userId || null,
+        totalMarksObtained: submission.score,
+        totalObtainableMarks: submission.maxObtainableMarks,
+        percentageOfTotalObtainableMarks: submission.percentageScore,
+        status,
+        picture: user?.image,
+        resultGeneratedOn: formatDate(new Date()),
+      }
+
+      return ResponseHandler.success(
+        res, 
+        resultSlip,
+        "Assessment result slip",
+        200
+      )
+    } catch (error: any) {
+      return ResponseHandler.failure(
+        res,
+        error.message || "Error processing assessment slip",
         error.status || 500
       );
     }

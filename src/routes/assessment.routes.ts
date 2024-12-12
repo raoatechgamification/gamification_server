@@ -8,7 +8,9 @@ import {
   createObjectiveAssessmentValidator,
   submissionValidator,
   gradeAssessmentValidator,
-  viewLearnersValidator,
+  assessmentIdValidator,
+  submissionIdValidator,
+  submissionIdsValidator
 } from "../validators/assessment.validator";
 
 import { upload } from "../utils/upload.utils";
@@ -23,9 +25,11 @@ const {
 
 const { 
   createObjectiveAssessment, 
+  editObjectiveAssessment,
   takeAndGradeAssessment,
   getAssessmentById,
-  getAllAssessmentsForOrganization
+  getAllAssessmentsForOrganization,
+  assessmentResultSlip
 } = ObjectAssessmentController;
 
 const { submitAssessment } = new SubmissionController();
@@ -48,6 +52,15 @@ router.post(
 )
 
 router.put(
+  "/:assessmentId",
+  authenticate,
+  authorize("admin"),
+  ...assessmentIdValidator,
+  ...createObjectiveAssessmentValidator,
+  editObjectiveAssessment
+)
+
+router.put(
   "/:submissionId/grade",
   authenticate,
   authorize("admin"),
@@ -59,7 +72,7 @@ router.get(
   "/submissions/:assessmentId",
   authenticate,
   authorize("admin"),
-  ...viewLearnersValidator,
+  ...assessmentIdValidator,
   getSubmissionsForAssessment
 );
 
@@ -67,6 +80,7 @@ router.post(
   "/:courseId/:assessmentId/take",
   authenticate,
   authorize("user"),
+  ...submissionIdsValidator,
   takeAndGradeAssessment
 )
 
@@ -80,6 +94,14 @@ router.post(
 );
 
 router.get(
+  "/result-slip/:submissionId",
+  authenticate,
+  authorize("user"),
+  ...submissionIdValidator,
+  assessmentResultSlip
+)
+
+router.get(
   "/",
   authenticate,
   authorize("admin"),
@@ -89,6 +111,7 @@ router.get(
 router.get(
   "/:assessmentId",
   authenticate,
+  ...assessmentIdValidator,
   getAssessmentById
 );
 
