@@ -90,6 +90,92 @@ class ObjectAssessmentController {
     }
   }
 
+  async editObjectiveAssessment(req: Request, res: Response) {
+    try {
+      const { assessmentId } = req.params; 
+      const {
+        title,
+        description,
+        marksPerQuestion,
+        numberOfTrials,
+        purpose,
+        passMark,
+        totalMark,
+        duration,
+        startDate,
+        endDate,
+        questions,
+        assessmentCode,
+      } = req.body;
+  
+      const organizationId = req.admin._id; 
+  
+      const assessment = await ObjectiveAssessment.findOne({
+        _id: assessmentId,
+        organizationId,
+      });
+  
+      if (!assessment) {
+        return ResponseHandler.failure(res, "Assessment not found.", 404);
+      }
+  
+      // Validate questions array if provided
+      if (questions) {
+        if (!Array.isArray(questions) || questions.length === 0) {
+          return ResponseHandler.failure(res, "Questions are required.", 400);
+        }
+  
+        const invalidQuestion = questions.find(
+          (q: { question: string; mark?: number }) =>
+            !q.question || (q.mark !== undefined && q.mark <= 0)
+        );
+  
+        if (invalidQuestion) {
+          return ResponseHandler.failure(
+            res,
+            'Each question must have a valid "question" field, and the "mark" field (if provided) must be positive.',
+            400
+          );
+        }
+      }
+  
+      // Update the assessment details
+      assessment.title = title || assessment.title;
+      assessment.description = description || assessment.description;
+      assessment.marksPerQuestion = marksPerQuestion || assessment.marksPerQuestion;
+      assessment.numberOfTrials = numberOfTrials || assessment.numberOfTrials;
+      assessment.purpose = purpose || assessment.purpose;
+      assessment.passMark = passMark || assessment.passMark;
+      assessment.totalMark = totalMark || assessment.totalMark;
+      assessment.duration = duration || assessment.duration;
+      assessment.startDate = startDate || assessment.startDate;
+      assessment.endDate = endDate || assessment.endDate;
+      assessment.assessmentCode = assessmentCode || assessment.assessmentCode;
+  
+      // Replace questions if provided
+      if (questions) {
+        assessment.questions = questions;
+      }
+  
+      // Save updated assessment
+      await assessment.save();
+  
+      return ResponseHandler.success(
+        res,
+        assessment,
+        "Assessment updated successfully.",
+        200
+      );
+    } catch (error: any) {
+      return ResponseHandler.failure(
+        res,
+        error.message || "Error updating assessment.",
+        error.status || 500
+      );
+    }
+  }
+  
+
   async takeAndGradeAssessment(req: Request, res: Response) {
     const { courseId, assessmentId } = req.params;
     const {

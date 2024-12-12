@@ -25,6 +25,7 @@ const {
 
 const { 
   createObjectiveAssessment, 
+  editObjectiveAssessment,
   takeAndGradeAssessment,
   getAssessmentById,
   getAllAssessmentsForOrganization,
@@ -48,6 +49,14 @@ router.post(
   authorize("admin"),
   ...createObjectiveAssessmentValidator,
   createObjectiveAssessment
+)
+
+router.put(
+  "/:assessmentId",
+  authenticate,
+  authorize("admin"),
+  ...assessmentIdValidator,
+  editObjectiveAssessment
 )
 
 router.put(
