@@ -40,9 +40,9 @@ export interface ISubmission extends Document {
     answer: Schema.Types.Mixed;
     isCorrect?: boolean;
   }[];
-  learnerId: Schema.Types.ObjectId | PopulatedLearner;
+  learnerId: mongoose.Types.ObjectId | PopulatedLearner;
   courseId: Schema.Types.ObjectId;
-  assessmentId: Schema.Types.ObjectId | PopulatedAssessment;
+  assessmentId: mongoose.Types.ObjectId | PopulatedAssessment;
   submittedFile?: string;
   comments?: string; 
   gradedAnswers?: SubmissionAnswerInterface[];

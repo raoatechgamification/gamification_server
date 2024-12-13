@@ -27,7 +27,7 @@ const {
   editCourse,
 } = new CourseController();
 
-const { getCourseReport } = AdminController
+const { generateCourseReport } = AdminController
 
 
 const router = Router();
@@ -115,7 +115,7 @@ router.get(
   "/:courseId/report",
   authenticate,
   authorize("admin"),
-  getCourseReport
+  generateCourseReport
 )
 
 export default router;

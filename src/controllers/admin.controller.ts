@@ -7,6 +7,11 @@ import Course from "../models/course.model";
 import Submission, { PopulatedLearner, PopulatedAssessment } from "../models/submission.model";
 import { parse as json2csv } from 'json2csv';
 import * as XLSX from "xlsx";
+import mongoose, { isValidObjectId } from "mongoose"; // Ensure this is imported if not already
+
+function isPopulated<T>(value: mongoose.Types.ObjectId | T): value is T {
+  return typeof value === "object" && value !== null && !isValidObjectId(value);
+} 
 
 class AdminController {
   async viewAllUsers(req: Request, res: Response) {
@@ -128,135 +133,366 @@ class AdminController {
     }
   }
 
-  async getCourseReport(req: Request, res: Response) {
+  // async generateCourseReport(req: Request, res: Response) {
+  //   try {
+  //     const { courseId } = req.params;  // Get courseId from the URL parameters
+  
+  //     // Fetch the course by ID and populate the assigned learners and assessments
+  //     const course = await Course.findById(courseId)
+  //       .populate('assignedLearnersIds.userId')
+  //       .populate('assessments');
+  //     if (!course) {
+  //       return res.status(404).json({ message: 'Course not found' });
+  //     }
+  
+  //     // Get all users assigned to the course
+  //     const assignedUsers = course.assignedLearnersIds?.map((learner: any) => learner.userId) || [];
+
+  //     console.log("assignedUsers", assignedUsers)
+
+  //     const totalUsers = assignedUsers.length;
+  
+  //     // Fetch submissions for the course
+  //     const submissions = await Submission.find({ courseId }).populate('learnerId').populate('assessmentId');
+  
+  //     const learnerReport = [];
+  //     let completedCount = 0;
+  //     let passCount = 0;
+  //     let failCount = 0;
+  
+  //     // Loop through each user assigned to the course
+  //     for (const user of assignedUsers) {
+  //       const userDetails = await User.findById(user._id)
+  //       if (!userDetails) {
+  //         return ResponseHandler.failure(
+  //           res,
+  //           "User not found",
+  //           400
+  //         );
+  //       }
+  //       const submission = submissions.find(sub => sub.learnerId._id.toString() === user._id.toString());
+  
+  //       if (submission) {
+  //         // If the user has taken the assessment, include their details
+
+  //         learnerReport.push({
+  //           userId: userDetails.userId,
+  //           firstName: userDetails.firstName,
+  //           lastName: userDetails.lastName,
+  //           score: submission.score || null,
+  //           maxObtainableMarks: submission.maxObtainableMarks || null,
+  //           percentageScore: submission.percentageScore || null,
+  //           passOrFail: submission.passOrFail || null
+  //         });
+  
+  //         // Update counts for completed, pass, and fail
+  //         completedCount++;
+  //         if (submission.passOrFail === 'Pass') passCount++;
+  //         if (submission.passOrFail === 'Fail') failCount++;
+  //       } else {
+  //         // If the user hasn't taken the assessment, set null values
+  //         learnerReport.push({
+  //           userId: userDetails.userId,
+  //           firstName: userDetails.firstName,
+  //           lastName: userDetails.lastName,
+  //           score: null,
+  //           maxObtainableMarks: null,
+  //           percentageScore: null,
+  //           passOrFail: null
+  //         });
+  //       }
+  //     }
+  
+  //     // Calculate completion percentages
+  //     const percentageCompleted = ((completedCount / totalUsers) * 100).toFixed(2);
+  //     const percentageIncomplete = (100 - parseFloat(percentageCompleted)).toFixed(2);
+  
+  //     // Calculate success and failure percentages excluding users who haven't taken the course
+  //     const successPercentage = completedCount > 0 ? ((passCount / completedCount) * 100).toFixed(2) : '0';
+  //     const failurePercentage = completedCount > 0 ? ((failCount / completedCount) * 100).toFixed(2) : '0';
+  
+  //     // Return the course report
+  //     return res.status(200).json({
+  //       totalUsers,
+  //       completion: {
+  //         percentageCompleted,
+  //         percentageIncomplete
+  //       },
+  //       successRate: {
+  //         successPercentage,
+  //         failurePercentage
+  //       },
+  //       learnerReport
+  //     });
+  
+  //   } catch (error) {
+  //     console.error('Error generating course report:', error);
+  //     return res.status(500).json({ message: 'Server error' });
+  //   }
+  // }  
+
+  async generateCourseReport(req: Request, res: Response) {
     try {
-      const { courseId } = req.params;
-      const { format } = req.query;
+      const { courseId } = req.params;  // Get courseId from the URL parameters
   
-      const course = await Course.findById(courseId).populate<{
-        learnerIds: { userId: string; progress: number }[];
-        assignedLearnersIds: { userId: string }[];
-      }>(['learnerIds', 'assignedLearnersIds']);
-  
+      // Fetch the course by ID and populate the assigned learners and assessments
+      const course = await Course.findById(courseId)
+        .populate('assignedLearnersIds.userId')
+        .populate('assessments');
       if (!course) {
         return res.status(404).json({ message: 'Course not found' });
       }
   
-      const submissions = await Submission.find({ courseId }).populate<{
-        learnerId: IUser;
-        assessmentId: PopulatedAssessment;
-      }>('learnerId assessmentId');
+      // Get all users assigned to the course
+      const assignedUsers = course.assignedLearnersIds?.map((learner: any) => learner.userId) || [];
   
-      // Create a map of submissions for quick lookup
-      const submissionMap = new Map<string, any>();
-      // submissions.forEach((submission) => {
-      //   const learnerId = submission.learnerId._id.toString();
-      //   submissionMap.set(learnerId, submission);
-      // });
-
-      submissions.forEach((submission) => {
-        const { learnerId } = submission;
-      
-        if (typeof learnerId === 'object' && '_id' in learnerId) {
-          const learnerIdStr = (learnerId as PopulatedLearner)._id.toString();
-          submissionMap.set(learnerIdStr, submission);
+      console.log("assignedUsers", assignedUsers);
+  
+      const totalUsers = assignedUsers.length;
+  
+      // Fetch the latest submissions for each learner using aggregation
+      const submissions = await Submission.aggregate([
+        { $match: { courseId: new mongoose.Types.ObjectId(courseId) } }, // Match courseId
+        { $sort: { createdAt: -1 } }, // Sort by latest submission
+        {
+          $group: {
+            _id: '$learnerId', // Group by learnerId
+            latestSubmission: { $first: '$$ROOT' }, // Take the first document (latest)
+          }
+        },
+        {
+          $replaceRoot: { newRoot: '$latestSubmission' } // Replace with the latest submission document
+        },
+        // Lookup to populate learnerId
+        {
+          $lookup: {
+            from: 'users', // The collection name for users
+            localField: 'learnerId',
+            foreignField: '_id',
+            as: 'learnerDetails',
+          }
+        },
+        {
+          $unwind: { path: '$learnerDetails', preserveNullAndEmptyArrays: true } // Unwind learnerDetails to get a single document
+        },
+        // Lookup to populate assessmentId
+        {
+          $lookup: {
+            from: 'assessments', // The collection name for assessments
+            localField: 'assessmentId',
+            foreignField: '_id',
+            as: 'assessmentDetails',
+          }
+        },
+        {
+          $unwind: { path: '$assessmentDetails', preserveNullAndEmptyArrays: true } // Unwind assessmentDetails
         }
-      });
+      ]);
   
+      const learnerReport = [];
       let completedCount = 0;
-      let incompleteCount = 0;
-      let successCount = 0;
-      let failureCount = 0;
+      let passCount = 0;
+      let failCount = 0;
   
-      const learnerReports = course.assignedLearnersIds.map(({ userId }) => {
-        const submission = submissionMap.get(userId.toString());
+      // Loop through each user assigned to the course
+      for (const user of assignedUsers) {
+        const userDetails = await User.findById(user._id);
+        if (!userDetails) {
+          return ResponseHandler.failure(res, "User not found", 400);
+        }
+  
+        const submission = submissions.find(sub => sub.learnerId._id.toString() === user._id.toString());
   
         if (submission) {
-          const { learnerId, score = 0, maxObtainableMarks = 0, passOrFail } = submission;
+          // If the user has taken the assessment, include their details
+          learnerReport.push({
+            userId: userDetails.userId,
+            firstName: userDetails.firstName,
+            lastName: userDetails.lastName,
+            score: submission.score || null,
+            maxObtainableMarks: submission.maxObtainableMarks || null,
+            percentageScore: submission.percentageScore || null,
+            passOrFail: submission.passOrFail || null
+          });
   
-          const percentageScore = maxObtainableMarks > 0
-            ? Math.round((score / maxObtainableMarks) * 100)
-            : 0;
-  
-          completedCount += 1;
-          if (passOrFail === 'Pass') {
-            successCount += 1;
-          } else {
-            failureCount += 1;
-          }
-  
-          return {
-            userId: learnerId.userId,
-            firstName: learnerId.firstName,
-            lastName: learnerId.lastName,
-            score,
-            maxObtainableMarks,
-            percentageScore,
-            passOrFail,
-          };
+          // Update counts for completed, pass, and fail
+          completedCount++;
+          if (submission.passOrFail === 'Pass') passCount++;
+          if (submission.passOrFail === 'Fail') failCount++;
         } else {
-          incompleteCount += 1;
-  
-          // Return a default entry for learners without submissions
-          return {
-            userId,
-            firstName: null,
-            lastName: null,
+          // If the user hasn't taken the assessment, set null values
+          learnerReport.push({
+            userId: userDetails.userId,
+            firstName: userDetails.firstName,
+            lastName: userDetails.lastName,
             score: null,
             maxObtainableMarks: null,
             percentageScore: null,
-            passOrFail: null,
-          };
+            passOrFail: null
+          });
         }
-      });
-  
-      const totalSubmissions = completedCount + incompleteCount;
-      const completion = {
-        percentageCompleted: totalSubmissions > 0
-          ? Math.round((completedCount / totalSubmissions) * 100)
-          : 0,
-        percentageIncomplete: totalSubmissions > 0
-          ? Math.round((incompleteCount / totalSubmissions) * 100)
-          : 0,
-      };
-  
-      const totalAttempts = successCount + failureCount;
-      const successRate = {
-        successPercentage: totalAttempts > 0
-          ? Math.round((successCount / totalAttempts) * 100)
-          : 0,
-        failurePercentage: totalAttempts > 0
-          ? Math.round((failureCount / totalAttempts) * 100)
-          : 0,
-      };
-  
-      if (format === 'csv') {
-        const csv = json2csv(learnerReports);
-        res.header('Content-Type', 'text/csv');
-        res.attachment('course_report.csv');
-        return res.send(csv);
-      } else if (format === 'excel') {
-        const worksheet = XLSX.utils.json_to_sheet(learnerReports);
-        const workbook = XLSX.utils.book_new();
-        XLSX.utils.book_append_sheet(workbook, worksheet, 'Report');
-        const buffer = XLSX.write(workbook, { type: 'buffer', bookType: 'xlsx' });
-  
-        res.header('Content-Type', 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
-        res.attachment('course_report.xlsx');
-        return res.send(buffer);
       }
   
-      res.json({
-        totalUsers: learnerReports.length,
-        completion,
-        successRate,
-        learnerReport: learnerReports,
+      // Calculate completion percentages
+      const percentageCompleted = ((completedCount / totalUsers) * 100).toFixed(2);
+      const percentageIncomplete = (100 - parseFloat(percentageCompleted)).toFixed(2);
+  
+      // Calculate success and failure percentages excluding users who haven't taken the course
+      const successPercentage = completedCount > 0 ? ((passCount / completedCount) * 100).toFixed(2) : '0';
+      const failurePercentage = completedCount > 0 ? ((failCount / completedCount) * 100).toFixed(2) : '0';
+  
+      // Return the course report
+      return res.status(200).json({
+        totalUsers,
+        completion: {
+          percentageCompleted,
+          percentageIncomplete
+        },
+        successRate: {
+          successPercentage,
+          failurePercentage
+        },
+        learnerReport
       });
-    } catch (error: any) {
-      console.error('Error generating report:', error);
-      res.status(500).json({ message: 'Failed to generate report', error: error.message });
+  
+    } catch (error) {
+      console.error('Error generating course report:', error);
+      return res.status(500).json({ message: 'Server error' });
     }
-  }  
+  }
+  
+  
+
+
+  // async getCourseReport(req: Request, res: Response) {
+  //   try {
+  //     const { courseId } = req.params;
+  //     const { format } = req.query;
+  
+  //     const course = await Course.findById(courseId).populate<{
+  //       learnerIds: { userId: string; progress: number }[];
+  //       assignedLearnersIds: { userId: string }[];
+  //     }>(['learnerIds', 'assignedLearnersIds']);
+  
+  //     if (!course) {
+  //       return res.status(404).json({ message: 'Course not found' });
+  //     }
+  
+  //     const submissions = await Submission.find({ courseId }).populate<{
+  //       learnerId: IUser;
+  //       assessmentId: PopulatedAssessment;
+  //     }>('learnerId assessmentId');
+  
+  //     // Create a map of submissions for quick lookup
+  //     const submissionMap = new Map<string, any>();
+  //     // submissions.forEach((submission) => {
+  //     //   const learnerId = submission.learnerId._id.toString();
+  //     //   submissionMap.set(learnerId, submission);
+  //     // });
+
+  //     submissions.forEach((submission) => {
+  //       const { learnerId } = submission;
+      
+  //       if (typeof learnerId === 'object' && '_id' in learnerId) {
+  //         const learnerIdStr = (learnerId as PopulatedLearner)._id.toString();
+  //         submissionMap.set(learnerIdStr, submission);
+  //       }
+  //     });
+  
+  //     let completedCount = 0;
+  //     let incompleteCount = 0;
+  //     let successCount = 0;
+  //     let failureCount = 0;
+  
+  //     const learnerReports = course.assignedLearnersIds.map(({ userId }) => {
+  //       const submission = submissionMap.get(userId.toString());
+  
+  //       if (submission) {
+  //         const { learnerId, score = 0, maxObtainableMarks = 0, passOrFail } = submission;
+  
+  //         const percentageScore = maxObtainableMarks > 0
+  //           ? Math.round((score / maxObtainableMarks) * 100)
+  //           : 0;
+  
+  //         completedCount += 1;
+  //         if (passOrFail === 'Pass') {
+  //           successCount += 1;
+  //         } else {
+  //           failureCount += 1;
+  //         }
+  
+  //         return {
+  //           userId: learnerId.userId,
+  //           firstName: learnerId.firstName,
+  //           lastName: learnerId.lastName,
+  //           score,
+  //           maxObtainableMarks,
+  //           percentageScore,
+  //           passOrFail,
+  //         };
+  //       } else {
+  //         incompleteCount += 1;
+  
+  //         // Return a default entry for learners without submissions
+  //         return {
+  //           userId,
+  //           firstName: null,
+  //           lastName: null,
+  //           score: null,
+  //           maxObtainableMarks: null,
+  //           percentageScore: null,
+  //           passOrFail: null,
+  //         };
+  //       }
+  //     });
+  
+  //     const totalSubmissions = completedCount + incompleteCount;
+  //     const completion = {
+  //       percentageCompleted: totalSubmissions > 0
+  //         ? Math.round((completedCount / totalSubmissions) * 100)
+  //         : 0,
+  //       percentageIncomplete: totalSubmissions > 0
+  //         ? Math.round((incompleteCount / totalSubmissions) * 100)
+  //         : 0,
+  //     };
+  
+  //     const totalAttempts = successCount + failureCount;
+  //     const successRate = {
+  //       successPercentage: totalAttempts > 0
+  //         ? Math.round((successCount / totalAttempts) * 100)
+  //         : 0,
+  //       failurePercentage: totalAttempts > 0
+  //         ? Math.round((failureCount / totalAttempts) * 100)
+  //         : 0,
+  //     };
+  
+  //     if (format === 'csv') {
+  //       const csv = json2csv(learnerReports);
+  //       res.header('Content-Type', 'text/csv');
+  //       res.attachment('course_report.csv');
+  //       return res.send(csv);
+  //     } else if (format === 'excel') {
+  //       const worksheet = XLSX.utils.json_to_sheet(learnerReports);
+  //       const workbook = XLSX.utils.book_new();
+  //       XLSX.utils.book_append_sheet(workbook, worksheet, 'Report');
+  //       const buffer = XLSX.write(workbook, { type: 'buffer', bookType: 'xlsx' });
+  
+  //       res.header('Content-Type', 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
+  //       res.attachment('course_report.xlsx');
+  //       return res.send(buffer);
+  //     }
+  
+  //     res.json({
+  //       totalUsers: learnerReports.length,
+  //       completion,
+  //       successRate,
+  //       learnerReport: learnerReports,
+  //     });
+  //   } catch (error: any) {
+  //     console.error('Error generating report:', error);
+  //     res.status(500).json({ message: 'Failed to generate report', error: error.message });
+  //   }
+  // }  
 
   // DO NOT DELETE! This is the original controller for course report when the payment has been implemented on the frontend
   async getCourseReportt(req: Request, res: Response) {
