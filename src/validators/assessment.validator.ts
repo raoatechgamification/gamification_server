@@ -157,11 +157,11 @@ export const createObjectiveAssessmentValidator = [
   check('questions.*.answer')
     .notEmpty()
     .withMessage('Each question must have an answer'),
-  check('questions.*.score')
+  check('questions.*.mark')
     .isNumeric()
-    .withMessage('Each question score must be a number')
+    .withMessage('The mark for each question must be a positive number')
     .notEmpty()
-    .withMessage('Each question must have a score'),
+    .withMessage('Each question must have a mark'),
   
   errorResponse
 ]
@@ -207,12 +207,38 @@ export const gradeAssessmentValidator = [
   errorResponse,
 ];
 
-export const viewLearnersValidator = [
+export const assessmentIdValidator = [
   param("assessmentId")
     .notEmpty()
     .withMessage('Assessment ID is required')
     .isMongoId()
     .withMessage('Assessment ID must be a valid MongoDB ObjectId'),
+
+  errorResponse,
+];
+
+export const submissionIdValidator = [
+  param("submissionId")
+    .notEmpty()
+    .withMessage('Submission ID is required')
+    .isMongoId()
+    .withMessage('Submission ID must be a valid MongoDB ObjectId'),
+
+  errorResponse
+]
+
+export const submissionIdsValidator = [
+  param("assessmentId")
+    .notEmpty()
+    .withMessage('Assessment ID is required')
+    .isMongoId()
+    .withMessage('Assessment ID must be a valid MongoDB ObjectId'),
+
+  param("courseId")
+    .notEmpty()
+    .withMessage('Course ID is required')
+    .isMongoId()
+    .withMessage('Course ID must be a valid MongoDB ObjectId'),
 
   errorResponse,
 ];

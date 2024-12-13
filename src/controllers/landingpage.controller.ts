@@ -356,7 +356,7 @@ export class LandingPageController {
       };
   
       const files = req.files as Express.Multer.File[];
- 
+      console.log(files, "files 359")
       // Handle servicePicture
       let Urls: string[] = [];
       if (files && files.length > 0) {

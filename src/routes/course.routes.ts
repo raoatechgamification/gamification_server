@@ -24,9 +24,10 @@ const {
   getSingleCourse,
   getCourseLessons,
   getAllAnnouncementsByCourse,
+  editCourse,
 } = new CourseController();
 
-const { getCourseReport } = AdminController
+const { generateCourseReport } = AdminController
 
 
 const router = Router();
@@ -57,6 +58,14 @@ router.post(
   assignCourseToUsers
 )
 
+router.put(
+  "/:courseId",
+  authenticate,
+  authorize("admin"),
+  ...validateCourseId,
+  editCourse
+)
+
 router.get(
   "/all",
   authenticate,
@@ -65,11 +74,11 @@ router.get(
 );
 
 router.get(
-  "/allCourses",
+  "/allCourses", 
   authenticate,
   getAllCoursesForUsers,
 );
-router.get("/:id", authenticate, getSingleCourse);
+router.get("/:courseId", authenticate, getSingleCourse);
 
 router.post(
   "/lesson",
@@ -106,7 +115,7 @@ router.get(
   "/:courseId/report",
   authenticate,
   authorize("admin"),
-  getCourseReport
+  generateCourseReport
 )
 
 export default router;
