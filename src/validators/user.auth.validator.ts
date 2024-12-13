@@ -1,5 +1,5 @@
 import { Request, Response, NextFunction } from "express";
-import { body, validationResult } from "express-validator";
+import { body, param, validationResult } from "express-validator";
 import { ObjectId } from "mongodb";
 
 const errorResponse = (req: Request, res: Response, next: NextFunction) => {
@@ -60,6 +60,14 @@ export const loginUserValidator = [
 
   errorResponse,
 ];
+
+export const userIdValidator = [
+  param("userId")
+    .notEmpty()
+    .withMessage("User Id cannot be empty")
+    .isMongoId()
+    .withMessage("User ID must be a valid MongoDB ObjectId"),
+]
 
 export const changePasswordValidator = [
   body("currentPassword")

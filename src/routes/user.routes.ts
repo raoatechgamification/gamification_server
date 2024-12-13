@@ -2,6 +2,7 @@ import { Router } from "express";
 import { authenticate, authorize } from "../middlewares/auth.middleware";
 import { UserController } from "../controllers/user.controller";
 import { editUserProfileValidator, changePasswordValidator } from "../validators/user.auth.validator";
+import { userIdValidator } from "../validators/user.auth.validator";
 
 const { 
   editProfile, 
@@ -13,6 +14,7 @@ const {
   enrolledCoursesWithProgress,
   lessonsWithProgress,
   markLessonAsComplete,
+  getAllUserCertificates
 } =
   new UserController();
 
@@ -68,6 +70,14 @@ router.put(
   authenticate,
   authorize("user"),
   markLessonAsComplete
+)
+
+router.get(
+  "/certificates",
+  authenticate,
+  authorize("user"),
+  ...userIdValidator,
+  getAllUserCertificates
 )
 
 // router.get(
