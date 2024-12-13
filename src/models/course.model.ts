@@ -13,8 +13,8 @@ title?: string;
   lessons?: mongoose.Types.ObjectId[];
   learnerIds?: { userId: mongoose.Types.ObjectId; progress: number }[];
   assignedLearnersIds?: { userId: mongoose.Types.ObjectId}[]
-  assessments?: mongoose.Types.ObjectId[]
-  certificate?: mongoose.Types.ObjectId[];
+  assessments?: mongoose.Types.ObjectId[] 
+  certificate?: mongoose.Types.ObjectId;
   duration?: string;
   courseCode?: string;
   courseLevel?: string;
@@ -48,7 +48,7 @@ const CourseSchema = new Schema<ICourse>({
   topContent: { type: Boolean, required: false },
   objective: { type: String, required: false },
   instructorId: { type: String, required: false },
-  certificate: [{ type: Schema.Types.ObjectId, ref: 'Certificate' }],
+  certificate: { type: Schema.Types.ObjectId, ref: 'Certificate' },
   tutorId: { type: Schema.Types.ObjectId },
   organizationId: { type: String, required: false },
   lessonFormat: { type: String, required: false },
