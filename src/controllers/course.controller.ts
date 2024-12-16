@@ -141,7 +141,7 @@ export class CourseController {
   async getAllCoursesForUsers(req: Request, res: Response) {
     try {
       const courses = await Course.find(); // Fetch all courses without filtering by organizationId
-  
+
       if (!courses || courses.length === 0) {
         return ResponseHandler.success(
           res,
@@ -150,7 +150,7 @@ export class CourseController {
           200
         );
       }
-  
+
       return ResponseHandler.success(
         res,
         courses,
@@ -168,19 +168,14 @@ export class CourseController {
 
   async getSingleCourse(req: Request, res: Response) {
     try {
-      const { courseId } = req.params; 
-  
+      const { courseId } = req.params;
+
       const course = await Course.findById(courseId);
-  
+
       if (!course) {
-        return ResponseHandler.success(
-          res,
-          null,
-          "Course not found",
-          404
-        );
+        return ResponseHandler.success(res, null, "Course not found", 404);
       }
-  
+
       return ResponseHandler.success(
         res,
         course,
@@ -195,7 +190,7 @@ export class CourseController {
       );
     }
   }
-  
+
   async createLesson(req: Request, res: Response, next: NextFunction) {
     try {
       const instructorId = req.admin._id;
@@ -351,7 +346,6 @@ export class CourseController {
         }
       }
 
-
       if (price === 0) price === "free";
 
       const courseData: any = {
@@ -428,7 +422,7 @@ export class CourseController {
           );
         }
       }
-      
+
       const lessons = updates.lessons;
       let validLessons;
       if (lessons) {
@@ -445,7 +439,7 @@ export class CourseController {
           );
         }
       }
-  
+
       let Urls: string[] = [];
       if (files && files.length > 0) {
         for (let file of files) {
@@ -460,7 +454,7 @@ export class CourseController {
         }
         updates.courseImage = Urls; // Update courseImage if new files uploaded
       }
-  
+
       // Handle announcements
       if (updates.announcements) {
         const announcementIds: mongoose.Types.ObjectId[] = [];
@@ -475,30 +469,32 @@ export class CourseController {
               title: announcement.title,
               details: announcement.details,
             });
-            announcementIds.push(newAnnouncement._id as mongoose.Types.ObjectId);
+            announcementIds.push(
+              newAnnouncement._id as mongoose.Types.ObjectId
+            );
           }
         }
-        
+
         updates.announcements = announcementIds; // Replace with array of ObjectIds
       }
-  
+
       const updatedCourse = await Course.findByIdAndUpdate(
         courseId,
         { $set: updates },
         { new: true, runValidators: true }
       );
-  
+
       if (!updatedCourse) {
         return ResponseHandler.failure(res, "Course not found", 404);
       }
-  
+
       if (updates.lessons) {
         await Lesson.updateMany(
           { _id: { $in: updates.lessons } },
           { $push: { courseIds: updatedCourse._id } }
         );
       }
-  
+
       const courseResponse = updatedCourse.toObject();
       return ResponseHandler.success(
         res,
@@ -508,16 +504,20 @@ export class CourseController {
       );
     } catch (error: any) {
       console.error("Error updating course:", error.message);
-      return ResponseHandler.failure(res, `Server error: ${error.message}`, 500);
+      return ResponseHandler.failure(
+        res,
+        `Server error: ${error.message}`,
+        500
+      );
     }
-  }  
+  }
 
   // async editCourse(req: Request, res: Response) {
   //   try {
   //     const courseId = req.params.courseId;
   //     const updates = req.body;
   //     const files = req.files as Express.Multer.File[];
-  
+
   //     let Urls: string[] = [];
   //     if (files && files.length > 0) {
   //       for (let file of files) {
@@ -532,31 +532,31 @@ export class CourseController {
   //       }
   //       updates.courseImage = Urls; // Update courseImage if new files uploaded
   //     }
-  
+
   //     const updatedCourse = await Course.findByIdAndUpdate(
   //       courseId,
   //       { $set: updates },
   //       { new: true, runValidators: true }
   //     );
-  
+
   //     if (!updatedCourse) {
   //       return ResponseHandler.failure(res, "Course not found", 404);
   //     }
-  
+
   //     if (updates.announcements) {
   //       await Announcement.updateMany(
   //         { _id: { $in: updates.announcements } },
   //         { $push: { courseIds: updatedCourse._id } }
   //       );
   //     }
-  
+
   //     if (updates.lessons) {
   //       await Lesson.updateMany(
   //         { _id: { $in: updates.lessons } },
   //         { $push: { courseIds: updatedCourse._id } }
   //       );
   //     }
-  
+
   //     const courseResponse = updatedCourse.toObject();
   //     return ResponseHandler.success(
   //       res,
@@ -568,7 +568,7 @@ export class CourseController {
   //     console.error("Error updating course:", error.message);
   //     return ResponseHandler.failure(res, `Server error: ${error.message}`, 500);
   //   }
-  // }  
+  // }
 
   async assignCourseToUsers(req: Request, res: Response) {
     try {
@@ -613,10 +613,16 @@ export class CourseController {
                 status,
                 amount: course.cost,
               },
+              unattemptedPrograms: {
+                course: course.toObject(), 
+                status,
+              },
             },
           },
         },
       }));
+
+      // PUSH THE COURSE DETAILS TO THE UNATTEMPTED PROGRAMS ARRAY
 
       const result = await User.bulkWrite(bulkUpdates);
 
@@ -627,24 +633,19 @@ export class CourseController {
 
       // Update course with assigned learners
       const updateQuery: any = {
-          $addToSet: { assignedLearnersIds: { $each: validUsers.map((user) => ({ userId: user._id })) } },
+        $addToSet: {
+          assignedLearnersIds: {
+            $each: validUsers.map((user) => ({ userId: user._id })),
+          },
+        },
       };
 
       // If the course is free, add to learnerIds as well
       if (status === "free") {
-          updateQuery.$addToSet["learnerIds"] = { $each: learnersToAdd };
+        updateQuery.$addToSet["learnerIds"] = { $each: learnersToAdd };
       }
 
       await Course.updateOne({ _id: courseId }, updateQuery);
-
-      // const userIdsToAssign = validUsers.map((user) => ({
-      //   userId: user._id,
-      // }));
-
-      // await Course.updateOne(
-      //   { _id: courseId },
-      //   { $addToSet: { assignedLearnersIds: { $each: userIdsToAssign } } }
-      // );
 
       return ResponseHandler.success(
         res,
