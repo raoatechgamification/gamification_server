@@ -5,7 +5,7 @@ export interface IAssignedProgram {
   _id: Schema.Types.ObjectId; 
   courseId: Schema.Types.ObjectId;
   dueDate: Date;
-  status: "paid" | "pending" | "unpaid"; 
+  status: "paid" | "pending" | "unpaid" | "free"; 
   amount: number;
 }
 
@@ -41,6 +41,11 @@ export interface IUser extends Document {
   assignedPrograms?: IAssignedProgram[],
   ongoingPrograms?: ICourse[];
   completedPrograms?: ICourse[];
+  certificates?: { 
+    courseId: mongoose.Types.ObjectId, 
+    courseName: string;
+    certificateId: mongoose.Types.ObjectId
+  }[]
   createdAt: Date; 
   updatedAt: Date; 
 }
@@ -52,7 +57,7 @@ const AssignedProgramSchema = new Schema<IAssignedProgram>(
     dueDate: { type: Date, required: true },
     status: { 
       type: String, 
-      enum: ["paid", "pending", "unpaid"], 
+      enum: ["paid", "pending", "unpaid", "free"], 
       required: true 
     },
     amount: { type: Number, required: true },
@@ -95,7 +100,14 @@ const UserSchema: Schema<IUser> = new Schema(
       default: [],
     },
     ongoingPrograms: { type: [Object], default: null, },
-    completedPrograms: { type: [Object], default: null, }
+    completedPrograms: { type: [Object], default: null, },
+    certificates: [
+      {
+        courseId: { type: mongoose.Types.ObjectId, ref: "Course" },
+        courseName: { type: String},
+        certificateId: { type: mongoose.Types.ObjectId, ref: "Certifcate"}
+      }
+    ],
   }, {
     timestamps: true,
   }

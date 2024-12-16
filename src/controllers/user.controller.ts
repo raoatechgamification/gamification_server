@@ -432,4 +432,29 @@ export class UserController {
       return ResponseHandler.failure(res, "Error marking lesson as complete", 500);
     }
   }  
+
+  async getAllUserCertificates(req: Request, res: Response) {
+    try {
+      const userId = req.user.id
+
+      const user = await User.findById(userId, { certificates: 1, _id: 0 });
+
+      if (!user) {
+        return ResponseHandler.failure(res, "User not found", 404);
+      }
+
+      return ResponseHandler.success(
+        res,
+        user.certificates,
+        "Certificates retrieved successfully.",
+        200
+      );
+    } catch (error: any) {
+      return ResponseHandler.failure(
+        res,
+        `Error generating user certificates: ${error.message}`,
+        500
+      );
+    }
+  }
 }

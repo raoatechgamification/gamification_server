@@ -27,7 +27,7 @@ export interface ICertificate extends Document {
 
 const CertificateSchema: Schema<ICertificate> = new Schema(
   {
-    organisationName: { type: String, required: true },
+    organisationName: { type: String},
     organizationId: { type: mongoose.Schema.Types.ObjectId, required: true },
     organizationLogo: { type: String },
     organizationName: { type: String },

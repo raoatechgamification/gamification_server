@@ -1,7 +1,7 @@
 import mongoose, { Schema, model, Document } from 'mongoose';
 
 export interface ICourse extends Document {
-title?: string;
+  title: string;
   description?: string,
   requirement?: string,
   topContent?: boolean,
@@ -13,8 +13,8 @@ title?: string;
   lessons?: mongoose.Types.ObjectId[];
   learnerIds?: { userId: mongoose.Types.ObjectId; progress: number }[];
   assignedLearnersIds?: { userId: mongoose.Types.ObjectId}[]
-  assessments?: mongoose.Types.ObjectId[]
-  certificate?: mongoose.Types.ObjectId[];
+  assessments?: mongoose.Types.ObjectId[] 
+  certificate?: mongoose.Types.ObjectId;
   duration?: string;
   courseCode?: string;
   courseLevel?: string;
@@ -42,13 +42,13 @@ title?: string;
 }
 
 const CourseSchema = new Schema<ICourse>({
-  title: { type: String, required: false },
+  title: { type: String, required: true },
   description: { type: String, required: false },
   requirement: { type: String, required: false },
   topContent: { type: Boolean, required: false },
   objective: { type: String, required: false },
   instructorId: { type: String, required: false },
-  certificate: [{ type: Schema.Types.ObjectId, ref: 'Certificate' }],
+  certificate: { type: Schema.Types.ObjectId, ref: 'Certificate' },
   tutorId: { type: Schema.Types.ObjectId },
   organizationId: { type: String, required: false },
   lessonFormat: { type: String, required: false },
