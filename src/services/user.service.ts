@@ -344,7 +344,24 @@ class UserService {
       return { duplicateEmails, duplicatePhones };
     }
 
-    await User.insertMany(usersToCreate);
+    const createdUsers = await User.insertMany(usersToCreate);
+
+    const emailPromises = createdUsers.map((user) => {
+      const emailVariables = {
+        email: user.email,
+        firstName: user.firstName,
+        password:
+          user.password === hashedDefaultPassword
+            ? defaultPassword
+            : "DefaultPassword123",
+        organizationName: organization.name,
+        subject: "Onboarding Email",
+      };
+
+      return sendLoginEmail(emailVariables);
+    });
+
+    await Promise.all(emailPromises);
 
     return { duplicateEmails: [], duplicatePhones: [] };
   }

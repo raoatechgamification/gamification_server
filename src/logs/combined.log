@@ -4946,3 +4946,7 @@
 2024-12-16 11:44:48 [info]: POST /675ff903cb60c6452667b3ba/675ff749cb60c6452667b315/take 403 - Request Body: {"answers":[{"questionId":"675ff749cb60c6452667b316","answer":"false"},{"questionId":"675ff749cb60c6452667b317","answer":"Pacific Ocean"},{"questionId":"675ff749cb60c6452667b318","answer":"yes"},{"questionId":"675ff749cb60c6452667b319","answer":"7"},{"questionId":"675ff749cb60c6452667b31a","answer":"no"}]}
 2024-12-16 11:45:05 [info]: GET /certificates 200
 2024-12-16 11:45:10 [info]: GET /certificates 200
+2024-12-16 13:11:42 [info]: POST /login 200 - Request Body: {"email":"backendseun@gmail.com","password":"OluwaseunOdueso123#"}
+2024-12-16 15:05:12 [info]: POST /login 200 - Request Body: {"email":"backendseun@gmail.com","password":"OluwaseunOdueso123#"}
+2024-12-16 15:10:28 [info]: POST /login 200 - Request Body: {"email":"backendseun@gmail.com","password":"OluwaseunOdueso123#"}
+2024-12-16 16:12:03 [info]: POST /login 200 - Request Body: {"email":"seunoduez@gmail.com","password":"Timpearl05$$$"}
