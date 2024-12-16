@@ -1,7 +1,7 @@
 import mongoose, { Schema, model, Document } from 'mongoose';
 
 export interface ICourse extends Document {
-title?: string;
+  title: string;
   description?: string,
   requirement?: string,
   topContent?: boolean,
@@ -42,7 +42,7 @@ title?: string;
 }
 
 const CourseSchema = new Schema<ICourse>({
-  title: { type: String, required: false },
+  title: { type: String, required: true },
   description: { type: String, required: false },
   requirement: { type: String, required: false },
   topContent: { type: Boolean, required: false },

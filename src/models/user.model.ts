@@ -41,7 +41,11 @@ export interface IUser extends Document {
   assignedPrograms?: IAssignedProgram[],
   ongoingPrograms?: ICourse[];
   completedPrograms?: ICourse[];
-  certificates?: { courseId: mongoose.Types.ObjectId, certificateId: mongoose.Types.ObjectId}[]
+  certificates?: { 
+    courseId: mongoose.Types.ObjectId, 
+    courseName: string;
+    certificateId: mongoose.Types.ObjectId
+  }[]
   createdAt: Date; 
   updatedAt: Date; 
 }
@@ -100,6 +104,7 @@ const UserSchema: Schema<IUser> = new Schema(
     certificates: [
       {
         courseId: { type: mongoose.Types.ObjectId, ref: "Course" },
+        courseName: { type: String},
         certificateId: { type: mongoose.Types.ObjectId, ref: "Certifcate"}
       }
     ],

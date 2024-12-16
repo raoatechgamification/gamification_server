@@ -237,26 +237,31 @@ class ObjectAssessmentController {
       const certificateId = course.certificate;
 
       if (certificateId && passOrFail === "Pass") {
-        const user = await User.findById(userId);
+        const user = await User.findOne({
+          _id: userId,
+          certificates: { $elemMatch: { certificateId } }, 
+        });
 
-        if (user) {
-          const certificateExists = user.certificates?.some((certificate) =>
-            certificate.courseId.toString() === courseId.toString() &&
-            certificate.certificateId.toString() === certificateId.toString()
+        if (!user) {
+          const updateResult = await User.updateOne(
+            { _id: userId },
+            {
+              $addToSet: {
+                certificates: {
+                  courseId: courseId as unknown as mongoose.Types.ObjectId,
+                  courseName: course.title,
+                  certificateId,
+                },
+              },
+            }
           );
-
-          if (!certificateExists) {
-            user.certificates = user.certificates || [];
-            user.certificates.push({
-              courseId: courseId as unknown as mongoose.Types.ObjectId,
-              certificateId,
-            });
-
-            await user.save();
+    
+          if (updateResult.modifiedCount === 0) {
+            console.log("Failed to add certificate or user not found.");
           } else {
-            console.log("Certificate already exists for this user and course.");
+            console.log("Certificate added to user's records.");
           }
-        }
+        }        
       }
         
       const submission = await Submission.create({
