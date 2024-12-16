@@ -72,85 +72,83 @@ class CertificateController {
             500
         );
     }
-}
+  }
 
-async editCertificate(req: Request, res: Response) {
-  try {
-      const {
-        
-          certificateTitle,
-          recipientName,
-          awardedOn,
-          expiryDate,
-          // authorizedSignature1,
-          // authorizedSignature2,
-          authorizedSignature1Name,
-          authorizedSignature1Title,
-          authorizedSignature2Name,
-          authorizedSignature2Title,
-          // logo1,
-          // logo2,
-      } = req.body;
-    console.log(req.body.file)
+  async editCertificate(req: Request, res: Response) {
+    try {
+        const {
+          
+            certificateTitle,
+            recipientName,
+            awardedOn,
+            expiryDate,
+            // authorizedSignature1,
+            // authorizedSignature2,
+            authorizedSignature1Name,
+            authorizedSignature1Title,
+            authorizedSignature2Name,
+            authorizedSignature2Title,
+            // logo1,
+            // logo2,
+        } = req.body;
+      console.log(req.body.file)
 
-    
-      const id = req.params.id
-      const files = req.files as Express.Multer.File[];
-      const certificate = await Certificate.findById(id);
+      
+        const id = req.params.id
+        const files = req.files as Express.Multer.File[];
+        const certificate = await Certificate.findById(id);
 
-      if (!certificate) {
-          return ResponseHandler.failure(res, "Certificate not found", 404);
-      }
+        if (!certificate) {
+            return ResponseHandler.failure(res, "Certificate not found", 404);
+        }
 
-      let Urls: string[] = [];
-      console.log(Urls, 105)
-      if (files && files.length > 0) {
-        for (let i = 0; i < files.length; i++) {
-          const file = files[i];
-          const uploadResult = await uploadToCloudinary(
-            file.buffer,
-            file.mimetype,
-            "course-content"
-          );
-          if (uploadResult && uploadResult.secure_url) {
-            Urls.push(uploadResult.secure_url);
-            
+        let Urls: string[] = [];
+        console.log(Urls, 105)
+        if (files && files.length > 0) {
+          for (let i = 0; i < files.length; i++) {
+            const file = files[i];
+            const uploadResult = await uploadToCloudinary(
+              file.buffer,
+              file.mimetype,
+              "course-content"
+            );
+            if (uploadResult && uploadResult.secure_url) {
+              Urls.push(uploadResult.secure_url);
+              
+            }
           }
         }
-      }
-      console.log(Urls, 120)
+        console.log(Urls, 120)
 
-      certificate.certificateTitle = certificateTitle || certificate.certificateTitle;
-      certificate.recipientName = recipientName || certificate.recipientName;
-      certificate.awardedOn = awardedOn || certificate.awardedOn;
-      certificate.expiryDate = expiryDate || certificate.expiryDate;
-      certificate.authorizedSignature1 = Urls[0];
-      certificate.authorizedSignature1Name = authorizedSignature1Name || certificate.authorizedSignature1Name;
-      certificate.authorizedSignature1Title = authorizedSignature1Title || certificate.authorizedSignature1Title;
-      certificate.authorizedSignature2 =  Urls[1] ;
-      certificate.logo1 =  Urls[2];
-      certificate.logo2 =  Urls[3];
-      certificate.authorizedSignature2Name = authorizedSignature2Name || certificate.authorizedSignature2Name;
-      certificate.authorizedSignature2Title = authorizedSignature2Title || certificate.authorizedSignature2Title;
+        certificate.certificateTitle = certificateTitle || certificate.certificateTitle;
+        certificate.recipientName = recipientName || certificate.recipientName;
+        certificate.awardedOn = awardedOn || certificate.awardedOn;
+        certificate.expiryDate = expiryDate || certificate.expiryDate;
+        certificate.authorizedSignature1 = Urls[0];
+        certificate.authorizedSignature1Name = authorizedSignature1Name || certificate.authorizedSignature1Name;
+        certificate.authorizedSignature1Title = authorizedSignature1Title || certificate.authorizedSignature1Title;
+        certificate.authorizedSignature2 =  Urls[1] ;
+        certificate.logo1 =  Urls[2];
+        certificate.logo2 =  Urls[3];
+        certificate.authorizedSignature2Name = authorizedSignature2Name || certificate.authorizedSignature2Name;
+        certificate.authorizedSignature2Title = authorizedSignature2Title || certificate.authorizedSignature2Title;
 
-      const updatedCertificate = await certificate.save();
+        const updatedCertificate = await certificate.save();
 
-      return ResponseHandler.success(
-          res,
-          updatedCertificate,
-          "Certificate updated successfully",
-          200
-      );
-  } catch (error:any) {
-      return ResponseHandler.failure(
-          res,
-          `Error updating certificate: ${error.message}`,
-          500
-      );
+        return ResponseHandler.success(
+            res,
+            updatedCertificate,
+            "Certificate updated successfully",
+            200
+        );
+    } catch (error:any) {
+        return ResponseHandler.failure(
+            res,
+            `Error updating certificate: ${error.message}`,
+            500
+        );
+    }
   }
-}
-
-
 
   async getCertificateById(req: Request, res: Response) {
     try {
