@@ -4787,3 +4787,35 @@
 2024-12-12 19:58:25 [info]: GET /675b2b48a36549113b5b3506 304
 2024-12-12 19:58:27 [info]: PUT /675b2b48a36549113b5b3506 200 - Request Body: {"organisationName":"files test 2 efiy","certificateTitle":"File test 2 test","recipientName":"Ajibade","awardedOn":"28th December 2024","expiryDate":"28th December 2024","file":["https://res.cloudinary.com/dldchwdkn/image/upload/v1734029813/course-content/bdwicnlazjctk81r4gmk.jpg","https://res.cloudinary.com/dldchwdkn/image/upload/v1734029815/course-content/amjggzixxmvtowtk6yak.jpg","https://res.cloudinary.com/dldchwdkn/image/upload/v1734029816/course-content/xugmhytt4auams4lkj9j.jpg","https://res.cloudinary.com/dldchwdkn/image/upload/v1734029817/course-content/weleksk6ucexbn6dd5ug.jpg"],"authorizedSignature1Name":"Ajibade","authorizedSignature1Title":"CEO","authorizedSignature2Name":"ajy","authorizedSignature2Title":"MANAGER"}
 2024-12-12 19:58:27 [info]: GET / 200
+2024-12-12 20:02:11 [info]: GET / 304
+2024-12-12 20:02:19 [info]: GET / 304
+2024-12-12 20:02:44 [info]: GET / 304
+2024-12-12 20:02:46 [info]: GET / 304
+2024-12-12 20:03:12 [info]: GET / 304
+2024-12-12 22:13:43 [info]: POST /login 200 - Request Body: {"email":"seunoduez@gmail.com","password":"Timpearl05$$$"}
+2024-12-12 22:13:58 [info]: GET / 304
+2024-12-12 22:14:08 [info]: GET / 304
+2024-12-12 22:14:23 [info]: POST /login 200 - Request Body: {"email":"richardsonmarcus520@gmail.com","password":"AJIBADEEmmanuel123#"}
+2024-12-12 22:14:33 [info]: GET /programs 304
+2024-12-12 22:15:01 [info]: GET /allCourses 304
+2024-12-12 22:15:05 [info]: GET /6755635d47415422855481b3 304
+2024-12-12 22:15:19 [info]: POST /6756eb53189a08b34af7d355/6755635d47415422855481b3/take 201 - Request Body: {"answers":[{"questionId":"6755635d47415422855481b4","answer":"True"},{"questionId":"6755635d47415422855481b5","answer":"d"},{"questionId":"6755635d47415422855481b6","answer":"d"},{"questionId":"6755635d47415422855481b7","answer":"No"},{"questionId":"6755635d47415422855481b8","answer":"False"}]}
+2024-12-12 22:16:28 [info]: GET /6755635d47415422855481b3 304
+2024-12-12 22:17:28 [info]: GET /6755635d47415422855481b3 401
+2024-12-12 22:17:29 [info]: GET /6755635d47415422855481b3 500
+2024-12-12 22:17:33 [info]: GET /6755635d47415422855481b3 200
+2024-12-12 22:17:57 [info]: POST /6756eb53189a08b34af7d355/6755635d47415422855481b3/take 201 - Request Body: {"answers":[{"questionId":"6755635d47415422855481b4","answer":"True"},{"questionId":"6755635d47415422855481b5","answer":"a"},{"questionId":"6755635d47415422855481b6","answer":"a"},{"questionId":"6755635d47415422855481b7","answer":"Yes"},{"questionId":"6755635d47415422855481b8","answer":"True"}]}
+2024-12-12 22:20:38 [info]: GET /6756eb53189a08b34af7d355 200
+2024-12-12 22:20:40 [info]: GET /67542aaec15e876d2604b447 304
+2024-12-12 22:21:04 [info]: GET /allCourses 304
+2024-12-12 22:21:16 [info]: GET /6755635d47415422855481b3 304
+2024-12-12 22:21:17 [info]: POST /6756eb53189a08b34af7d355/6755635d47415422855481b3/take 201 - Request Body: {"answers":[]}
+2024-12-12 22:21:28 [info]: GET /6755635d47415422855481b3 401
+2024-12-12 22:21:29 [info]: GET /6755635d47415422855481b3 304
+2024-12-12 22:21:42 [info]: POST /6756eb53189a08b34af7d355/6755635d47415422855481b3/take 201 - Request Body: {"answers":[{"questionId":"6755635d47415422855481b4","answer":"True"},{"questionId":"6755635d47415422855481b5","answer":"a"},{"questionId":"6755635d47415422855481b6","answer":"a"},{"questionId":"6755635d47415422855481b7","answer":"Yes"},{"questionId":"6755635d47415422855481b8","answer":"True"}]}
+2024-12-12 22:21:48 [info]: GET /6756eb53189a08b34af7d355 304
+2024-12-12 22:21:49 [info]: GET /67542aaec15e876d2604b447 304
+2024-12-12 22:24:12 [info]: GET /6756eb53189a08b34af7d355 304
+2024-12-12 22:24:12 [info]: GET /67542aaec15e876d2604b447 304
+2024-12-12 22:24:16 [info]: GET /6756eb53189a08b34af7d355 304
+2024-12-12 22:24:16 [info]: GET /67542aaec15e876d2604b447 304
