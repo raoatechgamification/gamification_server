@@ -18,6 +18,7 @@ const {
   createACourse,
   assignCourseToUsers,
   createLesson,
+  getAllLessons,
   createAnnouncement,
   getAllCourses,
   getAllCoursesForUsers,
@@ -94,6 +95,13 @@ router.post(
   createLesson
 );
 
+router.get(
+  "/lesson/getAll",
+  authenticate,
+  authorize("admin"),
+
+getAllLessons
+);
 router.get(
   "/curriculum/:courseId",
   authenticate,

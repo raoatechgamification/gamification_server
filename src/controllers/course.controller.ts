@@ -257,6 +257,35 @@ export class CourseController {
     }
   }
 
+  async getAllLessons(
+    req: Request,
+    res: Response,
+    next: NextFunction
+  ){
+    try {
+
+      const instructorId = req.admin._id;
+  
+      const lessons = await Lesson.find({instructorId});
+  
+      if (!lessons || lessons.length === 0) {
+        return ResponseHandler.failure(
+          res,
+          "No lessons found for this instructor",
+          404
+        );
+      }
+  
+      return ResponseHandler.success(
+        res,
+        lessons,
+        "Lessons retrieved successfully"
+      );
+    } catch (error) {
+      next(error);
+    }
+  };
+
   async createACourse(req: Request, res: Response) {
     try {
       const files = req.files as Express.Multer.File[];
