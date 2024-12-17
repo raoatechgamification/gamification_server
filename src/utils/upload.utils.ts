@@ -27,7 +27,16 @@ export const upload = multer({
       "application/pdf",
       "application/msword",
       "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
-      ...videoMimeTypes
+      // ...videoMimeTypes
+      "video/mp3",
+      "video/mp4",
+      "video/webm",
+      "video/ogg",
+      "video/avi",
+      "video/mkv",
+      "video/quicktime",
+      "video/x-msvideo", // AVI
+      "video/x-flv", // Flash Video
     ];
 
     if (allowedMimeTypes.includes(file.mimetype)) {
