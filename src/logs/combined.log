@@ -5256,3 +5256,6 @@
 2024-12-17 16:09:50 [info]: GET /lesson/getAll 304
 2024-12-17 16:10:34 [info]: GET /lesson/getAll 304
 2024-12-17 16:10:47 [info]: GET /lesson/getAll 401
+2024-12-17 16:11:14 [info]: GET /lesson/getAll 304
+2024-12-17 16:11:25 [info]: GET /lesson/getAll 304
+2024-12-17 16:11:26 [info]: GET /lesson/getAll 304
