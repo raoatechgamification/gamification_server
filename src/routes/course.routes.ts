@@ -25,6 +25,11 @@ const {
   getCourseLessons,
   getAllAnnouncementsByCourse,
   editCourse,
+  userPrograms,
+  enrolledCoursesWithProgress,
+  lessonsWithProgress,
+  markLessonAsComplete,
+  moveCourseToOngoingList
 } = new CourseController();
 
 const { generateCourseReport } = AdminController
@@ -116,6 +121,41 @@ router.get(
   authenticate,
   authorize("admin"),
   generateCourseReport
+)
+
+router.get(
+  "/programs",
+  authenticate,
+  authorize("user"),
+  userPrograms
+)
+
+router.get(
+  '/courses',
+  authenticate,
+  authorize('user'),
+  enrolledCoursesWithProgress
+)
+
+router.get(
+  "/courses/:courseId/lessons",
+  authenticate,
+  authorize("user"),
+  lessonsWithProgress
+)
+
+router.put(
+  "/:courseId/lessons/:lessonId/complete",
+  authenticate,
+  authorize("user"),
+  markLessonAsComplete
+)
+
+router.patch(
+  "/:courseId/move-to-ongoing",
+  authenticate,
+  authorize("user"),
+  moveCourseToOngoingList
 )
 
 export default router;

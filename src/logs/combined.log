@@ -4958,3 +4958,53 @@
 2024-12-16 17:59:31 [info]: POST /add 201 - Request Body: {"code":"ZZ-246","title":"Beginners guide to Medicine","objective":"Introduction to Biology I","instructorId":"67453884a835dc3c8062914d","duration":"six weeks","lessonFormat":".xls","assessments":["6760566d565971c8d5f0256b"],"announcements":[{"title":"Become a doctor now","details":"This is your very chance to become a doctor"}],"certificate":["675fec0e6fe5ccac4b4ac00b"],"showInstructor":true}
 2024-12-16 18:00:32 [info]: POST /67605c73ddb76bafe0ee1b60/assign 200 - Request Body: {"userIds":["674d6507cad288132dd56fc1","6751a65b6d5988016085da8d","67409ce32de7105d7831d2f9"],"dueDate":"12-31-2024"}
 2024-12-16 18:00:59 [info]: POST /login 200 - Request Body: {"email":"backendseun@gmail.com","password":"OluwaseunOdueso123#"}
+2024-12-16 18:28:33 [info]: GET /courses 200
+2024-12-16 18:33:53 [info]: POST /login 200 - Request Body: {"email":"backendseun@gmail.com","password":"OluwaseunOdueso123#"}
+2024-12-17 10:33:45 [info]: POST /login 200 - Request Body: {"email":"backendseun@gmail.com","password":"OluwaseunOdueso123#"}
+2024-12-17 10:38:05 [info]: POST /login 200 - Request Body: {"email":"backendseun@gmail.com","password":"OluwaseunOdueso123#"}
+2024-12-17 11:30:49 [info]: POST /add 201 - Request Body: {"code":"BB-246","title":"Beginners guide to Medicine","objective":"Introduction to Biology I","instructorId":"67453884a835dc3c8062914d","duration":"six weeks","lessonFormat":".xls","assessments":["6760566d565971c8d5f0256b"],"announcements":[{"title":"Become a doctor now","details":"This is your very chance to become a doctor"}],"certificate":["675b20749147a24fad3c0166"],"showInstructor":true}
+2024-12-17 11:31:50 [info]: POST /676152d8f425385247c76eb3/assign 200 - Request Body: {"userIds":["674d6507cad288132dd56fc1","6751a65b6d5988016085da8d","67409ce32de7105d7831d2f9"],"dueDate":"12-31-2024"}
+2024-12-17 11:32:15 [info]: POST /objective 201 - Request Body: {"title":"Mixed Question Types Quiz","description":"A quiz with various question types to test your knowledge.","marksPerQuestion":5,"numberOfTrials":5,"purpose":"Learning assessment","passMark":60,"duration":30,"totalMark":100,"startDate":"2024-11-25","endDate":"2024-12-01","questions":[{"question":"The Eiffel Tower is in London.","type":"True or False","answer":"false","mark":15},{"question":"______ is the largest ocean on Earth.","type":"Fill in the Gap","answer":"Pacific Ocean","mark":25},{"question":"Is climate change a global concern?","type":"Yes or No","answer":"yes","mark":15},{"question":"Which of these is a prime number?","type":"Multichoice","options":["4","6","7","9"],"answer":"7","mark":15},{"question":"Is a Dog a mammal?","type":"Yes or No","answer":"yes","mark":10}]}
+2024-12-17 11:32:56 [info]: POST /add 201 - Request Body: {"code":"BA-246","title":"Beginners guide to Medicine","objective":"Introduction to Biology I","instructorId":"67453884a835dc3c8062914d","duration":"six weeks","lessonFormat":".xls","assessments":["6761532ff425385247c76eff"],"announcements":[{"title":"Become a doctor now","details":"This is your very chance to become a doctor"}],"certificate":["675b20749147a24fad3c0166"],"showInstructor":true}
+2024-12-17 11:35:38 [info]: POST /67615358f425385247c76f10/6761532ff425385247c76eff/take 401 - Request Body: {"answers":[{"questionId":"6761532ff425385247c76f00","answer":"false"},{"questionId":"6761532ff425385247c76f01","answer":"Pacific Ocean"},{"questionId":"6761532ff425385247c76f02","answer":"yes"},{"questionId":"6761532ff425385247c76f03","answer":"7"},{"questionId":"6761532ff425385247c76f04","answer":"no"}]}
+2024-12-17 11:35:47 [info]: POST /login 200 - Request Body: {"email":"backendseun@gmail.com","password":"OluwaseunOdueso123#"}
+2024-12-17 11:36:23 [info]: POST /67615358f425385247c76f10/6761532ff425385247c76eff/take 201 - Request Body: {"answers":[{"questionId":"6761532ff425385247c76f00","answer":"false"},{"questionId":"6761532ff425385247c76f01","answer":"Pacific Ocean"},{"questionId":"6761532ff425385247c76f02","answer":"yes"},{"questionId":"6761532ff425385247c76f03","answer":"7"},{"questionId":"6761532ff425385247c76f04","answer":"no"}]}
+2024-12-17 11:36:46 [info]: POST /login 200 - Request Body: {"email":"backendseun@gmail.com","password":"OluwaseunOdueso123#"}
+2024-12-17 11:41:47 [info]: GET /certificates 200
+2024-12-17 13:12:50 [info]: POST /lesson 401
+2024-12-17 13:13:15 [info]: POST /api/v1/course/lesson 500 - Request Body: {"title":"This is the title","objectives":"This is the objective for this lesson","link":"https://www.youtube.com"}
+2024-12-17 13:30:30 [info]: POST /lesson 200 - Request Body: {"title":"This is the title","objectives":"This is the objective for this lesson","link":"https://www.youtube.com"}
+2024-12-17 13:36:35 [info]: PATCH /67605c73ddb76bafe0ee1b60/move-to-ongoing 500
+2024-12-17 13:39:01 [info]: PATCH /67605c73ddb76bafe0ee1b60/move-to-ongoing 500
+2024-12-17 13:41:07 [info]: PATCH /676152d8f425385247c76eb3/move-to-ongoing 500
+2024-12-17 13:41:29 [info]: PATCH /6751c012049e71e2f39ec8db/move-to-ongoing 500
+2024-12-17 13:42:54 [info]: PATCH /676152d8f425385247c76eb3/move-to-ongoing 500
+2024-12-17 13:43:32 [info]: PATCH /676152d8f425385247c76eb3/move-to-ongoing 500
+2024-12-17 13:45:44 [info]: PATCH /676152d8f425385247c76eb3/move-to-ongoing 500
+2024-12-17 14:24:33 [info]: PATCH /676152d8f425385247c76eb3/move-to-ongoing 500
+2024-12-17 14:36:02 [info]: PATCH /676152d8f425385247c76eb3/move-to-ongoing 500
+2024-12-17 14:45:05 [info]: PATCH /676152d8f425385247c76eb3/move-to-ongoing 500
+2024-12-17 14:46:24 [info]: PATCH /676152d8f425385247c76eb3/move-to-ongoing 200
+2024-12-17 14:46:55 [info]: POST /login 200 - Request Body: {"email":"backendseun@gmail.com","password":"OluwaseunOdueso123#"}
+2024-12-17 14:52:53 [info]: PATCH /67605683565971c8d5f0257c/move-to-ongoing 400
+2024-12-17 14:55:26 [info]: PATCH /67605c73ddb76bafe0ee1b60/move-to-ongoing 200
+2024-12-17 14:55:35 [info]: POST /login 200 - Request Body: {"email":"backendseun@gmail.com","password":"OluwaseunOdueso123#"}
+2024-12-17 14:56:13 [info]: POST /login 200 - Request Body: {"email":"backendseun@gmail.com","password":"OluwaseunOdueso123#"}
+2024-12-17 14:56:26 [info]: POST /login 200 - Request Body: {"email":"backendseun@gmail.com","password":"OluwaseunOdueso123#"}
+2024-12-17 15:25:04 [info]: POST /add 201 - Request Body: {"code":"ZOZO-246","title":"Beginners guide to Medicine","objective":"Introduction to Biology I","instructorId":"67453884a835dc3c8062914d","duration":"six weeks","lessonFormat":".xls","assessments":["6761532ff425385247c76eff"],"announcements":[{"title":"Become a doctor now","details":"This is your very chance to become a doctor"}],"certificate":["675b20749147a24fad3c0166"],"showInstructor":true}
+2024-12-17 15:25:26 [info]: POST /676189c067fb9dfc0bca825e/assign 200 - Request Body: {"userIds":["674d6507cad288132dd56fc1","6751a65b6d5988016085da8d","67409ce32de7105d7831d2f9"],"dueDate":"12-31-2024"}
+2024-12-17 15:25:31 [info]: POST /login 200 - Request Body: {"email":"backendseun@gmail.com","password":"OluwaseunOdueso123#"}
+2024-12-17 15:26:33 [info]: PATCH /676189c067fb9dfc0bca825e/move-to-ongoing 200
+2024-12-17 15:26:40 [info]: POST /login 200 - Request Body: {"email":"backendseun@gmail.com","password":"OluwaseunOdueso123#"}
+2024-12-17 15:33:16 [info]: POST /login 200 - Request Body: {"email":"backendseun@gmail.com","password":"OluwaseunOdueso123#"}
+2024-12-17 15:33:37 [info]: POST /add 201 - Request Body: {"code":"SOSB-251","title":"Beginners guide to Medicine","objective":"Introduction to Biology I","instructorId":"67453884a835dc3c8062914d","duration":"six weeks","lessonFormat":".xls","assessments":["6761532ff425385247c76eff"],"announcements":[{"title":"Become a doctor now","details":"This is your very chance to become a doctor"}],"certificate":["675b20749147a24fad3c0166"],"showInstructor":true}
+2024-12-17 15:35:33 [info]: POST /67618bc167fb9dfc0bca8318/assign 200 - Request Body: {"userIds":["674d6507cad288132dd56fc1","6751a65b6d5988016085da8d","67409ce32de7105d7831d2f9"],"dueDate":"12-31-2024"}
+2024-12-17 15:35:45 [info]: POST /login 200 - Request Body: {"email":"backendseun@gmail.com","password":"OluwaseunOdueso123#"}
+2024-12-17 15:36:04 [info]: POST /login 200 - Request Body: {"email":"backendseun@gmail.com","password":"OluwaseunOdueso123#"}
+2024-12-17 15:36:13 [info]: PATCH /67618bc167fb9dfc0bca8318/move-to-ongoing 200
+2024-12-17 15:36:18 [info]: POST /login 200 - Request Body: {"email":"backendseun@gmail.com","password":"OluwaseunOdueso123#"}
+2024-12-17 15:40:09 [info]: POST /add 201 - Request Body: {"code":"BOBO-251","title":"Beginners guide to Medicine","objective":"Introduction to Biology I","instructorId":"67453884a835dc3c8062914d","duration":"six weeks","lessonFormat":".xls","assessments":["6761532ff425385247c76eff"],"announcements":[{"title":"Become a doctor now","details":"This is your very chance to become a doctor"}],"certificate":["675b20749147a24fad3c0166"],"showInstructor":true}
+2024-12-17 15:40:22 [info]: POST /67618d4967fb9dfc0bca83dc/assign 200 - Request Body: {"userIds":["674d6507cad288132dd56fc1","6751a65b6d5988016085da8d","67409ce32de7105d7831d2f9"],"dueDate":"12-31-2024"}
+2024-12-17 15:40:37 [info]: POST /login 200 - Request Body: {"email":"backendseun@gmail.com","password":"OluwaseunOdueso123#"}
+2024-12-17 15:41:23 [info]: PATCH /67618d4967fb9dfc0bca83dc/move-to-ongoing 200
+2024-12-17 15:41:41 [info]: POST /login 200 - Request Body: {"email":"backendseun@gmail.com","password":"OluwaseunOdueso123#"}
