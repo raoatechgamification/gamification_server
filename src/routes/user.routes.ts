@@ -10,11 +10,7 @@ const {
   dueBills, 
   viewBill, 
   updatePassword, 
-  userPrograms,
-  enrolledCoursesWithProgress,
-  lessonsWithProgress,
-  markLessonAsComplete,
-  getAllUserCertificates
+  getAllUserCertificates,
 } =
   new UserController();
 
@@ -43,34 +39,6 @@ router.put(
   ...changePasswordValidator,
   updatePassword
 );
-
-router.get(
-  "/programs",
-  authenticate,
-  authorize("user"),
-  userPrograms
-)
-
-router.get(
-  '/courses',
-  authenticate,
-  authorize('user'),
-  enrolledCoursesWithProgress
-)
-
-router.get(
-  "/courses/:courseId/lessons",
-  authenticate,
-  authorize("user"),
-  lessonsWithProgress
-)
-
-router.put(
-  "/:courseId/lessons/:lessonId/complete",
-  authenticate,
-  authorize("user"),
-  markLessonAsComplete
-)
 
 router.get(
   "/certificates",

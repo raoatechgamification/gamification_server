@@ -6,6 +6,7 @@ import AssignedBill from "../models/bill.model";
 import Course, { ICourse } from "../models/course.model";
 import Lesson, { LessonDocument } from "../models/lesson.model";
 import { comparePassword, hashPassword } from "../utils/hash";
+import mongoose from "mongoose";
 
 interface CompletionDetails {
   userId: string;
@@ -198,31 +199,6 @@ export class UserController {
     }
   }
 
-  async userPrograms(req: Request, res: Response) {
-    try {
-      const userId = req.user?.id;
-  
-      const user = await User.findById(userId).select("+ongoingPrograms +completedPrograms");
-  
-      if (!user) return ResponseHandler.failure(res, "User not found", 404);
-  
-      const userPrograms = {
-        ongoingPrograms: user.ongoingPrograms || [],
-        completedPrograms: user.completedPrograms || [],
-      };
-  
-      const message =
-        userPrograms.ongoingPrograms.length || userPrograms.completedPrograms.length
-          ? "Programs retrieved successfully."
-          : "You have no ongoing or completed programs. Enroll in a program today.";
-  
-      return ResponseHandler.success(res, userPrograms, message, 200);
-    } catch (error: any) {
-      console.error("Error retrieving user programs:", error.message);
-      return ResponseHandler.failure(res, "Error retrieving user programs", 500);
-    }
-  }
-
   // async enrolledCoursesWithProgress(req: Request, res: Response) {
   //   try {
   //     const { userId } = req.user;
@@ -242,26 +218,28 @@ export class UserController {
   //   }
   // }
 
-  async lessonsWithProgress(req: Request, res: Response) {
-    try {
-      const { courseId } = req.params;
-      const userId = req.user?.id;
+    
+
+  // async lessonsWithProgress(req: Request, res: Response) {
+  //   try {
+  //     const { courseId } = req.params;
+  //     const userId = req.user?.id;
   
-      const lessons = await Lesson.find({ courseId });
+  //     const lessons = await Lesson.find({ courseId });
   
-      const result = lessons.map((lesson) => ({
-        lessonId: lesson._id,
-        title: lesson.title,
-        completedPercentage:
-          lesson.completionDetails.find((completion) => completion.userId.toString() === userId)?.percentage || 0,
-      }));
+  //     const result = lessons.map((lesson) => ({
+  //       lessonId: lesson._id,
+  //       title: lesson.title,
+  //       completedPercentage:
+  //         lesson.completionDetails.find((completion) => completion.userId.toString() === userId)?.percentage || 0,
+  //     }));
   
-      return ResponseHandler.success(res, result, "Lessons retrieved successfully.", 200);
-    } catch (error: any) {
-      console.error("Error fetching lessons:", error.message);
-      return ResponseHandler.failure(res, "Error fetching lessons", 500);
-    }
-  }
+  //     return ResponseHandler.success(res, result, "Lessons retrieved successfully.", 200);
+  //   } catch (error: any) {
+  //     console.error("Error fetching lessons:", error.message);
+  //     return ResponseHandler.failure(res, "Error fetching lessons", 500);
+  //   }
+  // }
   //   try {
   //     const { userId } = req.user;
   
@@ -313,125 +291,100 @@ export class UserController {
   //   }
   // }  
 
-  async enrolledCoursesWithProgress(req: Request, res: Response) {
-    try {
-      const { userId } = req.user; 
   
-      // Fetch courses where the user is enrolled
-      const courses = await Course.find({ "learnerIds.userId": userId })
-        .populate({
-          path: "lessons",
-          model: Lesson,
-        })
-        .lean();
-  
-      // Type assertion for lessons after populate
-      const populatedCourses = courses.map((course) => ({
-        ...course,
-        lessons: course.lessons as unknown as LessonDocument[], // Use `unknown` to bypass type incompatibility
-      }));
-  
-      // Prepare the result with course and lesson progress
-      const result = populatedCourses.map((course) => {
-        // User's progress for the course
-        const courseProgress =
-          course.learnerIds?.find((learner) => learner.userId.toString() === userId)?.progress || 0;
-  
-        // User's progress for each lesson in the course
-        const lessons = course.lessons.map((lesson) => ({
-          lessonId: lesson._id,
-          title: lesson.title,
-          completedPercentage:
-            lesson.completionDetails.find((completion) => completion.userId.toString() === userId)
-              ?.percentage || 0,
-        }));
-  
-        return {
-          courseId: course._id,
-          courseTitle: course.title,
-          courseProgress,
-          lessons,
-        };
-      });
-  
-      return ResponseHandler.success(
-        res,
-        result,
-        "Enrolled courses with progress retrieved successfully.",
-        200
-      );
-    } catch (error: any) {
-      console.error("Error fetching enrolled courses with progress:", error.message);
-      return ResponseHandler.failure(
-        res,
-        "Error fetching enrolled courses with progress",
-        500
-      );
-    }
-  }
 
-  async markLessonAsComplete(req: Request, res: Response) {
-    try {
-      const { courseId, lessonId } = req.params;
-      const userId = req.user.id;
-
-      // Ensure the lesson belongs to the specified course
-      const lesson = await Lesson.findOne({ _id: lessonId, courseIds: courseId });
-      if (!lesson) {
-        return ResponseHandler.failure(res, "Lesson not found for the specified course", 404);
-      }
+  // async markLessonAsComplete(req: Request, res: Response) {
+  //   try {
+  //     const { courseId, lessonId } = req.params;
+  //     const userId = req.user.id;
   
-      // Update or create the completion entry for the specific course and user
-      const updateResult = await Lesson.updateOne(
-        {
-          _id: lessonId,
-          "completionDetails.userId": userId,
-          "completionDetails.courseId": courseId,
-        },
-        {
-          $set: {
-            "completionDetails.$.percentage": 100,
-          },
-        },
-        { upsert: true }
-      );
+  //     // Step 1: Validate the lesson belongs to the specified course
+  //     const lesson = await Lesson.findOne({ _id: lessonId, courseIds: courseId });
+  //     if (!lesson) {
+  //       return ResponseHandler.failure(res, "Lesson not found for the specified course", 404);
+  //     }
   
-      if (!updateResult.matchedCount && !updateResult.upsertedCount) {
-        return ResponseHandler.failure(res, "Failed to update lesson completion", 500);
-      }
+  //     // Step 2: Update or create the lesson completion entry for the user
+  //     const completionFilter = {
+  //       _id: lessonId,
+  //       "completionDetails.userId": userId,
+  //       "completionDetails.courseId": courseId,
+  //     };
   
-      // Update progress for the course
-      const totalLessons = await Lesson.countDocuments({ courseIds: courseId });
-      const completedLessons = await Lesson.countDocuments({
-        courseIds: courseId,
-        "completionDetails.userId": userId,
-        "completionDetails.courseId": courseId,
-        "completionDetails.percentage": 100,
-      });
+  //     const completionUpdate = {
+  //       $set: {
+  //         "completionDetails.$[elem].percentage": 100,
+  //       },
+  //     };
   
-      const progress = totalLessons > 0 ? Math.floor((completedLessons / totalLessons) * 100) : 0;
+  //     const arrayFilters = [{ "elem.userId": userId, "elem.courseId": courseId }];
   
-      const courseUpdateResult = await Course.updateOne(
-        { _id: courseId, "learnerIds.userId": userId },
-        { $set: { "learnerIds.$.progress": progress } }
-      );
+  //     const updateResult = await Lesson.updateOne(completionFilter, completionUpdate, {
+  //       arrayFilters,
+  //       upsert: true,
+  //     });
   
-      return ResponseHandler.success(
-        res,
-        {
-          courseId,
-          progress,
-          lessonUpdated: true,
-          courseUpdated: courseUpdateResult.modifiedCount > 0,
-        },
-        "Lesson marked as complete and progress updated for the course.",
-        200
-      );
-    } catch (error: any) {
-      console.error("Error marking lesson as complete:", error.message);
-      return ResponseHandler.failure(res, "Error marking lesson as complete", 500);
-    }
-  }  
+  //     // Step 3: Calculate the user's progress for the course
+  //     const totalLessons = await Lesson.countDocuments({ courseIds: courseId });
+  //     const completedLessons = await Lesson.countDocuments({
+  //       courseIds: courseId,
+  //       "completionDetails.userId": userId,
+  //       "completionDetails.percentage": 100,
+  //     });
+  
+  //     const progress = totalLessons > 0 ? Math.floor((completedLessons / totalLessons) * 100) : 0;
+  
+  //     // Step 4: Update progress in the Course document
+  //     await Course.updateOne(
+  //       { _id: courseId, "learnerIds.userId": userId },
+  //       { $set: { "learnerIds.$.progress": progress } }
+  //     );
+  
+  //     // Step 5: Transition course between user programs
+  //     const user = await User.findById(userId);
+  //     if (!user) {
+  //       return ResponseHandler.failure(res, "User not found", 404);
+  //     }
+  
+  //     const courseObjectId = new mongoose.Types.ObjectId(courseId);
+  
+  //     if (progress === 100) {
+  //       // Move to completedPrograms
+  //       await User.updateOne(
+  //         { _id: userId },
+  //         {
+  //           $pull: { ongoingPrograms: { _id: courseObjectId } },
+  //           $addToSet: { completedPrograms: courseObjectId },
+  //         }
+  //       );
+  //     } else if (!user.ongoingPrograms?.some((program: ICourse) => program._id.toString() === courseId)) {
+  //       // Move course to ongoingPrograms if not already there
+  //       await User.updateOne(
+  //         { _id: userId },
+  //         {
+  //           $pull: { unattemptedPrograms: { "course._id": courseId } },
+  //           $addToSet: { ongoingPrograms: courseId },
+  //         }
+  //       );
+  //     }
+      
+      
+  
+  //     // Step 6: Respond with success
+  //     return ResponseHandler.success(res, {
+  //       courseId,
+  //       lessonId,
+  //       progress,
+  //     }, "Lesson marked as complete successfully.");
+  
+  //   } catch (error) {
+  //     console.error("Error marking lesson as complete:", error);
+  //     return ResponseHandler.failure(res, "An error occurred", 500);
+  //   }
+  // }
+  
+  
+    
 
   async getAllUserCertificates(req: Request, res: Response) {
     try {
