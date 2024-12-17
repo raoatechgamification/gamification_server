@@ -101,15 +101,43 @@ const UserSchema: Schema<IUser> = new Schema(
       type: [AssignedProgramSchema], 
       default: [],
     },
-    ongoingPrograms: { type: [Object], default: null, },
-    completedPrograms: { type: [Object], default: null, },
-    // unattemptedPrograms: { type: [Object], default: null, },
+    ongoingPrograms: { 
+      type: [{ type: Object }],
+      default: [],
+     },
+    completedPrograms: { 
+      type: [{ type: Object }],
+      default: [],
+     },
     unattemptedPrograms: [
       {
-        course: { type: {}, ref: "Course" }, 
-        status: { type: String }
-      }
+        course: {
+          _id: { type: mongoose.Types.ObjectId, ref: "Course", required: true },
+          title: { type: String, required: true },
+          objective: { type: String },
+          certificate: { type: mongoose.Types.ObjectId, ref: "Certificate" },
+          tutorId: { type: mongoose.Types.ObjectId, ref: "Tutor" },
+          organizationId: { type: mongoose.Types.ObjectId, ref: "Organization" },
+          lessonFormat: { type: String },
+          lessons: { type: Array, default: [] },
+          assignedLearnersIds: { type: [mongoose.Types.ObjectId], default: [] },
+          assessments: { type: [mongoose.Types.ObjectId], default: [] },
+          duration: { type: String },
+          courseCode: { type: String },
+          courseImage: { type: Array, default: [] },
+          curriculum: { type: Array, default: [] },
+          learnerIds: { type: [mongoose.Types.ObjectId], default: [] },
+          __v: { type: Number },
+        },
+        status: { type: String, enum: ["paid", "pending", "unpaid", "free"], required: true },
+      },
     ],
+    // unattemptedPrograms: [
+    //   {
+    //     course: { type: {}, ref: "Course" }, 
+    //     status: { type: String }
+    //   }
+    // ],
     certificates: [
       {
         courseId: { type: mongoose.Types.ObjectId, ref: "Course" },
