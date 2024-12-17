@@ -36,7 +36,9 @@ export const upload = multer({
       "video/mkv",
       "video/quicktime",
       "video/x-msvideo", // AVI
-      "video/x-flv", // Flash Video
+      "video/x-flv", // Flash Video,
+      "application/vnd.ms-powerpoint", // .ppt
+      "application/vnd.openxmlformats-officedocument.presentationml.presentation", // .pptx
     ];
 
     if (allowedMimeTypes.includes(file.mimetype)) {
@@ -56,10 +58,16 @@ const storage = multer.memoryStorage()
 
 const fileFilter = (req: any, file: Express.Multer.File, cb: any) => {
   const ext = path.extname(file.originalname).toLowerCase();
-  if (ext !== '.xlsx' && ext !== '.xls') {
-    cb(new Error('Only Excel files are allowed'), false);
+  
+  // Allowing Excel, PowerPoint, PDF, Image, and Video file extensions
+  const allowedExtensions = ['.xlsx', '.xls', '.ppt', '.pptx', '.pdf', '.jpeg', '.jpg', '.png', '.gif', '.mp4', '.webm', '.ogg', '.avi', '.mkv', '.quicktime', '.flv'];
+
+  if (!allowedExtensions.includes(ext)) {
+    cb(new Error('Invalid file type. Only Excel, PowerPoint, PDF, Image, and Video files are allowed'), false);
   } else {
     cb(null, true);
   }
 };
+
+
 export const bulkUpload = multer({ storage, fileFilter });

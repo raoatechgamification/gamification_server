@@ -31,7 +31,9 @@ const validateOptionalFile = [
         "video/x-msvideo", // AVI
         "video/x-flv",
 
-        "text/html", // HTML/webpage files
+        "text/html", // HTML/webpage files,
+        "application/vnd.ms-powerpoint", // .ppt
+        "application/vnd.openxmlformats-officedocument.presentationml.presentation", // .pptx
       ];
 
       for (const file of req.files) {
