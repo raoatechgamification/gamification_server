@@ -10,6 +10,7 @@ cloudinary.config({
   api_secret: process.env.CLOUDINARY_API_SECRET,
 });
 
+// Define MIME types for videos and documents
 const videoMimeTypes = [
   "video/mp4",
   "video/webm",
@@ -21,32 +22,34 @@ const videoMimeTypes = [
   "video/x-flv", // Flash Video
 ];
 
-// Multer upload configuration with file types allowed
+const documentMimeTypes = [
+  "application/pdf",
+  "application/msword",  // .doc
+  "application/vnd.openxmlformats-officedocument.wordprocessingml.document",  // .docx
+  "application/vnd.ms-powerpoint", // .ppt
+  "application/vnd.openxmlformats-officedocument.presentationml.presentation", // .pptx
+  "application/zip", // For archives
+];
+
+const imageMimeTypes = [
+  "image/jpeg",
+  "image/jpg",
+  "image/png",
+  "image/gif",
+];
+
+// Multer configuration with validation for different file types
 export const upload = multer({
   storage: multer.memoryStorage(),
   limits: {
-    fileSize: 5 * 1024 * 1024 * 1024,  // 5 GB file size limit
+    fileSize: 5 * 1024 * 1024 * 1024, // 5 GB file size limit
   },
   fileFilter: (req, file, cb) => {
+    // Define allowed MIME types
     const allowedMimeTypes = [
-      "image/jpeg",
-      "image/jpg",
-      "image/png",
-      "image/gif",
-      "application/pdf",
-      "application/msword",
-      "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
-      "application/vnd.ms-powerpoint", // .ppt
-      "application/vnd.openxmlformats-officedocument.presentationml.presentation", // .pptx
-      // Adding video mime types
-      "video/mp4",
-      "video/webm",
-      "video/ogg",
-      "video/avi",
-      "video/mkv",
-      "video/quicktime",
-      "video/x-msvideo", // AVI
-      "video/x-flv", // Flash Video
+      ...imageMimeTypes,
+      ...videoMimeTypes,
+      ...documentMimeTypes,
     ];
 
     if (allowedMimeTypes.includes(file.mimetype)) {
@@ -62,7 +65,7 @@ export const upload = multer({
   },
 });
 
-// Cloudinary upload function updated for images, videos, and other types
+// Cloudinary upload function with dynamic resource_type
 interface UploadOptions {
   resource_type?: "image" | "video" | "raw" | "auto" | undefined;
   folder?: string;
@@ -81,14 +84,12 @@ export const cloudinaryUploadImg = async (
         ...options,
       };
 
-      // Check if fileToUploads is a buffer or a path
+      // If the file is a buffer, use upload_stream
       if (Buffer.isBuffer(fileToUploads)) {
-        // If it's a buffer, use upload_stream
         const stream = cloudinary.uploader.upload_stream(uploadOptions, (error, result) => {
           if (error) {
             reject(error);
           } else {
-            // Check if result is not undefined
             if (result) {
               resolve(result.secure_url);
             } else {
@@ -100,16 +101,17 @@ export const cloudinaryUploadImg = async (
         // End the stream with the buffer
         stream.end(fileToUploads);
       } else {
-        // If it's a file path, use upload
         const ext = path.extname(fileToUploads).toLowerCase();
 
-        // If it's a video file, force resource_type to "video"
-        if ([".mp4", ".webm", ".avi", ".mkv", ".flv"].includes(ext)) {
-          uploadOptions.resource_type = "video";
-        } else if ([".ppt", ".pptx", ".pdf", ".docx"].includes(ext)) {
-          uploadOptions.resource_type = "raw"; // For raw files like .ppt, .doc, etc.
+        // Determine resource type based on file extension
+        if (imageMimeTypes.some((mime) => fileToUploads.includes(mime))) {
+          uploadOptions.resource_type = "image";  // For image files
+        } else if (videoMimeTypes.some((mime) => fileToUploads.includes(mime))) {
+          uploadOptions.resource_type = "video";  // For video files
+        } else if (documentMimeTypes.some((mime) => fileToUploads.includes(mime))) {
+          uploadOptions.resource_type = "raw";  // For documents and raw files
         } else {
-          uploadOptions.resource_type = "image"; // Default to "image" for non-video files
+          uploadOptions.resource_type = "auto";  // Auto-detect if not image/video/document
         }
 
         cloudinary.uploader.upload(
@@ -119,7 +121,6 @@ export const cloudinaryUploadImg = async (
             if (error) {
               reject(error);
             } else {
-              // Check if result is not undefined
               if (result) {
                 resolve(result.secure_url);
               } else {
