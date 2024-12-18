@@ -26,10 +26,8 @@ const {
   getCourseLessons,
   getAllAnnouncementsByCourse,
   editCourse,
-  userPrograms,
   enrolledCoursesWithProgress,
   lessonsWithProgress,
-  markLessonAsComplete,
   moveCourseToOngoingList,
   updateLessonCompletion
 } = new CourseController();
@@ -133,13 +131,6 @@ router.get(
 )
 
 router.get(
-  "/programs",
-  authenticate,
-  authorize("user"),
-  userPrograms
-)
-
-router.get(
   '/courses',
   authenticate,
   authorize('user'),
@@ -151,13 +142,6 @@ router.get(
   authenticate,
   authorize("user"),
   lessonsWithProgress
-)
-
-router.put(
-  "/:courseId/lessons/:lessonId/complete",
-  authenticate,
-  authorize("user"),
-  markLessonAsComplete
 )
 
 router.put(
