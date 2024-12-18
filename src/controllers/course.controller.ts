@@ -9,6 +9,7 @@ import Assessment from "../models/assessment.model";
 import { NotificationController } from "../controllers/notification.controller";
 import { uploadToCloudinary } from "../utils/cloudinaryUpload";
 import ObjectiveAssessment from "../models/objectiveAssessment.model";
+import { CompletionDetails } from "../models/lesson.model";
 
 const { createNotification } = new NotificationController();
 
@@ -226,7 +227,11 @@ export class CourseController {
           }
 
           try {
-            const uploadResult = await uploadToCloudinary(file.buffer, file.mimetype, "course-content");
+            const uploadResult = await uploadToCloudinary(
+              file.buffer,
+              file.mimetype,
+              "course-content"
+            );
             if (uploadResult && uploadResult.secure_url) {
               Urls.push(uploadResult.secure_url);
             }
@@ -234,7 +239,6 @@ export class CourseController {
             console.error("Cloudinary Upload Error:", error);
             return ResponseHandler.failure(res, "Failed to upload file", 500);
           }
-          
 
           // const uploadResult = await uploadToCloudinary(
           //   file.buffer,
@@ -268,17 +272,12 @@ export class CourseController {
     }
   }
 
-  async getAllLessons(
-    req: Request,
-    res: Response,
-    next: NextFunction
-  ){
+  async getAllLessons(req: Request, res: Response, next: NextFunction) {
     try {
-
       const instructorId = req.admin._id;
-  
-      const lessons = await Lesson.find({instructorId});
-  
+
+      const lessons = await Lesson.find({ instructorId });
+
       if (!lessons || lessons.length === 0) {
         return ResponseHandler.failure(
           res,
@@ -286,7 +285,7 @@ export class CourseController {
           404
         );
       }
-  
+
       return ResponseHandler.success(
         res,
         lessons,
@@ -295,7 +294,7 @@ export class CourseController {
     } catch (error) {
       next(error);
     }
-  };
+  }
 
   async createACourse(req: Request, res: Response) {
     try {
@@ -938,6 +937,7 @@ export class CourseController {
     try {
       const { courseId, lessonId } = req.params;
       const userId = req.user.id;
+      const { completionPercentage } = req.body
 
       const lesson = await Lesson.findOne({
         _id: lessonId,
@@ -959,7 +959,7 @@ export class CourseController {
         },
         {
           $set: {
-            "completionDetails.$.percentage": 100,
+            "completionDetails.$.percentage": completionPercentage,
           },
         },
         { upsert: true }
@@ -1012,6 +1012,59 @@ export class CourseController {
       );
     }
   }
+
+  async updateLessonCompletion(req: Request, res: Response) {
+    try {
+      const {lessonId, courseId} = req.params;
+      const userId = req.user.id
+      const {percentage} = req.body;
+
+      // if (percentage < 0 || percentage > 100) {
+      //   throw new CustomError('Percentage must be between 0 and 100.', 400);
+      // }
+
+      const userIdObjectId = new mongoose.Types.ObjectId(userId);
+      const courseIdObjectId = new mongoose.Types.ObjectId(courseId);
+  
+      // Find the lesson by its ID
+      const lesson = await Lesson.findById(lessonId);
+      if (!lesson) {
+        return ResponseHandler.failure(
+          res,
+          "Lesson not found.",
+          404
+        );
+      }
+  
+      // Check if the completion entry for the given userId and courseId exists
+      const existingCompletion = lesson.completionDetails.find(
+        (detail) => detail.userId.equals(userIdObjectId) && detail.courseId.equals(courseIdObjectId)
+      );
+  
+      if (existingCompletion) {
+        // Update the percentage if the entry exists
+        existingCompletion.percentage = percentage;
+      } else {
+        // Add a new completion entry if none exists
+        const newCompletion: CompletionDetails = {
+          userId: userIdObjectId,
+          courseId: courseIdObjectId,
+          percentage,
+        };
+        lesson.completionDetails.push(newCompletion);
+      }
+  
+      // Save the updated lesson
+      await lesson.save();
+  
+      return ResponseHandler.success(res,'Lesson completion updated successfully.');
+    } catch (error: any) {
+      return ResponseHandler.failure(
+        res, 
+        error.message || 'Failed to update lesson completion.'
+      );
+    }
+  }  
 
   async moveCourseToOngoingList(req: Request, res: Response) {
     try {

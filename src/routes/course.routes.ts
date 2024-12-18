@@ -30,7 +30,8 @@ const {
   enrolledCoursesWithProgress,
   lessonsWithProgress,
   markLessonAsComplete,
-  moveCourseToOngoingList
+  moveCourseToOngoingList,
+  updateLessonCompletion
 } = new CourseController();
 
 const { generateCourseReport } = AdminController
@@ -157,6 +158,13 @@ router.put(
   authenticate,
   authorize("user"),
   markLessonAsComplete
+)
+
+router.put(
+  "/:courseId/lessons/:lessonId/completion",
+  authenticate,
+  authorize("user"),
+  updateLessonCompletion
 )
 
 router.patch(
