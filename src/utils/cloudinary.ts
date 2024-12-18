@@ -48,9 +48,17 @@ export const cloudinaryUploadImg = async (
   folder: string,
   options: UploadOptions = {}
 ): Promise<string> => {
+  if (!(Buffer.isBuffer(fileToUploads) || typeof fileToUploads === "string")) {
+    throw new Error("Invalid file input. Must be a Buffer or a file path.");
+  }
+
   return new Promise((resolve, reject) => {
     try {
-      const uploadOptions: UploadOptions = { folder, ...options };
+      const uploadOptions: UploadOptions = { 
+        folder, 
+        resource_type: "raw",
+        ...options 
+      };
 
       if (Buffer.isBuffer(fileToUploads)) {
         const stream = cloudinary.uploader.upload_stream(uploadOptions, (error, result) => {

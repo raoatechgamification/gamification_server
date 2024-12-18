@@ -225,14 +225,25 @@ export class CourseController {
             );
           }
 
-          const uploadResult = await uploadToCloudinary(
-            file.buffer,
-            file.mimetype,
-            "course-content"
-          );
-          if (uploadResult && uploadResult.secure_url) {
-            Urls.push(uploadResult.secure_url);
+          try {
+            const uploadResult = await uploadToCloudinary(file.buffer, file.mimetype, "course-content");
+            if (uploadResult && uploadResult.secure_url) {
+              Urls.push(uploadResult.secure_url);
+            }
+          } catch (error) {
+            console.error("Cloudinary Upload Error:", error);
+            return ResponseHandler.failure(res, "Failed to upload file", 500);
           }
+          
+
+          // const uploadResult = await uploadToCloudinary(
+          //   file.buffer,
+          //   file.mimetype,
+          //   "course-content"
+          // );
+          // if (uploadResult && uploadResult.secure_url) {
+          //   Urls.push(uploadResult.secure_url);
+          // }
         }
       }
 
