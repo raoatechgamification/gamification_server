@@ -10,64 +10,35 @@ cloudinary.config({
   api_secret: process.env.CLOUDINARY_API_SECRET,
 });
 
-// Define MIME types for videos and documents
-const videoMimeTypes = [
-  "video/mp4",
-  "video/webm",
-  "video/ogg",
-  "video/avi",
-  "video/mkv",
-  "video/quicktime",
-  "video/x-msvideo", // AVI
-  "video/x-flv", // Flash Video
-];
-
+// Define MIME types
+const imageMimeTypes = ["image/jpeg", "image/jpg", "image/png", "image/gif"];
+const videoMimeTypes = ["video/mp4", "video/webm", "video/ogg", "video/avi", "video/mkv", "video/quicktime"];
 const documentMimeTypes = [
   "application/pdf",
-  "application/msword",  // .doc
-  "application/vnd.openxmlformats-officedocument.wordprocessingml.document",  // .docx
-  "application/vnd.ms-powerpoint", // .ppt
-  "application/vnd.openxmlformats-officedocument.presentationml.presentation", // .pptx
-  "application/zip", // For archives
+  "application/msword",
+  "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
+  "application/vnd.ms-powerpoint",
+  "application/vnd.openxmlformats-officedocument.presentationml.presentation",
+  "application/zip",
 ];
 
-const imageMimeTypes = [
-  "image/jpeg",
-  "image/jpg",
-  "image/png",
-  "image/gif",
-];
-
-// Multer configuration with validation for different file types
+// Multer configuration
 export const upload = multer({
   storage: multer.memoryStorage(),
-  limits: {
-    fileSize: 5 * 1024 * 1024 * 1024, // 5 GB file size limit
-  },
+  limits: { fileSize: 5 * 1024 * 1024 * 1024 }, // 5 GB
   fileFilter: (req, file, cb) => {
-    // Define allowed MIME types
-    const allowedMimeTypes = [
-      ...imageMimeTypes,
-      ...videoMimeTypes,
-      ...documentMimeTypes,
-    ];
-
+    const allowedMimeTypes = [...imageMimeTypes, ...videoMimeTypes, ...documentMimeTypes];
     if (allowedMimeTypes.includes(file.mimetype)) {
       cb(null, true);
     } else {
-      cb(
-        new multer.MulterError(
-          "LIMIT_UNEXPECTED_FILE",
-          "Invalid file type. Only images, PDFs, documents, and videos are allowed."
-        )
-      );
+      cb(new multer.MulterError("LIMIT_UNEXPECTED_FILE", "Invalid file type."));
     }
   },
 });
 
-// Cloudinary upload function with dynamic resource_type
+// Cloudinary upload
 interface UploadOptions {
-  resource_type?: "image" | "video" | "raw" | "auto" | undefined;
+  resource_type?: "image" | "video" | "raw" | "auto";
   folder?: string;
   [key: string]: any;
 }
@@ -77,82 +48,56 @@ export const cloudinaryUploadImg = async (
   folder: string,
   options: UploadOptions = {}
 ): Promise<string> => {
-  try {
-    return new Promise((resolve, reject) => {
-      const uploadOptions: UploadOptions = {
-        folder: folder,
-        ...options,
-      };
+  return new Promise((resolve, reject) => {
+    try {
+      const uploadOptions: UploadOptions = { folder, ...options };
 
-      // If the file is a buffer, use upload_stream
       if (Buffer.isBuffer(fileToUploads)) {
         const stream = cloudinary.uploader.upload_stream(uploadOptions, (error, result) => {
           if (error) {
-            reject(error);
-          } else {
-            if (result) {
-              resolve(result.secure_url);
-            } else {
-              reject(new Error("No result returned from Cloudinary"));
-            }
+            return reject(new Error(`Cloudinary upload failed: ${error.message}`));
           }
+          if (result) {
+            return resolve(result.secure_url);
+          }
+          reject(new Error("No result returned from Cloudinary"));
         });
-
-        // End the stream with the buffer
         stream.end(fileToUploads);
       } else {
-        const ext = path.extname(fileToUploads).toLowerCase();
-
-        // Determine resource type based on file extension
-        if (imageMimeTypes.some((mime) => fileToUploads.includes(mime))) {
-          uploadOptions.resource_type = "image";  // For image files
-        } else if (videoMimeTypes.some((mime) => fileToUploads.includes(mime))) {
-          uploadOptions.resource_type = "video";  // For video files
-        } else if (documentMimeTypes.some((mime) => fileToUploads.includes(mime))) {
-          uploadOptions.resource_type = "raw";  // For documents and raw files
-        } else {
-          uploadOptions.resource_type = "auto";  // Auto-detect if not image/video/document
-        }
-
         cloudinary.uploader.upload(
           fileToUploads,
           uploadOptions,
           (error, result) => {
             if (error) {
-              reject(error);
-            } else {
-              if (result) {
-                resolve(result.secure_url);
-              } else {
-                reject(new Error("No result returned from Cloudinary"));
-              }
+              return reject(new Error(`Cloudinary upload failed: ${error.message}`));
             }
+            if (result) {
+              return resolve(result.secure_url);
+            }
+            reject(new Error("No result returned from Cloudinary"));
           }
         );
       }
-    });
-  } catch (error) {
-    console.error(error);
-    throw new Error(String(error));
-  }
+    } catch (error) {
+      reject(new Error(`Unexpected error during Cloudinary upload: ${error}`));
+    }
+  });
 };
 
+
+// Cloudinary delete
 export const cloudinaryDeleteImg = async (fileToDelete: string): Promise<boolean> => {
   try {
     return new Promise((resolve, reject) => {
       cloudinary.uploader.destroy(fileToDelete, {}, (error, result) => {
-        if (error) {
-          reject(error);
-        } else {
-          resolve(result.result === "ok");
-        }
+        if (error) reject(new Error(`Cloudinary delete failed: ${error.message}`));
+        resolve(result.result === "ok");
       });
     });
   } catch (error) {
-    throw new Error(String(error));
+    throw new Error(`Cloudinary delete error: ${error}`);
   }
 };
-
 
 
 
