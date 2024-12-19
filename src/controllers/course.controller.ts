@@ -1173,56 +1173,124 @@ export class CourseController {
 
       await lesson.save(); // Save the updated lesson
 
+      // if (percentage === 100) {
+      //   const user = await User.findById(userId);
+      //   if (!user) {
+      //     return ResponseHandler.failure(res, "User not found.", 404);
+      //   }
+
+      //   const courseCompletionStatus =
+      //     user.lessonCompletionStatus?.[courseId] || {};
+      //   courseCompletionStatus[lessonId] = 100;
+
+      //   user.lessonCompletionStatus = {
+      //     ...user.lessonCompletionStatus,
+      //     [courseId]: courseCompletionStatus,
+      //   };
+
+      //   const totalLessons = Object.keys(courseCompletionStatus).length;
+      //   const completedLessons = Object.values(courseCompletionStatus).filter(
+      //     (p) => p === 100
+      //   ).length;
+
+      //   const courseCompletion = Math.floor(
+      //     (completedLessons / totalLessons) * 100
+      //   );
+
+      //   if (courseCompletion === 100) {
+      //     const assessment = await ObjectiveAssessment.findOne({
+      //       organizationId: user.organizationId,
+      //       courseId,
+      //     });
+
+      //     const userSubmission = assessment
+      //       ? await Submission.findOne({
+      //           learnerId: userId,
+      //           assessmentId: assessment._id,
+      //         })
+      //       : null;
+
+      //     if (assessment && userSubmission) {
+      //       user.completedPrograms = user.completedPrograms ?? [];
+      //       user.ongoingPrograms = user.ongoingPrograms ?? [];
+
+      //       // Use $pull and $push for MongoDB array updates
+      //       const ongoingProgram = user.ongoingPrograms.find((program) => {
+      //         if (program._id instanceof mongoose.Types.ObjectId) {
+      //           return !program._id.equals(courseIdObjectId);
+      //         }
+      //         return true;
+      //         // program._id.equals(courseIdObjectId)
+      //       });
+
+      //       if (ongoingProgram) {
+      //         await User.updateOne(
+      //           { _id: userId },
+      //           {
+      //             $pull: { ongoingPrograms: { _id: courseIdObjectId } },
+      //             $push: {
+      //               completedPrograms: {
+      //                 ...ongoingProgram,
+      //                 status: "completed",
+      //               },
+      //             },
+      //           }
+      //         );
+      //       }
+      //     }
+      //   }
+
+      //   await user.save();
+      // }
+
       if (percentage === 100) {
         const user = await User.findById(userId);
         if (!user) {
           return ResponseHandler.failure(res, "User not found.", 404);
         }
-
+  
         const courseCompletionStatus =
           user.lessonCompletionStatus?.[courseId] || {};
         courseCompletionStatus[lessonId] = 100;
-
+  
         user.lessonCompletionStatus = {
           ...user.lessonCompletionStatus,
           [courseId]: courseCompletionStatus,
         };
-
+  
         const totalLessons = Object.keys(courseCompletionStatus).length;
         const completedLessons = Object.values(courseCompletionStatus).filter(
           (p) => p === 100
         ).length;
-
+  
         const courseCompletion = Math.floor(
           (completedLessons / totalLessons) * 100
         );
-
+  
         if (courseCompletion === 100) {
           const assessment = await ObjectiveAssessment.findOne({
             organizationId: user.organizationId,
             courseId,
           });
-
+  
           const userSubmission = assessment
             ? await Submission.findOne({
                 learnerId: userId,
                 assessmentId: assessment._id,
               })
             : null;
-
+  
           if (assessment && userSubmission) {
             user.completedPrograms = user.completedPrograms ?? [];
             user.ongoingPrograms = user.ongoingPrograms ?? [];
-
-            // Use $pull and $push for MongoDB array updates
+  
             const ongoingProgram = user.ongoingPrograms.find((program) => {
               if (program._id instanceof mongoose.Types.ObjectId) {
                 return !program._id.equals(courseIdObjectId);
               }
               return true;
-              // program._id.equals(courseIdObjectId)
             });
-
+  
             if (ongoingProgram) {
               await User.updateOne(
                 { _id: userId },
@@ -1239,8 +1307,16 @@ export class CourseController {
             }
           }
         }
-
-        await user.save();
+  
+        // Update user lessonCompletionStatus in the database
+        await User.updateOne(
+          { _id: userId },
+          {
+            $set: {
+              [`lessonCompletionStatus.${courseId}`]: courseCompletionStatus,
+            },
+          }
+        );
       }
 
       return ResponseHandler.success(

@@ -5356,3 +5356,9 @@
 2024-12-19 14:34:01 [info]: POST /67605683565971c8d5f0257c/assign 500 - Request Body: {"userIds":["674d6507cad288132dd56fc1","6751a65b6d5988016085da8d","67409ce32de7105d7831d2f9"],"dueDate":"12-31-2024"}
 2024-12-19 14:35:38 [info]: POST /67605683565971c8d5f0257c/assign 200 - Request Body: {"userIds":["674d6507cad288132dd56fc1","6751a65b6d5988016085da8d","67409ce32de7105d7831d2f9"],"dueDate":"12-31-2024"}
 2024-12-19 14:36:12 [info]: POST /67641c224e36b15a4278cb37/assign 200 - Request Body: {"userIds":["674d6507cad288132dd56fc1","6751a65b6d5988016085da8d","67409ce32de7105d7831d2f9"],"dueDate":"12-31-2024"}
+2024-12-19 14:49:19 [info]: PATCH /67641c224e36b15a4278cb37/move-to-ongoing 401
+2024-12-19 14:50:10 [info]: PATCH /67641c224e36b15a4278cb37/move-to-ongoing 200
+2024-12-19 14:54:14 [info]: PATCH /course/67641c224e36b15a4278cb37/lessons/67641a614e36b15a4278cb0b/completion 200 - Request Body: {"percentage":40}
+2024-12-19 14:54:31 [info]: PUT /67641c224e36b15a4278cb37/lessons/67641a614e36b15a4278cb0b/completion 200 - Request Body: {"percentage":40}
+2024-12-19 14:59:24 [info]: PUT /67641c224e36b15a4278cb37/lessons/67641a614e36b15a4278cb0b/completion 500 - Request Body: {"percentage":100}
+2024-12-19 15:06:33 [info]: PUT /67641c224e36b15a4278cb37/lessons/67641a614e36b15a4278cb0b/completion 200 - Request Body: {"percentage":100}
