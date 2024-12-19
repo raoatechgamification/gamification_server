@@ -2,7 +2,7 @@ import mongoose from "mongoose";
 import { Request, Response, NextFunction } from "express";
 import { ResponseHandler } from "../middlewares/responseHandler.middleware";
 import Course, { ICourse } from "../models/course.model";
-import Lesson, { LessonDocument } from "../models/lesson.model";
+import Lesson, { LessonDocument, CompletionDetails } from "../models/lesson.model";
 import User from "../models/user.model";
 import Announcement from "../models/announcement.model";
 import Assessment from "../models/assessment.model";
@@ -10,7 +10,6 @@ import Submission from "../models/submission.model";
 import { NotificationController } from "../controllers/notification.controller";
 import { uploadToCloudinary } from "../utils/cloudinaryUpload";
 import ObjectiveAssessment from "../models/objectiveAssessment.model";
-import { CompletionDetails } from "../models/lesson.model";
 
 const { createNotification } = new NotificationController();
 
@@ -1020,130 +1019,6 @@ export class CourseController {
     }
   }
 
-  // async updateLessonCompletion(req: Request, res: Response) {
-  //   try {
-  //     const { lessonId, courseId } = req.params;
-  //     const userId = req.user.id;
-  //     const { percentage } = req.body;
-
-  //     const userIdObjectId = new mongoose.Types.ObjectId(userId);
-  //     const courseIdObjectId = new mongoose.Types.ObjectId(courseId);
-
-  //     // Find the lesson by its ID
-  //     const lesson = await Lesson.findById(lessonId);
-  //     if (!lesson) {
-  //       return ResponseHandler.failure(res, "Lesson not found.", 404);
-  //     }
-
-  //     // Check if the completion entry for the given userId and courseId exists
-  //     const existingCompletion = lesson.completionDetails.find(
-  //       (detail) =>
-  //         detail.userId.equals(userIdObjectId) &&
-  //         detail.courseId.equals(courseIdObjectId)
-  //     );
-
-  //     if (existingCompletion) {
-  //       // Update the percentage if the entry exists
-  //       existingCompletion.percentage = percentage;
-  //     } else {
-  //       // Add a new completion entry if none exists
-  //       const newCompletion: CompletionDetails = {
-  //         userId: userIdObjectId,
-  //         courseId: courseIdObjectId,
-  //         percentage,
-  //       };
-  //       lesson.completionDetails.push(newCompletion);
-  //     }
-
-  //     // Save the updated lesson
-  //     await lesson.save();
-
-  //     // If lesson completion is 100%, update course completion
-  //     if (percentage === 100) {
-  //       const user = await User.findById(userId);
-  //       if (!user) {
-  //         return ResponseHandler.failure(res, "User not found.", 404);
-  //       }
-
-  //       const courseCompletionStatus =
-  //         user.lessonCompletionStatus?.[courseId] || {};
-
-  //       courseCompletionStatus[lessonId] = 100;
-  //       user.lessonCompletionStatus = {
-  //         ...user.lessonCompletionStatus,
-  //         [courseId]: courseCompletionStatus,
-  //       };
-
-  //       // Calculate overall course completion
-  //       const totalLessons = Object.keys(courseCompletionStatus).length;
-  //       const completedLessons = Object.values(courseCompletionStatus).filter(
-  //         (p) => p === 100
-  //       ).length;
-  //       const courseCompletion = Math.floor(
-  //         (completedLessons / totalLessons) * 100
-  //       );
-
-  //       // If course completion is 100%, handle assessment and program updates
-  //       if (courseCompletion === 100) {
-  //         const assessment = await ObjectiveAssessment.findOne({
-  //           organizationId: user.organizationId,
-  //           courseId,
-  //         });
-
-  //         const userSubmission = assessment
-  //           ? await Submission.findOne({
-  //               learnerId: userId,
-  //               assessmentId: assessment._id,
-  //             })
-  //           : null;
-
-  //         if (assessment && userSubmission) {
-  //           // Initialize completedPrograms and ongoingPrograms if not present
-  //           user.completedPrograms = user.completedPrograms ?? [];
-  //           user.ongoingPrograms = user.ongoingPrograms ?? [];
-
-  //           // Remove course from ongoing programs
-  //           user.ongoingPrograms = user.ongoingPrograms.filter((program) => {
-  //             if (program._id instanceof mongoose.Types.ObjectId) {
-  //               return !program._id.equals(courseIdObjectId);
-  //             }
-  //             return true;
-  //           });
-
-  //           const completedProgram = {
-  //             _id: courseIdObjectId,
-  //             title: "Completed Course",
-  //             instructorId: "InstructorId",
-  //             courseImage: "ImageUrl",
-  //             passMark: 100,
-  //             dueDate: new Date(),
-  //             status: "completed",
-  //             amount: 0,
-  //           };
-
-  //           await User.findByIdAndUpdate(
-  //             user._id,
-  //             { $push: { completedPrograms: completedProgram } },
-  //             { new: true }
-  //           );
-  //         }
-  //       }
-
-  //       await user.save();
-  //     }
-
-  //     return ResponseHandler.success(
-  //       res,
-  //       "Lesson completion updated successfully."
-  //     );
-  //   } catch (error: any) {
-  //     return ResponseHandler.failure(
-  //       res,
-  //       error.message || "Failed to update lesson completion."
-  //     );
-  //   }
-  // }
-
   async updateLessonCompletion(req: Request, res: Response) {
     try {
       const { lessonId, courseId } = req.params;
@@ -1178,79 +1053,44 @@ export class CourseController {
       await lesson.save();
 
       // if (percentage === 100) {
-      //   const user = await User.findById(userId);
-      //   if (!user) {
-      //     return ResponseHandler.failure(res, "User not found.", 404);
+      //   const course = await Course.findById(courseId);
+      //   if (!course) {
+      //     return ResponseHandler.failure(res, "Course not found.", 404);
       //   }
 
-      //   const courseCompletionStatus =
-      //     user.lessonCompletionStatus?.[courseId] || {};
-
-      //   courseCompletionStatus[lessonId] = 100;
-
-      //   user.lessonCompletionStatus = {
-      //     ...user.lessonCompletionStatus,
-      //     [courseId]: courseCompletionStatus,
-      //   };
-
-      //   const totalLessons = Object.keys(courseCompletionStatus).length;
-      //   const completedLessons = Object.values(courseCompletionStatus).filter(
-      //     (p) => p === 100
-      //   ).length;
-
-      //   const courseCompletion = Math.floor(
-      //     (completedLessons / totalLessons) * 100
+      //   // Ensure the user exists in learnerIds array
+      //   const learner = course.learnerIds?.find((l) =>
+      //     l.userId.equals(userIdObjectId)
       //   );
 
-      //   if (courseCompletion === 100) {
-      //     const assessment = await ObjectiveAssessment.findOne({
-      //       organizationId: user.organizationId,
-      //       courseId,
-      //     });
+      //   if (!learner) {
+      //     course.learnerIds = course.learnerIds || [];
 
-      //     const userSubmission = assessment
-      //       ? await Submission.findOne({
-      //           learnerId: userId,
-      //           assessmentId: assessment._id,
-      //         })
-      //       : null;
-
-      //     if (assessment && userSubmission) {
-      //       user.completedPrograms = user.completedPrograms ?? [];
-      //       user.ongoingPrograms = user.ongoingPrograms ?? [];
-
-      //       const ongoingProgram = user.ongoingPrograms.find((program) => {
-      //         if (program._id instanceof mongoose.Types.ObjectId) {
-      //           return !program._id.equals(courseIdObjectId);
-      //         }
-      //         return true;
-      //       });
-
-      //       if (ongoingProgram) {
-      //         await User.updateOne(
-      //           { _id: userId },
-      //           {
-      //             $pull: { ongoingPrograms: { _id: courseIdObjectId } },
-      //             $push: {
-      //               completedPrograms: {
-      //                 ...ongoingProgram,
-      //                 status: "completed",
-      //               },
-      //             },
-      //           }
-      //         );
-      //       }
-      //     }
+      //     course.learnerIds.push({ userId: userIdObjectId, progress: 0 });
       //   }
 
-      //   // Update user lessonCompletionStatus in the database
-      //   await User.updateOne(
-      //     { _id: userId },
-      //     {
-      //       $set: {
-      //         [`lessonCompletionStatus.${courseId}`]: courseCompletionStatus,
-      //       },
-      //     }
+      //   // Calculate overall course progress
+      //   const totalLessons = course.lessons?.length || 0;
+      //   if (totalLessons === 0) {
+      //     return ResponseHandler.failure(
+      //       res,
+      //       "No lessons found for the course.",
+      //       400
+      //     );
+      //   }
+
+      //   const completedLessons = await Lesson.countDocuments({
+      //     _id: { $in: course.lessons },
+      //     "completionDetails.userId": userIdObjectId,
+      //     "completionDetails.percentage": 100,
+      //   });
+
+      //   const progress = Math.floor((completedLessons / totalLessons) * 100);
+
+      //   // Update learner progress in the course
+      //   await Course.updateOne(
+      //     { _id: courseId, "learnerIds.userId": userIdObjectId },
+      //     { $set: { "learnerIds.$.progress": progress } }
       //   );
       // }
 
@@ -1259,18 +1099,17 @@ export class CourseController {
         if (!course) {
           return ResponseHandler.failure(res, "Course not found.", 404);
         }
-
+      
         // Ensure the user exists in learnerIds array
         const learner = course.learnerIds?.find((l) =>
           l.userId.equals(userIdObjectId)
         );
-
+      
         if (!learner) {
           course.learnerIds = course.learnerIds || [];
-
           course.learnerIds.push({ userId: userIdObjectId, progress: 0 });
         }
-
+      
         // Calculate overall course progress
         const totalLessons = course.lessons?.length || 0;
         if (totalLessons === 0) {
@@ -1280,21 +1119,54 @@ export class CourseController {
             400
           );
         }
-
+      
+        // Calculate completed lessons
         const completedLessons = await Lesson.countDocuments({
           _id: { $in: course.lessons },
           "completionDetails.userId": userIdObjectId,
           "completionDetails.percentage": 100,
         });
-
-        const progress = Math.floor((completedLessons / totalLessons) * 100);
-
+      
+        // Calculate lesson progress
+        const lessonProgress = Math.floor((completedLessons / totalLessons) * 100);
+      
+        // Check if the course has an associated assessment
+        const assessment = await ObjectiveAssessment.findOne({ courseId: courseId });
+        let assessmentProgress = 0;
+      
+        if (assessment) {
+          // Get the learner's submission for the assessment
+          const submission = await Submission.findOne({
+            learnerId: userIdObjectId,
+            courseId: courseId,
+            assessmentId: assessment._id,
+          });
+      
+          if (submission && submission.score !== undefined) {
+            // Calculate the percentage of the score in relation to the total marks
+            assessmentProgress = Math.floor((submission.score / assessment.totalMark) * 100);
+          }
+        }
+      
+        // Combine lesson and assessment progress to calculate the overall progress
+        const totalWeight = 2; // This assumes equal weight for lessons and assessments
+        let overallProgress = 0;
+      
+        // If the course has an assessment, calculate weighted average
+        if (assessment) {
+          overallProgress = Math.floor(((lessonProgress + assessmentProgress) / totalWeight));
+        } else {
+          // If no assessment exists, only consider lessons
+          overallProgress = lessonProgress;
+        }
+      
         // Update learner progress in the course
         await Course.updateOne(
           { _id: courseId, "learnerIds.userId": userIdObjectId },
-          { $set: { "learnerIds.$.progress": progress } }
+          { $set: { "learnerIds.$.progress": overallProgress } }
         );
       }
+      
 
       return ResponseHandler.success(
         res,
@@ -1307,158 +1179,6 @@ export class CourseController {
       );
     }
   }
-
-  // async updateLessonCompletionn(req: Request, res: Response) {
-  //   try {
-  //     const { lessonId, courseId } = req.params;
-  //     const userId = req.user.id;
-  //     const { percentage } = req.body;
-
-  //     // if (percentage < 0 || percentage > 100) {
-  //     //   throw new CustomError("Percentage must be between 0 and 100.", 400);
-  //     // }
-
-  //     const userIdObjectId = new mongoose.Types.ObjectId(userId);
-  //     const courseIdObjectId = new mongoose.Types.ObjectId(courseId);
-
-  //     // Find the lesson by its ID
-  //     const lesson = await Lesson.findById(lessonId);
-  //     if (!lesson) {
-  //       return ResponseHandler.failure(res, "Lesson not found.", 404);
-  //     }
-
-  //     // Check if the completion entry for the given userId and courseId exists
-  //     const existingCompletion = lesson.completionDetails.find(
-  //       (detail) =>
-  //         detail.userId.equals(userIdObjectId) &&
-  //         detail.courseId.equals(courseIdObjectId)
-  //     );
-
-  //     if (existingCompletion) {
-  //       // Update the percentage if the entry exists
-  //       existingCompletion.percentage = percentage;
-  //     } else {
-  //       // Add a new completion entry if none exists
-  //       const newCompletion: CompletionDetails = {
-  //         userId: userIdObjectId,
-  //         courseId: courseIdObjectId,
-  //         percentage,
-  //       };
-  //       lesson.completionDetails.push(newCompletion);
-  //     }
-
-  //     // Save the updated lesson
-  //     await lesson.save();
-
-  //     // If lesson completion is 100%, update course completion
-  //     if (percentage === 100) {
-  //       const user = await User.findById(userId);
-  //       if (!user) {
-  //         return ResponseHandler.failure(res, "User not found.", 404);
-  //       }
-
-  //       const courseCompletionStatus = user.lessonCompletionStatus?.[courseId] || {};
-  //       courseCompletionStatus[lessonId] = 100;
-
-  //       user.lessonCompletionStatus = {
-  //         ...user.lessonCompletionStatus,
-  //         [courseId]: courseCompletionStatus,
-  //       };
-
-  //       // Calculate overall course completion
-  //       const totalLessons = Object.keys(courseCompletionStatus).length;
-  //       const completedLessons = Object.values(courseCompletionStatus).filter(
-  //         (p) => p === 100
-  //       ).length;
-
-  //       const courseCompletion = Math.floor(
-  //         (completedLessons / totalLessons) * 100
-  //       );
-
-  //       // If course completion is 100%, handle assessment and program updates
-  //       if (courseCompletion === 100) {
-  //         const assessment = await ObjectiveAssessment.findOne({
-  //           organizationId: user.organizationId,
-  //           courseId,
-  //         });
-
-  //         const userSubmission = assessment
-  //           ? await Submission.findOne({
-  //               learnerId: userId,
-  //               assessmentId: assessment._id,
-  //             })
-  //           : null;
-
-  //         if (assessment && userSubmission) {
-  //           // if (!user.completedPrograms) {
-  //           //   user.completedPrograms = [];
-  //           // }
-
-  //           // if (!user.ongoingPrograms) {
-  //           //   user.ongoingPrograms = [];
-  //           // }
-
-  //           // user.ongoingPrograms = user.ongoingPrograms.filter(
-  //           //   (program) => !program._id.equals(courseIdObjectId)
-  //           // );
-
-  //           // user.ongoingPrograms = user.ongoingPrograms.filter((program) => {
-  //           //   if (program._id instanceof mongoose.Types.ObjectId) {
-  //           //     return !program._id.equals(courseIdObjectId);
-  //           //   }
-  //           // });
-
-  //           user.completedPrograms = user.completedPrograms ?? [];
-  //           user.ongoingPrograms = user.ongoingPrograms ?? [];
-
-  //           // Remove course from ongoing programs
-  //           user.ongoingPrograms = user.ongoingPrograms.filter((program) => {
-  //             if (program._id instanceof mongoose.Types.ObjectId) {
-  //               return !program._id.equals(courseIdObjectId);
-  //             }
-  //             return true;
-  //           });
-
-  //           // const completedProgram = {
-  //           //   _id: courseIdObjectId,
-  //           //   dueDate: new Date(),
-  //           //   status: "completed",
-  //           //   amount: 0,
-  //           // };
-
-  //           // user.completedPrograms.push(completedProgram);
-
-  //           // await User.findByIdAndUpdate(
-  //           //   user._id,
-  //           //   { $push: { completedPrograms: completedProgram } },
-  //           //   { new: true }
-  //           // );
-
-  //           const ongoingPrograms = user.ongoingPrograms?.find(
-  //             (program) => (program.course as ICourse)._id?.toString() === courseId
-  //           );
-
-  //           await User.updateOne(
-  //             { _id: userId },
-  //             {
-  //               $pull: { ongoingPrograms: { "course._id": courseId } },
-  //               $push: { completedProgram: ongoingPrograms.course },
-  //             }
-  //           );
-  //         }
-  //       }
-
-  //       await user.save();
-  //     }
-
-  //     return ResponseHandler.success(res, "Lesson completion updated successfully.");
-  //   } catch (error: any) {
-  //     return ResponseHandler.failure(
-  //       res,
-  //       error.message || "Failed to update lesson completion."
-  //     );
-  //   }
-  // }
 
   async getCourseCompletionLevel(req: Request, res: Response) {
     try {
@@ -1534,6 +1254,7 @@ export class CourseController {
     try {
       const { courseId } = req.params;
       const userId = req.user.id;
+      console.log("A")
 
       // Fetch the course with lessons and assessments
       const course = await Course.findById(courseId)
@@ -1544,6 +1265,8 @@ export class CourseController {
       if (!course) {
         throw new Error("Course not found");
       }
+
+      console.log("B")
 
       const lessons = course.lessons || [];
       const assessments = course.assessments || [];
@@ -1566,6 +1289,8 @@ export class CourseController {
         })
       );
 
+      console.log("C")
+
       // Calculate the overall percentage of lessons completed
       const totalLessons = lessons.length;
       const completedLessonsPercentage =
@@ -1575,6 +1300,8 @@ export class CourseController {
             (acc, lesson) => acc + (lesson?.completionPercentage || 0),
             0
           ) / totalLessons;
+
+      console.log("D")
 
       // Check course completion level (reuse the logic from `getCourseCompletionLevel`)
       let lessonsCompleted = true;
@@ -1594,6 +1321,8 @@ export class CourseController {
         lessonsCompleted = completedLessons.every((status) => status);
       }
 
+      console.log("E")
+
       let assessmentsCompleted = true;
       if (assessments.length > 0) {
         const completedAssessments = await Promise.all(
@@ -1608,6 +1337,8 @@ export class CourseController {
         assessmentsCompleted = completedAssessments.every((status) => status);
       }
 
+      console.log("F")
+
       const isCompleted =
         (lessons.length > 0 && assessments.length === 0 && lessonsCompleted) ||
         (lessons.length === 0 &&
@@ -1617,6 +1348,8 @@ export class CourseController {
           assessments.length > 0 &&
           lessonsCompleted &&
           assessmentsCompleted);
+
+      console.log("G")
 
       // Calculate overall course completion percentage
       const totalItems = lessons.length + assessments.length;
@@ -1629,12 +1362,17 @@ export class CourseController {
           return !!submission;
         })
       );
+
+      console.log("H")
+
       const totalCompletedItems =
         completedLessons +
         completedAssessments.filter((status) => status).length;
       const completionPercentage = Math.round(
         (totalCompletedItems / totalItems) * 100
       );
+
+      console.log("I")
 
       const completionStatus = {
         completed: isCompleted,
@@ -1643,6 +1381,8 @@ export class CourseController {
           ? "Course completed"
           : "Course not yet completed. Please complete all lessons and assessments.",
       };
+
+      console.log("J")
 
       // Respond with the course, lessons, and completion status
       return ResponseHandler.success(res, {

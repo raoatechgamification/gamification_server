@@ -5369,3 +5369,12 @@
 2024-12-19 15:27:22 [info]: PUT /67642cbf7f34c03dff42d943/lessons/67641a614e36b15a4278cb0b/completion 200 - Request Body: {"percentage":50}
 2024-12-19 15:27:42 [info]: PUT /67642cbf7f34c03dff42d943/lessons/67641a614e36b15a4278cb0b/completion 200 - Request Body: {"percentage":100}
 2024-12-19 15:45:00 [info]: PUT /67642cbf7f34c03dff42d943/lessons/67641a614e36b15a4278cb0b/completion 200 - Request Body: {"percentage":100}
+2024-12-19 15:55:15 [info]: PUT /67642cbf7f34c03dff42d943/lessons/67641a614e36b15a4278cb0b/completion 200 - Request Body: {"percentage":100}
+2024-12-19 15:56:10 [info]: PUT /67642cbf7f34c03dff42d943/lessons/67641a614e36b15a4278cb0b/completion 200 - Request Body: {"percentage":100}
+2024-12-19 16:02:26 [info]: PUT /67642cbf7f34c03dff42d943/lessons/67641a614e36b15a4278cb0b/completion 200 - Request Body: {"percentage":100}
+2024-12-19 16:04:21 [info]: GET /user/67642cbf7f34c03dff42d943 500
+2024-12-19 16:04:57 [info]: GET /courses 200
+2024-12-19 16:05:08 [info]: GET /courses 500
+2024-12-19 16:06:04 [info]: GET /user/67642cbf7f34c03dff42d943 500
+2024-12-19 16:12:48 [info]: GET /user/67642cbf7f34c03dff42d943 500
+2024-12-19 16:14:18 [info]: GET /user/67642cbf7f34c03dff42d943 200

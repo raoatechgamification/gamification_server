@@ -131,7 +131,7 @@ router.get(
 );
 
 router.get(
-  "/courses/:courseId/lessons",
+  "/:courseId/lessons",
   authenticate,
   authorize("user"),
   lessonsWithProgress
