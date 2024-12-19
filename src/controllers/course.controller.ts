@@ -712,19 +712,19 @@ export class CourseController {
       const { userIds, dueDate } = req.body;
       const { courseId } = req.params;
       const adminId = req.admin._id;
-  
+
       // Fetch the course by ID
       const course = await Course.findById(courseId).lean(); // Use lean to return plain JavaScript object
       if (!course) {
         return ResponseHandler.failure(res, "Course not found", 404);
       }
-  
+
       // Validate users
       const validUsers = await User.find({
         _id: { $in: userIds },
         organizationId: adminId,
       });
-  
+
       if (validUsers.length !== userIds.length) {
         return ResponseHandler.failure(
           res,
@@ -732,13 +732,13 @@ export class CourseController {
           400
         );
       }
-  
+
       // Determine course status
       let status = "unpaid";
       if (!course.cost || course.cost === 0) {
         status = "free";
       }
-  
+
       // Prepare the sanitized course data for unattemptedPrograms
       const sanitizedCourse = {
         _id: course._id,
@@ -751,7 +751,7 @@ export class CourseController {
         courseCode: course.courseCode,
         lessonFormat: course.lessonFormat,
       };
-  
+
       // Prepare bulk updates
       const bulkUpdates = validUsers.map((user) => ({
         updateOne: {
@@ -775,16 +775,16 @@ export class CourseController {
           },
         },
       }));
-  
+
       // Execute bulk write
       const result = await User.bulkWrite(bulkUpdates);
-  
+
       // Add learners to the course
       const learnersToAdd = validUsers.map((user) => ({
         userId: user._id,
         progress: 0,
       }));
-  
+
       // const updateQuery: any = {
       //   $addToSet: {
       //     assignedLearnersIds: {
@@ -798,13 +798,13 @@ export class CourseController {
           learnerIds: { $each: learnersToAdd },
         },
       };
-  
+
       if (status === "free") {
         updateQuery.$addToSet["learnerIds"] = { $each: learnersToAdd };
       }
-  
+
       await Course.updateOne({ _id: courseId }, updateQuery);
-  
+
       return ResponseHandler.success(
         res,
         {
@@ -823,7 +823,7 @@ export class CourseController {
         500
       );
     }
-  }  
+  }
 
   async getCourseLessons(req: Request, res: Response) {
     try {
@@ -1175,7 +1175,7 @@ export class CourseController {
         lesson.completionDetails.push(newCompletion); // Add new completion
       }
 
-      await lesson.save(); 
+      await lesson.save();
 
       // if (percentage === 100) {
       //   const user = await User.findById(userId);
@@ -1185,6 +1185,7 @@ export class CourseController {
 
       //   const courseCompletionStatus =
       //     user.lessonCompletionStatus?.[courseId] || {};
+
       //   courseCompletionStatus[lessonId] = 100;
 
       //   user.lessonCompletionStatus = {
@@ -1218,13 +1219,11 @@ export class CourseController {
       //       user.completedPrograms = user.completedPrograms ?? [];
       //       user.ongoingPrograms = user.ongoingPrograms ?? [];
 
-      //       // Use $pull and $push for MongoDB array updates
       //       const ongoingProgram = user.ongoingPrograms.find((program) => {
       //         if (program._id instanceof mongoose.Types.ObjectId) {
       //           return !program._id.equals(courseIdObjectId);
       //         }
       //         return true;
-      //         // program._id.equals(courseIdObjectId)
       //       });
 
       //       if (ongoingProgram) {
@@ -1244,83 +1243,56 @@ export class CourseController {
       //     }
       //   }
 
-      //   await user.save();
+      //   // Update user lessonCompletionStatus in the database
+      //   await User.updateOne(
+      //     { _id: userId },
+      //     {
+      //       $set: {
+      //         [`lessonCompletionStatus.${courseId}`]: courseCompletionStatus,
+      //       },
+      //     }
+      //   );
       // }
 
       if (percentage === 100) {
-        const user = await User.findById(userId);
-        if (!user) {
-          return ResponseHandler.failure(res, "User not found.", 404);
+        const course = await Course.findById(courseId);
+        if (!course) {
+          return ResponseHandler.failure(res, "Course not found.", 404);
         }
-  
-        const courseCompletionStatus =
-          user.lessonCompletionStatus?.[courseId] || {};
-          
-        courseCompletionStatus[lessonId] = 100;
-  
-        user.lessonCompletionStatus = {
-          ...user.lessonCompletionStatus,
-          [courseId]: courseCompletionStatus,
-        };
-  
-        const totalLessons = Object.keys(courseCompletionStatus).length;
-        const completedLessons = Object.values(courseCompletionStatus).filter(
-          (p) => p === 100
-        ).length;
-  
-        const courseCompletion = Math.floor(
-          (completedLessons / totalLessons) * 100
+
+        // Ensure the user exists in learnerIds array
+        const learner = course.learnerIds?.find((l) =>
+          l.userId.equals(userIdObjectId)
         );
-  
-        if (courseCompletion === 100) {
-          const assessment = await ObjectiveAssessment.findOne({
-            organizationId: user.organizationId,
-            courseId,
-          });
-  
-          const userSubmission = assessment
-            ? await Submission.findOne({
-                learnerId: userId,
-                assessmentId: assessment._id,
-              })
-            : null;
-  
-          if (assessment && userSubmission) {
-            user.completedPrograms = user.completedPrograms ?? [];
-            user.ongoingPrograms = user.ongoingPrograms ?? [];
-  
-            const ongoingProgram = user.ongoingPrograms.find((program) => {
-              if (program._id instanceof mongoose.Types.ObjectId) {
-                return !program._id.equals(courseIdObjectId);
-              }
-              return true;
-            });
-  
-            if (ongoingProgram) {
-              await User.updateOne(
-                { _id: userId },
-                {
-                  $pull: { ongoingPrograms: { _id: courseIdObjectId } },
-                  $push: {
-                    completedPrograms: {
-                      ...ongoingProgram,
-                      status: "completed",
-                    },
-                  },
-                }
-              );
-            }
-          }
+
+        if (!learner) {
+          course.learnerIds = course.learnerIds || [];
+
+          course.learnerIds.push({ userId: userIdObjectId, progress: 0 });
         }
-  
-        // Update user lessonCompletionStatus in the database
-        await User.updateOne(
-          { _id: userId },
-          {
-            $set: {
-              [`lessonCompletionStatus.${courseId}`]: courseCompletionStatus,
-            },
-          }
+
+        // Calculate overall course progress
+        const totalLessons = course.lessons?.length || 0;
+        if (totalLessons === 0) {
+          return ResponseHandler.failure(
+            res,
+            "No lessons found for the course.",
+            400
+          );
+        }
+
+        const completedLessons = await Lesson.countDocuments({
+          _id: { $in: course.lessons },
+          "completionDetails.userId": userIdObjectId,
+          "completionDetails.percentage": 100,
+        });
+
+        const progress = Math.floor((completedLessons / totalLessons) * 100);
+
+        // Update learner progress in the course
+        await Course.updateOne(
+          { _id: courseId, "learnerIds.userId": userIdObjectId },
+          { $set: { "learnerIds.$.progress": progress } }
         );
       }
 
