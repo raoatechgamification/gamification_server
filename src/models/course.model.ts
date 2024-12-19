@@ -62,7 +62,7 @@ const CourseSchema = new Schema<ICourse>({
   assignedLearnersIds: [
     
   ],
-  assessments: [{ type: Schema.Types.ObjectId, ref: 'Assessment' }],
+  assessments: [{ type: Schema.Types.ObjectId, ref: 'ObjectiveAssessment' }],
   duration: { type: String, required: false },
   courseCode: { type: String, required: false },
   courseLevel: { type: String, required: false },

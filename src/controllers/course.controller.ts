@@ -2,7 +2,7 @@ import mongoose from "mongoose";
 import { Request, Response, NextFunction } from "express";
 import { ResponseHandler } from "../middlewares/responseHandler.middleware";
 import Course, { ICourse } from "../models/course.model";
-import Lesson, { LessonDocument, CompletionDetails } from "../models/lesson.model";
+import Lesson, {  CompletionDetails } from "../models/lesson.model";
 import User from "../models/user.model";
 import Announcement from "../models/announcement.model";
 import Assessment from "../models/assessment.model";
@@ -12,6 +12,31 @@ import { uploadToCloudinary } from "../utils/cloudinaryUpload";
 import ObjectiveAssessment from "../models/objectiveAssessment.model";
 
 const { createNotification } = new NotificationController();
+
+interface CompletionDetail {
+  userId: mongoose.Types.ObjectId;
+  percentage?: number;
+  completed?: boolean;
+}
+
+interface LessonDocument extends mongoose.Document {
+  _id: mongoose.Types.ObjectId;
+  title: string;
+  objectives?: string;
+  link?: string;
+  files?: string[];
+  completionDetails: CompletionDetail[];
+}
+
+interface AssessmentDocument extends mongoose.Document {
+  _id: mongoose.Types.ObjectId;
+  title: string;
+  description?: string;
+  totalMark?: number;
+  passMark?: number;
+  duration?: string;
+  completionDetails: CompletionDetail[];
+}
 
 export class CourseController {
   async createCourse(req: Request, res: Response) {
@@ -1250,157 +1275,332 @@ export class CourseController {
     }
   }
 
+  // async getCourseDetails(req: Request, res: Response) {
+  //   try {
+  //     const { courseId } = req.params;
+  //     const userId = req.user.id;
+  
+  //     // Find the course by ID and populate lessons and assessments
+  //     const course = await Course.findById(courseId)
+  //       .populate<{ lessons: LessonDocument[] }>('lessons')
+  //       // .populate<{ assessments: AssessmentDocument[] }>('assessments');
+
+  //     console.log("Course", course)
+  
+  //     if (!course) {
+  //       return res.status(404).json({
+  //         success: false,
+  //         message: 'Course not found',
+  //       });
+  //     }
+  
+  //     const lessons = course.lessons || [];
+  //     const assessmentId = course.assessments;
+
+  //     console.log("assessmentId:", assessmentId)
+
+  //     let assessments;
+
+  //     if (assessmentId) {
+  //       assessments = await ObjectiveAssessment.findById(assessmentId)
+  //     }
+
+  //     console.log("assessments:", assessments)
+
+  
+  //     // Fetch lesson details dynamically
+  //     const lessonDetails = lessons.map((lesson) => {
+  //       // Fetch user's completion details
+  //       const userCompletion = lesson.completionDetails.find(
+  //         (detail) => detail.userId.toString() === userId
+  //       );
+  //       const completionPercentage = userCompletion ? userCompletion.percentage || 0 : 0;
+  
+  //       return {
+  //         id: lesson._id,
+  //         title: lesson.title,
+  //         objectives: lesson.objectives || '',
+  //         completionPercentage,
+  //         link: lesson.link || '',
+  //         files: lesson.files || [],
+  //       };
+  //     });
+  
+  //     const validLessons = lessonDetails.filter((lesson) => lesson !== null);
+  
+  //     // Calculate lesson completion
+  //     const totalLessons = validLessons.length;
+  //     const completedLessons = validLessons.filter(
+  //       (lesson) => lesson.completionPercentage === 100
+  //     ).length;
+  
+  //     // Calculate assessment completion
+  //     const totalAssessments = assessments.length;
+  //     // const completedAssessments = assessments.filter((assessment) =>
+  //     //   assessment.completionDetails.some(
+  //     //     (detail) =>
+  //     //       detail.userId.toString() === userId && detail.completed
+  //     //   )
+  //     // ).length;
+
+  //     console.log("totalAssessments:", totalAssessments)
+  
+  //     // Total items (lessons + assessments)
+  //     const totalItems = totalLessons + totalAssessments;
+  //     const completedItems = completedLessons + totalAssessments;
+  
+  //     // Calculate overall course completion percentage
+  //     const courseCompletionPercentage =
+  //       totalItems > 0 ? Math.floor((completedItems / totalItems) * 100) : 0;
+  
+  //     // Append assessment data
+  //     // const assessmentDetails = assessments.map((assessment) => ({
+  //     //   id: assessment._id,
+  //     //   title: assessment.title,
+  //     //   description: assessment.description,
+  //     //   totalMark: assessment.totalMark,
+  //     //   passMark: assessment.passMark,
+  //     //   duration: assessment.duration,
+  //     // }));
+  
+  //     const completionStatus = {
+  //       completed: courseCompletionPercentage === 100,
+  //       completionPercentage: courseCompletionPercentage,
+  //       message:
+  //         courseCompletionPercentage === 100
+  //           ? 'Course completed successfully!'
+  //           : 'Course not yet completed. Complete all lessons and assessments.',
+  //     };
+  
+  //     // Send response
+  //     return res.status(200).json({
+  //       success: true,
+  //       message: 'Success',
+  //       data: {
+  //         course: {
+  //           id: course._id,
+  //           title: course.title,
+  //           lessons: validLessons,
+  //           completionStatus,
+  //           assessments,
+  //         },
+  //       },
+  //     });
+  //   } catch (error: any) {
+  //     console.error('Error fetching course details:', error);
+  //     return res.status(500).json({
+  //       success: false,
+  //       message: 'Error fetching course details',
+  //       error: error.message,
+  //     });
+  //   }
+  // }
+
+  // async getCourseDetails(req: Request, res: Response) {
+  //   try {
+  //     const { courseId } = req.params;
+  //     const userId = req.user.id;
+  
+  //     // Find the course by ID and populate lessons and assessments
+  //     const course = await Course.findById(courseId)
+  //       .populate('lessons') // Populate lessons to access their details
+  //       .populate('assessments'); // Populate assessments
+  //     if (!course) {
+  //       return res.status(404).json({
+  //         success: false,
+  //         message: 'Course not found',
+  //       });
+  //     }
+  
+  //     const lessons = course.lessons || [];
+  //     const assessments = course.assessments || [];
+  
+  //     // Fetch lesson details dynamically
+  //     const lessonDetails = lessons.map((lesson: any) => {
+  //       // Fetch user's completion details
+  //       const userCompletion = lesson.completionDetails.find(
+  //         (detail: any) => detail.userId.toString() === userId
+  //       );
+  //       const completionPercentage = userCompletion ? userCompletion.percentage : 0;
+  
+  //       return {
+  //         id: lesson._id,
+  //         title: lesson.title,
+  //         objectives: lesson.objectives || '',
+  //         completionPercentage,
+  //         link: lesson.link || '',
+  //         files: lesson.files || [],
+  //       };
+  //     });
+  
+  //     const validLessons = lessonDetails.filter((lesson) => lesson !== null);
+  
+  //     // Calculate lesson completion
+  //     const totalLessons = validLessons.length;
+  //     const completedLessons = validLessons.filter(
+  //       (lesson) => lesson.completionPercentage === 100
+  //     ).length;
+  
+  //     // Calculate assessment completion
+  //     const totalAssessments = assessments.length;
+  //     let completedAssessments = 0;
+  
+  //     for (const assessment of assessments) {
+  //       const userAssessmentCompletion = assessment.completionDetails.find(
+  //         (detail: { userId: { toString: () => any } }) =>
+  //           detail.userId.toString() === userId
+  //       );
+  //       if (userAssessmentCompletion && userAssessmentCompletion.completed) {
+  //         completedAssessments++;
+  //       }
+  //     }
+  
+  //     // Total items (lessons + assessments)
+  //     const totalItems = totalLessons + totalAssessments;
+  //     const completedItems = completedLessons + completedAssessments;
+  
+  //     // Calculate overall course completion percentage
+  //     const courseCompletionPercentage =
+  //       totalItems > 0 ? Math.floor((completedItems / totalItems) * 100) : 0;
+  
+  //     // Append assessment data
+  //     const assessmentDetails = assessments.map((assessment: any) => ({
+  //       id: assessment._id,
+  //       title: assessment.title,
+  //       description: assessment.description,
+  //       totalMark: assessment.totalMark,
+  //       passMark: assessment.passMark,
+  //       duration: assessment.duration,
+  //     }));
+  
+  //     const completionStatus = {
+  //       completed: courseCompletionPercentage === 100,
+  //       completionPercentage: courseCompletionPercentage,
+  //       message:
+  //         courseCompletionPercentage === 100
+  //           ? 'Course completed successfully!'
+  //           : 'Course not yet completed. Complete all lessons and assessments.',
+  //     };
+  
+  //     // Send response
+  //     return res.status(200).json({
+  //       success: true,
+  //       message: 'Success',
+  //       data: {
+  //         course: {
+  //           id: course._id,
+  //           title: course.title,
+  //           lessons: validLessons,
+  //           completionStatus,
+  //           assessments: assessmentDetails,
+  //         },
+  //       },
+  //     });
+  //   } catch (error: any) {
+  //     console.error('Error fetching course details:', error);
+  //     return res.status(500).json({
+  //       success: false,
+  //       message: 'Error fetching course details',
+  //       error: error.message,
+  //     });
+  //   }
+  // }
+  
   async getCourseDetails(req: Request, res: Response) {
     try {
       const { courseId } = req.params;
       const userId = req.user.id;
-      console.log("A")
-
-      // Fetch the course with lessons and assessments
+  
+      // Find the course by ID
       const course = await Course.findById(courseId)
-        .populate("lessons")
-        .populate("assessments")
-        .exec();
-
+        .populate('assessments');
       if (!course) {
-        throw new Error("Course not found");
+        return res.status(404).json({
+          success: false,
+          message: 'Course not found',
+        });
       }
-
-      console.log("B")
-
+  
       const lessons = course.lessons || [];
       const assessments = course.assessments || [];
-
-      // Calculate the user's completion level for each lesson
+  
+      // Fetch lesson details dynamically
       const lessonDetails = await Promise.all(
-        lessons.map(async (lessonId: mongoose.Types.ObjectId) => {
+        lessons.map(async (lessonId) => {
           const lesson = await Lesson.findById(lessonId);
           if (!lesson) return null;
-
-          const completionDetail = lesson.completionDetails.find(
-            (detail) => detail.userId.toString() === userId.toString()
+  
+          // Fetch user's completion details
+          const userCompletion = lesson.completionDetails.find(
+            (detail) => detail.userId.toString() === userId
           );
-
+          const completionPercentage = userCompletion ? userCompletion.percentage : 0;
+  
           return {
-            id: lesson.id,
+            id: lesson._id,
             title: lesson.title,
-            completionPercentage: completionDetail?.percentage || 0,
+            objectives: lesson.objectives || '',
+            completionPercentage,
+            link: lesson.link || '',
+            files: lesson.files || [],
           };
         })
       );
-
-      console.log("C")
-
-      // Calculate the overall percentage of lessons completed
-      const totalLessons = lessons.length;
-      const completedLessonsPercentage =
-        lessonDetails
-          .filter((lesson) => lesson !== null)
-          .reduce(
-            (acc, lesson) => acc + (lesson?.completionPercentage || 0),
-            0
-          ) / totalLessons;
-
-      console.log("D")
-
-      // Check course completion level (reuse the logic from `getCourseCompletionLevel`)
-      let lessonsCompleted = true;
-      if (lessons.length > 0) {
-        const completedLessons = await Promise.all(
-          lessons.map(async (lessonId) => {
-            const lesson = await Lesson.findById(lessonId);
-            if (!lesson) return false;
-
-            return lesson.completionDetails.some(
-              (detail) =>
-                detail.userId.toString() === userId.toString() &&
-                detail.percentage === 100
-            );
-          })
-        );
-        lessonsCompleted = completedLessons.every((status) => status);
-      }
-
-      console.log("E")
-
-      let assessmentsCompleted = true;
-      if (assessments.length > 0) {
-        const completedAssessments = await Promise.all(
-          assessments.map(async (assessmentId) => {
-            const submission = await Submission.findOne({
-              assessmentId,
-              userId,
-            });
-            return !!submission;
-          })
-        );
-        assessmentsCompleted = completedAssessments.every((status) => status);
-      }
-
-      console.log("F")
-
-      const isCompleted =
-        (lessons.length > 0 && assessments.length === 0 && lessonsCompleted) ||
-        (lessons.length === 0 &&
-          assessments.length > 0 &&
-          assessmentsCompleted) ||
-        (lessons.length > 0 &&
-          assessments.length > 0 &&
-          lessonsCompleted &&
-          assessmentsCompleted);
-
-      console.log("G")
-
+  
+      const validLessons = lessonDetails.filter((lesson) => lesson !== null);
+  
       // Calculate overall course completion percentage
-      const totalItems = lessons.length + assessments.length;
-      const completedLessons = lessonDetails.filter(
-        (lesson) => lesson?.completionPercentage === 100
+      const totalLessons = validLessons.length;
+      const completedLessons = validLessons.filter(
+        (lesson) => lesson!.completionPercentage === 100
       ).length;
-      const completedAssessments = await Promise.all(
-        assessments.map(async (assessmentId) => {
-          const submission = await Submission.findOne({ assessmentId, userId });
-          return !!submission;
-        })
-      );
-
-      console.log("H")
-
-      const totalCompletedItems =
-        completedLessons +
-        completedAssessments.filter((status) => status).length;
-      const completionPercentage = Math.round(
-        (totalCompletedItems / totalItems) * 100
-      );
-
-      console.log("I")
-
+  
+      const courseCompletionPercentage =
+        totalLessons > 0 ? Math.floor((completedLessons / totalLessons) * 100) : 0;
+  
+      // Append assessment data if available
+      const assessmentDetails = assessments.map((assessment: any) => ({
+        id: assessment._id,
+        title: assessment.title,
+        description: assessment.description,
+        totalMark: assessment.totalMark,
+        passMark: assessment.passMark,
+        duration: assessment.duration,
+      }));
+  
       const completionStatus = {
-        completed: isCompleted,
-        completionPercentage,
-        message: isCompleted
-          ? "Course completed"
-          : "Course not yet completed. Please complete all lessons and assessments.",
+        completed: courseCompletionPercentage === 100,
+        completionPercentage: courseCompletionPercentage,
+        message:
+          courseCompletionPercentage === 100
+            ? 'Course completed successfully!'
+            : 'Course not yet completed. Complete all lessons and assessments.',
       };
-
-      console.log("J")
-
-      // Respond with the course, lessons, and completion status
-      return ResponseHandler.success(res, {
-        course: {
-          id: course.id,
-          title: course.title,
-          description: course.description,
-          lessons: lessonDetails.filter((lesson) => lesson !== null),
-          completionStatus,
+  
+      // Send response
+      return res.status(200).json({
+        success: true,
+        message: 'Success',
+        data: {
+          course: {
+            id: course._id,
+            title: course.title,
+            lessons: validLessons,
+            completionStatus,
+            assessments: assessmentDetails,
+          },
         },
       });
     } catch (error: any) {
-      return ResponseHandler.failure(
-        res,
-        error.message || "Failed to fetch course details."
-      );
+      console.error('Error fetching course details:', error);
+      return res.status(500).json({
+        success: false,
+        message: 'Error fetching course details',
+        error: error.message,
+      });
     }
   }
+  
 
   async moveCourseToOngoingList(req: Request, res: Response) {
     try {

@@ -5378,3 +5378,35 @@
 2024-12-19 16:06:04 [info]: GET /user/67642cbf7f34c03dff42d943 500
 2024-12-19 16:12:48 [info]: GET /user/67642cbf7f34c03dff42d943 500
 2024-12-19 16:14:18 [info]: GET /user/67642cbf7f34c03dff42d943 200
+2024-12-19 17:07:35 [info]: GET /user/67642cbf7f34c03dff42d943 200
+2024-12-19 17:14:21 [info]: GET /user/67642cbf7f34c03dff42d943 200
+2024-12-19 17:29:21 [info]: GET /user/67642cbf7f34c03dff42d943 200
+2024-12-19 20:29:11 [info]: GET /user/67642cbf7f34c03dff42d943 200
+2024-12-19 20:49:31 [info]: GET /user/67642cbf7f34c03dff42d943 200
+2024-12-19 20:49:54 [info]: GET /user/67642cbf7f34c03dff42d943 200
+2024-12-19 21:03:32 [info]: GET /user/67616472605c33cd43c74f94 404
+2024-12-19 21:04:16 [info]: GET /user/67642cbf7f34c03dff42d943 200
+2024-12-19 21:41:06 [info]: PUT /67642cbf7f34c03dff42d943/lessons/67641ab04e36b15a4278cb0e/completion 200 - Request Body: {"percentage":30}
+2024-12-19 21:43:17 [info]: PUT /67642cbf7f34c03dff42d943/lessons/67641ab04e36b15a4278cb0e/completion 200 - Request Body: {"percentage":100}
+2024-12-19 21:45:05 [info]: PUT /67642cbf7f34c03dff42d943/lessons/67641abd4e36b15a4278cb11/completion 200 - Request Body: {"percentage":100}
+2024-12-19 21:49:14 [info]: PUT /67642cbf7f34c03dff42d943/lessons/67641abd4e36b15a4278cb11/completion 200 - Request Body: {"percentage":100}
+2024-12-19 21:49:20 [info]: PUT /67642cbf7f34c03dff42d943/lessons/67641abd4e36b15a4278cb11/completion 200 - Request Body: {"percentage":100}
+2024-12-19 21:51:37 [info]: PUT /67642cbf7f34c03dff42d943/lessons/67641aca4e36b15a4278cb14/completion 200 - Request Body: {"percentage":100}
+2024-12-19 21:52:03 [info]: PUT /67642cbf7f34c03dff42d943/lessons/67641ad34e36b15a4278cb17/completion 200 - Request Body: {"percentage":100}
+2024-12-19 21:55:13 [info]: PUT /67642cbf7f34c03dff42d943/lessons/67641ad34e36b15a4278cb17/completion 200 - Request Body: {"percentage":100}
+2024-12-19 21:59:03 [info]: POST /login 200 - Request Body: {"email":"backendseun@gmail.com","password":"OluwaseunOdueso123#"}
+2024-12-19 22:41:04 [info]: POST /login 200 - Request Body: {"email":"lola@gmail.com","password":"Tioluwani05$"}
+2024-12-19 22:46:18 [info]: POST /login 200 - Request Body: {"email":"lola@gmail.com","password":"Tioluwani05$"}
+2024-12-19 22:46:32 [info]: POST /login 200 - Request Body: {"email":"lola@gmail.com","password":"Tioluwani05$"}
+2024-12-19 22:47:19 [info]: PUT /67642cbf7f34c03dff42d943/lessons/67641a614e36b15a4278cb0b/completion 200 - Request Body: {"percentage":10}
+2024-12-19 22:49:17 [info]: PUT /67642cbf7f34c03dff42d943/lessons/67641a614e36b15a4278cb0b/completion 200 - Request Body: {"percentage":100}
+2024-12-19 23:02:48 [info]: PUT /67642cbf7f34c03dff42d943/lessons/67641a614e36b15a4278cb0b/completion 200 - Request Body: {"percentage":100}
+2024-12-19 23:20:27 [info]: PUT /67642cbf7f34c03dff42d943/lessons/67641a614e36b15a4278cb0b/completion 200 - Request Body: {"percentage":100}
+2024-12-19 23:23:51 [info]: PUT /67642cbf7f34c03dff42d943/lessons/67641a614e36b15a4278cb0b/completion 200 - Request Body: {"percentage":100}
+2024-12-19 23:26:59 [info]: PUT /67642cbf7f34c03dff42d943/lessons/67641a614e36b15a4278cb0b/completion 200 - Request Body: {"percentage":100}
+2024-12-19 23:30:56 [info]: PUT /67642cbf7f34c03dff42d943/lessons/67641a614e36b15a4278cb0b/completion 200 - Request Body: {"percentage":100}
+2024-12-19 23:35:20 [info]: PUT /67642cbf7f34c03dff42d943/lessons/67641a614e36b15a4278cb0b/completion 200 - Request Body: {"percentage":100}
+2024-12-19 23:36:32 [info]: PUT /67642cbf7f34c03dff42d943/lessons/67641a614e36b15a4278cb0b/completion 200 - Request Body: {"percentage":100}
+2024-12-19 23:37:11 [info]: PUT /67642cbf7f34c03dff42d943/lessons/67641a614e36b15a4278cb0b/completion 200 - Request Body: {"percentage":100}
+2024-12-19 23:54:03 [info]: PUT /67642cbf7f34c03dff42d943/lessons/67641a614e36b15a4278cb0b/completion 200 - Request Body: {"percentage":100}
+2024-12-19 23:54:21 [info]: GET /user/67642cbf7f34c03dff42d943 200
