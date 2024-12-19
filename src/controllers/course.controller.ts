@@ -785,11 +785,17 @@ export class CourseController {
         progress: 0,
       }));
   
+      // const updateQuery: any = {
+      //   $addToSet: {
+      //     assignedLearnersIds: {
+      //       $each: validUsers.map((user) => ({ userId: user._id })),
+      //     },
+      //   },
+      // };
+
       const updateQuery: any = {
         $addToSet: {
-          assignedLearnersIds: {
-            $each: validUsers.map((user) => ({ userId: user._id })),
-          },
+          learnerIds: { $each: learnersToAdd },
         },
       };
   
@@ -1147,13 +1153,11 @@ export class CourseController {
       const userIdObjectId = new mongoose.Types.ObjectId(userId);
       const courseIdObjectId = new mongoose.Types.ObjectId(courseId);
 
-      // Find the lesson by its ID
       const lesson = await Lesson.findById(lessonId);
       if (!lesson) {
         return ResponseHandler.failure(res, "Lesson not found.", 404);
       }
 
-      // Check if the completion entry for the given userId and courseId exists
       const existingCompletion = lesson.completionDetails.find(
         (detail) =>
           detail.userId.equals(userIdObjectId) &&
@@ -1171,7 +1175,7 @@ export class CourseController {
         lesson.completionDetails.push(newCompletion); // Add new completion
       }
 
-      await lesson.save(); // Save the updated lesson
+      await lesson.save(); 
 
       // if (percentage === 100) {
       //   const user = await User.findById(userId);
@@ -1251,6 +1255,7 @@ export class CourseController {
   
         const courseCompletionStatus =
           user.lessonCompletionStatus?.[courseId] || {};
+          
         courseCompletionStatus[lessonId] = 100;
   
         user.lessonCompletionStatus = {
