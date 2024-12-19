@@ -22,6 +22,7 @@ app.use(
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
+app.use(express.json({ limit: '5000mb' }))
 
 app.use((req: Request, res: Response, next: NextFunction) => {
   res.on("finish", () => {

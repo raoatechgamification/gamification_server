@@ -21,7 +21,19 @@ const validateOptionalFile = [
         "application/vnd.ms-powerpoint", 
         "application/vnd.openxmlformats-officedocument.presentationml.presentation", 
 
-        "text/html", // HTML/webpage files
+        "audio/mpeg",
+        "video/mp4",
+        "video/webm",
+        "video/ogg",
+        "video/avi",
+        "video/mkv",
+        "video/quicktime",
+        "video/x-msvideo", // AVI
+        "video/x-flv",
+
+        "text/html", // HTML/webpage files,
+        "application/vnd.ms-powerpoint", // .ppt
+        "application/vnd.openxmlformats-officedocument.presentationml.presentation", // .pptx
       ];
 
       for (const file of req.files) {
