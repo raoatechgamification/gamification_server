@@ -316,6 +316,19 @@ export class LandingPageController {
     }
   }
 
+  async GetAllTotalLandingPages(req: Request, res: Response, next: NextFunction) {
+    try {
+      
+      const landingPages = await LandingPage.find()
+        .populate('course') // Populate course details
+        .populate('subservice'); // Populate subservice details
+    
+        res.status(200).json({ data: landingPages });
+    } catch (error) {
+      next(error);
+    }
+  }
+
   async GetLandingPageById(req: Request, res: Response, next: NextFunction) {
     try {
       const landingPageId = req.params.id;
