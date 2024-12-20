@@ -1,6 +1,16 @@
 import mongoose, { Schema, Document, Model } from "mongoose";
 import { ICourse } from "../models/course.model";
 
+export interface IOngoingProgram {
+  course: ICourse; // Course details
+  status?: string; // Optional properties if required
+}
+
+const OngoingProgramSchema = new Schema<IOngoingProgram>({
+  course: { type: Object, required: true },
+  status: { type: String }, // Optional properties if needed
+});
+
 export interface IAssignedProgram {
   _id: Schema.Types.ObjectId; 
   courseId: Schema.Types.ObjectId;
@@ -106,10 +116,11 @@ const UserSchema: Schema<IUser> = new Schema(
       type: [AssignedProgramSchema], 
       default: [],
     },
-    ongoingPrograms: { 
-      type: [{ type: Object }],
-      default: [],
-     },
+    ongoingPrograms: { type: [OngoingProgramSchema], default: [] },
+    // ongoingPrograms: { 
+    //   type: [{ type: Object }],
+    //   default: [],
+    //  },
     completedPrograms: { 
       type: [{ type: Object }],
       default: [],
