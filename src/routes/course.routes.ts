@@ -12,7 +12,6 @@ import {
 } from "../validators/course.validator";
 import { upload } from "../utils/upload.utils";
 
-
 const {
   createCourse,
   createACourse,
@@ -26,15 +25,15 @@ const {
   getCourseLessons,
   getAllAnnouncementsByCourse,
   editCourse,
-  userPrograms,
   enrolledCoursesWithProgress,
   lessonsWithProgress,
-  markLessonAsComplete,
-  moveCourseToOngoingList
+  moveCourseToOngoingList,
+  updateLessonCompletion,
+  getCourseCompletionLevel,
+  getCourseDetails,
 } = new CourseController();
 
-const { generateCourseReport } = AdminController
-
+const { generateCourseReport } = AdminController;
 
 const router = Router();
 
@@ -54,7 +53,7 @@ router.post(
   upload.array("file", 10),
   ...validateCreateCourse,
   createACourse
-)
+);
 
 router.post(
   "/:courseId/assign",
@@ -62,7 +61,7 @@ router.post(
   authorize("admin"),
   ...validateCourseId,
   assignCourseToUsers
-)
+);
 
 router.put(
   "/:courseId",
@@ -70,20 +69,11 @@ router.put(
   authorize("admin"),
   ...validateCourseId,
   editCourse
-)
-
-router.get(
-  "/all",
-  authenticate,
-  authorize("admin"),
-  getAllCourses
 );
 
-router.get(
-  "/allCourses", 
-  authenticate,
-  getAllCoursesForUsers,
-);
+router.get("/all", authenticate, authorize("admin"), getAllCourses);
+
+router.get("/allCourses", authenticate, getAllCoursesForUsers);
 router.get("/:courseId", authenticate, getSingleCourse);
 
 router.post(
@@ -95,13 +85,8 @@ router.post(
   createLesson
 );
 
-router.get(
-  "/lesson/getAll",
-  authenticate,
-  authorize("admin"),
+router.get("/lesson/getAll", authenticate, authorize("admin"), getAllLessons);
 
-getAllLessons
-);
 router.get(
   "/curriculum/:courseId",
   authenticate,
@@ -129,41 +114,41 @@ router.get(
   authenticate,
   authorize("admin"),
   generateCourseReport
-)
-
-router.get(
-  "/programs",
-  authenticate,
-  authorize("user"),
-  userPrograms
-)
-
-router.get(
-  '/courses',
-  authenticate,
-  authorize('user'),
-  enrolledCoursesWithProgress
-)
-
-router.get(
-  "/courses/:courseId/lessons",
-  authenticate,
-  authorize("user"),
-  lessonsWithProgress
-)
-
-router.put(
-  "/:courseId/lessons/:lessonId/complete",
-  authenticate,
-  authorize("user"),
-  markLessonAsComplete
-)
+);
 
 router.patch(
   "/:courseId/move-to-ongoing",
   authenticate,
   authorize("user"),
   moveCourseToOngoingList
-)
+);
+
+router.get(
+  "/courses",
+  authenticate,
+  authorize("user"),
+  enrolledCoursesWithProgress
+);
+
+router.get(
+  "/:courseId/lessons",
+  authenticate,
+  authorize("user"),
+  lessonsWithProgress
+);
+
+router.put(
+  "/:courseId/lessons/:lessonId/completion",
+  authenticate,
+  authorize("user"),
+  updateLessonCompletion
+);
+
+router.get(
+  "/user/:courseId",
+  authenticate,
+  authorize("user"),
+  getCourseDetails
+);
 
 export default router;

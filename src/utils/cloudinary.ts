@@ -57,7 +57,7 @@ export const cloudinaryUploadImg = async (
     const mimeType = typeof fileToUploads === "string" ? path.extname(fileToUploads).toLowerCase() : '';
 
     // Dynamically set resource_type based on file type
-    let resourceType: "image" | "video" | "raw" | "auto" = "auto";  // Default to 'auto' to let Cloudinary decide
+    let resourceType: "image" | "video" | "raw" | "auto" = "raw";  // Default to 'auto' to let Cloudinary decide
 
     // Check for image or video types based on MIME type
     if (mimeType && imageMimeTypes.includes(mimeType)) {
@@ -91,6 +91,40 @@ export const cloudinaryUploadImg = async (
   });
 };
 
+// export const cloudinaryUploadImg = async (
+//   fileToUploads: Buffer | string,
+//   folder: string,
+//   options: UploadOptions = {}
+// ): Promise<string> => {
+//   if (!(Buffer.isBuffer(fileToUploads) || typeof fileToUploads === "string")) {
+//     throw new Error("Invalid file input. Must be a Buffer or a file path.");
+//   }
+
+//   return new Promise((resolve, reject) => {
+//     // Dynamically set resource_type based on file type
+//     let resourceType: "image" | "video" | "raw" = "raw"; // Default to 'raw' for PDFs and other non-image files
+//     const uploadOptions: UploadOptions = {
+//       folder,
+//       resource_type: resourceType,
+//       ...options,
+//     };
+
+//     if (Buffer.isBuffer(fileToUploads)) {
+//       const stream = cloudinary.uploader.upload_stream(uploadOptions, (error, result) => {
+//         if (error) return reject(new Error(`Cloudinary upload failed: ${error.message}`));
+//         if (result) return resolve(result.secure_url);
+//         reject(new Error("No result returned from Cloudinary"));
+//       });
+//       stream.end(fileToUploads);
+//     } else {
+//       cloudinary.uploader.upload(fileToUploads, uploadOptions, (error, result) => {
+//         if (error) return reject(new Error(`Cloudinary upload failed: ${error.message}`));
+//         if (result) return resolve(result.secure_url);
+//         reject(new Error("No result returned from Cloudinary"));
+//       });
+//     }
+//   });
+// };
 
 
 // Cloudinary delete

@@ -50,6 +50,11 @@ export interface IUser extends Document {
   }[]
   createdAt: Date; 
   updatedAt: Date; 
+  lessonCompletionStatus?: {
+    [courseId: string]: {
+      [lessonId: string]: number;  
+    };
+  };
 }
 
 const AssignedProgramSchema = new Schema<IAssignedProgram>(

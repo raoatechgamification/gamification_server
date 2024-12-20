@@ -5541,6 +5541,103 @@
 2024-12-19 18:06:45 [info]: GET /all-landing-page 304
 2024-12-19 18:07:41 [info]: GET /allCourses 304
 2024-12-19 18:07:41 [info]: GET /all-landing-page 304
+2024-12-19 11:56:57 [info]: POST /lesson 401
+2024-12-19 11:57:15 [info]: POST /login 200 - Request Body: {"email":"seunoduez@gmail.com","password":"Timpearl05$$$"}
+2024-12-19 11:57:39 [info]: POST /lesson 401
+2024-12-19 11:57:52 [info]: POST /lesson 200 - Request Body: {"title":"This is the title","objectives":"This is the objective for this lesson","link":"https://www.youtube.com"}
+2024-12-19 12:23:59 [info]: POST /lesson 200 - Request Body: {"title":"This is the title","objectives":"This is the objective for this lesson","link":"https://www.youtube.com"}
+2024-12-19 12:29:28 [info]: POST /lesson 200 - Request Body: {"title":"This is the title","objectives":"This is the objective for this lesson","link":"https://www.youtube.com"}
+2024-12-19 12:31:40 [info]: POST /lesson 500 - Request Body: {"title":"This is the title","objectives":"This is the objective for this lesson","link":"https://www.youtube.com"}
+2024-12-19 12:33:52 [info]: POST /lesson 500 - Request Body: {"title":"This is the title","objectives":"This is the objective for this lesson","link":"https://www.youtube.com"}
+2024-12-19 12:44:00 [info]: POST /lesson 500 - Request Body: {"title":"This is the title","objectives":"This is the objective for this lesson","link":"https://www.youtube.com"}
+2024-12-19 12:45:20 [info]: POST /lesson 500 - Request Body: {"title":"This is the title","objectives":"This is the objective for this lesson","link":"https://www.youtube.com"}
+2024-12-19 12:47:46 [info]: POST /lesson 500 - Request Body: {"title":"This is the title","objectives":"This is the objective for this lesson","link":"https://www.youtube.com"}
+2024-12-19 12:51:48 [info]: POST /lesson 500 - Request Body: {"title":"This is the title","objectives":"This is the objective for this lesson","link":"https://www.youtube.com"}
+2024-12-19 12:52:33 [info]: POST /lesson 500 - Request Body: {"title":"This is the title","objectives":"This is the objective for this lesson","link":"https://www.youtube.com"}
+2024-12-19 14:06:27 [info]: POST /lesson 401
+2024-12-19 14:06:41 [info]: POST /lesson 200 - Request Body: {"title":"This is the title","objectives":"This is the objective for this lesson","link":"https://www.youtube.com"}
+2024-12-19 14:08:00 [info]: POST /lesson 200 - Request Body: {"title":"This is the title","objectives":"This is the objective for this lesson","link":"https://www.youtube.com"}
+2024-12-19 14:08:13 [info]: POST /lesson 200 - Request Body: {"title":"This is the title","objectives":"This is the objective for this lesson","link":"https://www.youtube.com"}
+2024-12-19 14:08:26 [info]: POST /lesson 200 - Request Body: {"title":"This is the title","objectives":"This is the objective for this lesson","link":"https://www.youtube.com"}
+2024-12-19 14:08:35 [info]: POST /lesson 200 - Request Body: {"title":"This is the title","objectives":"This is the objective for this lesson","link":"https://www.youtube.com"}
+2024-12-19 14:10:49 [info]: POST /objective 201 - Request Body: {"title":"Mixed Question Types Quiz","description":"A quiz with various question types to test your knowledge.","marksPerQuestion":5,"numberOfTrials":5,"purpose":"Learning assessment","passMark":60,"duration":30,"totalMark":100,"startDate":"2024-11-25","endDate":"2024-12-01","questions":[{"question":"The Eiffel Tower is in London.","type":"True or False","answer":"false","mark":15},{"question":"______ is the largest ocean on Earth.","type":"Fill in the Gap","answer":"Pacific Ocean","mark":25},{"question":"Is climate change a global concern?","type":"Yes or No","answer":"yes","mark":15},{"question":"Which of these is a prime number?","type":"Multichoice","options":["4","6","7","9"],"answer":"7","mark":15},{"question":"Is a Dog a mammal?","type":"Yes or No","answer":"yes","mark":10}]}
+2024-12-19 14:13:54 [info]: POST /add 400 - Request Body: {"code":"ZZ-246","title":"Beginners guide to Medicine","objective":"Introduction to Biology I","instructorId":"67453884a835dc3c8062914d","duration":"six weeks","lessonFormat":".xls","lessons":["67641a614e36b15a4278cb0b","67641ab04e36b15a4278cb0e","67641abd4e36b15a4278cb11","67641aca4e36b15a4278cb14","67641ad34e36b15a4278cb17"],"assessments":["67641b594e36b15a4278cb20"],"announcements":[{"title":"Become a doctor now","details":"This is your very chance to become a doctor"}],"certificate":["675fec0e6fe5ccac4b4ac00b"],"showInstructor":true}
+2024-12-19 14:14:11 [info]: POST /add 201 - Request Body: {"code":"NOM-246","title":"Beginners guide to Medicine","objective":"Introduction to Biology I","instructorId":"67453884a835dc3c8062914d","duration":"six weeks","lessonFormat":".xls","lessons":["67641a614e36b15a4278cb0b","67641ab04e36b15a4278cb0e","67641abd4e36b15a4278cb11","67641aca4e36b15a4278cb14","67641ad34e36b15a4278cb17"],"assessments":["67641b594e36b15a4278cb20"],"announcements":[{"title":"Become a doctor now","details":"This is your very chance to become a doctor"}],"certificate":["675fec0e6fe5ccac4b4ac00b"],"showInstructor":true}
+2024-12-19 14:14:57 [info]: POST /login 200 - Request Body: {"email":"backendseun@gmail.com","password":"OluwaseunOdueso123#"}
+2024-12-19 14:15:25 [info]: POST /login 200 - Request Body: {"email":"backendseun@gmail.com","password":"OluwaseunOdueso123#"}
+2024-12-19 14:16:43 [info]: POST /67605683565971c8d5f0257c/assign 500 - Request Body: {"userIds":["674d6507cad288132dd56fc1"],"dueDate":"12-31-2024"}
+2024-12-19 14:16:56 [info]: POST /67605683565971c8d5f0257c/assign 500 - Request Body: {"userIds":["674d6507cad288132dd56fc1"],"dueDate":"12-31-2024"}
+2024-12-19 14:24:44 [info]: POST /67605683565971c8d5f0257c/assign 500 - Request Body: {"userIds":["674d6507cad288132dd56fc1","6751a65b6d5988016085da8d","67409ce32de7105d7831d2f9"],"dueDate":"12-31-2024"}
+2024-12-19 14:34:01 [info]: POST /67605683565971c8d5f0257c/assign 500 - Request Body: {"userIds":["674d6507cad288132dd56fc1","6751a65b6d5988016085da8d","67409ce32de7105d7831d2f9"],"dueDate":"12-31-2024"}
+2024-12-19 14:35:38 [info]: POST /67605683565971c8d5f0257c/assign 200 - Request Body: {"userIds":["674d6507cad288132dd56fc1","6751a65b6d5988016085da8d","67409ce32de7105d7831d2f9"],"dueDate":"12-31-2024"}
+2024-12-19 14:36:12 [info]: POST /67641c224e36b15a4278cb37/assign 200 - Request Body: {"userIds":["674d6507cad288132dd56fc1","6751a65b6d5988016085da8d","67409ce32de7105d7831d2f9"],"dueDate":"12-31-2024"}
+2024-12-19 14:49:19 [info]: PATCH /67641c224e36b15a4278cb37/move-to-ongoing 401
+2024-12-19 14:50:10 [info]: PATCH /67641c224e36b15a4278cb37/move-to-ongoing 200
+2024-12-19 14:54:14 [info]: PATCH /course/67641c224e36b15a4278cb37/lessons/67641a614e36b15a4278cb0b/completion 200 - Request Body: {"percentage":40}
+2024-12-19 14:54:31 [info]: PUT /67641c224e36b15a4278cb37/lessons/67641a614e36b15a4278cb0b/completion 200 - Request Body: {"percentage":40}
+2024-12-19 14:59:24 [info]: PUT /67641c224e36b15a4278cb37/lessons/67641a614e36b15a4278cb0b/completion 500 - Request Body: {"percentage":100}
+2024-12-19 15:06:33 [info]: PUT /67641c224e36b15a4278cb37/lessons/67641a614e36b15a4278cb0b/completion 200 - Request Body: {"percentage":100}
+2024-12-19 15:15:30 [info]: POST /add 201 - Request Body: {"code":"NOMI-246","title":"Beginners guide to Medicine","objective":"Introduction to Biology I","instructorId":"67453884a835dc3c8062914d","duration":"six weeks","lessonFormat":".xls","lessons":["67641a614e36b15a4278cb0b","67641ab04e36b15a4278cb0e","67641abd4e36b15a4278cb11","67641aca4e36b15a4278cb14","67641ad34e36b15a4278cb17"],"assessments":["67641b594e36b15a4278cb20"],"announcements":[{"title":"Become a doctor now","details":"This is your very chance to become a doctor"}],"certificate":["675fec0e6fe5ccac4b4ac00b"],"showInstructor":true}
+2024-12-19 15:25:04 [info]: POST /add 201 - Request Body: {"code":"MOMI-246","title":"Beginners guide to Medicine","objective":"Introduction to Biology I","instructorId":"67453884a835dc3c8062914d","duration":"six weeks","lessonFormat":".xls","lessons":["67641a614e36b15a4278cb0b","67641ab04e36b15a4278cb0e","67641abd4e36b15a4278cb11","67641aca4e36b15a4278cb14","67641ad34e36b15a4278cb17"],"assessments":["67641b594e36b15a4278cb20"],"announcements":[{"title":"Become a doctor now","details":"This is your very chance to become a doctor"}],"certificate":["675fec0e6fe5ccac4b4ac00b"],"showInstructor":true}
+2024-12-19 15:25:32 [info]: POST /67642cbf7f34c03dff42d943/assign 200 - Request Body: {"userIds":["674d6507cad288132dd56fc1","6751a65b6d5988016085da8d","67409ce32de7105d7831d2f9"],"dueDate":"12-31-2024"}
+2024-12-19 15:26:37 [info]: PUT /67642cbf7f34c03dff42d943/lessons/67641a614e36b15a4278cb0b/completion 200 - Request Body: {"percentage":30}
+2024-12-19 15:27:22 [info]: PUT /67642cbf7f34c03dff42d943/lessons/67641a614e36b15a4278cb0b/completion 200 - Request Body: {"percentage":50}
+2024-12-19 15:27:42 [info]: PUT /67642cbf7f34c03dff42d943/lessons/67641a614e36b15a4278cb0b/completion 200 - Request Body: {"percentage":100}
+2024-12-19 15:45:00 [info]: PUT /67642cbf7f34c03dff42d943/lessons/67641a614e36b15a4278cb0b/completion 200 - Request Body: {"percentage":100}
+2024-12-19 15:55:15 [info]: PUT /67642cbf7f34c03dff42d943/lessons/67641a614e36b15a4278cb0b/completion 200 - Request Body: {"percentage":100}
+2024-12-19 15:56:10 [info]: PUT /67642cbf7f34c03dff42d943/lessons/67641a614e36b15a4278cb0b/completion 200 - Request Body: {"percentage":100}
+2024-12-19 16:02:26 [info]: PUT /67642cbf7f34c03dff42d943/lessons/67641a614e36b15a4278cb0b/completion 200 - Request Body: {"percentage":100}
+2024-12-19 16:04:21 [info]: GET /user/67642cbf7f34c03dff42d943 500
+2024-12-19 16:04:57 [info]: GET /courses 200
+2024-12-19 16:05:08 [info]: GET /courses 500
+2024-12-19 16:06:04 [info]: GET /user/67642cbf7f34c03dff42d943 500
+2024-12-19 16:12:48 [info]: GET /user/67642cbf7f34c03dff42d943 500
+2024-12-19 16:14:18 [info]: GET /user/67642cbf7f34c03dff42d943 200
+2024-12-19 17:07:35 [info]: GET /user/67642cbf7f34c03dff42d943 200
+2024-12-19 17:14:21 [info]: GET /user/67642cbf7f34c03dff42d943 200
+2024-12-19 17:29:21 [info]: GET /user/67642cbf7f34c03dff42d943 200
+2024-12-19 20:29:11 [info]: GET /user/67642cbf7f34c03dff42d943 200
+2024-12-19 20:49:31 [info]: GET /user/67642cbf7f34c03dff42d943 200
+2024-12-19 20:49:54 [info]: GET /user/67642cbf7f34c03dff42d943 200
+2024-12-19 21:03:32 [info]: GET /user/67616472605c33cd43c74f94 404
+2024-12-19 21:04:16 [info]: GET /user/67642cbf7f34c03dff42d943 200
+2024-12-19 21:41:06 [info]: PUT /67642cbf7f34c03dff42d943/lessons/67641ab04e36b15a4278cb0e/completion 200 - Request Body: {"percentage":30}
+2024-12-19 21:43:17 [info]: PUT /67642cbf7f34c03dff42d943/lessons/67641ab04e36b15a4278cb0e/completion 200 - Request Body: {"percentage":100}
+2024-12-19 21:45:05 [info]: PUT /67642cbf7f34c03dff42d943/lessons/67641abd4e36b15a4278cb11/completion 200 - Request Body: {"percentage":100}
+2024-12-19 21:49:14 [info]: PUT /67642cbf7f34c03dff42d943/lessons/67641abd4e36b15a4278cb11/completion 200 - Request Body: {"percentage":100}
+2024-12-19 21:49:20 [info]: PUT /67642cbf7f34c03dff42d943/lessons/67641abd4e36b15a4278cb11/completion 200 - Request Body: {"percentage":100}
+2024-12-19 21:51:37 [info]: PUT /67642cbf7f34c03dff42d943/lessons/67641aca4e36b15a4278cb14/completion 200 - Request Body: {"percentage":100}
+2024-12-19 21:52:03 [info]: PUT /67642cbf7f34c03dff42d943/lessons/67641ad34e36b15a4278cb17/completion 200 - Request Body: {"percentage":100}
+2024-12-19 21:55:13 [info]: PUT /67642cbf7f34c03dff42d943/lessons/67641ad34e36b15a4278cb17/completion 200 - Request Body: {"percentage":100}
+2024-12-19 21:59:03 [info]: POST /login 200 - Request Body: {"email":"backendseun@gmail.com","password":"OluwaseunOdueso123#"}
+2024-12-19 22:41:04 [info]: POST /login 200 - Request Body: {"email":"lola@gmail.com","password":"Tioluwani05$"}
+2024-12-19 22:46:18 [info]: POST /login 200 - Request Body: {"email":"lola@gmail.com","password":"Tioluwani05$"}
+2024-12-19 22:46:32 [info]: POST /login 200 - Request Body: {"email":"lola@gmail.com","password":"Tioluwani05$"}
+2024-12-19 22:47:19 [info]: PUT /67642cbf7f34c03dff42d943/lessons/67641a614e36b15a4278cb0b/completion 200 - Request Body: {"percentage":10}
+2024-12-19 22:49:17 [info]: PUT /67642cbf7f34c03dff42d943/lessons/67641a614e36b15a4278cb0b/completion 200 - Request Body: {"percentage":100}
+2024-12-19 23:02:48 [info]: PUT /67642cbf7f34c03dff42d943/lessons/67641a614e36b15a4278cb0b/completion 200 - Request Body: {"percentage":100}
+2024-12-19 23:20:27 [info]: PUT /67642cbf7f34c03dff42d943/lessons/67641a614e36b15a4278cb0b/completion 200 - Request Body: {"percentage":100}
+2024-12-19 23:23:51 [info]: PUT /67642cbf7f34c03dff42d943/lessons/67641a614e36b15a4278cb0b/completion 200 - Request Body: {"percentage":100}
+2024-12-19 23:26:59 [info]: PUT /67642cbf7f34c03dff42d943/lessons/67641a614e36b15a4278cb0b/completion 200 - Request Body: {"percentage":100}
+2024-12-19 23:30:56 [info]: PUT /67642cbf7f34c03dff42d943/lessons/67641a614e36b15a4278cb0b/completion 200 - Request Body: {"percentage":100}
+2024-12-19 23:35:20 [info]: PUT /67642cbf7f34c03dff42d943/lessons/67641a614e36b15a4278cb0b/completion 200 - Request Body: {"percentage":100}
+2024-12-19 23:36:32 [info]: PUT /67642cbf7f34c03dff42d943/lessons/67641a614e36b15a4278cb0b/completion 200 - Request Body: {"percentage":100}
+2024-12-19 23:37:11 [info]: PUT /67642cbf7f34c03dff42d943/lessons/67641a614e36b15a4278cb0b/completion 200 - Request Body: {"percentage":100}
+2024-12-19 23:54:03 [info]: PUT /67642cbf7f34c03dff42d943/lessons/67641a614e36b15a4278cb0b/completion 200 - Request Body: {"percentage":100}
+2024-12-19 23:54:21 [info]: GET /user/67642cbf7f34c03dff42d943 200
+2024-12-20 00:43:56 [info]: GET /user/67642cbf7f34c03dff42d943 200
+2024-12-20 00:44:25 [info]: PUT /67642cbf7f34c03dff42d943/lessons/67641a614e36b15a4278cb0b/completion 200 - Request Body: {"percentage":100}
+2024-12-20 00:46:32 [info]: PUT /67642cbf7f34c03dff42d943/lessons/67641a614e36b15a4278cb0b/completion 200 - Request Body: {"percentage":100}
+2024-12-20 01:05:30 [info]: GET /user/67642cbf7f34c03dff42d943 500
+2024-12-20 01:13:18 [info]: GET /user/67642cbf7f34c03dff42d943 200
+2024-12-20 01:17:12 [info]: PUT /67642cbf7f34c03dff42d943/lessons/67641ab04e36b15a4278cb0e/completion 200 - Request Body: {"percentage":100}
+2024-12-20 01:17:18 [info]: GET /user/67642cbf7f34c03dff42d943 200
+2024-12-20 01:18:02 [info]: PUT /67642cbf7f34c03dff42d943/lessons/67641abd4e36b15a4278cb11/completion 200 - Request Body: {"percentage":100}
+2024-12-20 01:18:07 [info]: GET /user/67642cbf7f34c03dff42d943 200
+2024-12-20 01:18:44 [info]: PUT /67642cbf7f34c03dff42d943/lessons/67641aca4e36b15a4278cb14/completion 200 - Request Body: {"percentage":100}
+2024-12-20 01:18:48 [info]: GET /user/67642cbf7f34c03dff42d943 200
+2024-12-20 01:19:48 [info]: PUT /67642cbf7f34c03dff42d943/lessons/67641ad34e36b15a4278cb17/completion 200 - Request Body: {"percentage":100}
+2024-12-20 01:19:53 [info]: GET /user/67642cbf7f34c03dff42d943 200
 2024-12-20 08:31:21 [info]: GET /raoatech 403
 2024-12-20 08:31:23 [info]: GET /raoatech 403
 2024-12-20 08:31:27 [info]: GET /raoatech 403
