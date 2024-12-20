@@ -2,7 +2,7 @@ import { Request, Response } from "express";
 import mongoose from "mongoose";
 import ObjectiveAssessment from "../models/objectiveAssessment.model";
 import Submission from "../models/submission.model";
-import Course from "../models/course.model";
+import Course, { ICourse } from "../models/course.model";
 import User from "../models/user.model"
 import { ResponseHandler } from "../middlewares/responseHandler.middleware";
 import {
@@ -303,22 +303,48 @@ class ObjectAssessmentController {
       });
   
       // Update course progress to 100% and move the course to completedCourses
-      await Course.updateOne(
+      const updated = await Course.updateOne(
         { _id: courseId, "learnerIds.userId": userId },
         { $set: { "learnerIds.$.progress": 100 } }
       );
+
+      console.log("Control got here 1:", updated)
   
       const user = await User.findById(userId);
-      if (user) {
-        await User.updateOne(
-          { _id: userId },
-          {
-            $pull: { ongoingCourses: { courseId: course._id } },
-            $addToSet: { completedCourses: { courseId: course._id, courseName: course.title } },
-          }
+      if (!user) {
+        return ResponseHandler.failure(res, "User not found", 404);
+      }
+
+      const ongoingProgram = user.ongoingPrograms?.find(
+        (program) => program._id?.toString() === courseId
+      );
+
+      if (!ongoingProgram) {
+        return ResponseHandler.failure(
+          res,
+          "Course is not in the unattempted programs list",
+          400
         );
       }
-  
+      
+      await User.updateOne(
+        { _id: userId },
+        {
+          $pull: { ongoingPrograms: { "_id": courseId } },
+          $push: { completedPrograms: ongoingProgram },
+        }
+      );
+
+      // await User.updateOne(
+      //   { _id: userId },
+      //   {
+      //     $pull: { ongoingPrograms: { courseId: course._id } },
+      //     $addToSet: { completedPrograms: { courseId: course._id, courseName: course.title } },
+      //   }
+      // );
+
+      console.log("Control got here 2")
+
       return ResponseHandler.success(
         res,
         { ...submission.toObject(), maxObtainableMarks },
