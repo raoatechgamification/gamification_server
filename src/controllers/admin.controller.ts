@@ -52,6 +52,8 @@ class AdminController {
     }
   }
 
+  
+
   async editUserProfile(req: Request, res: Response) {
     try {
       const organizationId = req.admin._id;

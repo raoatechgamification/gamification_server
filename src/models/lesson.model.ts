@@ -37,4 +37,4 @@ const lessonSchema = new Schema<LessonDocument>(
   }
 );
 
-export default mongoose.model<LessonDocument>('lesson', lessonSchema);
+export default mongoose.model<LessonDocument>('Lesson', lessonSchema);

@@ -12,12 +12,12 @@ import {
 } from "../validators/course.validator";
 import { upload } from "../utils/upload.utils";
 
-
 const {
   createCourse,
   createACourse,
   assignCourseToUsers,
   createLesson,
+  getAllLessons,
   createAnnouncement,
   getAllCourses,
   getAllCoursesForUsers,
@@ -25,10 +25,15 @@ const {
   getCourseLessons,
   getAllAnnouncementsByCourse,
   editCourse,
+  enrolledCoursesWithProgress,
+  lessonsWithProgress,
+  moveCourseToOngoingList,
+  updateLessonCompletion,
+  getCourseCompletionLevel,
+  getCourseDetails,
 } = new CourseController();
 
-const { generateCourseReport } = AdminController
-
+const { generateCourseReport } = AdminController;
 
 const router = Router();
 
@@ -48,7 +53,7 @@ router.post(
   upload.array("file", 10),
   ...validateCreateCourse,
   createACourse
-)
+);
 
 router.post(
   "/:courseId/assign",
@@ -56,7 +61,7 @@ router.post(
   authorize("admin"),
   ...validateCourseId,
   assignCourseToUsers
-)
+);
 
 router.put(
   "/:courseId",
@@ -64,20 +69,11 @@ router.put(
   authorize("admin"),
   ...validateCourseId,
   editCourse
-)
-
-router.get(
-  "/all",
-  authenticate,
-  authorize("admin"),
-  getAllCourses
 );
 
-router.get(
-  "/allCourses", 
-  authenticate,
-  getAllCoursesForUsers,
-);
+router.get("/all", authenticate, authorize("admin"), getAllCourses);
+
+router.get("/allCourses", authenticate, getAllCoursesForUsers);
 router.get("/:courseId", authenticate, getSingleCourse);
 
 router.post(
@@ -88,6 +84,8 @@ router.post(
   ...courseContentValidator,
   createLesson
 );
+
+router.get("/lesson/getAll", authenticate, authorize("admin"), getAllLessons);
 
 router.get(
   "/curriculum/:courseId",
@@ -116,6 +114,41 @@ router.get(
   authenticate,
   authorize("admin"),
   generateCourseReport
-)
+);
+
+router.patch(
+  "/:courseId/move-to-ongoing",
+  authenticate,
+  authorize("user"),
+  moveCourseToOngoingList
+);
+
+router.get(
+  "/courses",
+  authenticate,
+  authorize("user"),
+  enrolledCoursesWithProgress
+);
+
+router.get(
+  "/:courseId/lessons",
+  authenticate,
+  authorize("user"),
+  lessonsWithProgress
+);
+
+router.put(
+  "/:courseId/lessons/:lessonId/completion",
+  authenticate,
+  authorize("user"),
+  updateLessonCompletion
+);
+
+router.get(
+  "/user/:courseId",
+  authenticate,
+  authorize("user"),
+  getCourseDetails
+);
 
 export default router;

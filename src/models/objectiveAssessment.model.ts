@@ -71,3 +71,4 @@ const ObjectiveAssessment =
   mongoose.model<IObjectiveAssessment>('ObjectiveAssessment', objectiveAssessmentSchema);
 
 export default ObjectiveAssessment;
+

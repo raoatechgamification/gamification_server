@@ -4946,3 +4946,771 @@
 2024-12-16 11:44:48 [info]: POST /675ff903cb60c6452667b3ba/675ff749cb60c6452667b315/take 403 - Request Body: {"answers":[{"questionId":"675ff749cb60c6452667b316","answer":"false"},{"questionId":"675ff749cb60c6452667b317","answer":"Pacific Ocean"},{"questionId":"675ff749cb60c6452667b318","answer":"yes"},{"questionId":"675ff749cb60c6452667b319","answer":"7"},{"questionId":"675ff749cb60c6452667b31a","answer":"no"}]}
 2024-12-16 11:45:05 [info]: GET /certificates 200
 2024-12-16 11:45:10 [info]: GET /certificates 200
+2024-12-16 13:11:42 [info]: POST /login 200 - Request Body: {"email":"backendseun@gmail.com","password":"OluwaseunOdueso123#"}
+2024-12-16 15:05:12 [info]: POST /login 200 - Request Body: {"email":"backendseun@gmail.com","password":"OluwaseunOdueso123#"}
+2024-12-16 15:10:28 [info]: POST /login 200 - Request Body: {"email":"backendseun@gmail.com","password":"OluwaseunOdueso123#"}
+2024-12-16 16:12:03 [info]: POST /login 200 - Request Body: {"email":"seunoduez@gmail.com","password":"Timpearl05$$$"}
+2024-12-16 17:29:31 [info]: POST /login 200 - Request Body: {"email":"seunoduez@gmail.com","password":"Timpearl05$$$"}
+2024-12-16 17:33:49 [info]: POST /objective 201 - Request Body: {"title":"Mixed Question Types Quiz","description":"A quiz with various question types to test your knowledge.","marksPerQuestion":5,"numberOfTrials":5,"purpose":"Learning assessment","passMark":60,"duration":30,"totalMark":100,"startDate":"2024-11-25","endDate":"2024-12-01","questions":[{"question":"The Eiffel Tower is in London.","type":"True or False","answer":"false","mark":15},{"question":"______ is the largest ocean on Earth.","type":"Fill in the Gap","answer":"Pacific Ocean","mark":25},{"question":"Is climate change a global concern?","type":"Yes or No","answer":"yes","mark":15},{"question":"Which of these is a prime number?","type":"Multichoice","options":["4","6","7","9"],"answer":"7","mark":15},{"question":"Is a Dog a mammal?","type":"Yes or No","answer":"yes","mark":10}]}
+2024-12-16 17:34:11 [info]: POST /add 201 - Request Body: {"code":"ZZ-245","title":"Beginners guide to Medicine","objective":"Introduction to Biology I","instructorId":"67453884a835dc3c8062914d","duration":"six weeks","lessonFormat":".xls","assessments":["6760566d565971c8d5f0256b"],"announcements":[{"title":"Become a doctor now","details":"This is your very chance to become a doctor"}],"certificate":["675fec0e6fe5ccac4b4ac00b"],"showInstructor":true}
+2024-12-16 17:34:32 [info]: POST /67605683565971c8d5f0257c/assign 200 - Request Body: {"userIds":["674d6507cad288132dd56fc1","6751a65b6d5988016085da8d","67409ce32de7105d7831d2f9"],"dueDate":"12-31-2024"}
+2024-12-16 17:34:39 [info]: POST /login 200 - Request Body: {"email":"backendseun@gmail.com","password":"OluwaseunOdueso123#"}
+2024-12-16 17:59:31 [info]: POST /add 201 - Request Body: {"code":"ZZ-246","title":"Beginners guide to Medicine","objective":"Introduction to Biology I","instructorId":"67453884a835dc3c8062914d","duration":"six weeks","lessonFormat":".xls","assessments":["6760566d565971c8d5f0256b"],"announcements":[{"title":"Become a doctor now","details":"This is your very chance to become a doctor"}],"certificate":["675fec0e6fe5ccac4b4ac00b"],"showInstructor":true}
+2024-12-16 18:00:32 [info]: POST /67605c73ddb76bafe0ee1b60/assign 200 - Request Body: {"userIds":["674d6507cad288132dd56fc1","6751a65b6d5988016085da8d","67409ce32de7105d7831d2f9"],"dueDate":"12-31-2024"}
+2024-12-16 18:00:59 [info]: POST /login 200 - Request Body: {"email":"backendseun@gmail.com","password":"OluwaseunOdueso123#"}
+2024-12-16 18:28:33 [info]: GET /courses 200
+2024-12-16 18:33:53 [info]: POST /login 200 - Request Body: {"email":"backendseun@gmail.com","password":"OluwaseunOdueso123#"}
+2024-12-17 10:33:45 [info]: POST /login 200 - Request Body: {"email":"backendseun@gmail.com","password":"OluwaseunOdueso123#"}
+2024-12-17 10:38:05 [info]: POST /login 200 - Request Body: {"email":"backendseun@gmail.com","password":"OluwaseunOdueso123#"}
+2024-12-17 11:30:49 [info]: POST /add 201 - Request Body: {"code":"BB-246","title":"Beginners guide to Medicine","objective":"Introduction to Biology I","instructorId":"67453884a835dc3c8062914d","duration":"six weeks","lessonFormat":".xls","assessments":["6760566d565971c8d5f0256b"],"announcements":[{"title":"Become a doctor now","details":"This is your very chance to become a doctor"}],"certificate":["675b20749147a24fad3c0166"],"showInstructor":true}
+2024-12-17 11:31:50 [info]: POST /676152d8f425385247c76eb3/assign 200 - Request Body: {"userIds":["674d6507cad288132dd56fc1","6751a65b6d5988016085da8d","67409ce32de7105d7831d2f9"],"dueDate":"12-31-2024"}
+2024-12-17 11:32:15 [info]: POST /objective 201 - Request Body: {"title":"Mixed Question Types Quiz","description":"A quiz with various question types to test your knowledge.","marksPerQuestion":5,"numberOfTrials":5,"purpose":"Learning assessment","passMark":60,"duration":30,"totalMark":100,"startDate":"2024-11-25","endDate":"2024-12-01","questions":[{"question":"The Eiffel Tower is in London.","type":"True or False","answer":"false","mark":15},{"question":"______ is the largest ocean on Earth.","type":"Fill in the Gap","answer":"Pacific Ocean","mark":25},{"question":"Is climate change a global concern?","type":"Yes or No","answer":"yes","mark":15},{"question":"Which of these is a prime number?","type":"Multichoice","options":["4","6","7","9"],"answer":"7","mark":15},{"question":"Is a Dog a mammal?","type":"Yes or No","answer":"yes","mark":10}]}
+2024-12-17 11:32:56 [info]: POST /add 201 - Request Body: {"code":"BA-246","title":"Beginners guide to Medicine","objective":"Introduction to Biology I","instructorId":"67453884a835dc3c8062914d","duration":"six weeks","lessonFormat":".xls","assessments":["6761532ff425385247c76eff"],"announcements":[{"title":"Become a doctor now","details":"This is your very chance to become a doctor"}],"certificate":["675b20749147a24fad3c0166"],"showInstructor":true}
+2024-12-17 11:35:38 [info]: POST /67615358f425385247c76f10/6761532ff425385247c76eff/take 401 - Request Body: {"answers":[{"questionId":"6761532ff425385247c76f00","answer":"false"},{"questionId":"6761532ff425385247c76f01","answer":"Pacific Ocean"},{"questionId":"6761532ff425385247c76f02","answer":"yes"},{"questionId":"6761532ff425385247c76f03","answer":"7"},{"questionId":"6761532ff425385247c76f04","answer":"no"}]}
+2024-12-17 11:35:47 [info]: POST /login 200 - Request Body: {"email":"backendseun@gmail.com","password":"OluwaseunOdueso123#"}
+2024-12-17 11:36:23 [info]: POST /67615358f425385247c76f10/6761532ff425385247c76eff/take 201 - Request Body: {"answers":[{"questionId":"6761532ff425385247c76f00","answer":"false"},{"questionId":"6761532ff425385247c76f01","answer":"Pacific Ocean"},{"questionId":"6761532ff425385247c76f02","answer":"yes"},{"questionId":"6761532ff425385247c76f03","answer":"7"},{"questionId":"6761532ff425385247c76f04","answer":"no"}]}
+2024-12-17 11:36:46 [info]: POST /login 200 - Request Body: {"email":"backendseun@gmail.com","password":"OluwaseunOdueso123#"}
+2024-12-17 11:41:47 [info]: GET /certificates 200
+2024-12-17 13:12:50 [info]: POST /lesson 401
+2024-12-17 13:13:15 [info]: POST /api/v1/course/lesson 500 - Request Body: {"title":"This is the title","objectives":"This is the objective for this lesson","link":"https://www.youtube.com"}
+2024-12-17 13:30:30 [info]: POST /lesson 200 - Request Body: {"title":"This is the title","objectives":"This is the objective for this lesson","link":"https://www.youtube.com"}
+2024-12-17 13:36:35 [info]: PATCH /67605c73ddb76bafe0ee1b60/move-to-ongoing 500
+2024-12-17 13:39:01 [info]: PATCH /67605c73ddb76bafe0ee1b60/move-to-ongoing 500
+2024-12-17 13:41:07 [info]: PATCH /676152d8f425385247c76eb3/move-to-ongoing 500
+2024-12-17 13:41:29 [info]: PATCH /6751c012049e71e2f39ec8db/move-to-ongoing 500
+2024-12-17 13:42:54 [info]: PATCH /676152d8f425385247c76eb3/move-to-ongoing 500
+2024-12-17 13:43:32 [info]: PATCH /676152d8f425385247c76eb3/move-to-ongoing 500
+2024-12-17 13:45:44 [info]: PATCH /676152d8f425385247c76eb3/move-to-ongoing 500
+2024-12-17 14:24:33 [info]: PATCH /676152d8f425385247c76eb3/move-to-ongoing 500
+2024-12-17 14:36:02 [info]: PATCH /676152d8f425385247c76eb3/move-to-ongoing 500
+2024-12-17 14:45:05 [info]: PATCH /676152d8f425385247c76eb3/move-to-ongoing 500
+2024-12-17 14:46:24 [info]: PATCH /676152d8f425385247c76eb3/move-to-ongoing 200
+2024-12-17 14:46:55 [info]: POST /login 200 - Request Body: {"email":"backendseun@gmail.com","password":"OluwaseunOdueso123#"}
+2024-12-17 14:52:53 [info]: PATCH /67605683565971c8d5f0257c/move-to-ongoing 400
+2024-12-17 14:55:26 [info]: PATCH /67605c73ddb76bafe0ee1b60/move-to-ongoing 200
+2024-12-17 14:55:35 [info]: POST /login 200 - Request Body: {"email":"backendseun@gmail.com","password":"OluwaseunOdueso123#"}
+2024-12-17 14:56:13 [info]: POST /login 200 - Request Body: {"email":"backendseun@gmail.com","password":"OluwaseunOdueso123#"}
+2024-12-17 14:56:26 [info]: POST /login 200 - Request Body: {"email":"backendseun@gmail.com","password":"OluwaseunOdueso123#"}
+2024-12-17 15:25:04 [info]: POST /add 201 - Request Body: {"code":"ZOZO-246","title":"Beginners guide to Medicine","objective":"Introduction to Biology I","instructorId":"67453884a835dc3c8062914d","duration":"six weeks","lessonFormat":".xls","assessments":["6761532ff425385247c76eff"],"announcements":[{"title":"Become a doctor now","details":"This is your very chance to become a doctor"}],"certificate":["675b20749147a24fad3c0166"],"showInstructor":true}
+2024-12-17 15:25:26 [info]: POST /676189c067fb9dfc0bca825e/assign 200 - Request Body: {"userIds":["674d6507cad288132dd56fc1","6751a65b6d5988016085da8d","67409ce32de7105d7831d2f9"],"dueDate":"12-31-2024"}
+2024-12-17 15:25:31 [info]: POST /login 200 - Request Body: {"email":"backendseun@gmail.com","password":"OluwaseunOdueso123#"}
+2024-12-17 15:26:33 [info]: PATCH /676189c067fb9dfc0bca825e/move-to-ongoing 200
+2024-12-17 15:26:40 [info]: POST /login 200 - Request Body: {"email":"backendseun@gmail.com","password":"OluwaseunOdueso123#"}
+2024-12-17 15:33:16 [info]: POST /login 200 - Request Body: {"email":"backendseun@gmail.com","password":"OluwaseunOdueso123#"}
+2024-12-17 15:33:37 [info]: POST /add 201 - Request Body: {"code":"SOSB-251","title":"Beginners guide to Medicine","objective":"Introduction to Biology I","instructorId":"67453884a835dc3c8062914d","duration":"six weeks","lessonFormat":".xls","assessments":["6761532ff425385247c76eff"],"announcements":[{"title":"Become a doctor now","details":"This is your very chance to become a doctor"}],"certificate":["675b20749147a24fad3c0166"],"showInstructor":true}
+2024-12-17 15:35:33 [info]: POST /67618bc167fb9dfc0bca8318/assign 200 - Request Body: {"userIds":["674d6507cad288132dd56fc1","6751a65b6d5988016085da8d","67409ce32de7105d7831d2f9"],"dueDate":"12-31-2024"}
+2024-12-17 15:35:45 [info]: POST /login 200 - Request Body: {"email":"backendseun@gmail.com","password":"OluwaseunOdueso123#"}
+2024-12-17 15:36:04 [info]: POST /login 200 - Request Body: {"email":"backendseun@gmail.com","password":"OluwaseunOdueso123#"}
+2024-12-17 15:36:13 [info]: PATCH /67618bc167fb9dfc0bca8318/move-to-ongoing 200
+2024-12-17 15:36:18 [info]: POST /login 200 - Request Body: {"email":"backendseun@gmail.com","password":"OluwaseunOdueso123#"}
+2024-12-17 15:40:09 [info]: POST /add 201 - Request Body: {"code":"BOBO-251","title":"Beginners guide to Medicine","objective":"Introduction to Biology I","instructorId":"67453884a835dc3c8062914d","duration":"six weeks","lessonFormat":".xls","assessments":["6761532ff425385247c76eff"],"announcements":[{"title":"Become a doctor now","details":"This is your very chance to become a doctor"}],"certificate":["675b20749147a24fad3c0166"],"showInstructor":true}
+2024-12-17 15:40:22 [info]: POST /67618d4967fb9dfc0bca83dc/assign 200 - Request Body: {"userIds":["674d6507cad288132dd56fc1","6751a65b6d5988016085da8d","67409ce32de7105d7831d2f9"],"dueDate":"12-31-2024"}
+2024-12-17 15:40:37 [info]: POST /login 200 - Request Body: {"email":"backendseun@gmail.com","password":"OluwaseunOdueso123#"}
+2024-12-17 15:41:23 [info]: PATCH /67618d4967fb9dfc0bca83dc/move-to-ongoing 200
+2024-12-17 15:41:41 [info]: POST /login 200 - Request Body: {"email":"backendseun@gmail.com","password":"OluwaseunOdueso123#"}
+2024-12-12 20:02:11 [info]: GET / 304
+2024-12-12 20:02:19 [info]: GET / 304
+2024-12-12 20:02:44 [info]: GET / 304
+2024-12-12 20:02:46 [info]: GET / 304
+2024-12-12 20:03:12 [info]: GET / 304
+2024-12-12 22:13:43 [info]: POST /login 200 - Request Body: {"email":"seunoduez@gmail.com","password":"Timpearl05$$$"}
+2024-12-12 22:13:58 [info]: GET / 304
+2024-12-12 22:14:08 [info]: GET / 304
+2024-12-12 22:14:23 [info]: POST /login 200 - Request Body: {"email":"richardsonmarcus520@gmail.com","password":"AJIBADEEmmanuel123#"}
+2024-12-12 22:14:33 [info]: GET /programs 304
+2024-12-12 22:15:01 [info]: GET /allCourses 304
+2024-12-12 22:15:05 [info]: GET /6755635d47415422855481b3 304
+2024-12-12 22:15:19 [info]: POST /6756eb53189a08b34af7d355/6755635d47415422855481b3/take 201 - Request Body: {"answers":[{"questionId":"6755635d47415422855481b4","answer":"True"},{"questionId":"6755635d47415422855481b5","answer":"d"},{"questionId":"6755635d47415422855481b6","answer":"d"},{"questionId":"6755635d47415422855481b7","answer":"No"},{"questionId":"6755635d47415422855481b8","answer":"False"}]}
+2024-12-12 22:16:28 [info]: GET /6755635d47415422855481b3 304
+2024-12-12 22:17:28 [info]: GET /6755635d47415422855481b3 401
+2024-12-12 22:17:29 [info]: GET /6755635d47415422855481b3 500
+2024-12-12 22:17:33 [info]: GET /6755635d47415422855481b3 200
+2024-12-12 22:17:57 [info]: POST /6756eb53189a08b34af7d355/6755635d47415422855481b3/take 201 - Request Body: {"answers":[{"questionId":"6755635d47415422855481b4","answer":"True"},{"questionId":"6755635d47415422855481b5","answer":"a"},{"questionId":"6755635d47415422855481b6","answer":"a"},{"questionId":"6755635d47415422855481b7","answer":"Yes"},{"questionId":"6755635d47415422855481b8","answer":"True"}]}
+2024-12-12 22:20:38 [info]: GET /6756eb53189a08b34af7d355 200
+2024-12-12 22:20:40 [info]: GET /67542aaec15e876d2604b447 304
+2024-12-12 22:21:04 [info]: GET /allCourses 304
+2024-12-12 22:21:16 [info]: GET /6755635d47415422855481b3 304
+2024-12-12 22:21:17 [info]: POST /6756eb53189a08b34af7d355/6755635d47415422855481b3/take 201 - Request Body: {"answers":[]}
+2024-12-12 22:21:28 [info]: GET /6755635d47415422855481b3 401
+2024-12-12 22:21:29 [info]: GET /6755635d47415422855481b3 304
+2024-12-12 22:21:42 [info]: POST /6756eb53189a08b34af7d355/6755635d47415422855481b3/take 201 - Request Body: {"answers":[{"questionId":"6755635d47415422855481b4","answer":"True"},{"questionId":"6755635d47415422855481b5","answer":"a"},{"questionId":"6755635d47415422855481b6","answer":"a"},{"questionId":"6755635d47415422855481b7","answer":"Yes"},{"questionId":"6755635d47415422855481b8","answer":"True"}]}
+2024-12-12 22:21:48 [info]: GET /6756eb53189a08b34af7d355 304
+2024-12-12 22:21:49 [info]: GET /67542aaec15e876d2604b447 304
+2024-12-12 22:24:12 [info]: GET /6756eb53189a08b34af7d355 304
+2024-12-12 22:24:12 [info]: GET /67542aaec15e876d2604b447 304
+2024-12-12 22:24:16 [info]: GET /6756eb53189a08b34af7d355 304
+2024-12-12 22:24:16 [info]: GET /67542aaec15e876d2604b447 304
+2024-12-16 21:56:25 [info]: POST /login 200 - Request Body: {"email":"ajibadeemmanuel58@gmail.com","password":"Test2024!"}
+2024-12-16 21:56:26 [info]: GET / 200
+2024-12-16 21:56:43 [info]: GET /lesson 500
+2024-12-16 21:56:44 [info]: GET /lesson 500
+2024-12-16 21:56:46 [info]: GET /lesson 500
+2024-12-16 21:56:50 [info]: GET /lesson 500
+2024-12-16 22:03:01 [info]: GET /lesson 500
+2024-12-16 22:03:02 [info]: GET /lesson 500
+2024-12-16 22:03:04 [info]: GET /lesson 500
+2024-12-16 22:03:09 [info]: GET /lesson 500
+2024-12-16 22:03:18 [info]: GET /lesson 500
+2024-12-16 22:03:19 [info]: GET /lesson 500
+2024-12-16 22:03:21 [info]: GET /lesson 500
+2024-12-16 22:03:25 [info]: GET /lesson 500
+2024-12-16 22:04:36 [info]: GET /lesson 401
+2024-12-16 22:04:37 [info]: GET /lesson 500
+2024-12-16 22:04:39 [info]: GET /lesson 500
+2024-12-16 22:04:44 [info]: GET /lesson 500
+2024-12-16 22:06:05 [info]: GET /lesson 500
+2024-12-16 22:06:06 [info]: GET /lesson 500
+2024-12-16 22:06:08 [info]: GET /lesson 500
+2024-12-16 22:07:41 [info]: GET /lesson 500
+2024-12-16 22:09:24 [info]: GET /lesson 500
+2024-12-16 22:09:25 [info]: GET /lesson 500
+2024-12-16 22:09:27 [info]: GET /lesson 500
+2024-12-16 22:10:31 [info]: GET /lesson 500
+2024-12-16 22:10:45 [info]: GET /lesson 401
+2024-12-16 22:10:46 [info]: GET /lesson 500
+2024-12-16 22:10:56 [info]: GET /lesson 500
+2024-12-16 22:12:12 [info]: GET /lesson 500
+2024-12-16 22:12:26 [info]: GET /lesson 500
+2024-12-16 22:12:27 [info]: GET /lesson 500
+2024-12-16 22:12:29 [info]: GET /lesson 500
+2024-12-16 22:13:21 [info]: GET /lesson 500
+2024-12-16 22:14:08 [info]: GET /lesson 500
+2024-12-16 22:15:05 [info]: GET /lesson 500
+2024-12-16 22:15:37 [info]: GET /lesson 500
+2024-12-16 22:15:48 [info]: GET /lesson 500
+2024-12-16 22:15:58 [info]: GET /allCourses 200
+2024-12-16 22:16:08 [info]: GET /allCourses 304
+2024-12-16 22:16:30 [info]: GET /allCourses 304
+2024-12-16 22:18:07 [info]: GET /allCourses 304
+2024-12-16 22:18:12 [info]: GET /allCourses 304
+2024-12-16 22:18:31 [info]: GET /lesson 500
+2024-12-16 22:18:32 [info]: GET /lesson 500
+2024-12-16 22:18:34 [info]: GET /lesson 500
+2024-12-16 22:18:38 [info]: GET /lesson 500
+2024-12-16 22:23:08 [info]: GET /lesson 500
+2024-12-16 22:23:09 [info]: GET /lesson 500
+2024-12-16 22:23:11 [info]: GET /lesson 500
+2024-12-16 22:23:15 [info]: GET /lesson 500
+2024-12-16 22:23:24 [info]: GET /lesson 500
+2024-12-16 22:23:25 [info]: GET /lesson 500
+2024-12-16 22:23:44 [info]: GET /l 500
+2024-12-16 22:23:48 [info]: GET /l 500
+2024-12-16 22:24:39 [info]: GET /l 500
+2024-12-16 22:24:55 [info]: GET /l 500
+2024-12-16 22:24:57 [info]: GET /l 500
+2024-12-16 22:25:02 [info]: GET /l 500
+2024-12-16 22:25:07 [info]: GET /l 500
+2024-12-16 22:25:08 [info]: GET /l 500
+2024-12-16 22:25:10 [info]: GET /l 500
+2024-12-16 22:25:14 [info]: GET /l 500
+2024-12-16 22:25:27 [info]: GET /l 500
+2024-12-16 22:25:32 [info]: GET /lesson/getAll 200
+2024-12-16 22:26:48 [info]: GET /lesson/getAll 200
+2024-12-16 22:26:51 [info]: GET /lesson/getAll 304
+2024-12-16 22:27:14 [info]: GET /lesson/getAll 304
+2024-12-16 22:27:48 [info]: GET /lesson/getAll 404
+2024-12-16 22:27:54 [info]: GET /lesson/getAll 404
+2024-12-17 08:56:28 [info]: GET /lesson/getAll 401
+2024-12-17 08:59:48 [info]: GET /lesson/getAll 404
+2024-12-17 09:00:12 [info]: GET /lesson/getAll 404
+2024-12-17 09:39:08 [info]: GET /lesson/getAll 404
+2024-12-17 09:39:10 [info]: GET /lesson/getAll 404
+2024-12-17 09:42:02 [info]: GET /lesson/getAll 404
+2024-12-17 09:42:37 [info]: GET /lesson/getAll 404
+2024-12-17 09:42:39 [info]: GET /lesson/getAll 404
+2024-12-17 09:42:41 [info]: GET /lesson/getAll 404
+2024-12-17 09:42:45 [info]: GET /lesson/getAll 404
+2024-12-17 09:44:25 [info]: GET /lesson/getAll 404
+2024-12-17 09:44:27 [info]: GET /lesson/getAll 404
+2024-12-17 09:44:29 [info]: GET /lesson/getAll 404
+2024-12-17 09:44:33 [info]: GET /lesson/getAll 404
+2024-12-17 09:45:00 [info]: GET /lesson/getAll 404
+2024-12-17 09:45:08 [info]: GET /lesson/getAll 404
+2024-12-17 09:45:17 [info]: GET /lesson/getAll 404
+2024-12-17 09:45:28 [info]: GET /lesson/getAll 404
+2024-12-17 09:47:16 [info]: GET /lesson/getAll 404
+2024-12-17 09:47:17 [info]: GET /lesson/getAll 404
+2024-12-17 09:47:20 [info]: GET /lesson/getAll 404
+2024-12-17 09:47:24 [info]: GET /lesson/getAll 404
+2024-12-17 09:50:02 [info]: GET /lesson/getAll 404
+2024-12-17 09:50:04 [info]: GET /lesson/getAll 404
+2024-12-17 09:50:06 [info]: GET /lesson/getAll 404
+2024-12-17 09:50:11 [info]: GET /lesson/getAll 404
+2024-12-17 09:52:14 [info]: GET /lesson/getAll 404
+2024-12-17 09:52:15 [info]: GET /lesson/getAll 404
+2024-12-17 09:52:18 [info]: GET /lesson/getAll 404
+2024-12-17 09:52:22 [info]: GET /lesson/getAll 404
+2024-12-17 09:53:23 [info]: GET /lesson/getAll 404
+2024-12-17 09:53:24 [info]: GET /lesson/getAll 404
+2024-12-17 09:53:27 [info]: GET /lesson/getAll 404
+2024-12-17 09:53:31 [info]: GET /lesson/getAll 404
+2024-12-17 09:54:16 [info]: GET /lesson/getAll 404
+2024-12-17 09:54:17 [info]: GET /lesson/getAll 404
+2024-12-17 09:56:19 [info]: GET /lesson/getAll 404
+2024-12-17 09:56:23 [info]: GET /lesson/getAll 404
+2024-12-17 09:56:55 [info]: GET /lesson/getAll 404
+2024-12-17 09:56:56 [info]: GET /lesson/getAll 404
+2024-12-17 09:56:58 [info]: GET /lesson/getAll 404
+2024-12-17 09:57:03 [info]: GET /lesson/getAll 404
+2024-12-17 09:57:17 [info]: GET /lesson/getAll 404
+2024-12-17 09:57:18 [info]: GET /lesson/getAll 404
+2024-12-17 10:42:01 [info]: POST /login 200 - Request Body: {"email":"ajibadeemmanuel58@gmail.com","password":"Test2024!"}
+2024-12-17 10:42:34 [info]: GET / 200
+2024-12-17 10:43:26 [info]: GET / 304
+2024-12-17 10:43:34 [info]: GET /lesson/getAll 404
+2024-12-17 10:43:36 [info]: GET /lesson/getAll 404
+2024-12-17 10:43:51 [info]: GET /lesson/getAll 404
+2024-12-17 10:53:46 [info]: GET /lesson/getAll 404
+2024-12-17 10:54:52 [info]: GET /all 200
+2024-12-17 11:01:37 [info]: GET /all 304
+2024-12-17 12:40:48 [info]: GET /all 401
+2024-12-17 12:40:57 [info]: GET /all 200
+2024-12-17 12:41:11 [info]: GET /lesson/getAll 404
+2024-12-17 12:41:13 [info]: GET /lesson/getAll 404
+2024-12-17 12:41:16 [info]: GET /lesson/getAll 404
+2024-12-17 12:41:20 [info]: GET /lesson/getAll 404
+2024-12-17 12:42:37 [info]: POST /lesson 422 - Request Body: {"title":"Create Lesson Test 1","objectives":"objectivess","link":"","files":"[object FileList]"}
+2024-12-17 12:43:57 [info]: GET /lesson/getAll 404
+2024-12-17 12:44:00 [info]: GET /lesson/getAll 404
+2024-12-17 12:44:02 [info]: GET /lesson/getAll 404
+2024-12-17 12:44:06 [info]: GET /lesson/getAll 404
+2024-12-17 12:45:14 [info]: GET /lesson/getAll 401
+2024-12-17 12:45:16 [info]: GET /lesson/getAll 404
+2024-12-17 12:45:18 [info]: GET /lesson/getAll 404
+2024-12-17 12:45:23 [info]: GET /lesson/getAll 404
+2024-12-17 12:45:54 [info]: POST /lesson 200 - Request Body: {"title":"Create Lesson Test 1","objectives":"obj","files":"[object FileList]"}
+2024-12-17 12:46:41 [info]: GET /lesson/getAll 200
+2024-12-17 12:46:54 [info]: GET /lesson/getAll 304
+2024-12-17 12:46:54 [info]: GET /lesson/getAll 304
+2024-12-17 12:47:12 [info]: POST /lesson 200 - Request Body: {"title":"Create Lesson Test 2","objectives":"obj 2","file":"[object FileList]"}
+2024-12-17 12:47:42 [info]: GET /lesson/getAll 200
+2024-12-17 12:48:13 [info]: POST /lesson 200 - Request Body: {"title":"Create Lesson Test 3","objectives":"obj","file":"[object FileList]"}
+2024-12-17 12:48:25 [info]: GET /lesson/getAll 200
+2024-12-17 12:53:38 [info]: GET /lesson/getAll 304
+2024-12-17 12:54:05 [info]: POST /lesson 200 - Request Body: {"title":"Create Lesson Test 4","objectives":"obj 4","file":"[object FileList]"}
+2024-12-17 12:55:12 [info]: GET /lesson/getAll 200
+2024-12-17 12:55:14 [info]: GET /lesson/getAll 304
+2024-12-17 12:55:42 [info]: GET /lesson/getAll 304
+2024-12-17 12:57:02 [info]: GET /lesson/getAll 304
+2024-12-17 12:58:33 [info]: GET /lesson/getAll 304
+2024-12-17 12:59:06 [info]: POST /lesson 200 - Request Body: {"title":"Create Lesson Test 5","objectives":"obj","file":"[object FileList]"}
+2024-12-17 13:00:31 [info]: GET /lesson/getAll 200
+2024-12-17 13:00:56 [info]: POST /api/v1/course/lesson 500 - Request Body: {"title":"Create Lesson Test 6","objectives":"obj","file":"[object FileList]"}
+2024-12-17 13:02:05 [info]: GET /lesson/getAll 304
+2024-12-17 13:02:24 [info]: POST /api/v1/course/lesson 500 - Request Body: {"title":"Create Lesson Test 6","objectives":"vf","file":"[object FileList]"}
+2024-12-17 13:03:45 [info]: GET /lesson/getAll 304
+2024-12-17 13:03:59 [info]: POST /api/v1/course/lesson 500 - Request Body: {"title":"Create Lesson Test 6","objectives":"test","file":"[object FileList]"}
+2024-12-17 13:10:34 [info]: GET /lesson/getAll 304
+2024-12-17 13:13:34 [info]: GET /lesson/getAll 304
+2024-12-17 13:13:34 [info]: GET /lesson/getAll 304
+2024-12-17 13:13:55 [info]: POST /lesson 200 - Request Body: {"title":"Create Lesson Test 6","objectives":"obj"}
+2024-12-17 13:17:15 [info]: GET /lesson/getAll 200
+2024-12-17 13:17:21 [info]: GET /lesson/getAll 304
+2024-12-17 13:17:29 [info]: GET /lesson/getAll 304
+2024-12-17 13:18:23 [info]: GET /lesson/getAll 304
+2024-12-17 13:18:43 [info]: GET /lesson/getAll 304
+2024-12-17 13:18:51 [info]: GET /lesson/getAll 304
+2024-12-17 13:19:09 [info]: GET /lesson/getAll 401
+2024-12-17 13:19:11 [info]: GET /lesson/getAll 304
+2024-12-17 13:21:14 [info]: GET /lesson/getAll 304
+2024-12-17 13:21:57 [info]: POST /api/v1/course/lesson 500 - Request Body: {"title":"Create Lesson Test 6","objectives":"obj"}
+2024-12-17 13:22:27 [info]: POST /api/v1/course/lesson 500 - Request Body: {"title":"Course 2","objectives":"cv"}
+2024-12-17 13:27:28 [info]: GET /lesson/getAll 304
+2024-12-17 13:27:42 [info]: GET /lesson/getAll 401
+2024-12-17 13:27:43 [info]: GET /lesson/getAll 304
+2024-12-17 13:28:11 [info]: POST /lesson 200 - Request Body: {"title":"Create Lesson Test 6","objectives":"obj"}
+2024-12-17 13:28:46 [info]: POST /lesson 200 - Request Body: {"title":"Create Lesson Test 7","objectives":"obj"}
+2024-12-17 13:46:22 [info]: GET /lesson/getAll 200
+2024-12-17 13:46:50 [info]: GET /lesson/getAll 304
+2024-12-17 13:48:02 [info]: GET /lesson/getAll 304
+2024-12-17 13:54:41 [info]: GET /lesson/getAll 304
+2024-12-17 13:54:54 [info]: GET /lesson/getAll 304
+2024-12-17 13:58:10 [info]: GET /lesson/getAll 304
+2024-12-17 13:58:49 [info]: POST /lesson 422 - Request Body: {"title":"Course 2 video","objectives":"obh"}
+2024-12-17 13:59:16 [info]: POST /lesson 200 - Request Body: {"title":"Course 2 video","objectives":"obj"}
+2024-12-17 13:59:38 [info]: GET /lesson/getAll 401
+2024-12-17 13:59:40 [info]: GET /lesson/getAll 200
+2024-12-17 14:00:13 [info]: POST /lesson 422 - Request Body: {"title":"Course 2 videos","objectives":"obj"}
+2024-12-17 14:02:02 [info]: GET /lesson/getAll 304
+2024-12-17 14:02:51 [info]: GET /lesson/getAll 304
+2024-12-17 14:03:30 [info]: POST /api/v1/course/lesson 500 - Request Body: {"title":"Course 2 doc","objectives":"doc"}
+2024-12-17 14:04:01 [info]: POST /lesson 200 - Request Body: {"title":"Course 2 videos","objectives":"obj"}
+2024-12-17 14:04:35 [info]: POST /lesson 200 - Request Body: {"title":"Course 2 doc","objectives":"doc"}
+2024-12-17 14:05:47 [info]: POST /lesson 200 - Request Body: {"title":"Course 2 doc 2","objectives":"d0c"}
+2024-12-17 14:06:19 [info]: POST /lesson 422 - Request Body: {"title":"Course 2 dvideo","objectives":"obj"}
+2024-12-17 14:07:43 [info]: GET /lesson/getAll 200
+2024-12-17 14:07:53 [info]: GET /all 304
+2024-12-17 14:10:26 [info]: GET /all 304
+2024-12-17 14:10:36 [info]: GET /lesson/getAll 304
+2024-12-17 14:11:22 [info]: GET /lesson/getAll 304
+2024-12-17 14:11:43 [info]: POST /lesson 422 - Request Body: {"title":"Course 2 dvideo","objectives":"video"}
+2024-12-17 14:13:34 [info]: GET /lesson/getAll 304
+2024-12-17 14:13:44 [info]: GET /all 304
+2024-12-17 14:14:45 [info]: GET /all 304
+2024-12-17 14:18:03 [info]: GET /all 304
+2024-12-17 14:18:14 [info]: GET /all 304
+2024-12-17 14:18:28 [info]: GET /all 304
+2024-12-17 14:18:59 [info]: GET /all 304
+2024-12-17 14:19:17 [info]: GET /all 304
+2024-12-17 14:19:54 [info]: GET /all 304
+2024-12-17 14:21:35 [info]: GET /all 304
+2024-12-17 14:21:48 [info]: GET /all 304
+2024-12-17 14:22:12 [info]: GET /all 304
+2024-12-17 14:22:30 [info]: GET /all 304
+2024-12-17 14:22:53 [info]: GET /all 304
+2024-12-17 14:23:01 [info]: GET /all 304
+2024-12-17 14:23:07 [info]: GET /all 304
+2024-12-17 14:23:13 [info]: GET /all 304
+2024-12-17 14:23:21 [info]: GET /all 304
+2024-12-17 14:23:27 [info]: GET /all 304
+2024-12-17 14:23:35 [info]: GET /all 304
+2024-12-17 14:23:40 [info]: GET / 200
+2024-12-17 14:24:36 [info]: GET /all 304
+2024-12-17 14:24:47 [info]: GET /all 304
+2024-12-17 14:25:16 [info]: GET /all 304
+2024-12-17 14:25:23 [info]: GET /all 304
+2024-12-17 14:25:50 [info]: GET /all 304
+2024-12-17 14:26:31 [info]: GET /all 304
+2024-12-17 14:26:39 [info]: GET /all 304
+2024-12-17 14:26:54 [info]: GET /all 304
+2024-12-17 14:29:32 [info]: GET /all 304
+2024-12-17 14:30:01 [info]: GET /all 304
+2024-12-17 14:30:13 [info]: GET /all 304
+2024-12-17 14:30:42 [info]: GET /all 304
+2024-12-17 14:31:00 [info]: GET /all 304
+2024-12-17 14:31:13 [info]: GET /all 304
+2024-12-17 14:31:38 [info]: GET /all 304
+2024-12-17 14:31:53 [info]: GET /all 304
+2024-12-17 14:32:11 [info]: GET /all 304
+2024-12-17 14:34:16 [info]: GET /all 304
+2024-12-17 14:35:10 [info]: GET /all 304
+2024-12-17 14:35:59 [info]: GET /all 304
+2024-12-17 14:36:16 [info]: GET /all 304
+2024-12-17 14:37:02 [info]: GET /all 304
+2024-12-17 14:37:36 [info]: GET /all 304
+2024-12-17 14:38:05 [info]: GET /all 304
+2024-12-17 14:38:33 [info]: GET /all 304
+2024-12-17 14:38:51 [info]: GET /all 304
+2024-12-17 14:39:04 [info]: GET /all 304
+2024-12-17 14:40:16 [info]: GET /all 304
+2024-12-17 14:40:31 [info]: GET /all 304
+2024-12-17 14:40:54 [info]: GET /all 304
+2024-12-17 14:41:11 [info]: GET /all 304
+2024-12-17 14:41:41 [info]: GET /all 304
+2024-12-17 14:42:23 [info]: GET /all 304
+2024-12-17 14:43:20 [info]: GET /all 304
+2024-12-17 14:43:30 [info]: GET /all 304
+2024-12-17 14:43:50 [info]: GET /all 304
+2024-12-17 14:44:06 [info]: GET /all 304
+2024-12-17 14:44:39 [info]: GET /all 304
+2024-12-17 14:44:52 [info]: GET / 304
+2024-12-17 14:44:56 [info]: GET / 304
+2024-12-17 15:59:47 [info]: GET /all 304
+2024-12-17 16:04:32 [info]: GET /all 304
+2024-12-17 16:05:54 [info]: GET /lesson/getAll 304
+2024-12-17 16:06:25 [info]: GET /lesson/getAll 304
+2024-12-17 16:07:12 [info]: GET /lesson/getAll 304
+2024-12-17 16:07:23 [info]: GET /lesson/getAll 304
+2024-12-17 16:08:10 [info]: GET /lesson/getAll 304
+2024-12-17 16:08:20 [info]: GET /lesson/getAll 304
+2024-12-17 16:09:35 [info]: GET /lesson/getAll 304
+2024-12-17 16:09:49 [info]: GET /lesson/getAll 401
+2024-12-17 16:09:50 [info]: GET /lesson/getAll 304
+2024-12-17 16:10:34 [info]: GET /lesson/getAll 304
+2024-12-17 16:10:47 [info]: GET /lesson/getAll 401
+2024-12-17 16:11:14 [info]: GET /lesson/getAll 304
+2024-12-17 16:11:25 [info]: GET /lesson/getAll 304
+2024-12-17 16:11:26 [info]: GET /lesson/getAll 304
+2024-12-17 16:25:51 [info]: POST /add 201 - Request Body: {"code":"BS-251","title":"Beginners guide to Medicine","objective":"Introduction to Biology I","instructorId":"67453884a835dc3c8062914d","duration":"six weeks","lessonFormat":".xls","assessments":["6761532ff425385247c76eff"],"announcements":[{"title":"Become a doctor now","details":"This is your very chance to become a doctor"}],"certificate":["675b20749147a24fad3c0166"],"showInstructor":true}
+2024-12-17 16:26:18 [info]: POST /676197fd411ddb361f71ce97/assign 200 - Request Body: {"userIds":["674d6507cad288132dd56fc1","6751a65b6d5988016085da8d","67409ce32de7105d7831d2f9"],"dueDate":"12-31-2024"}
+2024-12-17 16:26:35 [info]: POST /login 200 - Request Body: {"email":"backendseun@gmail.com","password":"OluwaseunOdueso123#"}
+2024-12-17 16:28:05 [info]: PATCH /676197fd411ddb361f71ce97/move-to-ongoing 200
+2024-12-17 16:28:42 [info]: POST /login 200 - Request Body: {"email":"backendseun@gmail.com","password":"OluwaseunOdueso123#"}
+2024-12-17 16:42:48 [info]: GET /lesson/getAll 304
+2024-12-17 16:47:20 [info]: GET /lesson/getAll 304
+2024-12-17 17:01:18 [info]: GET /lesson/getAll 304
+2024-12-17 17:02:12 [info]: GET /lesson/getAll 304
+2024-12-17 17:20:47 [info]: GET /lesson/getAll 304
+2024-12-17 17:32:26 [info]: GET /lesson/getAll 304
+2024-12-17 17:33:15 [info]: GET /all 304
+2024-12-17 17:34:03 [info]: GET /all 304
+2024-12-17 17:34:13 [info]: GET /all 304
+2024-12-17 17:42:20 [info]: GET /all 304
+2024-12-17 18:52:26 [info]: GET /all 304
+2024-12-17 18:52:50 [info]: GET /all 304
+2024-12-17 18:53:02 [info]: GET /all 304
+2024-12-17 19:01:01 [info]: GET /all 304
+2024-12-17 19:01:44 [info]: GET /all 401
+2024-12-17 19:01:57 [info]: GET /all 304
+2024-12-17 19:02:01 [info]: GET /lesson/getAll 304
+2024-12-17 21:07:31 [info]: GET /all 304
+2024-12-17 21:07:31 [info]: GET /lesson/getAll 304
+2024-12-17 21:08:19 [info]: GET /all 304
+2024-12-17 21:08:19 [info]: GET /lesson/getAll 304
+2024-12-17 21:10:19 [info]: GET /all 304
+2024-12-17 21:10:19 [info]: GET /lesson/getAll 304
+2024-12-17 21:11:58 [info]: GET /all 304
+2024-12-17 21:11:58 [info]: GET /lesson/getAll 304
+2024-12-17 21:14:08 [info]: GET /all 304
+2024-12-17 21:14:08 [info]: GET /lesson/getAll 304
+2024-12-17 21:17:47 [info]: GET /lesson/getAll 304
+2024-12-17 21:17:47 [info]: GET /all 304
+2024-12-17 21:18:06 [info]: GET /all 401
+2024-12-17 21:18:08 [info]: GET /all 304
+2024-12-17 21:20:42 [info]: GET /all 401
+2024-12-17 21:20:43 [info]: GET /all 304
+2024-12-17 21:20:46 [info]: GET /lesson/getAll 304
+2024-12-17 21:22:27 [info]: GET /lesson/getAll 304
+2024-12-17 21:22:46 [info]: GET /all 304
+2024-12-17 21:22:46 [info]: GET /lesson/getAll 304
+2024-12-17 21:23:19 [info]: GET /lesson/getAll 304
+2024-12-17 21:23:19 [info]: GET /all 304
+2024-12-17 21:23:32 [info]: GET /lesson/getAll 304
+2024-12-17 21:23:37 [info]: GET /all 304
+2024-12-17 21:23:37 [info]: GET /lesson/getAll 304
+2024-12-17 21:25:46 [info]: GET /lesson/getAll 304
+2024-12-17 21:25:46 [info]: GET /all 304
+2024-12-17 21:26:29 [info]: GET /lesson/getAll 304
+2024-12-17 21:26:29 [info]: GET /all 304
+2024-12-17 21:29:02 [info]: GET /lesson/getAll 304
+2024-12-17 21:29:02 [info]: GET /all 304
+2024-12-17 21:33:09 [info]: GET /lesson/getAll 304
+2024-12-17 21:33:18 [info]: GET /all 304
+2024-12-17 21:33:18 [info]: GET /lesson/getAll 304
+2024-12-17 21:36:25 [info]: GET /lesson/getAll 304
+2024-12-17 21:36:31 [info]: GET /lesson/getAll 304
+2024-12-17 21:36:31 [info]: GET /all 304
+2024-12-17 21:40:46 [info]: GET /all 304
+2024-12-17 21:40:46 [info]: GET /lesson/getAll 304
+2024-12-17 21:45:32 [info]: GET /lesson/getAll 304
+2024-12-17 21:49:20 [info]: GET /lesson/getAll 304
+2024-12-17 21:49:34 [info]: GET /all 304
+2024-12-17 21:49:34 [info]: GET /lesson/getAll 304
+2024-12-17 21:49:49 [info]: GET /all 401
+2024-12-17 21:49:50 [info]: GET /all 304
+2024-12-17 21:50:15 [info]: GET /lesson/getAll 304
+2024-12-17 21:51:17 [info]: GET /all 304
+2024-12-17 21:51:17 [info]: GET /lesson/getAll 304
+2024-12-17 21:51:23 [info]: GET /lesson/getAll 304
+2024-12-17 21:51:23 [info]: GET /all 304
+2024-12-17 21:53:04 [info]: GET /all 304
+2024-12-17 21:53:04 [info]: GET /lesson/getAll 304
+2024-12-17 21:53:08 [info]: GET /lesson/getAll 304
+2024-12-17 21:53:08 [info]: GET /all 304
+2024-12-17 21:53:14 [info]: GET /all 304
+2024-12-17 21:53:14 [info]: GET /lesson/getAll 304
+2024-12-17 21:53:59 [info]: GET /all 304
+2024-12-17 21:53:59 [info]: GET /lesson/getAll 304
+2024-12-17 21:57:36 [info]: GET /lesson/getAll 304
+2024-12-17 21:57:46 [info]: GET /all 304
+2024-12-17 21:57:46 [info]: GET /lesson/getAll 304
+2024-12-17 21:59:40 [info]: GET /lesson/getAll 304
+2024-12-17 21:59:40 [info]: GET /all 304
+2024-12-17 21:59:46 [info]: GET / 304
+2024-12-17 21:59:49 [info]: GET /lesson/getAll 304
+2024-12-17 21:59:57 [info]: GET / 304
+2024-12-17 22:00:00 [info]: GET /lesson/getAll 304
+2024-12-17 22:00:39 [info]: GET / 304
+2024-12-17 22:00:41 [info]: GET /lesson/getAll 304
+2024-12-17 22:01:17 [info]: GET /lesson/getAll 304
+2024-12-17 22:01:26 [info]: GET /lesson/getAll 304
+2024-12-17 22:02:37 [info]: GET /lesson/getAll 304
+2024-12-17 22:02:37 [info]: GET /all 304
+2024-12-17 22:02:39 [info]: GET / 304
+2024-12-17 22:03:17 [info]: GET / 304
+2024-12-17 22:03:18 [info]: GET /all 304
+2024-12-17 22:08:50 [info]: GET / 304
+2024-12-17 22:08:50 [info]: GET /all 304
+2024-12-17 22:08:53 [info]: GET /lesson/getAll 304
+2024-12-17 22:18:14 [info]: GET /lesson/getAll 304
+2024-12-17 22:18:14 [info]: GET /all 304
+2024-12-17 22:18:15 [info]: GET /lesson/getAll 304
+2024-12-17 22:18:30 [info]: GET / 304
+2024-12-17 22:18:48 [info]: GET /lesson/getAll 304
+2024-12-17 22:18:59 [info]: GET / 304
+2024-12-17 22:20:38 [info]: GET / 304
+2024-12-17 22:20:38 [info]: GET /all 304
+2024-12-17 22:20:42 [info]: GET /lesson/getAll 304
+2024-12-17 22:22:09 [info]: GET /lesson/getAll 304
+2024-12-17 22:22:37 [info]: GET /lesson/getAll 304
+2024-12-17 22:22:37 [info]: GET /all 304
+2024-12-17 22:22:53 [info]: GET /lesson/getAll 304
+2024-12-17 22:22:54 [info]: GET /all 304
+2024-12-17 22:23:07 [info]: GET /all 401
+2024-12-17 22:23:09 [info]: GET /all 304
+2024-12-17 22:23:22 [info]: GET /lesson/getAll 304
+2024-12-17 22:23:52 [info]: GET /lesson/getAll 304
+2024-12-17 22:23:53 [info]: GET /all 304
+2024-12-17 22:23:53 [info]: GET /lesson/getAll 304
+2024-12-17 22:24:14 [info]: GET /lesson/getAll 304
+2024-12-17 22:24:14 [info]: GET /all 304
+2024-12-17 22:24:31 [info]: GET / 304
+2024-12-17 22:26:22 [info]: GET /lesson/getAll 304
+2024-12-17 22:26:39 [info]: GET / 304
+2024-12-17 22:26:46 [info]: GET / 200
+2024-12-17 22:27:00 [info]: POST /add 201 - Request Body: {"title":"Content test","objective":"cts","price":"2000","duration":"12","instructorId":"67405d791a49e4a70bfd2d44","lessonFormat":"pdf","code":"CtS","showInstructor":"true","assessments":["674f51724ae7c3f551bd0075"],"certificate":["675b2bf9a36549113b5b3511"]}
+2024-12-17 22:27:22 [info]: GET /all 200
+2024-12-17 22:27:23 [info]: GET / 304
+2024-12-17 22:27:24 [info]: GET /lesson/getAll 304
+2024-12-17 22:28:25 [info]: GET /all 304
+2024-12-17 22:28:25 [info]: GET /lesson/getAll 304
+2024-12-18 11:25:05 [info]: POST /login 200 - Request Body: {"email":"ajibadeemmanuel58@gmail.com","password":"Test2024!"}
+2024-12-18 11:25:10 [info]: GET / 200
+2024-12-18 11:25:35 [info]: GET /all 304
+2024-12-18 11:25:40 [info]: GET /lesson/getAll 304
+2024-12-18 11:26:05 [info]: GET /lesson/getAll 304
+2024-12-18 11:26:05 [info]: GET /lesson/getAll 304
+2024-12-18 11:26:05 [info]: GET /all 304
+2024-12-18 11:26:17 [info]: GET /all 304
+2024-12-18 11:26:17 [info]: GET /lesson/getAll 304
+2024-12-18 11:26:27 [info]: GET /all 401
+2024-12-18 11:26:29 [info]: GET /all 304
+2024-12-18 11:27:20 [info]: GET /all 304
+2024-12-18 11:35:15 [info]: GET /all 401
+2024-12-18 11:35:19 [info]: GET /all 304
+2024-12-18 11:35:37 [info]: GET /lesson/getAll 304
+2024-12-18 11:36:24 [info]: GET /all 304
+2024-12-18 11:36:24 [info]: GET /lesson/getAll 304
+2024-12-18 11:39:17 [info]: GET /all 304
+2024-12-18 11:39:17 [info]: GET /lesson/getAll 304
+2024-12-18 11:40:42 [info]: POST /login 200 - Request Body: {"email":"richardsonmarcus520@gmail.com","password":"AJIBADEEmmanuel123#"}
+2024-12-18 11:40:51 [info]: GET /user/programs 200
+2024-12-18 11:41:20 [info]: GET /user/programs 304
+2024-12-18 11:46:40 [info]: GET /user/programs 304
+2024-12-18 11:47:31 [info]: GET /user/programs 304
+2024-12-18 11:47:57 [info]: GET /user/programs 304
+2024-12-18 11:48:48 [info]: GET /allCourses 500
+2024-12-18 11:49:19 [info]: GET /allCourses 500
+2024-12-18 11:49:51 [info]: GET /allCourses 500
+2024-12-18 11:50:25 [info]: GET /allCourses 500
+2024-12-18 12:02:05 [info]: GET /allCourses 401
+2024-12-18 12:02:47 [info]: POST /login 200 - Request Body: {"email":"richardsonmarcus520@gmail.com","password":"AJIBADEEmmanuel123#"}
+2024-12-18 12:03:01 [info]: GET /allCourses 200
+2024-12-18 12:04:09 [info]: GET /6755635d47415422855481b3 200
+2024-12-18 12:04:59 [info]: GET /allCourses 304
+2024-12-18 12:08:14 [info]: POST /login 200 - Request Body: {"email":"richardsonmarcus520@gmail.com","password":"AJIBADEEmmanuel123#"}
+2024-12-18 12:08:14 [info]: GET /user/programs 304
+2024-12-18 12:09:11 [info]: GET /user/programs 304
+2024-12-18 12:09:17 [info]: GET /user/programs 304
+2024-12-19 13:23:15 [info]: POST /login 200 - Request Body: {"email":"richardsonmarcus520@gmail.com","password":"AJIBADEEmmanuel123#"}
+2024-12-19 13:23:33 [info]: GET /user/programs 200
+2024-12-19 13:23:50 [info]: GET /allCourses 200
+2024-12-19 13:24:55 [info]: GET /allCourses 304
+2024-12-19 13:25:00 [info]: GET /allCourses 304
+2024-12-19 13:25:30 [info]: GET /allCourses 304
+2024-12-19 13:27:35 [info]: GET /allCourses 304
+2024-12-19 13:29:48 [info]: GET /allCourses 304
+2024-12-19 13:30:10 [info]: GET /allCourses 304
+2024-12-19 13:30:29 [info]: GET /allCourses 304
+2024-12-19 13:30:31 [info]: GET /allCourses 304
+2024-12-19 13:30:41 [info]: GET /allCourses 304
+2024-12-19 13:30:59 [info]: GET /allCourses 304
+2024-12-19 13:31:32 [info]: GET /allCourses 304
+2024-12-19 13:33:47 [info]: GET /allCourses 304
+2024-12-19 13:34:03 [info]: GET /allCourses 304
+2024-12-19 13:34:37 [info]: GET /allCourses 304
+2024-12-19 13:35:13 [info]: GET /api/v1/landing-page/all-landing-page 500
+2024-12-19 13:35:13 [info]: GET /allCourses 304
+2024-12-19 13:35:15 [info]: GET /api/v1/landing-page/all-landing-page 500
+2024-12-19 13:35:19 [info]: GET /api/v1/landing-page/all-landing-page 500
+2024-12-19 13:36:25 [info]: GET /allCourses 304
+2024-12-19 13:36:25 [info]: GET /all-landing-page 200
+2024-12-19 13:40:28 [info]: GET /allCourses 304
+2024-12-19 13:40:28 [info]: GET /all-landing-page 304
+2024-12-19 13:40:59 [info]: GET /allCourses 304
+2024-12-19 13:40:59 [info]: GET /all-landing-page 304
+2024-12-19 13:41:01 [info]: GET /allCourses 304
+2024-12-19 13:41:01 [info]: GET /all-landing-page 304
+2024-12-19 13:41:22 [info]: GET /allCourses 304
+2024-12-19 13:41:22 [info]: GET /all-landing-page 304
+2024-12-19 13:43:44 [info]: GET /allCourses 304
+2024-12-19 13:43:44 [info]: GET /all-landing-page 304
+2024-12-19 13:43:47 [info]: GET /allCourses 304
+2024-12-19 13:43:47 [info]: GET /all-landing-page 304
+2024-12-19 13:44:16 [info]: GET /allCourses 304
+2024-12-19 13:44:16 [info]: GET /all-landing-page 304
+2024-12-19 13:55:26 [info]: GET /all-landing-page 304
+2024-12-19 13:55:26 [info]: GET /allCourses 304
+2024-12-19 18:03:50 [info]: GET /allCourses 401
+2024-12-19 18:03:51 [info]: GET /all-landing-page 401
+2024-12-19 18:04:14 [info]: GET /allCourses 200
+2024-12-19 18:04:14 [info]: GET /all-landing-page 304
+2024-12-19 18:06:43 [info]: GET /allCourses 401
+2024-12-19 18:06:43 [info]: GET /all-landing-page 401
+2024-12-19 18:06:45 [info]: GET /allCourses 304
+2024-12-19 18:06:45 [info]: GET /all-landing-page 304
+2024-12-19 18:07:41 [info]: GET /allCourses 304
+2024-12-19 18:07:41 [info]: GET /all-landing-page 304
+2024-12-19 11:56:57 [info]: POST /lesson 401
+2024-12-19 11:57:15 [info]: POST /login 200 - Request Body: {"email":"seunoduez@gmail.com","password":"Timpearl05$$$"}
+2024-12-19 11:57:39 [info]: POST /lesson 401
+2024-12-19 11:57:52 [info]: POST /lesson 200 - Request Body: {"title":"This is the title","objectives":"This is the objective for this lesson","link":"https://www.youtube.com"}
+2024-12-19 12:23:59 [info]: POST /lesson 200 - Request Body: {"title":"This is the title","objectives":"This is the objective for this lesson","link":"https://www.youtube.com"}
+2024-12-19 12:29:28 [info]: POST /lesson 200 - Request Body: {"title":"This is the title","objectives":"This is the objective for this lesson","link":"https://www.youtube.com"}
+2024-12-19 12:31:40 [info]: POST /lesson 500 - Request Body: {"title":"This is the title","objectives":"This is the objective for this lesson","link":"https://www.youtube.com"}
+2024-12-19 12:33:52 [info]: POST /lesson 500 - Request Body: {"title":"This is the title","objectives":"This is the objective for this lesson","link":"https://www.youtube.com"}
+2024-12-19 12:44:00 [info]: POST /lesson 500 - Request Body: {"title":"This is the title","objectives":"This is the objective for this lesson","link":"https://www.youtube.com"}
+2024-12-19 12:45:20 [info]: POST /lesson 500 - Request Body: {"title":"This is the title","objectives":"This is the objective for this lesson","link":"https://www.youtube.com"}
+2024-12-19 12:47:46 [info]: POST /lesson 500 - Request Body: {"title":"This is the title","objectives":"This is the objective for this lesson","link":"https://www.youtube.com"}
+2024-12-19 12:51:48 [info]: POST /lesson 500 - Request Body: {"title":"This is the title","objectives":"This is the objective for this lesson","link":"https://www.youtube.com"}
+2024-12-19 12:52:33 [info]: POST /lesson 500 - Request Body: {"title":"This is the title","objectives":"This is the objective for this lesson","link":"https://www.youtube.com"}
+2024-12-19 14:06:27 [info]: POST /lesson 401
+2024-12-19 14:06:41 [info]: POST /lesson 200 - Request Body: {"title":"This is the title","objectives":"This is the objective for this lesson","link":"https://www.youtube.com"}
+2024-12-19 14:08:00 [info]: POST /lesson 200 - Request Body: {"title":"This is the title","objectives":"This is the objective for this lesson","link":"https://www.youtube.com"}
+2024-12-19 14:08:13 [info]: POST /lesson 200 - Request Body: {"title":"This is the title","objectives":"This is the objective for this lesson","link":"https://www.youtube.com"}
+2024-12-19 14:08:26 [info]: POST /lesson 200 - Request Body: {"title":"This is the title","objectives":"This is the objective for this lesson","link":"https://www.youtube.com"}
+2024-12-19 14:08:35 [info]: POST /lesson 200 - Request Body: {"title":"This is the title","objectives":"This is the objective for this lesson","link":"https://www.youtube.com"}
+2024-12-19 14:10:49 [info]: POST /objective 201 - Request Body: {"title":"Mixed Question Types Quiz","description":"A quiz with various question types to test your knowledge.","marksPerQuestion":5,"numberOfTrials":5,"purpose":"Learning assessment","passMark":60,"duration":30,"totalMark":100,"startDate":"2024-11-25","endDate":"2024-12-01","questions":[{"question":"The Eiffel Tower is in London.","type":"True or False","answer":"false","mark":15},{"question":"______ is the largest ocean on Earth.","type":"Fill in the Gap","answer":"Pacific Ocean","mark":25},{"question":"Is climate change a global concern?","type":"Yes or No","answer":"yes","mark":15},{"question":"Which of these is a prime number?","type":"Multichoice","options":["4","6","7","9"],"answer":"7","mark":15},{"question":"Is a Dog a mammal?","type":"Yes or No","answer":"yes","mark":10}]}
+2024-12-19 14:13:54 [info]: POST /add 400 - Request Body: {"code":"ZZ-246","title":"Beginners guide to Medicine","objective":"Introduction to Biology I","instructorId":"67453884a835dc3c8062914d","duration":"six weeks","lessonFormat":".xls","lessons":["67641a614e36b15a4278cb0b","67641ab04e36b15a4278cb0e","67641abd4e36b15a4278cb11","67641aca4e36b15a4278cb14","67641ad34e36b15a4278cb17"],"assessments":["67641b594e36b15a4278cb20"],"announcements":[{"title":"Become a doctor now","details":"This is your very chance to become a doctor"}],"certificate":["675fec0e6fe5ccac4b4ac00b"],"showInstructor":true}
+2024-12-19 14:14:11 [info]: POST /add 201 - Request Body: {"code":"NOM-246","title":"Beginners guide to Medicine","objective":"Introduction to Biology I","instructorId":"67453884a835dc3c8062914d","duration":"six weeks","lessonFormat":".xls","lessons":["67641a614e36b15a4278cb0b","67641ab04e36b15a4278cb0e","67641abd4e36b15a4278cb11","67641aca4e36b15a4278cb14","67641ad34e36b15a4278cb17"],"assessments":["67641b594e36b15a4278cb20"],"announcements":[{"title":"Become a doctor now","details":"This is your very chance to become a doctor"}],"certificate":["675fec0e6fe5ccac4b4ac00b"],"showInstructor":true}
+2024-12-19 14:14:57 [info]: POST /login 200 - Request Body: {"email":"backendseun@gmail.com","password":"OluwaseunOdueso123#"}
+2024-12-19 14:15:25 [info]: POST /login 200 - Request Body: {"email":"backendseun@gmail.com","password":"OluwaseunOdueso123#"}
+2024-12-19 14:16:43 [info]: POST /67605683565971c8d5f0257c/assign 500 - Request Body: {"userIds":["674d6507cad288132dd56fc1"],"dueDate":"12-31-2024"}
+2024-12-19 14:16:56 [info]: POST /67605683565971c8d5f0257c/assign 500 - Request Body: {"userIds":["674d6507cad288132dd56fc1"],"dueDate":"12-31-2024"}
+2024-12-19 14:24:44 [info]: POST /67605683565971c8d5f0257c/assign 500 - Request Body: {"userIds":["674d6507cad288132dd56fc1","6751a65b6d5988016085da8d","67409ce32de7105d7831d2f9"],"dueDate":"12-31-2024"}
+2024-12-19 14:34:01 [info]: POST /67605683565971c8d5f0257c/assign 500 - Request Body: {"userIds":["674d6507cad288132dd56fc1","6751a65b6d5988016085da8d","67409ce32de7105d7831d2f9"],"dueDate":"12-31-2024"}
+2024-12-19 14:35:38 [info]: POST /67605683565971c8d5f0257c/assign 200 - Request Body: {"userIds":["674d6507cad288132dd56fc1","6751a65b6d5988016085da8d","67409ce32de7105d7831d2f9"],"dueDate":"12-31-2024"}
+2024-12-19 14:36:12 [info]: POST /67641c224e36b15a4278cb37/assign 200 - Request Body: {"userIds":["674d6507cad288132dd56fc1","6751a65b6d5988016085da8d","67409ce32de7105d7831d2f9"],"dueDate":"12-31-2024"}
+2024-12-19 14:49:19 [info]: PATCH /67641c224e36b15a4278cb37/move-to-ongoing 401
+2024-12-19 14:50:10 [info]: PATCH /67641c224e36b15a4278cb37/move-to-ongoing 200
+2024-12-19 14:54:14 [info]: PATCH /course/67641c224e36b15a4278cb37/lessons/67641a614e36b15a4278cb0b/completion 200 - Request Body: {"percentage":40}
+2024-12-19 14:54:31 [info]: PUT /67641c224e36b15a4278cb37/lessons/67641a614e36b15a4278cb0b/completion 200 - Request Body: {"percentage":40}
+2024-12-19 14:59:24 [info]: PUT /67641c224e36b15a4278cb37/lessons/67641a614e36b15a4278cb0b/completion 500 - Request Body: {"percentage":100}
+2024-12-19 15:06:33 [info]: PUT /67641c224e36b15a4278cb37/lessons/67641a614e36b15a4278cb0b/completion 200 - Request Body: {"percentage":100}
+2024-12-19 15:15:30 [info]: POST /add 201 - Request Body: {"code":"NOMI-246","title":"Beginners guide to Medicine","objective":"Introduction to Biology I","instructorId":"67453884a835dc3c8062914d","duration":"six weeks","lessonFormat":".xls","lessons":["67641a614e36b15a4278cb0b","67641ab04e36b15a4278cb0e","67641abd4e36b15a4278cb11","67641aca4e36b15a4278cb14","67641ad34e36b15a4278cb17"],"assessments":["67641b594e36b15a4278cb20"],"announcements":[{"title":"Become a doctor now","details":"This is your very chance to become a doctor"}],"certificate":["675fec0e6fe5ccac4b4ac00b"],"showInstructor":true}
+2024-12-19 15:25:04 [info]: POST /add 201 - Request Body: {"code":"MOMI-246","title":"Beginners guide to Medicine","objective":"Introduction to Biology I","instructorId":"67453884a835dc3c8062914d","duration":"six weeks","lessonFormat":".xls","lessons":["67641a614e36b15a4278cb0b","67641ab04e36b15a4278cb0e","67641abd4e36b15a4278cb11","67641aca4e36b15a4278cb14","67641ad34e36b15a4278cb17"],"assessments":["67641b594e36b15a4278cb20"],"announcements":[{"title":"Become a doctor now","details":"This is your very chance to become a doctor"}],"certificate":["675fec0e6fe5ccac4b4ac00b"],"showInstructor":true}
+2024-12-19 15:25:32 [info]: POST /67642cbf7f34c03dff42d943/assign 200 - Request Body: {"userIds":["674d6507cad288132dd56fc1","6751a65b6d5988016085da8d","67409ce32de7105d7831d2f9"],"dueDate":"12-31-2024"}
+2024-12-19 15:26:37 [info]: PUT /67642cbf7f34c03dff42d943/lessons/67641a614e36b15a4278cb0b/completion 200 - Request Body: {"percentage":30}
+2024-12-19 15:27:22 [info]: PUT /67642cbf7f34c03dff42d943/lessons/67641a614e36b15a4278cb0b/completion 200 - Request Body: {"percentage":50}
+2024-12-19 15:27:42 [info]: PUT /67642cbf7f34c03dff42d943/lessons/67641a614e36b15a4278cb0b/completion 200 - Request Body: {"percentage":100}
+2024-12-19 15:45:00 [info]: PUT /67642cbf7f34c03dff42d943/lessons/67641a614e36b15a4278cb0b/completion 200 - Request Body: {"percentage":100}
+2024-12-19 15:55:15 [info]: PUT /67642cbf7f34c03dff42d943/lessons/67641a614e36b15a4278cb0b/completion 200 - Request Body: {"percentage":100}
+2024-12-19 15:56:10 [info]: PUT /67642cbf7f34c03dff42d943/lessons/67641a614e36b15a4278cb0b/completion 200 - Request Body: {"percentage":100}
+2024-12-19 16:02:26 [info]: PUT /67642cbf7f34c03dff42d943/lessons/67641a614e36b15a4278cb0b/completion 200 - Request Body: {"percentage":100}
+2024-12-19 16:04:21 [info]: GET /user/67642cbf7f34c03dff42d943 500
+2024-12-19 16:04:57 [info]: GET /courses 200
+2024-12-19 16:05:08 [info]: GET /courses 500
+2024-12-19 16:06:04 [info]: GET /user/67642cbf7f34c03dff42d943 500
+2024-12-19 16:12:48 [info]: GET /user/67642cbf7f34c03dff42d943 500
+2024-12-19 16:14:18 [info]: GET /user/67642cbf7f34c03dff42d943 200
+2024-12-19 17:07:35 [info]: GET /user/67642cbf7f34c03dff42d943 200
+2024-12-19 17:14:21 [info]: GET /user/67642cbf7f34c03dff42d943 200
+2024-12-19 17:29:21 [info]: GET /user/67642cbf7f34c03dff42d943 200
+2024-12-19 20:29:11 [info]: GET /user/67642cbf7f34c03dff42d943 200
+2024-12-19 20:49:31 [info]: GET /user/67642cbf7f34c03dff42d943 200
+2024-12-19 20:49:54 [info]: GET /user/67642cbf7f34c03dff42d943 200
+2024-12-19 21:03:32 [info]: GET /user/67616472605c33cd43c74f94 404
+2024-12-19 21:04:16 [info]: GET /user/67642cbf7f34c03dff42d943 200
+2024-12-19 21:41:06 [info]: PUT /67642cbf7f34c03dff42d943/lessons/67641ab04e36b15a4278cb0e/completion 200 - Request Body: {"percentage":30}
+2024-12-19 21:43:17 [info]: PUT /67642cbf7f34c03dff42d943/lessons/67641ab04e36b15a4278cb0e/completion 200 - Request Body: {"percentage":100}
+2024-12-19 21:45:05 [info]: PUT /67642cbf7f34c03dff42d943/lessons/67641abd4e36b15a4278cb11/completion 200 - Request Body: {"percentage":100}
+2024-12-19 21:49:14 [info]: PUT /67642cbf7f34c03dff42d943/lessons/67641abd4e36b15a4278cb11/completion 200 - Request Body: {"percentage":100}
+2024-12-19 21:49:20 [info]: PUT /67642cbf7f34c03dff42d943/lessons/67641abd4e36b15a4278cb11/completion 200 - Request Body: {"percentage":100}
+2024-12-19 21:51:37 [info]: PUT /67642cbf7f34c03dff42d943/lessons/67641aca4e36b15a4278cb14/completion 200 - Request Body: {"percentage":100}
+2024-12-19 21:52:03 [info]: PUT /67642cbf7f34c03dff42d943/lessons/67641ad34e36b15a4278cb17/completion 200 - Request Body: {"percentage":100}
+2024-12-19 21:55:13 [info]: PUT /67642cbf7f34c03dff42d943/lessons/67641ad34e36b15a4278cb17/completion 200 - Request Body: {"percentage":100}
+2024-12-19 21:59:03 [info]: POST /login 200 - Request Body: {"email":"backendseun@gmail.com","password":"OluwaseunOdueso123#"}
+2024-12-19 22:41:04 [info]: POST /login 200 - Request Body: {"email":"lola@gmail.com","password":"Tioluwani05$"}
+2024-12-19 22:46:18 [info]: POST /login 200 - Request Body: {"email":"lola@gmail.com","password":"Tioluwani05$"}
+2024-12-19 22:46:32 [info]: POST /login 200 - Request Body: {"email":"lola@gmail.com","password":"Tioluwani05$"}
+2024-12-19 22:47:19 [info]: PUT /67642cbf7f34c03dff42d943/lessons/67641a614e36b15a4278cb0b/completion 200 - Request Body: {"percentage":10}
+2024-12-19 22:49:17 [info]: PUT /67642cbf7f34c03dff42d943/lessons/67641a614e36b15a4278cb0b/completion 200 - Request Body: {"percentage":100}
+2024-12-19 23:02:48 [info]: PUT /67642cbf7f34c03dff42d943/lessons/67641a614e36b15a4278cb0b/completion 200 - Request Body: {"percentage":100}
+2024-12-19 23:20:27 [info]: PUT /67642cbf7f34c03dff42d943/lessons/67641a614e36b15a4278cb0b/completion 200 - Request Body: {"percentage":100}
+2024-12-19 23:23:51 [info]: PUT /67642cbf7f34c03dff42d943/lessons/67641a614e36b15a4278cb0b/completion 200 - Request Body: {"percentage":100}
+2024-12-19 23:26:59 [info]: PUT /67642cbf7f34c03dff42d943/lessons/67641a614e36b15a4278cb0b/completion 200 - Request Body: {"percentage":100}
+2024-12-19 23:30:56 [info]: PUT /67642cbf7f34c03dff42d943/lessons/67641a614e36b15a4278cb0b/completion 200 - Request Body: {"percentage":100}
+2024-12-19 23:35:20 [info]: PUT /67642cbf7f34c03dff42d943/lessons/67641a614e36b15a4278cb0b/completion 200 - Request Body: {"percentage":100}
+2024-12-19 23:36:32 [info]: PUT /67642cbf7f34c03dff42d943/lessons/67641a614e36b15a4278cb0b/completion 200 - Request Body: {"percentage":100}
+2024-12-19 23:37:11 [info]: PUT /67642cbf7f34c03dff42d943/lessons/67641a614e36b15a4278cb0b/completion 200 - Request Body: {"percentage":100}
+2024-12-19 23:54:03 [info]: PUT /67642cbf7f34c03dff42d943/lessons/67641a614e36b15a4278cb0b/completion 200 - Request Body: {"percentage":100}
+2024-12-19 23:54:21 [info]: GET /user/67642cbf7f34c03dff42d943 200
+2024-12-20 00:43:56 [info]: GET /user/67642cbf7f34c03dff42d943 200
+2024-12-20 00:44:25 [info]: PUT /67642cbf7f34c03dff42d943/lessons/67641a614e36b15a4278cb0b/completion 200 - Request Body: {"percentage":100}
+2024-12-20 00:46:32 [info]: PUT /67642cbf7f34c03dff42d943/lessons/67641a614e36b15a4278cb0b/completion 200 - Request Body: {"percentage":100}
+2024-12-20 01:05:30 [info]: GET /user/67642cbf7f34c03dff42d943 500
+2024-12-20 01:13:18 [info]: GET /user/67642cbf7f34c03dff42d943 200
+2024-12-20 01:17:12 [info]: PUT /67642cbf7f34c03dff42d943/lessons/67641ab04e36b15a4278cb0e/completion 200 - Request Body: {"percentage":100}
+2024-12-20 01:17:18 [info]: GET /user/67642cbf7f34c03dff42d943 200
+2024-12-20 01:18:02 [info]: PUT /67642cbf7f34c03dff42d943/lessons/67641abd4e36b15a4278cb11/completion 200 - Request Body: {"percentage":100}
+2024-12-20 01:18:07 [info]: GET /user/67642cbf7f34c03dff42d943 200
+2024-12-20 01:18:44 [info]: PUT /67642cbf7f34c03dff42d943/lessons/67641aca4e36b15a4278cb14/completion 200 - Request Body: {"percentage":100}
+2024-12-20 01:18:48 [info]: GET /user/67642cbf7f34c03dff42d943 200
+2024-12-20 01:19:48 [info]: PUT /67642cbf7f34c03dff42d943/lessons/67641ad34e36b15a4278cb17/completion 200 - Request Body: {"percentage":100}
+2024-12-20 01:19:53 [info]: GET /user/67642cbf7f34c03dff42d943 200
+2024-12-20 08:31:21 [info]: GET /raoatech 403
+2024-12-20 08:31:23 [info]: GET /raoatech 403
+2024-12-20 08:31:27 [info]: GET /raoatech 403
+2024-12-20 08:33:09 [info]: GET /raoatech 403
+2024-12-20 08:33:17 [info]: GET /raoatech 403
+2024-12-20 08:33:19 [info]: GET /raoatech 403
+2024-12-20 08:33:23 [info]: GET /raoatech 403
+2024-12-20 08:33:48 [info]: GET /raoatech 403
+2024-12-20 08:33:57 [info]: GET /raoatech 403
+2024-12-20 08:33:59 [info]: GET /raoatech 403
+2024-12-20 08:34:03 [info]: GET /raoatech 403
+2024-12-20 08:34:50 [info]: GET /raoatech 403
+2024-12-20 08:34:51 [info]: GET /raoatech 403
+2024-12-20 08:34:53 [info]: GET /raoatech 403
+2024-12-20 08:35:05 [info]: GET /raoatech 403
+2024-12-20 08:35:26 [info]: GET /raoatech 403
+2024-12-20 08:35:27 [info]: GET /raoatech 403
+2024-12-20 08:35:29 [info]: GET /raoatech 403
+2024-12-20 08:35:34 [info]: GET /raoatech 403
+2024-12-20 08:35:50 [info]: GET /raoatech 403
+2024-12-20 08:35:51 [info]: GET /raoatech 403
+2024-12-20 08:35:53 [info]: GET /raoatech 403
+2024-12-20 08:35:57 [info]: GET /raoatech 403
+2024-12-20 08:36:08 [info]: GET /raoatech 403
+2024-12-20 08:36:09 [info]: GET /raoatech 403
+2024-12-20 08:36:11 [info]: GET /raoatech 403
+2024-12-20 08:36:34 [info]: GET /raoatech 403
+2024-12-20 08:37:05 [info]: GET /raoatech 403
+2024-12-20 08:37:06 [info]: GET /raoatech 403
+2024-12-20 08:37:08 [info]: GET /raoatech 403
+2024-12-20 08:37:12 [info]: GET /raoatech 403
+2024-12-20 08:45:25 [info]: GET /raoatech 200
+2024-12-20 08:50:21 [info]: GET /raoatech 200
+2024-12-20 09:48:44 [info]: GET /raoatech 304
+2024-12-20 09:50:05 [info]: GET /raoatech 304
+2024-12-20 09:50:23 [info]: GET /raoatech 304
+2024-12-20 09:57:48 [info]: GET /raoatech 304
+2024-12-20 09:58:17 [info]: GET /raoatech 304
+2024-12-20 10:03:59 [info]: GET /raoatech 304
+2024-12-20 10:04:52 [info]: GET /raoatech 304
+2024-12-20 10:11:22 [info]: GET /raoatech 304
+2024-12-20 10:14:06 [info]: GET /raoatech 304
+2024-12-20 10:14:17 [info]: GET /raoatech 304
+2024-12-20 10:14:25 [info]: GET /raoatech 304
+2024-12-20 10:14:31 [info]: GET /raoatech 304
+2024-12-20 10:14:51 [info]: GET /raoatech 304
+2024-12-20 10:15:35 [info]: GET /raoatech 304
+2024-12-20 10:16:04 [info]: GET /raoatech 304
+2024-12-20 10:16:41 [info]: GET /raoatech 304
+2024-12-20 10:19:21 [info]: GET /raoatech 304
+2024-12-20 10:23:01 [info]: POST /login 200 - Request Body: {"email":"ajibadeemmanuel58@gmail.com","password":"Test2024!"}
+2024-12-20 10:23:09 [info]: GET / 200
+2024-12-20 10:25:21 [info]: GET / 304
+2024-12-20 10:25:28 [info]: GET / 304
+2024-12-20 10:26:01 [info]: GET / 304
+2024-12-20 10:26:13 [info]: GET / 401
+2024-12-20 10:26:27 [info]: GET / 304
+2024-12-20 10:26:56 [info]: GET / 304
+2024-12-20 10:27:17 [info]: GET / 304
+2024-12-20 10:27:27 [info]: GET / 304
+2024-12-20 10:28:04 [info]: GET / 304
+2024-12-20 10:28:25 [info]: GET / 304
+2024-12-20 10:32:24 [info]: GET / 304
+2024-12-20 10:32:57 [info]: GET / 304
+2024-12-20 12:57:09 [info]: GET /raoatech 200
+2024-12-20 12:57:37 [info]: GET /raoatech 304
+2024-12-20 12:58:47 [info]: GET /raoatech 200
+2024-12-20 13:02:05 [info]: GET /raoatech 304
+2024-12-20 13:02:23 [info]: GET /raoatech 304
+2024-12-20 13:09:18 [info]: GET /raoatech 304
+2024-12-20 13:19:44 [info]: GET /api/v1/landing-page/raoatech 500
+2024-12-20 14:05:43 [info]: GET /raoatech 200
+2024-12-20 14:06:25 [info]: GET /raoatech 304
+2024-12-20 14:06:39 [info]: GET /raoatech 304
+2024-12-20 14:07:24 [info]: POST /login 400 - Request Body: {"email":"test1@gmail.com","password":"Test2024!"}
+2024-12-20 14:07:33 [info]: POST /login 400 - Request Body: {"email":"test1@gmail.com","password":"Test2024!"}
