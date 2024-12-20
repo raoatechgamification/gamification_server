@@ -5638,3 +5638,18 @@
 2024-12-20 01:18:48 [info]: GET /user/67642cbf7f34c03dff42d943 200
 2024-12-20 01:19:48 [info]: PUT /67642cbf7f34c03dff42d943/lessons/67641ad34e36b15a4278cb17/completion 200 - Request Body: {"percentage":100}
 2024-12-20 01:19:53 [info]: GET /user/67642cbf7f34c03dff42d943 200
+2024-12-20 14:55:15 [info]: GET /user/67642cbf7f34c03dff42d943 200
+2024-12-20 14:55:27 [info]: POST /67642cbf7f34c03dff42d943/67641b594e36b15a4278cb20/take 403 - Request Body: {"answers":[{"questionId":"67641b594e36b15a4278cb21","answer":"false"},{"questionId":"67641b594e36b15a4278cb22","answer":"Pacific Ocean"},{"questionId":"67641b594e36b15a4278cb23","answer":"yes"},{"questionId":"67641b594e36b15a4278cb24","answer":"7"},{"questionId":"67641b594e36b15a4278cb25","answer":"no"}]}
+2024-12-20 14:55:36 [info]: POST /67642cbf7f34c03dff42d943/67641b594e36b15a4278cb20/take 403 - Request Body: {"answers":[{"questionId":"67641b594e36b15a4278cb21","answer":"false"},{"questionId":"67641b594e36b15a4278cb22","answer":"Pacific Ocean"},{"questionId":"67641b594e36b15a4278cb23","answer":"yes"},{"questionId":"67641b594e36b15a4278cb24","answer":"7"},{"questionId":"67641b594e36b15a4278cb25","answer":"no"}]}
+2024-12-20 14:56:06 [info]: PUT /67642cbf7f34c03dff42d943/lessons/67641ad34e36b15a4278cb17/completion 200 - Request Body: {"percentage":100}
+2024-12-20 14:56:45 [info]: GET /user/67642cbf7f34c03dff42d943 200
+2024-12-20 14:56:59 [info]: PUT /67642cbf7f34c03dff42d943/lessons/67641ad34e36b15a4278cb17/completion 200 - Request Body: {"percentage":100}
+2024-12-20 15:49:01 [info]: GET /user/67642cbf7f34c03dff42d943 200
+2024-12-20 15:49:14 [info]: POST /67642cbf7f34c03dff42d943/67641b594e36b15a4278cb20/take 201 - Request Body: {"answers":[{"questionId":"67641b594e36b15a4278cb21","answer":"false"},{"questionId":"67641b594e36b15a4278cb22","answer":"Pacific Ocean"},{"questionId":"67641b594e36b15a4278cb23","answer":"yes"},{"questionId":"67641b594e36b15a4278cb24","answer":"7"},{"questionId":"67641b594e36b15a4278cb25","answer":"no"}]}
+2024-12-20 15:49:35 [info]: POST /login 200 - Request Body: {"email":"lola@gmail.com","password":"Tioluwani05$"}
+2024-12-20 15:50:31 [info]: GET /user/67642cbf7f34c03dff42d943 200
+2024-12-20 15:50:35 [info]: GET /user/67642cbf7f34c03dff42d943 200
+2024-12-20 15:57:07 [info]: POST /67642cbf7f34c03dff42d943/67641b594e36b15a4278cb20/take 201 - Request Body: {"answers":[{"questionId":"67641b594e36b15a4278cb21","answer":"false"},{"questionId":"67641b594e36b15a4278cb22","answer":"Pacific Ocean"},{"questionId":"67641b594e36b15a4278cb23","answer":"yes"},{"questionId":"67641b594e36b15a4278cb24","answer":"7"},{"questionId":"67641b594e36b15a4278cb25","answer":"no"}]}
+2024-12-20 15:57:53 [info]: POST /login 200 - Request Body: {"email":"lola@gmail.com","password":"Tioluwani05$"}
+2024-12-20 15:59:01 [info]: GET /user/67642cbf7f34c03dff42d943 200
+2024-12-20 16:11:04 [info]: GET /user/67642cbf7f34c03dff42d943 200
