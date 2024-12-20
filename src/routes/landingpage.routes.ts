@@ -20,6 +20,7 @@ router.post('/',
     authorize("admin"), 
     upload.array("file", 3),
          CreateLandingPage);
+         
 router.get('/', authenticate, authorize("admin"),  GetAllLandingPages);
 router.get('/raoatech',  GetAllRaoatechLandingPages);
 router.get('/all-landing-page', authenticate, authorize("user"),  GetAllTotalLandingPages);

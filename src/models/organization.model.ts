@@ -15,7 +15,28 @@ export interface IOrganization extends Document {
   createdAt: Date; 
   updatedAt: Date; 
 }
+export interface IContact {
+  phoneNumber: string;
+  email: string;
+  address: string;
+}
 
+export interface IOrganization extends Document {
+  name: string;
+  firstName?: string;
+  lastName?: string;
+  email: string;
+  phone: string;
+  preferredUrl?: string;
+  referral?: string;
+  referralSource?: string;
+  industry?: string;
+  password: string; 
+  role: string; 
+  createdAt: Date; 
+  updatedAt: Date; 
+  contact?: IContact;
+}
 const OrganizationSchema: Schema<IOrganization> = new Schema({
   name: { type: String, required: true },
   firstName: { type: String },
@@ -26,6 +47,11 @@ const OrganizationSchema: Schema<IOrganization> = new Schema({
   referral: { type: String },
   referralSource: { type: String },
   industry: { type: String },
+  contact: {
+    phoneNumber: { type: String },
+    email: { type: String },
+    address: { type: String }
+  },
   password: { type: String, required: true }, 
   role: { type: String, default: 'admin', required: true }, 
 }, {

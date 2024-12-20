@@ -357,7 +357,37 @@ export class LandingPageController {
       next(error);
     }
   }
+  async UpdateLandingPageWithContact(req: Request, res: Response, next: NextFunction) {
+    try {
+      const { id } = req.params; // ID of the landing page to update
+      const { contactName, contactEmail, contactPhone } = req.body;
 
+      const updateData: Record<string, any> = {
+        contactName,
+        contactEmail,
+        contactPhone,
+      };
+
+      // Update the landing page in the database
+      const updatedLandingPage = await LandingPage.findByIdAndUpdate(
+        id,
+        updateData,
+        { new: true, runValidators: true }
+      );
+
+      if (!updatedLandingPage) {
+        return res
+          .status(404)
+          .json({ success: false, message: "Landing page not found" });
+      }
+
+      res
+        .status(200)
+        .json({ success: true, message: "Landing page updated with contact", data: updatedLandingPage });
+    } catch (error) {
+      next(error);
+    }
+  }
   async updateLandingPageDetails(req: Request, res: Response, next: NextFunction) {
    
 
