@@ -9,6 +9,7 @@ const {CreateLandingPage,
     GetLandingPageById,
  GetAllLandingPages,
  GetAllTotalLandingPages,
+ GetAllRaoatechLandingPages,
     DeleteLandingPage,
     updateLandingPageDetails,
     UpdateLandingPageWithCourse
@@ -20,6 +21,7 @@ router.post('/',
     upload.array("file", 3),
          CreateLandingPage);
 router.get('/', authenticate, authorize("admin"),  GetAllLandingPages);
+router.get('/raoatech',  GetAllRaoatechLandingPages);
 router.get('/all-landing-page', authenticate, authorize("user"),  GetAllTotalLandingPages);
 router.get('/:id', authenticate, authorize("admin"), GetLandingPageById);
 router.patch('/:id', authenticate, authorize("admin"),  upload.array("file", 1), updateLandingPageDetails);

@@ -316,6 +316,18 @@ export class LandingPageController {
     }
   }
 
+  async GetAllRaoatechLandingPages(req: Request, res: Response, next: NextFunction) {
+    try {
+      const organizationId = process.env.LANDINGPAGE_ID
+      const landingPages = await LandingPage.find({organizationId})
+        .populate('course') // Populate course details
+        .populate('subservice'); // Populate subservice details
+      res.status(200).json({ data: landingPages });
+    } catch (error) {
+      next(error);
+    }
+  }
+
   async GetAllTotalLandingPages(req: Request, res: Response, next: NextFunction) {
     try {
       
