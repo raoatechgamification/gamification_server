@@ -1044,155 +1044,210 @@ export class CourseController {
     }
   }
 
+  // async updateLessonCompletion(req: Request, res: Response) {
+  //   try {
+  //     const { lessonId, courseId } = req.params;
+  //     const userId = req.user.id;
+  //     const { percentage } = req.body;
+
+  //     const userIdObjectId = new mongoose.Types.ObjectId(userId);
+  //     const courseIdObjectId = new mongoose.Types.ObjectId(courseId);
+
+  //     const lesson = await Lesson.findById(lessonId);
+  //     if (!lesson) {
+  //       return ResponseHandler.failure(res, "Lesson not found.", 404);
+  //     }
+
+  //     const existingCompletion = lesson.completionDetails.find(
+  //       (detail) =>
+  //         detail.userId.equals(userIdObjectId) &&
+  //         detail.courseId.equals(courseIdObjectId)
+  //     );
+
+  //     if (existingCompletion) {
+  //       existingCompletion.percentage = percentage; // Update percentage
+  //     } else {
+  //       const newCompletion: CompletionDetails = {
+  //         userId: userIdObjectId,
+  //         courseId: courseIdObjectId,
+  //         percentage,
+  //       };
+  //       lesson.completionDetails.push(newCompletion); // Add new completion
+  //     }
+
+  //     await lesson.save();
+
+  //     if (percentage === 100) {
+  //       const course = await Course.findById(courseId);
+  //       if (!course) {
+  //         return ResponseHandler.failure(res, "Course not found.", 404);
+  //       }
+      
+  //       // Ensure the user exists in learnerIds array
+  //       const learner = course.learnerIds?.find((l) =>
+  //         l.userId.equals(userIdObjectId)
+  //       );
+      
+  //       if (!learner) {
+  //         course.learnerIds = course.learnerIds || [];
+  //         course.learnerIds.push({ userId: userIdObjectId, progress: 0 });
+  //       }
+      
+  //       // Calculate overall course progress
+  //       const totalLessons = course.lessons?.length || 0;
+  //       if (totalLessons === 0) {
+  //         return ResponseHandler.failure(
+  //           res,
+  //           "No lessons found for the course.",
+  //           400
+  //         );
+  //       }
+      
+  //       // Calculate completed lessons
+  //       const completedLessons = await Lesson.countDocuments({
+  //         _id: { $in: course.lessons },
+  //         "completionDetails.userId": userIdObjectId,
+  //         "completionDetails.percentage": 100,
+  //       });
+      
+  //       // Calculate lesson progress
+  //       const lessonProgress = Math.floor((completedLessons / totalLessons) * 100);
+      
+  //       // Check if the course has an associated assessment
+  //       const assessment = await ObjectiveAssessment.findOne({ courseId: courseId });
+  //       let assessmentProgress = 0;
+      
+  //       if (assessment) {
+  //         // Get the learner's submission for the assessment
+  //         const submission = await Submission.findOne({
+  //           learnerId: userIdObjectId,
+  //           courseId: courseId,
+  //           assessmentId: assessment._id,
+  //         });
+      
+  //         if (submission && submission.score !== undefined) {
+  //           // Calculate the percentage of the score in relation to the total marks
+  //           assessmentProgress = Math.floor((submission.score / assessment.totalMark) * 100);
+  //         }
+  //       }
+      
+  //       // Combine lesson and assessment progress to calculate the overall progress
+  //       const totalWeight = 2; // This assumes equal weight for lessons and assessments
+  //       let overallProgress = 0;
+      
+  //       // If the course has an assessment, calculate weighted average
+  //       if (assessment) {
+  //         overallProgress = Math.floor(((lessonProgress + assessmentProgress) / totalWeight));
+  //       } else {
+  //         // If no assessment exists, only consider lessons
+  //         overallProgress = lessonProgress;
+  //       }
+      
+  //       // Update learner progress in the course
+  //       await Course.updateOne(
+  //         { _id: courseId, "learnerIds.userId": userIdObjectId },
+  //         { $set: { "learnerIds.$.progress": overallProgress } }
+  //       );
+  //     }
+      
+
+  //     return ResponseHandler.success(
+  //       res,
+  //       "Lesson completion updated successfully."
+  //     );
+  //   } catch (error: any) {
+  //     return ResponseHandler.failure(
+  //       res,
+  //       error.message || "Failed to update lesson completion."
+  //     );
+  //   }
+  // }
+
   async updateLessonCompletion(req: Request, res: Response) {
     try {
       const { lessonId, courseId } = req.params;
       const userId = req.user.id;
       const { percentage } = req.body;
-
+  
       const userIdObjectId = new mongoose.Types.ObjectId(userId);
       const courseIdObjectId = new mongoose.Types.ObjectId(courseId);
-
+  
       const lesson = await Lesson.findById(lessonId);
       if (!lesson) {
         return ResponseHandler.failure(res, "Lesson not found.", 404);
       }
-
+  
+      // Check or update existing completion details
       const existingCompletion = lesson.completionDetails.find(
         (detail) =>
           detail.userId.equals(userIdObjectId) &&
           detail.courseId.equals(courseIdObjectId)
       );
-
+  
       if (existingCompletion) {
-        existingCompletion.percentage = percentage; // Update percentage
+        existingCompletion.percentage = percentage;
       } else {
         const newCompletion: CompletionDetails = {
           userId: userIdObjectId,
           courseId: courseIdObjectId,
           percentage,
         };
-        lesson.completionDetails.push(newCompletion); // Add new completion
+        lesson.completionDetails.push(newCompletion);
       }
-
+  
       await lesson.save();
-
-      // if (percentage === 100) {
-      //   const course = await Course.findById(courseId);
-      //   if (!course) {
-      //     return ResponseHandler.failure(res, "Course not found.", 404);
-      //   }
-
-      //   // Ensure the user exists in learnerIds array
-      //   const learner = course.learnerIds?.find((l) =>
-      //     l.userId.equals(userIdObjectId)
-      //   );
-
-      //   if (!learner) {
-      //     course.learnerIds = course.learnerIds || [];
-
-      //     course.learnerIds.push({ userId: userIdObjectId, progress: 0 });
-      //   }
-
-      //   // Calculate overall course progress
-      //   const totalLessons = course.lessons?.length || 0;
-      //   if (totalLessons === 0) {
-      //     return ResponseHandler.failure(
-      //       res,
-      //       "No lessons found for the course.",
-      //       400
-      //     );
-      //   }
-
-      //   const completedLessons = await Lesson.countDocuments({
-      //     _id: { $in: course.lessons },
-      //     "completionDetails.userId": userIdObjectId,
-      //     "completionDetails.percentage": 100,
-      //   });
-
-      //   const progress = Math.floor((completedLessons / totalLessons) * 100);
-
-      //   // Update learner progress in the course
-      //   await Course.updateOne(
-      //     { _id: courseId, "learnerIds.userId": userIdObjectId },
-      //     { $set: { "learnerIds.$.progress": progress } }
-      //   );
-      // }
-
+  
       if (percentage === 100) {
-        const course = await Course.findById(courseId);
+        const course = await Course.findById(courseId).populate('lessons assessments');
         if (!course) {
           return ResponseHandler.failure(res, "Course not found.", 404);
         }
-      
-        // Ensure the user exists in learnerIds array
-        const learner = course.learnerIds?.find((l) =>
-          l.userId.equals(userIdObjectId)
-        );
-      
-        if (!learner) {
-          course.learnerIds = course.learnerIds || [];
-          course.learnerIds.push({ userId: userIdObjectId, progress: 0 });
-        }
-      
-        // Calculate overall course progress
-        const totalLessons = course.lessons?.length || 0;
-        if (totalLessons === 0) {
+  
+        // Guard against undefined lessons or assessments
+        const lessons = course.lessons ?? [];
+        const assessments = course.assessments ?? [];
+  
+        const totalLessons = lessons.length;
+        const totalAssessments = assessments.length;
+        const totalItems = totalLessons + totalAssessments;
+  
+        if (totalItems === 0) {
           return ResponseHandler.failure(
             res,
-            "No lessons found for the course.",
+            "No lessons or assessments found for the course.",
             400
           );
         }
-      
+  
         // Calculate completed lessons
         const completedLessons = await Lesson.countDocuments({
-          _id: { $in: course.lessons },
+          _id: { $in: lessons.map((lesson: any) => lesson._id) },
           "completionDetails.userId": userIdObjectId,
           "completionDetails.percentage": 100,
         });
-      
-        // Calculate lesson progress
-        const lessonProgress = Math.floor((completedLessons / totalLessons) * 100);
-      
-        // Check if the course has an associated assessment
-        const assessment = await ObjectiveAssessment.findOne({ courseId: courseId });
-        let assessmentProgress = 0;
-      
-        if (assessment) {
-          // Get the learner's submission for the assessment
-          const submission = await Submission.findOne({
-            learnerId: userIdObjectId,
-            courseId: courseId,
-            assessmentId: assessment._id,
-          });
-      
-          if (submission && submission.score !== undefined) {
-            // Calculate the percentage of the score in relation to the total marks
-            assessmentProgress = Math.floor((submission.score / assessment.totalMark) * 100);
-          }
-        }
-      
-        // Combine lesson and assessment progress to calculate the overall progress
-        const totalWeight = 2; // This assumes equal weight for lessons and assessments
-        let overallProgress = 0;
-      
-        // If the course has an assessment, calculate weighted average
-        if (assessment) {
-          overallProgress = Math.floor(((lessonProgress + assessmentProgress) / totalWeight));
-        } else {
-          // If no assessment exists, only consider lessons
-          overallProgress = lessonProgress;
-        }
-      
+  
+        // Calculate completed assessments
+        const completedAssessments = await ObjectiveAssessment.countDocuments({
+          _id: { $in: assessments.map((assessment: any) => assessment._id) },
+          "completionDetails.userId": userIdObjectId,
+          "completionDetails.completed": true, // Assuming `completed` is a boolean field
+        });
+  
+        // Total completed items
+        const completedItems = completedLessons + completedAssessments;
+  
+        // Calculate overall course progress
+        const overallProgress = Math.floor(
+          (completedItems / totalItems) * 100
+        );
+  
         // Update learner progress in the course
         await Course.updateOne(
           { _id: courseId, "learnerIds.userId": userIdObjectId },
           { $set: { "learnerIds.$.progress": overallProgress } }
         );
       }
-      
-
+  
       return ResponseHandler.success(
         res,
         "Lesson completion updated successfully."
@@ -1275,7 +1330,7 @@ export class CourseController {
     }
   }
 
-  // async getCourseDetails(req: Request, res: Response) {
+  // async getCourseDetailsss(req: Request, res: Response) {
   //   try {
   //     const { courseId } = req.params;
   //     const userId = req.user.id;
@@ -1396,117 +1451,106 @@ export class CourseController {
   //   }
   // }
 
-  // async getCourseDetails(req: Request, res: Response) {
-  //   try {
-  //     const { courseId } = req.params;
-  //     const userId = req.user.id;
-  
-  //     // Find the course by ID and populate lessons and assessments
-  //     const course = await Course.findById(courseId)
-  //       .populate('lessons') // Populate lessons to access their details
-  //       .populate('assessments'); // Populate assessments
-  //     if (!course) {
-  //       return res.status(404).json({
-  //         success: false,
-  //         message: 'Course not found',
-  //       });
-  //     }
-  
-  //     const lessons = course.lessons || [];
-  //     const assessments = course.assessments || [];
-  
-  //     // Fetch lesson details dynamically
-  //     const lessonDetails = lessons.map((lesson: any) => {
-  //       // Fetch user's completion details
-  //       const userCompletion = lesson.completionDetails.find(
-  //         (detail: any) => detail.userId.toString() === userId
-  //       );
-  //       const completionPercentage = userCompletion ? userCompletion.percentage : 0;
-  
-  //       return {
-  //         id: lesson._id,
-  //         title: lesson.title,
-  //         objectives: lesson.objectives || '',
-  //         completionPercentage,
-  //         link: lesson.link || '',
-  //         files: lesson.files || [],
-  //       };
-  //     });
-  
-  //     const validLessons = lessonDetails.filter((lesson) => lesson !== null);
-  
-  //     // Calculate lesson completion
-  //     const totalLessons = validLessons.length;
-  //     const completedLessons = validLessons.filter(
-  //       (lesson) => lesson.completionPercentage === 100
-  //     ).length;
-  
-  //     // Calculate assessment completion
-  //     const totalAssessments = assessments.length;
-  //     let completedAssessments = 0;
-  
-  //     for (const assessment of assessments) {
-  //       const userAssessmentCompletion = assessment.completionDetails.find(
-  //         (detail: { userId: { toString: () => any } }) =>
-  //           detail.userId.toString() === userId
-  //       );
-  //       if (userAssessmentCompletion && userAssessmentCompletion.completed) {
-  //         completedAssessments++;
-  //       }
-  //     }
-  
-  //     // Total items (lessons + assessments)
-  //     const totalItems = totalLessons + totalAssessments;
-  //     const completedItems = completedLessons + completedAssessments;
-  
-  //     // Calculate overall course completion percentage
-  //     const courseCompletionPercentage =
-  //       totalItems > 0 ? Math.floor((completedItems / totalItems) * 100) : 0;
-  
-  //     // Append assessment data
-  //     const assessmentDetails = assessments.map((assessment: any) => ({
-  //       id: assessment._id,
-  //       title: assessment.title,
-  //       description: assessment.description,
-  //       totalMark: assessment.totalMark,
-  //       passMark: assessment.passMark,
-  //       duration: assessment.duration,
-  //     }));
-  
-  //     const completionStatus = {
-  //       completed: courseCompletionPercentage === 100,
-  //       completionPercentage: courseCompletionPercentage,
-  //       message:
-  //         courseCompletionPercentage === 100
-  //           ? 'Course completed successfully!'
-  //           : 'Course not yet completed. Complete all lessons and assessments.',
-  //     };
-  
-  //     // Send response
-  //     return res.status(200).json({
-  //       success: true,
-  //       message: 'Success',
-  //       data: {
-  //         course: {
-  //           id: course._id,
-  //           title: course.title,
-  //           lessons: validLessons,
-  //           completionStatus,
-  //           assessments: assessmentDetails,
-  //         },
-  //       },
-  //     });
-  //   } catch (error: any) {
-  //     console.error('Error fetching course details:', error);
-  //     return res.status(500).json({
-  //       success: false,
-  //       message: 'Error fetching course details',
-  //       error: error.message,
-  //     });
-  //   }
-  // }
-  
   async getCourseDetails(req: Request, res: Response) {
+    try {
+      const { courseId } = req.params;
+      const userId = req.user.id;
+  
+      // Find the course by ID and populate lessons and assessments
+      const course = await Course.findById(courseId)
+        .populate<{ lessons: LessonDocument[] }>('lessons')
+        .populate<{ assessments: AssessmentDocument[] }>('assessments'); // Ensure assessments are populated too
+  
+      if (!course) {
+        return res.status(404).json({
+          success: false,
+          message: 'Course not found',
+        });
+      }
+  
+      const lessons = course.lessons ?? []; // Default to empty array if lessons are undefined
+      const assessments = course.assessments ?? []; // Default to empty array if assessments are undefined
+  
+      // Fetch lesson details dynamically
+      const lessonDetails = lessons.map((lesson) => {
+        const userCompletion = lesson.completionDetails?.find(
+          (detail) => detail.userId.toString() === userId
+        );
+        const completionPercentage = userCompletion?.percentage || 0;
+  
+        return {
+          id: lesson._id,
+          title: lesson.title,
+          objectives: lesson.objectives || '',
+          completionPercentage,
+          link: lesson.link || '',
+          files: lesson.files || [],
+        };
+      });
+  
+      const validLessons = lessonDetails.filter((lesson) => lesson !== null);
+  
+      // Calculate lesson completion
+      const totalLessons = validLessons.length;
+      const completedLessons = validLessons.filter(
+        (lesson) => lesson.completionPercentage === 100
+      ).length;
+  
+      // Calculate assessment completion
+      const totalAssessments = assessments.length;
+      const completedAssessments = assessments.filter((assessment) => {
+        // Ensure completionDetails is an array and handle undefined gracefully
+        return (
+          Array.isArray(assessment.completionDetails) &&
+          assessment.completionDetails.some(
+            (detail) =>
+              detail.userId.toString() === userId && detail.completed
+          )
+        );
+      }).length;
+  
+      // Total items (lessons + assessments)
+      const totalItems = totalLessons + totalAssessments;
+      const completedItems = completedLessons + completedAssessments;
+  
+      // Calculate overall course completion percentage
+      const courseCompletionPercentage =
+        totalItems > 0 ? Math.floor((completedItems / totalItems) * 100) : 0;
+  
+      const completionStatus = {
+        completed: courseCompletionPercentage === 100,
+        completionPercentage: courseCompletionPercentage,
+        message:
+          courseCompletionPercentage === 100
+            ? 'Course completed successfully!'
+            : 'Course not yet completed. Complete all lessons and assessments.',
+      };
+  
+      // Send response
+      return res.status(200).json({
+        success: true,
+        message: 'Success',
+        data: {
+          course: {
+            id: course._id,
+            title: course.title,
+            lessons: validLessons,
+            completionStatus,
+            assessments,
+          },
+        },
+      });
+    } catch (error: any) {
+      console.error('Error fetching course details:', error);
+      return res.status(500).json({
+        success: false,
+        message: 'Error fetching course details',
+        error: error.message,
+      });
+    }
+  }
+  
+  async realgetCourseDetails(req: Request, res: Response) {
     try {
       const { courseId } = req.params;
       const userId = req.user.id;
