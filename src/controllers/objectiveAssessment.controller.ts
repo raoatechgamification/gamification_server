@@ -165,9 +165,26 @@ class ObjectAssessmentController {
     const userId = req.user.id;
   
     try {
-      const course = await Course.findById(courseId);
+      const course = await Course.findById(courseId).populate("lessons");
       if (!course) {
         return ResponseHandler.failure(res, "Course not found", 404);
+      }
+  
+      // Check if all lessons are completed
+      const lessons = course.lessons || [];
+      const incompleteLessons = lessons.filter((lesson: any) => {
+        const completionDetail = lesson.completionDetails?.find(
+          (detail: any) => detail.userId.toString() === userId
+        );
+        return (completionDetail?.percentage || 0) < 100;
+      });
+  
+      if (incompleteLessons.length > 0) {
+        return ResponseHandler.failure(
+          res,
+          "You must complete all lessons in the course before submitting assessments",
+          403
+        );
       }
   
       // Convert assessmentId to ObjectId
@@ -198,18 +215,25 @@ class ObjectAssessmentController {
         );
       }
   
-      const questionIds = assessment.questions.map((q: { _id: { toString: () => any; }; }) => q._id.toString());
+      const questionIds = assessment.questions.map((q: { _id: { toString: () => any } }) =>
+        q._id.toString()
+      );
       const isValid = answers.every((answer) =>
         questionIds.includes(answer.questionId.toString())
       );
       if (!isValid) {
-        return ResponseHandler.failure(res, "Invalid question IDs or answers submitted", 400);
+        return ResponseHandler.failure(
+          res,
+          "Invalid question IDs or answers submitted",
+          400
+        );
       }
   
       let totalScore = 0;
       const gradedAnswers = answers.map((answer) => {
         const question = assessment.questions.find(
-          (q: { _id: { toString: () => string; }; }) => q._id.toString() === answer.questionId.toString()
+          (q: { _id: { toString: () => string } }) =>
+            q._id.toString() === answer.questionId.toString()
         );
   
         if (question) {
@@ -227,21 +251,22 @@ class ObjectAssessmentController {
       });
   
       const maxObtainableMarks = assessment.questions.reduce(
-        (sum: any, q: { mark: any; }) => sum + (q.mark ?? assessment.marksPerQuestion ?? 0),
+        (sum: any, q: { mark: any }) =>
+          sum + (q.mark ?? assessment.marksPerQuestion ?? 0),
         0
       );
   
       const percentageScore = Math.round((totalScore / maxObtainableMarks) * 100);
       const passOrFail = percentageScore >= assessment.passMark ? "Pass" : "Fail";
-
+  
       const certificateId = course.certificate;
-
+  
       if (certificateId && passOrFail === "Pass") {
         const user = await User.findOne({
           _id: userId,
-          certificates: { $elemMatch: { certificateId } }, 
+          certificates: { $elemMatch: { certificateId } },
         });
-
+  
         if (!user) {
           const updateResult = await User.updateOne(
             { _id: userId },
@@ -255,15 +280,15 @@ class ObjectAssessmentController {
               },
             }
           );
-    
+  
           if (updateResult.modifiedCount === 0) {
             console.log("Failed to add certificate or user not found.");
           } else {
             console.log("Certificate added to user's records.");
           }
-        }        
+        }
       }
-        
+  
       const submission = await Submission.create({
         learnerId: userId,
         courseId,
@@ -274,12 +299,29 @@ class ObjectAssessmentController {
         percentageScore,
         status: "Graded",
         passOrFail,
-        maxObtainableMarks, 
+        maxObtainableMarks,
       });
+  
+      // Update course progress to 100% and move the course to completedCourses
+      await Course.updateOne(
+        { _id: courseId, "learnerIds.userId": userId },
+        { $set: { "learnerIds.$.progress": 100 } }
+      );
+  
+      const user = await User.findById(userId);
+      if (user) {
+        await User.updateOne(
+          { _id: userId },
+          {
+            $pull: { ongoingCourses: { courseId: course._id } },
+            $addToSet: { completedCourses: { courseId: course._id, courseName: course.title } },
+          }
+        );
+      }
   
       return ResponseHandler.success(
         res,
-        { ...submission.toObject(), maxObtainableMarks }, 
+        { ...submission.toObject(), maxObtainableMarks },
         "Assessment submitted and graded successfully",
         201
       );
@@ -291,6 +333,144 @@ class ObjectAssessmentController {
       );
     }
   }
+   
+
+  // async takeAndGradeAssessment(req: Request, res: Response) {
+  //   const { courseId, assessmentId } = req.params;
+  //   const {
+  //     answers,
+  //   }: {
+  //     answers: { questionId: string; answer: string | boolean | number }[];
+  //   } = req.body;
+  //   const userId = req.user.id;
+  
+  //   try {
+  //     const course = await Course.findById(courseId);
+  //     if (!course) {
+  //       return ResponseHandler.failure(res, "Course not found", 404);
+  //     }
+  
+  //     // Convert assessmentId to ObjectId
+  //     const assessmentObjectId = new mongoose.Types.ObjectId(assessmentId);
+  
+  //     if (!course.assessments?.includes(assessmentObjectId)) {
+  //       return ResponseHandler.failure(
+  //         res,
+  //         "This assessment does not belong to the specified course",
+  //         403
+  //       );
+  //     }
+  
+  //     const assessment = await ObjectiveAssessment.findById(assessmentId);
+  //     if (!assessment) {
+  //       return ResponseHandler.failure(res, "Assessment not found", 404);
+  //     }
+  
+  //     const submissionCount = await Submission.countDocuments({
+  //       learnerId: userId,
+  //       assessmentId,
+  //     });
+  //     if (submissionCount >= (assessment.numberOfTrials ?? Infinity)) {
+  //       return ResponseHandler.failure(
+  //         res,
+  //         "You have exceeded the number of allowed attempts for this assessment",
+  //         403
+  //       );
+  //     }
+  
+  //     const questionIds = assessment.questions.map((q: { _id: { toString: () => any; }; }) => q._id.toString());
+  //     const isValid = answers.every((answer) =>
+  //       questionIds.includes(answer.questionId.toString())
+  //     );
+  //     if (!isValid) {
+  //       return ResponseHandler.failure(res, "Invalid question IDs or answers submitted", 400);
+  //     }
+  
+  //     let totalScore = 0;
+  //     const gradedAnswers = answers.map((answer) => {
+  //       const question = assessment.questions.find(
+  //         (q: { _id: { toString: () => string; }; }) => q._id.toString() === answer.questionId.toString()
+  //       );
+  
+  //       if (question) {
+  //         const questionScore = question.mark ?? assessment.marksPerQuestion ?? 0;
+  
+  //         if (
+  //           String(question.answer).toLowerCase() ===
+  //           String(answer.answer).toLowerCase()
+  //         ) {
+  //           totalScore += questionScore;
+  //           return { ...answer, isCorrect: true };
+  //         }
+  //       }
+  //       return { ...answer, isCorrect: false };
+  //     });
+  
+  //     const maxObtainableMarks = assessment.questions.reduce(
+  //       (sum: any, q: { mark: any; }) => sum + (q.mark ?? assessment.marksPerQuestion ?? 0),
+  //       0
+  //     );
+  
+  //     const percentageScore = Math.round((totalScore / maxObtainableMarks) * 100);
+  //     const passOrFail = percentageScore >= assessment.passMark ? "Pass" : "Fail";
+
+  //     const certificateId = course.certificate;
+
+  //     if (certificateId && passOrFail === "Pass") {
+  //       const user = await User.findOne({
+  //         _id: userId,
+  //         certificates: { $elemMatch: { certificateId } }, 
+  //       });
+
+  //       if (!user) {
+  //         const updateResult = await User.updateOne(
+  //           { _id: userId },
+  //           {
+  //             $addToSet: {
+  //               certificates: {
+  //                 courseId: courseId as unknown as mongoose.Types.ObjectId,
+  //                 courseName: course.title,
+  //                 certificateId,
+  //               },
+  //             },
+  //           }
+  //         );
+    
+  //         if (updateResult.modifiedCount === 0) {
+  //           console.log("Failed to add certificate or user not found.");
+  //         } else {
+  //           console.log("Certificate added to user's records.");
+  //         }
+  //       }        
+  //     }
+        
+  //     const submission = await Submission.create({
+  //       learnerId: userId,
+  //       courseId,
+  //       assessmentId,
+  //       answer: answers,
+  //       gradedAnswers,
+  //       score: totalScore,
+  //       percentageScore,
+  //       status: "Graded",
+  //       passOrFail,
+  //       maxObtainableMarks, 
+  //     });
+  
+  //     return ResponseHandler.success(
+  //       res,
+  //       { ...submission.toObject(), maxObtainableMarks }, 
+  //       "Assessment submitted and graded successfully",
+  //       201
+  //     );
+  //   } catch (error: any) {
+  //     return ResponseHandler.failure(
+  //       res,
+  //       error.message || "Error processing assessment",
+  //       error.status || 500
+  //     );
+  //   }
+  // }
 
   async getAllAssessmentsForOrganization(req: Request, res: Response) {
     const organizationId = req.admin._id;
