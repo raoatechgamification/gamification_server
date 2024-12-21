@@ -5638,6 +5638,7 @@
 2024-12-20 01:18:48 [info]: GET /user/67642cbf7f34c03dff42d943 200
 2024-12-20 01:19:48 [info]: PUT /67642cbf7f34c03dff42d943/lessons/67641ad34e36b15a4278cb17/completion 200 - Request Body: {"percentage":100}
 2024-12-20 01:19:53 [info]: GET /user/67642cbf7f34c03dff42d943 200
+<<<<<<< HEAD
 2024-12-20 14:55:15 [info]: GET /user/67642cbf7f34c03dff42d943 200
 2024-12-20 14:55:27 [info]: POST /67642cbf7f34c03dff42d943/67641b594e36b15a4278cb20/take 403 - Request Body: {"answers":[{"questionId":"67641b594e36b15a4278cb21","answer":"false"},{"questionId":"67641b594e36b15a4278cb22","answer":"Pacific Ocean"},{"questionId":"67641b594e36b15a4278cb23","answer":"yes"},{"questionId":"67641b594e36b15a4278cb24","answer":"7"},{"questionId":"67641b594e36b15a4278cb25","answer":"no"}]}
 2024-12-20 14:55:36 [info]: POST /67642cbf7f34c03dff42d943/67641b594e36b15a4278cb20/take 403 - Request Body: {"answers":[{"questionId":"67641b594e36b15a4278cb21","answer":"false"},{"questionId":"67641b594e36b15a4278cb22","answer":"Pacific Ocean"},{"questionId":"67641b594e36b15a4278cb23","answer":"yes"},{"questionId":"67641b594e36b15a4278cb24","answer":"7"},{"questionId":"67641b594e36b15a4278cb25","answer":"no"}]}
@@ -5711,3 +5712,81 @@
 2024-12-20 18:30:58 [info]: POST /login 200 - Request Body: {"email":"tobe@gmail.com","password":"Timpearl05$$$"}
 2024-12-20 18:44:52 [info]: GET /user/67642cbf7f34c03dff42d943 200
 2024-12-20 18:54:12 [info]: GET /user/67642cbf7f34c03dff42d943 200
+=======
+2024-12-20 08:31:21 [info]: GET /raoatech 403
+2024-12-20 08:31:23 [info]: GET /raoatech 403
+2024-12-20 08:31:27 [info]: GET /raoatech 403
+2024-12-20 08:33:09 [info]: GET /raoatech 403
+2024-12-20 08:33:17 [info]: GET /raoatech 403
+2024-12-20 08:33:19 [info]: GET /raoatech 403
+2024-12-20 08:33:23 [info]: GET /raoatech 403
+2024-12-20 08:33:48 [info]: GET /raoatech 403
+2024-12-20 08:33:57 [info]: GET /raoatech 403
+2024-12-20 08:33:59 [info]: GET /raoatech 403
+2024-12-20 08:34:03 [info]: GET /raoatech 403
+2024-12-20 08:34:50 [info]: GET /raoatech 403
+2024-12-20 08:34:51 [info]: GET /raoatech 403
+2024-12-20 08:34:53 [info]: GET /raoatech 403
+2024-12-20 08:35:05 [info]: GET /raoatech 403
+2024-12-20 08:35:26 [info]: GET /raoatech 403
+2024-12-20 08:35:27 [info]: GET /raoatech 403
+2024-12-20 08:35:29 [info]: GET /raoatech 403
+2024-12-20 08:35:34 [info]: GET /raoatech 403
+2024-12-20 08:35:50 [info]: GET /raoatech 403
+2024-12-20 08:35:51 [info]: GET /raoatech 403
+2024-12-20 08:35:53 [info]: GET /raoatech 403
+2024-12-20 08:35:57 [info]: GET /raoatech 403
+2024-12-20 08:36:08 [info]: GET /raoatech 403
+2024-12-20 08:36:09 [info]: GET /raoatech 403
+2024-12-20 08:36:11 [info]: GET /raoatech 403
+2024-12-20 08:36:34 [info]: GET /raoatech 403
+2024-12-20 08:37:05 [info]: GET /raoatech 403
+2024-12-20 08:37:06 [info]: GET /raoatech 403
+2024-12-20 08:37:08 [info]: GET /raoatech 403
+2024-12-20 08:37:12 [info]: GET /raoatech 403
+2024-12-20 08:45:25 [info]: GET /raoatech 200
+2024-12-20 08:50:21 [info]: GET /raoatech 200
+2024-12-20 09:48:44 [info]: GET /raoatech 304
+2024-12-20 09:50:05 [info]: GET /raoatech 304
+2024-12-20 09:50:23 [info]: GET /raoatech 304
+2024-12-20 09:57:48 [info]: GET /raoatech 304
+2024-12-20 09:58:17 [info]: GET /raoatech 304
+2024-12-20 10:03:59 [info]: GET /raoatech 304
+2024-12-20 10:04:52 [info]: GET /raoatech 304
+2024-12-20 10:11:22 [info]: GET /raoatech 304
+2024-12-20 10:14:06 [info]: GET /raoatech 304
+2024-12-20 10:14:17 [info]: GET /raoatech 304
+2024-12-20 10:14:25 [info]: GET /raoatech 304
+2024-12-20 10:14:31 [info]: GET /raoatech 304
+2024-12-20 10:14:51 [info]: GET /raoatech 304
+2024-12-20 10:15:35 [info]: GET /raoatech 304
+2024-12-20 10:16:04 [info]: GET /raoatech 304
+2024-12-20 10:16:41 [info]: GET /raoatech 304
+2024-12-20 10:19:21 [info]: GET /raoatech 304
+2024-12-20 10:23:01 [info]: POST /login 200 - Request Body: {"email":"ajibadeemmanuel58@gmail.com","password":"Test2024!"}
+2024-12-20 10:23:09 [info]: GET / 200
+2024-12-20 10:25:21 [info]: GET / 304
+2024-12-20 10:25:28 [info]: GET / 304
+2024-12-20 10:26:01 [info]: GET / 304
+2024-12-20 10:26:13 [info]: GET / 401
+2024-12-20 10:26:27 [info]: GET / 304
+2024-12-20 10:26:56 [info]: GET / 304
+2024-12-20 10:27:17 [info]: GET / 304
+2024-12-20 10:27:27 [info]: GET / 304
+2024-12-20 10:28:04 [info]: GET / 304
+2024-12-20 10:28:25 [info]: GET / 304
+2024-12-20 10:32:24 [info]: GET / 304
+2024-12-20 10:32:57 [info]: GET / 304
+2024-12-20 12:57:09 [info]: GET /raoatech 200
+2024-12-20 12:57:37 [info]: GET /raoatech 304
+2024-12-20 12:58:47 [info]: GET /raoatech 200
+2024-12-20 13:02:05 [info]: GET /raoatech 304
+2024-12-20 13:02:23 [info]: GET /raoatech 304
+2024-12-20 13:09:18 [info]: GET /raoatech 304
+2024-12-20 13:19:44 [info]: GET /api/v1/landing-page/raoatech 500
+2024-12-20 14:05:43 [info]: GET /raoatech 200
+2024-12-20 14:06:25 [info]: GET /raoatech 304
+2024-12-20 14:06:39 [info]: GET /raoatech 304
+2024-12-20 14:07:24 [info]: POST /login 400 - Request Body: {"email":"test1@gmail.com","password":"Test2024!"}
+2024-12-20 14:07:33 [info]: POST /login 400 - Request Body: {"email":"test1@gmail.com","password":"Test2024!"}
+>>>>>>> 6982760528a4f5b90a298c748b7dbe8e9fa33813
