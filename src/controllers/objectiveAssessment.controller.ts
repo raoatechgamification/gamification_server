@@ -315,8 +315,12 @@ class ObjectAssessmentController {
         return ResponseHandler.failure(res, "User not found", 404);
       }
 
+      // const ongoingProgram = user.ongoingPrograms?.find(
+      //   (program) => program._id?.toString() === courseId
+      // );
+
       const ongoingProgram = user.ongoingPrograms?.find(
-        (program) => program._id?.toString() === courseId
+        (program) => (program.course as ICourse)._id?.toString() === courseId
       );
 
       if (!ongoingProgram) {
@@ -326,20 +330,24 @@ class ObjectAssessmentController {
           400
         );
       }
-      
+
+      const completedProgram = { ...ongoingProgram.course };
+      delete completedProgram.assignedLearnersIds;
+      delete completedProgram.learnerIds;
+
       await User.updateOne(
         { _id: userId },
         {
-          $pull: { ongoingPrograms: { "_id": courseId } },
-          $push: { completedPrograms: ongoingProgram },
+          $pull: { ongoingPrograms: { "course._id": courseId } },
+          $push: { completedPrograms: { course: completedProgram } },
         }
       );
-
+      
       // await User.updateOne(
       //   { _id: userId },
       //   {
-      //     $pull: { ongoingPrograms: { courseId: course._id } },
-      //     $addToSet: { completedPrograms: { courseId: course._id, courseName: course.title } },
+      //     $pull: { ongoingPrograms: { "_id": courseId } },
+      //     $push: { completedPrograms: ongoingProgram },
       //   }
       // );
 

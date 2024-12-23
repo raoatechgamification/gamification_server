@@ -5850,3 +5850,66 @@
 2024-12-23 12:55:33 [info]: POST /login 200 - Request Body: {"email":"tobe@gmail.com","password":"Timpearl05$$$"}
 2024-12-23 12:57:15 [info]: PATCH /67694f8f1c2112142271c3be/move-to-ongoing 200
 2024-12-23 12:57:22 [info]: POST /login 200 - Request Body: {"email":"tobe@gmail.com","password":"Timpearl05$$$"}
+2024-12-23 14:01:07 [info]: PUT /67694f8f1c2112142271c3be/lessons/67694e5a1c2112142271c3b3/completion 200 - Request Body: {"percentage":100}
+2024-12-23 14:01:17 [info]: GET /user/67642cbf7f34c03dff42d943 200
+2024-12-23 14:01:19 [info]: GET /user/67642cbf7f34c03dff42d943 200
+2024-12-23 14:01:37 [info]: GET /user/67694f8f1c2112142271c3be 200
+2024-12-23 14:01:55 [info]: PUT /67694f8f1c2112142271c3be/lessons/67694e701c2112142271c3b6/completion 200 - Request Body: {"percentage":100}
+2024-12-23 14:01:58 [info]: GET /user/67694f8f1c2112142271c3be 200
+2024-12-23 14:02:11 [info]: PUT /67694f8f1c2112142271c3be/lessons/67694e791c2112142271c3b9/completion 400 - Request Body: {"percentage":100}
+2024-12-23 14:02:41 [info]: PUT /67694f8f1c2112142271c3be/lessons/67694e791c2112142271c3b9/completion 400 - Request Body: {"percentage":100}
+2024-12-23 14:02:50 [info]: GET /user/67694f8f1c2112142271c3be 200
+2024-12-23 14:03:01 [info]: POST /login 200 - Request Body: {"email":"tobe@gmail.com","password":"Timpearl05$$$"}
+2024-12-23 14:19:53 [info]: POST /login 200 - Request Body: {"email":"olaiyatemitope6@gmail.com","password":"TemitopeOlaiya123#"}
+2024-12-23 14:21:10 [info]: PUT /67694f8f1c2112142271c3be/lessons/67694e791c2112142271c3b9/completion 200 - Request Body: {"percentage":100}
+2024-12-23 14:21:18 [info]: POST /login 200 - Request Body: {"email":"olaiyatemitope6@gmail.com","password":"TemitopeOlaiya123#"}
+2024-12-23 14:22:00 [info]: PATCH /67694f8f1c2112142271c3be/move-to-ongoing 500
+2024-12-23 14:22:28 [info]: POST /login 200 - Request Body: {"email":"backendseun@gmail.com","password":"OluwaseunOdueso123#"}
+2024-12-23 14:22:58 [info]: PATCH /67694f8f1c2112142271c3be/move-to-ongoing 500
+2024-12-23 14:23:43 [info]: PATCH /67694f8f1c2112142271c3be/move-to-ongoing 200
+2024-12-23 14:23:51 [info]: PUT /67694f8f1c2112142271c3be/lessons/67694e791c2112142271c3b9/completion 200 - Request Body: {"percentage":100}
+2024-12-23 14:24:01 [info]: GET /user/67694f8f1c2112142271c3be 200
+2024-12-23 14:24:35 [info]: PUT /67694f8f1c2112142271c3be/lessons/67694e701c2112142271c3b6/completion 200 - Request Body: {"percentage":100}
+2024-12-23 14:24:40 [info]: GET /user/67694f8f1c2112142271c3be 200
+2024-12-23 14:25:04 [info]: PUT /67694f8f1c2112142271c3be/lessons/67694e5a1c2112142271c3b3/completion 500 - Request Body: {"percentage":100}
+2024-12-23 14:29:05 [info]: POST /single-create 401
+2024-12-23 14:29:19 [info]: POST /single-create 400 - Request Body: {"firstName":"Timpel","lastName":"Timpearl","email":"bimbo@gmail.com","userId":"2024-08-01","password":"Timpearl05$$$","country":"United States of America","username":"Timpearl","otherName":"Timileyin","phone":"+2349066318539","userType":"learner","gender":"female","dateOfBirth":"05-04-2004","address":"38, Ogunlana street","city":"Alimosho","LGA":"Alimosho","state":"Lagos","officeAddress":"1A, Hughes Street","officeCity":"Alagomeji","officeLGA":"Yaba","officeState":"Lagos","employerName":"Mr Green"}
+2024-12-23 14:30:12 [info]: POST /single-create 201 - Request Body: {"firstName":"Timpel","lastName":"Timpearl","email":"bimpe@gmail.com","userId":"2024-08-01","password":"Timpearl05$$$","country":"United States of America","username":"Timpearl","otherName":"Timileyin","phone":"+2349066318539","userType":"learner","gender":"female","dateOfBirth":"05-04-2004","address":"38, Ogunlana street","city":"Alimosho","LGA":"Alimosho","state":"Lagos","officeAddress":"1A, Hughes Street","officeCity":"Alagomeji","officeLGA":"Yaba","officeState":"Lagos","employerName":"Mr Green"}
+2024-12-23 14:32:16 [info]: POST /login 200 - Request Body: {"email":"bimpe@gmail.com","password":"Timpearl05$$$"}
+2024-12-23 14:34:31 [info]: POST /67694f8f1c2112142271c3be/assign 200 - Request Body: {"userIds":["676965e49626eab20cafeb69","6765a6bc52bacc7927951296","676595af24be40773d0d0863","674d6507cad288132dd56fc1","6751a65b6d5988016085da8d","67409ce32de7105d7831d2f9"],"dueDate":"12-31-2024"}
+2024-12-23 14:34:47 [info]: PATCH /67694f8f1c2112142271c3be/move-to-ongoing 200
+2024-12-23 14:34:55 [info]: PUT /67694f8f1c2112142271c3be/lessons/67694e5a1c2112142271c3b3/completion 200 - Request Body: {"percentage":100}
+2024-12-23 14:35:13 [info]: PUT /67694f8f1c2112142271c3be/lessons/67694e701c2112142271c3b6/completion 200 - Request Body: {"percentage":100}
+2024-12-23 14:35:29 [info]: GET /user/67694f8f1c2112142271c3be 200
+2024-12-23 14:36:03 [info]: PUT /67694f8f1c2112142271c3be/lessons/67694e791c2112142271c3b9/completion 200 - Request Body: {"percentage":100}
+2024-12-23 14:36:11 [info]: GET /user/67694f8f1c2112142271c3be 200
+2024-12-23 14:36:17 [info]: POST /login 200 - Request Body: {"email":"bimpe@gmail.com","password":"Timpearl05$$$"}
+2024-12-23 14:38:41 [info]: POST /lesson 200 - Request Body: {"title":"This is the title 2","objectives":"This is the objective for this lesson 2","link":"https://www.youtube.com"}
+2024-12-23 14:38:58 [info]: POST /lesson 200 - Request Body: {"title":"This is the title 2","objectives":"This is the objective for this lesson 2","link":"https://www.youtube.com"}
+2024-12-23 14:39:11 [info]: POST /lesson 200 - Request Body: {"title":"This is the title 2","objectives":"This is the objective for this lesson 2","link":"https://www.youtube.com"}
+2024-12-23 14:40:08 [info]: POST /objective 201 - Request Body: {"title":"Mixed Question Types Quiz","description":"A quiz with various question types to test your knowledge.","marksPerQuestion":5,"numberOfTrials":5,"purpose":"Learning assessment","passMark":60,"duration":30,"totalMark":100,"startDate":"2024-11-25","endDate":"2024-12-01","questions":[{"question":"The Eiffel Tower is in London.","type":"True or False","answer":"false","mark":15},{"question":"______ is the largest ocean on Earth.","type":"Fill in the Gap","answer":"Pacific Ocean","mark":25},{"question":"Is climate change a global concern?","type":"Yes or No","answer":"yes","mark":15},{"question":"Which of these is a prime number?","type":"Multichoice","options":["4","6","7","9"],"answer":"7","mark":15},{"question":"Is a Dog a mammal?","type":"Yes or No","answer":"yes","mark":10}]}
+2024-12-23 14:40:43 [info]: POST /add 400 - Request Body: {"code":"WW-205","title":"Beginners guide to Medicine","objective":"Introduction to Biology I","instructorId":"67453884a835dc3c8062914d","duration":"six weeks","lessonFormat":".xls","lessons":["676967e19626eab20cafecb2","676967f29626eab20cafecb5","676967ff9626eab20cafecb8"],"assessments":["676968389626eab20cafecc1"],"certificate":["675fec0e6fe5ccac4b4ac00b"],"showInstructor":true}
+2024-12-23 14:40:52 [info]: POST /add 201 - Request Body: {"code":"WW-206","title":"Beginners guide to Medicine","objective":"Introduction to Biology I","instructorId":"67453884a835dc3c8062914d","duration":"six weeks","lessonFormat":".xls","lessons":["676967e19626eab20cafecb2","676967f29626eab20cafecb5","676967ff9626eab20cafecb8"],"assessments":["676968389626eab20cafecc1"],"certificate":["675fec0e6fe5ccac4b4ac00b"],"showInstructor":true}
+2024-12-23 14:41:18 [info]: POST /676968649626eab20cafecde/assign 200 - Request Body: {"userIds":["676965e49626eab20cafeb69","6765a6bc52bacc7927951296","676595af24be40773d0d0863","674d6507cad288132dd56fc1","6751a65b6d5988016085da8d","67409ce32de7105d7831d2f9"],"dueDate":"12-31-2024"}
+2024-12-23 14:41:31 [info]: PATCH /676968649626eab20cafecde/move-to-ongoing 200
+2024-12-23 14:42:17 [info]: PUT /676968649626eab20cafecde/lessons/676967e19626eab20cafecb2/completion 200 - Request Body: {"percentage":100}
+2024-12-23 14:42:34 [info]: PUT /676968649626eab20cafecde/lessons/676967f29626eab20cafecb5/completion 200 - Request Body: {"percentage":100}
+2024-12-23 14:42:48 [info]: GET /user/67694f8f1c2112142271c3be 200
+2024-12-23 14:43:08 [info]: GET /user/676968649626eab20cafecde 200
+2024-12-23 14:43:28 [info]: PUT /676968649626eab20cafecde/lessons/676967ff9626eab20cafecb8/completion 200 - Request Body: {"percentage":100}
+2024-12-23 14:43:32 [info]: GET /user/676968649626eab20cafecde 200
+2024-12-23 14:46:58 [info]: POST /676968389626eab20cafecc1/67641b594e36b15a4278cb20/take 404 - Request Body: {"answers":[{"questionId":"676968389626eab20cafecc2","answer":"false"},{"questionId":"676968389626eab20cafecc3","answer":"Pacific Ocean"},{"questionId":"676968389626eab20cafecc4","answer":"yes"},{"questionId":"676968389626eab20cafecc5","answer":"7"},{"questionId":"676968389626eab20cafecc6","answer":"no"}]}
+2024-12-23 14:47:30 [info]: POST /676968649626eab20cafecde/676968389626eab20cafecc1/take 201 - Request Body: {"answers":[{"questionId":"676968389626eab20cafecc2","answer":"false"},{"questionId":"676968389626eab20cafecc3","answer":"Pacific Ocean"},{"questionId":"676968389626eab20cafecc4","answer":"yes"},{"questionId":"676968389626eab20cafecc5","answer":"7"},{"questionId":"676968389626eab20cafecc6","answer":"no"}]}
+2024-12-23 14:47:47 [info]: GET /user/676968649626eab20cafecde 200
+2024-12-23 14:48:24 [info]: POST /objective 201 - Request Body: {"title":"Mixed Question Types Quiz","description":"A quiz with various question types to test your knowledge.","marksPerQuestion":5,"numberOfTrials":5,"purpose":"Learning assessment","passMark":60,"duration":30,"totalMark":100,"startDate":"2024-11-25","endDate":"2024-12-01","questions":[{"question":"The Eiffel Tower is in London.","type":"True or False","answer":"false","mark":15},{"question":"______ is the largest ocean on Earth.","type":"Fill in the Gap","answer":"Pacific Ocean","mark":25},{"question":"Is climate change a global concern?","type":"Yes or No","answer":"yes","mark":15},{"question":"Which of these is a prime number?","type":"Multichoice","options":["4","6","7","9"],"answer":"7","mark":15},{"question":"Is a Dog a mammal?","type":"Yes or No","answer":"yes","mark":10}]}
+2024-12-23 14:48:52 [info]: POST /add 400 - Request Body: {"code":"WW-206","title":"Beginners guide to Medicine","objective":"Introduction to Biology I","instructorId":"67453884a835dc3c8062914d","duration":"six weeks","lessonFormat":".xls","assessments":["67696a289626eab20cafee54"],"certificate":["675fec0e6fe5ccac4b4ac00b"],"showInstructor":true}
+2024-12-23 14:49:16 [info]: POST /add 201 - Request Body: {"code":"WW-207","title":"Beginners guide to Medicine","objective":"Introduction to Biology I","instructorId":"67453884a835dc3c8062914d","duration":"six weeks","lessonFormat":".xls","assessments":["67696a289626eab20cafee54"],"certificate":["675fec0e6fe5ccac4b4ac00b"],"showInstructor":true}
+2024-12-23 14:49:34 [info]: POST /67696a5c9626eab20cafee6b/assign 200 - Request Body: {"userIds":["676965e49626eab20cafeb69","6765a6bc52bacc7927951296","676595af24be40773d0d0863","674d6507cad288132dd56fc1","6751a65b6d5988016085da8d","67409ce32de7105d7831d2f9"],"dueDate":"12-31-2024"}
+2024-12-23 14:49:44 [info]: PATCH /67696a5c9626eab20cafee6b/move-to-ongoing 200
+2024-12-23 14:50:01 [info]: GET /user/676968649626eab20cafecde 200
+2024-12-23 14:50:15 [info]: GET /user/67696a5c9626eab20cafee6b 200
+2024-12-23 14:51:41 [info]: POST /676968649626eab20cafecde/676968389626eab20cafecc1/take 400 - Request Body: {"answers":[{"questionId":"67696a289626eab20cafee55","answer":"true"},{"questionId":"67696a289626eab20cafee56","answer":"Pacific Ocean"},{"questionId":"67696a289626eab20cafee57","answer":"no"},{"questionId":"67696a289626eab20cafee58","answer":"7"},{"questionId":"67696a289626eab20cafee54","answer":"no"}]}
+2024-12-23 14:52:34 [info]: POST /67696a5c9626eab20cafee6b/67696a289626eab20cafee54/take 400 - Request Body: {"answers":[{"questionId":"67696a289626eab20cafee55","answer":"true"},{"questionId":"67696a289626eab20cafee56","answer":"Pacific Ocean"},{"questionId":"67696a289626eab20cafee57","answer":"no"},{"questionId":"67696a289626eab20cafee58","answer":"7"},{"questionId":"67696a289626eab20cafee54","answer":"no"}]}
+2024-12-23 14:54:53 [info]: POST /67696a5c9626eab20cafee6b/67696a289626eab20cafee54/take 201 - Request Body: {"answers":[{"questionId":"67696a289626eab20cafee55","answer":"true"},{"questionId":"67696a289626eab20cafee56","answer":"Pacific Ocean"},{"questionId":"67696a289626eab20cafee57","answer":"no"},{"questionId":"67696a289626eab20cafee58","answer":"7"},{"questionId":"67696a289626eab20cafee59","answer":"no"}]}
+2024-12-23 14:55:01 [info]: GET /user/67696a5c9626eab20cafee6b 200
+2024-12-23 14:55:17 [info]: POST /login 200 - Request Body: {"email":"bimpe@gmail.com","password":"Timpearl05$$$"}
