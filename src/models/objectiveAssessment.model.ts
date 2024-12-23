@@ -14,7 +14,7 @@ export interface AssessmentInterface {
 }
 
 
-interface IObjectiveAssessment extends Document {
+export interface IObjectiveAssessment extends Document {
   organizationId: Schema.Types.ObjectId;
   title: string;
   description: string;
