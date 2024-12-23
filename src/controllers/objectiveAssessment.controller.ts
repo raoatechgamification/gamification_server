@@ -155,7 +155,7 @@ class ObjectAssessmentController {
     }
   }
 
-  async takeAndGradeAssessment(req: Request, res: Response) {
+  async takeAndGradeAssessmentt(req: Request, res: Response) {
     const { courseId, assessmentId } = req.params;
     const { answers } = req.body;
     const userId = req.user.id;
@@ -307,6 +307,166 @@ class ObjectAssessmentController {
       );
     }
   }  
+
+  async takeAndGradeAssessment(req: Request, res: Response) {
+    const { courseId, assessmentId } = req.params;
+    const { answers } = req.body;
+    const userId = req.user.id;
+
+    try {
+      const course = await Course.findById(courseId).populate("lessons");
+      if (!course) {
+        return ResponseHandler.failure(res, "Course not found", 404);
+      }
+
+      if (!course.lessons) {
+        return ResponseHandler.failure(res, "No lessons found for this course", 404);
+      }
+
+      // Check if all lessons are completed
+      const incompleteLessons = course.lessons.filter((lesson: any) => {
+        const completionDetail = lesson.completionDetails?.find(
+            (detail: any) => detail.userId.toString() === userId
+        );
+        return (completionDetail?.percentage || 0) < 100;
+      });
+
+      if (incompleteLessons.length > 0) {
+        return ResponseHandler.failure(
+          res,
+          "You must complete all lessons in the course before submitting assessments",
+          403
+        );
+      }
+
+      const assessment = await ObjectiveAssessment.findById(assessmentId);
+      if (!assessment) {
+        return ResponseHandler.failure(res, "Assessment not found", 404);
+      }
+
+      // Check submission attempts scoped by course
+      const submissionCount = await Submission.countDocuments({
+        learnerId: userId,
+        assessmentId,
+        courseId,
+      });
+
+      const maxTrials = assessment.numberOfTrials ?? Infinity;
+      const trialsLeft = (Math.max(0, maxTrials - submissionCount)) - 1;
+
+      if (submissionCount >= maxTrials) {
+        return ResponseHandler.failure(
+          res,
+          `You have exceeded the number of allowed attempts for this assessment in this course. Trials left: ${trialsLeft}`,
+          403
+        );
+      }
+
+      // Rest of the grading logic
+      const questionIds = assessment.questions.map((q: { _id: { toString: () => any } }) =>
+          q._id.toString()
+      );
+      const isValid = answers.every((answer: { questionId: { toString: () => any } }) =>
+          questionIds.includes(answer.questionId.toString())
+      );
+
+      if (!isValid) {
+        return ResponseHandler.failure(
+          res,
+          "Invalid question IDs or answers submitted",
+          400
+        );
+      }
+
+      let totalScore = 0;
+      const gradedAnswers = answers.map((answer: { questionId: { toString: () => any }; answer: any }) => {
+        const question = assessment.questions.find(
+          (q: { _id: { toString: () => any } }) => q._id.toString() === answer.questionId.toString()
+        );
+
+        if (question) {
+          const questionScore = question.mark ?? assessment.marksPerQuestion ?? 0;
+
+          if (String(question.answer).toLowerCase() === String(answer.answer).toLowerCase()) {
+              totalScore += questionScore;
+              return { ...answer, isCorrect: true };
+          }
+        }
+        return { ...answer, isCorrect: false };
+      });
+
+      const maxObtainableMarks = assessment.questions.reduce(
+        (sum: any, q: { mark: any }) => sum + (q.mark ?? assessment.marksPerQuestion ?? 0),
+        0
+      );
+
+      const percentageScore = Math.round((totalScore / maxObtainableMarks) * 100);
+      const passOrFail = percentageScore >= assessment.passMark ? "Pass" : "Fail";
+
+      const submission = await Submission.create({
+        learnerId: userId,
+        courseId,
+        assessmentId,
+        answer: answers,
+        gradedAnswers,
+        score: totalScore,
+        percentageScore,
+        status: "Graded",
+        passOrFail,
+      });
+
+      await Course.updateOne(
+        { _id: courseId, "learnerIds.userId": userId },
+        { $set: { "learnerIds.$.progress": 100 } }
+      );
+
+      const user = await User.findById(userId);
+      if (!user) {
+        return ResponseHandler.failure(res, "User not found", 404);
+      }
+
+      const ongoingProgram = user.ongoingPrograms?.find(
+        (program) => (program.course as ICourse)._id?.toString() === courseId
+      );
+
+      if (ongoingProgram) {
+        const isAlreadyCompleted = user.completedPrograms?.some(
+          (program) => (program.course as ICourse)._id?.toString() === courseId
+        );
+
+        if (!isAlreadyCompleted) {
+          const completedProgram = { ...ongoingProgram.course };
+          delete completedProgram.assignedLearnersIds;
+          delete completedProgram.learnerIds;
+
+          await User.updateOne(
+            { _id: userId },
+            {
+              $pull: { ongoingPrograms: { "course._id": courseId } },
+              $push: { completedPrograms: { course: completedProgram } },
+            }
+          );
+        }
+      }
+
+      return ResponseHandler.success(
+        res,
+        {
+          ...submission.toObject(),
+          maxObtainableMarks,
+          trialsLeft,
+        },
+        "Assessment submitted and graded successfully",
+        201
+      );
+    } catch (error: any) {
+      return ResponseHandler.failure(
+        res,
+        error.message || "Error processing assessment",
+        error.status || 500
+      );
+    }
+}
 
   async getAllAssessmentsForOrganization(req: Request, res: Response) {
     const organizationId = req.admin._id;
