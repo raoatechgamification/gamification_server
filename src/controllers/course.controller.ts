@@ -1127,6 +1127,36 @@ export class CourseController {
           { _id: courseId, "learnerIds.userId": userIdObjectId },
           { $set: { "learnerIds.$.progress": overallProgress } }
         );
+
+
+
+        //  NEW UPDATE !!!!!
+        if (overallProgress === 100 && totalAssessments === 0) {
+          const user = await User.findById(userId);
+          if (!user) {
+            return ResponseHandler.failure(res, "User not found", 404);
+          }
+
+          const ongoingProgram = user.ongoingPrograms?.find(
+            (program) => program._id?.toString() === courseId
+          );
+    
+          if (!ongoingProgram) {
+            return ResponseHandler.failure(
+              res,
+              "Course is not in the unattempted programs list",
+              400
+            );
+          }
+
+          await User.updateOne(
+            { _id: userId },
+            {
+              $pull: { ongoingPrograms: { "_id": courseId } },
+              $push: { completedPrograms: ongoingProgram },
+            }
+          );
+        }
       }
   
       return ResponseHandler.success(
@@ -1405,101 +1435,6 @@ export class CourseController {
       });
     }
   }  
-  
-  async realgetCourseDetails(req: Request, res: Response) {
-    try {
-      const { courseId } = req.params;
-      const userId = req.user.id;
-  
-      // Find the course by ID
-      const course = await Course.findById(courseId)
-        .populate('assessments');
-      if (!course) {
-        return res.status(404).json({
-          success: false,
-          message: 'Course not found',
-        });
-      }
-  
-      const lessons = course.lessons || [];
-      const assessments = course.assessments || [];
-  
-      // Fetch lesson details dynamically
-      const lessonDetails = await Promise.all(
-        lessons.map(async (lessonId) => {
-          const lesson = await Lesson.findById(lessonId);
-          if (!lesson) return null;
-  
-          // Fetch user's completion details
-          const userCompletion = lesson.completionDetails.find(
-            (detail) => detail.userId.toString() === userId
-          );
-          const completionPercentage = userCompletion ? userCompletion.percentage : 0;
-  
-          return {
-            id: lesson._id,
-            title: lesson.title,
-            objectives: lesson.objectives || '',
-            completionPercentage,
-            link: lesson.link || '',
-            files: lesson.files || [],
-          };
-        })
-      );
-  
-      const validLessons = lessonDetails.filter((lesson) => lesson !== null);
-  
-      // Calculate overall course completion percentage
-      const totalLessons = validLessons.length;
-      const completedLessons = validLessons.filter(
-        (lesson) => lesson!.completionPercentage === 100
-      ).length;
-  
-      const courseCompletionPercentage =
-        totalLessons > 0 ? Math.floor((completedLessons / totalLessons) * 100) : 0;
-  
-      // Append assessment data if available
-      const assessmentDetails = assessments.map((assessment: any) => ({
-        id: assessment._id,
-        title: assessment.title,
-        description: assessment.description,
-        totalMark: assessment.totalMark,
-        passMark: assessment.passMark,
-        duration: assessment.duration,
-      }));
-  
-      const completionStatus = {
-        completed: courseCompletionPercentage === 100,
-        completionPercentage: courseCompletionPercentage,
-        message:
-          courseCompletionPercentage === 100
-            ? 'Course completed successfully!'
-            : 'Course not yet completed. Complete all lessons and assessments.',
-      };
-  
-      // Send response
-      return res.status(200).json({
-        success: true,
-        message: 'Success',
-        data: {
-          course: {
-            id: course._id,
-            title: course.title,
-            lessons: validLessons,
-            completionStatus,
-            assessments: assessmentDetails,
-          },
-        },
-      });
-    } catch (error: any) {
-      console.error('Error fetching course details:', error);
-      return res.status(500).json({
-        success: false,
-        message: 'Error fetching course details',
-        error: error.message,
-      });
-    }
-  }
   
   async moveCourseToOngoingList(req: Request, res: Response) {
     try {
