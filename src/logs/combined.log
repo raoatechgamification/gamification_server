@@ -5817,3 +5817,36 @@
 2024-12-23 10:12:55 [info]: POST /lesson 200 - Request Body: {"title":"This is the title 4","objectives":"This is the objective for this lesson 4","link":"https://www.youtube.com"}
 2024-12-23 10:13:08 [info]: POST /lesson 200 - Request Body: {"title":"This is the title 4","objectives":"This is the objective for this lesson 4","link":"https://www.youtube.com"}
 2024-12-23 10:16:04 [info]: POST /add 201 - Request Body: {"code":"VSC-247","title":"Beginners guide to Chemistry","objective":"Introduction to Biology","instructorId":"67453884a835dc3c8062914d","duration":"six weeks","lessonFormat":".xls","lessons":["676929630716bd27ecf88f3f","676929750716bd27ecf88f42","676929810716bd27ecf88f45","676929970716bd27ecf88f48","676929a40716bd27ecf88f4b"],"certificate":["675fec0e6fe5ccac4b4ac00b"],"showInstructor":true}
+2024-12-23 11:27:54 [info]: POST /67692a530716bd27ecf88f50/assign 200 - Request Body: {"userIds":["6765a6bc52bacc7927951296","676595af24be40773d0d0863","674d6507cad288132dd56fc1","6751a65b6d5988016085da8d","67409ce32de7105d7831d2f9"],"dueDate":"12-31-2024"}
+2024-12-23 11:28:55 [info]: PATCH /67692a530716bd27ecf88f50/move-to-ongoing 200
+2024-12-23 11:29:10 [info]: PUT /67692a530716bd27ecf88f50/lessons/676929630716bd27ecf88f3f/completion 200 - Request Body: {"percentage":100}
+2024-12-23 11:29:28 [info]: GET /user/67692a530716bd27ecf88f50 200
+2024-12-23 11:29:57 [info]: PUT /67692a530716bd27ecf88f50/lessons/676929750716bd27ecf88f42/completion 200 - Request Body: {"percentage":100}
+2024-12-23 11:30:00 [info]: GET /user/67692a530716bd27ecf88f50 200
+2024-12-23 11:30:17 [info]: PUT /67692a530716bd27ecf88f50/lessons/676929810716bd27ecf88f45/completion 200 - Request Body: {"percentage":100}
+2024-12-23 11:30:21 [info]: GET /user/67692a530716bd27ecf88f50 200
+2024-12-23 11:31:06 [info]: PUT /67692a530716bd27ecf88f50/lessons/676929970716bd27ecf88f49/completion 404 - Request Body: {"percentage":100}
+2024-12-23 11:31:15 [info]: PUT /67692a530716bd27ecf88f50/lessons/676929970716bd27ecf88f48/completion 200 - Request Body: {"percentage":100}
+2024-12-23 11:31:19 [info]: GET /user/67692a530716bd27ecf88f50 200
+2024-12-23 11:31:31 [info]: PUT /67692a530716bd27ecf88f50/lessons/676929a40716bd27ecf88f4b/completion 200 - Request Body: {"percentage":100}
+2024-12-23 11:31:34 [info]: GET /user/67692a530716bd27ecf88f50 200
+2024-12-23 11:31:53 [info]: POST /login 200 - Request Body: {"email":"tobe@gmail.com","password":"Timpearl05$$$"}
+2024-12-23 11:39:03 [info]: POST /objective 201 - Request Body: {"title":"Mixed Question Types Quiz","description":"A quiz with various question types to test your knowledge.","marksPerQuestion":5,"numberOfTrials":5,"purpose":"Learning assessment","passMark":60,"duration":30,"totalMark":100,"startDate":"2024-11-25","endDate":"2024-12-01","questions":[{"question":"The Eiffel Tower is in London.","type":"True or False","answer":"false","mark":15},{"question":"______ is the largest ocean on Earth.","type":"Fill in the Gap","answer":"Pacific Ocean","mark":25},{"question":"Is climate change a global concern?","type":"Yes or No","answer":"yes","mark":15},{"question":"Which of these is a prime number?","type":"Multichoice","options":["4","6","7","9"],"answer":"7","mark":15},{"question":"Is a Dog a mammal?","type":"Yes or No","answer":"yes","mark":10}]}
+2024-12-23 11:42:26 [info]: POST /add 201 - Request Body: {"code":"VB-247","title":"Beginners guide to Physics","objective":"Introduction to Biology I","instructorId":"67453884a835dc3c8062914d","duration":"six weeks","lessonFormat":".xls","assessments":["67693dc7f086670de091dfb2"],"certificate":["675fec0e6fe5ccac4b4ac00b"],"showInstructor":true}
+2024-12-23 11:42:54 [info]: POST /67693e92f086670de091dfc1/assign 200 - Request Body: {"userIds":["6765a6bc52bacc7927951296","676595af24be40773d0d0863","674d6507cad288132dd56fc1","6751a65b6d5988016085da8d","67409ce32de7105d7831d2f9"],"dueDate":"12-31-2024"}
+2024-12-23 11:43:06 [info]: POST /login 200 - Request Body: {"email":"tobe@gmail.com","password":"Timpearl05$$$"}
+2024-12-23 11:43:20 [info]: PATCH /67693e92f086670de091dfc1/move-to-ongoing 200
+2024-12-23 11:43:37 [info]: GET /user/67693e92f086670de091dfc1 200
+2024-12-23 11:45:56 [info]: POST /67693e92f086670de091dfc1/67693dc7f086670de091dfb2/take 201 - Request Body: {"answers":[{"questionId":"67693dc7f086670de091dfb3","answer":"false"},{"questionId":"67693dc7f086670de091dfb4","answer":"Pacific Ocean"},{"questionId":"67693dc7f086670de091dfb5","answer":"yes"},{"questionId":"67693dc7f086670de091dfb6","answer":"7"},{"questionId":"67693dc7f086670de091dfb7","answer":"no"}]}
+2024-12-23 11:46:07 [info]: GET /user/67693e92f086670de091dfc1 200
+2024-12-23 12:47:48 [info]: POST /login 200 - Request Body: {"email":"seunoduez@gmail.com","password":"Timpearl05$$$"}
+2024-12-23 12:47:56 [info]: POST /login 200 - Request Body: {"email":"tobe@gmail.com","password":"Timpearl05$$$"}
+2024-12-23 12:48:40 [info]: POST /lesson 200 - Request Body: {"title":"This is the title","objectives":"This is the objective for this lesson","link":"https://www.youtube.com"}
+2024-12-23 12:49:46 [info]: POST /lesson 200 - Request Body: {"title":"This is the title","objectives":"This is the objective for this lesson","link":"https://www.youtube.com"}
+2024-12-23 12:50:08 [info]: POST /lesson 200 - Request Body: {"title":"This is the title 2","objectives":"This is the objective for this lesson 2","link":"https://www.youtube.com"}
+2024-12-23 12:50:18 [info]: POST /lesson 200 - Request Body: {"title":"This is the title 2","objectives":"This is the objective for this lesson 2","link":"https://www.youtube.com"}
+2024-12-23 12:54:55 [info]: POST /add 201 - Request Body: {"code":"WW-205","title":"Beginners guide to Medicine","objective":"Introduction to Biology I","instructorId":"67453884a835dc3c8062914d","duration":"six weeks","lessonFormat":".xls","lessons":["67694e5a1c2112142271c3b3","67694e701c2112142271c3b6","67694e791c2112142271c3b9"],"certificate":["675fec0e6fe5ccac4b4ac00b"],"showInstructor":true}
+2024-12-23 12:55:30 [info]: POST /67694f8f1c2112142271c3be/assign 200 - Request Body: {"userIds":["6765a6bc52bacc7927951296","676595af24be40773d0d0863","674d6507cad288132dd56fc1","6751a65b6d5988016085da8d","67409ce32de7105d7831d2f9"],"dueDate":"12-31-2024"}
+2024-12-23 12:55:33 [info]: POST /login 200 - Request Body: {"email":"tobe@gmail.com","password":"Timpearl05$$$"}
+2024-12-23 12:57:15 [info]: PATCH /67694f8f1c2112142271c3be/move-to-ongoing 200
+2024-12-23 12:57:22 [info]: POST /login 200 - Request Body: {"email":"tobe@gmail.com","password":"Timpearl05$$$"}
