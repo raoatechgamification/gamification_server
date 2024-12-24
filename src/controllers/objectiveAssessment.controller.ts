@@ -282,6 +282,17 @@ class ObjectAssessmentController {
           const completedProgram = { ...ongoingProgram.course };
           delete completedProgram.assignedLearnersIds;
           delete completedProgram.learnerIds;
+
+          // await User.updateOne(
+          //   { _id: userId },
+          //   {
+          //     $set: {
+          //       ongoingPrograms: { $ifNull: ["$ongoingPrograms", []] },
+          //       completedPrograms: { $ifNull: ["$completedPrograms", []] },
+          //       unattemptedPrograms: { $ifNull: ["$unattemptedPrograms", []] },
+          //     },
+          //   }
+          // );
     
           await User.updateOne(
             { _id: userId },

@@ -725,6 +725,23 @@ export class CourseController {
       const sanitizedCourse = { ...course };
       delete sanitizedCourse.assignedLearnersIds;
       delete sanitizedCourse.learnerIds;
+
+      await User.updateMany(
+        {
+          _id: { $in: validUsers.map((user) => user._id) },
+          $or: [
+            { unattemptedPrograms: { $exists: false } },
+          ],
+        },
+        {
+          $set: {
+            ongoingPrograms: [],
+            completedPrograms: [],
+            unattemptedPrograms: [],
+          },
+        }
+      );
+      
   
       const bulkUpdates = validUsers.map((user) => ({
         updateOne: {
@@ -1196,6 +1213,17 @@ export class CourseController {
           await User.updateOne(
             { _id: userId },
             {
+              $set: {
+                ongoingPrograms: { $ifNull: ["$ongoingPrograms", []] },
+                completedPrograms: { $ifNull: ["$completedPrograms", []] },
+                unattemptedPrograms: { $ifNull: ["$unattemptedPrograms", []] },
+              },
+            }
+          );
+
+          await User.updateOne(
+            { _id: userId },
+            {
               $pull: { ongoingPrograms: { "course._id": courseId } },
               $push: { completedPrograms: { course: completedProgram} },
             }
@@ -1648,7 +1676,7 @@ export class CourseController {
   //   }
   // }
 
-  async moveCourseToOngoingList(req: Request, res: Response) {
+  async moveCourseToOngoingListt(req: Request, res: Response) {
     try {
       const { courseId } = req.params;
       const userId = req.user.id;
@@ -1692,6 +1720,19 @@ export class CourseController {
       const sanitizedCourse = { ...unattemptedProgram.course };
       delete sanitizedCourse.assignedLearnersIds;
       delete sanitizedCourse.learnerIds;
+
+      console.log("Handler got here")
+
+      await User.updateOne(
+        { _id: userId },
+        {
+          $set: {
+            ongoingPrograms: { $ifNull: ["$ongoingPrograms", []] },
+            completedPrograms: { $ifNull: ["$completedPrograms", []] },
+            unattemptedPrograms: { $ifNull: ["$unattemptedPrograms", []] },
+          },
+        }
+      );
   
       await User.updateOne(
         { _id: userId },
@@ -1715,4 +1756,90 @@ export class CourseController {
       );
     }
   }  
+
+  async moveCourseToOngoingList(req: Request, res: Response) {
+    try {
+      const { courseId } = req.params;
+      const userId = req.user.id;
+  
+      // Find the course
+      const course = await Course.findById(courseId).lean();
+      if (!course) {
+        return ResponseHandler.failure(res, "Course not found", 404);
+      }
+  
+      // Find the user
+      const user = await User.findById(userId);
+      if (!user) {
+        return ResponseHandler.failure(res, "User not found", 404);
+      }
+  
+      // Ensure array fields are initialized
+      await User.updateOne(
+        { _id: userId },
+        {
+          $set: {
+            ongoingPrograms: user.ongoingPrograms ?? [],
+            completedPrograms: user.completedPrograms ?? [],
+            unattemptedPrograms: user.unattemptedPrograms ?? [],
+          },
+        }
+      );
+  
+      // Check assigned programs
+      const assignedProgram = user.assignedPrograms?.find(
+        (program) =>
+          program?.courseId?.toString() === courseId &&
+          (program?.status === "paid" || program?.status === "free")
+      );
+      if (!assignedProgram) {
+        return ResponseHandler.failure(
+          res,
+          "Course is not assigned to the user, or it is not paid/free",
+          400
+        );
+      }
+  
+      // Check unattempted programs
+      const unattemptedProgram = user.unattemptedPrograms?.find(
+        (program) =>
+          (program?.course as ICourse)?._id?.toString() === courseId
+      );
+      if (!unattemptedProgram) {
+        return ResponseHandler.failure(
+          res,
+          "Course is not in the unattempted programs list",
+          400
+        );
+      }
+  
+      // Sanitize course data
+      const sanitizedCourse = { ...unattemptedProgram.course };
+      delete sanitizedCourse.assignedLearnersIds;
+      delete sanitizedCourse.learnerIds;
+  
+      // Update the user document
+      await User.updateOne(
+        { _id: userId },
+        {
+          $pull: { unattemptedPrograms: { "course._id": courseId } },
+          $push: { ongoingPrograms: { course: sanitizedCourse } },
+        }
+      );
+  
+      return ResponseHandler.success(
+        res,
+        { courseId, title: course.title },
+        "Course moved to ongoing programs successfully"
+      );
+    } catch (error: any) {
+      console.error("Error moving course to ongoing list:", error.message);
+      return ResponseHandler.failure(
+        res,
+        "Error moving course to ongoing list",
+        500
+      );
+    }
+  }
+    
 }
