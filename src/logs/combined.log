@@ -6026,3 +6026,29 @@
 2024-12-24 15:56:56 [info]: POST /676abe2f27fd7b301f7760b2/676a9f2e2b97cb4cbd07ff7b/take 201 - Request Body: {"answers":[{"questionId":"676a9f2e2b97cb4cbd07ff7c","answer":"false"},{"questionId":"676a9f2e2b97cb4cbd07ff7d","answer":"Pacific Ocean"},{"questionId":"676a9f2e2b97cb4cbd07ff7e","answer":"yes"},{"questionId":"676a9f2e2b97cb4cbd07ff7f","answer":"7"},{"questionId":"676a9f2e2b97cb4cbd07ff80","answer":"no"}]}
 2024-12-24 15:57:44 [info]: GET /user/67642cbf7f34c03dff42d943 200
 2024-12-24 15:57:58 [info]: GET /user/676abe2f27fd7b301f7760b2 200
+2024-12-24 16:34:42 [info]: POST /login 200 - Request Body: {"email":"lola@gmail.com","password":"Tioluwani05$"}
+2024-12-24 16:48:00 [info]: POST /login 400 - Request Body: {"email":"seunodueso@gmail.com","password":"OluwaseunOdueso123#"}
+2024-12-24 16:48:30 [info]: POST /login 400 - Request Body: {"email":"seunodueso@gmail.com","password":"DefaultPassword123"}
+2024-12-24 16:50:33 [info]: POST /login 200 - Request Body: {"email":"seunodueso@gmail.com","password":"Timpearl05$$$"}
+2024-12-24 16:51:40 [info]: POST /676abe2f27fd7b301f7760b2/assign 200 - Request Body: {"userIds":["6756cc88393ceb0beb0bd71e","6765a6bc52bacc7927951296","676595af24be40773d0d0863","674d6507cad288132dd56fc1","6751a65b6d5988016085da8d","67409ce32de7105d7831d2f9"],"dueDate":"12-31-2024"}
+2024-12-24 16:52:28 [info]: PATCH /676abe2f27fd7b301f7760b2/move-to-ongoing 200
+2024-12-24 16:52:43 [info]: POST /login 200 - Request Body: {"email":"seunodueso@gmail.com","password":"Timpearl05$$$"}
+2024-12-24 16:53:07 [info]: POST /login 200 - Request Body: {"email":"seunodueso@gmail.com","password":"Timpearl05$$$"}
+2024-12-24 16:53:22 [info]: POST /676abe2f27fd7b301f7760b2/676a9f2e2b97cb4cbd07ff7b/take 201 - Request Body: {"answers":[{"questionId":"676a9f2e2b97cb4cbd07ff7c","answer":"false"},{"questionId":"676a9f2e2b97cb4cbd07ff7d","answer":"Pacific Ocean"},{"questionId":"676a9f2e2b97cb4cbd07ff7e","answer":"yes"},{"questionId":"676a9f2e2b97cb4cbd07ff7f","answer":"7"},{"questionId":"676a9f2e2b97cb4cbd07ff80","answer":"no"}]}
+2024-12-24 16:53:27 [info]: GET /user/676abe2f27fd7b301f7760b2 200
+2024-12-24 16:53:35 [info]: POST /login 200 - Request Body: {"email":"seunodueso@gmail.com","password":"Timpearl05$$$"}
+2024-12-24 16:54:21 [info]: POST /add 201 - Request Body: {"code":"MS-245","title":"Beginners guide to Medicine","objective":"Introduction to Biology I","instructorId":"67453884a835dc3c8062914d","duration":"six weeks","lessonFormat":".xls","assessments":["676a9f2e2b97cb4cbd07ff7b"],"announcements":[{"title":"Become a doctor now","details":"This is your very chance to become a doctor"}],"certificate":["675fec0e6fe5ccac4b4ac00b"],"showInstructor":true}
+2024-12-24 16:54:35 [info]: POST /676ad92cc420e7779defc567/assign 200 - Request Body: {"userIds":["6756cc88393ceb0beb0bd71e","6765a6bc52bacc7927951296","676595af24be40773d0d0863","674d6507cad288132dd56fc1","6751a65b6d5988016085da8d","67409ce32de7105d7831d2f9"],"dueDate":"12-31-2024"}
+2024-12-24 16:54:40 [info]: POST /login 200 - Request Body: {"email":"seunodueso@gmail.com","password":"Timpearl05$$$"}
+2024-12-24 16:55:20 [info]: POST /add 201 - Request Body: {"code":"MC-245","title":"Beginners guide to Medicine","objective":"Introduction to Biology I","instructorId":"67453884a835dc3c8062914d","duration":"six weeks","lessonFormat":".xls","assessments":["676a9f2e2b97cb4cbd07ff7b"],"announcements":[{"title":"Become a doctor now","details":"This is your very chance to become a doctor"}],"certificate":["675fec0e6fe5ccac4b4ac00b"],"showInstructor":true}
+2024-12-24 16:55:51 [info]: POST /676ad967c420e7779defc69a/assign 200 - Request Body: {"userIds":["6756cc88393ceb0beb0bd71e","6765a6bc52bacc7927951296","676595af24be40773d0d0863","674d6507cad288132dd56fc1","6751a65b6d5988016085da8d","67409ce32de7105d7831d2f9"],"dueDate":"12-31-2024"}
+2024-12-24 16:56:00 [info]: POST /login 200 - Request Body: {"email":"seunodueso@gmail.com","password":"Timpearl05$$$"}
+2024-12-24 16:56:37 [info]: PATCH /676ad967c420e7779defc69a/move-to-ongoing 200
+2024-12-24 16:56:44 [info]: POST /login 200 - Request Body: {"email":"seunodueso@gmail.com","password":"Timpearl05$$$"}
+2024-12-24 16:57:29 [info]: POST /676ad967c420e7779defc69a/676a9f2e2b97cb4cbd07ff7b/take 201 - Request Body: {"answers":[{"questionId":"676a9f2e2b97cb4cbd07ff7c","answer":"false"},{"questionId":"676a9f2e2b97cb4cbd07ff7d","answer":"Pacific Ocean"},{"questionId":"676a9f2e2b97cb4cbd07ff7e","answer":"yes"},{"questionId":"676a9f2e2b97cb4cbd07ff7f","answer":"7"},{"questionId":"676a9f2e2b97cb4cbd07ff80","answer":"no"}]}
+2024-12-24 16:57:47 [info]: GET /user/676ad967c420e7779defc69a 200
+2024-12-24 16:57:57 [info]: POST /login 200 - Request Body: {"email":"seunodueso@gmail.com","password":"Timpearl05$$$"}
+2024-12-24 16:58:46 [info]: PATCH /676ad92cc420e7779defc567/move-to-ongoing 200
+2024-12-24 16:59:24 [info]: POST /login 200 - Request Body: {"email":"seunodueso@gmail.com","password":"Timpearl05$$$"}
+2024-12-24 16:59:51 [info]: POST /676ad92cc420e7779defc567/676a9f2e2b97cb4cbd07ff7b/take 201 - Request Body: {"answers":[{"questionId":"676a9f2e2b97cb4cbd07ff7c","answer":"false"},{"questionId":"676a9f2e2b97cb4cbd07ff7d","answer":"Pacific Ocean"},{"questionId":"676a9f2e2b97cb4cbd07ff7e","answer":"yes"},{"questionId":"676a9f2e2b97cb4cbd07ff7f","answer":"7"},{"questionId":"676a9f2e2b97cb4cbd07ff80","answer":"no"}]}
+2024-12-24 17:00:00 [info]: POST /login 200 - Request Body: {"email":"seunodueso@gmail.com","password":"Timpearl05$$$"}
