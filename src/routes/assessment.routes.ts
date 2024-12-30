@@ -26,7 +26,7 @@ const {
 
 const { 
   createObjectiveAssessment, 
-  uploadQuestionBank,
+  bulkUploadAssessments,
   editObjectiveAssessment,
   takeAndGradeAssessment,
   getAssessmentById,
@@ -54,12 +54,20 @@ router.post(
 )
 
 router.post(
-  "/question-bank/upload",
+  "/bulk-upload",
   authenticate,
   authorize("admin"),
   uploadMiddleware,
-  uploadQuestionBank
+  bulkUploadAssessments
 )
+
+// router.post(
+//   "/question-bank/upload",
+//   authenticate,
+//   authorize("admin"),
+//   uploadMiddleware,
+//   uploadQuestionBank
+// )
 
 router.put(
   "/:assessmentId",
