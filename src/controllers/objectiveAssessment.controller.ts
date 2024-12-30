@@ -1,14 +1,40 @@
 import { Request, Response } from "express";
 import mongoose from "mongoose";
-import ObjectiveAssessment from "../models/objectiveAssessment.model";
+import * as XLSX from "xlsx";
+import fileUpload from "express-fileupload";
+import ObjectiveAssessment, {
+  IObjectiveAssessment,
+} from "../models/objectiveAssessment.model";
+import QuestionBank from "../models/questionBank.model";
 import Submission from "../models/submission.model";
 import Course, { ICourse } from "../models/course.model";
-import User from "../models/user.model"
+import User from "../models/user.model";
 import { ResponseHandler } from "../middlewares/responseHandler.middleware";
+
 import {
   AssessmentInterface,
   AssessmentQuestionInterface,
 } from "../models/objectiveAssessment.model";
+
+interface ExcelRow {
+  title: string;
+  description: string;
+  marksPerQuestion: number;
+  numberOfTrials?: number;
+  purpose?: string;
+  position: number;
+  totalMark: number;
+  passMark: number;
+  duration: number;
+  assessmentCode: string;
+  questions: {
+    question: string;
+    type: string;
+    options?: string[];
+    answer: string;
+    mark: number;
+  }[];
+}
 
 class ObjectAssessmentController {
   async createObjectiveAssessment(req: Request, res: Response) {
@@ -54,7 +80,6 @@ class ObjectAssessmentController {
 
       const code = assessmentCode || `EXT-${position}`;
 
-      
       const newAssessment = new ObjectiveAssessment({
         organizationId,
         title,
@@ -72,7 +97,6 @@ class ObjectAssessmentController {
         position,
       });
 
-     
       await newAssessment.save();
 
       return ResponseHandler.success(
@@ -90,9 +114,91 @@ class ObjectAssessmentController {
     }
   }
 
+  async uploadQuestionBank(req: Request, res: Response) {
+    try {
+      const { name } = req.body;
+      const organizationId = req.admin._id;
+      const file = req.file;
+
+      if (!file) {
+        return res.status(400).json({ message: "No file uploaded" });
+      }
+
+      // Parse the Excel file
+      const workbook = XLSX.read(file.buffer, { type: "buffer" });
+      const sheetName = workbook.SheetNames[0];
+      const sheetData: unknown[] = XLSX.utils.sheet_to_json(
+        workbook.Sheets[sheetName]
+      );
+
+      if (!Array.isArray(sheetData) || sheetData.length === 0) {
+        return res
+          .status(400)
+          .json({ message: "The uploaded file is empty or invalid" });
+      }
+
+      // Save assessments
+      const assessmentIds: string[] = [];
+      
+      for (const rawRow of sheetData) {
+        const row = rawRow as any;
+  
+        // Parse the `questions` field if it is a string
+        let questions = [];
+        try {
+          questions =
+            typeof row.questions === "string" ? JSON.parse(row.questions) : row.questions;
+        } catch (error: any) {
+          throw new Error(`Invalid JSON format in questions field: ${error.message}`);
+        }
+  
+        // Ensure questions match the schema
+        if (!Array.isArray(questions) || questions.some((q) => !q.question || !q.answer || !q.type)) {
+          return ResponseHandler.failure(res, "Invalid questions format", 400);
+        }
+  
+        // Fetch the last assessment to calculate position
+        const lastAssessment = await ObjectiveAssessment.findOne({ organizationId }).sort({
+          position: -1,
+        });
+        const position = lastAssessment ? lastAssessment.position + 1 : 1;
+  
+        // Generate assessment code if not provided
+        const code = row.assessmentCode || `EXT-${position}`;
+  
+        const assessmentData = {
+          organizationId,
+          title: row.title,
+          description: row.description,
+          marksPerQuestion: row.marksPerQuestion,
+          numberOfTrials: row.numberOfTrials || null,
+          purpose: row.purpose || null,
+          position,
+          totalMark: row.totalMark,
+          passMark: row.passMark,
+          duration: row.duration,
+          assessmentCode: code,
+          questions, // Parsed questions field
+        };
+  
+        // Create the assessment in the database
+        const newAssessment = await ObjectiveAssessment.create(assessmentData);
+        assessmentIds.push(newAssessment._id);
+      }
+  
+      return ResponseHandler.success(res, {assessmentIds}, "Assessments uploaded successfully");
+    } catch (error: any) {
+      return ResponseHandler.failure(
+        res,
+        error.message || "Error uploading question bank:",
+        error
+      );
+    }
+  }
+
   async editObjectiveAssessment(req: Request, res: Response) {
     try {
-      const { assessmentId } = req.params; 
+      const { assessmentId } = req.params;
       const {
         title,
         description,
@@ -107,22 +213,23 @@ class ObjectAssessmentController {
         questions,
         assessmentCode,
       } = req.body;
-  
-      const organizationId = req.admin._id; 
-  
+
+      const organizationId = req.admin._id;
+
       const assessment = await ObjectiveAssessment.findOne({
         _id: assessmentId,
         organizationId,
       });
-  
+
       if (!assessment) {
         return ResponseHandler.failure(res, "Assessment not found.", 404);
       }
-  
+
       // Update the assessment details
       assessment.title = title || assessment.title;
       assessment.description = description || assessment.description;
-      assessment.marksPerQuestion = marksPerQuestion || assessment.marksPerQuestion;
+      assessment.marksPerQuestion =
+        marksPerQuestion || assessment.marksPerQuestion;
       assessment.numberOfTrials = numberOfTrials || assessment.numberOfTrials;
       assessment.purpose = purpose || assessment.purpose;
       assessment.passMark = passMark || assessment.passMark;
@@ -131,15 +238,15 @@ class ObjectAssessmentController {
       assessment.startDate = startDate || assessment.startDate;
       assessment.endDate = endDate || assessment.endDate;
       assessment.assessmentCode = assessmentCode || assessment.assessmentCode;
-  
+
       // Replace questions if provided
       if (questions) {
         assessment.questions = questions;
       }
-  
+
       // Save updated assessment
       await assessment.save();
-  
+
       return ResponseHandler.success(
         res,
         assessment,
@@ -155,169 +262,169 @@ class ObjectAssessmentController {
     }
   }
 
-  async takeAndGradeAssessmentt(req: Request, res: Response) {
-    const { courseId, assessmentId } = req.params;
-    const { answers } = req.body;
-    const userId = req.user.id;
-  
-    try {
-      const course = await Course.findById(courseId).populate("lessons");
-      if (!course) {
-        return ResponseHandler.failure(res, "Course not found", 404);
-      }
-  
-      if (!course.lessons) {
-        return ResponseHandler.failure(res, "No lessons found for this course", 404);
-      }
-  
-      // Check if all lessons are completed
-      const incompleteLessons = course.lessons.filter((lesson: any) => {
-        const completionDetail = lesson.completionDetails?.find(
-          (detail: any) => detail.userId.toString() === userId
-        );
-        return (completionDetail?.percentage || 0) < 100;
-      });
-  
-      if (incompleteLessons.length > 0) {
-        return ResponseHandler.failure(
-          res,
-          "You must complete all lessons in the course before submitting assessments",
-          403
-        );
-      }
-  
-      const assessment = await ObjectiveAssessment.findById(assessmentId);
-      if (!assessment) {
-        return ResponseHandler.failure(res, "Assessment not found", 404);
-      }
-  
-      // Check submission attempts scoped by course
-      const submissionCount = await Submission.countDocuments({
-        learnerId: userId,
-        assessmentId,
-        courseId,
-      });
-  
-      if (submissionCount >= (assessment.numberOfTrials ?? Infinity)) {
-        return ResponseHandler.failure(
-          res,
-          "You have exceeded the number of allowed attempts for this assessment in this course",
-          403
-        );
-      }
-  
-      // Rest of the grading logic
-      const questionIds = assessment.questions.map((q: { _id: { toString: () => any } }) =>
-        q._id.toString()
-      );
-      const isValid = answers.every((answer: { questionId: { toString: () => any } }) =>
-        questionIds.includes(answer.questionId.toString())
-      );
-  
-      if (!isValid) {
-        return ResponseHandler.failure(
-          res,
-          "Invalid question IDs or answers submitted",
-          400
-        );
-      }
-  
-      let totalScore = 0;
-      const gradedAnswers = answers.map((answer: { questionId: { toString: () => any }; answer: any }) => {
-        const question = assessment.questions.find(
-          (q: { _id: { toString: () => any } }) => q._id.toString() === answer.questionId.toString()
-        );
-  
-        if (question) {
-          const questionScore = question.mark ?? assessment.marksPerQuestion ?? 0;
-  
-          if (String(question.answer).toLowerCase() === String(answer.answer).toLowerCase()) {
-            totalScore += questionScore;
-            return { ...answer, isCorrect: true };
-          }
-        }
-        return { ...answer, isCorrect: false };
-      });
-  
-      const maxObtainableMarks = assessment.questions.reduce(
-        (sum: any, q: { mark: any }) => sum + (q.mark ?? assessment.marksPerQuestion ?? 0),
-        0
-      );
-  
-      const percentageScore = Math.round((totalScore / maxObtainableMarks) * 100);
-      const passOrFail = percentageScore >= assessment.passMark ? "Pass" : "Fail";
-  
-      const submission = await Submission.create({
-        learnerId: userId,
-        courseId,
-        assessmentId,
-        answer: answers,
-        gradedAnswers,
-        score: totalScore,
-        percentageScore,
-        status: "Graded",
-        passOrFail,
-      });
-  
-      await Course.updateOne(
-        { _id: courseId, "learnerIds.userId": userId },
-        { $set: { "learnerIds.$.progress": 100 } }
-      );
-  
-      const user = await User.findById(userId);
-      if (!user) {
-        return ResponseHandler.failure(res, "User not found", 404);
-      }
-  
-      const ongoingProgram = user.ongoingPrograms?.find(
-        (program) => (program.course as ICourse)._id?.toString() === courseId
-      );
+  // async takeAndGradeAssessmentt(req: Request, res: Response) {
+  //   const { courseId, assessmentId } = req.params;
+  //   const { answers } = req.body;
+  //   const userId = req.user.id;
 
-      if (ongoingProgram) {
-        const isAlreadyCompleted = user.completedPrograms?.some(
-          (program) => (program.course as ICourse)._id?.toString() === courseId
-        );
-    
-        if (!isAlreadyCompleted) {
-          const completedProgram = { ...ongoingProgram.course };
-          delete completedProgram.assignedLearnersIds;
-          delete completedProgram.learnerIds;
+  //   try {
+  //     const course = await Course.findById(courseId).populate("lessons");
+  //     if (!course) {
+  //       return ResponseHandler.failure(res, "Course not found", 404);
+  //     }
 
-          // await User.updateOne(
-          //   { _id: userId },
-          //   {
-          //     $set: {
-          //       ongoingPrograms: { $ifNull: ["$ongoingPrograms", []] },
-          //       completedPrograms: { $ifNull: ["$completedPrograms", []] },
-          //       unattemptedPrograms: { $ifNull: ["$unattemptedPrograms", []] },
-          //     },
-          //   }
-          // );
-    
-          await User.updateOne(
-            { _id: userId },
-            {
-              $pull: { ongoingPrograms: { "course._id": courseId } },
-              $push: { completedPrograms: { course: completedProgram } },
-            }
-          );
-        }
-      }
-  
-      return ResponseHandler.success(
-        res,
-        { ...submission.toObject(), maxObtainableMarks },
-        "Assessment submitted and graded successfully",
-        201
-      );
-    } catch (error: any) {
-      return ResponseHandler.failure(
-        res,
-        error.message || "Error processing assessment",
-        error.status || 500
-      );
-    }
-  }  
+  //     if (!course.lessons) {
+  //       return ResponseHandler.failure(res, "No lessons found for this course", 404);
+  //     }
+
+  //     // Check if all lessons are completed
+  //     const incompleteLessons = course.lessons.filter((lesson: any) => {
+  //       const completionDetail = lesson.completionDetails?.find(
+  //         (detail: any) => detail.userId.toString() === userId
+  //       );
+  //       return (completionDetail?.percentage || 0) < 100;
+  //     });
+
+  //     if (incompleteLessons.length > 0) {
+  //       return ResponseHandler.failure(
+  //         res,
+  //         "You must complete all lessons in the course before submitting assessments",
+  //         403
+  //       );
+  //     }
+
+  //     const assessment = await ObjectiveAssessment.findById(assessmentId);
+  //     if (!assessment) {
+  //       return ResponseHandler.failure(res, "Assessment not found", 404);
+  //     }
+
+  //     // Check submission attempts scoped by course
+  //     const submissionCount = await Submission.countDocuments({
+  //       learnerId: userId,
+  //       assessmentId,
+  //       courseId,
+  //     });
+
+  //     if (submissionCount >= (assessment.numberOfTrials ?? Infinity)) {
+  //       return ResponseHandler.failure(
+  //         res,
+  //         "You have exceeded the number of allowed attempts for this assessment in this course",
+  //         403
+  //       );
+  //     }
+
+  //     // Rest of the grading logic
+  //     const questionIds = assessment.questions.map((q: { _id: { toString: () => any } }) =>
+  //       q._id.toString()
+  //     );
+  //     const isValid = answers.every((answer: { questionId: { toString: () => any } }) =>
+  //       questionIds.includes(answer.questionId.toString())
+  //     );
+
+  //     if (!isValid) {
+  //       return ResponseHandler.failure(
+  //         res,
+  //         "Invalid question IDs or answers submitted",
+  //         400
+  //       );
+  //     }
+
+  //     let totalScore = 0;
+  //     const gradedAnswers = answers.map((answer: { questionId: { toString: () => any }; answer: any }) => {
+  //       const question = assessment.questions.find(
+  //         (q: { _id: { toString: () => any } }) => q._id.toString() === answer.questionId.toString()
+  //       );
+
+  //       if (question) {
+  //         const questionScore = question.mark ?? assessment.marksPerQuestion ?? 0;
+
+  //         if (String(question.answer).toLowerCase() === String(answer.answer).toLowerCase()) {
+  //           totalScore += questionScore;
+  //           return { ...answer, isCorrect: true };
+  //         }
+  //       }
+  //       return { ...answer, isCorrect: false };
+  //     });
+
+  //     const maxObtainableMarks = assessment.questions.reduce(
+  //       (sum: any, q: { mark: any }) => sum + (q.mark ?? assessment.marksPerQuestion ?? 0),
+  //       0
+  //     );
+
+  //     const percentageScore = Math.round((totalScore / maxObtainableMarks) * 100);
+  //     const passOrFail = percentageScore >= assessment.passMark ? "Pass" : "Fail";
+
+  //     const submission = await Submission.create({
+  //       learnerId: userId,
+  //       courseId,
+  //       assessmentId,
+  //       answer: answers,
+  //       gradedAnswers,
+  //       score: totalScore,
+  //       percentageScore,
+  //       status: "Graded",
+  //       passOrFail,
+  //     });
+
+  //     await Course.updateOne(
+  //       { _id: courseId, "learnerIds.userId": userId },
+  //       { $set: { "learnerIds.$.progress": 100 } }
+  //     );
+
+  //     const user = await User.findById(userId);
+  //     if (!user) {
+  //       return ResponseHandler.failure(res, "User not found", 404);
+  //     }
+
+  //     const ongoingProgram = user.ongoingPrograms?.find(
+  //       (program) => (program.course as ICourse)._id?.toString() === courseId
+  //     );
+
+  //     if (ongoingProgram) {
+  //       const isAlreadyCompleted = user.completedPrograms?.some(
+  //         (program) => (program.course as ICourse)._id?.toString() === courseId
+  //       );
+
+  //       if (!isAlreadyCompleted) {
+  //         const completedProgram = { ...ongoingProgram.course };
+  //         delete completedProgram.assignedLearnersIds;
+  //         delete completedProgram.learnerIds;
+
+  //         // await User.updateOne(
+  //         //   { _id: userId },
+  //         //   {
+  //         //     $set: {
+  //         //       ongoingPrograms: { $ifNull: ["$ongoingPrograms", []] },
+  //         //       completedPrograms: { $ifNull: ["$completedPrograms", []] },
+  //         //       unattemptedPrograms: { $ifNull: ["$unattemptedPrograms", []] },
+  //         //     },
+  //         //   }
+  //         // );
+
+  //         await User.updateOne(
+  //           { _id: userId },
+  //           {
+  //             $pull: { ongoingPrograms: { "course._id": courseId } },
+  //             $push: { completedPrograms: { course: completedProgram } },
+  //           }
+  //         );
+  //       }
+  //     }
+
+  //     return ResponseHandler.success(
+  //       res,
+  //       { ...submission.toObject(), maxObtainableMarks },
+  //       "Assessment submitted and graded successfully",
+  //       201
+  //     );
+  //   } catch (error: any) {
+  //     return ResponseHandler.failure(
+  //       res,
+  //       error.message || "Error processing assessment",
+  //       error.status || 500
+  //     );
+  //   }
+  // }
 
   async takeAndGradeAssessment(req: Request, res: Response) {
     const { courseId, assessmentId } = req.params;
@@ -331,13 +438,17 @@ class ObjectAssessmentController {
       }
 
       if (!course.lessons) {
-        return ResponseHandler.failure(res, "No lessons found for this course", 404);
+        return ResponseHandler.failure(
+          res,
+          "No lessons found for this course",
+          404
+        );
       }
 
       // Check if all lessons are completed
       const incompleteLessons = course.lessons.filter((lesson: any) => {
         const completionDetail = lesson.completionDetails?.find(
-            (detail: any) => detail.userId.toString() === userId
+          (detail: any) => detail.userId.toString() === userId
         );
         return (completionDetail?.percentage || 0) < 100;
       });
@@ -363,7 +474,7 @@ class ObjectAssessmentController {
       });
 
       const maxTrials = assessment.numberOfTrials ?? Infinity;
-      const trialsLeft = (Math.max(0, maxTrials - submissionCount)) - 1;
+      const trialsLeft = Math.max(0, maxTrials - submissionCount) - 1;
 
       if (submissionCount >= maxTrials) {
         return ResponseHandler.failure(
@@ -374,10 +485,11 @@ class ObjectAssessmentController {
       }
 
       // Rest of the grading logic
-      const questionIds = assessment.questions.map((q: { _id: { toString: () => any } }) =>
-          q._id.toString()
+      const questionIds = assessment.questions.map(
+        (q: { _id: { toString: () => any } }) => q._id.toString()
       );
-      const isValid = answers.every((answer: { questionId: { toString: () => any } }) =>
+      const isValid = answers.every(
+        (answer: { questionId: { toString: () => any } }) =>
           questionIds.includes(answer.questionId.toString())
       );
 
@@ -390,29 +502,40 @@ class ObjectAssessmentController {
       }
 
       let totalScore = 0;
-      const gradedAnswers = answers.map((answer: { questionId: { toString: () => any }; answer: any }) => {
-        const question = assessment.questions.find(
-          (q: { _id: { toString: () => any } }) => q._id.toString() === answer.questionId.toString()
-        );
+      const gradedAnswers = answers.map(
+        (answer: { questionId: { toString: () => any }; answer: any }) => {
+          const question = assessment.questions.find(
+            (q: { _id: { toString: () => any } }) =>
+              q._id.toString() === answer.questionId.toString()
+          );
 
-        if (question) {
-          const questionScore = question.mark ?? assessment.marksPerQuestion ?? 0;
+          if (question) {
+            const questionScore =
+              question.mark ?? assessment.marksPerQuestion ?? 0;
 
-          if (String(question.answer).toLowerCase() === String(answer.answer).toLowerCase()) {
+            if (
+              String(question.answer).toLowerCase() ===
+              String(answer.answer).toLowerCase()
+            ) {
               totalScore += questionScore;
               return { ...answer, isCorrect: true };
+            }
           }
+          return { ...answer, isCorrect: false };
         }
-        return { ...answer, isCorrect: false };
-      });
+      );
 
       const maxObtainableMarks = assessment.questions.reduce(
-        (sum: any, q: { mark: any }) => sum + (q.mark ?? assessment.marksPerQuestion ?? 0),
+        (sum: any, q: { mark: any }) =>
+          sum + (q.mark ?? assessment.marksPerQuestion ?? 0),
         0
       );
 
-      const percentageScore = Math.round((totalScore / maxObtainableMarks) * 100);
-      const passOrFail = percentageScore >= assessment.passMark ? "Pass" : "Fail";
+      const percentageScore = Math.round(
+        (totalScore / maxObtainableMarks) * 100
+      );
+      const passOrFail =
+        percentageScore >= assessment.passMark ? "Pass" : "Fail";
 
       const submission = await Submission.create({
         learnerId: userId,
@@ -477,7 +600,7 @@ class ObjectAssessmentController {
         error.status || 500
       );
     }
-}
+  }
 
   async getAllAssessmentsForOrganization(req: Request, res: Response) {
     const organizationId = req.admin._id;
@@ -520,7 +643,7 @@ class ObjectAssessmentController {
       //   organizationId,
       // });
 
-      const assessment = await ObjectiveAssessment.findById(assessmentId)
+      const assessment = await ObjectiveAssessment.findById(assessmentId);
 
       if (!assessment) {
         return ResponseHandler.failure(res, "Assessment not found", 404);
@@ -543,27 +666,24 @@ class ObjectAssessmentController {
   async assessmentResultSlip(req: Request, res: Response) {
     try {
       const { submissionId } = req.params;
-      const userId = req.user.id
+      const userId = req.user.id;
 
       const submission = await Submission.findOne({
         _id: submissionId,
-        learnerId: userId
-      })
+        learnerId: userId,
+      });
 
       if (!submission) {
-        return ResponseHandler.failure(
-          res,
-          "Submission not found",
-        )
+        return ResponseHandler.failure(res, "Submission not found");
       }
 
-      const courseId = submission.courseId
+      const courseId = submission.courseId;
 
       const course = await Course.findById(courseId);
       const user = await User.findById(userId);
 
       let status = "Pass";
-      if (submission.passOrFail == "Fail") status = "Retake"
+      if (submission.passOrFail == "Fail") status = "Retake";
 
       const formatDate = (date: Date) => {
         const day = date.getDate().toString().padStart(2, "0");
@@ -584,14 +704,14 @@ class ObjectAssessmentController {
         status,
         picture: user?.image,
         resultGeneratedOn: formatDate(new Date()),
-      }
+      };
 
       return ResponseHandler.success(
-        res, 
+        res,
         resultSlip,
         "Assessment result slip",
         200
-      )
+      );
     } catch (error: any) {
       return ResponseHandler.failure(
         res,
