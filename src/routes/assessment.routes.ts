@@ -7,6 +7,7 @@ import { uploadMiddleware } from "../services/questionBank.service"
 import {
   createAssessmentValidator,
   createObjectiveAssessmentValidator,
+  bulkUploadAssessmentsValidator,
   submissionValidator,
   gradeAssessmentValidator,
   assessmentIdValidator,
@@ -58,6 +59,7 @@ router.post(
   authenticate,
   authorize("admin"),
   uploadMiddleware,
+  ...bulkUploadAssessmentsValidator,
   bulkUploadAssessments
 )
 
