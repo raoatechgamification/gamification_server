@@ -166,6 +166,50 @@ export const createObjectiveAssessmentValidator = [
   errorResponse
 ]
 
+export const bulkUploadAssessmentsValidator = [
+  check('title')
+    .notEmpty()
+    .withMessage('Title is required'),
+  check('description')
+    .notEmpty()
+    .withMessage('Description is required'),
+  check('marksPerQuestion')
+    .optional()
+    .isNumeric()
+    .withMessage('Marks per question must be a number'),
+  check('numberOfTrials')
+    .notEmpty()
+    .isNumeric()
+    .withMessage('Number of trials must be a number'),
+  check('purpose')
+    .optional()
+    .isString()
+    .withMessage('Purpose must be a string'),
+  check('passMark')
+    .isNumeric()
+    .withMessage('Pass mark must be a number')
+    .notEmpty()
+    .withMessage('Pass mark is required'),
+  check('duration')
+    .isNumeric()
+    .withMessage('Duration must be a number')
+    .notEmpty()
+    .withMessage('Duration is required'),
+  check('startDate')
+    .optional()
+    .isISO8601()
+    .withMessage('Start date must be a valid ISO8601 date'),
+  check('endDate')
+    .optional()
+    .isISO8601()
+    .withMessage('End date must be a valid ISO8601 date'),
+  check('assessmentCode')
+    .optional()
+    .isString(),
+
+  errorResponse
+]
+
 export const submissionValidator = [
   param("assessmentId")
     .notEmpty()
