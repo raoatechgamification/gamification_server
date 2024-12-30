@@ -214,9 +214,9 @@ class ObjectAssessmentController {
 
       const organizationId = req.admin._id
   
-      // Validate required fields in the body
       if (!title || !description || !totalMark || !passMark || !duration || !assessmentCode) {
         return res.status(400).json({
+          success: false,
           message: 'Missing required fields in the request body.',
         });
       }
@@ -226,6 +226,11 @@ class ObjectAssessmentController {
           message: 'No file uploaded. Please provide an Excel file.',
         });
       }
+
+      const lastAssessment = await ObjectiveAssessment.findOne()
+      .sort({ position: -1 });
+      const position = lastAssessment ? lastAssessment.position + 1 : 1;
+      const code = assessmentCode || `EXT-${position}`;
   
       // Parse the uploaded Excel file
       const workbook = XLSX.read(req.file.buffer, { type: 'buffer' });
@@ -259,7 +264,6 @@ class ObjectAssessmentController {
         };
       });
   
-      // Create a new objective assessment
       const assessment = new ObjectiveAssessment({
         organizationId,
         title,
@@ -267,13 +271,13 @@ class ObjectAssessmentController {
         marksPerQuestion: marksPerQuestion ? Number(marksPerQuestion) : undefined,
         numberOfTrials: numberOfTrials ? Number(numberOfTrials) : undefined,
         purpose,
-        position: 1, // Replace with appropriate logic to determine position
+        position, 
         totalMark: Number(totalMark),
         passMark: Number(passMark),
         duration: Number(duration),
         startDate: startDate ? new Date(startDate) : undefined,
         endDate: endDate ? new Date(endDate) : undefined,
-        assessmentCode,
+        assessmentCode: code,
         questions,
       });
   
