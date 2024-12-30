@@ -1,5 +1,6 @@
 import { Request, Response, NextFunction } from "express";
 import { param, body, validationResult, check } from "express-validator";
+import multer from 'multer';
 
 const validateMarkingGuide = [
   body("markingGuide")
@@ -166,49 +167,49 @@ export const createObjectiveAssessmentValidator = [
   errorResponse
 ]
 
-export const bulkUploadAssessmentsValidator = [
-  check('title')
-    .notEmpty()
-    .withMessage('Title is required'),
-  check('description')
-    .notEmpty()
-    .withMessage('Description is required'),
-  check('marksPerQuestion')
-    .optional()
-    .isNumeric()
-    .withMessage('Marks per question must be a number'),
-  check('numberOfTrials')
-    .notEmpty()
-    .isNumeric()
-    .withMessage('Number of trials must be a number'),
-  check('purpose')
-    .optional()
-    .isString()
-    .withMessage('Purpose must be a string'),
-  check('passMark')
-    .isNumeric()
-    .withMessage('Pass mark must be a number')
-    .notEmpty()
-    .withMessage('Pass mark is required'),
-  check('duration')
-    .isNumeric()
-    .withMessage('Duration must be a number')
-    .notEmpty()
-    .withMessage('Duration is required'),
-  check('startDate')
-    .optional()
-    .isISO8601()
-    .withMessage('Start date must be a valid ISO8601 date'),
-  check('endDate')
-    .optional()
-    .isISO8601()
-    .withMessage('End date must be a valid ISO8601 date'),
-  check('assessmentCode')
-    .optional()
-    .isString(),
+// export const bulkUploadAssessmentsValidator = [
+//   check('title')
+//     .notEmpty()
+//     .withMessage('Title is required'),
+//   check('description')
+//     .notEmpty()
+//     .withMessage('Description is required'),
+//   check('marksPerQuestion')
+//     .optional()
+//     .isNumeric()
+//     .withMessage('Marks per question must be a number'),
+//   check('numberOfTrials')
+//     .notEmpty()
+//     .isNumeric()
+//     .withMessage('Number of trials must be a number'),
+//   check('purpose')
+//     .optional()
+//     .isString()
+//     .withMessage('Purpose must be a string'),
+//   check('passMark')
+//     .isNumeric()
+//     .withMessage('Pass mark must be a number')
+//     .notEmpty()
+//     .withMessage('Pass mark is required'),
+//   check('duration')
+//     .isNumeric()
+//     .withMessage('Duration must be a number')
+//     .notEmpty()
+//     .withMessage('Duration is required'),
+//   check('startDate')
+//     .optional()
+//     .isISO8601()
+//     .withMessage('Start date must be a valid ISO8601 date'),
+//   check('endDate')
+//     .optional()
+//     .isISO8601()
+//     .withMessage('End date must be a valid ISO8601 date'),
+//   check('assessmentCode')
+//     .optional()
+//     .isString(),
 
-  errorResponse
-]
+//   errorResponse
+// ]
 
 export const submissionValidator = [
   param("assessmentId")
@@ -285,4 +286,115 @@ export const submissionIdsValidator = [
     .withMessage('Course ID must be a valid MongoDB ObjectId'),
 
   errorResponse,
+];
+
+
+
+// Multer setup to validate file type
+const upload = multer({
+  fileFilter: (req, file, cb) => {
+    const allowedMimeTypes = [
+      'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet', // .xlsx
+      'application/vnd.ms-excel', // .xls
+    ];
+    if (!allowedMimeTypes.includes(file.mimetype)) {
+      return cb(
+        new Error('Invalid file type. Only Excel files (.xlsx, .xls) are allowed.')
+      );
+    }
+    cb(null, true);
+  },
+  limits: {
+    fileSize: 5 * 1024 * 1024, // Optional: Limit file size to 5MB
+  },
+});
+
+// Middleware to validate input fields
+const validateBulkUploadInputs = [
+  body('title')
+    .notEmpty()
+    .withMessage('Title is required'),
+  body('description')
+    .notEmpty()
+    .withMessage('Description is required'),
+  body('totalMark')
+    .notEmpty()
+    .withMessage('Total mark is required')
+    .isNumeric()
+    .withMessage('Total mark must be a number'),
+  body('passMark')
+    .notEmpty()
+    .withMessage('Pass mark is required')
+    .isNumeric()
+    .withMessage('Pass mark must be a number'),
+  body('duration')
+    .notEmpty()
+    .withMessage('Duration is required')
+    .isNumeric()
+    .withMessage('Duration must be a number'),
+  body('assessmentCode').optional().isString().withMessage('Invalid assessment code'),
+  body('marksPerQuestion')
+    .optional()
+    .isNumeric()
+    .withMessage('Marks per question must be a number'),
+  body('numberOfTrials')
+    .optional()
+    .isNumeric()
+    .withMessage('Number of trials must be a number'),
+  body('purpose').optional().isString().withMessage('Invalid purpose'),
+  body('startDate')
+    .optional()
+    .isISO8601()
+    .toDate()
+    .withMessage('Invalid start date format'),
+  body('endDate')
+    .optional()
+    .isISO8601()
+    .toDate()
+    .withMessage('Invalid end date format'),
+];
+
+// Middleware to check validation results
+const handleValidationErrors = (req: Request, res: Response, next: NextFunction) => {
+  const errors = validationResult(req);
+  if (!errors.isEmpty()) {
+    return res.status(400).json({ success: false, errors: errors.array() });
+  }
+  next();
+};
+
+// Error handling for multer
+const multerErrorHandler = (err: any, req: Request, res: Response, next: NextFunction) => {
+  if (err instanceof multer.MulterError) {
+    // Handle multer-specific errors
+    return res.status(400).json({
+      success: false,
+      message: `Multer error: ${err.message}`,
+    });
+  }
+  if (err) {
+    // Handle custom file type error
+    return res.status(400).json({
+      success: false,
+      message: err.message || 'An unknown error occurred during file upload.',
+    });
+  }
+  next();
+};
+
+// Combine multer and validation middleware
+export const validateBulkUploadRequest = [
+  upload.single('file'), // Ensure 'file' is the field name for the Excel file
+  (req: Request, res: Response, next: NextFunction) => {
+    if (!req.file) {
+      return res.status(400).json({
+        success: false,
+        message: 'No file uploaded. Please provide an Excel file.',
+      });
+    }
+    next();
+  },
+  validateBulkUploadInputs,
+  handleValidationErrors,
+  multerErrorHandler, // Error handler for multer and file upload
 ];
