@@ -214,15 +214,9 @@ class ObjectAssessmentController {
 
       const organizationId = req.admin._id
   
-      if (!title || !description || !totalMark || !passMark || !duration || !assessmentCode) {
-        return res.status(400).json({
-          success: false,
-          message: 'Missing required fields in the request body.',
-        });
-      }
-
       if (!req.file) {
         return res.status(400).json({
+          success: false,
           message: 'No file uploaded. Please provide an Excel file.',
         });
       }
