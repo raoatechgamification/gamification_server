@@ -3,6 +3,7 @@ import { authenticate, authorize } from "../middlewares/auth.middleware";
 import { AssessmentController } from "../controllers/assessment.controller";
 import { SubmissionController } from "../controllers/submission.controller";
 import ObjectAssessmentController from "../controllers/objectiveAssessment.controller";
+import { uploadMiddleware } from "../services/questionBank.service"
 import {
   createAssessmentValidator,
   createObjectiveAssessmentValidator,
@@ -25,6 +26,7 @@ const {
 
 const { 
   createObjectiveAssessment, 
+  uploadQuestionBank,
   editObjectiveAssessment,
   takeAndGradeAssessment,
   getAssessmentById,
@@ -49,6 +51,14 @@ router.post(
   authorize("admin"),
   ...createObjectiveAssessmentValidator,
   createObjectiveAssessment
+)
+
+router.post(
+  "/question-bank/upload",
+  authenticate,
+  authorize("admin"),
+  uploadMiddleware,
+  uploadQuestionBank
 )
 
 router.put(
