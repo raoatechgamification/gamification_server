@@ -109,6 +109,7 @@
   "include": [
     "src/**/*",
     "types/**/*",
+    "index.d.ts",
     "src/templates/**/*"
   ],
   "exclude": [
