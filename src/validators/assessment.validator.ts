@@ -311,54 +311,23 @@ const upload = multer({
 
 // Middleware to validate input fields
 const validateBulkUploadInputs = [
-  body('title')
+  body('questionsBankName')
     .notEmpty()
-    .withMessage('Title is required'),
-  body('description')
+    .withMessage('Questions bank name is required')
+    .isString()
+    .withMessage('Questions bank name must be a string'),
+  body('groupName')
     .notEmpty()
-    .withMessage('Description is required'),
-  body('totalMark')
-    .notEmpty()
-    .withMessage('Total mark is required')
-    .isNumeric()
-    .withMessage('Total mark must be a number'),
-  body('passMark')
-    .notEmpty()
-    .withMessage('Pass mark is required')
-    .isNumeric()
-    .withMessage('Pass mark must be a number'),
-  body('duration')
-    .notEmpty()
-    .withMessage('Duration is required')
-    .isNumeric()
-    .withMessage('Duration must be a number'),
-  body('assessmentCode').optional().isString().withMessage('Invalid assessment code'),
-  body('marksPerQuestion')
-    .optional()
-    .isNumeric()
-    .withMessage('Marks per question must be a number'),
-  body('numberOfTrials')
-    .optional()
-    .isNumeric()
-    .withMessage('Number of trials must be a number'),
-  body('purpose').optional().isString().withMessage('Invalid purpose'),
-  body('startDate')
-    .optional()
-    .isISO8601()
-    .toDate()
-    .withMessage('Invalid start date format'),
-  body('endDate')
-    .optional()
-    .isISO8601()
-    .toDate()
-    .withMessage('Invalid end date format'),
+    .withMessage("Group name is required")
+    .isString()
+    .withMessage('Group name must be a string'),
 ];
 
 // Middleware to check validation results
 const handleValidationErrors = (req: Request, res: Response, next: NextFunction) => {
   const errors = validationResult(req);
   if (!errors.isEmpty()) {
-    return res.status(400).json({ success: false, errors: errors.array() });
+    return res.status(400).json({ success: false, errors: errors.array()[0] });
   }
   next();
 };
