@@ -1,6 +1,6 @@
 import mongoose, { Schema, Document } from 'mongoose';
 
-export interface IQuestionBank extends Document {
+export interface IQuestionsBank extends Document {
   name: string; 
   organizationId: Schema.Types.ObjectId; 
   groups?: {
@@ -15,7 +15,7 @@ export interface IQuestionBank extends Document {
   }[]; 
 }
 
-const questionBankSchema = new Schema<IQuestionBank>({
+const questionsBankSchema = new Schema<IQuestionsBank>({
   name: { type: String, required: true }, 
   organizationId: { type: Schema.Types.ObjectId, required: true, ref: 'Organization' }, 
   groups: {
@@ -50,7 +50,7 @@ const questionBankSchema = new Schema<IQuestionBank>({
   },
 });
 
-const QuestionBank =
-  mongoose.models.QuestionBank || mongoose.model<IQuestionBank>('QuestionBank', questionBankSchema);
+const QuestionsBank =
+  mongoose.models.QuestionsBank || mongoose.model<IQuestionsBank>('QuestionsBank', questionsBankSchema);
 
-export default QuestionBank;
+export default QuestionsBank;
