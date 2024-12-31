@@ -31,11 +31,19 @@ const {
   updateLessonCompletion,
   getCourseCompletionLevel,
   getCourseDetails,
+  getPrograms
 } = new CourseController();
 
 const { generateCourseReport } = AdminController;
 
 const router = Router();
+
+router.get(
+  "/status",
+  authenticate,
+  authorize("user"),
+  getPrograms
+)
 
 router.post(
   "/create",
