@@ -5,36 +5,10 @@ import fileUpload from "express-fileupload";
 import ObjectiveAssessment, {
   IObjectiveAssessment,
 } from "../models/objectiveAssessment.model";
-import QuestionBank from "../models/questionBank.model";
 import Submission from "../models/submission.model";
 import Course, { ICourse } from "../models/course.model";
 import User from "../models/user.model";
 import { ResponseHandler } from "../middlewares/responseHandler.middleware";
-
-import {
-  AssessmentInterface,
-  AssessmentQuestionInterface,
-} from "../models/objectiveAssessment.model";
-
-interface ExcelRow {
-  title: string;
-  description: string;
-  marksPerQuestion: number;
-  numberOfTrials?: number;
-  purpose?: string;
-  position: number;
-  totalMark: number;
-  passMark: number;
-  duration: number;
-  assessmentCode: string;
-  questions: {
-    question: string;
-    type: string;
-    options?: string[];
-    answer: string;
-    mark: number;
-  }[];
-}
 
 class ObjectAssessmentController {
   async createObjectiveAssessment(req: Request, res: Response) {
@@ -113,88 +87,6 @@ class ObjectAssessmentController {
       );
     }
   }
-
-  // async uploadQuestionBank(req: Request, res: Response) {
-  //   try {
-  //     const { name } = req.body;
-  //     const organizationId = req.admin._id;
-  //     const file = req.file;
-
-  //     if (!file) {
-  //       return res.status(400).json({ message: "No file uploaded" });
-  //     }
-
-  //     // Parse the Excel file
-  //     const workbook = XLSX.read(file.buffer, { type: "buffer" });
-  //     const sheetName = workbook.SheetNames[0];
-  //     const sheetData: unknown[] = XLSX.utils.sheet_to_json(
-  //       workbook.Sheets[sheetName]
-  //     );
-
-  //     if (!Array.isArray(sheetData) || sheetData.length === 0) {
-  //       return res
-  //         .status(400)
-  //         .json({ message: "The uploaded file is empty or invalid" });
-  //     }
-
-  //     // Save assessments
-  //     const assessmentIds: string[] = [];
-      
-  //     for (const rawRow of sheetData) {
-  //       const row = rawRow as any;
-  
-  //       // Parse the `questions` field if it is a string
-  //       let questions = [];
-  //       try {
-  //         questions =
-  //           typeof row.questions === "string" ? JSON.parse(row.questions) : row.questions;
-  //       } catch (error: any) {
-  //         throw new Error(`Invalid JSON format in questions field: ${error.message}`);
-  //       }
-  
-  //       // Ensure questions match the schema
-  //       if (!Array.isArray(questions) || questions.some((q) => !q.question || !q.answer || !q.type)) {
-  //         return ResponseHandler.failure(res, "Invalid questions format", 400);
-  //       }
-  
-  //       // Fetch the last assessment to calculate position
-  //       const lastAssessment = await ObjectiveAssessment.findOne({ organizationId }).sort({
-  //         position: -1,
-  //       });
-  //       const position = lastAssessment ? lastAssessment.position + 1 : 1;
-  
-  //       // Generate assessment code if not provided
-  //       const code = row.assessmentCode || `EXT-${position}`;
-  
-  //       const assessmentData = {
-  //         organizationId,
-  //         title: row.title,
-  //         description: row.description,
-  //         marksPerQuestion: row.marksPerQuestion,
-  //         numberOfTrials: row.numberOfTrials || null,
-  //         purpose: row.purpose || null,
-  //         position,
-  //         totalMark: row.totalMark,
-  //         passMark: row.passMark,
-  //         duration: row.duration,
-  //         assessmentCode: code,
-  //         questions, // Parsed questions field
-  //       };
-  
-  //       // Create the assessment in the database
-  //       const newAssessment = await ObjectiveAssessment.create(assessmentData);
-  //       assessmentIds.push(newAssessment._id);
-  //     }
-  
-  //     return ResponseHandler.success(res, {assessmentIds}, "Assessments uploaded successfully");
-  //   } catch (error: any) {
-  //     return ResponseHandler.failure(
-  //       res,
-  //       error.message || "Error uploading question bank:",
-  //       error
-  //     );
-  //   }
-  // }
 
   async bulkUploadAssessments(req: Request, res: Response) {
     try {
