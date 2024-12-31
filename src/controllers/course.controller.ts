@@ -1000,6 +1000,28 @@ export class CourseController {
     }
   }
 
+  async getPrograms(req: Request, res: Response) {
+    try {
+      const userId = req.user.id
+  
+      // Fetch the specific fields for programs
+      const userPrograms = await User.findById(userId, {
+        unattemptedPrograms: 1,
+        ongoingPrograms: 1,
+        completedPrograms: 1,
+      }).lean();
+  
+      if (!userPrograms) {
+        return res.status(404).json({ message: "User not found" });
+      }
+  
+      return res.status(200).json(userPrograms);
+    } catch (error) {
+      console.error("Error fetching user programs:", error);
+      return res.status(500).json({ message: "Internal Server Error" });
+    }
+  }
+
   // async updateLessonCompletion(req: Request, res: Response) {
   //   try {
   //     const { lessonId, courseId } = req.params;

@@ -383,9 +383,6 @@ export class UserController {
   //   }
   // }
   
-  
-    
-
   async getAllUserCertificates(req: Request, res: Response) {
     try {
       const userId = req.user.id
