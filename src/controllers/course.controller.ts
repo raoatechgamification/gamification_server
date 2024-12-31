@@ -3,7 +3,7 @@ import { Request, Response, NextFunction } from "express";
 import { ResponseHandler } from "../middlewares/responseHandler.middleware";
 import Course, { ICourse } from "../models/course.model";
 import Lesson, {  CompletionDetails } from "../models/lesson.model";
-import User from "../models/user.model";
+import User, { IUser } from "../models/user.model";
 import Announcement from "../models/announcement.model";
 import Submission from "../models/submission.model";
 import { NotificationController } from "../controllers/notification.controller";
@@ -1019,6 +1019,31 @@ export class CourseController {
     } catch (error) {
       console.error("Error fetching user programs:", error);
       return res.status(500).json({ message: "Internal Server Error" });
+    }
+  }
+
+  async generalMarketPlace(req: Request, res: Response) {
+    try {
+      const userId = req.user.id; // Assume the user ID is passed in the URL params
+  
+      // Retrieve user data from the database (ensure this user exists)
+      const user: IUser | null = await User.findById(userId).exec();
+  
+      if (!user) {
+        return res.status(404).json({ message: 'User not found' });
+      }
+  
+      // Retrieve assigned program course IDs, handling cases where assignedPrograms is undefined
+      const assignedProgramIds = (user?.assignedPrograms ?? []).map(program => program.courseId);
+  
+      // Query for courses that are not assigned to the user
+      const availableCourses = await Course.find({ _id: { $nin: assignedProgramIds } }).exec();
+  
+      return res.status(200).json({ availableCourses });
+  
+    } catch (error) {
+      console.error(error);
+      return res.status(500).json({ message: 'An error occurred while fetching courses' });
     }
   }
 

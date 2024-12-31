@@ -31,7 +31,8 @@ const {
   updateLessonCompletion,
   getCourseCompletionLevel,
   getCourseDetails,
-  getPrograms
+  getPrograms,
+  generalMarketPlace
 } = new CourseController();
 
 const { generateCourseReport } = AdminController;
@@ -43,6 +44,13 @@ router.get(
   authenticate,
   authorize("user"),
   getPrograms
+)
+
+router.get(
+  "/marketplace",
+  authenticate,
+  authorize("user"),
+  generalMarketPlace
 )
 
 router.post(
