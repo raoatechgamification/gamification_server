@@ -3,7 +3,7 @@ import { authenticate, authorize } from "../middlewares/auth.middleware";
 import { AssessmentController } from "../controllers/assessment.controller";
 import { SubmissionController } from "../controllers/submission.controller";
 import ObjectAssessmentController from "../controllers/objectiveAssessment.controller";
-import { uploadMiddleware } from "../services/questionBank.service"
+
 import {
   createAssessmentValidator,
   createObjectiveAssessmentValidator,

@@ -6143,3 +6143,6 @@
 2024-12-31 14:33:28 [info]: POST /bulk-upload 201 - Request Body: {"questionsBankName":"First Real Questions Bank","groupName":"Enterpreneurship 101"}
 2024-12-31 14:35:17 [info]: POST /bulk-upload 400 - Request Body: {"groupName":"Enterpreneurship 101"}
 2024-12-31 14:35:24 [info]: POST /bulk-upload 400 - Request Body: {"questionsBankName":"First Real Questions Bank"}
+2024-12-31 15:16:01 [info]: POST /login 200 - Request Body: {"email":"bimpe@gmail.com","password":"Timpearl05$$$"}
+2024-12-31 15:16:40 [info]: GET /status 500
+2024-12-31 15:25:42 [info]: GET /status 200
