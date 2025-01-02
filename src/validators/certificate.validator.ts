@@ -4,20 +4,9 @@ import { check, validationResult } from 'express-validator';
 const errorResponse = (req: Request, res: Response, next: NextFunction) => {
   const errors = validationResult(req);
   if (!errors.isEmpty()) {
-    return res.status(422).json({ success: false, errors: errors.array() });
+    return res.status(400).json({ success: false, errors: errors.array()[0] });
   }
   next();
-  // const errors = validationResult(req);
-  // if (!errors.isEmpty()) {
-  //   return res.status(422).json({
-  //     success: false,
-  //     errors: errors.array().map((error) => ({
-  //       field: error.type,
-  //       message: error.msg,
-  //     })),
-  //   });
-  // }
-  // next();
 };
 
 export const validateCertificate = [
