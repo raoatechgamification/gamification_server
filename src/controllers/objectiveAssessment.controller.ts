@@ -92,7 +92,6 @@ class ObjectAssessmentController {
   async bulkUploadQuestions(req: Request, res: Response) {
     try {
       const { questionsBankName, groupName } = req.body; 
-      console.log("questionsBankName, groupName: ,",questionsBankName, groupName)
       const organizationId = req.admin._id;
   
       if (!req.file) {
@@ -180,6 +179,87 @@ class ObjectAssessmentController {
       return res.status(500).json({
         success: false,
         message: error.message || 'An error occurred while uploading the questions.',
+      });
+    }
+  }
+
+  async uploadQuestionsManually(req: Request, res: Response) {
+    try {
+      const { questionsBankName, groupName, questions } = req.body;
+      const organizationId = req.admin._id;
+
+      // Validate request data
+      if (!questionsBankName || !groupName || !Array.isArray(questions) || questions.length === 0) {
+        return res.status(400).json({
+          success: false,
+          message: 'Invalid input. Please provide a question bank name, group name, and an array of questions.',
+        });
+      }
+
+      // Validate and transform questions
+      const validatedQuestions = questions.map((q: any, index: number) => {
+        const { question, type, options, answer, mark } = q;
+
+        if (!question || !type || !answer || mark === undefined) {
+          throw new Error(`Missing required fields in question at index ${index + 1}.`);
+        }
+
+        return {
+          question,
+          type,
+          options: options ? options : [],
+          answer,
+          mark: Number(mark),
+        };
+      });
+
+      // Check if a QuestionBank exists for the organization and name
+      let questionBank = await QuestionsBank.findOne({
+        organizationId,
+        name: questionsBankName,
+      });
+
+      if (!questionBank) {
+        // Create a new QuestionBank if it doesn't exist
+        questionBank = new QuestionsBank({
+          name: questionsBankName,
+          organizationId,
+          groups: [
+            {
+              name: groupName,
+              questions: validatedQuestions,
+            },
+          ],
+        });
+      } else {
+        // Add new questions to the specified group or create the group
+        const targetGroup = questionBank.groups.find(
+          (group: { name: string }) => group.name === groupName
+        );
+
+        if (targetGroup) {
+          targetGroup.questions.push(...validatedQuestions);
+        } else {
+          questionBank.groups.push({
+            name: groupName,
+            questions: validatedQuestions,
+          });
+        }
+      }
+
+      // Save the QuestionBank
+      await questionBank.save();
+
+      return res.status(201).json({
+        success: true,
+        message: 'Questions uploaded successfully.',
+        questionBank,
+      });
+    } catch (error: any) {
+      console.error(error);
+      return res.status(500).json({
+        success: false,
+        message: error.message || 'An error occurred while creating the assessment.',
       });
     }
   }
