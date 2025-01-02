@@ -163,6 +163,144 @@ class ObjectAssessmentController {
       );
     }
   }  
+
+  async createAssessmentUsingQuestionBank(req: Request, res: Response) {
+    try {
+      const {
+        title,
+        description,
+        marksPerQuestion,
+        numberOfTrials,
+        purpose,
+        passMark,
+        totalMark,
+        duration,
+        startDate,
+        endDate,
+        assessmentCode,
+        groupId,
+        questionIds, // Optional: Specific question IDs to use
+        randomCount, // Optional: Number of questions to randomly select
+      } = req.body;
+  
+      const organizationId = req.admin._id;
+  
+      // Validate required fields
+      if (!groupId) {
+        return ResponseHandler.failure(res, "Group ID is required.", 400);
+      }
+  
+      if (!title || !description || !totalMark || !passMark || !duration) {
+        return ResponseHandler.failure(res, "Required fields are missing.", 400);
+      }
+  
+      // Find the specified group in the questions bank
+      const questionBank = await QuestionsBank.findOne({
+        "groups._id": groupId,
+        organizationId,
+      });
+  
+      if (!questionBank) {
+        return ResponseHandler.failure(res, "Questions Bank or Group not found.", 404);
+      }
+  
+      const group = questionBank.groups.find(
+        (group: { _id: { toString: () => any; }; }) => group._id.toString() === groupId
+      );
+  
+      if (!group) {
+        return ResponseHandler.failure(res, "Group not found in the Questions Bank.", 404);
+      }
+  
+      let selectedQuestions: typeof group.questions = [];
+  
+      if (questionIds && Array.isArray(questionIds)) {
+        // Select questions by IDs
+        selectedQuestions = group.questions.filter((q: { _id: { toString: () => any; }; }) =>
+          questionIds.includes(q._id.toString())
+        );
+  
+        if (selectedQuestions.length !== questionIds.length) {
+          return ResponseHandler.failure(
+            res,
+            "Some question IDs provided do not exist in the group.",
+            400
+          );
+        }
+      } else if (randomCount) {
+        // Randomly select questions
+        if (randomCount > group.questions.length) {
+          return ResponseHandler.failure(
+            res,
+            "Random count exceeds the number of questions in the group.",
+            400
+          );
+        }
+  
+        const shuffledQuestions = group.questions.sort(() => 0.5 - Math.random());
+        selectedQuestions = shuffledQuestions.slice(0, randomCount);
+      } else {
+        return ResponseHandler.failure(
+          res,
+          "Either 'questionIds' or 'randomCount' must be provided.",
+          400
+        );
+      }
+  
+      // Calculate total marks if not provided
+      const calculatedTotalMark = selectedQuestions.reduce(
+        (sum: any, question: { mark: any; }) => sum + question.mark,
+        0
+      );
+  
+      const lastAssessment = await ObjectiveAssessment.findOne().sort({
+        position: -1,
+      });
+      const position = lastAssessment ? lastAssessment.position + 1 : 1;
+  
+      const code = assessmentCode || `EXT-${position}`;
+  
+      // Create the assessment
+      const newAssessment = new ObjectiveAssessment({
+        organizationId,
+        title,
+        description,
+        marksPerQuestion,
+        numberOfTrials,
+        purpose,
+        passMark,
+        totalMark: totalMark || calculatedTotalMark,
+        duration,
+        startDate,
+        endDate,
+        assessmentCode: code,
+        questions: selectedQuestions.map((q: { question: any; type: any; options: any; answer: any; mark: any; }) => ({
+          question: q.question,
+          type: q.type,
+          options: q.options,
+          answer: q.answer,
+          mark: q.mark,
+        })),
+        position,
+      });
+  
+      await newAssessment.save();
+  
+      return ResponseHandler.success(
+        res,
+        newAssessment,
+        "Assessment created successfully.",
+        201
+      );
+    } catch (error: any) {
+      console.error(error);
+      return ResponseHandler.failure(
+        res,
+        error.message || "Error creating assessment.",
+        error.status || 500
+      );
+    }
+  }
   
   // async createObjectiveAssessment(req: Request, res: Response) {
   //   try {
