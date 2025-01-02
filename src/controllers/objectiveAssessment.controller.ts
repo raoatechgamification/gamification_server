@@ -27,19 +27,26 @@ class ObjectAssessmentController {
         endDate,
         questions,
         assessmentCode,
+        saveToQuestionsBank, 
+        questionsBankId,     
+        groupId,             
+        createNewGroup,      
+        newGroupName,        
+        questionsBankName   
       } = req.body;
-
+  
       const organizationId = req.admin._id;
-
+  
+      // Validate questions
       if (!Array.isArray(questions) || questions.length === 0) {
         return ResponseHandler.failure(res, "Questions are required.", 400);
       }
-
+  
       const invalidQuestion = questions.find(
         (q: { question: string; mark?: number }) =>
           !q.question || (q.mark !== undefined && q.mark <= 0)
       );
-
+  
       if (invalidQuestion) {
         return ResponseHandler.failure(
           res,
@@ -47,14 +54,16 @@ class ObjectAssessmentController {
           400
         );
       }
-
+  
+      // Determine position for the new assessment
       const lastAssessment = await ObjectiveAssessment.findOne().sort({
         position: -1,
       });
       const position = lastAssessment ? lastAssessment.position + 1 : 1;
-
+  
       const code = assessmentCode || `EXT-${position}`;
-
+  
+      // Create new assessment
       const newAssessment = new ObjectiveAssessment({
         organizationId,
         title,
@@ -71,9 +80,74 @@ class ObjectAssessmentController {
         questions,
         position,
       });
-
+  
       await newAssessment.save();
-
+  
+      if (saveToQuestionsBank) {
+        let questionBank;
+  
+        // Check or create Questions Bank
+        if (questionsBankId) {
+          questionBank = await QuestionsBank.findOne({
+            _id: questionsBankId,
+            organizationId,
+          });
+  
+          if (!questionBank) {
+            return ResponseHandler.failure(
+              res,
+              "Questions Bank not found. Please provide a valid Questions Bank ID.",
+              404
+            );
+          }
+        } else if (questionsBankName) {
+          questionBank = new QuestionsBank({
+            name: questionsBankName,
+            organizationId,
+          });
+  
+          await questionBank.save();
+        } else {
+          return ResponseHandler.failure(
+            res,
+            "Questions Bank ID or name is required to save questions.",
+            400
+          );
+        }
+  
+        // Handle group creation or addition
+        if (createNewGroup) {
+          if (!newGroupName) {
+            return ResponseHandler.failure(
+              res,
+              "New group name is required to create a group.",
+              400
+            );
+          }
+  
+          questionBank.groups.push({
+            name: newGroupName,
+            questions,
+          });
+        } else {
+          const targetGroup = questionBank.groups.find(
+            (group: { _id: string }) => group._id.toString() === groupId
+          );
+  
+          if (!targetGroup) {
+            return ResponseHandler.failure(
+              res,
+              `Group with ID "${groupId}" not found in the Questions Bank.`,
+              404
+            );
+          }
+  
+          targetGroup.questions.push(...questions);
+        }
+  
+        await questionBank.save();
+      }
+  
       return ResponseHandler.success(
         res,
         newAssessment,
@@ -81,13 +155,91 @@ class ObjectAssessmentController {
         201
       );
     } catch (error: any) {
+      console.error(error);
       return ResponseHandler.failure(
         res,
         error.message || "Error creating assessment",
         error.status || 500
       );
     }
-  }
+  }  
+  
+  // async createObjectiveAssessment(req: Request, res: Response) {
+  //   try {
+  //     const {
+  //       title,
+  //       description,
+  //       marksPerQuestion,
+  //       numberOfTrials,
+  //       purpose,
+  //       passMark,
+  //       totalMark,
+  //       duration,
+  //       startDate,
+  //       endDate,
+  //       questions,
+  //       assessmentCode,
+  //     } = req.body;
+
+  //     const organizationId = req.admin._id;
+
+  //     if (!Array.isArray(questions) || questions.length === 0) {
+  //       return ResponseHandler.failure(res, "Questions are required.", 400);
+  //     }
+
+  //     const invalidQuestion = questions.find(
+  //       (q: { question: string; mark?: number }) =>
+  //         !q.question || (q.mark !== undefined && q.mark <= 0)
+  //     );
+
+  //     if (invalidQuestion) {
+  //       return ResponseHandler.failure(
+  //         res,
+  //         'Each question must have a valid "question" field, and the "mark" field (if provided) must be positive.',
+  //         400
+  //       );
+  //     }
+
+  //     const lastAssessment = await ObjectiveAssessment.findOne().sort({
+  //       position: -1,
+  //     });
+  //     const position = lastAssessment ? lastAssessment.position + 1 : 1;
+
+  //     const code = assessmentCode || `EXT-${position}`;
+
+  //     const newAssessment = new ObjectiveAssessment({
+  //       organizationId,
+  //       title,
+  //       description,
+  //       marksPerQuestion,
+  //       numberOfTrials,
+  //       purpose,
+  //       passMark,
+  //       totalMark,
+  //       duration,
+  //       startDate,
+  //       endDate,
+  //       assessmentCode: code,
+  //       questions,
+  //       position,
+  //     });
+
+  //     await newAssessment.save();
+
+  //     return ResponseHandler.success(
+  //       res,
+  //       newAssessment,
+  //       "Assessment created successfully",
+  //       201
+  //     );
+  //   } catch (error: any) {
+  //     return ResponseHandler.failure(
+  //       res,
+  //       error.message || "Error creating assessment",
+  //       error.status || 500
+  //     );
+  //   }
+  // }
 
   async bulkUploadQuestions(req: Request, res: Response) {
     try {
@@ -101,7 +253,6 @@ class ObjectAssessmentController {
         });
       }
   
-      // Parse the uploaded Excel file
       const workbook = XLSX.read(req.file.buffer, { type: 'buffer' });
       const sheetName = workbook.SheetNames[0];
       const sheetData: any[] = XLSX.utils.sheet_to_json(
@@ -115,7 +266,6 @@ class ObjectAssessmentController {
         });
       }
   
-      // Validate and transform sheet data into questions
       const questions = sheetData.map((row, index) => {
         const { question, type, options, answer, mark } = row;
   
@@ -166,7 +316,6 @@ class ObjectAssessmentController {
         }
       }
   
-      // Save the QuestionBank
       await questionBank.save();
   
       return res.status(201).json({
@@ -187,14 +336,6 @@ class ObjectAssessmentController {
     try {
       const { questionsBankName, groupName, questions } = req.body;
       const organizationId = req.admin._id;
-
-      // Validate request data
-      if (!questionsBankName || !groupName || !Array.isArray(questions) || questions.length === 0) {
-        return res.status(400).json({
-          success: false,
-          message: 'Invalid input. Please provide a question bank name, group name, and an array of questions.',
-        });
-      }
 
       // Validate and transform questions
       const validatedQuestions = questions.map((q: any, index: number) => {
