@@ -288,6 +288,45 @@ export const submissionIdsValidator = [
   errorResponse,
 ];
 
+export const validateManualQuestionsUpload = [
+  body('questionsBankName')
+    .notEmpty()
+    .withMessage('Questions bank name is required')
+    .isString()
+    .withMessage('Questions bank name must be a string'),
+  body('groupName')
+    .notEmpty()
+    .withMessage("Group name is required")
+    .isString()
+    .withMessage('Group name must be a string'),
+    check('questions')
+    .isArray()
+    .withMessage('Questions must be an array')
+    .notEmpty()
+    .withMessage('Questions are required'),
+  check('questions.*.question')
+    .notEmpty()
+    .withMessage('Each question must have a text'),
+  check('questions.*.type')
+    .isIn(['True or False', 'Yes or No', 'Fill in the Gap', 'Multichoice'])
+    .withMessage(
+      'Each question type must be one of True or False, Yes or No, Fill in the Gap, or Multichoice'
+    ),
+  check('questions.*.options')
+    .optional()
+    .isArray()
+    .withMessage('Options must be an array for multichoice questions'),
+  check('questions.*.answer')
+    .notEmpty()
+    .withMessage('Each question must have an answer'),
+  check('questions.*.mark')
+    .isNumeric()
+    .withMessage('The mark for each question must be a positive number')
+    .notEmpty()
+    .withMessage('Each question must have a mark'),
+
+  errorResponse
+]
 
 
 // Multer setup to validate file type
