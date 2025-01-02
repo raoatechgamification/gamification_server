@@ -28,6 +28,7 @@ const {
 const { 
   createObjectiveAssessment, 
   bulkUploadQuestions,
+  uploadQuestionsManually,
   editObjectiveAssessment,
   takeAndGradeAssessment,
   getAssessmentById,
@@ -55,12 +56,18 @@ router.post(
 )
 
 router.post(
-  "/bulk-upload",
+  "/questions/bulk-upload",
   authenticate,
   authorize("admin"),
-  // uploadMiddleware,
   ...validateBulkUploadRequest,
   bulkUploadQuestions
+)
+
+router.post(
+  "/questions/manual-upload",
+  authenticate,
+  authorize("admin"),
+  uploadQuestionsManually
 )
 
 router.put(
