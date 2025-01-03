@@ -7,7 +7,7 @@ import User, { IUser } from "../models/user.model";
 import Announcement from "../models/announcement.model";
 import Submission from "../models/submission.model";
 import { NotificationController } from "../controllers/notification.controller";
-import { uploadToCloudinary } from "../utils/cloudinaryUpload";
+import {  optimizedUploadToCloudinary, uploadToCloudinary } from "../utils/cloudinaryUpload";
 import ObjectiveAssessment, { IObjectiveAssessment } from "../models/objectiveAssessment.model";
 
 const { createNotification } = new NotificationController();
@@ -216,46 +216,86 @@ export class CourseController {
     }
   }
 
-  async createLesson(req: Request, res: Response, next: NextFunction) {
+  // async createLesson(req: Request, res: Response, next: NextFunction) {
+  //   try {
+  //     const instructorId = req.admin._id;
+  //     // const { courseId } = req.params;
+  //     const { title, objectives, link } = req.body;
+
+  //     const files = req.files as Express.Multer.File[];
+
+  //     let Urls: string[] = [];
+
+  //     if (files && files.length > 0) {
+  //       for (let i = 0; i < files.length; i++) {
+  //         const file = files[i];
+
+  //         if (file.size > 5 * 1024 * 1024 * 1024) {
+  //           return ResponseHandler.failure(
+  //             res,
+  //             "File exceeds maximum size of 5GB",
+  //             400
+  //           );
+  //         }
+
+  //         try {
+  //           const uploadResult = await uploadToCloudinary(
+  //             file.buffer,
+  //             file.mimetype,
+  //             "course-content"
+  //           );
+  //           if (uploadResult && uploadResult.secure_url) {
+  //             Urls.push(uploadResult.secure_url);
+  //           }
+  //         } catch (error) {
+  //           console.error("Cloudinary Upload Error:", error);
+  //           return ResponseHandler.failure(res, "Failed to upload file", 500);
+  //         }
+
+  //         // const uploadResult = await uploadToCloudinary(
+  //         //   file.buffer,
+  //         //   file.mimetype,
+  //         //   "course-content"
+  //         // );
+  //         // if (uploadResult && uploadResult.secure_url) {
+  //         //   Urls.push(uploadResult.secure_url);
+  //         // }
+  //       }
+  //     }
+
+  //     const lesson = await Lesson.create({
+  //       // courseId,
+  //       title,
+  //       objectives,
+  //       link,
+  //       files: Urls,
+  //       instructorId,
+  //     });
+
+  //     // const curriculum = await Lesson.find({ courseId });
+
+  //     return ResponseHandler.success(
+  //       res,
+  //       lesson,
+  //       "Lesson uploaded successfully"
+  //     );
+  //   } catch (error) {
+  //     next(error);
+  //   }
+  // }
+
+  async createLesson(req: Request, res: Response, next: NextFunction){
     try {
       const instructorId = req.admin._id;
-      // const { courseId } = req.params;
       const { title, objectives, link } = req.body;
-
       const files = req.files as Express.Multer.File[];
-
-      // const course = await Course.findById(courseId);
-      // if (
-      //   !course ||
-      //   !new mongoose.Types.ObjectId(course.instructorId).equals(instructorId)
-      // ) {
-      //   return ResponseHandler.failure(
-      //     res,
-      //     "You are not authorized to add contents to this course",
-      //     403
-      //   );
-      // }
-
-      let Urls: string[] = [];
-
+  
+      const Urls: string[] = [];
+  
       if (files && files.length > 0) {
-        for (let i = 0; i < files.length; i++) {
-          const file = files[i];
-
-          if (file.size > 5 * 1024 * 1024 * 1024) {
-            return ResponseHandler.failure(
-              res,
-              "File exceeds maximum size of 5GB",
-              400
-            );
-          }
-
+        for (const file of files) {
           try {
-            const uploadResult = await uploadToCloudinary(
-              file.buffer,
-              file.mimetype,
-              "course-content"
-            );
+            const uploadResult = await optimizedUploadToCloudinary(file.buffer, "course-content");
             if (uploadResult && uploadResult.secure_url) {
               Urls.push(uploadResult.secure_url);
             }
@@ -263,38 +303,22 @@ export class CourseController {
             console.error("Cloudinary Upload Error:", error);
             return ResponseHandler.failure(res, "Failed to upload file", 500);
           }
-
-          // const uploadResult = await uploadToCloudinary(
-          //   file.buffer,
-          //   file.mimetype,
-          //   "course-content"
-          // );
-          // if (uploadResult && uploadResult.secure_url) {
-          //   Urls.push(uploadResult.secure_url);
-          // }
         }
       }
-
+  
       const lesson = await Lesson.create({
-        // courseId,
         title,
         objectives,
         link,
         files: Urls,
         instructorId,
       });
-
-      // const curriculum = await Lesson.find({ courseId });
-
-      return ResponseHandler.success(
-        res,
-        lesson,
-        "Lesson uploaded successfully"
-      );
+  
+      return ResponseHandler.success(res, lesson, "Lesson uploaded successfully");
     } catch (error) {
       next(error);
     }
-  }
+  };
 
   async getAllLessons(req: Request, res: Response, next: NextFunction) {
     try {

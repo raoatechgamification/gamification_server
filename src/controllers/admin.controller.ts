@@ -8,6 +8,8 @@ import Submission, { PopulatedLearner, PopulatedAssessment } from "../models/sub
 import { parse as json2csv } from 'json2csv';
 import * as XLSX from "xlsx";
 import mongoose, { isValidObjectId } from "mongoose"; // Ensure this is imported if not already
+import Organization from "../models/organization.model";
+import { uploadToCloudinary } from "../utils/cloudinaryUpload";
 
 function isPopulated<T>(value: mongoose.Types.ObjectId | T): value is T {
   return typeof value === "object" && value !== null && !isValidObjectId(value);
@@ -348,6 +350,55 @@ class AdminController {
     } catch (error) {
       console.error('Error generating course report:', error);
       return res.status(500).json({ message: 'Server error' });
+    }
+  }
+
+  async updateAnOrganization(req: Request, res: Response) {
+    try {
+      const organizationId = req.admin._id;
+      const { name, organisationLogo } = req.body;
+
+      const organization = await Organization.findOne({ _id: organizationId });
+      const files = req.files as Express.Multer.File[];
+
+      if (!organization) {
+        return ResponseHandler.failure(res, "Organization does not exist", 404);
+      }
+
+       let Urls: string[] = [];
+        
+        if (files && files.length > 0) {
+          for (let i = 0; i < files.length; i++) {
+            const file = files[i];
+            const uploadResult = await uploadToCloudinary(
+              file.buffer,
+              file.mimetype,
+              "course-content"
+            );
+            if (uploadResult && uploadResult.secure_url) {
+              Urls.push(uploadResult.secure_url);
+              
+            }
+          }
+        }
+
+      const updatedOrganization = await Organization.findByIdAndUpdate(
+        organizationId,
+        { $set: { name, organisationLogo: organisationLogo || Urls[0] } },
+        { new: true, runValidators: true }
+      ).select("-password");
+
+      return ResponseHandler.success(
+        res,
+        updatedOrganization,
+        "Organization details updated successfully"
+      );
+    } catch (error: any) {
+      return ResponseHandler.failure(
+        res,
+        `Server error: ${error.message}`,
+        500
+      );
     }
   }
 }
