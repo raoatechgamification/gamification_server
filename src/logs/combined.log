@@ -6147,3 +6147,20 @@
 2024-12-31 15:16:40 [info]: GET /status 500
 2024-12-31 15:25:42 [info]: GET /status 200
 2024-12-31 16:42:40 [info]: GET /marketplace 200
+2025-01-03 17:22:01 [info]: POST /login 200 - Request Body: {"email":"test@gmail.com","password":"Test2024!"}
+2025-01-03 17:22:06 [info]: GET / 200
+2025-01-03 17:22:23 [info]: GET / 304
+2025-01-03 17:23:02 [info]: GET / 304
+2025-01-03 17:23:17 [info]: GET /lesson/getAll 404
+2025-01-03 17:23:23 [info]: GET /lesson/getAll 404
+2025-01-03 17:23:25 [info]: GET /lesson/getAll 404
+2025-01-03 17:23:30 [info]: GET /lesson/getAll 404
+2025-01-03 17:23:34 [info]: GET /lesson/getAll 404
+2025-01-03 17:23:54 [info]: GET /lesson/getAll 404
+2025-01-03 17:23:57 [info]: GET /lesson/getAll 404
+2025-01-03 17:24:01 [info]: GET /lesson/getAll 404
+2025-01-03 17:25:11 [info]: POST /lesson 200 - Request Body: {"title":"optimized ","objectives":"d"}
+2025-01-03 17:25:35 [info]: GET /lesson/getAll 200
+2025-01-03 17:26:04 [info]: GET /lesson/getAll 304
+2025-01-03 17:26:39 [info]: GET /lesson/getAll 304
+2025-01-03 17:27:12 [info]: GET /lesson/getAll 304
