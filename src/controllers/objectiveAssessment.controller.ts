@@ -535,99 +535,6 @@ class ObjectAssessmentController {
     }
   }
 
-  // async bulkUploadAssessmentts(req: Request, res: Response) {
-  //   try {
-  //     const {
-  //       title,
-  //       description,
-  //       marksPerQuestion,
-  //       numberOfTrials,
-  //       purpose,
-  //       totalMark,
-  //       passMark,
-  //       duration,
-  //       startDate,
-  //       endDate,
-  //       assessmentCode,
-  //     } = req.body;
-
-  //     const organizationId = req.admin._id
-  
-  //     if (!req.file) {
-  //       return res.status(400).json({
-  //         success: false,
-  //         message: 'No file uploaded. Please provide an Excel file.',
-  //       });
-  //     }
-
-  //     const lastAssessment = await ObjectiveAssessment.findOne()
-  //     .sort({ position: -1 });
-  //     const position = lastAssessment ? lastAssessment.position + 1 : 1;
-  //     const code = assessmentCode || `EXT-${position}`;
-  
-  //     // Parse the uploaded Excel file
-  //     const workbook = XLSX.read(req.file.buffer, { type: 'buffer' });
-  //     const sheetName = workbook.SheetNames[0];
-  //     const sheetData: any[] = XLSX.utils.sheet_to_json(
-  //       workbook.Sheets[sheetName]
-  //     );
-  
-  //     if (!Array.isArray(sheetData) || sheetData.length === 0) {
-  //       return res.status(400).json({
-  //         message: 'The uploaded Excel file is empty or invalid.',
-  //       });
-  //     }
-  
-  //     // Transform sheet data into questions
-  //     const questions = sheetData.map((row, index) => {
-  //       const { question, type, options, answer, mark } = row;
-  
-  //       if (!question || !type || !answer || !mark) {
-  //         throw new Error(
-  //           `Missing required fields in Excel row ${index + 1}.`
-  //         );
-  //       }
-  
-  //       return {
-  //         question,
-  //         type,
-  //         options: options ? options.split(',') : [],
-  //         answer,
-  //         mark: Number(mark),
-  //       };
-  //     });
-  
-  //     const assessment = new ObjectiveAssessment({
-  //       organizationId,
-  //       title,
-  //       description,
-  //       marksPerQuestion: marksPerQuestion ? Number(marksPerQuestion) : undefined,
-  //       numberOfTrials: numberOfTrials ? Number(numberOfTrials) : undefined,
-  //       purpose,
-  //       position, 
-  //       totalMark: Number(totalMark),
-  //       passMark: Number(passMark),
-  //       duration: Number(duration),
-  //       startDate: startDate ? new Date(startDate) : undefined,
-  //       endDate: endDate ? new Date(endDate) : undefined,
-  //       assessmentCode: code,
-  //       questions,
-  //     });
-  
-  //     await assessment.save();
-  
-  //     return res.status(201).json({
-  //       message: 'Assessment uploaded successfully.',
-  //       assessment,
-  //     });
-  //   } catch (error: any) {
-  //     console.error(error);
-  //     return res.status(500).json({
-  //       message: error.message || 'An error occurred while uploading the assessment.',
-  //     });
-  //   }
-  // }
-
   async editObjectiveAssessment(req: Request, res: Response) {
     try {
       const { assessmentId } = req.params;
@@ -906,9 +813,10 @@ class ObjectAssessmentController {
       });
 
       const maxTrials = assessment.numberOfTrials ?? Infinity;
-      const trialsLeft = Math.max(0, maxTrials - submissionCount) - 1;
+      const trialsLeft = Math.max(0, maxTrials - submissionCount);
+      
 
-      if (submissionCount >= maxTrials) {
+      if (trialsLeft === 0) {
         return ResponseHandler.failure(
           res,
           `You have exceeded the number of allowed attempts for this assessment in this course. Trials left: ${trialsLeft}`,
@@ -1020,7 +928,7 @@ class ObjectAssessmentController {
         {
           ...submission.toObject(),
           maxObtainableMarks,
-          trialsLeft,
+          trialsLeft: (trialsLeft - 1),
         },
         "Assessment submitted and graded successfully",
         201
