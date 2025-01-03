@@ -186,16 +186,6 @@ class ObjectAssessmentController {
 
       const organizationId = req.admin._id
   
-      // Validate required fields
-      if (!title || !description || !passMark || !totalMark || !duration || !assessmentCode || !questionsBankId || !groupId) {
-        return ResponseHandler.failure(
-          res,
-          "Missing required fields.",
-          404
-        );
-      }
-  
-      // Fetch the questions bank
       const questionsBank = await QuestionsBank.findById(questionsBankId);
       if (!questionsBank) {
         return ResponseHandler.failure(
@@ -205,7 +195,6 @@ class ObjectAssessmentController {
         );
       }
   
-      // Find the group in the questions bank
       const group = questionsBank.groups?.find((g: { _id: { toString: () => any; }; }) => g._id.toString() === groupId);
       if (!group) {
         return ResponseHandler.failure(
@@ -228,7 +217,6 @@ class ObjectAssessmentController {
           );
         }
       } else if (numberOfQuestions) {
-        // Ensure the number of questions requested does not exceed available questions
         if (numberOfQuestions > group.questions.length) {
           return ResponseHandler.failure(
             res,

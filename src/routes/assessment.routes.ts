@@ -14,6 +14,7 @@ import {
   assessmentIdValidator,
   submissionIdValidator,
   submissionIdsValidator,
+  validateObjectiveAssessmentUsingQuestionsBank
 } from "../validators/assessment.validator";
 
 import { upload } from "../utils/upload.utils";
@@ -61,6 +62,7 @@ router.post(
   "/objective/from-question-bank",
   authenticate,
   authorize("admin"),
+  ...validateObjectiveAssessmentUsingQuestionsBank,
   createObjectiveAssessmentFromQuestionsBank
 );
 

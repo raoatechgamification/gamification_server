@@ -322,6 +322,83 @@ export const validateManualQuestionsUpload = [
   errorResponse
 ]
 
+export const validateObjectiveAssessmentUsingQuestionsBank = [
+  body('title')
+    .isString()
+    .withMessage('Title must be a string.')
+    .notEmpty()
+    .withMessage('Title is required.'),
+  body('description')
+    .isString()
+    .withMessage('Description must be a string.')
+    .notEmpty()
+    .withMessage('Description is required.'),
+  body('marksPerQuestion')
+    .optional()
+    .isNumeric()
+    .withMessage('Marks per question must be a number.'),
+  body('numberOfTrials')
+    .optional()
+    .isNumeric()
+    .withMessage('Number of trials must be a number.'),
+  body('purpose')
+    .optional()
+    .isString()
+    .withMessage('Purpose must be a string.'),
+  body('passMark')
+    .isNumeric()
+    .withMessage('Pass mark must be a number.')
+    .notEmpty()
+    .withMessage('Pass mark is required.'),
+  body('totalMark')
+    .isNumeric()
+    .withMessage('Total mark must be a number.')
+    .notEmpty()
+    .withMessage('Total mark is required.'),
+  body('duration')
+    .isNumeric()
+    .withMessage('Duration must be a number.')
+    .notEmpty()
+    .withMessage('Duration is required.'),
+  body('assessmentCode')
+    .isString()
+    .withMessage('Assessment code must be a string.')
+    .notEmpty()
+    .withMessage('Assessment code is required.'),
+  body('questionsBankId')
+    .isMongoId()
+    .withMessage('Questions bank ID must be a valid MongoDB ObjectId.')
+    .notEmpty()
+    .withMessage('Questions bank ID is required.'),
+  body('groupId')
+    .isMongoId()
+    .withMessage('Group ID must be a valid MongoDB ObjectId.')
+    .notEmpty()
+    .withMessage('Group ID is required.'),
+  body('questionIds')
+    .optional()
+    .isArray()
+    .withMessage('Question IDs must be an array.')
+    .custom((value) => {
+      if (value.some((id: string) => typeof id !== 'string')) {
+        throw new Error('Each question ID must be a string.');
+      }
+      return true;
+    }),
+  body('numberOfQuestions')
+    .optional()
+    .isNumeric()
+    .withMessage('Number of questions must be a number.')
+    .custom((value) => {
+      if (value < 1) {
+        throw new Error('Number of questions must be greater than 0.');
+      }
+      return true;
+    }),
+
+  errorResponse
+];
+
 
 // Multer setup to validate file type
 const upload = multer({
