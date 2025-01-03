@@ -10,7 +10,7 @@ import {
   validateCourseId,
   createCourseValidator,
 } from "../validators/course.validator";
-import { upload } from "../utils/upload.utils";
+import { upload, Optimizedupload } from "../utils/upload.utils";
 
 const {
   createCourse,
@@ -96,7 +96,7 @@ router.post(
   "/lesson",
   authenticate,
   authorize("admin"),
-  upload.array("file", 10),
+  Optimizedupload.array("file", 10),
   ...courseContentValidator,
   createLesson
 );
