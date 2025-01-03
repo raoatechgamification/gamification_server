@@ -8,11 +8,13 @@ import {
   createAssessmentValidator,
   createObjectiveAssessmentValidator,
   validateBulkUploadRequest,
+  validateManualQuestionsUpload,
   submissionValidator,
   gradeAssessmentValidator,
   assessmentIdValidator,
   submissionIdValidator,
-  submissionIdsValidator
+  submissionIdsValidator,
+  validateObjectiveAssessmentUsingQuestionsBank
 } from "../validators/assessment.validator";
 
 import { upload } from "../utils/upload.utils";
@@ -25,14 +27,16 @@ const {
   gradeSubmission,
 } = new AssessmentController();
 
-const { 
-  createObjectiveAssessment, 
+const {
+  createObjectiveAssessment,
+  createObjectiveAssessmentFromQuestionsBank,
   bulkUploadQuestions,
+  uploadQuestionsManually,
   editObjectiveAssessment,
   takeAndGradeAssessment,
   getAssessmentById,
   getAllAssessmentsForOrganization,
-  assessmentResultSlip
+  assessmentResultSlip,
 } = ObjectAssessmentController;
 
 const { submitAssessment } = new SubmissionController();
@@ -47,21 +51,36 @@ router.post(
 );
 
 router.post(
-  '/objective',
+  "/objective",
   authenticate,
   authorize("admin"),
   ...createObjectiveAssessmentValidator,
   createObjectiveAssessment
-)
+);
 
 router.post(
-  "/bulk-upload",
+  "/objective/from-question-bank",
   authenticate,
   authorize("admin"),
-  // uploadMiddleware,
+  ...validateObjectiveAssessmentUsingQuestionsBank,
+  createObjectiveAssessmentFromQuestionsBank
+);
+
+router.post(
+  "/questions/bulk-upload",
+  authenticate,
+  authorize("admin"),
   ...validateBulkUploadRequest,
   bulkUploadQuestions
-)
+);
+
+router.post(
+  "/questions/manual-upload",
+  authenticate,
+  authorize("admin"),
+  ...validateManualQuestionsUpload,
+  uploadQuestionsManually
+);
 
 router.put(
   "/:assessmentId",
@@ -70,7 +89,7 @@ router.put(
   ...assessmentIdValidator,
   ...createObjectiveAssessmentValidator,
   editObjectiveAssessment
-)
+);
 
 router.put(
   "/:submissionId/grade",
@@ -94,7 +113,7 @@ router.post(
   authorize("user"),
   ...submissionIdsValidator,
   takeAndGradeAssessment
-)
+);
 
 router.post(
   "/submit/:assessmentId",
@@ -111,7 +130,7 @@ router.get(
   authorize("user"),
   ...submissionIdValidator,
   assessmentResultSlip
-)
+);
 
 router.get(
   "/",
