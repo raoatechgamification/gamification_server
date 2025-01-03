@@ -28,6 +28,7 @@ export interface SubmissionInterface {
   _id: string;
   learnerId: string;
   assessmentId: string;
+  courseId: string;
   answer: SubmissionAnswerInterface[]; 
   score?: number;
   status: string;
@@ -41,7 +42,7 @@ export interface ISubmission extends Document {
     isCorrect?: boolean;
   }[];
   learnerId: mongoose.Types.ObjectId | PopulatedLearner;
-  courseId: Schema.Types.ObjectId;
+  courseId: mongoose.Types.ObjectId;
   assessmentId: mongoose.Types.ObjectId | PopulatedAssessment;
   submittedFile?: string;
   comments?: string; 
@@ -57,28 +58,28 @@ export interface ISubmission extends Document {
 const submissionSchema = new Schema<ISubmission>(
   {
     learnerId: { type: Schema.Types.ObjectId, ref: "User", required: true },
-    courseId: { type: Schema.Types.ObjectId, ref: "Assessment", required: true }, 
-    assessmentId: { type: String, required: true },
+    assessmentId: { type: String, required: true,ref: "ObjectiveAssessment", },
+    courseId: { type: Schema.Types.ObjectId, ref: "Course", required: true }, 
     answer: [
       {
-        questionId: { type: String, required: true },
-        answer: { type: Schema.Types.Mixed, required: true }, 
+        questionId: { type: Schema.Types.ObjectId, required: true },
+        answer: Schema.Types.Mixed, 
         isCorrect: { type: Boolean },
       },
     ],  
-    submittedFile: { type: String },
-    comments: { type: String },
+    score: { type: Number, min: 0 },
+    status: { type: String, enum: ['Ungraded', 'Graded'], default: 'Ungraded' },
     gradedAnswers: [
       {
-        questionId: { type: String, required: true },
-        answer: { type: Schema.Types.Mixed, required: true },
+        questionId: { type: Schema.Types.ObjectId, required: true },
+        answer: Schema.Types.Mixed,
         isCorrect: { type: Boolean },
       },
     ],
-    score: { type: Number, min: 0 },
+    submittedFile: { type: String },
+    comments: { type: String },
     maxObtainableMarks: { type: Number, min: 0},
     percentageScore: { type: Number, min: 0, max: 100 },
-    status: { type: String, enum: ['Submitted', 'Graded'], default: 'Submitted' },
     passOrFail: { type: String, enum: ["Pass", "Fail"], default: "Fail" },
   },
   {

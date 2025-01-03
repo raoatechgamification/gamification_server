@@ -31,11 +31,27 @@ const {
   updateLessonCompletion,
   getCourseCompletionLevel,
   getCourseDetails,
+  getPrograms,
+  generalMarketPlace
 } = new CourseController();
 
 const { generateCourseReport } = AdminController;
 
 const router = Router();
+
+router.get(
+  "/status",
+  authenticate,
+  authorize("user"),
+  getPrograms
+)
+
+router.get(
+  "/marketplace",
+  authenticate,
+  authorize("user"),
+  generalMarketPlace
+)
 
 router.post(
   "/create",

@@ -1,5 +1,6 @@
 import { Request, Response, NextFunction } from "express";
 import { param, body, validationResult, check } from "express-validator";
+import multer from 'multer';
 
 const validateMarkingGuide = [
   body("markingGuide")
@@ -60,13 +61,7 @@ const validateOptionalFile = [
 const errorResponse = (req: Request, res: Response, next: NextFunction) => {
   const errors = validationResult(req);
   if (!errors.isEmpty()) {
-    return res.status(422).json({
-      success: false,
-      errors: errors.array().map((error) => ({
-        field: error.type,
-        message: error.msg,
-      })),
-    });
+    return res.status(400).json({ success: false, errors: errors.array()[0] });
   }
   next();
 };
@@ -166,6 +161,50 @@ export const createObjectiveAssessmentValidator = [
   errorResponse
 ]
 
+// export const bulkUploadAssessmentsValidator = [
+//   check('title')
+//     .notEmpty()
+//     .withMessage('Title is required'),
+//   check('description')
+//     .notEmpty()
+//     .withMessage('Description is required'),
+//   check('marksPerQuestion')
+//     .optional()
+//     .isNumeric()
+//     .withMessage('Marks per question must be a number'),
+//   check('numberOfTrials')
+//     .notEmpty()
+//     .isNumeric()
+//     .withMessage('Number of trials must be a number'),
+//   check('purpose')
+//     .optional()
+//     .isString()
+//     .withMessage('Purpose must be a string'),
+//   check('passMark')
+//     .isNumeric()
+//     .withMessage('Pass mark must be a number')
+//     .notEmpty()
+//     .withMessage('Pass mark is required'),
+//   check('duration')
+//     .isNumeric()
+//     .withMessage('Duration must be a number')
+//     .notEmpty()
+//     .withMessage('Duration is required'),
+//   check('startDate')
+//     .optional()
+//     .isISO8601()
+//     .withMessage('Start date must be a valid ISO8601 date'),
+//   check('endDate')
+//     .optional()
+//     .isISO8601()
+//     .withMessage('End date must be a valid ISO8601 date'),
+//   check('assessmentCode')
+//     .optional()
+//     .isString(),
+
+//   errorResponse
+// ]
+
 export const submissionValidator = [
   param("assessmentId")
     .notEmpty()
@@ -241,4 +280,200 @@ export const submissionIdsValidator = [
     .withMessage('Course ID must be a valid MongoDB ObjectId'),
 
   errorResponse,
+];
+
+export const validateManualQuestionsUpload = [
+  body('questionsBankName')
+    .notEmpty()
+    .withMessage('Questions bank name is required')
+    .isString()
+    .withMessage('Questions bank name must be a string'),
+  body('groupName')
+    .notEmpty()
+    .withMessage("Group name is required")
+    .isString()
+    .withMessage('Group name must be a string'),
+    check('questions')
+    .isArray()
+    .withMessage('Questions must be an array')
+    .notEmpty()
+    .withMessage('Questions are required'),
+  check('questions.*.question')
+    .notEmpty()
+    .withMessage('Each question must have a text'),
+  check('questions.*.type')
+    .isIn(['True or False', 'Yes or No', 'Fill in the Gap', 'Multichoice'])
+    .withMessage(
+      'Each question type must be one of True or False, Yes or No, Fill in the Gap, or Multichoice'
+    ),
+  check('questions.*.options')
+    .optional()
+    .isArray()
+    .withMessage('Options must be an array for multichoice questions'),
+  check('questions.*.answer')
+    .notEmpty()
+    .withMessage('Each question must have an answer'),
+  check('questions.*.mark')
+    .isNumeric()
+    .withMessage('The mark for each question must be a positive number')
+    .notEmpty()
+    .withMessage('Each question must have a mark'),
+
+  errorResponse
+]
+
+export const validateObjectiveAssessmentUsingQuestionsBank = [
+  body('title')
+    .isString()
+    .withMessage('Title must be a string.')
+    .notEmpty()
+    .withMessage('Title is required.'),
+  body('description')
+    .isString()
+    .withMessage('Description must be a string.')
+    .notEmpty()
+    .withMessage('Description is required.'),
+  body('marksPerQuestion')
+    .optional()
+    .isNumeric()
+    .withMessage('Marks per question must be a number.'),
+  body('numberOfTrials')
+    .optional()
+    .isNumeric()
+    .withMessage('Number of trials must be a number.'),
+  body('purpose')
+    .optional()
+    .isString()
+    .withMessage('Purpose must be a string.'),
+  body('passMark')
+    .isNumeric()
+    .withMessage('Pass mark must be a number.')
+    .notEmpty()
+    .withMessage('Pass mark is required.'),
+  body('totalMark')
+    .isNumeric()
+    .withMessage('Total mark must be a number.')
+    .notEmpty()
+    .withMessage('Total mark is required.'),
+  body('duration')
+    .isNumeric()
+    .withMessage('Duration must be a number.')
+    .notEmpty()
+    .withMessage('Duration is required.'),
+  body('assessmentCode')
+    .isString()
+    .withMessage('Assessment code must be a string.')
+    .notEmpty()
+    .withMessage('Assessment code is required.'),
+  body('questionsBankId')
+    .isMongoId()
+    .withMessage('Questions bank ID must be a valid MongoDB ObjectId.')
+    .notEmpty()
+    .withMessage('Questions bank ID is required.'),
+  body('groupId')
+    .isMongoId()
+    .withMessage('Group ID must be a valid MongoDB ObjectId.')
+    .notEmpty()
+    .withMessage('Group ID is required.'),
+  body('questionIds')
+    .optional()
+    .isArray()
+    .withMessage('Question IDs must be an array.')
+    .custom((value) => {
+      if (value.some((id: string) => typeof id !== 'string')) {
+        throw new Error('Each question ID must be a string.');
+      }
+      return true;
+    }),
+  body('numberOfQuestions')
+    .optional()
+    .isNumeric()
+    .withMessage('Number of questions must be a number.')
+    .custom((value) => {
+      if (value < 1) {
+        throw new Error('Number of questions must be greater than 0.');
+      }
+      return true;
+    }),
+
+  errorResponse
+];
+
+
+// Multer setup to validate file type
+const upload = multer({
+  fileFilter: (req, file, cb) => {
+    const allowedMimeTypes = [
+      'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet', // .xlsx
+      'application/vnd.ms-excel', // .xls
+    ];
+    if (!allowedMimeTypes.includes(file.mimetype)) {
+      return cb(
+        new Error('Invalid file type. Only Excel files (.xlsx, .xls) are allowed.')
+      );
+    }
+    cb(null, true);
+  },
+  limits: {
+    fileSize: 5 * 1024 * 1024, // Optional: Limit file size to 5MB
+  },
+});
+
+// Middleware to validate input fields
+const validateBulkUploadInputs = [
+  body('questionsBankName')
+    .notEmpty()
+    .withMessage('Questions bank name is required')
+    .isString()
+    .withMessage('Questions bank name must be a string'),
+  body('groupName')
+    .notEmpty()
+    .withMessage("Group name is required")
+    .isString()
+    .withMessage('Group name must be a string'),
+];
+
+// Middleware to check validation results
+const handleValidationErrors = (req: Request, res: Response, next: NextFunction) => {
+  const errors = validationResult(req);
+  if (!errors.isEmpty()) {
+    return res.status(400).json({ success: false, errors: errors.array()[0] });
+  }
+  next();
+};
+
+// Error handling for multer
+const multerErrorHandler = (err: any, req: Request, res: Response, next: NextFunction) => {
+  if (err instanceof multer.MulterError) {
+    // Handle multer-specific errors
+    return res.status(400).json({
+      success: false,
+      message: `Multer error: ${err.message}`,
+    });
+  }
+  if (err) {
+    // Handle custom file type error
+    return res.status(400).json({
+      success: false,
+      message: err.message || 'An unknown error occurred during file upload.',
+    });
+  }
+  next();
+};
+
+// Combine multer and validation middleware
+export const validateBulkUploadRequest = [
+  upload.single('file'), // Ensure 'file' is the field name for the Excel file
+  (req: Request, res: Response, next: NextFunction) => {
+    if (!req.file) {
+      return res.status(400).json({
+        success: false,
+        message: 'No file uploaded. Please provide an Excel file.',
+      });
+    }
+    next();
+  },
+  validateBulkUploadInputs,
+  handleValidationErrors,
+  multerErrorHandler, // Error handler for multer and file upload
 ];

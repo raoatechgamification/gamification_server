@@ -4,7 +4,8 @@ export const uploadToCloudinary = async (fileBuffer: Buffer, mimetype: string, f
   try {
     const fileBase64 = `data:${mimetype};base64,${fileBuffer.toString('base64')}`;
     const result = await cloudinary.uploader.upload(fileBase64, {
-      folder,
+      folder, 
+      resource_type: "auto"
     });
     return result;
   } catch (error: any) {
