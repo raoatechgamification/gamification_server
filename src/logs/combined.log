@@ -6162,3 +6162,5 @@
 2025-01-03 17:25:11 [info]: POST /lesson 200 - Request Body: {"title":"optimized ","objectives":"d"}
 2025-01-03 17:25:35 [info]: GET /lesson/getAll 200
 2025-01-03 17:26:04 [info]: GET /lesson/getAll 304
+2025-01-03 17:26:39 [info]: GET /lesson/getAll 304
+2025-01-03 17:27:12 [info]: GET /lesson/getAll 304
