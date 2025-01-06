@@ -283,14 +283,12 @@ export const submissionIdsValidator = [
 ];
 
 export const validateManualQuestionsUpload = [
-  body('questionsBankName')
-    .notEmpty()
-    .withMessage('Questions bank name is required')
-    .isString()
-    .withMessage('Questions bank name must be a string'),
+  body('groupId')
+    .optional()
+    .isMongoId()
+    .withMessage('Group ID must be a must be a valid MongoDB ObjectId.'),
   body('groupName')
-    .notEmpty()
-    .withMessage("Group name is required")
+    .optional()
     .isString()
     .withMessage('Group name must be a string'),
     check('questions')
@@ -421,16 +419,14 @@ const upload = multer({
 
 // Middleware to validate input fields
 const validateBulkUploadInputs = [
-  body('questionsBankName')
-    .notEmpty()
-    .withMessage('Questions bank name is required')
-    .isString()
-    .withMessage('Questions bank name must be a string'),
   body('groupName')
-    .notEmpty()
-    .withMessage("Group name is required")
+    .optional()
     .isString()
     .withMessage('Group name must be a string'),
+  body('groupId')
+    .optional()
+    .isMongoId()
+    .withMessage('Group ID must be a must be a valid MongoDB ObjectId.'),
 ];
 
 // Middleware to check validation results
