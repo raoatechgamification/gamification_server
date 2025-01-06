@@ -1,5 +1,6 @@
 import { Request, Response } from "express";
 import mongoose from "mongoose";
+import { shuffle } from "lodash"
 import * as XLSX from "xlsx";
 import fileUpload from "express-fileupload";
 import ObjectiveAssessment, {
@@ -12,6 +13,156 @@ import User from "../models/user.model";
 import { ResponseHandler } from "../middlewares/responseHandler.middleware";
 
 class ObjectAssessmentController {
+  //  async createObjectiveAssessment(req: Request, res: Response) {
+  //   try {
+  //     const {
+  //       title,
+  //       description,
+  //       marksPerQuestion,
+  //       numberOfTrials,
+  //       purpose,
+  //       passMark,
+  //       totalMark,
+  //       duration,
+  //       startDate,
+  //       endDate,
+  //       questions,
+  //       assessmentCode,
+  //       saveToQuestionsBank, 
+  //       questionsBankId,     
+  //       groupId,             
+  //       createNewGroup,      
+  //       newGroupName,           
+  //     } = req.body;
+  
+  //     const organizationId = req.admin._id;
+  
+  //     // Validate questions
+  //     if (!Array.isArray(questions) || questions.length === 0) {
+  //       return ResponseHandler.failure(res, "Questions are required.", 400);
+  //     }
+  
+  //     const invalidQuestion = questions.find(
+  //       (q: { question: string; mark?: number }) =>
+  //         !q.question || (q.mark !== undefined && q.mark <= 0)
+  //     );
+  
+  //     if (invalidQuestion) {
+  //       return ResponseHandler.failure(
+  //         res,
+  //         'Each question must have a valid "question" field, and the "mark" field (if provided) must be positive.',
+  //         400
+  //       );
+  //     }
+  
+  //     // Determine position for the new assessment
+  //     const lastAssessment = await ObjectiveAssessment.findOne().sort({
+  //       position: -1,
+  //     });
+  //     const position = lastAssessment ? lastAssessment.position + 1 : 1;
+  
+  //     const code = assessmentCode || `EXT-${position}`;
+  
+  //     // Create new assessment
+  //     const newAssessment = new ObjectiveAssessment({
+  //       organizationId,
+  //       title,
+  //       description,
+  //       marksPerQuestion,
+  //       numberOfTrials,
+  //       purpose,
+  //       passMark,
+  //       totalMark,
+  //       duration,
+  //       startDate,
+  //       endDate,
+  //       assessmentCode: code,
+  //       questions,
+  //       position,
+  //     });
+  
+  //     await newAssessment.save();
+  
+  //     if (saveToQuestionsBank) {
+  //       let questionBank;
+  
+  //       // Check or create Questions Bank
+  //       if (questionsBankId) {
+  //         questionBank = await QuestionsBank.findOne({
+  //           _id: questionsBankId,
+  //           organizationId,
+  //         });
+  
+  //         if (!questionBank) {
+  //           return ResponseHandler.failure(
+  //             res,
+  //             "Questions Bank not found. Please provide a valid Questions Bank ID.",
+  //             404
+  //           );
+  //         }
+  //       } else {
+  //         questionBank = new QuestionsBank({
+  //           organizationId,
+  //         }); 
+  
+  //         await questionBank.save();
+  //       } else {
+  //         return ResponseHandler.failure(
+  //           res,
+  //           "Questions Bank ID or name is required to save questions.",
+  //           400
+  //         );
+  //       }
+  
+  //       // Handle group creation or addition
+  //       if (createNewGroup) {
+  //         if (!newGroupName) {
+  //           return ResponseHandler.failure(
+  //             res,
+  //             "New group name is required to create a group.",
+  //             400
+  //           );
+  //         }
+  
+  //         questionBank.groups.push({
+  //           name: newGroupName,
+  //           questions,
+  //         });
+  //       } else {
+  //         const targetGroup = questionBank.groups.find(
+  //           (group: { _id: string }) => group._id.toString() === groupId
+  //         );
+  
+  //         if (!targetGroup) {
+  //           return ResponseHandler.failure(
+  //             res,
+  //             `Group with ID "${groupId}" not found in the Questions Bank.`,
+  //             404
+  //           );
+  //         }
+  
+  //         targetGroup.questions.push(...questions);
+  //       }
+  
+  //       await questionBank.save();
+  //     }
+  
+  //     return ResponseHandler.success(
+  //       res,
+  //       newAssessment,
+  //       "Assessment created successfully",
+  //       201
+  //     );
+  //   } catch (error: any) {
+  //     console.error(error);
+  //     return ResponseHandler.failure(
+  //       res,
+  //       error.message || "Error creating assessment",
+  //       error.status || 500
+  //     );
+  //   }
+  // } 
+
   async createObjectiveAssessment(req: Request, res: Response) {
     try {
       const {
@@ -27,21 +178,25 @@ class ObjectAssessmentController {
         endDate,
         questions,
         assessmentCode,
-        saveToQuestionsBank, 
-        questionsBankId,     
-        groupId,             
-        createNewGroup,      
-        newGroupName,        
-        questionsBankName   
+        saveToQuestionsBank,
+        questionsBankId,
+        groupId,
+        createNewGroup,
+        newGroupName,
       } = req.body;
   
       const organizationId = req.admin._id;
   
-      // Validate questions
-      if (!Array.isArray(questions) || questions.length === 0) {
-        return ResponseHandler.failure(res, "Questions are required.", 400);
+      // Validate required fields
+      if (!title || !startDate || !endDate || !Array.isArray(questions) || questions.length === 0) {
+        return ResponseHandler.failure(
+          res,
+          "Title, startDate, endDate, and questions are required.",
+          400
+        );
       }
   
+      // Validate questions array
       const invalidQuestion = questions.find(
         (q: { question: string; mark?: number }) =>
           !q.question || (q.mark !== undefined && q.mark <= 0)
@@ -83,6 +238,7 @@ class ObjectAssessmentController {
   
       await newAssessment.save();
   
+      // Save to Questions Bank if required
       if (saveToQuestionsBank) {
         let questionBank;
   
@@ -100,36 +256,24 @@ class ObjectAssessmentController {
               404
             );
           }
-        } else if (questionsBankName) {
-          questionBank = new QuestionsBank({
-            name: questionsBankName,
-            organizationId,
+        } else if (createNewGroup && newGroupName) {
+          questionBank = new QuestionsBank({ organizationId });
+          questionBank.groups.push({
+            name: newGroupName,
+            questions,
           });
   
           await questionBank.save();
         } else {
           return ResponseHandler.failure(
             res,
-            "Questions Bank ID or name is required to save questions.",
+            "Questions Bank ID or new group name is required to save questions.",
             400
           );
         }
   
-        // Handle group creation or addition
-        if (createNewGroup) {
-          if (!newGroupName) {
-            return ResponseHandler.failure(
-              res,
-              "New group name is required to create a group.",
-              400
-            );
-          }
-  
-          questionBank.groups.push({
-            name: newGroupName,
-            questions,
-          });
-        } else {
+        // Handle adding questions to an existing group
+        if (!createNewGroup) {
           const targetGroup = questionBank.groups.find(
             (group: { _id: string }) => group._id.toString() === groupId
           );
@@ -151,19 +295,19 @@ class ObjectAssessmentController {
       return ResponseHandler.success(
         res,
         newAssessment,
-        "Assessment created successfully",
+        "Assessment created successfully.",
         201
       );
     } catch (error: any) {
       console.error(error);
       return ResponseHandler.failure(
         res,
-        error.message || "Error creating assessment",
+        error.message || "Error creating assessment.",
         error.status || 500
       );
     }
-  }  
-
+  }
+  
   async createObjectiveAssessmentFromQuestionsBank (req: Request, res: Response) {
     try {
       const {
@@ -241,13 +385,13 @@ class ObjectAssessmentController {
         ? selectedQuestions.length * marksPerQuestion
         : selectedQuestions.reduce((sum: any, q: { mark: any; }) => sum + q.mark, 0);
   
-      if (calculatedTotalMark !== totalMark) {
-        return ResponseHandler.failure(
-          res,
-          "Total marks do not match the sum of question marks or calculated marks.",
-          400
-        );
-      }
+      // if (calculatedTotalMark !== totalMark) {
+      //   return ResponseHandler.failure(
+      //     res,
+      //     "Total marks do not match the sum of question marks or calculated marks.",
+      //     400
+      //   );
+      // }
 
       const lastAssessment = await ObjectiveAssessment.findOne().sort({
         position: -1,
@@ -264,7 +408,7 @@ class ObjectAssessmentController {
         purpose,
         position,
         passMark,
-        totalMark: calculatedTotalMark,
+        totalMark,
         duration,
         startDate,
         endDate,
@@ -373,26 +517,38 @@ class ObjectAssessmentController {
 
   async bulkUploadQuestions(req: Request, res: Response) {
     try {
-      const { questionsBankName, groupName } = req.body; 
+      const { groupId, groupName } = req.body;
       const organizationId = req.admin._id;
+  
+      if (!groupId && !groupName) {
+        return res.status(400).json({
+          success: false,
+          message: "Either group ID or group name must be provided.",
+        });
+      }
+  
+      if (groupId && groupName) {
+        return res.status(400).json({
+          success: false,
+          message: "Provide only one: group ID or group name, not both.",
+        });
+      }
   
       if (!req.file) {
         return res.status(400).json({
           success: false,
-          message: 'No file uploaded. Please provide an Excel file.',
+          message: "No file uploaded. Please provide an Excel file.",
         });
       }
   
-      const workbook = XLSX.read(req.file.buffer, { type: 'buffer' });
+      const workbook = XLSX.read(req.file.buffer, { type: "buffer" });
       const sheetName = workbook.SheetNames[0];
-      const sheetData: any[] = XLSX.utils.sheet_to_json(
-        workbook.Sheets[sheetName]
-      );
+      const sheetData: any[] = XLSX.utils.sheet_to_json(workbook.Sheets[sheetName]);
   
       if (!Array.isArray(sheetData) || sheetData.length === 0) {
         return res.status(400).json({
           success: false,
-          message: 'The uploaded Excel file is empty or invalid.',
+          message: "The uploaded Excel file is empty or invalid.",
         });
       }
   
@@ -406,134 +562,291 @@ class ObjectAssessmentController {
         return {
           question,
           type,
-          options: options ? options.split(',') : [],
+          options: options ? options.split(",") : [],
           answer,
           mark: Number(mark),
         };
       });
   
-      // Check if a QuestionBank exists for the organization and name
-      let questionBank = await QuestionsBank.findOne({
-        organizationId,
-        name: questionsBankName,
-      });
+      let questionBank = await QuestionsBank.findOne({ organizationId });
   
       if (!questionBank) {
         // Create a new QuestionBank if it doesn't exist
-        questionBank = new QuestionsBank({
-          name: questionsBankName,
-          organizationId,
-          groups: [
-            {
-              name: groupName,
-              questions,
-            },
-          ],
-        });
-      } else {
-        // Add new questions to the specified group or create the group
-        const targetGroup = questionBank.groups.find(
-          (group: { name: any; }) => group.name === groupName
-        );
-  
-        if (targetGroup) {
-          targetGroup.questions.push(...questions);
-        } else {
-          questionBank.groups.push({
-            name: groupName,
-            questions,
-          });
-        }
+        questionBank = new QuestionsBank({ organizationId, groups: [] });
       }
   
-      await questionBank.save();
-  
-      return res.status(201).json({
-        success: true,
-        message: 'Questions uploaded successfully.',
-        questionBank,
-      });
-    } catch (error: any) {
-      console.error(error);
-      return res.status(500).json({
-        success: false,
-        message: error.message || 'An error occurred while uploading the questions.',
-      });
-    }
-  }
-
-  async uploadQuestionsManually(req: Request, res: Response) {
-    try {
-      const { questionsBankName, groupName, questions } = req.body;
-      const organizationId = req.admin._id;
-
-      // Validate and transform questions
-      const validatedQuestions = questions.map((q: any, index: number) => {
-        const { question, type, options, answer, mark } = q;
-
-        if (!question || !type || !answer || mark === undefined) {
-          throw new Error(`Missing required fields in question at index ${index + 1}.`);
+      if (groupId) {
+        const targetGroup = questionBank.groups.id(groupId);
+        if (!targetGroup) {
+          return res.status(404).json({
+            success: false,
+            message: "Group with the provided ID not found.",
+          });
         }
-
-        return {
-          question,
-          type,
-          options: options ? options : [],
-          answer,
-          mark: Number(mark),
-        };
-      });
-
-      // Check if a QuestionBank exists for the organization and name
-      let questionBank = await QuestionsBank.findOne({
-        organizationId,
-        name: questionsBankName,
-      });
-
-      if (!questionBank) {
-        // Create a new QuestionBank if it doesn't exist
-        questionBank = new QuestionsBank({
-          name: questionsBankName,
-          organizationId,
-          groups: [
-            {
-              name: groupName,
-              questions: validatedQuestions,
-            },
-          ],
-        });
-      } else {
-        // Add new questions to the specified group or create the group
+        targetGroup.questions.push(...questions);
+      } else if (groupName) {
         const targetGroup = questionBank.groups.find(
           (group: { name: string }) => group.name === groupName
         );
-
         if (targetGroup) {
-          targetGroup.questions.push(...validatedQuestions);
+          targetGroup.questions.push(...questions);
         } else {
-          questionBank.groups.push({
-            name: groupName,
-            questions: validatedQuestions,
-          });
+          questionBank.groups.push({ name: groupName, questions });
         }
       }
-
-      // Save the QuestionBank
+  
       await questionBank.save();
-
+  
       return res.status(201).json({
         success: true,
-        message: 'Questions uploaded successfully.',
+        message: "Questions uploaded successfully.",
         questionBank,
       });
     } catch (error: any) {
       console.error(error);
       return res.status(500).json({
         success: false,
-        message: error.message || 'An error occurred while creating the assessment.',
+        message: error.message || "An error occurred while uploading the questions.",
+      });
+    }
+  }  
+
+  // async bulkUploadQuestions(req: Request, res: Response) {
+  //   try {
+  //     const { groupName } = req.body; 
+  //     const organizationId = req.admin._id;
+  
+  //     if (!req.file) {
+  //       return res.status(400).json({
+  //         success: false,
+  //         message: 'No file uploaded. Please provide an Excel file.',
+  //       });
+  //     }
+  
+  //     const workbook = XLSX.read(req.file.buffer, { type: 'buffer' });
+  //     const sheetName = workbook.SheetNames[0];
+  //     const sheetData: any[] = XLSX.utils.sheet_to_json(
+  //       workbook.Sheets[sheetName]
+  //     );
+  
+  //     if (!Array.isArray(sheetData) || sheetData.length === 0) {
+  //       return res.status(400).json({
+  //         success: false,
+  //         message: 'The uploaded Excel file is empty or invalid.',
+  //       });
+  //     }
+  
+  //     const questions = sheetData.map((row, index) => {
+  //       const { question, type, options, answer, mark } = row;
+  
+  //       if (!question || !type || !answer || !mark) {
+  //         throw new Error(`Missing required fields in Excel row ${index + 1}.`);
+  //       }
+  
+  //       return {
+  //         question,
+  //         type,
+  //         options: options ? options.split(',') : [],
+  //         answer,
+  //         mark: Number(mark),
+  //       };
+  //     });
+  
+  //     // Check if a QuestionBank exists for the organization and name
+  //     let questionBank = await QuestionsBank.findOne({
+  //       organizationId,
+  //     });
+  
+  //     if (!questionBank) {
+  //       // Create a new QuestionBank if it doesn't exist
+  //       questionBank = new QuestionsBank({
+  //         organizationId,
+  //         groups: [
+  //           {
+  //             name: groupName,
+  //             questions,
+  //           },
+  //         ],
+  //       });
+  //     } else {
+  //       // Add new questions to the specified group or create the group
+  //       const targetGroup = questionBank.groups.find(
+  //         (group: { name: any; }) => group.name === groupName
+  //       );
+  
+  //       if (targetGroup) {
+  //         targetGroup.questions.push(...questions);
+  //       } else {
+  //         questionBank.groups.push({
+  //           name: groupName,
+  //           questions,
+  //         });
+  //       }
+  //     }
+  
+  //     await questionBank.save();
+  
+  //     return res.status(201).json({
+  //       success: true,
+  //       message: 'Questions uploaded successfully.',
+  //       questionBank,
+  //     });
+  //   } catch (error: any) {
+  //     console.error(error);
+  //     return res.status(500).json({
+  //       success: false,
+  //       message: error.message || 'An error occurred while uploading the questions.',
+  //     });
+  //   }
+  // }
+
+  async uploadQuestionsManually(req: Request, res: Response) {
+    try {
+      const { groupId, groupName, questions } = req.body;
+      const organizationId = req.admin._id;
+  
+      if (!groupId && !groupName) {
+        return res.status(400).json({
+          success: false,
+          message: "Either group ID or group name must be provided.",
+        });
+      }
+  
+      if (groupId && groupName) {
+        return res.status(400).json({
+          success: false,
+          message: "Provide only one: group ID or group name, not both.",
+        });
+      }
+  
+      const validatedQuestions = questions.map((q: any, index: number) => {
+        const { question, type, options, answer, mark } = q;
+  
+        if (!question || !type || !answer || mark === undefined) {
+          throw new Error(`Missing required fields in question at index ${index + 1}.`);
+        }
+  
+        return {
+          question,
+          type,
+          options: options || [],
+          answer,
+          mark: Number(mark),
+        };
+      });
+  
+      let questionBank = await QuestionsBank.findOne({ organizationId });
+  
+      if (!questionBank) {
+        questionBank = new QuestionsBank({ organizationId, groups: [] });
+      }
+  
+      if (groupId) {
+        const targetGroup = questionBank.groups.id(groupId);
+        if (!targetGroup) {
+          return res.status(404).json({
+            success: false,
+            message: "Group with the provided ID not found.",
+          });
+        }
+        targetGroup.questions.push(...validatedQuestions);
+      } else if (groupName) {
+        const targetGroup = questionBank.groups.find(
+          (group: { name: string }) => group.name === groupName
+        );
+        if (targetGroup) {
+          targetGroup.questions.push(...validatedQuestions);
+        } else {
+          questionBank.groups.push({ name: groupName, questions: validatedQuestions });
+        }
+      }
+  
+      await questionBank.save();
+  
+      return res.status(201).json({
+        success: true,
+        message: "Questions uploaded successfully.",
+        questionBank,
+      });
+    } catch (error: any) {
+      console.error(error);
+      return res.status(500).json({
+        success: false,
+        message: error.message || "An error occurred while creating the assessment.",
       });
     }
   }
+  
+  // async uploadQuestionsManually(req: Request, res: Response) {
+  //   try {
+  //     const { groupName, questions } = req.body;
+  //     const organizationId = req.admin._id;
+
+  //     // Validate and transform questions
+  //     const validatedQuestions = questions.map((q: any, index: number) => {
+  //       const { question, type, options, answer, mark } = q;
+
+  //       if (!question || !type || !answer || mark === undefined) {
+  //         throw new Error(`Missing required fields in question at index ${index + 1}.`);
+  //       }
+
+  //       return {
+  //         question,
+  //         type,
+  //         options: options ? options : [],
+  //         answer,
+  //         mark: Number(mark),
+  //       };
+  //     });
+
+  //     // Check if a QuestionBank exists for the organization and name
+  //     let questionBank = await QuestionsBank.findOne({
+  //       organizationId,
+  //     });
+
+  //     if (!questionBank) {
+  //       // Create a new QuestionBank if it doesn't exist
+  //       questionBank = new QuestionsBank({
+  //         organizationId,
+  //         groups: [
+  //           {
+  //             name: groupName,
+  //             questions: validatedQuestions,
+  //           },
+  //         ],
+  //       });
+  //     } else {
+  //       // Add new questions to the specified group or create the group
+  //       const targetGroup = questionBank.groups.find(
+  //         (group: { name: string }) => group.name === groupName
+  //       );
+
+  //       if (targetGroup) {
+  //         targetGroup.questions.push(...validatedQuestions);
+  //       } else {
+  //         questionBank.groups.push({
+  //           name: groupName,
+  //           questions: validatedQuestions,
+  //         });
+  //       }
+  //     }
+
+  //     // Save the QuestionBank
+  //     await questionBank.save();
+
+  //     return res.status(201).json({
+  //       success: true,
+  //       message: 'Questions uploaded successfully.',
+  //       questionBank,
+  //     });
+  //   } catch (error: any) {
+  //     console.error(error);
+  //     return res.status(500).json({
+  //       success: false,
+  //       message: error.message || 'An error occurred while creating the assessment.',
+  //     });
+  //   }
+  // }
 
   async editObjectiveAssessment(req: Request, res: Response) {
     try {
@@ -970,28 +1283,61 @@ class ObjectAssessmentController {
     }
   }
 
+  // async getAssessmentById(req: Request, res: Response) {
+  //   try {
+  //     const { assessmentId } = req.params;
+  //     // console.log("Assessment ID:", assessmentId)
+  //     // const organizationId = req.admin._id;
+
+  //     // console.log("Organization ID:", organizationId)
+
+  //     // const assessment = await ObjectiveAssessment.findOne({
+  //     //   _id: assessmentId,
+  //     //   organizationId,
+  //     // });
+
+  //     const assessment = await ObjectiveAssessment.findById(assessmentId);
+
+  //     if (!assessment) {
+  //       return ResponseHandler.failure(res, "Assessment not found", 404);
+  //     }
+
+  //     return ResponseHandler.success(
+  //       res,
+  //       assessment,
+  //       "Assessment retrieved successfully"
+  //     );
+  //   } catch (error: any) {
+  //     return ResponseHandler.failure(
+  //       res,
+  //       error.message || "Error retrieving assessment",
+  //       error.status || 500
+  //     );
+  //   }
+  // }
+
   async getAssessmentById(req: Request, res: Response) {
     try {
       const { assessmentId } = req.params;
-      // console.log("Assessment ID:", assessmentId)
-      // const organizationId = req.admin._id;
-
-      // console.log("Organization ID:", organizationId)
-
-      // const assessment = await ObjectiveAssessment.findOne({
-      //   _id: assessmentId,
-      //   organizationId,
-      // });
-
+  
       const assessment = await ObjectiveAssessment.findById(assessmentId);
-
+  
       if (!assessment) {
         return ResponseHandler.failure(res, "Assessment not found", 404);
       }
-
+  
+      // Shuffle the questions
+      const shuffledQuestions = shuffle(assessment.questions);
+  
+      // Return the assessment with shuffled questions
+      const assessmentWithShuffledQuestions = {
+        ...assessment.toObject(), // Convert Mongoose document to plain object
+        questions: shuffledQuestions,
+      };
+  
       return ResponseHandler.success(
         res,
-        assessment,
+        assessmentWithShuffledQuestions,
         "Assessment retrieved successfully"
       );
     } catch (error: any) {
