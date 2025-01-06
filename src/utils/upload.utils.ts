@@ -79,3 +79,23 @@ export const bulkUpload = multer({
     }
   },
 });
+
+export const Optimizedupload = multer({
+  storage: multer.memoryStorage(), // Keep files in memory
+  limits: {
+    fileSize: 512 * 1024 * 1024, // Limit file size to 512MB per file
+  },
+  fileFilter: (req: Request, file: Express.Multer.File, cb) => {
+    const ext = path.extname(file.originalname).toLowerCase();
+    if (allowedExtensions.includes(ext)) {
+      cb(null, true);
+    } else {
+      cb(
+        new multer.MulterError(
+          "LIMIT_UNEXPECTED_FILE",
+          "Invalid file type. Only images, PDFs, documents, audio, and videos are allowed."
+        )
+      );
+    }
+  },
+});

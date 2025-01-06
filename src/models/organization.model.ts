@@ -36,6 +36,7 @@ export interface IOrganization extends Document {
   createdAt: Date; 
   updatedAt: Date; 
   contact?: IContact;
+  organisationLogo?: string;
 }
 const OrganizationSchema: Schema<IOrganization> = new Schema({
   name: { type: String, required: true },
@@ -47,6 +48,7 @@ const OrganizationSchema: Schema<IOrganization> = new Schema({
   referral: { type: String },
   referralSource: { type: String },
   industry: { type: String },
+  organisationLogo: {type: String},
   contact: {
     phoneNumber: { type: String },
     email: { type: String },

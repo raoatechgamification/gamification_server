@@ -91,7 +91,7 @@ class CertificateController {
             // logo1,
             // logo2,
         } = req.body;
-      console.log(req.body.file)
+
 
       
         const id = req.params.id
@@ -103,7 +103,7 @@ class CertificateController {
         }
 
         let Urls: string[] = [];
-        console.log(Urls, 105)
+  
         if (files && files.length > 0) {
           for (let i = 0; i < files.length; i++) {
             const file = files[i];
@@ -118,7 +118,7 @@ class CertificateController {
             }
           }
         }
-        console.log(Urls, 120)
+ 
 
         certificate.certificateTitle = certificateTitle || certificate.certificateTitle;
         certificate.recipientName = recipientName || certificate.recipientName;
