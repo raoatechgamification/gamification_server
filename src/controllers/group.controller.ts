@@ -63,4 +63,59 @@ export class GroupController {
       );
     }
   }
+
+  async editGroup(req: Request, res: Response, next: NextFunction) {
+    try {
+      const { groupId } = req.params;
+      const {
+        name,
+        generalLearnerTerm,
+        generalLearnerGroupTerm,
+        groups,
+        generalSubLearnerGroupTerm,
+        subGroupsName,
+        generalInstructorTerm,
+        instructorNames,
+        maxMembersPerProgram,
+        idFormat,
+        personalization,
+      } = req.body;
+
+      const updatedGroup = await Group.findByIdAndUpdate(
+        groupId,
+        {
+          $set: {
+            name,
+            "basicCustomization.generalLearnerTerm": generalLearnerTerm,
+            "basicCustomization.learnerGroup.generalLearnerGroupTerm": generalLearnerGroupTerm,
+            "basicCustomization.learnerGroup.groups": groups,
+            "basicCustomization.subLearnerGroup.generalSubLearnerGroupTerm": generalSubLearnerGroupTerm,
+            "basicCustomization.subLearnerGroup.subLearnerGroups": subGroupsName.map(
+              (subGroupName: string) => ({ name: subGroupName })
+            ),
+            "basicCustomization.instructor.generalInstructorTerm": generalInstructorTerm,
+            "basicCustomization.instructor.names": instructorNames.map((name: string) => ({
+              name,
+            })),
+            "advancedCustomization.academicProgram.maxMembersPerProgram": maxMembersPerProgram,
+            "advancedCustomization.idFormat": idFormat,
+            "advancedCustomization.personalization": personalization,
+          },
+        },
+        { new: true, runValidators: true }
+      );
+
+      if (!updatedGroup) {
+        return ResponseHandler.failure(res, "Group not found", 404);
+      }
+
+      return ResponseHandler.success(res, updatedGroup, "Group updated successfully");
+    } catch (error: any) {
+      return ResponseHandler.failure(
+        res,
+        `Server error: ${error.message}`,
+        500
+      );
+    }
+  }
 }
