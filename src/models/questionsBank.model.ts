@@ -1,7 +1,6 @@
 import mongoose, { Schema, Document } from 'mongoose';
 
 export interface IQuestionsBank extends Document {
-  name: string; 
   organizationId: Schema.Types.ObjectId; 
   groups?: {
     name: string; 
@@ -16,7 +15,6 @@ export interface IQuestionsBank extends Document {
 }
 
 const questionsBankSchema = new Schema<IQuestionsBank>({
-  name: { type: String, required: true }, 
   organizationId: { type: Schema.Types.ObjectId, required: true, ref: 'Organization' }, 
   groups: {
     type: [

@@ -3,17 +3,18 @@ import Group from "../models/group.model";
 import { ResponseHandler } from "../middlewares/responseHandler.middleware";
 
 export class GroupController {
-  async createGroup(req: Request, res: Response, next: NextFunction) {
+  async createGroup(req: Request, res: Response) {
     try {
       const {
         name,
-        learnerTerm,
+        generalLearnerTerm,
         generalLearnerGroupTerm,
         groups,
         generalSubLearnerGroupTerm,
-        subGroups,
+        subGroupsName,
         generalInstructorTerm,
         instructorNames,
+        numberOfArms,
         maxMembersPerProgram,
         idFormat,
         personalization,
@@ -24,21 +25,22 @@ export class GroupController {
       const newGroup = new Group({
         name,
         organizationId,
+        numberOfArms,
         basicCustomization: {
-          learnerTerm,
+          generalLearnerTerm,
           learnerGroup: {
-            generalTerm: generalLearnerGroupTerm,
+            generalLearnerGroupTerm,
             groups,
           },
           subLearnerGroup: {
-            generalSubTerm: generalSubLearnerGroupTerm,
-            subGroups: subGroups.map((subGroupName: string) => ({
+            generalSubLearnerGroupTerm,
+            subLearnerGroups: subGroupsName.map((subGroupName: string) => ({
               name: subGroupName,
             })),
           },
           instructor: {
             generalInstructorTerm,
-            names: instructorNames,
+            names: instructorNames.map((name: string) => ({ name })),
           },
         },
         advancedCustomization: {
@@ -53,21 +55,25 @@ export class GroupController {
       const savedGroup = await newGroup.save();
 
       return ResponseHandler.success(res, savedGroup, "Group created successfully");
-    } catch (error) {
-      next(error);
+    } catch (error: any) {
+      return ResponseHandler.failure(
+        res,
+        `Server error: ${error.message}`,
+        500
+      );
     }
   }
 
-  async editGroup(req: Request, res: Response, next: NextFunction) {
+  async editGroup(req: Request, res: Response) {
     try {
       const { groupId } = req.params;
       const {
         name,
-        learnerTerm,
+        generalLearnerTerm,
         generalLearnerGroupTerm,
         groups,
         generalSubLearnerGroupTerm,
-        subGroups,
+        subGroupsName,
         generalInstructorTerm,
         instructorNames,
         maxMembersPerProgram,
@@ -80,17 +86,17 @@ export class GroupController {
         {
           $set: {
             name,
-            "basicCustomization.learnerTerm": learnerTerm,
-            "basicCustomization.learnerGroup.generalTerm": generalLearnerGroupTerm,
+            "basicCustomization.generalLearnerTerm": generalLearnerTerm,
+            "basicCustomization.learnerGroup.generalLearnerGroupTerm": generalLearnerGroupTerm,
             "basicCustomization.learnerGroup.groups": groups,
-            "basicCustomization.subLearnerGroup.generalSubTerm": generalSubLearnerGroupTerm,
-            "basicCustomization.subLearnerGroup.subGroups": subGroups.map(
-              (subGroupName: string) => ({
-                name: subGroupName,
-              })
+            "basicCustomization.subLearnerGroup.generalSubLearnerGroupTerm": generalSubLearnerGroupTerm,
+            "basicCustomization.subLearnerGroup.subLearnerGroups": subGroupsName.map(
+              (subGroupName: string) => ({ name: subGroupName })
             ),
             "basicCustomization.instructor.generalInstructorTerm": generalInstructorTerm,
-            "basicCustomization.instructor.names": instructorNames,
+            "basicCustomization.instructor.names": instructorNames.map((name: string) => ({
+              name,
+            })),
             "advancedCustomization.academicProgram.maxMembersPerProgram": maxMembersPerProgram,
             "advancedCustomization.idFormat": idFormat,
             "advancedCustomization.personalization": personalization,
@@ -104,8 +110,53 @@ export class GroupController {
       }
 
       return ResponseHandler.success(res, updatedGroup, "Group updated successfully");
-    } catch (error) {
-      next(error);
+    } catch (error: any) {
+      return ResponseHandler.failure(
+        res,
+        `Server error: ${error.message}`,
+        500
+      );
+    }
+  }
+
+  async getGroupById(req: Request, res: Response) {
+    try {
+      const { groupId } = req.params;
+      const organizationId = req.admin._id; 
+
+      const group = await Group.findOne({ _id: groupId, organizationId });
+
+      if (!group) {
+        return ResponseHandler.failure(res, "Group not found or does not belong to your organization", 404);
+      }
+
+      return ResponseHandler.success(res, group, "Group retrieved successfully");
+    } catch (error: any) {
+      return ResponseHandler.failure(
+        res,
+        `Server error: ${error.message}`,
+        500
+      );
+    }
+  }
+
+  async getAllGroups(req: Request, res: Response) {
+    try {
+      const organizationId = req.admin._id; 
+
+      const groups = await Group.find({ organizationId });
+
+      if (!groups.length) {
+        return ResponseHandler.failure(res, "No groups found for your organization", 404);
+      }
+
+      return ResponseHandler.success(res, groups, "Groups retrieved successfully");
+    } catch (error: any) {
+      return ResponseHandler.failure(
+        res,
+        `Server error: ${error.message}`,
+        500
+      );
     }
   }
 }
