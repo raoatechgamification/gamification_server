@@ -81,6 +81,17 @@ export class GroupController {
         personalization,
       } = req.body;
 
+      const organizationId = req.admin._id;
+      
+      const group = await Group.findOne({ _id: groupId, organizationId });
+      if (!group) {
+        return ResponseHandler.failure(
+          res,
+          "Group not found or does not belong to your organization",
+          404
+        );
+      }
+
       const updatedGroup = await Group.findByIdAndUpdate(
         groupId,
         {

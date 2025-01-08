@@ -6304,3 +6304,5 @@
 2025-01-08 10:43:32 [info]: PUT /edit/677e45b9a3fa7a62ce13ca73 200 - Request Body: {"name":"Group A","generalLearnerTerm":"student","generalLearnerGroupTerm":"class","generalSubLearnerGroupTerm":"arm","generalInstructorTerm":"teacher","groups":[{"name":"Class 1"},{"name":"Class 2"}],"numberOfArms":2,"subGroupsName":["Arm 1","Arm 2"],"instructorNames":["Mr. Smith","Ms. Doe"],"maxMembersPerProgram":5,"idFormat":"student","personalization":"Custom message for learners"}
 2025-01-08 12:10:23 [info]: GET /677e45b9a3fa7a62ce13ca73 200
 2025-01-08 12:11:48 [info]: GET / 200
+2025-01-08 12:39:19 [info]: GET / 200
+2025-01-08 13:51:31 [info]: PUT /edit/677e45b9a3fa7a62ce13ca73 200 - Request Body: {"name":"Group A","generalLearnerTerm":"student","generalLearnerGroupTerm":"class","generalSubLearnerGroupTerm":"arm","generalInstructorTerm":"teacher","groups":[{"name":"Class 1"},{"name":"Class 2"}],"numberOfArms":2,"subGroupsName":["Arm 1","Arm 2"],"instructorNames":["Mr. Smith","Ms. Doe"],"maxMembersPerProgram":5,"idFormat":"student","personalization":"Custom message for learners"}
