@@ -6,7 +6,10 @@ import {
   validateEditGroup 
 } from "../validators/group.validator";
 
-const { createGroup, editGroup } = new GroupController();
+const { 
+  createGroup, 
+  editGroup,
+} = new GroupController();
 
 const router = Router();
 
@@ -14,14 +17,12 @@ router.post(
   "/create", 
   authenticate, 
   authorize("admin"), 
-  ...validateCreateGroup,
   createGroup);
 
 router.put(
   "/edit/:groupId", 
   authenticate, 
   authorize("admin"), 
-  ...validateEditGroup,
   editGroup
 );
 
