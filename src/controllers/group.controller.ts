@@ -3,7 +3,7 @@ import Group from "../models/group.model";
 import { ResponseHandler } from "../middlewares/responseHandler.middleware";
 
 export class GroupController {
-  async createGroup(req: Request, res: Response, next: NextFunction) {
+  async createGroup(req: Request, res: Response) {
     try {
       const {
         name,
@@ -64,7 +64,7 @@ export class GroupController {
     }
   }
 
-  async editGroup(req: Request, res: Response, next: NextFunction) {
+  async editGroup(req: Request, res: Response) {
     try {
       const { groupId } = req.params;
       const {
@@ -119,10 +119,10 @@ export class GroupController {
     }
   }
 
-  async getGroupById(req: Request, res: Response, next: NextFunction) {
+  async getGroupById(req: Request, res: Response) {
     try {
       const { groupId } = req.params;
-      const organizationId = req.admin._id; // Assuming `req.admin._id` is the organization's ID.
+      const organizationId = req.admin._id; 
 
       const group = await Group.findOne({ _id: groupId, organizationId });
 
@@ -131,6 +131,26 @@ export class GroupController {
       }
 
       return ResponseHandler.success(res, group, "Group retrieved successfully");
+    } catch (error: any) {
+      return ResponseHandler.failure(
+        res,
+        `Server error: ${error.message}`,
+        500
+      );
+    }
+  }
+
+  async getAllGroups(req: Request, res: Response) {
+    try {
+      const organizationId = req.admin._id; 
+
+      const groups = await Group.find({ organizationId });
+
+      if (!groups.length) {
+        return ResponseHandler.failure(res, "No groups found for your organization", 404);
+      }
+
+      return ResponseHandler.success(res, groups, "Groups retrieved successfully");
     } catch (error: any) {
       return ResponseHandler.failure(
         res,

@@ -10,6 +10,7 @@ const {
   createGroup, 
   editGroup,
   getGroupById, 
+  getAllGroups 
 } = new GroupController();
 
 const router = Router();
@@ -34,6 +35,13 @@ router.get(
   authenticate,
   authorize("admin"),
   getGroupById
+)
+
+router.get(
+  "/",
+  authenticate,
+  authorize("admin"),
+  getAllGroups
 )
 
 export default router;
