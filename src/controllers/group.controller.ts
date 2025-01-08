@@ -118,4 +118,25 @@ export class GroupController {
       );
     }
   }
+
+  async getGroupById(req: Request, res: Response, next: NextFunction) {
+    try {
+      const { groupId } = req.params;
+      const organizationId = req.admin._id; // Assuming `req.admin._id` is the organization's ID.
+
+      const group = await Group.findOne({ _id: groupId, organizationId });
+
+      if (!group) {
+        return ResponseHandler.failure(res, "Group not found or does not belong to your organization", 404);
+      }
+
+      return ResponseHandler.success(res, group, "Group retrieved successfully");
+    } catch (error: any) {
+      return ResponseHandler.failure(
+        res,
+        `Server error: ${error.message}`,
+        500
+      );
+    }
+  }
 }

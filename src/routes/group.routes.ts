@@ -9,6 +9,7 @@ import {
 const { 
   createGroup, 
   editGroup,
+  getGroupById, 
 } = new GroupController();
 
 const router = Router();
@@ -17,13 +18,22 @@ router.post(
   "/create", 
   authenticate, 
   authorize("admin"), 
+  // ...validateCreateGroup,
   createGroup);
 
 router.put(
   "/edit/:groupId", 
   authenticate, 
   authorize("admin"), 
+  // ...validateEditGroup,
   editGroup
 );
+
+router.get(
+  "/:groupId",
+  authenticate,
+  authorize("admin"),
+  getGroupById
+)
 
 export default router;
