@@ -92,7 +92,6 @@ class AdminController {
         userId: userIdCode,
       } = req.body;
 
-      console.log(otherName, 84);
       const user = await User.findOne({ _id: userId, organizationId });
       let fileUploadResult: any = null;
       if (image) {
