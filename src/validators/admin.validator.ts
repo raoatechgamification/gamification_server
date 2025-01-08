@@ -29,11 +29,11 @@ export const adminEditUserProfileValidator = [
     .isString()
     .withMessage("Last name must be a string"),
 
-  body("batch")
-    .notEmpty()
-    .withMessage("Batch is required")
-    .isString()
-    .withMessage("Batch must be a string"),
+  // body("batch")
+  //   .notEmpty()
+  //   .withMessage("Batch is required")
+  //   .isString()
+  //   .withMessage("Batch must be a string"),
 
   body("role")
     .notEmpty()

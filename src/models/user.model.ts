@@ -65,6 +65,12 @@ export interface IUser extends Document {
       [lessonId: string]: number;  
     };
   };
+  contactPersonPlaceOfEmployment?: string,
+  nameOfContactPerson?: string,
+  contactEmail?: string,
+  contactPersonPhoneNumber?: string,
+
+
 }
 
 const AssignedProgramSchema = new Schema<IAssignedProgram>(
@@ -112,6 +118,11 @@ const UserSchema: Schema<IUser> = new Schema(
     officeLGA: { type: String, default: null },
     officeState: { type: String, default: null },
     employerName: { type: String, default: null },
+    contactPersonPlaceOfEmployment: { type: String, default: null },
+    nameOfContactPerson: { type: String, default: null },
+    contactEmail: { type: String, default: null },
+    contactPersonPhoneNumber: { type: String, default: null },
+    
     assignedPrograms: {
       type: [AssignedProgramSchema], 
       default: [],
