@@ -6164,6 +6164,402 @@
 2025-01-03 17:26:04 [info]: GET /lesson/getAll 304
 2025-01-03 17:26:39 [info]: GET /lesson/getAll 304
 2025-01-03 17:27:12 [info]: GET /lesson/getAll 304
+<<<<<<< HEAD
+2025-01-03 17:49:09 [info]: GET /lesson/getAll 304
+2025-01-08 14:04:05 [info]: GET /user-profile/675407fb2905ff2ccabcff7e 401
+2025-01-08 14:06:38 [info]: GET /all 401
+2025-01-08 14:06:38 [info]: GET /users 401
+2025-01-08 14:06:38 [info]: GET /user-profile/675407fb2905ff2ccabcff7e 401
+2025-01-08 14:06:39 [info]: GET /all 401
+2025-01-08 14:06:39 [info]: GET /users 401
+2025-01-08 14:06:40 [info]: GET /user-profile/675407fb2905ff2ccabcff7e 401
+2025-01-08 14:06:41 [info]: GET /all 401
+2025-01-08 14:06:41 [info]: GET /users 401
+2025-01-08 14:06:44 [info]: GET /user-profile/675407fb2905ff2ccabcff7e 401
+2025-01-08 14:06:46 [info]: GET /all 401
+2025-01-08 14:06:46 [info]: GET /users 401
+2025-01-08 14:15:26 [info]: GET /users 401
+2025-01-08 14:15:26 [info]: GET /all 401
+2025-01-08 14:15:33 [info]: GET /users 401
+2025-01-08 14:15:33 [info]: GET /all 401
+2025-01-08 14:15:36 [info]: GET /users 401
+2025-01-08 14:15:36 [info]: GET /all 401
+2025-01-08 14:15:40 [info]: GET /users 401
+2025-01-08 14:15:40 [info]: GET /all 401
+2025-01-08 14:16:20 [info]: GET /users 401
+2025-01-08 14:16:20 [info]: GET /all 401
+2025-01-08 14:16:22 [info]: GET /users 401
+2025-01-08 14:16:22 [info]: GET /all 401
+2025-01-08 14:16:24 [info]: GET /users 401
+2025-01-08 14:16:24 [info]: GET /all 401
+2025-01-08 14:16:43 [info]: GET /users 401
+2025-01-08 14:16:43 [info]: GET /all 401
+2025-01-08 14:17:24 [info]: GET /users 401
+2025-01-08 14:17:24 [info]: GET /all 401
+2025-01-08 14:17:25 [info]: GET /users 401
+2025-01-08 14:17:25 [info]: GET /all 401
+2025-01-08 14:17:27 [info]: GET /users 401
+2025-01-08 14:17:27 [info]: GET /all 401
+2025-01-08 14:17:31 [info]: GET /users 401
+2025-01-08 14:17:31 [info]: GET /all 401
+2025-01-08 14:20:29 [info]: POST /login 200 - Request Body: {"email":"test@gmail.com","password":"Test2024!"}
+2025-01-08 14:20:37 [info]: GET / 200
+2025-01-08 14:20:45 [info]: GET /all 200
+2025-01-08 14:20:46 [info]: GET /users 200
+2025-01-08 14:21:00 [info]: GET /user-profile/6758cedce0630e76956c0598 200
+2025-01-08 14:21:08 [info]: GET /user-profile/undefined 400
+2025-01-08 14:21:09 [info]: GET /user-profile/undefined 400
+2025-01-08 14:21:11 [info]: GET /user-profile/undefined 400
+2025-01-08 14:21:16 [info]: GET /user-profile/undefined 400
+2025-01-08 14:22:15 [info]: GET /user-profile/undefined 400
+2025-01-08 14:23:54 [info]: GET /user-profile/undefined 400
+2025-01-08 14:23:54 [info]: GET /all 304
+2025-01-08 14:23:55 [info]: GET /users 304
+2025-01-08 14:24:04 [info]: GET /user-profile/undefined 400
+2025-01-08 14:24:04 [info]: GET /all 304
+2025-01-08 14:24:05 [info]: GET /users 304
+2025-01-08 14:24:09 [info]: GET /user-profile/6758cedce0630e76956c0598 304
+2025-01-08 14:24:16 [info]: GET /user-profile/6758cedce0630e76956c0598 304
+2025-01-08 14:24:26 [info]: GET /user-profile/undefined 400
+2025-01-08 14:24:27 [info]: GET /user-profile/undefined 400
+2025-01-08 14:24:29 [info]: GET /user-profile/undefined 400
+2025-01-08 14:24:33 [info]: GET /user-profile/undefined 400
+2025-01-08 14:27:38 [info]: POST /single-create 201 - Request Body: {"firstName":"Marcus","lastName":"Rashford","othername":"MR","email":"rash@gmail.com","password":"Test2024!","role":"user","groups":"","userId":"rash10","gender":"male","dateOfBirth":"2025-01-01","country":"Nigeria","address":"Nigerian Meteorology Agency, close to Nigerian Armed Forces, Resettlement center, behind Blind center, off Fiiro road, Oshodi, Lagos","city":"Houston","LGA":"surulere","state":"Oyo","officeAddress":"40 ifelodun street","officeCity":"ota","officeLGA":"ado odo ota","employerName":"ajY","officeState":"ogun","contactPersonPlaceOfEmployment":"AJIBADE Emmanuel","nameOfContactPerson":"AJIBADE Emmanuel","contactEmail":"ajibadeemmanuel58@gmail.com","contactPersonPhoneNumber":"09056983150","sendEmail":"true"}
+2025-01-08 14:28:12 [info]: GET /users 401
+2025-01-08 14:28:12 [info]: GET /all 401
+2025-01-08 14:28:13 [info]: GET /all 304
+2025-01-08 14:28:14 [info]: GET /users 200
+2025-01-08 14:28:17 [info]: GET /user-profile/677e7d48ad3ab554703e9cd4 200
+2025-01-08 14:28:31 [info]: GET /all 304
+2025-01-08 14:28:32 [info]: GET /user-profile/677e7d48ad3ab554703e9cd4 304
+2025-01-08 14:28:32 [info]: GET /users 304
+2025-01-08 14:28:51 [info]: GET /user-profile/677e7d48ad3ab554703e9cd4 304
+2025-01-08 14:29:28 [info]: GET /all 304
+2025-01-08 14:29:28 [info]: GET /user-profile/677e7d48ad3ab554703e9cd4 304
+2025-01-08 14:29:28 [info]: GET /users 304
+2025-01-08 14:31:03 [info]: GET /all 304
+2025-01-08 14:31:03 [info]: GET /users 304
+2025-01-08 14:31:03 [info]: GET /user-profile/677e7d48ad3ab554703e9cd4 304
+2025-01-08 14:31:29 [info]: GET /all 304
+2025-01-08 14:31:29 [info]: GET /users 304
+2025-01-08 14:31:29 [info]: GET /user-profile/677e7d48ad3ab554703e9cd4 304
+2025-01-08 14:31:31 [info]: GET /user-profile/677e7d48ad3ab554703e9cd4 304
+2025-01-08 14:32:20 [info]: GET /user-profile/677e7d48ad3ab554703e9cd4 304
+2025-01-08 14:32:21 [info]: GET /all 304
+2025-01-08 14:32:22 [info]: GET /users 304
+2025-01-08 14:32:22 [info]: GET /user-profile/677e7d48ad3ab554703e9cd4 304
+2025-01-08 14:33:04 [info]: GET /all 304
+2025-01-08 14:33:04 [info]: GET /user-profile/677e7d48ad3ab554703e9cd4 304
+2025-01-08 14:33:04 [info]: GET /users 304
+2025-01-08 14:33:55 [info]: GET /user-profile/677e7d48ad3ab554703e9cd4 304
+2025-01-08 14:34:07 [info]: GET /all 304
+2025-01-08 14:34:07 [info]: GET /user-profile/677e7d48ad3ab554703e9cd4 304
+2025-01-08 14:34:07 [info]: GET /users 304
+2025-01-08 14:34:35 [info]: GET /all 304
+2025-01-08 14:34:35 [info]: GET /users 304
+2025-01-08 14:34:36 [info]: GET /user-profile/677e7d48ad3ab554703e9cd4 304
+2025-01-08 14:34:46 [info]: GET /all 304
+2025-01-08 14:34:46 [info]: GET /user-profile/677e7d48ad3ab554703e9cd4 304
+2025-01-08 14:34:46 [info]: GET /users 304
+2025-01-08 14:35:02 [info]: GET /users 401
+2025-01-08 14:35:02 [info]: GET /all 401
+2025-01-08 14:35:04 [info]: GET /all 304
+2025-01-08 14:35:04 [info]: GET /users 304
+2025-01-08 14:35:10 [info]: GET /user-profile/677e7d48ad3ab554703e9cd4 304
+2025-01-08 14:35:35 [info]: GET /user-profile/677e7d48ad3ab554703e9cd4 304
+2025-01-08 14:35:37 [info]: GET /all 304
+2025-01-08 14:35:37 [info]: GET /users 304
+2025-01-08 14:35:37 [info]: GET /user-profile/677e7d48ad3ab554703e9cd4 304
+2025-01-08 14:36:01 [info]: GET /user-profile/677e7d48ad3ab554703e9cd4 304
+2025-01-08 14:36:02 [info]: GET /all 304
+2025-01-08 14:36:03 [info]: GET /user-profile/677e7d48ad3ab554703e9cd4 304
+2025-01-08 14:36:03 [info]: GET /users 304
+2025-01-08 14:37:01 [info]: GET /all 304
+2025-01-08 14:37:01 [info]: GET /users 304
+2025-01-08 14:37:01 [info]: GET /user-profile/677e7d48ad3ab554703e9cd4 304
+2025-01-08 14:38:43 [info]: GET /user-profile/677e7d48ad3ab554703e9cd4 304
+2025-01-08 14:38:47 [info]: GET /all 304
+2025-01-08 14:38:47 [info]: GET /users 304
+2025-01-08 14:38:47 [info]: GET /user-profile/677e7d48ad3ab554703e9cd4 304
+2025-01-08 14:41:20 [info]: GET /all 304
+2025-01-08 14:41:20 [info]: GET /user-profile/677e7d48ad3ab554703e9cd4 304
+2025-01-08 14:41:20 [info]: GET /users 304
+2025-01-08 15:13:47 [info]: GET /all 304
+2025-01-08 15:13:47 [info]: GET /users 304
+2025-01-08 15:13:47 [info]: GET /user-profile/677e7d48ad3ab554703e9cd4 304
+2025-01-08 15:15:21 [info]: GET /all 304
+2025-01-08 15:15:22 [info]: GET /user-profile/677e7d48ad3ab554703e9cd4 304
+2025-01-08 15:15:22 [info]: GET /users 304
+2025-01-08 15:15:28 [info]: PUT /user-details/677e7d48ad3ab554703e9cd4 200 - Request Body: {"firstName":"Marcuss","lastName":"Rashford","email":"rash@gmail.com","password":"Test2024!","role":"user","batch":"rash10","sendEmail":true}
+2025-01-08 15:15:31 [info]: GET /admin/user-details/677e7d48ad3ab554703e9cd4 200
+2025-01-08 15:15:36 [info]: GET /all 500
+2025-01-08 15:15:36 [info]: GET /user-profile/677e7d48ad3ab554703e9cd4 500
+2025-01-08 15:15:36 [info]: GET /users 500
+2025-01-08 15:15:43 [info]: GET /all 200
+2025-01-08 15:15:44 [info]: GET /users 200
+2025-01-08 15:15:45 [info]: GET /user-profile/677e7d48ad3ab554703e9cd4 200
+2025-01-08 15:19:50 [info]: GET /users 304
+2025-01-08 15:19:54 [info]: GET /all 304
+2025-01-08 15:19:54 [info]: GET /user-profile/677e7d48ad3ab554703e9cd4 304
+2025-01-08 15:20:26 [info]: GET /all 304
+2025-01-08 15:20:26 [info]: GET /user-profile/677e7d48ad3ab554703e9cd4 304
+2025-01-08 15:20:30 [info]: GET /users 304
+2025-01-08 15:21:13 [info]: GET /all 304
+2025-01-08 15:21:13 [info]: GET /user-profile/677e7d48ad3ab554703e9cd4 304
+2025-01-08 15:21:13 [info]: GET /users 304
+2025-01-08 15:21:20 [info]: GET /user-profile/677e7d48ad3ab554703e9cd4 304
+2025-01-08 15:22:17 [info]: PUT /user-details/677e7d48ad3ab554703e9cd4 200 - Request Body: {"firstName":"Marcu","lastName":"Rashford","email":"rash@gmail.com","password":"Test2024!","role":"user","batch":"rash10","sendEmail":true}
+2025-01-08 15:31:11 [info]: GET /all 304
+2025-01-08 15:31:11 [info]: GET /users 200
+2025-01-08 15:31:11 [info]: GET /user-profile/677e7d48ad3ab554703e9cd4 200
+2025-01-08 15:31:15 [info]: GET /user-profile/6758cedce0630e76956c0598 304
+2025-01-08 15:31:40 [info]: GET /user-profile/677e7d48ad3ab554703e9cd4 304
+2025-01-08 15:31:51 [info]: PUT /user-details/677e7d48ad3ab554703e9cd4 500 - Request Body: {"firstName":"Marcus","lastName":"Rashford","email":"rash@gmail.com","password":"","role":"user","batch":"rash10","sendEmail":true}
+2025-01-08 15:32:02 [info]: GET /user-profile/677e7d48ad3ab554703e9cd4 304
+2025-01-08 15:33:24 [info]: GET /all 304
+2025-01-08 15:33:24 [info]: GET /users 304
+2025-01-08 15:33:24 [info]: GET /user-profile/677e7d48ad3ab554703e9cd4 304
+2025-01-08 15:36:46 [info]: GET /all 304
+2025-01-08 15:36:46 [info]: GET /users 304
+2025-01-08 15:36:47 [info]: GET /user-profile/677e7d48ad3ab554703e9cd4 304
+2025-01-08 15:39:34 [info]: GET /all 304
+2025-01-08 15:39:35 [info]: GET /user-profile/677e7d48ad3ab554703e9cd4 304
+2025-01-08 15:39:35 [info]: GET /users 304
+2025-01-08 15:41:47 [info]: GET /all 304
+2025-01-08 15:41:47 [info]: GET /users 304
+2025-01-08 15:41:47 [info]: GET /user-profile/677e7d48ad3ab554703e9cd4 304
+2025-01-08 15:42:02 [info]: PUT /user-details/677e7d48ad3ab554703e9cd4 200 - Request Body: {"firstName":"Marcus","lastName":"Rashford","email":"rash@gmail.com","password":"","role":"user","batch":"rash10","sendEmail":true}
+2025-01-08 15:42:55 [info]: GET /all 304
+2025-01-08 15:42:55 [info]: GET /users 200
+2025-01-08 15:42:55 [info]: GET /user-profile/677e7d48ad3ab554703e9cd4 200
+2025-01-08 15:42:59 [info]: GET /user-profile/677e7d48ad3ab554703e9cd4 304
+2025-01-08 15:47:20 [info]: GET /all 304
+2025-01-08 15:47:21 [info]: GET /user-profile/677e7d48ad3ab554703e9cd4 304
+2025-01-08 15:47:21 [info]: GET /users 304
+2025-01-08 15:48:23 [info]: GET /user-profile/677e7d48ad3ab554703e9cd4 304
+2025-01-08 15:49:14 [info]: GET /all 304
+2025-01-08 15:49:14 [info]: GET /user-profile/677e7d48ad3ab554703e9cd4 304
+2025-01-08 15:49:14 [info]: GET /users 304
+2025-01-08 15:49:18 [info]: GET /user-profile/677e7d48ad3ab554703e9cd4 304
+2025-01-08 15:49:28 [info]: GET /user-profile/677e7d48ad3ab554703e9cd4 304
+2025-01-08 15:51:36 [info]: GET /all 304
+2025-01-08 15:51:37 [info]: GET /user-profile/677e7d48ad3ab554703e9cd4 304
+2025-01-08 15:51:37 [info]: GET /users 304
+2025-01-08 15:51:44 [info]: GET /user-profile/677e7d48ad3ab554703e9cd4 304
+2025-01-08 15:52:41 [info]: PUT /user-details/677e7d48ad3ab554703e9cd4 400
+2025-01-08 15:52:56 [info]: GET /user-profile/677e7d48ad3ab554703e9cd4 304
+2025-01-08 15:53:08 [info]: GET /all 304
+2025-01-08 15:53:08 [info]: GET /user-profile/677e7d48ad3ab554703e9cd4 304
+2025-01-08 15:53:08 [info]: GET /users 304
+2025-01-08 15:54:07 [info]: GET /all 304
+2025-01-08 15:54:08 [info]: GET /user-profile/677e7d48ad3ab554703e9cd4 304
+2025-01-08 15:54:08 [info]: GET /users 304
+2025-01-08 15:54:12 [info]: PUT /user-details/677e7d48ad3ab554703e9cd4 400
+2025-01-08 15:54:23 [info]: GET /all 304
+2025-01-08 15:54:23 [info]: GET /user-profile/677e7d48ad3ab554703e9cd4 304
+2025-01-08 15:54:23 [info]: GET /users 304
+2025-01-08 15:56:24 [info]: PUT /user-details/677e7d48ad3ab554703e9cd4 200 - Request Body: {"firstName":"Marc","lastName":"Rashford","othername":"","email":"rash@gmail.com","password":"Test2024!","role":"user","groups":"","userId":"rash10","gender":"","dateOfBirth":"2025-01-01","image":"https://res.cloudinary.com/dldchwdkn/image/upload/v1736342854/userDisplayPictures/xnwmyhucwgqloiavotgs.png","country":"Nigeria","address":"Nigerian Meteorology Agency, close to Nigerian Armed Forces, Resettlement center, behind Blind center, off Fiiro road, Oshodi, Lagos","city":"Houston","LGA":"surulere","state":"Oyo","officeAddress":"40 ifelodun street","officeCity":"ota","officeLGA":"ado odo ota","employerName":"ajY","officeState":"ogun","contactPersonPlaceOfEmployment":"","nameOfContactPerson":"AJIBADE Emmanuel","contactEmail":"ajibadeemmanuel58@gmail.com","contactPersonPhoneNumber":"09056983150","sendEmail":"true"}
+2025-01-08 15:56:25 [info]: GET /user-profile/677e7d48ad3ab554703e9cd4 304
+2025-01-08 15:56:36 [info]: GET /user-profile/677e7d48ad3ab554703e9cd4 200
+2025-01-08 15:56:55 [info]: PUT /user-details/677e7d48ad3ab554703e9cd4 500 - Request Body: {"firstName":"Marcus","lastName":"Rashford","othername":"","email":"rash@gmail.com","password":"","role":"user","groups":"","userId":"rash10","gender":"","dateOfBirth":"2025-01-01","country":"Nigeria","address":"Nigerian Meteorology Agency, close to Nigerian Armed Forces, Resettlement center, behind Blind center, off Fiiro road, Oshodi, Lagos","city":"Houston","LGA":"surulere","state":"Oyo","officeAddress":"40 ifelodun street","officeCity":"ota","officeLGA":"ado odo ota","employerName":"ajY","officeState":"ogun","contactPersonPlaceOfEmployment":"","nameOfContactPerson":"AJIBADE Emmanuel","contactEmail":"ajibadeemmanuel58@gmail.com","contactPersonPhoneNumber":"09056983150","sendEmail":"true"}
+2025-01-08 15:58:45 [info]: GET /all 304
+2025-01-08 15:58:46 [info]: GET /user-profile/677e7d48ad3ab554703e9cd4 304
+2025-01-08 15:58:46 [info]: GET /users 200
+2025-01-08 16:01:00 [info]: PUT /user-details/677e7d48ad3ab554703e9cd4 200 - Request Body: {"firstName":"Marc","lastName":"Rashfords","othername":"","email":"rash@gmail.com","password":"Test2024!","role":"user","groups":"","userId":"rash10","gender":"","dateOfBirth":"2025-01-01","image":"https://res.cloudinary.com/dldchwdkn/image/upload/v1736342854/userDisplayPictures/xnwmyhucwgqloiavotgs.png","country":"Nigeria","address":"Nigerian Meteorology Agency, close to Nigerian Armed Forces, Resettlement center, behind Blind center, off Fiiro road, Oshodi, Lagos","city":"Houston","LGA":"surulere","state":"Oyo","officeAddress":"40 ifelodun street","officeCity":"ota","officeLGA":"ado odo ota","employerName":"ajY","officeState":"ogun","contactPersonPlaceOfEmployment":"","nameOfContactPerson":"AJIBADE Emmanuel","contactEmail":"ajibadeemmanuel58@gmail.com","contactPersonPhoneNumber":"09056983150","sendEmail":"true"}
+2025-01-08 16:01:16 [info]: GET /user-profile/677e7d48ad3ab554703e9cd4 200
+2025-01-08 16:01:40 [info]: PUT /user-details/677e7d48ad3ab554703e9cd4 500 - Request Body: {"firstName":"Marc","lastName":"Rashford","othername":"","email":"rash@gmail.com","password":"","role":"user","groups":"","userId":"rash10","gender":"","dateOfBirth":"2025-01-01","country":"Nigeria","address":"Nigerian Meteorology Agency, close to Nigerian Armed Forces, Resettlement center, behind Blind center, off Fiiro road, Oshodi, Lagos","city":"Houston","LGA":"surulere","state":"Oyo","officeAddress":"40 ifelodun street","officeCity":"ota","officeLGA":"ado odo ota","employerName":"ajY","officeState":"ogun","contactPersonPlaceOfEmployment":"","nameOfContactPerson":"AJIBADE Emmanuel","contactEmail":"ajibadeemmanuel58@gmail.com","contactPersonPhoneNumber":"09056983150","sendEmail":"true"}
+2025-01-08 16:03:18 [info]: GET /all 304
+2025-01-08 16:03:18 [info]: GET /users 200
+2025-01-08 16:03:18 [info]: GET /user-profile/677e7d48ad3ab554703e9cd4 304
+2025-01-08 16:03:41 [info]: PUT /user-details/677e7d48ad3ab554703e9cd4 200 - Request Body: {"firstName":"Marc","lastName":"Rashford","othername":"","email":"rash@gmail.com","password":"Test2024!","role":"user","groups":"","userId":"rash10","gender":"","dateOfBirth":"2025-01-01","image":"https://res.cloudinary.com/dldchwdkn/image/upload/v1736342854/userDisplayPictures/xnwmyhucwgqloiavotgs.png","country":"Nigeria","address":"Nigerian Meteorology Agency, close to Nigerian Armed Forces, Resettlement center, behind Blind center, off Fiiro road, Oshodi, Lagos","city":"Houston","LGA":"surulere","state":"Oyo","officeAddress":"40 ifelodun street","officeCity":"ota","officeLGA":"ado odo ota","employerName":"ajY","officeState":"ogun","contactPersonPlaceOfEmployment":"","nameOfContactPerson":"AJIBADE Emmanuel","contactEmail":"ajibadeemmanuel58@gmail.com","contactPersonPhoneNumber":"09056983150","sendEmail":"true"}
+2025-01-08 16:04:09 [info]: GET /all 304
+2025-01-08 16:04:09 [info]: GET /users 200
+2025-01-08 16:04:09 [info]: GET /user-profile/677e7d48ad3ab554703e9cd4 200
+2025-01-08 16:05:41 [info]: GET /all 304
+2025-01-08 16:05:41 [info]: GET /user-profile/677e7d48ad3ab554703e9cd4 304
+2025-01-08 16:05:41 [info]: GET /users 304
+2025-01-08 16:05:51 [info]: GET /user-profile/677e7d48ad3ab554703e9cd4 304
+2025-01-08 16:06:16 [info]: PUT /user-details/677e7d48ad3ab554703e9cd4 200 - Request Body: {"firstName":"Marcus","lastName":"Rashford","othername":"","email":"rash@gmail.com","password":"Test2024!","role":"user","groups":"","userId":"rash10","gender":"","dateOfBirth":"2025-01-01","country":"Nigeria","address":"Nigerian Meteorology Agency, close to Nigerian Armed Forces, Resettlement center, behind Blind center, off Fiiro road, Oshodi, Lagos","city":"Houston","LGA":"surulere","state":"Oyo","officeAddress":"40 ifelodun street","officeCity":"ota","officeLGA":"ado odo ota","employerName":"ajY","officeState":"ogun","contactPersonPlaceOfEmployment":"","nameOfContactPerson":"AJIBADE Emmanuel","contactEmail":"ajibadeemmanuel58@gmail.com","contactPersonPhoneNumber":"09056983150","sendEmail":"true"}
+2025-01-08 16:06:35 [info]: GET /all 304
+2025-01-08 16:06:36 [info]: GET /user-profile/677e7d48ad3ab554703e9cd4 200
+2025-01-08 16:06:36 [info]: GET /users 200
+2025-01-08 16:06:57 [info]: GET /all 304
+2025-01-08 16:06:58 [info]: GET /user-profile/677e7d48ad3ab554703e9cd4 304
+2025-01-08 16:06:58 [info]: GET /users 304
+2025-01-08 16:07:01 [info]: GET /user-profile/677e7d48ad3ab554703e9cd4 304
+2025-01-08 16:13:48 [info]: GET /user-profile/677e7d48ad3ab554703e9cd4 304
+2025-01-08 16:14:06 [info]: PUT /user-details/677e7d48ad3ab554703e9cd4 200 - Request Body: {"firstName":"Marcus","lastName":"Rashford","othername":"MR","email":"rash@gmail.com","password":"","role":"user","groups":"","userId":"rash10","gender":"","dateOfBirth":"2025-01-01","image":"https://res.cloudinary.com/dldchwdkn/image/upload/v1736348775/userDisplayPictures/bnjfmekkzjbady8bqlvs.png","country":"Nigeria","address":"Nigerian Meteorology Agency, close to Nigerian Armed Forces, Resettlement center, behind Blind center, off Fiiro road, Oshodi, Lagos","city":"Houston","LGA":"surulere","state":"Oyo","officeAddress":"40 ifelodun street","officeCity":"ota","officeLGA":"ado odo ota","employerName":"ajY","officeState":"ogun","contactPersonPlaceOfEmployment":"","nameOfContactPerson":"AJIBADE Emmanuel","contactEmail":"ajibadeemmanuel58@gmail.com","contactPersonPhoneNumber":"09056983150","sendEmail":"true"}
+2025-01-08 16:16:00 [info]: GET /all 304
+2025-01-08 16:16:00 [info]: GET /users 200
+2025-01-08 16:16:00 [info]: GET /user-profile/677e7d48ad3ab554703e9cd4 200
+2025-01-08 16:16:04 [info]: GET /user-profile/6758cedce0630e76956c0598 304
+2025-01-08 16:16:14 [info]: PUT /user-details/6758cedce0630e76956c0598 200 - Request Body: {"firstName":"AJIBADE","lastName":"Emmanuel","othername":"MR","email":"ajibadeemmanuel08781@gmail.com","password":"Test2024!","role":"user","groups":"","userId":"rash10","gender":"","dateOfBirth":"","country":"","address":"","city":"","LGA":"surulere","state":"","officeAddress":"40 ifelodun street","officeCity":"","officeLGA":"ado odo ota","employerName":"ajY","officeState":"","contactPersonPlaceOfEmployment":"","nameOfContactPerson":"","contactEmail":"","contactPersonPhoneNumber":"","sendEmail":"true"}
+2025-01-08 16:16:45 [info]: GET /all 304
+2025-01-08 16:16:45 [info]: GET /users 200
+2025-01-08 16:16:45 [info]: GET /user-profile/6758cedce0630e76956c0598 200
+2025-01-08 16:17:26 [info]: GET /all 304
+2025-01-08 16:17:26 [info]: GET /user-profile/6758cedce0630e76956c0598 304
+2025-01-08 16:17:26 [info]: GET /users 304
+2025-01-08 16:17:49 [info]: GET /user-profile/6758cedce0630e76956c0598 304
+2025-01-08 16:17:52 [info]: GET /user-profile/6758cedce0630e76956c0598 304
+2025-01-08 16:18:41 [info]: GET /all 304
+2025-01-08 16:18:42 [info]: GET /users 304
+2025-01-08 16:18:42 [info]: GET /user-profile/6758cedce0630e76956c0598 304
+2025-01-08 16:18:44 [info]: GET /user-profile/677e7d48ad3ab554703e9cd4 304
+2025-01-08 16:18:48 [info]: PUT /user-details/677e7d48ad3ab554703e9cd4 200 - Request Body: {"firstName":"Marcus","lastName":"Rashford","otherName":"MR","email":"rash@gmail.com","password":"Test2024!","role":"user","groups":"","userId":"rash10","gender":"","dateOfBirth":"2025-01-01","image":"https://res.cloudinary.com/dldchwdkn/image/upload/v1736348775/userDisplayPictures/bnjfmekkzjbady8bqlvs.png","country":"Nigeria","address":"Nigerian Meteorology Agency, close to Nigerian Armed Forces, Resettlement center, behind Blind center, off Fiiro road, Oshodi, Lagos","city":"Houston","LGA":"surulere","state":"Oyo","officeAddress":"40 ifelodun street","officeCity":"ota","officeLGA":"ado odo ota","employerName":"ajY","officeState":"ogun","contactPersonPlaceOfEmployment":"","nameOfContactPerson":"AJIBADE Emmanuel","contactEmail":"ajibadeemmanuel58@gmail.com","contactPersonPhoneNumber":"09056983150","sendEmail":"true"}
+2025-01-08 16:18:56 [info]: GET /user-profile/677e7d48ad3ab554703e9cd4 200
+2025-01-08 16:21:16 [info]: GET /all 304
+2025-01-08 16:21:17 [info]: GET /users 200
+2025-01-08 16:21:17 [info]: GET /user-profile/677e7d48ad3ab554703e9cd4 304
+2025-01-08 16:21:28 [info]: POST /login 400 - Request Body: {"email":"rash@gmail.com","password":"Test2024!"}
+2025-01-08 16:21:38 [info]: POST /login 400 - Request Body: {"email":"rash@gmail.com","password":"emmanuel"}
+2025-01-08 16:21:40 [info]: GET /all 304
+2025-01-08 16:21:40 [info]: GET /user-profile/677e7d48ad3ab554703e9cd4 304
+2025-01-08 16:21:40 [info]: GET /users 304
+2025-01-08 16:21:59 [info]: PUT /user-details/677e7d48ad3ab554703e9cd4 200 - Request Body: {"firstName":"Marcus","lastName":"Rashford","otherName":"MR","email":"rash1@gmail.com","password":"Test2024!","role":"user","groups":"","userId":"rash10","gender":"","dateOfBirth":"2025-01-01","image":"https://res.cloudinary.com/dldchwdkn/image/upload/v1736348775/userDisplayPictures/bnjfmekkzjbady8bqlvs.png","country":"Nigeria","address":"Nigerian Meteorology Agency, close to Nigerian Armed Forces, Resettlement center, behind Blind center, off Fiiro road, Oshodi, Lagos","city":"Houston","LGA":"surulere","state":"Oyo","officeAddress":"40 ifelodun street","officeCity":"ota","officeLGA":"ado odo ota","employerName":"ajY","officeState":"ogun","contactPersonPlaceOfEmployment":"","nameOfContactPerson":"AJIBADE Emmanuel","contactEmail":"ajibadeemmanuel58@gmail.com","contactPersonPhoneNumber":"09056983150","sendEmail":"true"}
+2025-01-08 16:22:28 [info]: GET /all 304
+2025-01-08 16:22:28 [info]: GET /user-profile/677e7d48ad3ab554703e9cd4 200
+2025-01-08 16:22:28 [info]: GET /users 200
+2025-01-08 16:22:39 [info]: POST /login 400 - Request Body: {"email":"rash1@gmail.com","password":"Test2024!"}
+2025-01-08 16:22:43 [info]: GET /all 304
+2025-01-08 16:22:43 [info]: GET /user-profile/677e7d48ad3ab554703e9cd4 304
+2025-01-08 16:22:43 [info]: GET /users 304
+2025-01-08 16:22:45 [info]: GET /user-profile/undefined 400
+2025-01-08 16:22:47 [info]: GET /user-profile/undefined 400
+2025-01-08 16:22:50 [info]: GET /user-profile/undefined 400
+2025-01-08 16:22:54 [info]: GET /user-profile/undefined 400
+2025-01-08 16:23:48 [info]: GET /user-profile/undefined 400
+2025-01-08 16:23:48 [info]: GET /all 304
+2025-01-08 16:23:49 [info]: GET /users 304
+2025-01-08 16:23:50 [info]: GET /user-profile/undefined 400
+2025-01-08 16:23:52 [info]: GET /user-profile/undefined 400
+2025-01-08 16:23:57 [info]: GET /user-profile/undefined 400
+2025-01-08 16:24:50 [info]: POST /single-create 201 - Request Body: {"firstName":"Bruno","lastName":"Fernades","otherName":"magic","email":"bruno@gmail.com","password":"Test2024!","role":"user","groups":"group1","userId":"rash11","gender":"male","dateOfBirth":"2025-01-01","country":"Nigeria","address":"Nigerian Meteorology Agency, close to Nigerian Armed Forces, Resettlement center, behind Blind center, off Fiiro road, Oshodi, Lagos","city":"Houston","LGA":"surulere","state":"Oyo","officeAddress":"40 ifelodun street","officeCity":"ota","officeLGA":"ado odo ota","employerName":"ajY","officeState":"ogun","contactPersonPlaceOfEmployment":"AJIBADE Emmanuel","nameOfContactPerson":"AJIBADE Emmanuel","contactEmail":"ajibadeemmanuel58@gmail.com","contactPersonPhoneNumber":"09056983150","sendEmail":"true"}
+2025-01-08 16:25:45 [info]: GET /all 401
+2025-01-08 16:25:45 [info]: GET /users 401
+2025-01-08 16:25:46 [info]: GET /all 304
+2025-01-08 16:25:46 [info]: GET /users 200
+2025-01-08 16:25:53 [info]: GET /user-profile/677e98c0a96f2f0632d9ca29 200
+2025-01-08 16:26:14 [info]: PUT /user-details/677e98c0a96f2f0632d9ca29 200 - Request Body: {"firstName":"Bruno","lastName":"Fernades","otherName":"magic","email":"bruno1@gmail.com","password":"","role":"user","groups":"","userId":"rash11","gender":"","dateOfBirth":"2025-01-01","image":"https://res.cloudinary.com/dldchwdkn/image/upload/v1736349887/userDisplayPictures/gnan6chuhsia0thpysqv.png","country":"Nigeria","address":"Nigerian Meteorology Agency, close to Nigerian Armed Forces, Resettlement center, behind Blind center, off Fiiro road, Oshodi, Lagos","city":"Houston","LGA":"surulere","state":"Oyo","officeAddress":"40 ifelodun street","officeCity":"ota","officeLGA":"ado odo ota","employerName":"ajY","officeState":"ogun","contactPersonPlaceOfEmployment":"","nameOfContactPerson":"AJIBADE Emmanuel","contactEmail":"ajibadeemmanuel58@gmail.com","contactPersonPhoneNumber":"09056983150","sendEmail":"true"}
+2025-01-08 16:26:36 [info]: POST /login 200 - Request Body: {"email":"bruno1@gmail.com","password":"Test2024!"}
+2025-01-08 16:26:55 [info]: GET /user/programs 200
+2025-01-08 16:27:05 [info]: GET /all 304
+2025-01-08 16:27:06 [info]: GET /users 200
+2025-01-08 16:27:06 [info]: GET /user-profile/677e98c0a96f2f0632d9ca29 200
+2025-01-08 16:27:11 [info]: POST /login 200 - Request Body: {"email":"bruno1@gmail.com","password":"Test2024!"}
+2025-01-08 16:27:11 [info]: GET /user/programs 304
+2025-01-08 16:27:14 [info]: GET /all 304
+2025-01-08 16:27:14 [info]: GET /users 304
+2025-01-08 16:27:14 [info]: GET /user-profile/677e98c0a96f2f0632d9ca29 304
+2025-01-08 16:27:19 [info]: GET /user-profile/677e98c0a96f2f0632d9ca29 304
+2025-01-08 16:27:27 [info]: PUT /user-details/677e98c0a96f2f0632d9ca29 200 - Request Body: {"firstName":"Bruno","lastName":"Fernades","otherName":"magic","email":"bruno2@gmail.com","password":"","role":"user","groups":"","userId":"rash11","gender":"","dateOfBirth":"2025-01-01","image":"https://res.cloudinary.com/dldchwdkn/image/upload/v1736349887/userDisplayPictures/gnan6chuhsia0thpysqv.png","country":"Nigeria","address":"Nigerian Meteorology Agency, close to Nigerian Armed Forces, Resettlement center, behind Blind center, off Fiiro road, Oshodi, Lagos","city":"Houston","LGA":"surulere","state":"Oyo","officeAddress":"40 ifelodun street","officeCity":"ota","officeLGA":"ado odo ota","employerName":"ajY","officeState":"ogun","contactPersonPlaceOfEmployment":"","nameOfContactPerson":"AJIBADE Emmanuel","contactEmail":"ajibadeemmanuel58@gmail.com","contactPersonPhoneNumber":"09056983150","sendEmail":"true"}
+2025-01-08 16:27:32 [info]: GET /user/programs 304
+2025-01-08 16:27:39 [info]: POST /login 200 - Request Body: {"email":"bruno2@gmail.com","password":"Test2024!"}
+2025-01-08 16:27:39 [info]: GET /user/programs 304
+2025-01-08 16:27:47 [info]: GET /all 304
+2025-01-08 16:27:47 [info]: GET /user-profile/677e98c0a96f2f0632d9ca29 200
+2025-01-08 16:27:47 [info]: GET /users 200
+2025-01-08 16:28:06 [info]: GET /user-profile/undefined 400
+2025-01-08 16:28:08 [info]: GET /user-profile/undefined 400
+2025-01-08 16:28:10 [info]: GET /user-profile/undefined 400
+2025-01-08 16:28:14 [info]: GET /user-profile/undefined 400
+2025-01-08 16:29:35 [info]: POST /single-create 201 - Request Body: {"firstName":"Ant","lastName":"Mat","otherName":"magic","email":"mat@gmail.com","password":"Test2024!","role":"user","groups":"group1","userId":"bruno2@gmail.com","gender":"male","dateOfBirth":"2025-01-01","country":"Nigeria","address":"Nigerian Meteorology Agency, close to Nigerian Armed Forces, Resettlement center, behind Blind center, off Fiiro road, Oshodi, Lagos","city":"Houston","LGA":"surulere","state":"Oyo","officeAddress":"40 ifelodun street","officeCity":"ota","officeLGA":"ado odo ota","employerName":"ajY","officeState":"ogun","contactPersonPlaceOfEmployment":"AJIBADE Emmanuel","nameOfContactPerson":"AJIBADE Emmanuel","contactEmail":"ajibadeemmanuel58@gmail.com","contactPersonPhoneNumber":"09056983150","sendEmail":"true"}
+2025-01-08 16:29:41 [info]: GET /user/programs 304
+2025-01-08 16:29:49 [info]: POST /login 200 - Request Body: {"email":"mat@gmail.com","password":"Test2024!"}
+2025-01-08 16:29:49 [info]: GET /user/programs 304
+2025-01-08 16:29:52 [info]: GET /user-profile/undefined 400
+2025-01-08 16:29:52 [info]: GET /all 304
+2025-01-08 16:29:53 [info]: GET /users 200
+2025-01-08 16:29:53 [info]: GET /user-profile/undefined 400
+2025-01-08 16:29:58 [info]: GET /user-profile/677e99dea96f2f0632d9ca7d 200
+2025-01-08 16:30:38 [info]: PUT /user-details/677e99dea96f2f0632d9ca7d 200 - Request Body: {"firstName":"Antony","lastName":"Martial","otherName":"magic","email":"martial@gmail.com","password":"","role":"user","groups":"","userId":"bruno2@gmail.com","gender":"","dateOfBirth":"2025-01-01","image":"https://res.cloudinary.com/dldchwdkn/image/upload/v1736350172/userDisplayPictures/n9okotlfzfk41dammfsr.png","country":"Nigeria","address":"Nigerian Meteorology Agency, close to Nigerian Armed Forces, Resettlement center, behind Blind center, off Fiiro road, Oshodi, Lagos","city":"Houston","LGA":"surulere","state":"Oyo","officeAddress":"40 ifelodun street","officeCity":"ota","officeLGA":"ado odo ota","employerName":"ajY","officeState":"ogun","contactPersonPlaceOfEmployment":"","nameOfContactPerson":"AJIBADE Emmanuel","contactEmail":"ajibadeemmanuel58@gmail.com","contactPersonPhoneNumber":"09056983150","sendEmail":"true"}
+2025-01-08 16:30:49 [info]: GET /user/programs 304
+2025-01-08 16:30:55 [info]: POST /login 200 - Request Body: {"email":"martial@gmail.com","password":"Test2024!"}
+2025-01-08 16:30:56 [info]: GET /user/programs 304
+2025-01-08 16:36:12 [info]: GET /all 304
+2025-01-08 16:36:13 [info]: GET /users 200
+2025-01-08 16:36:13 [info]: GET /user-profile/677e99dea96f2f0632d9ca7d 200
+2025-01-08 16:42:02 [info]: GET /all 403
+2025-01-08 16:42:02 [info]: GET /users 403
+2025-01-08 16:42:28 [info]: GET /users 403
+2025-01-08 16:42:28 [info]: GET /all 403
+2025-01-08 16:42:55 [info]: GET /users 403
+2025-01-08 16:42:55 [info]: GET /all 403
+2025-01-08 16:43:09 [info]: GET /users 401
+2025-01-08 16:43:10 [info]: GET /all 401
+2025-01-08 16:43:17 [info]: GET /users 403
+2025-01-08 16:43:17 [info]: GET /all 403
+2025-01-08 16:43:19 [info]: GET /users 403
+2025-01-08 16:43:19 [info]: GET /all 403
+2025-01-08 16:43:24 [info]: GET /all 403
+2025-01-08 16:43:24 [info]: GET /users 403
+2025-01-08 16:43:33 [info]: GET /user/programs 304
+2025-01-08 16:43:38 [info]: GET /users 403
+2025-01-08 16:43:38 [info]: GET /all 403
+2025-01-08 16:43:39 [info]: GET /users 403
+2025-01-08 16:43:40 [info]: GET /all 403
+2025-01-08 16:43:41 [info]: GET /user/programs 304
+2025-01-08 16:44:00 [info]: POST /login 200 - Request Body: {"email":"test@gmail.com","password":"Test2024!"}
+2025-01-08 16:44:06 [info]: GET / 304
+2025-01-08 16:45:01 [info]: GET / 304
+2025-01-08 16:45:14 [info]: GET /users 403
+2025-01-08 16:45:14 [info]: GET /all 403
+2025-01-08 16:45:18 [info]: GET /all 403
+2025-01-08 16:45:18 [info]: GET /users 403
+2025-01-08 16:45:32 [info]: GET /users 401
+2025-01-08 16:45:32 [info]: GET /all 401
+2025-01-08 16:45:38 [info]: GET /all 200
+2025-01-08 16:45:51 [info]: GET /users 200
+2025-01-08 16:45:58 [info]: GET /all 304
+2025-01-08 16:46:03 [info]: GET /user-profile/677e99dea96f2f0632d9ca7d 304
+2025-01-08 16:47:33 [info]: GET /all 304
+2025-01-08 16:48:02 [info]: GET /all 304
+2025-01-08 16:48:04 [info]: PUT /user-details/677e99dea96f2f0632d9ca7d 200 - Request Body: {"firstName":"Antony","lastName":"Martial","phone":"","otherName":"magic","email":"martial@gmail.com","password":"","role":"user","groups":"","userId":"","gender":"","dateOfBirth":"2025-01-01","image":"https://res.cloudinary.com/dldchwdkn/image/upload/v1736350172/userDisplayPictures/n9okotlfzfk41dammfsr.png","country":"Nigeria","address":"Nigerian Meteorology Agency, close to Nigerian Armed Forces, Resettlement center, behind Blind center, off Fiiro road, Oshodi, Lagos","city":"Houston","LGA":"surulere","state":"Oyo","officeAddress":"40 ifelodun street","officeCity":"ota","officeLGA":"ado odo ota","employerName":"ajY","officeState":"ogun","contactPersonPlaceOfEmployment":"","nameOfContactPerson":"AJIBADE Emmanuel","contactEmail":"ajibadeemmanuel58@gmail.com","contactPersonPhoneNumber":"09056983150","sendEmail":"true"}
+2025-01-08 16:48:28 [info]: GET /admin/user-details/677e99dea96f2f0632d9ca7d 200
+2025-01-08 16:48:31 [info]: PUT /user-details/677e99dea96f2f0632d9ca7d 200 - Request Body: {"firstName":"Antony","lastName":"Martial","phone":"","otherName":"magic","email":"martial@gmail.com","password":"","role":"user","groups":"","userId":"","gender":"","dateOfBirth":"2025-01-01","image":"https://res.cloudinary.com/dldchwdkn/image/upload/v1736350172/userDisplayPictures/n9okotlfzfk41dammfsr.png","country":"Nigeria","address":"Nigerian Meteorology Agency, close to Nigerian Armed Forces, Resettlement center, behind Blind center, off Fiiro road, Oshodi, Lagos","city":"Houston","LGA":"surulere","state":"Oyo","officeAddress":"40 ifelodun street","officeCity":"ota","officeLGA":"ado odo ota","employerName":"ajY","officeState":"ogun","contactPersonPlaceOfEmployment":"","nameOfContactPerson":"AJIBADE Emmanuel","contactEmail":"ajibadeemmanuel58@gmail.com","contactPersonPhoneNumber":"09056983150","sendEmail":"true"}
+2025-01-08 16:48:38 [info]: GET /all 304
+2025-01-08 16:49:07 [info]: PUT /user-details/677e99dea96f2f0632d9ca7d 200 - Request Body: {"firstName":"Antony","lastName":"Martial","phone":"","otherName":"magic","email":"martial@gmail.com","password":"","role":"user","groups":"","userId":"uyyt","gender":"","dateOfBirth":"2025-01-01","image":"https://res.cloudinary.com/dldchwdkn/image/upload/v1736350172/userDisplayPictures/n9okotlfzfk41dammfsr.png","country":"Nigeria","address":"Nigerian Meteorology Agency, close to Nigerian Armed Forces, Resettlement center, behind Blind center, off Fiiro road, Oshodi, Lagos","city":"Houston","LGA":"surulere","state":"Oyo","officeAddress":"40 ifelodun street","officeCity":"ota","officeLGA":"ado odo ota","employerName":"ajY","officeState":"ogun","contactPersonPlaceOfEmployment":"","nameOfContactPerson":"AJIBADE Emmanuel","contactEmail":"ajibadeemmanuel58@gmail.com","contactPersonPhoneNumber":"09056983150","sendEmail":"true"}
+2025-01-08 16:49:20 [info]: GET /all 304
+2025-01-08 16:49:36 [info]: GET /user-profile/677e99dea96f2f0632d9ca7d 500
+2025-01-08 16:50:25 [info]: GET /users 304
+2025-01-08 16:58:14 [info]: GET /users 401
+2025-01-08 16:58:14 [info]: GET /all 401
+2025-01-08 16:58:23 [info]: GET /all 200
+2025-01-08 16:58:49 [info]: GET /users 200
+2025-01-08 17:00:24 [info]: GET /user-profile/677e99dea96f2f0632d9ca7d 200
+2025-01-08 17:00:42 [info]: PUT /user-details/677e99dea96f2f0632d9ca7d 200 - Request Body: {"firstName":"Antony","lastName":"Martial","phone":"","otherName":"magic","email":"martial@gmail.com","password":"","role":"user","groups":"","userId":"","gender":"","dateOfBirth":"2025-01-01","image":"https://res.cloudinary.com/dldchwdkn/image/upload/v1736350172/userDisplayPictures/n9okotlfzfk41dammfsr.png","country":"Nigeria","address":"Nigerian Meteorology Agency, close to Nigerian Armed Forces, Resettlement center, behind Blind center, off Fiiro road, Oshodi, Lagos","city":"Houston","LGA":"surulere","state":"Oyo","officeAddress":"40 ifelodun street","officeCity":"ota","officeLGA":"ado odo ota","employerName":"ajY","officeState":"ogun","contactPersonPlaceOfEmployment":"","nameOfContactPerson":"AJIBADE Emmanuel","contactEmail":"ajibadeemmanuel58@gmail.com","contactPersonPhoneNumber":"09056983150","sendEmail":"true"}
+2025-01-08 17:00:50 [info]: GET /all 304
+2025-01-08 17:01:08 [info]: GET /users 401
+2025-01-08 17:01:08 [info]: GET /all 401
+2025-01-08 17:01:10 [info]: GET /all 304
+2025-01-08 17:01:19 [info]: GET /users 200
+2025-01-08 17:01:31 [info]: GET /user-profile/677e99dea96f2f0632d9ca7d 200
+2025-01-08 17:01:42 [info]: PUT /user-details/677e99dea96f2f0632d9ca7d 200 - Request Body: {"firstName":"Antony","lastName":"Martial","phone":"","otherName":"magic","email":"martial@gmail.com","password":"","role":"user","groups":"","userId":"uuid","gender":"","dateOfBirth":"2025-01-01","image":"https://res.cloudinary.com/dldchwdkn/image/upload/v1736350172/userDisplayPictures/n9okotlfzfk41dammfsr.png","country":"Nigeria","address":"Nigerian Meteorology Agency, close to Nigerian Armed Forces, Resettlement center, behind Blind center, off Fiiro road, Oshodi, Lagos","city":"Houston","LGA":"surulere","state":"Oyo","officeAddress":"40 ifelodun street","officeCity":"ota","officeLGA":"ado odo ota","employerName":"ajY","officeState":"ogun","contactPersonPlaceOfEmployment":"","nameOfContactPerson":"AJIBADE Emmanuel","contactEmail":"ajibadeemmanuel58@gmail.com","contactPersonPhoneNumber":"09056983150","sendEmail":"true"}
+2025-01-08 17:01:51 [info]: GET /user-profile/undefined 400
+2025-01-08 17:01:52 [info]: GET /user-profile/undefined 400
+2025-01-08 17:01:54 [info]: GET /user-profile/undefined 400
+2025-01-08 17:01:58 [info]: GET /user-profile/undefined 400
+2025-01-08 17:02:56 [info]: GET /all 304
+2025-01-08 17:03:03 [info]: GET /user-profile/undefined 400
+2025-01-08 17:03:04 [info]: GET /user-profile/undefined 400
+2025-01-08 17:03:07 [info]: GET /user-profile/undefined 400
+2025-01-08 17:03:12 [info]: GET /user-profile/undefined 400
+2025-01-08 17:03:16 [info]: GET /user-profile/undefined 400
+2025-01-08 17:03:17 [info]: POST /single-create 400 - Request Body: {"firstName":"Andy","lastName":"cole","phone":"09056983135","otherName":"magic","email":"andy@gmail.com","password":"Test2024!","role":"user","groups":"group1","userId":"test@gmail.com","gender":"male","dateOfBirth":"2025-01-01","country":"Nigeria","address":"Nigerian Meteorology Agency, close to Nigerian Armed Forces, Resettlement center, behind Blind center, off Fiiro road, Oshodi, Lagos","city":"Houston","LGA":"surulere","state":"Oyo","officeAddress":"40 ifelodun street","officeCity":"ota","officeLGA":"ado odo ota","employerName":"ajY","officeState":"ogun","contactPersonPlaceOfEmployment":"AJIBADE Emmanuel","nameOfContactPerson":"AJIBADE Emmanuel","contactEmail":"ajibadeemmanuel58@gmail.com","contactPersonPhoneNumber":"09056983150","sendEmail":"true"}
+2025-01-08 17:03:18 [info]: GET /user-profile/undefined 400
+2025-01-08 17:03:20 [info]: GET /user-profile/undefined 400
+2025-01-08 17:03:23 [info]: POST /single-create 201 - Request Body: {"firstName":"Andy","lastName":"cole","phone":"09056983135","otherName":"magic","email":"andy@gmail.com","password":"Test2024!","role":"user","groups":"group1","userId":"test@gmail.com","gender":"male","dateOfBirth":"2025-01-01","country":"Nigeria","address":"Nigerian Meteorology Agency, close to Nigerian Armed Forces, Resettlement center, behind Blind center, off Fiiro road, Oshodi, Lagos","city":"Houston","LGA":"surulere","state":"Oyo","officeAddress":"40 ifelodun street","officeCity":"ota","officeLGA":"ado odo ota","employerName":"ajY","officeState":"ogun","contactPersonPlaceOfEmployment":"AJIBADE Emmanuel","nameOfContactPerson":"AJIBADE Emmanuel","contactEmail":"ajibadeemmanuel58@gmail.com","contactPersonPhoneNumber":"09056983150","sendEmail":"true"}
+2025-01-08 17:03:26 [info]: GET /user-profile/undefined 400
+2025-01-08 17:03:49 [info]: GET /users 200
+2025-01-08 17:04:10 [info]: GET /all 401
+2025-01-08 17:04:10 [info]: GET /users 401
+2025-01-08 17:04:13 [info]: GET /all 200
+2025-01-08 17:04:18 [info]: GET /users 200
+2025-01-08 17:04:48 [info]: GET /user-profile/677ea1bf5d3cfd1c0325c719 200
+2025-01-08 17:05:13 [info]: PUT /user-details/677ea1bf5d3cfd1c0325c719 200 - Request Body: {"firstName":"Andy","lastName":"cole","phone":"","otherName":"magic","email":"andy@gmail.com","password":"","role":"user","groups":"","userId":"test@gmail.com","gender":"female","dateOfBirth":"2025-01-01","country":"Nigeria","address":"Nigerian Meteorology Agency, close to Nigerian Armed Forces, Resettlement center, behind Blind center, off Fiiro road, Oshodi, Lagos","city":"Houston","LGA":"surulere","state":"Oyo","officeAddress":"40 ifelodun street","officeCity":"ota","officeLGA":"ado odo ota","employerName":"ajY","officeState":"ogun","contactPersonPlaceOfEmployment":"","nameOfContactPerson":"AJIBADE Emmanuel","contactEmail":"ajibadeemmanuel58@gmail.com","contactPersonPhoneNumber":"09056983150","sendEmail":"true"}
+2025-01-08 17:06:35 [info]: GET /all 304
+2025-01-08 17:07:02 [info]: GET /all 304
+=======
 2025-01-02 14:07:04 [info]: POST /login 200 - Request Body: {"email":"seunoduez@gmail.com","password":"Timpearl05$$$"}
 2025-01-02 14:08:20 [info]: POST /lesson 200 - Request Body: {"title":"This is the title","objectives":"This is the objective for this lesson","link":"https://www.youtube.com"}
 2025-01-02 14:11:05 [info]: POST /lesson 200 - Request Body: {"title":"This is the title","objectives":"This is the objective for this lesson","link":"https://www.youtube.com"}
@@ -6304,6 +6700,7 @@
 2025-01-08 10:43:32 [info]: PUT /edit/677e45b9a3fa7a62ce13ca73 200 - Request Body: {"name":"Group A","generalLearnerTerm":"student","generalLearnerGroupTerm":"class","generalSubLearnerGroupTerm":"arm","generalInstructorTerm":"teacher","groups":[{"name":"Class 1"},{"name":"Class 2"}],"numberOfArms":2,"subGroupsName":["Arm 1","Arm 2"],"instructorNames":["Mr. Smith","Ms. Doe"],"maxMembersPerProgram":5,"idFormat":"student","personalization":"Custom message for learners"}
 2025-01-08 12:10:23 [info]: GET /677e45b9a3fa7a62ce13ca73 200
 2025-01-08 12:11:48 [info]: GET / 200
+>>>>>>> 0c45b5fe0bbba7163f946f9d23c411e37d05614b
 2025-01-08 12:39:19 [info]: GET / 200
 2025-01-08 13:51:31 [info]: PUT /edit/677e45b9a3fa7a62ce13ca73 200 - Request Body: {"name":"Group A","generalLearnerTerm":"student","generalLearnerGroupTerm":"class","generalSubLearnerGroupTerm":"arm","generalInstructorTerm":"teacher","groups":[{"name":"Class 1"},{"name":"Class 2"}],"numberOfArms":2,"subGroupsName":["Arm 1","Arm 2"],"instructorNames":["Mr. Smith","Ms. Doe"],"maxMembersPerProgram":5,"idFormat":"student","personalization":"Custom message for learners"}
 2025-01-08 14:26:42 [info]: POST /create 500 - Request Body: {"name":"Group A","generalLearnerTerm":"student","generalLearnerGroupTerm":"class","generalSubLearnerGroupTerm":"arm","generalInstructorTerm":"teacher","groups":[{"name":"Class 1"},{"name":"Class 2"}],"numberOfArms":2,"subGroupsName":["Arm 1","Arm 2"],"instructorNames":["Mr. Smith","Ms. Doe"],"maxMembersPerProgram":5,"idFormat":"student","personalization":"Custom message for learners"}

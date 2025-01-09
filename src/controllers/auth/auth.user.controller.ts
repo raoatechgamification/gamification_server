@@ -1,15 +1,15 @@
+import dotenv from "dotenv";
 import { Request, Response } from "express";
 import { ResponseHandler } from "../../middlewares/responseHandler.middleware";
-import User, { IUser } from "../../models/user.model";
+import Group from "../../models/group.model";
 import Organization, { IOrganization } from "../../models/organization.model";
 import SuperAdmin, { ISuperAdmin } from "../../models/superadmin.model";
-import Group from "../../models/group.model";
+import User, { IUser } from "../../models/user.model";
+import { sendLoginEmail } from "../../services/sendMail.service";
 import UserService from "../../services/user.service";
+import { uploadToCloudinary } from "../../utils/cloudinaryUpload";
 import { comparePassword, hashPassword } from "../../utils/hash";
 import { generateToken } from "../../utils/jwt";
-import { sendLoginEmail } from "../../services/sendMail.service";
-import { uploadToCloudinary } from "../../utils/cloudinaryUpload";
-import dotenv from "dotenv";
 dotenv.config();
 
 export class UserAuthController {
@@ -39,6 +39,11 @@ export class UserAuthController {
         batch,
         password,
         sendEmail,
+
+        contactPersonPlaceOfEmployment,
+        nameOfContactPerson,
+        contactEmail,
+        contactPersonPhoneNumber,
       } = req.body;
 
       const image = req.file;
@@ -113,6 +118,10 @@ export class UserAuthController {
         password: hashedPassword,
         organizationId,
         batch,
+        contactPersonPlaceOfEmployment,
+        contactEmail,
+        nameOfContactPerson,
+        contactPersonPhoneNumber,
         userType: role,
       });
 
