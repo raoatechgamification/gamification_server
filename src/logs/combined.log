@@ -6363,3 +6363,12 @@
 2025-01-09 08:45:50 [info]: POST /assign-users-to-group 200 - Request Body: {"userIds":["676965e49626eab20cafeb69"],"groupId":"677f7d3299967fb3ccc3ed01","subLearnerGroupId":"677f7d3299967fb3ccc3ed04"}
 2025-01-09 08:45:55 [info]: POST /login 200 - Request Body: {"email":"bimpe@gmail.com","password":"Timpearl05$$$"}
 2025-01-09 08:46:29 [info]: POST /assign-users-to-group 404 - Request Body: {"userIds":["676965e49626eab20cafeb69"],"groupId":"677f7d3299967fb3ccc3ed01","subLearnerGroupId":"677f7d3299967fb3ccc3ed21"}
+2025-01-09 09:36:43 [info]: POST /assign-course 404 - Request Body: {"groupId":"677f7abbf35d1c772a2d7a78","dueDate":"12-31-2025"}
+2025-01-09 10:25:12 [info]: POST /add 201 - Request Body: {"code":"PP-246","title":"Beginners guide to Medicine","objective":"Introduction to Biology I","instructorId":"67453884a835dc3c8062914d","duration":"six weeks","lessonFormat":".xls","lessons":["67641a614e36b15a4278cb0b","67641ab04e36b15a4278cb0e","67641abd4e36b15a4278cb11","67641aca4e36b15a4278cb14","67641ad34e36b15a4278cb17"],"assessments":["67641b594e36b15a4278cb20"],"announcements":[{"title":"Become a doctor now","details":"This is your very chance to become a doctor"}],"certificate":["675fec0e6fe5ccac4b4ac00b"],"showInstructor":true}
+2025-01-09 10:29:06 [info]: POST /assign-course/677f95f78d05d203b62c0711 200 - Request Body: {"groupId":"677f7abbf35d1c772a2d7a78","dueDate":"12-31-2025"}
+2025-01-09 10:29:53 [info]: POST /login 200 - Request Body: {"email":"bimpe@gmail.com","password":"Timpearl05$$$"}
+2025-01-09 10:32:40 [info]: POST /assign-course/677f95f78d05d203b62c0711 200 - Request Body: {"groupId":"677f7abbf35d1c772a2d7a78","dueDate":"12-31-2025"}
+2025-01-09 10:32:45 [info]: POST /login 200 - Request Body: {"email":"bimpe@gmail.com","password":"Timpearl05$$$"}
+2025-01-09 10:32:53 [info]: POST /login 200 - Request Body: {"email":"bimpe@gmail.com","password":"Timpearl05$$$"}
+2025-01-09 10:32:55 [info]: POST /login 200 - Request Body: {"email":"bimpe@gmail.com","password":"Timpearl05$$$"}
+2025-01-09 10:32:57 [info]: POST /login 200 - Request Body: {"email":"bimpe@gmail.com","password":"Timpearl05$$$"}

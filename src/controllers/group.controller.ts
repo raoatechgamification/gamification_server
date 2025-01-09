@@ -2,6 +2,7 @@ import { Request, Response, NextFunction } from "express";
 import mongoose from "mongoose";
 import Group from "../models/group.model";
 import User from "../models/user.model";
+import Course from "../models/course.model";
 import { ResponseHandler } from "../middlewares/responseHandler.middleware";
 
 export class GroupController {
@@ -204,86 +205,6 @@ export class GroupController {
     }
   }
 
-  //   async assignUsersToGroup(req: Request, res: Response) {
-  //     const { userId, groupId, subGroupId } = req.body;
-
-  //     try {
-  //         const adminOrganizationId = req.admin._id;
-
-  //         // Validate the group existence and organization
-  //         const group = await Group.findById(groupId);
-  //         if (!group) {
-  //             return res.status(404).json({ message: "Group not found" });
-  //         }
-  //         if (!group.organizationId || group.organizationId.toString() !== adminOrganizationId.toString()) {
-  //             return res.status(403).json({ message: "Group does not belong to your organization" });
-  //         }
-
-  //         // Validate subGroupId if provided
-  //         if (subGroupId) {
-  //           let subGroupExists = false;
-
-  //           // Instantiate subGroupId as an ObjectId
-  //           const subGroupIdObject = new mongoose.Types.ObjectId(subGroupId);
-
-  //           subGroupExists = group.basicCustomization.subLearnerGroup.subLearnerGroups.some(subGroup => {
-  //             // Convert subGroup._id to ObjectId if it's a string
-  //             const subGroupId = new mongoose.Types.ObjectId(subGroup._id);
-  //             return subGroupId.equals(subGroupIdObject);
-  //         });
-
-  //           if (!subGroupExists) {
-  //               return res.status(400).json({ message: "Sub-learner group not found in the specified group" });
-  //           }
-  //       }
-
-  //         // Validate and add each user to the group
-  //         const userValidationResults = await Promise.all(userId.map(async (id: any) => {
-  //             const user = await User.findById(id);
-  //             if (!user) {
-  //                 return { userId: id, error: "User not found" };
-  //             }
-  //             if (!user.organizationId || user.organizationId.toString() !== adminOrganizationId.toString()) {
-  //                 return { userId: id, error: "User does not belong to your organization" };
-  //             }
-
-  //             // Add user to the group
-  //             if (!user.groups?.includes(groupId)) {
-  //                 user.groups = user.groups ? [...user.groups, groupId] : [groupId];
-  //             }
-
-  //             // Optionally add user to the sub-learner group
-  //             if (subGroupId && !user.subLearnerGroups?.includes(subGroupId)) {
-  //                 user.subLearnerGroups = user.subLearnerGroups
-  //                     ? [...user.subLearnerGroups, subGroupId]
-  //                     : [subGroupId];
-  //             }
-
-  //             // Save updated user
-  //             await user.save();
-  //             return { userId: id, success: true };
-  //         }));
-
-  //         // Check for errors in user validation
-  //         const errors = userValidationResults.filter(result => result.error);
-  //         if (errors.length > 0) {
-  //             return res.status(400).json({ message: "User validation failed", errors });
-  //         }
-
-  //         res.status(200).json({
-  //             message: "Users successfully assigned to group",
-  //             data: {
-  //                 userIds: userId,
-  //                 groupId,
-  //                 subGroupId,
-  //             },
-  //         });
-  //     } catch (error) {
-  //         console.error("Error assigning user to group:", error);
-  //         res.status(500).json({ message: "An error occurred while assigning user to group" });
-  //     }
-  // }
-
   async assignUsersToGroup(req: Request, res: Response) {
     try {
       const { groupId, subLearnerGroupId, userIds } = req.body;
@@ -297,7 +218,6 @@ export class GroupController {
         );
       }
 
-      // Check if the group exists and belongs to the admin's organization
       const group = await Group.findOne({
         _id: groupId,
         organizationId: adminId,
@@ -311,7 +231,6 @@ export class GroupController {
         );
       }
 
-      // If a sub-learner group is provided, check if it exists within the group
       if (subLearnerGroupId) {
         const subGroup =
           group.basicCustomization.subLearnerGroup.subLearnerGroups.find(
@@ -327,7 +246,6 @@ export class GroupController {
         }
       }
 
-      // Check if all users exist and belong to the admin's organization
       const users = await User.find({
         _id: { $in: userIds },
         organizationId: group.organizationId,
@@ -396,4 +314,121 @@ export class GroupController {
       );
     }
   }
+
+  async assignCourseToGroup(req: Request, res: Response) {
+    try {
+      const { groupId, dueDate } = req.body;
+      const { courseId } = req.params;
+      const adminId = req.admin._id;
+  
+      // Fetch course details
+      const course = await Course.findById(courseId).lean();
+      if (!course) {
+        return ResponseHandler.failure(res, "Course not found", 404);
+      }
+  
+      // Find users belonging to the group
+      const usersInGroup = await User.find({
+        groups: groupId,
+        organizationId: adminId,
+      });
+  
+      if (usersInGroup.length === 0) {
+        return ResponseHandler.failure(
+          res,
+          "No users found in the specified group or group does not exist",
+          404
+        );
+      }
+  
+      let status = "unpaid";
+      if (!course.cost || course.cost === 0) {
+        status = "free";
+      }
+  
+      const sanitizedCourse = { ...course };
+      delete sanitizedCourse.assignedLearnersIds;
+      delete sanitizedCourse.learnerIds;
+  
+      // Initialize program fields for users without them
+      await User.updateMany(
+        {
+          _id: { $in: usersInGroup.map((user) => user._id) },
+          $or: [
+            { unattemptedPrograms: { $exists: false } },
+          ],
+        },
+        {
+          $set: {
+            ongoingPrograms: [],
+            completedPrograms: [],
+            unattemptedPrograms: [],
+          },
+        }
+      );
+  
+      // Prepare bulk updates for assigning the course to users
+      const bulkUpdates = usersInGroup.map((user) => ({
+        updateOne: {
+          filter: {
+            _id: user._id,
+            "assignedPrograms.courseId": { $ne: courseId },
+          },
+          update: {
+            $push: {
+              assignedPrograms: {
+                courseId: new mongoose.Types.ObjectId(courseId),
+                dueDate: new Date(dueDate),
+                status,
+                amount: course.cost,
+              },
+              unattemptedPrograms: {
+                course: sanitizedCourse,
+                status,
+              },
+            },
+          },
+        },
+      }));
+  
+      const result = await User.bulkWrite(bulkUpdates);
+  
+      const learnersToAdd = usersInGroup.map((user) => ({
+        userId: user._id,
+        progress: 0,
+      }));
+  
+      // Update course to reflect new learners
+      const updateQuery: any = {
+        $addToSet: {
+          learnerIds: { $each: learnersToAdd },
+        },
+      };
+  
+      if (status === "free") {
+        updateQuery.$addToSet["learnerIds"] = { $each: learnersToAdd };
+      }
+  
+      await Course.updateOne({ _id: courseId }, updateQuery);
+  
+      return ResponseHandler.success(
+        res,
+        {
+          matchedCount: result.matchedCount,
+          modifiedCount: result.modifiedCount,
+          upsertedCount: result.upsertedCount,
+        },
+        "Course assigned to group successfully",
+        200
+      );
+    } catch (error: any) {
+      console.error("Error assigning course to group:", error.message);
+      return ResponseHandler.failure(
+        res,
+        `Server error: ${error.message}`,
+        500
+      );
+    }
+  }
+  
 }
