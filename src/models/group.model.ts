@@ -1,5 +1,11 @@
 import mongoose, { Schema, Document, Model } from "mongoose";
 
+interface SubLearnerGroup {
+  [x: string]: any;
+  // _id: string;
+  name: string;
+}
+
 interface IGroup extends Document {
   name: string;
   organizationId: mongoose.Schema.Types.ObjectId;
@@ -15,7 +21,7 @@ interface IGroup extends Document {
     };
     subLearnerGroup: {
       generalSubLearnerGroupTerm: "facilitator" | "arm" | "cohort";
-      subLearnerGroups: { name: string }[];
+      subLearnerGroups: SubLearnerGroup[];
     };
     instructor: {
       generalInstructorTerm: "instructor" | "teacher" | "facilitator" | "trainer" | "lecturer";
@@ -79,6 +85,9 @@ const GroupSchema: Schema<IGroup> = new Schema(
         },
         subLearnerGroups: [
           {
+            // _id: {
+            //   type: mongoose.Schema.Types.ObjectId,  // Ensure _id is ObjectId
+            // },
             name: {
               type: String,
               required: true,
