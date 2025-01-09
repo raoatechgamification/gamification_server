@@ -1,19 +1,17 @@
 import { Request, Response } from "express";
-import { ResponseHandler } from "../middlewares/responseHandler.middleware";
-import Payment from "../models/payment.model";
-import AssignedBill from "../models/assignedBill.model";
-import User, { IUser } from "../models/user.model";
-import Course from "../models/course.model";
-import Submission, { PopulatedLearner, PopulatedAssessment } from "../models/submission.model";
-import { parse as json2csv } from 'json2csv';
-import * as XLSX from "xlsx";
 import mongoose, { isValidObjectId } from "mongoose"; // Ensure this is imported if not already
+import { ResponseHandler } from "../middlewares/responseHandler.middleware";
+import AssignedBill from "../models/assignedBill.model";
+import Course from "../models/course.model";
 import Organization from "../models/organization.model";
+import Payment from "../models/payment.model";
+import Submission from "../models/submission.model";
+import User from "../models/user.model";
 import { uploadToCloudinary } from "../utils/cloudinaryUpload";
 
 function isPopulated<T>(value: mongoose.Types.ObjectId | T): value is T {
   return typeof value === "object" && value !== null && !isValidObjectId(value);
-} 
+}
 
 class AdminController {
   async viewAllUsers(req: Request, res: Response) {
@@ -54,16 +52,55 @@ class AdminController {
     }
   }
 
-  
-
   async editUserProfile(req: Request, res: Response) {
     try {
       const organizationId = req.admin._id;
+      const image = req.file;
+
       const userId = req.params.userId;
-      const { username, firstName, lastName, batch, role, yearsOfExperience, highestEducationLevel, gender, dateOfBirth } = req.body;
+      const {
+        firstName,
+        lastName,
+        otherName,
+        email,
+        phone,
+        username,
+        groupId,
+        gender,
+        dateOfBirth,
+        country,
+        address,
+        city,
+        LGA,
+        state,
+        officeAddress,
+        officeCity,
+        officeLGA,
+        officeState,
+        employerName,
+        role,
+        batch,
+        image: cloudinaryImage,
+        // password,
+        sendEmail,
+        yearsOfExperience,
+        highestEducationLevel,
+        contactPersonPlaceOfEmployment,
+        nameOfContactPerson,
+        contactEmail,
+        contactPersonPhoneNumber,
+        userId: userIdCode,
+      } = req.body;
 
       const user = await User.findOne({ _id: userId, organizationId });
-
+      let fileUploadResult: any = null;
+      if (image) {
+        fileUploadResult = await uploadToCloudinary(
+          image.buffer,
+          image.mimetype,
+          "userDisplayPictures"
+        );
+      }
       if (!user) {
         return ResponseHandler.failure(
           res,
@@ -74,7 +111,42 @@ class AdminController {
 
       const updatedUser = await User.findByIdAndUpdate(
         userId,
-        { $set: { username, firstName, lastName, batch, userType: role, yearsOfExperience, highestEducationLevel, gender, dateOfBirth} },
+        {
+          $set: {
+            userId: userIdCode,
+            username,
+            firstName,
+            lastName,
+            batch,
+            userType: role,
+            yearsOfExperience,
+            highestEducationLevel,
+            gender,
+            dateOfBirth,
+            otherName,
+            email,
+            phone,
+            country,
+            address,
+            city,
+            LGA,
+            image: fileUploadResult
+              ? fileUploadResult.secure_url
+              : cloudinaryImage,
+            state,
+            officeAddress,
+            officeCity,
+            officeLGA,
+            officeState,
+            employerName,
+            // password,
+            sendEmail,
+            contactPersonPlaceOfEmployment,
+            nameOfContactPerson,
+            contactEmail,
+            contactPersonPhoneNumber,
+          },
+        },
         { new: true, runValidators: true }
       );
 
@@ -94,13 +166,15 @@ class AdminController {
 
   async viewAUserProfile(req: Request, res: Response) {
     try {
-      console.log("The request went through")
+      console.log("The request went through");
       const organizationId = req.admin._id;
-      console.log(organizationId)
+      console.log(organizationId);
       const userId = req.params.userId;
-      console.log(userId)
+      console.log(userId);
 
-      const user = await User.findOne({ _id: userId, organizationId }).select("-password");
+      const user = await User.findOne({ _id: userId, organizationId }).select(
+        "-password"
+      );
 
       if (!user) {
         return ResponseHandler.failure(
@@ -140,7 +214,7 @@ class AdminController {
   // async generateCourseReport(req: Request, res: Response) {
   //   try {
   //     const { courseId } = req.params;  // Get courseId from the URL parameters
-  
+
   //     // Fetch the course by ID and populate the assigned learners and assessments
   //     const course = await Course.findById(courseId)
   //       .populate('assignedLearnersIds.userId')
@@ -148,22 +222,22 @@ class AdminController {
   //     if (!course) {
   //       return res.status(404).json({ message: 'Course not found' });
   //     }
-  
+
   //     // Get all users assigned to the course
   //     const assignedUsers = course.assignedLearnersIds?.map((learner: any) => learner.userId) || [];
 
   //     console.log("assignedUsers", assignedUsers)
 
   //     const totalUsers = assignedUsers.length;
-  
+
   //     // Fetch submissions for the course
   //     const submissions = await Submission.find({ courseId }).populate('learnerId').populate('assessmentId');
-  
+
   //     const learnerReport = [];
   //     let completedCount = 0;
   //     let passCount = 0;
   //     let failCount = 0;
-  
+
   //     // Loop through each user assigned to the course
   //     for (const user of assignedUsers) {
   //       const userDetails = await User.findById(user._id)
@@ -175,7 +249,7 @@ class AdminController {
   //         );
   //       }
   //       const submission = submissions.find(sub => sub.learnerId._id.toString() === user._id.toString());
-  
+
   //       if (submission) {
   //         // If the user has taken the assessment, include their details
 
@@ -188,7 +262,7 @@ class AdminController {
   //           percentageScore: submission.percentageScore || null,
   //           passOrFail: submission.passOrFail || null
   //         });
-  
+
   //         // Update counts for completed, pass, and fail
   //         completedCount++;
   //         if (submission.passOrFail === 'Pass') passCount++;
@@ -206,15 +280,15 @@ class AdminController {
   //         });
   //       }
   //     }
-  
+
   //     // Calculate completion percentages
   //     const percentageCompleted = ((completedCount / totalUsers) * 100).toFixed(2);
   //     const percentageIncomplete = (100 - parseFloat(percentageCompleted)).toFixed(2);
-  
+
   //     // Calculate success and failure percentages excluding users who haven't taken the course
   //     const successPercentage = completedCount > 0 ? ((passCount / completedCount) * 100).toFixed(2) : '0';
   //     const failurePercentage = completedCount > 0 ? ((failCount / completedCount) * 100).toFixed(2) : '0';
-  
+
   //     // Return the course report
   //     return res.status(200).json({
   //       totalUsers,
@@ -228,79 +302,88 @@ class AdminController {
   //       },
   //       learnerReport
   //     });
-  
+
   //   } catch (error) {
   //     console.error('Error generating course report:', error);
   //     return res.status(500).json({ message: 'Server error' });
   //   }
-  // }  
+  // }
 
   async generateCourseReport(req: Request, res: Response) {
     try {
       const { courseId } = req.params;
-      
+
       const course = await Course.findById(courseId)
-        .populate('assignedLearnersIds.userId')
-        .populate('assessments');
+        .populate("assignedLearnersIds.userId")
+        .populate("assessments");
       if (!course) {
-        return res.status(404).json({ message: 'Course not found' });
+        return res.status(404).json({ message: "Course not found" });
       }
-  
-      const assignedUsers = course.assignedLearnersIds?.map((learner: any) => learner.userId) || [];
-  
+
+      const assignedUsers =
+        course.assignedLearnersIds?.map((learner: any) => learner.userId) || [];
+
       console.log("assignedUsers", assignedUsers);
-  
+
       const totalUsers = assignedUsers.length;
-  
+
       const submissions = await Submission.aggregate([
-        { $match: { courseId: new mongoose.Types.ObjectId(courseId) } }, 
-        { $sort: { createdAt: -1 } }, 
+        { $match: { courseId: new mongoose.Types.ObjectId(courseId) } },
+        { $sort: { createdAt: -1 } },
         {
           $group: {
-            _id: '$learnerId', 
-            latestSubmission: { $first: '$$ROOT' }, 
-          }
+            _id: "$learnerId",
+            latestSubmission: { $first: "$$ROOT" },
+          },
         },
         {
-          $replaceRoot: { newRoot: '$latestSubmission' } 
-        },
-        {
-          $lookup: {
-            from: 'users',
-            localField: 'learnerId',
-            foreignField: '_id',
-            as: 'learnerDetails',
-          }
-        },
-        {
-          $unwind: { path: '$learnerDetails', preserveNullAndEmptyArrays: true } 
+          $replaceRoot: { newRoot: "$latestSubmission" },
         },
         {
           $lookup: {
-            from: 'assessments', 
-            localField: 'assessmentId',
-            foreignField: '_id',
-            as: 'assessmentDetails',
-          }
+            from: "users",
+            localField: "learnerId",
+            foreignField: "_id",
+            as: "learnerDetails",
+          },
         },
         {
-          $unwind: { path: '$assessmentDetails', preserveNullAndEmptyArrays: true } 
-        }
+          $unwind: {
+            path: "$learnerDetails",
+            preserveNullAndEmptyArrays: true,
+          },
+        },
+        {
+          $lookup: {
+            from: "assessments",
+            localField: "assessmentId",
+            foreignField: "_id",
+            as: "assessmentDetails",
+          },
+        },
+        {
+          $unwind: {
+            path: "$assessmentDetails",
+            preserveNullAndEmptyArrays: true,
+          },
+        },
       ]);
-  
+
       const learnerReport = [];
       let completedCount = 0;
       let passCount = 0;
       let failCount = 0;
-  
+
       for (const user of assignedUsers) {
         const userDetails = await User.findById(user._id);
         if (!userDetails) {
           return ResponseHandler.failure(res, "User not found", 400);
         }
-  
-        const submission = submissions.find(sub => sub.learnerId._id.toString() === user._id.toString());
-  
+
+        const submission = submissions.find(
+          (sub) => sub.learnerId._id.toString() === user._id.toString()
+        );
+
         if (submission) {
           learnerReport.push({
             userId: userDetails.userId,
@@ -309,12 +392,12 @@ class AdminController {
             score: submission.score || null,
             maxObtainableMarks: submission.maxObtainableMarks || null,
             percentageScore: submission.percentageScore || null,
-            passOrFail: submission.passOrFail || null
+            passOrFail: submission.passOrFail || null,
           });
-  
+
           completedCount++;
-          if (submission.passOrFail === 'Pass') passCount++;
-          if (submission.passOrFail === 'Fail') failCount++;
+          if (submission.passOrFail === "Pass") passCount++;
+          if (submission.passOrFail === "Fail") failCount++;
         } else {
           learnerReport.push({
             userId: userDetails.userId,
@@ -323,33 +406,42 @@ class AdminController {
             score: null,
             maxObtainableMarks: null,
             percentageScore: null,
-            passOrFail: null
+            passOrFail: null,
           });
         }
       }
-  
-      const percentageCompleted = ((completedCount / totalUsers) * 100).toFixed(2);
-      const percentageIncomplete = (100 - parseFloat(percentageCompleted)).toFixed(2);
-  
-      const successPercentage = completedCount > 0 ? ((passCount / completedCount) * 100).toFixed(2) : '0';
-      const failurePercentage = completedCount > 0 ? ((failCount / completedCount) * 100).toFixed(2) : '0';
-  
+
+      const percentageCompleted = ((completedCount / totalUsers) * 100).toFixed(
+        2
+      );
+      const percentageIncomplete = (
+        100 - parseFloat(percentageCompleted)
+      ).toFixed(2);
+
+      const successPercentage =
+        completedCount > 0
+          ? ((passCount / completedCount) * 100).toFixed(2)
+          : "0";
+      const failurePercentage =
+        completedCount > 0
+          ? ((failCount / completedCount) * 100).toFixed(2)
+          : "0";
+
       return res.status(200).json({
         totalUsers,
         completion: {
           percentageCompleted,
-          percentageIncomplete
+          percentageIncomplete,
         },
         successRate: {
           successPercentage,
-          failurePercentage
+          failurePercentage,
         },
-        learnerReport
+        learnerReport,
       });
-  
     } catch (error) {
-      console.error('Error generating course report:', error);
-      return res.status(500).json({ message: 'Server error' });
+      console.error("Error generating course report:", error);
+      return res.status(500).json({ message: "Server error" });
     }
   }
 
@@ -365,22 +457,21 @@ class AdminController {
         return ResponseHandler.failure(res, "Organization does not exist", 404);
       }
 
-       let Urls: string[] = [];
-        
-        if (files && files.length > 0) {
-          for (let i = 0; i < files.length; i++) {
-            const file = files[i];
-            const uploadResult = await uploadToCloudinary(
-              file.buffer,
-              file.mimetype,
-              "course-content"
-            );
-            if (uploadResult && uploadResult.secure_url) {
-              Urls.push(uploadResult.secure_url);
-              
-            }
+      let Urls: string[] = [];
+
+      if (files && files.length > 0) {
+        for (let i = 0; i < files.length; i++) {
+          const file = files[i];
+          const uploadResult = await uploadToCloudinary(
+            file.buffer,
+            file.mimetype,
+            "course-content"
+          );
+          if (uploadResult && uploadResult.secure_url) {
+            Urls.push(uploadResult.secure_url);
           }
         }
+      }
 
       const updatedOrganization = await Organization.findByIdAndUpdate(
         organizationId,

@@ -17,12 +17,12 @@ export const validateCreateGroup = [
     .isString()
     .withMessage("Group name must be a string"),
 
-  body("learnerTerm")
+  body("generalLearnerTerm")
     .notEmpty()
-    .withMessage("Learner term is required")
+    .withMessage("General learner term is required")
     .isIn(["learner", "staff", "student", "trainee", "user"])
     .withMessage(
-      "Learner term must be one of: learner, staff, student, trainee, or user"
+      "General learner term must be one of: learner, staff, student, trainee, or user"
     ),
 
   body("generalLearnerGroupTerm")
@@ -33,12 +33,6 @@ export const validateCreateGroup = [
       "General learner group term must be one of: class, group, or batch"
     ),
 
-  body("groups")
-    .isArray({ min: 1 })
-    .withMessage("Groups must be a non-empty array")
-    .custom((groups) => groups.every((group: any) => typeof group === "string"))
-    .withMessage("Each group must be a string"),
-
   body("generalSubLearnerGroupTerm")
     .notEmpty()
     .withMessage("General sub-learner group term is required")
@@ -47,14 +41,6 @@ export const validateCreateGroup = [
       "General sub-learner group term must be one of: facilitator, arm, or cohort"
     ),
 
-  body("subGroups")
-    .isArray({ min: 1 })
-    .withMessage("Sub-groups must be a non-empty array")
-    .custom((subGroups) =>
-      subGroups.every((subGroup: any) => typeof subGroup === "string")
-    )
-    .withMessage("Each sub-group must be a string"),
-
   body("generalInstructorTerm")
     .notEmpty()
     .withMessage("General instructor term is required")
@@ -62,6 +48,20 @@ export const validateCreateGroup = [
     .withMessage(
       "General instructor term must be one of: instructor, teacher, facilitator, trainer, or lecturer"
     ),
+
+  body("groups")
+    .isArray({ min: 1 })
+    .withMessage("Groups must be a non-empty array")
+    .custom((groups) => groups.every((group: any) => typeof group === "string"))
+    .withMessage("Each group must be a string"),
+  
+  body("subGroups")
+    .isArray({ min: 1 })
+    .withMessage("Sub-groups must be a non-empty array")
+    .custom((subGroups) =>
+      subGroups.every((subGroup: any) => typeof subGroup === "string")
+    )
+    .withMessage("Each sub-group must be a string"),
 
   body("instructorNames")
     .isArray({ min: 1 })

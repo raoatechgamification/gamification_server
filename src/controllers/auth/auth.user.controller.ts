@@ -1,15 +1,15 @@
+import dotenv from "dotenv";
 import { Request, Response } from "express";
 import { ResponseHandler } from "../../middlewares/responseHandler.middleware";
-import User, { IUser } from "../../models/user.model";
+import Group from "../../models/group.model";
 import Organization, { IOrganization } from "../../models/organization.model";
 import SuperAdmin, { ISuperAdmin } from "../../models/superadmin.model";
-import Group from "../../models/group.model";
+import User, { IUser } from "../../models/user.model";
+import { sendLoginEmail } from "../../services/sendMail.service";
 import UserService from "../../services/user.service";
+import { uploadToCloudinary } from "../../utils/cloudinaryUpload";
 import { comparePassword, hashPassword } from "../../utils/hash";
 import { generateToken } from "../../utils/jwt";
-import { sendLoginEmail } from "../../services/sendMail.service";
-import { uploadToCloudinary } from "../../utils/cloudinaryUpload";
-import dotenv from "dotenv";
 dotenv.config();
 
 export class UserAuthController {
@@ -39,15 +39,24 @@ export class UserAuthController {
         batch,
         password,
         sendEmail,
+
+        contactPersonPlaceOfEmployment,
+        nameOfContactPerson,
+        contactEmail,
+        contactPersonPhoneNumber,
       } = req.body;
 
       const image = req.file;
-      const organizationId = req.admin._id
+      const organizationId = req.admin._id;
 
       let fileUploadResult: any = null;
 
       if (image) {
-        fileUploadResult = await uploadToCloudinary(image.buffer, image.mimetype, "userDisplayPictures")
+        fileUploadResult = await uploadToCloudinary(
+          image.buffer,
+          image.mimetype,
+          "userDisplayPictures"
+        );
       }
 
       if (!password) {
@@ -71,11 +80,15 @@ export class UserAuthController {
       if (groupId) {
         const group = await Group.findOne({
           _id: groupId,
-          organizationId
-        })
-  
+          organizationId,
+        });
+
         if (!group) {
-          return ResponseHandler.failure(res, "Group not found for this organization", 400)
+          return ResponseHandler.failure(
+            res,
+            "Group not found for this organization",
+            400
+          );
         }
       }
 
@@ -105,6 +118,10 @@ export class UserAuthController {
         password: hashedPassword,
         organizationId,
         batch,
+        contactPersonPlaceOfEmployment,
+        contactEmail,
+        nameOfContactPerson,
+        contactPersonPhoneNumber,
         userType: role,
       });
 
@@ -141,12 +158,12 @@ export class UserAuthController {
   static async bulkCreateUsers(req: Request, res: Response) {
     try {
       const organizationId = req.admin._id;
-  
+
       if (!req.file) {
         res.status(400).json({ success: false, error: "No file uploaded" });
         return;
       }
-  
+
       const organization = await Organization.findById(organizationId);
       if (!organization) {
         return res.status(400).json({
@@ -154,10 +171,10 @@ export class UserAuthController {
           message: "Organization not found",
         });
       }
-  
+
       const { duplicateEmails, duplicatePhones } =
         await UserService.createUsersFromExcel(organization, req.file.buffer);
-  
+
       if (duplicateEmails.length || duplicatePhones.length) {
         return res.status(400).json({
           success: false,
@@ -168,7 +185,7 @@ export class UserAuthController {
           },
         });
       }
-  
+
       res.status(201).json({
         success: true,
         message: "Users created successfully.",
@@ -181,7 +198,6 @@ export class UserAuthController {
       });
     }
   }
-  
 
   // static async bulkCreateUsers(req: Request, res: Response) {
   //   try {

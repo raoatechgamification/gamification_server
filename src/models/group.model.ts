@@ -1,29 +1,39 @@
 import mongoose, { Schema, Document, Model } from "mongoose";
 
+interface SubLearnerGroup {
+  [x: string]: any;
+  // _id: string;
+  name: string;
+}
+
 interface IGroup extends Document {
   name: string;
   organizationId: mongoose.Schema.Types.ObjectId;
+  numberOfArms: number; 
+  subGroupsName?: {
+    name: string
+  }[];
   basicCustomization: {
-    learnerTerm: string; 
+    generalLearnerTerm: "learner" | "staff" | "student" | "trainee" | "user";
     learnerGroup: {
-      generalTerm: string; 
-      groups: string[]; 
+      generalLearnerGroupTerm: "class" | "group" | "batch";
+      groups: { name: string }[];
     };
     subLearnerGroup: {
-      generalSubTerm: string; 
-      subGroups: { name: string }[]; 
+      generalSubLearnerGroupTerm: "facilitator" | "arm" | "cohort";
+      subLearnerGroups: SubLearnerGroup[];
     };
     instructor: {
-      generalInstructorTerm: string; 
-      names: string[]; 
+      generalInstructorTerm: "instructor" | "teacher" | "facilitator" | "trainer" | "lecturer";
+      names: { name: string }[];
     };
   };
   advancedCustomization: {
     academicProgram: {
-      maxMembersPerProgram: number; 
+      maxMembersPerProgram: number;
     };
-    idFormat: string; 
-    personalization: string; 
+    idFormat: "learner" | "staff" | "student" | "trainee" | "user";
+    personalization: string;
   };
 }
 
@@ -33,34 +43,51 @@ const GroupSchema: Schema<IGroup> = new Schema(
       type: String,
       required: true,
     },
-    organizationId: { type: mongoose.Schema.Types.ObjectId, required: true},
+    organizationId: { type: mongoose.Schema.Types.ObjectId, required: true },
+    numberOfArms: { type: Number, required: true },
+    subGroupsName: {
+      type: [
+        {
+          name: {
+            type: String,
+            required: true,
+          },
+        },
+      ],
+      default: [],
+    },
     basicCustomization: {
-      learnerTerm: {
+      generalLearnerTerm: {
         type: String,
         enum: ["learner", "staff", "student", "trainee", "user"],
         required: true,
       },
       learnerGroup: {
-        generalTerm: {
+        generalLearnerGroupTerm: {
           type: String,
           enum: ["class", "group", "batch"],
           required: true,
         },
         groups: [
           {
-            type: String,
-            required: true,
+            name: {
+              type: String,
+              required: true,
+            },
           },
         ],
       },
       subLearnerGroup: {
-        generalSubTerm: {
+        generalSubLearnerGroupTerm: {
           type: String,
           enum: ["facilitator", "arm", "cohort"],
           required: true,
         },
-        subGroups: [
+        subLearnerGroups: [
           {
+            // _id: {
+            //   type: mongoose.Schema.Types.ObjectId,  // Ensure _id is ObjectId
+            // },
             name: {
               type: String,
               required: true,
@@ -76,8 +103,10 @@ const GroupSchema: Schema<IGroup> = new Schema(
         },
         names: [
           {
-            type: String,
-            required: true,
+            name: {
+              type: String,
+              required: true,
+            },
           },
         ],
       },

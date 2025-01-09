@@ -1,16 +1,10 @@
 import { Router } from "express";
-import { authenticate, authorize } from "../middlewares/auth.middleware";
 import AdminController from "../controllers/admin.controller";
-import {
-  adminEditUserProfileValidator,
-  userIdValidator,
-} from "../validators/admin.validator";
+import { authenticate, authorize } from "../middlewares/auth.middleware";
+import { upload } from "../utils/upload.utils";
+import { userIdValidator } from "../validators/admin.validator";
 
-const { 
-  viewAllUsers, 
-  editUserProfile, 
-  viewAUserProfile, 
-} = AdminController;
+const { viewAllUsers, editUserProfile, viewAUserProfile } = AdminController;
 
 const router = Router();
 
@@ -20,7 +14,8 @@ router.put(
   "/user-details/:userId",
   authenticate,
   authorize("admin"),
-  ...adminEditUserProfileValidator,
+  // ...adminEditUserProfileValidator,
+  upload.single("image"),
   editUserProfile
 );
 
@@ -31,6 +26,5 @@ router.get(
   ...userIdValidator,
   viewAUserProfile
 );
-
 
 export default router;

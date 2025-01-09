@@ -20,7 +20,7 @@ router.use("/super-admin", superAdminRoutes);
 router.use("/admin", adminRoutes);
 router.use("/assessment", assessmentRoutes);
 router.use("/course", courseRoutes);
-router.use("/group", groupRoutes);
+router.use("/groups", groupRoutes);
 router.use("/user", userRoutes);
 router.use("/notifications", notificationRoutes);
 router.use("/payments", paymentRoutes);
