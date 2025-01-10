@@ -251,7 +251,7 @@ export class CourseController {
         objectives,
         link,
         files: Urls,
-        organizationId,
+        instructorId: organizationId,
       });
 
       return ResponseHandler.success(
