@@ -1,12 +1,10 @@
-import { Request, Response, NextFunction } from "express";
-import PaymentService from "../services/payment.service";
-import User from "../models/user.model";
-import Course, { ICourse } from "../models/course.model";
-import Bill, { BillDocument } from "../models/bill.model";
-import AssignedBill from "../models/assignedBill.model";
-import Payment from "../models/payment.model";
-import { ResponseHandler } from "../middlewares/responseHandler.middleware";
 import dotenv from "dotenv";
+import { Request, Response } from "express";
+import { ResponseHandler } from "../middlewares/responseHandler.middleware";
+import Course from "../models/course.model";
+import Payment from "../models/payment.model";
+import User from "../models/user.model";
+import PaymentService from "../services/payment.service";
 dotenv.config();
 
 class PaymentController {
@@ -22,17 +20,106 @@ class PaymentController {
       const { assignedBillId } = req.params;
 
       if (!user.assignedPrograms) {
-        return ResponseHandler.failure(res, "No assigned programs found for the user", 404);
+        return ResponseHandler.failure(
+          res,
+          "No assigned programs found for the user",
+          404
+        );
       }
 
       const assignedBill = user.assignedPrograms.find(
-        (program) => program._id?.toString() === assignedBillId && program.status === "unpaid"
+        (program) =>
+          program._id?.toString() === assignedBillId &&
+          program.status === "unpaid"
       );
 
       if (!assignedBill) {
-        return ResponseHandler.failure(res, "No matching unpaid assigned bill found", 404);
+        return ResponseHandler.failure(
+          res,
+          "No matching unpaid assigned bill found",
+          404
+        );
       }
-      
+
+      const { courseId, amount } = assignedBill;
+
+      const course = await Course.findOne({ _id: courseId });
+      if (!course) {
+        return ResponseHandler.failure(res, "Course not found", 404);
+      }
+
+      const reference = `TX-${userId}-${Date.now()}`;
+
+      const paymentPayload = {
+        reference,
+        userId,
+        billId: assignedBillId,
+        email: user.email,
+        amount,
+      };
+
+      const paymentResult = await PaymentService.processPayment(paymentPayload);
+
+      await Payment.create({
+        userId,
+        assignedBillId,
+        courseId,
+        status: "pending",
+        reference,
+      });
+
+      await User.updateOne(
+        { _id: userId, "assignedPrograms._id": assignedBillId },
+        { $set: { "assignedPrograms.$.status": "pending" } }
+      );
+
+      return ResponseHandler.success(
+        res,
+        paymentResult,
+        "Payment link created"
+      );
+    } catch (error: any) {
+      return ResponseHandler.failure(
+        res,
+        `Server error: ${error.message}`,
+        500
+      );
+    }
+  }
+
+  async processPayment2(req: Request, res: Response) {
+    try {
+      const userId = req.user.id;
+
+      const user = await User.findOne({ _id: userId });
+      if (!user) {
+        return ResponseHandler.failure(res, "User not found", 404);
+      }
+
+      const { assignedBillId } = req.params;
+
+      if (!user.assignedPrograms) {
+        return ResponseHandler.failure(
+          res,
+          "No assigned programs found for the user",
+          404
+        );
+      }
+
+      const assignedBill = user.assignedPrograms.find(
+        (program) =>
+          program._id?.toString() === assignedBillId &&
+          program.status === "unpaid"
+      );
+
+      if (!assignedBill) {
+        return ResponseHandler.failure(
+          res,
+          "No matching unpaid assigned bill found",
+          404
+        );
+      }
+
       const { courseId, amount } = assignedBill;
 
       const course = await Course.findOne({ _id: courseId });
@@ -137,7 +224,7 @@ class PaymentController {
       console.log("Webhook received with data (request body)", data);
 
       if (data.status === "successful") {
-        const { txRef } = data
+        const { txRef } = data;
         console.log("Transaction reference:", data.txRef);
 
         // Retrieve the payment using the correct reference key

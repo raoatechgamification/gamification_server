@@ -6806,3 +6806,80 @@
 2025-01-10 14:55:04 [info]: POST /login 200 - Request Body: {"email":"bimpe@gmail.com","password":"Timpearl05$$$"}
 2025-01-10 14:56:58 [info]: POST /6781191e2a2533ae97550a98/assign 200 - Request Body: {"userIds":["676965e49626eab20cafeb69"],"dueDate":"12-31-2025"}
 2025-01-10 14:57:05 [info]: POST /login 200 - Request Body: {"email":"bimpe@gmail.com","password":"Timpearl05$$$"}
+2025-01-10 15:15:54 [info]: GET /all-landing-page 401
+2025-01-10 15:15:54 [info]: GET /status 401
+2025-01-10 15:15:54 [info]: GET /allCourses 401
+2025-01-10 15:15:57 [info]: GET /status 304
+2025-01-10 15:15:58 [info]: GET /allCourses 200
+2025-01-10 15:15:58 [info]: GET /all-landing-page 200
+2025-01-10 15:16:59 [info]: GET /all-landing-page 304
+2025-01-10 15:17:00 [info]: GET /allCourses 304
+2025-01-10 15:17:00 [info]: GET /status 304
+2025-01-10 15:17:53 [info]: GET /status 304
+2025-01-10 15:17:54 [info]: GET /allCourses 304
+2025-01-10 15:17:54 [info]: GET /all-landing-page 304
+2025-01-10 15:18:30 [info]: GET /status 304
+2025-01-10 15:18:30 [info]: GET /all-landing-page 304
+2025-01-10 15:18:30 [info]: GET /allCourses 304
+2025-01-10 15:21:01 [info]: GET /status 304
+2025-01-10 15:21:02 [info]: GET /all-landing-page 304
+2025-01-10 15:21:02 [info]: GET /allCourses 304
+2025-01-10 15:21:42 [info]: GET /status 304
+2025-01-10 15:21:42 [info]: GET /all-landing-page 304
+2025-01-10 15:21:42 [info]: GET /allCourses 304
+2025-01-10 15:24:04 [info]: POST /login 200 - Request Body: {"email":"test@gmail.com","password":"Test2024!"}
+2025-01-10 15:24:13 [info]: GET / 304
+2025-01-10 15:24:30 [info]: GET /all 200
+2025-01-10 15:25:47 [info]: GET /lesson/getAll 200
+2025-01-10 15:25:52 [info]: GET / 304
+2025-01-10 15:25:58 [info]: GET / 304
+2025-01-10 15:26:05 [info]: POST /add 400 - Request Body: {"title":"Paid course 2","objective":"PD2","price":"2000","duration":"2000","instructorId":"67405d421a49e4a70bfd2d3b","lessonFormat":"pdf","code":"PD2","showInstructor":"true","assessments":["678110a570afb170374c986f"],"lessons":["67780f67a0d2a9a95fa14fb8"],"certificate":["675b2bf9a36549113b5b3511"]}
+2025-01-10 15:26:26 [info]: POST /add 400 - Request Body: {"title":"Paid course 2","objective":"PD2","price":"2000","duration":"2000","instructorId":"67405d421a49e4a70bfd2d3b","lessonFormat":"pdf","code":"PD2","showInstructor":"true","assessments":["678110a570afb170374c986f"],"lessons":["67780f67a0d2a9a95fa14fb8"],"certificate":["675b2bf9a36549113b5b3511"]}
+2025-01-10 15:26:39 [info]: GET / 304
+2025-01-10 15:26:41 [info]: GET /lesson/getAll 304
+2025-01-10 15:26:52 [info]: GET / 304
+2025-01-10 15:27:00 [info]: GET / 304
+2025-01-10 15:27:07 [info]: POST /add 400 - Request Body: {"title":"Paid course 2","objective":"PD2","price":"2000","duration":"2000","instructorId":"67405d421a49e4a70bfd2d3b","lessonFormat":"pdf","code":"PD2","showInstructor":"true","assessments":["678110a570afb170374c986f"],"lessons":["67780f67a0d2a9a95fa14fb8"],"certificate":["675b2bf9a36549113b5b3511","677befebd8d18bac8177fa5e"]}
+2025-01-10 15:27:32 [info]: GET /all 304
+2025-01-10 15:27:33 [info]: GET / 304
+2025-01-10 15:28:14 [info]: GET /lesson/getAll 304
+2025-01-10 15:28:43 [info]: POST /lesson 200 - Request Body: {"title":"PAID","objectives":"PAID"}
+2025-01-10 15:28:49 [info]: GET /all 304
+2025-01-10 15:28:52 [info]: GET /lesson/getAll 304
+2025-01-10 15:29:48 [info]: GET /lesson/getAll 401
+2025-01-10 15:29:49 [info]: GET /lesson/getAll 304
+2025-01-10 15:30:51 [info]: POST /lesson 200 - Request Body: {"title":"PAID","objectives":"PAID"}
+2025-01-10 15:31:11 [info]: GET /lesson/getAll 401
+2025-01-10 15:31:12 [info]: GET /lesson/getAll 304
+2025-01-10 15:32:01 [info]: POST /login 200 - Request Body: {"email":"test@gmail.com","password":"Test2024!"}
+2025-01-10 15:32:07 [info]: GET / 304
+2025-01-10 15:32:16 [info]: GET /lesson/getAll 304
+2025-01-10 15:32:58 [info]: GET /lesson/getAll 304
+2025-01-10 15:33:06 [info]: GET /lesson/getAll 304
+2025-01-10 15:33:07 [info]: GET /all-landing-page 304
+2025-01-10 15:33:08 [info]: GET /allCourses 304
+2025-01-10 15:33:09 [info]: GET /status 304
+2025-01-10 16:32:23 [info]: GET /allCourses 401
+2025-01-10 16:32:23 [info]: GET /status 401
+2025-01-10 16:32:27 [info]: GET /allCourses 401
+2025-01-10 16:32:27 [info]: GET /status 401
+2025-01-10 16:32:28 [info]: GET /all-landing-page 401
+2025-01-10 16:32:51 [info]: POST /login 200 - Request Body: {"email":"test@gmail.com","password":"Test2024!"}
+2025-01-10 16:32:56 [info]: GET / 200
+2025-01-10 16:33:17 [info]: GET /lesson/getAll 200
+2025-01-10 16:33:51 [info]: GET /lesson/getAll 401
+2025-01-10 16:33:52 [info]: GET /lesson/getAll 304
+2025-01-10 16:34:43 [info]: GET /all 200
+2025-01-10 16:35:26 [info]: GET /lesson/getAll 304
+2025-01-10 16:35:32 [info]: GET / 200
+2025-01-10 16:35:38 [info]: GET / 200
+2025-01-10 16:35:53 [info]: POST /add 400 - Request Body: {"title":"Paid course 2","objective":"ss","price":"2000","duration":"2000","instructorId":"67405d421a49e4a70bfd2d3b","lessonFormat":"powerpoint","code":"PD2","showInstructor":"true","assessments":["678110a570afb170374c986f"],"lessons":["67780f67a0d2a9a95fa14fb8"],"certificate":["675b2bf9a36549113b5b3511"]}
+2025-01-10 16:36:47 [info]: GET /all 304
+2025-01-10 16:36:47 [info]: GET / 304
+2025-01-10 16:39:16 [info]: GET /all 304
+2025-01-10 16:39:17 [info]: GET / 304
+2025-01-10 16:43:58 [info]: POST /login 200 - Request Body: {"email":"test@gmail.com","password":"Test2024!"}
+2025-01-10 16:43:59 [info]: GET / 304
+2025-01-10 16:44:12 [info]: GET /lesson/getAll 304
+2025-01-10 16:46:21 [info]: GET /lesson/getAll 304
+2025-01-10 16:46:27 [info]: GET /lesson/getAll 304
