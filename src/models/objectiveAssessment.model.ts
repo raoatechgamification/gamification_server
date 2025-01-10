@@ -15,7 +15,7 @@ export interface AssessmentInterface {
 
 
 export interface IObjectiveAssessment extends Document {
-  organizationId: Schema.Types.ObjectId;
+  organizationId: mongoose.Types.ObjectId;
   title: string;
   description: string;
   marksPerQuestion?: number; 

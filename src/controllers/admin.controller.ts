@@ -321,7 +321,7 @@ class AdminController {
       }
 
       const assignedUsers =
-        course.assignedLearnersIds?.map((learner: any) => learner.userId) || [];
+        course.assignedLearnerIds?.map((learner: any) => learner.userId) || [];
 
       console.log("assignedUsers", assignedUsers);
 
