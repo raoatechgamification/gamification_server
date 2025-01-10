@@ -331,7 +331,7 @@ export class CourseController {
       if (lessons) {
         validLessons = await Lesson.find({
           _id: { $in: lessons },
-          organizationId: adminId,
+          instructorId: adminId,
         });
 
         if (validLessons.length !== lessons.length) {
