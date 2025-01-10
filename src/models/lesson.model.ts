@@ -8,7 +8,7 @@ export interface CompletionDetails {
 
 export interface LessonDocument extends Document {
   courseIds?: mongoose.Types.ObjectId[];
-  instructorId:  mongoose.Types.ObjectId;
+  organizationId:  mongoose.Types.ObjectId;
   title: string;
   objectives: string;
   link?: string;
@@ -19,7 +19,7 @@ export interface LessonDocument extends Document {
 const lessonSchema = new Schema<LessonDocument>(
   {
     courseIds: [{ type: Schema.Types.ObjectId, ref: 'Course'}],
-    instructorId: { type: Schema.Types.ObjectId, ref: 'Organization', required: true },
+    organizationId: { type: Schema.Types.ObjectId, ref: 'Organization', required: true },
     title: { type: String, required: true },
     objectives: { type: String, required: true },
     link: { type: String }, 

@@ -173,8 +173,7 @@ export const validateCreateCourse = [
   //   .withMessage('Price must be a greater than NGN1000'),
 
   body('instructorId')
-    .notEmpty()
-    .withMessage('Instructor ID is required')
+    .optional()
     .isMongoId()
     .withMessage('Instructor ID must be a valid MongoDB ObjectId'),
 

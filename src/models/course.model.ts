@@ -2,18 +2,17 @@ import mongoose, { Schema, model, Document } from 'mongoose';
 
 export interface ICourse extends Document {
   title: string;
-  description?: string,
-  requirement?: string,
-  topContent?: boolean,
+  description?: string;
+  requirement?: string;
+  topContent?: boolean;
   objective?: string;
-  tutorId?: Schema.Types.ObjectId
   organizationId?: string;
   lessonFormat?: string;
-  instructorId: string;
+  instructor: mongoose.Types.ObjectId | string; // Union handled in TypeScript only
   lessons?: mongoose.Types.ObjectId[];
   learnerIds?: { userId: mongoose.Types.ObjectId; progress: number }[];
-  assignedLearnersIds?: { userId: mongoose.Types.ObjectId}[]
-  assessments?: mongoose.Types.ObjectId[] 
+  assignedLearnerIds?: { userId: mongoose.Types.ObjectId }[];
+  assessments?: mongoose.Types.ObjectId[];
   certificate?: mongoose.Types.ObjectId;
   duration?: string;
   courseCode?: string;
@@ -22,7 +21,7 @@ export interface ICourse extends Document {
   endDate?: Date;
   numberOfHoursPerDay?: number;
   numberOfDaysPerWeek?: number;
-  cost?: number | string;
+  cost?: number;
   promo?: string;
   promoCode?: string;
   promoValue?: number;
@@ -37,40 +36,52 @@ export interface ICourse extends Document {
   courseImage: string[];
   curriculum?: string[];
   teachingMethod?: string;
-  passMark: number;
-  maximumNumberOfTrials?: number
+  passMark?: number;
+  maximumNumberOfTrials?: number;
 }
 
 const CourseSchema = new Schema<ICourse>({
   title: { type: String, required: true },
-  description: { type: String, required: false },
-  requirement: { type: String, required: false },
-  topContent: { type: Boolean, required: false },
-  objective: { type: String, required: false },
-  instructorId: { type: String, required: false },
-  certificate: { type: Schema.Types.ObjectId, ref: 'Certificate' },
-  tutorId: { type: Schema.Types.ObjectId },
-  organizationId: { type: String, required: false },
-  lessonFormat: { type: String, required: false },
+  description: { type: String },
+  requirement: { type: String },
+  topContent: { type: Boolean },
+  objective: { type: String },
+  organizationId: { type: String },
+  lessonFormat: { type: String },
+  // instructor: { type: Schema.Types.ObjectId, ref: 'User' },
+  instructor: {
+    type: Schema.Types.Mixed, // Accepts both ObjectId and String
+    validate: {
+      validator: (value: any) => {
+        return (
+          mongoose.Types.ObjectId.isValid(value) || typeof value === 'string'
+        );
+      },
+      message: 'Instructor must be either a valid ObjectId or a string.',
+    },
+  },
   lessons: [{ type: Schema.Types.ObjectId, ref: 'Lesson' }],
   learnerIds: [
     {
       userId: { type: Schema.Types.ObjectId, ref: 'User' },
-      progress: { type: Number, default: 0 }, 
+      progress: { type: Number, default: 0 },
     },
   ],
-  assignedLearnersIds: [
-    
+  assignedLearnerIds: [
+    {
+      userId: { type: Schema.Types.ObjectId, ref: 'User' },
+    },
   ],
   assessments: [{ type: Schema.Types.ObjectId, ref: 'ObjectiveAssessment' }],
-  duration: { type: String, required: false },
-  courseCode: { type: String, required: false },
-  courseLevel: { type: String, required: false },
-  startDate: { type: Date, required: false },
-  endDate: { type: Date, required: false },
-  numberOfHoursPerDay: { type: Number, required: false },
-  numberOfDaysPerWeek: { type: Number, required: false },
-  cost: { type: Number || String, required: false },
+  certificate: { type: Schema.Types.ObjectId, ref: 'Certificate' },
+  duration: { type: String },
+  courseCode: { type: String },
+  courseLevel: { type: String },
+  startDate: { type: Date },
+  endDate: { type: Date },
+  numberOfHoursPerDay: { type: Number },
+  numberOfDaysPerWeek: { type: Number },
+  cost: { type: Number },
   promo: { type: String },
   promoCode: { type: String },
   promoValue: { type: Number },
@@ -82,12 +93,12 @@ const CourseSchema = new Schema<ICourse>({
   visibilityEndDate: { type: Date },
   visibilityStartTime: { type: String },
   visibilityEndTime: { type: String },
-  courseImage: [{type: String}],
+  courseImage: [{ type: String }],
   curriculum: [{ type: String }],
   teachingMethod: { type: String },
-  passMark: {type: Number, required: false},
-  maximumNumberOfTrials: {type: Number, required: false}
+  passMark: { type: Number },
+  maximumNumberOfTrials: { type: Number },
 });
 
 const Course = model<ICourse>('Course', CourseSchema);
-export default Course
+export default Course;

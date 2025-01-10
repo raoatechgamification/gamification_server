@@ -10,7 +10,9 @@ const {
   createGroup, 
   editGroup,
   getGroupById, 
-  getAllGroups 
+  getAllGroups,
+  assignUsersToGroup,
+  assignCourseToGroup 
 } = new GroupController();
 
 const router = Router();
@@ -42,6 +44,20 @@ router.get(
   authenticate,
   authorize("admin"),
   getAllGroups
+)
+
+router.post(
+  "/assign-users",
+  authenticate,
+  authorize("admin"),
+  assignUsersToGroup
+)
+
+router.post(
+  "/assign-course/:courseId",
+  authenticate,
+  authorize("admin"),
+  assignCourseToGroup
 )
 
 export default router;
