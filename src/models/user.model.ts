@@ -31,6 +31,7 @@ export interface IUser extends Document {
   subLearnerGroups?: mongoose.Schema.Types.ObjectId[];
   organizationId?: mongoose.Schema.Types.ObjectId;
   role: string;
+  specialRole?: string;
   password: string;
   batch?: string;
   userType?: string;
