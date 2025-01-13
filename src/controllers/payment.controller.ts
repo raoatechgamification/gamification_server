@@ -118,7 +118,6 @@ class PaymentController {
 
       await Payment.create({
         userId,
-
         courseId,
         status: "pending",
         reference,
@@ -218,8 +217,8 @@ class PaymentController {
           );
 
           await User.updateOne(
-            { _id: userId, "assignedPrograms._id": assignedBillId },
-            { $set: { "assignedPrograms.$.status": "paid" } }
+            { _id: userId },
+            { $push: { purchasedCourses: courseId } }
           );
 
           await Course.updateOne(
