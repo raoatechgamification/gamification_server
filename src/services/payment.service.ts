@@ -17,7 +17,9 @@ class PaymentService {
       tx_ref: data.reference,
       amount: `${data.amount}`,
       currency: "NGN",
-      redirect_url: "https://www.google.com",
+      redirect_url:
+        `${process.env.FRONTEND_URL}/user/courses/course-details/verify-payment?reference=${data.reference}&courseId=` +
+        data.billId,
       customer: {
         id: data.userId,
         email: data.email,

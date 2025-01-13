@@ -207,6 +207,7 @@ class PaymentController {
         // Retrieve the payment using the correct reference key
         const payment = await Payment.findOne({ reference: txRef });
 
+        console.log(payment, "payment");
         if (payment) {
           const { userId, assignedBillId, courseId } = payment;
 
