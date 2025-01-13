@@ -30,6 +30,7 @@ export interface IUser extends Document {
   groups?: mongoose.Schema.Types.ObjectId[];
   subLearnerGroups?: mongoose.Schema.Types.ObjectId[];
   organizationId?: mongoose.Schema.Types.ObjectId;
+  purchasedCourses?: mongoose.Schema.Types.ObjectId[];
   role: string;
   specialRole?: string;
   password: string;
@@ -128,7 +129,7 @@ const UserSchema: Schema<IUser> = new Schema(
     nameOfContactPerson: { type: String, default: null },
     contactEmail: { type: String, default: null },
     contactPersonPhoneNumber: { type: String, default: null },
-
+    purchasedCourses: [{ type: mongoose.Schema.Types.ObjectId }],
     assignedPrograms: {
       type: [AssignedProgramSchema],
       default: [],

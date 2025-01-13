@@ -168,7 +168,7 @@ class AdminController {
     try {
       console.log("The request went through");
       const organizationId = req.admin._id;
-      console.log(organizationId);
+
       const userId = req.params.userId;
       console.log(userId);
 
