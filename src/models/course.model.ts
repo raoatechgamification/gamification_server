@@ -1,4 +1,4 @@
-import mongoose, { Schema, model, Document } from 'mongoose';
+import mongoose, { Schema, model, Document } from "mongoose";
 
 export interface ICourse extends Document {
   title: string;
@@ -54,26 +54,26 @@ const CourseSchema = new Schema<ICourse>({
     validate: {
       validator: (value: any) => {
         return (
-          mongoose.Types.ObjectId.isValid(value) || typeof value === 'string'
+          mongoose.Types.ObjectId.isValid(value) || typeof value === "string"
         );
       },
-      message: 'Instructor must be either a valid ObjectId or a string.',
+      message: "Instructor must be either a valid ObjectId or a string.",
     },
   },
-  lessons: [{ type: Schema.Types.ObjectId, ref: 'Lesson' }],
+  lessons: [{ type: Schema.Types.ObjectId, ref: "Lesson" }],
   learnerIds: [
     {
-      userId: { type: Schema.Types.ObjectId, ref: 'User' },
+      userId: { type: Schema.Types.ObjectId, ref: "User" },
       progress: { type: Number, default: 0 },
     },
   ],
   assignedLearnerIds: [
     {
-      userId: { type: Schema.Types.ObjectId, ref: 'User' },
+      userId: { type: Schema.Types.ObjectId, ref: "User" },
     },
   ],
-  assessments: [{ type: Schema.Types.ObjectId, ref: 'ObjectiveAssessment' }],
-  certificate: { type: Schema.Types.ObjectId, ref: 'Certificate' },
+  assessments: [{ type: Schema.Types.ObjectId, ref: "ObjectiveAssessment" }],
+  certificate: { type: Schema.Types.ObjectId, ref: "Certificate" },
   duration: { type: String },
   courseCode: { type: String },
   courseLevel: { type: String },
@@ -100,5 +100,5 @@ const CourseSchema = new Schema<ICourse>({
   maximumNumberOfTrials: { type: Number },
 });
 
-const Course = model<ICourse>('Course', CourseSchema);
+const Course = model<ICourse>("Course", CourseSchema);
 export default Course;
