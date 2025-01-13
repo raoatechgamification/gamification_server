@@ -201,12 +201,13 @@ class PaymentController {
       console.log("Webhook received with data (request body)", data);
       console.log(data.data.status, "status before if statement");
       if (data.data.status === "successful") {
-        const { txRef } = data.data;
-        console.log("successs");
-        console.log("Transaction reference:", data.data.txRef);
+        const { tx_ref } = data.data;
+        console.log(tx_ref, "tx_ref");
+
+        console.log("Transaction reference:", tx_ref);
 
         // Retrieve the payment using the correct reference key
-        const payment = await Payment.findOne({ reference: txRef });
+        const payment = await Payment.findOne({ reference: tx_ref });
 
         console.log(payment, "payment");
         if (payment) {
@@ -231,9 +232,9 @@ class PaymentController {
           console.log("Payment successful and completed");
         }
       } else if (data.data.status === "failed") {
-        const { txRef } = data.data;
+        const { tx_ref } = data.data;
 
-        const payment = await Payment.findOne({ reference: data.data.txRef });
+        const payment = await Payment.findOne({ reference: data.data.tx_ref });
 
         if (payment) {
           await Payment.updateOne(
