@@ -1168,6 +1168,9 @@ export class CourseController {
           course: {
             id: course._id,
             title: course.title,
+            duration: course.duration,
+            price: course.cost,
+            instructor: course.instructor,
             lessons: validLessons,
             completionStatus,
             assessments,
