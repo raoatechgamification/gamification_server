@@ -199,9 +199,10 @@ class PaymentController {
 
       const data = req.body;
       console.log("Webhook received with data (request body)", data);
-
+      console.log(data.status, "status before if statement");
       if (data.status === "successful") {
         const { txRef } = data;
+        console.log("successs");
         console.log("Transaction reference:", data.txRef);
 
         // Retrieve the payment using the correct reference key
