@@ -96,31 +96,8 @@ class PaymentController {
         return ResponseHandler.failure(res, "User not found", 404);
       }
 
-      const { assignedBillId } = req.params;
-
-      if (!user.assignedPrograms) {
-        return ResponseHandler.failure(
-          res,
-          "No assigned programs found for the user",
-          404
-        );
-      }
-
-      const assignedBill = user.assignedPrograms.find(
-        (program) =>
-          program._id?.toString() === assignedBillId &&
-          program.status === "unpaid"
-      );
-
-      if (!assignedBill) {
-        return ResponseHandler.failure(
-          res,
-          "No matching unpaid assigned bill found",
-          404
-        );
-      }
-
-      const { courseId, amount } = assignedBill;
+      const { courseId, amount } = req.body;
+      console.log(courseId, amount);
 
       const course = await Course.findOne({ _id: courseId });
       if (!course) {
@@ -132,7 +109,7 @@ class PaymentController {
       const paymentPayload = {
         reference,
         userId,
-        billId: assignedBillId,
+        billId: courseId,
         email: user.email,
         amount,
       };
@@ -141,16 +118,16 @@ class PaymentController {
 
       await Payment.create({
         userId,
-        assignedBillId,
+
         courseId,
         status: "pending",
         reference,
       });
 
-      await User.updateOne(
-        { _id: userId, "assignedPrograms._id": assignedBillId },
-        { $set: { "assignedPrograms.$.status": "pending" } }
-      );
+      // await User.updateOne(
+      //   { _id: userId, "assignedPrograms._id": assignedBillId },
+      //   { $set: { "assignedPrograms.$.status": "pending" } }
+      // );
 
       return ResponseHandler.success(
         res,
@@ -212,13 +189,14 @@ class PaymentController {
 
   async paymentWebhook(req: Request, res: Response) {
     try {
-      const flutterwaveVerifHash = req.headers["verif-hash"];
-      const secretHash = process.env.FLUTTERWAVE_SECRET_HASH;
+      console.log(12);
+      // const flutterwaveVerifHash = req.headers["verif-hash"];
+      // const secretHash = process.env.FLUTTERWAVE_SECRET_HASH;
 
-      if (flutterwaveVerifHash !== secretHash) {
-        console.log("Hash mismatch - Unauthorized request");
-        return res.status(403).json({ message: "Invalid signature" });
-      }
+      // if (flutterwaveVerifHash !== secretHash) {
+      //   console.log("Hash mismatch - Unauthorized request");
+      //   return res.status(403).json({ message: "Invalid signature" });
+      // }
 
       const data = req.body;
       console.log("Webhook received with data (request body)", data);

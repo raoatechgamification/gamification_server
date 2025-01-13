@@ -3,10 +3,11 @@ import { authenticate, authorize } from "../middlewares/auth.middleware";
 
 import PaymentController from "../controllers/payment.controller";
 
-const { processPayment, verifyPayment, paymentWebhook } = PaymentController;
+const { processPayment, processPayment2, verifyPayment, paymentWebhook } =
+  PaymentController;
 
 const router = Router();
-
+router.post("/make-payment", authenticate, authorize("user"), processPayment2);
 router.post(
   "/process-payment/:assignedBillId",
   authenticate,
