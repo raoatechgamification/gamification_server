@@ -129,7 +129,7 @@ const UserSchema: Schema<IUser> = new Schema(
     nameOfContactPerson: { type: String, default: null },
     contactEmail: { type: String, default: null },
     contactPersonPhoneNumber: { type: String, default: null },
-    purchasedCourses: [{ type: mongoose.Schema.Types.ObjectId }],
+    purchasedCourses: [{ type: mongoose.Schema.Types.ObjectId, default: [] }],
     assignedPrograms: {
       type: [AssignedProgramSchema],
       default: [],
