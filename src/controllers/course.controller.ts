@@ -1,19 +1,19 @@
+import { NextFunction, Request, Response } from "express";
 import mongoose from "mongoose";
-import { Request, Response, NextFunction } from "express";
+import { NotificationController } from "../controllers/notification.controller";
 import { ResponseHandler } from "../middlewares/responseHandler.middleware";
+import Announcement from "../models/announcement.model";
 import Course, { ICourse } from "../models/course.model";
 import Lesson, { CompletionDetails } from "../models/lesson.model";
-import User, { IUser } from "../models/user.model";
-import Announcement from "../models/announcement.model";
+import ObjectiveAssessment, {
+  IObjectiveAssessment,
+} from "../models/objectiveAssessment.model";
 import Submission from "../models/submission.model";
-import { NotificationController } from "../controllers/notification.controller";
+import User, { IUser } from "../models/user.model";
 import {
   optimizedUploadToCloudinary,
   uploadToCloudinary,
 } from "../utils/cloudinaryUpload";
-import ObjectiveAssessment, {
-  IObjectiveAssessment,
-} from "../models/objectiveAssessment.model";
 
 const { createNotification } = new NotificationController();
 
@@ -1405,18 +1405,18 @@ export class CourseController {
       );
 
       // Check assigned programs
-      const assignedProgram = user.assignedPrograms?.find(
-        (program) =>
-          program?.courseId?.toString() === courseId &&
-          (program?.status === "paid" || program?.status === "free")
-      );
-      if (!assignedProgram) {
-        return ResponseHandler.failure(
-          res,
-          "Course is not assigned to the user, or it is not paid/free",
-          400
-        );
-      }
+      // const assignedProgram = user.assignedPrograms?.find(
+      //   (program) =>
+      //     program?.courseId?.toString() === courseId &&
+      //     (program?.status === "paid" || program?.status === "free")
+      // );
+      // if (!assignedProgram) {
+      //   return ResponseHandler.failure(
+      //     res,
+      //     "Course is not assigned to the user, or it is not paid/free",
+      //     400
+      //   );
+      // }
 
       // Check unattempted programs
       const unattemptedProgram = user.unattemptedPrograms?.find(
