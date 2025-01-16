@@ -16,7 +16,8 @@
     "prepare": "husky install",
     "commit": "cz",
     "prod": "tsc && npm run copy-templates",
-    "copy-templates": "copyfiles -u 1 src/templates/**/* dist"
+    "copy-templates": "copyfiles -u 1 src/templates/**/* dist",
+    "seed": "ts-node src/models/seed.ts"
   },
   "author": "",
   "license": "ISC",
