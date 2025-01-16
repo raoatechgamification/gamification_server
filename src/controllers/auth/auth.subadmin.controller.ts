@@ -70,7 +70,8 @@ export class SubAdminController {
       const existingAccount =
         (await Organization.findOne({ email })) ||
         (await User.findOne({ email })) ||
-        (await SuperAdmin.findOne({ email }));
+        (await SuperAdmin.findOne({ email })) ||
+        (await SubAdmin.findOne({ email }));
 
       if (existingAccount) {
         return ResponseHandler.failure(res, "Email already registered", 400);
@@ -105,17 +106,17 @@ export class SubAdminController {
         contactEmail,
         nameOfContactPerson,
         contactPersonPhoneNumber,
-        userType: role,
+        userType: "subAdmin",
       });
 
       const response = await SubAdmin.findById(newUser._id).select(
-        "-password -role"
+        "-password "
       );
 
       return res.status(201).json({
         message: "Sub-admin account created successfully",
         data: response,
-        loginUrl: `${process.env.FRONTENT_BASEURL}/auth/login`,
+        loginUrl: `${process.env.FRONTENT_BASEURL}/auth/subadmin/login`,
       });
     } catch (error: any) {
       return res.status(500).json({
@@ -158,12 +159,13 @@ export class SubAdminController {
         firstName: registeredUser.firstName,
         lastName: registeredUser.lastName,
         role: registeredUser.role,
+        permissions: registeredUser.permissions
       };
 
       const token = await generateToken(payload);
 
       const response = await SubAdmin.findById(registeredUser._id).select(
-        "-password -role"
+        "-password"
       );
 
       return ResponseHandler.loginResponse(
@@ -179,4 +181,57 @@ export class SubAdminController {
       });
     }
   }
+
+  async assignPermissionsToSubAdmin(req: Request, res: Response) {
+  try {
+    const { subAdminId, permissions } = req.body;
+
+    if (!subAdminId || !permissions || !Array.isArray(permissions)) {
+      return ResponseHandler.failure(
+        res,
+        "SubAdmin ID and permissions are required.",
+        400
+      );
+    }
+
+    // Validate if the permissions exist
+    const validPermissions = await Permission.find({
+      _id: { $in: permissions },
+    });
+
+      if (validPermissions.length !== permissions.length) {
+        return ResponseHandler.failure(
+          res,
+          "Some permissions are invalid.",
+          400
+        );
+      }
+
+      // Update subAdmin's permissions
+      const updatedSubAdmin = await SubAdmin.findByIdAndUpdate(
+        subAdminId,
+        { permissions: validPermissions.map((perm) => perm._id) },
+        { new: true }
+      ).populate("permissions").select(
+        "-password"
+      );;
+
+      if (!updatedSubAdmin) {
+        return ResponseHandler.failure(
+          res,
+          "SubAdmin not found.",
+          404
+        );
+      }
+
+      res.status(200).json({
+        message: "Permissions successfully assigned.",
+        subAdmin: updatedSubAdmin,
+      });
+    } catch (error: any) {
+      res.status(error.status || 500).json({
+        message: error.message || "An error occurred.",
+      });
+    }
+  };
 }
