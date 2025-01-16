@@ -7,24 +7,56 @@ import SubAdmin from "../models/subadmin.model";
 import { IPermission } from "../models/permission.model"
 
 
-export const authenticate = (
+// export const authenticate = (
+//   req: Request,
+//   res: Response,
+//   next: NextFunction
+// ) => {
+//   const token = req.headers.authorization?.split(" ")[1];
+//   if (!token) return res.status(401).json({ message: "Unauthorized access" });
+
+//   try {
+//     const decoded = verifyToken(token) as typeof User;
+//     req.user = decoded;
+//     next();
+//   } catch (err) {
+//     return res.status(401).json({ message: "Invalid token" });
+//   }
+// };
+
+export const authenticate = async (
   req: Request,
   res: Response,
   next: NextFunction
 ) => {
   const token = req.headers.authorization?.split(" ")[1];
-  if (!token) return res.status(401).json({ message: "Unauthorized access" });
+  if (!token) {
+    return res.status(401).json({ message: "Unauthorized access" });
+  }
 
   try {
-    const decoded = verifyToken(token) as typeof User;
+    const decoded = verifyToken(token);
     req.user = decoded;
+
+    // Check if user is a subAdmin
+    if (decoded.role === "subAdmin") {
+      const subAdmin = await SubAdmin.findById(decoded.id).populate("permissions");
+      if (!subAdmin) {
+        return res.status(401).json({ message: "SubAdmin not found" });
+      }
+
+      // Attach subAdmin permissions to the request object
+      req.subadminPermissions = subAdmin.permissions as IPermission[];
+    }
+
     next();
   } catch (err) {
+    console.error("Authentication error:", err);
     return res.status(401).json({ message: "Invalid token" });
   }
 };
 
-export const authorize = (roles: ("user" | "admin" | "subadmin" | "superAdmin")[]) => {
+export const authorize = (roles: ("user" | "admin" | "subAdmin" | "superAdmin")[]) => {
   return async (req: Request, res: Response, next: NextFunction) => {
     const userRole = req.user?.role;
 
@@ -75,12 +107,16 @@ export const authorize = (roles: ("user" | "admin" | "subadmin" | "superAdmin")[
 
 export const checkSubadminPermission = (module: string, action: string) => {
   return (req: Request, res: Response, next: NextFunction) => {
-    if (!req.user || req.user.role !== "subadmin") {
-      return res.status(403).json({ message: "Forbidden access" });
+    if (req.user && req.user.role === "admin" || "superAdmin") {
+      return next();
+    }
+
+    if (!req.user || req.user.role !== "subAdmin") {
+      return res.status(403).json({ success: false, message: "Forbidden access" });
     }
 
     if (!req.subadminPermissions || req.subadminPermissions.length === 0) {
-      return res.status(403).json({ message: "No permissions assigned to subadmin" });
+      return res.status(403).json({ success: false, message: "No permissions assigned to subadmin" });
     }
 
     const hasPermission = req.subadminPermissions.some(
