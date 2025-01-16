@@ -28,16 +28,16 @@ const router = Router();
 router.get(
   "/organizations/view-all",
   authenticate,
-  authorize("superAdmin"),
+  authorize(["superAdmin"]),
   viewOrganizations
 );
 
-router.get("/users/view-all", authenticate, authorize("superAdmin"), viewUsers);
+router.get("/users/view-all", authenticate, authorize(["superAdmin"]), viewUsers);
 
 router.get(
   "/users/:userId",
   authenticate,
-  authorize("superAdmin"),
+  authorize(["superAdmin"]),
   ...userIdValidator,
   viewAUser
 );
@@ -45,7 +45,7 @@ router.get(
 router.get(
   "/organizations/:organizationId",
   authenticate,
-  authorize("superAdmin"),
+  authorize(["superAdmin"]),
   ...organizationIdValidator,
   viewAnOrganization
 );
@@ -53,7 +53,7 @@ router.get(
 router.put(
   "/users/:userId",
   authenticate,
-  authorize("superAdmin"),
+  authorize(["superAdmin"]),
   ...updateUserValidator,
   updateAUser
 );
@@ -61,7 +61,7 @@ router.put(
 router.put(
   "/organizations/:organizationId",
   authenticate,
-  authorize("superAdmin"),
+  authorize(["superAdmin"]),
   ...updateOrganizationValidator,
   updateAnOrganization
 );
@@ -69,28 +69,28 @@ router.put(
 router.post(
   "/organizations/export/csv",
   authenticate,
-  authorize("superAdmin"),
+  authorize(["superAdmin"]),
   exportOrganizationDataAsCsvFile
 );
 
 router.post(
   "/organizations/export/excel",
   authenticate,
-  authorize("superAdmin"),
+  authorize(["superAdmin"]),
   exportOrganizationDataAsExcelFile
 );
 
 router.post(
   "/users/export/csv",
   authenticate,
-  authorize("superAdmin"),
+  authorize(["superAdmin"]),
   exportUserDataAsCsvFile
 );
 
 router.post(
   "/users/export/excel",
   authenticate,
-  authorize("superAdmin"),
+  authorize(["superAdmin"]),
   exportUserDataAsExcelFile
 );
 

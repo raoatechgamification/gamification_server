@@ -8,12 +8,12 @@ const { viewAllUsers, editUserProfile, viewAUserProfile } = AdminController;
 
 const router = Router();
 
-router.get("/users", authenticate, authorize("admin"), viewAllUsers);
+router.get("/users", authenticate,   authorize(["admin"]), viewAllUsers);
 
 router.put(
   "/user-details/:userId",
   authenticate,
-  authorize("admin"),
+  authorize(["admin"]),
   // ...adminEditUserProfileValidator,
   upload.single("image"),
   editUserProfile
@@ -22,7 +22,7 @@ router.put(
 router.get(
   "/user-profile/:userId",
   authenticate,
-  authorize("admin"),
+  authorize(["admin"]),
   ...userIdValidator,
   viewAUserProfile
 );

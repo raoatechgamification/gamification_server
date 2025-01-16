@@ -18,34 +18,34 @@ const {
 router.post(
   "/",
   authenticate,
-  authorize("admin"),
+  authorize(["admin"]),
   upload.array("file", 3),
   CreateLandingPage
 );
 
-router.get("/", authenticate, authorize("admin"), GetAllLandingPages);
+router.get("/", authenticate, authorize(["admin"]), GetAllLandingPages);
 router.get("/raoatech", GetAllRaoatechLandingPages);
 router.get(
   "/all-landing-page",
   authenticate,
-  authorize("user"),
+  authorize(["user"]),
   GetAllTotalLandingPages
 );
-router.get("/:id", authenticate, authorize("admin"), GetLandingPageById);
+router.get("/:id", authenticate, authorize(["admin"]), GetLandingPageById);
 router.patch(
   "/:id",
   authenticate,
-  authorize("admin"),
+  authorize(["admin"]),
   upload.array("file", 1),
   updateLandingPageDetails
 );
 router.put(
   "/create-new-course-landing/:id",
   authenticate,
-  authorize("admin"),
+  authorize(["admin"]),
   upload.array("file", 2),
   UpdateLandingPageWithCourse
 );
-router.delete("/:id", authenticate, authorize("admin"), DeleteLandingPage);
+router.delete("/:id", authenticate, authorize(["admin"]), DeleteLandingPage);
 
 export default router;

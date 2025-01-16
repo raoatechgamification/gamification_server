@@ -42,21 +42,21 @@ const router = Router();
 router.get(
   "/status",
   authenticate,
-  authorize("user"),
+  authorize(["user"]),
   getPrograms
 )
 
 router.get(
   "/marketplace",
   authenticate,
-  authorize("user"),
+  authorize(["user"]),
   generalMarketPlace
 )
 
 router.post(
   "/create",
   authenticate,
-  authorize("admin"),
+  authorize(["admin"]),
   upload.array("file", 10),
   ...createCourseValidator,
   createCourse
@@ -65,7 +65,7 @@ router.post(
 router.post(
   "/add",
   authenticate,
-  authorize("admin"),
+  authorize(["admin"]),
   upload.array("file", 10),
   ...validateCreateCourse,
   createACourse
@@ -74,7 +74,7 @@ router.post(
 router.post(
   "/:courseId/assign",
   authenticate,
-  authorize("admin"),
+  authorize(["admin"]),
   ...validateCourseId,
   assignCourseToUsers
 );
@@ -82,12 +82,12 @@ router.post(
 router.put(
   "/:courseId",
   authenticate,
-  authorize("admin"),
+  authorize(["admin"]),
   ...validateCourseId,
   editCourse
 );
 
-router.get("/all", authenticate, authorize("admin"), getAllCourses);
+router.get("/all", authenticate, authorize(["admin"]), getAllCourses);
 
 router.get("/allCourses", authenticate, getAllCoursesForUsers);
 router.get("/:courseId", authenticate, getSingleCourse);
@@ -95,13 +95,13 @@ router.get("/:courseId", authenticate, getSingleCourse);
 router.post(
   "/lesson",
   authenticate,
-  authorize("admin"),
+  authorize(["admin"]),
   Optimizedupload.array("file", 10),
   ...courseContentValidator,
   createLesson
 );
 
-router.get("/lesson/getAll", authenticate, authorize("admin"), getAllLessons);
+router.get("/lesson/getAll", authenticate, authorize(["admin"]), getAllLessons);
 
 router.get(
   "/curriculum/:courseId",
@@ -113,7 +113,7 @@ router.get(
 router.post(
   "/announcement/:courseId",
   authenticate,
-  authorize("admin"),
+  authorize(["admin"]),
   ...createAnnouncementValidator,
   createAnnouncement
 );
@@ -128,42 +128,42 @@ router.get(
 router.get(
   "/:courseId/report",
   authenticate,
-  authorize("admin"),
+  authorize(["admin"]),
   generateCourseReport
 );
 
 router.patch(
   "/:courseId/move-to-ongoing",
   authenticate,
-  authorize("user"),
+  authorize(["user"]),
   moveCourseToOngoingList
 );
 
 router.get(
   "/courses",
   authenticate,
-  authorize("user"),
+  authorize(["user"]),
   enrolledCoursesWithProgress
 );
 
 router.get(
   "/:courseId/lessons",
   authenticate,
-  authorize("user"),
+  authorize(["user"]),
   lessonsWithProgress
 );
 
 router.put(
   "/:courseId/lessons/:lessonId/completion",
   authenticate,
-  authorize("user"),
+  authorize(["user"]),
   updateLessonCompletion
 );
 
 router.get(
   "/user/:courseId",
   authenticate,
-  authorize("user"),
+  authorize(["user"]),
   getCourseDetails
 );
 

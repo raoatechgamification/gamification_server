@@ -19,23 +19,24 @@ const router = Router();
 router.put(
   "/profile/edit",
   authenticate,
-  authorize("user"),
+  authorize(["user"]),
   ...editUserProfileValidator,
   editProfile
 );
 
-router.get("/payment-history", authenticate, authorize("user"), billHistory);
+router.get("/payment-history", authenticate, authorize(["user"]), billHistory);
 
-router.get("/due-bills", authenticate, authorize("user"), dueBills);
+router.get("/due-bills", authenticate, authorize(["user"]), dueBills);
 
-router.get("/bills", authenticate, authorize("user"))
+router.get("/bills", authenticate, 
+  authorize(["user"]))
 
-router.get("/view-bill/:paymentId", authenticate, authorize("user"), viewBill);
+router.get("/view-bill/:paymentId", authenticate, authorize(["user"]), viewBill);
 
 router.put(
   "/change-password", 
   authenticate, 
-  authorize("user"), 
+  authorize(["user"]), 
   ...changePasswordValidator,
   updatePassword
 );
@@ -43,7 +44,7 @@ router.put(
 router.get(
   "/certificates",
   authenticate,
-  authorize("user"),
+  authorize(["user"]),
   ...userIdValidator,
   getAllUserCertificates
 )
@@ -51,7 +52,7 @@ router.get(
 // router.get(
 //   "/courses/:courseId/progress",
 //   authenticate,
-//   authorize("user"),
+//   authorize(["user"]),
 //   courseAndLessonProgress
 // )
 

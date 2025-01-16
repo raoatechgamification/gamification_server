@@ -1,5 +1,5 @@
 import { Router } from "express";
-import { authenticate, authorize } from "../middlewares/auth.middleware"; 
+import { authenticate, authorize } from "../middlewares/auth.middleware";
 
 import { NotificationController } from "../controllers/notification.controller";
 import {
@@ -7,33 +7,25 @@ import {
   markAsReadValidator,
 } from "../validators/notification.validator";
 
-const { 
-  createNotification, 
-  getNotifications,
-  markAsRead
-} = new NotificationController()
+const { createNotification, getNotifications, markAsRead } =
+  new NotificationController();
 
 const router = Router();
 
-router.get(
-  "/",
-  authenticate, 
-  authorize('user'),
-  getNotifications
-);
+router.get("/", authenticate, authorize(["user"]), getNotifications);
 
 router.post(
   "/",
-  authenticate, 
-  authorize('admin'),
+  authenticate,
+  authorize(["admin"]),
   ...createNotificationValidator,
-  createNotification 
+  createNotification
 );
 
 router.patch(
   "/:notificationId/read",
   authenticate,
-  authorize('user'),
+  authorize(["user"]),
   ...markAsReadValidator,
   markAsRead
 );
