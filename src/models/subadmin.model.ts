@@ -8,7 +8,7 @@ export interface ISubAdmin extends Document {
   otherName?: string;
   email: string;
   phone?: string;
-  organizationId?: mongoose.Schema.Types.ObjectId;
+  organizationId: mongoose.Schema.Types.ObjectId;
   units?: mongoose.Schema.Types.ObjectId[];
   role: string;
   specialRole?: string;
@@ -43,7 +43,7 @@ const SubAdminSchema: Schema<ISubAdmin> = new Schema({
   units: [
     { type: mongoose.Schema.Types.ObjectId, sparse: true, ref: "Group" },
   ],
-  organizationId: { type: mongoose.Schema.Types.ObjectId, default: null },
+  organizationId: { type: mongoose.Schema.Types.ObjectId, default: null, required: true },
   role: { type: String, default: "subAdmin", required: true },
   password: { type: String, required: true },
   batch: { type: String },
