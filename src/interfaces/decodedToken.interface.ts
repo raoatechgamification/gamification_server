@@ -1,4 +1,4 @@
 export interface DecodedToken {
   id: string;
-  role: "user" | "admin" | "superAdmin";
+  role: "user" | "admin" | "subAdmin" | "superAdmin";
 }
