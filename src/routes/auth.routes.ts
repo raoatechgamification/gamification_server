@@ -23,7 +23,7 @@ const { registerOrganization, loginOrganization } = AdminAuthController;
 const { registerUser, bulkCreateUsers, createSingleUser, login } =
   UserAuthController;
 const { registerSuperAdmin, loginSuperAdmin } = SuperAdminAuthController;
-const { createSubAdminAccount } = new SubAdminController()
+const { createSubAdminAccount, loginSubAdmin, assignPermissionsToSubAdmin } = new SubAdminController()
 
 const router = Router();
 
@@ -37,6 +37,20 @@ router.post(
   createSubAdminAccount
 )
 
+// login sub admin
+router.post(
+  "/subadmin/login",
+  loginSubAdmin
+)
+
+// Assign permissions to sub-admin
+router.post(
+  "/subadmin/assign-permissions",
+  authenticate,
+  authorize(["admin"]),
+  assignPermissionsToSubAdmin  
+)
+
 // Organization Auth
 router.post(
   "/org/register",
@@ -48,7 +62,7 @@ router.post(
 router.post(
   "/bulk-create",
   authenticate,
-  authorize(["admin", "subadmin"]),
+  authorize(["admin", "subAdmin"]),
   checkSubadminPermission("User Management", "Add User"), 
   bulkUpload.single("file"),
   bulkCreateUsers
@@ -57,8 +71,8 @@ router.post(
 router.post(
   "/single-create",
   authenticate,
-  authorize(["admin", "subadmin"]),
-  checkSubadminPermission("User Management", "Edit User"), 
+  authorize(["admin", "subAdmin"]),
+  checkSubadminPermission("User Management", "Add User"), 
   upload.single("image"),
   createSingleUser
 );

@@ -8,6 +8,7 @@ import Payment from "../models/payment.model";
 import Submission from "../models/submission.model";
 import User from "../models/user.model";
 import { uploadToCloudinary } from "../utils/cloudinaryUpload";
+import { getOrganizationId } from "../utils/getOrganizationId.util"
 
 function isPopulated<T>(value: mongoose.Types.ObjectId | T): value is T {
   return typeof value === "object" && value !== null && !isValidObjectId(value);
@@ -16,7 +17,17 @@ function isPopulated<T>(value: mongoose.Types.ObjectId | T): value is T {
 class AdminController {
   async viewAllUsers(req: Request, res: Response) {
     try {
-      const organizationId = req.admin._id;
+      // const organizationId = req.admin._id;
+
+      let organizationId = await getOrganizationId(req, res);
+      if (!organizationId) {
+        return; 
+      }
+
+      const organization = await Organization.findById(organizationId);
+      if (!organization) {
+        return ResponseHandler.failure(res, "Organization not found", 400);
+      }
 
       const users = await User.find({ organizationId });
 
@@ -54,7 +65,17 @@ class AdminController {
 
   async editUserProfile(req: Request, res: Response) {
     try {
-      const organizationId = req.admin._id;
+      // const organizationId = req.admin._id;
+      let organizationId = await getOrganizationId(req, res);
+      if (!organizationId) {
+        return; 
+      }
+
+      const organization = await Organization.findById(organizationId);
+      if (!organization) {
+        return ResponseHandler.failure(res, "Organization not found", 400);
+      }
+
       const image = req.file;
 
       const userId = req.params.userId;
@@ -166,11 +187,18 @@ class AdminController {
 
   async viewAUserProfile(req: Request, res: Response) {
     try {
-      console.log("The request went through");
-      const organizationId = req.admin._id;
-      console.log(organizationId);
+      // const organizationId = req.admin._id;
+      let organizationId = await getOrganizationId(req, res);
+      if (!organizationId) {
+        return; 
+      }
+
+      const organization = await Organization.findById(organizationId);
+      if (!organization) {
+        return ResponseHandler.failure(res, "Organization not found", 400);
+      }
+
       const userId = req.params.userId;
-      console.log(userId);
 
       const user = await User.findOne({ _id: userId, organizationId }).select(
         "-password"
@@ -447,10 +475,19 @@ class AdminController {
 
   async updateAnOrganization(req: Request, res: Response) {
     try {
-      const organizationId = req.admin._id;
+      // const organizationId = req.admin._id;
+      let organizationId = await getOrganizationId(req, res);
+      if (!organizationId) {
+        return; 
+      }
+
+      const organization = await Organization.findById(organizationId);
+      if (!organization) {
+        return ResponseHandler.failure(res, "Organization not found", 404);
+      }
+
       const { name, organisationLogo } = req.body;
 
-      const organization = await Organization.findOne({ _id: organizationId });
       const files = req.files as Express.Multer.File[];
 
       if (!organization) {
