@@ -107,7 +107,7 @@ export const authorize = (roles: ("user" | "admin" | "subAdmin" | "superAdmin")[
 
 export const checkSubadminPermission = (module: string, action: string) => {
   return (req: Request, res: Response, next: NextFunction) => {
-    if (req.user && req.user.role === "admin" || "superAdmin") {
+    if (req.user && req.user.role === "admin" || "superAdmin" || "user") {
       return next();
     }
 
