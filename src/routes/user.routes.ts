@@ -1,5 +1,5 @@
 import { Router } from "express";
-import { authenticate, authorize } from "../middlewares/auth.middleware";
+import { authenticate, authorize, checkSubadminPermission } from "../middlewares/auth.middleware";
 import { UserController } from "../controllers/user.controller";
 import { editUserProfileValidator, changePasswordValidator } from "../validators/user.auth.validator";
 import { userIdValidator } from "../validators/user.auth.validator";
@@ -19,7 +19,8 @@ const router = Router();
 router.put(
   "/profile/edit",
   authenticate,
-  authorize(["user"]),
+  authorize(["user", "subAdmin"]),
+  checkSubadminPermission("User Management", "Edit User"), 
   ...editUserProfileValidator,
   editProfile
 );
