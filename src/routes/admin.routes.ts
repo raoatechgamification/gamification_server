@@ -4,7 +4,15 @@ import { authenticate, authorize, checkSubadminPermission } from "../middlewares
 import { upload } from "../utils/upload.utils";
 import { userIdValidator } from "../validators/admin.validator";
 
-const { viewAllUsers, editUserProfile, viewAUserProfile } = AdminController;
+const { 
+  viewAllUsers, 
+  editUserProfile, 
+  viewAUserProfile, 
+  updateGeneralLearnerTerm,
+  updateGeneralLearnerGroupTerm, 
+  updateGeneralSubLearnerGroupTerm, 
+  updateGeneralInstructorTerm,
+} = AdminController;
 
 const router = Router();
 
@@ -34,5 +42,33 @@ router.get(
   ...userIdValidator,
   viewAUserProfile
 );
+
+router.put(
+  "/general-learner-term",
+  authenticate,
+  authorize(["admin"]),
+  updateGeneralLearnerTerm
+)
+
+router.put(
+  "/general-learner-group-term",
+  authenticate,
+  authorize(["admin"]),
+  updateGeneralLearnerGroupTerm
+)
+
+router.put(
+  "/general-sublearner-group-term",
+  authenticate,
+  authorize(["admin"]),
+  updateGeneralSubLearnerGroupTerm
+)
+
+router.put(
+  "/general-instructor-term",
+  authenticate,
+  authorize(["admin"]),
+  updateGeneralInstructorTerm
+)
 
 export default router;
