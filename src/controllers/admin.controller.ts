@@ -529,6 +529,130 @@ class AdminController {
       );
     }
   }
+
+  async updateGeneralLearnerTerm(req: Request, res: Response) {
+    try {
+      const organizationId = req.admin._id
+
+      const { generalLearnerTerm } = req.body
+
+      const updateGeneralLearnerTerm = await Organization.updateOne(
+        { _id: organizationId },
+        {
+          $set: {
+            generalLearnerTerm
+          }
+        }
+      )
+
+      if (!updateGeneralLearnerTerm) {
+        return ResponseHandler.failure(res, "Organization not found", 404)
+      }
+
+      return ResponseHandler.success(
+        res,
+        "General Learner Term updated successfully."
+      )
+    } catch (error: any) {
+      return ResponseHandler.failure(
+        res,
+        error.message || "Failed to update general learner term"
+      );
+    }
+  }
+
+  async updateGeneralLearnerGroupTerm(req: Request, res: Response) {
+    try {
+      const organizationId = req.admin._id
+
+      const { generalLearnerGroupTerm } = req.body
+
+      const updateGeneralLearnerGroupTerm = await Organization.updateOne(
+        { _id: organizationId },
+        {
+          $set: {
+            generalLearnerGroupTerm
+          }
+        }
+      )
+
+      if (!updateGeneralLearnerGroupTerm) {
+        return ResponseHandler.failure(res, "Organization not found", 404)
+      }
+
+      return ResponseHandler.success(
+        res,
+        "General Learner Group Term updated successfully."
+      )
+    } catch (error: any) {
+      return ResponseHandler.failure(
+        res,
+        error.message || "Failed to update general learner group term"
+      );
+    }
+  }
+
+  async updateGeneralSubLearnerGroupTerm(req: Request, res: Response) {
+    try {
+      const organizationId = req.admin._id
+
+      const { generalSubLearnerGroupTerm } = req.body
+
+      const updateGeneralSubLearnerGroupTerm = await Organization.updateOne(
+        { _id: organizationId },
+        {
+          $set: {
+            generalSubLearnerGroupTerm
+          }
+        }
+      )
+
+      if (!updateGeneralSubLearnerGroupTerm) {
+        return ResponseHandler.failure(res, "Organization not found", 404)
+      }
+
+      return ResponseHandler.success(
+        res,
+        "General Sub-Learner Group Term updated successfully."
+      )
+    } catch (error: any) {
+      return ResponseHandler.failure(
+        res,
+        error.message || "Failed to update general sub-learner group term"
+      );
+    }
+  }
+
+  async updateGeneralInstructorTerm(req: Request, res: Response) {
+    try {
+      const organizationId = req.admin._id
+
+      const { generalInstructorTerm } = req.body
+
+      const updateGeneralInstructorTerm = await Organization.updateOne(
+        { _id: organizationId },
+        {
+          $set: {
+            generalInstructorTerm
+          }
+        }
+      )
+
+      if (!updateGeneralInstructorTerm) {
+        return ResponseHandler.failure(res, "Organization not found", 404)
+      }
+
+      return ResponseHandler.success(
+        res,
+        "General Instructor Term updated successfully."
+      )
+    } catch (error: any) {
+      return ResponseHandler.failure(
+        res,
+        error.message || "Failed to update general instructor term"
+      );
+    }
+  }
 }
 
 export default new AdminController();
