@@ -7,6 +7,7 @@ import User, { IUser } from "../models/user.model";
 import Announcement from "../models/announcement.model";
 import Submission from "../models/submission.model";
 import { NotificationController } from "../controllers/notification.controller";
+import Organization, { IOrganization } from "../models/organization.model";
 import {
   optimizedUploadToCloudinary,
   uploadToCloudinary,
@@ -14,6 +15,8 @@ import {
 import ObjectiveAssessment, {
   IObjectiveAssessment,
 } from "../models/objectiveAssessment.model";
+import { getOrganizationId } from "../utils/getOrganizationId.util"
+
 
 const { createNotification } = new NotificationController();
 
@@ -45,7 +48,7 @@ interface AssessmentDocument extends mongoose.Document {
 export class CourseController {
   async createCourse(req: Request, res: Response) {
     try {
-      const organizationId = req.admin._id;
+      // const organizationId = req.admin._id;
 
       const files = req.files as Express.Multer.File[];
       const {
@@ -77,6 +80,16 @@ export class CourseController {
         curriculum,
         teachingMethod,
       } = req.body;
+
+      let organizationId = await getOrganizationId(req, res);
+      if (!organizationId) {
+        return; 
+      }
+
+      const organization = await Organization.findById(organizationId);
+      if (!organization) {
+        return ResponseHandler.failure(res, "Organization not found", 404);
+      }
 
       let Urls: string[] = [];
 
@@ -142,7 +155,17 @@ export class CourseController {
 
   async getAllCourses(req: Request, res: Response) {
     try {
-      const organizationId = req.admin._id;
+      // const organizationId = req.admin._id;
+
+      let organizationId = await getOrganizationId(req, res);
+      if (!organizationId) {
+        return; 
+      }
+
+      const organization = await Organization.findById(organizationId);
+      if (!organization) {
+        return ResponseHandler.failure(res, "Organization not found", 404);
+      }
 
       const courses = await Course.find({ organizationId });
 
@@ -223,7 +246,17 @@ export class CourseController {
 
   async createLesson(req: Request, res: Response, next: NextFunction) {
     try {
-      const organizationId = req.admin._id;
+      // const organizationId = req.admin._id;
+      let organizationId = await getOrganizationId(req, res);
+      if (!organizationId) {
+        return; 
+      }
+
+      const organization = await Organization.findById(organizationId);
+      if (!organization) {
+        return ResponseHandler.failure(res, "Organization not found", 404);
+      }
+
       const { title, objectives, link } = req.body;
       const files = req.files as Express.Multer.File[];
 
@@ -266,7 +299,17 @@ export class CourseController {
 
   async getAllLessons(req: Request, res: Response, next: NextFunction) {
     try {
-      const instructorId = req.admin._id;
+      // const instructorId = req.admin._id;
+
+      let instructorId = await getOrganizationId(req, res);
+      if (!instructorId) {
+        return; 
+      }
+
+      const organization = await Organization.findById(instructorId);
+      if (!organization) {
+        return ResponseHandler.failure(res, "Organization not found", 404);
+      }
 
       const lessons = await Lesson.find({ instructorId });
 
@@ -306,7 +349,16 @@ export class CourseController {
         showInstructor,
       } = req.body;
 
-      const adminId = req.admin._id;
+      // const adminId = req.admin._id;
+      let adminId = await getOrganizationId(req, res);
+      if (!adminId) {
+        return; 
+      }
+
+      const organization = await Organization.findById(adminId);
+      if (!organization) {
+        return ResponseHandler.failure(res, "Organization not found", 404);
+      }
 
       const codeExists = await Course.findOne({ courseCode: code });
       if (codeExists) {
@@ -436,7 +488,18 @@ export class CourseController {
   async editCourse(req: Request, res: Response) {
     try {
       const courseId = req.params.courseId;
-      const adminId = req.admin._id;
+
+      // const adminId = req.admin._id;
+      let adminId = await getOrganizationId(req, res);
+      if (!adminId) {
+        return; 
+      }
+
+      const organization = await Organization.findById(adminId);
+      if (!organization) {
+        return ResponseHandler.failure(res, "Organization not found", 404);
+      }
+
       const updates = req.body;
       const files = req.files as Express.Multer.File[];
 
@@ -548,7 +611,17 @@ export class CourseController {
     try {
       const { userIds, dueDate } = req.body;
       const { courseId } = req.params;
-      const adminId = req.admin._id;
+      // const adminId = req.admin._id;
+
+      let adminId = await getOrganizationId(req, res);
+      if (!adminId) {
+        return; 
+      }
+
+      const organization = await Organization.findById(adminId);
+      if (!organization) {
+        return ResponseHandler.failure(res, "Organization not found", 404);
+      }
 
       const course = await Course.findById(courseId).lean();
       if (!course) {
@@ -680,9 +753,19 @@ export class CourseController {
 
   async createAnnouncement(req: Request, res: Response) {
     try {
-      const instructorId = req.admin._id;
+      // const instructorId = req.admin._id;
       const { courseId } = req.params;
       const { title, details, courseList = [], sendEmail } = req.body;
+
+      let instructorId = await getOrganizationId(req, res);
+      if (!instructorId) {
+        return; 
+      }
+
+      const organization = await Organization.findById(instructorId);
+      if (!organization) {
+        return ResponseHandler.failure(res, "Organization not found", 404);
+      }
 
       const validCourses = await Course.find({
         _id: { $in: courseList },
