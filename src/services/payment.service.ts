@@ -1,42 +1,43 @@
-import mongoose from "mongoose";
-import axios from 'axios';
+import axios from "axios";
 
 interface PaymentData {
   reference: string;
-  userId: string,
-  billId: string,
-  email: string,
-  amount: number,
+  userId: string;
+  billId: string;
+  email: string;
+  amount: number;
 }
 
 class PaymentService {
-  private flutterwaveBaseUrl = 'https://api.flutterwave.com/v3';
+  private flutterwaveBaseUrl = "https://api.flutterwave.com/v3";
   private flutterwaveSecretKey = process.env.FLUTTERWAVE_SECRET_KEY;
 
-  async processPayment( data: PaymentData ) {
+  async processPayment(data: PaymentData) {
     const paymentPayload = {
       tx_ref: data.reference,
       amount: `${data.amount}`,
       currency: "NGN",
-      redirect_url: "https://www.google.com",
+      redirect_url:
+        `${process.env.FRONTEND_URL}/user/courses/course-details/verify-payment?reference=${data.reference}&courseId=` +
+        data.billId,
       customer: {
         id: data.userId,
         email: data.email,
       },
       customizations: {
         billId: data.billId,
-        title: "Gamification Due Bill Payment"
-      }
+        title: "Gamification Due Bill Payment",
+      },
     };
 
     try {
-      const response = await axios.post( 
+      const response = await axios.post(
         `${this.flutterwaveBaseUrl}/payments`,
         paymentPayload,
         {
           headers: {
             Authorization: `Bearer ${this.flutterwaveSecretKey}`,
-            "Content-Type": "application/json"
+            "Content-Type": "application/json",
           },
         }
       );
@@ -58,7 +59,7 @@ class PaymentService {
           },
         }
       );
-    
+
       return response.data;
     } catch (error: any) {
       console.error("Error details:", error.response?.data || error.message);
@@ -68,8 +69,3 @@ class PaymentService {
 }
 
 export default new PaymentService();
-
-
-
-  
-
