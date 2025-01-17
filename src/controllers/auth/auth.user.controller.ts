@@ -1,3 +1,4 @@
+import mongoose from "mongoose";
 import dotenv from "dotenv";
 import { Request, Response } from "express";
 import { ResponseHandler } from "../../middlewares/responseHandler.middleware";
@@ -5,12 +6,15 @@ import Group from "../../models/group.model";
 import Organization, { IOrganization } from "../../models/organization.model";
 import SuperAdmin, { ISuperAdmin } from "../../models/superadmin.model";
 import User, { IUser } from "../../models/user.model";
+import SubAdmin from "../../models/subadmin.model";
 import { sendLoginEmail } from "../../services/sendMail.service";
 import UserService from "../../services/user.service";
 import { uploadToCloudinary } from "../../utils/cloudinaryUpload";
 import { comparePassword, hashPassword } from "../../utils/hash";
 import { generateToken } from "../../utils/jwt";
 dotenv.config();
+import { getOrganizationId } from "../../utils/getOrganizationId.util"
+
 
 export class UserAuthController {
   static async createSingleUser(req: Request, res: Response) {
@@ -46,7 +50,31 @@ export class UserAuthController {
       } = req.body;
 
       const image = req.file;
-      const organizationId = req.admin._id;
+
+      // const organizationId = req.admin._id;
+      // let organizationId: mongoose.Schema.Types.ObjectId;
+      // if (req.admin) {
+      //   organizationId = req.admin._id;
+      // } else if (req.user && req.user.role === "subAdmin") {
+      //   const subAdmin = await SubAdmin.findById(req.user.id);
+      //   console.log("req.user.id: ", req.user.id)
+      //   if (!subAdmin) {
+      //     return ResponseHandler.failure(res, "Subadmin not found", 404);
+      //   }
+      //   organizationId = subAdmin.organizationId; // Assuming subadmins have an organizationId field
+      // } else {
+      //   return ResponseHandler.failure(res, "Unauthorized access", 403);
+      // }
+
+      let organizationId = await getOrganizationId(req, res);
+      if (!organizationId) {
+        return; 
+      }
+
+      const organization = await Organization.findById(organizationId);
+      if (!organization) {
+        return ResponseHandler.failure(res, "Organization not found", 400);
+      }
 
       let fileUploadResult: any = null;
 
@@ -60,11 +88,6 @@ export class UserAuthController {
 
       if (!password) {
         password = `${firstName}${lastName}123#`;
-      }
-
-      const organization = await Organization.findById(organizationId);
-      if (!organization) {
-        return ResponseHandler.failure(res, "Organization not found", 400);
       }
 
       const existingAccount =
@@ -156,19 +179,21 @@ export class UserAuthController {
 
   static async bulkCreateUsers(req: Request, res: Response) {
     try {
-      const organizationId = req.admin._id;
+      // const organizationId = req.admin._id;
 
-      if (!req.file) {
-        res.status(400).json({ success: false, error: "No file uploaded" });
-        return;
+      let organizationId = await getOrganizationId(req, res);
+      if (!organizationId) {
+        return; 
       }
 
       const organization = await Organization.findById(organizationId);
       if (!organization) {
-        return res.status(400).json({
-          status: false,
-          message: "Organization not found",
-        });
+        return ResponseHandler.failure(res, "Organization not found", 400);
+      }
+
+      if (!req.file) {
+        res.status(400).json({ success: false, error: "No file uploaded" });
+        return;
       }
 
       const { duplicateEmails, duplicatePhones } =
