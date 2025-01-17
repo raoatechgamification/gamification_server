@@ -17,12 +17,20 @@ const seedPermissions = async () => {
 
     // Course Management Permissions
     { module: "Course Management", action: "Create Course" },
+    { module: "Course Management", action: "Create Lesson" },
     { module: "Course Management", action: "Edit Course" },
     { module: "Course Management", action: "View Course" },
+    { module: "Course Management", action: "View Lesson" },
     { module: "Course Management", action: "Assign Course to User/Group" },
     { module: "Course Management", action: "View All Courses" },
+    { module: "Course Management", action: "View All Lessons" },
     { module: "Course Management", action: "Delete Course" },
+    { module: "Course Management", action: "Delete Lesson" },
     { module: "Course Management", action: "Archive Course" },
+    { module: "Course Management", action: "Get User Programs"},
+    { module: "Course Management", action: "Get Marketplace"},
+    { module: "Course Management", action: "Get Course Report"},
+
 
     // Assessment Management Permissions
     { module: "Assessment Management", action: "Create Objective Assessment" },
@@ -30,6 +38,11 @@ const seedPermissions = async () => {
     { module: "Assessment Management", action: "View All Assessments" },
     { module: "Assessment Management", action: "Edit Assessment" },
     { module: "Assessment Management", action: "View Assessment Result" },
+
+    // Announcement Management Permissions
+    { module: "Announcement Management", action: "Create Announcement"},
+    { module: "Announcement Management", action: "View All Announcements"},
+    { module: "Announcement Management", action: "View Announcement"},
   ];
 
   await Permission.deleteMany(); // Clear existing permissions
