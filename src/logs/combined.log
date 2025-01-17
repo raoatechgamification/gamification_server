@@ -7554,3 +7554,9 @@
 2025-01-13 22:23:28 [info]: GET /status 304
 2025-01-13 22:23:55 [info]: POST //api/v1/payments/verify-payment/null 404 - Request Body: {"transaction_id":null}
 2025-01-13 22:23:55 [info]: POST //api/v1/payments/verify-payment/null 404 - Request Body: {"transaction_id":null}
+2025-01-17 15:28:00 [info]: POST /login 200 - Request Body: {"email":"seunoduez@gmail.com","password":"Timpearl05$$$"}
+2025-01-17 15:35:03 [info]: PUT /general-learner-term 200 - Request Body: {"generalLearnerTerm":"user"}
+2025-01-17 15:38:38 [info]: PUT /general-learner-group-term 200 - Request Body: {"generalLearnerGroupTerm":"group"}
+2025-01-17 15:39:48 [info]: PUT /general-sublearner-group-term 200 - Request Body: {"generalSubLearnerGroupTerm":"cohort"}
+2025-01-17 15:40:25 [info]: PUT /general-instructor-term 200 - Request Body: {"generalInstructorTerm":"facilitator"}
+2025-01-17 15:40:38 [info]: POST /login 200 - Request Body: {"email":"seunoduez@gmail.com","password":"Timpearl05$$$"}
