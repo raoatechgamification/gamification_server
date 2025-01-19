@@ -8,6 +8,7 @@ import Payment from "../models/payment.model";
 import Submission from "../models/submission.model";
 import User from "../models/user.model";
 import { uploadToCloudinary } from "../utils/cloudinaryUpload";
+import { getOrganizationId } from "../utils/getOrganizationId.util"
 
 function isPopulated<T>(value: mongoose.Types.ObjectId | T): value is T {
   return typeof value === "object" && value !== null && !isValidObjectId(value);
@@ -16,7 +17,17 @@ function isPopulated<T>(value: mongoose.Types.ObjectId | T): value is T {
 class AdminController {
   async viewAllUsers(req: Request, res: Response) {
     try {
-      const organizationId = req.admin._id;
+      // const organizationId = req.admin._id;
+
+      let organizationId = await getOrganizationId(req, res);
+      if (!organizationId) {
+        return; 
+      }
+
+      const organization = await Organization.findById(organizationId);
+      if (!organization) {
+        return ResponseHandler.failure(res, "Organization not found", 400);
+      }
 
       const users = await User.find({ organizationId });
 
@@ -54,7 +65,17 @@ class AdminController {
 
   async editUserProfile(req: Request, res: Response) {
     try {
-      const organizationId = req.admin._id;
+      // const organizationId = req.admin._id;
+      let organizationId = await getOrganizationId(req, res);
+      if (!organizationId) {
+        return; 
+      }
+
+      const organization = await Organization.findById(organizationId);
+      if (!organization) {
+        return ResponseHandler.failure(res, "Organization not found", 400);
+      }
+
       const image = req.file;
 
       const userId = req.params.userId;
@@ -166,11 +187,18 @@ class AdminController {
 
   async viewAUserProfile(req: Request, res: Response) {
     try {
-      console.log("The request went through");
-      const organizationId = req.admin._id;
-      console.log(organizationId);
+      // const organizationId = req.admin._id;
+      let organizationId = await getOrganizationId(req, res);
+      if (!organizationId) {
+        return; 
+      }
+
+      const organization = await Organization.findById(organizationId);
+      if (!organization) {
+        return ResponseHandler.failure(res, "Organization not found", 400);
+      }
+
       const userId = req.params.userId;
-      console.log(userId);
 
       const user = await User.findOne({ _id: userId, organizationId }).select(
         "-password"
@@ -321,7 +349,7 @@ class AdminController {
       }
 
       const assignedUsers =
-        course.assignedLearnersIds?.map((learner: any) => learner.userId) || [];
+        course.assignedLearnerIds?.map((learner: any) => learner.userId) || [];
 
       console.log("assignedUsers", assignedUsers);
 
@@ -447,10 +475,19 @@ class AdminController {
 
   async updateAnOrganization(req: Request, res: Response) {
     try {
-      const organizationId = req.admin._id;
+      // const organizationId = req.admin._id;
+      let organizationId = await getOrganizationId(req, res);
+      if (!organizationId) {
+        return; 
+      }
+
+      const organization = await Organization.findById(organizationId);
+      if (!organization) {
+        return ResponseHandler.failure(res, "Organization not found", 404);
+      }
+
       const { name, organisationLogo } = req.body;
 
-      const organization = await Organization.findOne({ _id: organizationId });
       const files = req.files as Express.Multer.File[];
 
       if (!organization) {
@@ -489,6 +526,130 @@ class AdminController {
         res,
         `Server error: ${error.message}`,
         500
+      );
+    }
+  }
+
+  async updateGeneralLearnerTerm(req: Request, res: Response) {
+    try {
+      const organizationId = req.admin._id
+
+      const { generalLearnerTerm } = req.body
+
+      const updateGeneralLearnerTerm = await Organization.updateOne(
+        { _id: organizationId },
+        {
+          $set: {
+            generalLearnerTerm
+          }
+        }
+      )
+
+      if (!updateGeneralLearnerTerm) {
+        return ResponseHandler.failure(res, "Organization not found", 404)
+      }
+
+      return ResponseHandler.success(
+        res,
+        "General Learner Term updated successfully."
+      )
+    } catch (error: any) {
+      return ResponseHandler.failure(
+        res,
+        error.message || "Failed to update general learner term"
+      );
+    }
+  }
+
+  async updateGeneralLearnerGroupTerm(req: Request, res: Response) {
+    try {
+      const organizationId = req.admin._id
+
+      const { generalLearnerGroupTerm } = req.body
+
+      const updateGeneralLearnerGroupTerm = await Organization.updateOne(
+        { _id: organizationId },
+        {
+          $set: {
+            generalLearnerGroupTerm
+          }
+        }
+      )
+
+      if (!updateGeneralLearnerGroupTerm) {
+        return ResponseHandler.failure(res, "Organization not found", 404)
+      }
+
+      return ResponseHandler.success(
+        res,
+        "General Learner Group Term updated successfully."
+      )
+    } catch (error: any) {
+      return ResponseHandler.failure(
+        res,
+        error.message || "Failed to update general learner group term"
+      );
+    }
+  }
+
+  async updateGeneralSubLearnerGroupTerm(req: Request, res: Response) {
+    try {
+      const organizationId = req.admin._id
+
+      const { generalSubLearnerGroupTerm } = req.body
+
+      const updateGeneralSubLearnerGroupTerm = await Organization.updateOne(
+        { _id: organizationId },
+        {
+          $set: {
+            generalSubLearnerGroupTerm
+          }
+        }
+      )
+
+      if (!updateGeneralSubLearnerGroupTerm) {
+        return ResponseHandler.failure(res, "Organization not found", 404)
+      }
+
+      return ResponseHandler.success(
+        res,
+        "General Sub-Learner Group Term updated successfully."
+      )
+    } catch (error: any) {
+      return ResponseHandler.failure(
+        res,
+        error.message || "Failed to update general sub-learner group term"
+      );
+    }
+  }
+
+  async updateGeneralInstructorTerm(req: Request, res: Response) {
+    try {
+      const organizationId = req.admin._id
+
+      const { generalInstructorTerm } = req.body
+
+      const updateGeneralInstructorTerm = await Organization.updateOne(
+        { _id: organizationId },
+        {
+          $set: {
+            generalInstructorTerm
+          }
+        }
+      )
+
+      if (!updateGeneralInstructorTerm) {
+        return ResponseHandler.failure(res, "Organization not found", 404)
+      }
+
+      return ResponseHandler.success(
+        res,
+        "General Instructor Term updated successfully."
+      )
+    } catch (error: any) {
+      return ResponseHandler.failure(
+        res,
+        error.message || "Failed to update general instructor term"
       );
     }
   }

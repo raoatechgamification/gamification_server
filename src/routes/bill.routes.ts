@@ -14,17 +14,17 @@ const router = Router();
 router.post(
   "/",
   authenticate,
-  authorize("admin"),
+  authorize(["admin"]),
   ...createBillValidators,
   createBill
 );
 
-router.get("/view-all", authenticate, authorize("admin"), fetchAllBills);
+router.get("/view-all", authenticate,   authorize(["admin"]), fetchAllBills);
 
 router.get(
   "/:billId",
   authenticate,
-  // authorize("admin"),
+  // authorize(["admin"]),
   ...billIdValidator,
   viewBill
 );
@@ -32,7 +32,7 @@ router.get(
 router.delete(
   "/:billId",
   authenticate,
-  authorize("admin"),
+  authorize(["admin"]),
   ...billIdValidator,
   deleteBill
 );

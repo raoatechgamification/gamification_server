@@ -1,12 +1,11 @@
-import { Request, Response, NextFunction } from "express";
+import { NextFunction, Request, Response } from "express";
 import { ResponseHandler } from "../middlewares/responseHandler.middleware";
-import User from "../models/user.model";
-import Payment from "../models/payment.model";
 import AssignedBill from "../models/bill.model";
-import Course, { ICourse } from "../models/course.model";
+import { ICourse } from "../models/course.model";
 import Lesson, { LessonDocument } from "../models/lesson.model";
+import Payment from "../models/payment.model";
+import User from "../models/user.model";
 import { comparePassword, hashPassword } from "../utils/hash";
-import mongoose from "mongoose";
 
 interface CompletionDetails {
   userId: string;
@@ -24,6 +23,49 @@ type PopulatedCourse = Omit<ICourse, "lessons"> & {
 };
 
 export class UserController {
+  async getAUserProfileForUser(req: Request, res: Response) {
+    try {
+      const organizationId = req.params.organisationID;
+
+      const userId = req.user.id;
+      console.log(userId, 31);
+      const user = await User.findOne({ _id: userId }).select("-password");
+
+      if (!user) {
+        return ResponseHandler.failure(
+          res,
+          "User not found in your organization",
+          404
+        );
+      }
+
+      const paymentHistory = await Payment.find({ userId: user._id });
+
+      const assignedBills = await AssignedBill.find({
+        organizationId,
+        "assignee.individuals": user._id,
+      });
+
+      const userWithDetails = {
+        ...user.toObject(),
+        paymentHistory,
+        assignedBills,
+      };
+
+      return ResponseHandler.success(
+        res,
+        userWithDetails,
+        "User profile fetched successfully"
+      );
+    } catch (error: any) {
+      return ResponseHandler.failure(
+        res,
+        `Server error: ${error.message}`,
+        500
+      );
+    }
+  }
+
   async editProfile(req: Request, res: Response, next: NextFunction) {
     try {
       const {
@@ -79,11 +121,7 @@ export class UserController {
       });
 
       if (paidBills.length === 0)
-        return ResponseHandler.failure(
-          res,
-          "Your bill history is empty",
-          404
-        );
+        return ResponseHandler.failure(res, "Your bill history is empty", 404);
 
       return ResponseHandler.success(
         res,
@@ -202,15 +240,15 @@ export class UserController {
   // async enrolledCoursesWithProgress(req: Request, res: Response) {
   //   try {
   //     const { userId } = req.user;
-  
+
   //     const courses = await Course.find({ "learnerIds.userId": userId }).populate("lessons");
-  
+
   //     const result = courses.map((course) => {
   //       const userProgress = course.learnerIds?.find(
   //         (u) => u.userId.toString() === userId
   //       )?.progress || 0;  // Default to 0 if not found
   //     });
-  
+
   //     return ResponseHandler.success(res, result, "Enrolled courses retrieved successfully.", 200);
   //   } catch (error: any) {
   //     console.error("Error fetching enrolled courses:", error.message);
@@ -218,22 +256,20 @@ export class UserController {
   //   }
   // }
 
-    
-
   // async lessonsWithProgress(req: Request, res: Response) {
   //   try {
   //     const { courseId } = req.params;
   //     const userId = req.user?.id;
-  
+
   //     const lessons = await Lesson.find({ courseId });
-  
+
   //     const result = lessons.map((lesson) => ({
   //       lessonId: lesson._id,
   //       title: lesson.title,
   //       completedPercentage:
   //         lesson.completionDetails.find((completion) => completion.userId.toString() === userId)?.percentage || 0,
   //     }));
-  
+
   //     return ResponseHandler.success(res, result, "Lessons retrieved successfully.", 200);
   //   } catch (error: any) {
   //     console.error("Error fetching lessons:", error.message);
@@ -242,7 +278,7 @@ export class UserController {
   // }
   //   try {
   //     const { userId } = req.user;
-  
+
   //     // Fetch all courses where the user is enrolled
   //     const courses = await Course.find({ "learnerIds.userId": userId })
   //       .populate({
@@ -250,13 +286,13 @@ export class UserController {
   //         model: "Lesson", // Reference the Lesson model
   //       })
   //       .lean();
-  
+
   //     // Prepare result with progress for each course and its lessons
   //     const result = courses.map((course) => {
   //       // Get the user's progress for the course
   //       const courseProgress =
   //         course.learnerIds?.find((learner) => learner.userId.toString() === userId)?.progress || 0;
-  
+
   //       // Map lessons to include progress for the user
   //       const lessons = course.lessons?.map((lesson) => ({
   //         lessonId: lesson._id,
@@ -266,7 +302,7 @@ export class UserController {
   //             (completion) => completion.userId.toString() === userId
   //           )?.percentage || 0,
   //       }));
-  
+
   //       return {
   //         courseId: course._id,
   //         courseTitle: course.title,
@@ -274,7 +310,7 @@ export class UserController {
   //         lessons,
   //       };
   //     });
-  
+
   //     return ResponseHandler.success(
   //       res,
   //       result,
@@ -289,41 +325,39 @@ export class UserController {
   //       500
   //     );
   //   }
-  // }  
-
-  
+  // }
 
   // async markLessonAsComplete(req: Request, res: Response) {
   //   try {
   //     const { courseId, lessonId } = req.params;
   //     const userId = req.user.id;
-  
+
   //     // Step 1: Validate the lesson belongs to the specified course
   //     const lesson = await Lesson.findOne({ _id: lessonId, courseIds: courseId });
   //     if (!lesson) {
   //       return ResponseHandler.failure(res, "Lesson not found for the specified course", 404);
   //     }
-  
+
   //     // Step 2: Update or create the lesson completion entry for the user
   //     const completionFilter = {
   //       _id: lessonId,
   //       "completionDetails.userId": userId,
   //       "completionDetails.courseId": courseId,
   //     };
-  
+
   //     const completionUpdate = {
   //       $set: {
   //         "completionDetails.$[elem].percentage": 100,
   //       },
   //     };
-  
+
   //     const arrayFilters = [{ "elem.userId": userId, "elem.courseId": courseId }];
-  
+
   //     const updateResult = await Lesson.updateOne(completionFilter, completionUpdate, {
   //       arrayFilters,
   //       upsert: true,
   //     });
-  
+
   //     // Step 3: Calculate the user's progress for the course
   //     const totalLessons = await Lesson.countDocuments({ courseIds: courseId });
   //     const completedLessons = await Lesson.countDocuments({
@@ -331,23 +365,23 @@ export class UserController {
   //       "completionDetails.userId": userId,
   //       "completionDetails.percentage": 100,
   //     });
-  
+
   //     const progress = totalLessons > 0 ? Math.floor((completedLessons / totalLessons) * 100) : 0;
-  
+
   //     // Step 4: Update progress in the Course document
   //     await Course.updateOne(
   //       { _id: courseId, "learnerIds.userId": userId },
   //       { $set: { "learnerIds.$.progress": progress } }
   //     );
-  
+
   //     // Step 5: Transition course between user programs
   //     const user = await User.findById(userId);
   //     if (!user) {
   //       return ResponseHandler.failure(res, "User not found", 404);
   //     }
-  
+
   //     const courseObjectId = new mongoose.Types.ObjectId(courseId);
-  
+
   //     if (progress === 100) {
   //       // Move to completedPrograms
   //       await User.updateOne(
@@ -367,25 +401,23 @@ export class UserController {
   //         }
   //       );
   //     }
-      
-      
-  
+
   //     // Step 6: Respond with success
   //     return ResponseHandler.success(res, {
   //       courseId,
   //       lessonId,
   //       progress,
   //     }, "Lesson marked as complete successfully.");
-  
+
   //   } catch (error) {
   //     console.error("Error marking lesson as complete:", error);
   //     return ResponseHandler.failure(res, "An error occurred", 500);
   //   }
   // }
-  
+
   async getAllUserCertificates(req: Request, res: Response) {
     try {
-      const userId = req.user.id
+      const userId = req.user.id;
 
       const user = await User.findById(userId, { certificates: 1, _id: 0 });
 

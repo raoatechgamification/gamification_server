@@ -44,7 +44,7 @@ const { submitAssessment } = new SubmissionController();
 router.post(
   "/create",
   authenticate,
-  authorize("admin"),
+    authorize(["admin"]),
   upload.single("file"),
   ...createAssessmentValidator,
   createAssessmentHandler
@@ -53,7 +53,7 @@ router.post(
 router.post(
   "/objective",
   authenticate,
-  authorize("admin"),
+    authorize(["admin"]),
   ...createObjectiveAssessmentValidator,
   createObjectiveAssessment
 );
@@ -61,7 +61,7 @@ router.post(
 router.post(
   "/objective/from-question-bank",
   authenticate,
-  authorize("admin"),
+  authorize(["admin"]),
   ...validateObjectiveAssessmentUsingQuestionsBank,
   createObjectiveAssessmentFromQuestionsBank
 );
@@ -69,7 +69,7 @@ router.post(
 router.post(
   "/questions/bulk-upload",
   authenticate,
-  authorize("admin"),
+  authorize(["admin"]),
   ...validateBulkUploadRequest,
   bulkUploadQuestions
 );
@@ -77,7 +77,7 @@ router.post(
 router.post(
   "/questions/manual-upload",
   authenticate,
-  authorize("admin"),
+    authorize(["admin"]),
   ...validateManualQuestionsUpload,
   uploadQuestionsManually
 );
@@ -85,7 +85,7 @@ router.post(
 router.put(
   "/:assessmentId",
   authenticate,
-  authorize("admin"),
+    authorize(["admin"]),
   ...assessmentIdValidator,
   ...createObjectiveAssessmentValidator,
   editObjectiveAssessment
@@ -94,7 +94,7 @@ router.put(
 router.put(
   "/:submissionId/grade",
   authenticate,
-  authorize("admin"),
+    authorize(["admin"]),
   ...gradeAssessmentValidator,
   gradeSubmission
 );
@@ -102,7 +102,7 @@ router.put(
 router.get(
   "/submissions/:assessmentId",
   authenticate,
-  authorize("admin"),
+    authorize(["admin"]),
   ...assessmentIdValidator,
   getSubmissionsForAssessment
 );
@@ -110,7 +110,7 @@ router.get(
 router.post(
   "/:courseId/:assessmentId/take",
   authenticate,
-  authorize("user"),
+    authorize(["user"]),
   ...submissionIdsValidator,
   takeAndGradeAssessment
 );
@@ -118,7 +118,7 @@ router.post(
 router.post(
   "/submit/:assessmentId",
   authenticate,
-  authorize("user"),
+    authorize(["user"]),
   upload.single("file"),
   ...submissionValidator,
   submitAssessment
@@ -127,7 +127,7 @@ router.post(
 router.get(
   "/result-slip/:submissionId",
   authenticate,
-  authorize("user"),
+    authorize(["user"]),
   ...submissionIdValidator,
   assessmentResultSlip
 );
@@ -135,7 +135,7 @@ router.get(
 router.get(
   "/",
   authenticate,
-  authorize("admin"),
+    authorize(["admin"]),
   getAllAssessmentsForOrganization
 );
 

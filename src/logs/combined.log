@@ -6769,3 +6769,794 @@
 2025-01-09 10:32:53 [info]: POST /login 200 - Request Body: {"email":"bimpe@gmail.com","password":"Timpearl05$$$"}
 2025-01-09 10:32:55 [info]: POST /login 200 - Request Body: {"email":"bimpe@gmail.com","password":"Timpearl05$$$"}
 2025-01-09 10:32:57 [info]: POST /login 200 - Request Body: {"email":"bimpe@gmail.com","password":"Timpearl05$$$"}
+2025-01-09 15:30:24 [info]: POST /login 200 - Request Body: {"email":"bimpe@gmail.com","password":"Timpearl05$$$"}
+2025-01-09 15:35:26 [info]: POST /add 400 - Request Body: {"code":"PP-246","cost":50000,"title":"Beginners guide to Medicine","objective":"Introduction to Biology I","instructorId":"67453884a835dc3c8062914d","duration":"six weeks","lessonFormat":".xls","lessons":["67641a614e36b15a4278cb0b","67641ab04e36b15a4278cb0e","67641abd4e36b15a4278cb11","67641aca4e36b15a4278cb14","67641ad34e36b15a4278cb17"],"assessments":["67641b594e36b15a4278cb20"],"announcements":[{"title":"Become a doctor now","details":"This is your very chance to become a doctor"}],"certificate":["675fec0e6fe5ccac4b4ac00b"],"showInstructor":true}
+2025-01-09 15:36:12 [info]: POST /add 201 - Request Body: {"code":"PB-246","cost":50000,"title":"Beginners guide to Medicine","objective":"Introduction to Biology I","instructorId":"67453884a835dc3c8062914d","duration":"six weeks","lessonFormat":".xls","lessons":["67641a614e36b15a4278cb0b","67641ab04e36b15a4278cb0e","67641abd4e36b15a4278cb11","67641aca4e36b15a4278cb14","67641ad34e36b15a4278cb17"],"assessments":["67641b594e36b15a4278cb20"],"announcements":[{"title":"Become a doctor now","details":"This is your very chance to become a doctor"}],"certificate":["675fec0e6fe5ccac4b4ac00b"],"showInstructor":true}
+2025-01-09 15:36:30 [info]: POST /add 400 - Request Body: {"code":"PB-246","price":50000,"title":"Beginners guide to Medicine","objective":"Introduction to Biology I","instructorId":"67453884a835dc3c8062914d","duration":"six weeks","lessonFormat":".xls","lessons":["67641a614e36b15a4278cb0b","67641ab04e36b15a4278cb0e","67641abd4e36b15a4278cb11","67641aca4e36b15a4278cb14","67641ad34e36b15a4278cb17"],"assessments":["67641b594e36b15a4278cb20"],"announcements":[{"title":"Become a doctor now","details":"This is your very chance to become a doctor"}],"certificate":["675fec0e6fe5ccac4b4ac00b"],"showInstructor":true}
+2025-01-09 15:36:44 [info]: POST /add 201 - Request Body: {"code":"SB-246","price":50000,"title":"Beginners guide to Medicine","objective":"Introduction to Biology I","instructorId":"67453884a835dc3c8062914d","duration":"six weeks","lessonFormat":".xls","lessons":["67641a614e36b15a4278cb0b","67641ab04e36b15a4278cb0e","67641abd4e36b15a4278cb11","67641aca4e36b15a4278cb14","67641ad34e36b15a4278cb17"],"assessments":["67641b594e36b15a4278cb20"],"announcements":[{"title":"Become a doctor now","details":"This is your very chance to become a doctor"}],"certificate":["675fec0e6fe5ccac4b4ac00b"],"showInstructor":true}
+2025-01-09 15:37:28 [info]: POST /677fdefb54d64c73b25a0fc6/assign 200 - Request Body: {"userIds":["676965e49626eab20cafeb69"],"dueDate":"12-31-2025"}
+2025-01-09 15:37:34 [info]: POST /login 200 - Request Body: {"email":"bimpe@gmail.com","password":"Timpearl05$$$"}
+2025-01-09 17:10:27 [info]: GET /677fdefb54d64c73b25a0fc6 401
+2025-01-09 17:10:42 [info]: POST /login 200 - Request Body: {"email":"seunoduez@gmail.com","password":"Timpearl05$$$"}
+2025-01-09 17:11:10 [info]: GET /677fdefb54d64c73b25a0fc6 200
+2025-01-10 10:24:14 [info]: POST /login 200 - Request Body: {"email":"bimpe@gmail.com","password":"Timpearl05$$$"}
+2025-01-10 10:26:31 [info]: POST /process-payment/677fdf2754d64c73b25a0fef 200
+2025-01-10 10:28:26 [info]: POST /login 200 - Request Body: {"email":"bimpe@gmail.com","password":"Timpearl05$$$"}
+2025-01-10 10:28:38 [info]: POST /login 200 - Request Body: {"email":"bimpe@gmail.com","password":"Timpearl05$$$"}
+2025-01-10 10:29:34 [info]: POST /login 200 - Request Body: {"email":"bimpe@gmail.com","password":"Timpearl05$$$"}
+2025-01-10 10:47:33 [info]: POST /login 200 - Request Body: {"email":"seunoduez@gmail.com","password":"Timpearl05$$$"}
+2025-01-10 10:48:17 [info]: POST /add 400 - Request Body: {"code":"SB-246","price":50000,"title":"Beginners guide to Medicine","objective":"Introduction to Biology I","instructorId":"67453884a835dc3c8062914d","duration":"six weeks","lessonFormat":".xls","lessons":["67641a614e36b15a4278cb0b","67641ab04e36b15a4278cb0e","67641abd4e36b15a4278cb11","67641aca4e36b15a4278cb14","67641ad34e36b15a4278cb17"],"assessments":["67641b594e36b15a4278cb20"],"announcements":[{"title":"Become a doctor now","details":"This is your very chance to become a doctor"}],"certificate":["675fec0e6fe5ccac4b4ac00b"],"showInstructor":true}
+2025-01-10 10:48:28 [info]: POST /add 201 - Request Body: {"code":"AJI-246","price":50000,"title":"Beginners guide to Medicine","objective":"Introduction to Biology I","instructorId":"67453884a835dc3c8062914d","duration":"six weeks","lessonFormat":".xls","lessons":["67641a614e36b15a4278cb0b","67641ab04e36b15a4278cb0e","67641abd4e36b15a4278cb11","67641aca4e36b15a4278cb14","67641ad34e36b15a4278cb17"],"assessments":["67641b594e36b15a4278cb20"],"announcements":[{"title":"Become a doctor now","details":"This is your very chance to become a doctor"}],"certificate":["675fec0e6fe5ccac4b4ac00b"],"showInstructor":true}
+2025-01-10 10:48:35 [info]: POST /add 201 - Request Body: {"code":"AJI-419","price":50000,"title":"Beginners guide to Medicine","objective":"Introduction to Biology I","instructorId":"67453884a835dc3c8062914d","duration":"six weeks","lessonFormat":".xls","lessons":["67641a614e36b15a4278cb0b","67641ab04e36b15a4278cb0e","67641abd4e36b15a4278cb11","67641aca4e36b15a4278cb14","67641ad34e36b15a4278cb17"],"assessments":["67641b594e36b15a4278cb20"],"announcements":[{"title":"Become a doctor now","details":"This is your very chance to become a doctor"}],"certificate":["675fec0e6fe5ccac4b4ac00b"],"showInstructor":true}
+2025-01-10 10:49:01 [info]: POST /6780ecf243f8c365f93d5170/assign 200 - Request Body: {"userIds":["676965e49626eab20cafeb69"],"dueDate":"12-31-2025"}
+2025-01-10 10:49:13 [info]: POST /login 200 - Request Body: {"email":"bimpe@gmail.com","password":"Timpearl05$$$"}
+2025-01-10 10:49:32 [info]: POST /process-payment/6780ed0d43f8c365f93d519b 200
+2025-01-10 10:53:42 [info]: POST /process-payment/6780ed0d43f8c365f93d519b 404
+2025-01-10 10:53:51 [info]: POST /login 200 - Request Body: {"email":"bimpe@gmail.com","password":"Timpearl05$$$"}
+2025-01-10 10:54:02 [info]: POST /login 200 - Request Body: {"email":"bimpe@gmail.com","password":"Timpearl05$$$"}
+2025-01-10 10:54:18 [info]: POST /login 200 - Request Body: {"email":"bimpe@gmail.com","password":"Timpearl05$$$"}
+2025-01-10 10:54:50 [info]: POST /login 200 - Request Body: {"email":"bimpe@gmail.com","password":"Timpearl05$$$"}
+2025-01-10 12:42:59 [info]: POST /add 400 - Request Body: {"code":"AJI-452","price":50000,"title":"Beginners guide to Medicine","objective":"Introduction to Biology I","duration":"six weeks","lessonFormat":".xls","lessons":["67641a614e36b15a4278cb0b","67641ab04e36b15a4278cb0e","67641abd4e36b15a4278cb11","67641aca4e36b15a4278cb14","67641ad34e36b15a4278cb17"],"assessments":["67641b594e36b15a4278cb20"],"announcements":[{"title":"Become a doctor now","details":"This is your very chance to become a doctor"}],"certificate":["675fec0e6fe5ccac4b4ac00b"],"showInstructor":true}
+2025-01-10 12:45:20 [info]: POST /add 400 - Request Body: {"code":"AJI-452","price":50000,"title":"Beginners guide to Medicine","objective":"Introduction to Biology I","duration":"six weeks","lessonFormat":".xls","lessons":["67641a614e36b15a4278cb0b","67641ab04e36b15a4278cb0e","67641abd4e36b15a4278cb11","67641aca4e36b15a4278cb14","67641ad34e36b15a4278cb17"],"assessments":["67641b594e36b15a4278cb20"],"announcements":[{"title":"Become a doctor now","details":"This is your very chance to become a doctor"}],"certificate":["675fec0e6fe5ccac4b4ac00b"],"showInstructor":true}
+2025-01-10 12:50:10 [info]: POST /add 400 - Request Body: {"code":"AJI-452","price":50000,"title":"Beginners guide to Medicine","objective":"Introduction to Biology I","duration":"six weeks","lessonFormat":".xls","lessons":["67641a614e36b15a4278cb0b","67641ab04e36b15a4278cb0e","67641abd4e36b15a4278cb11","67641aca4e36b15a4278cb14","67641ad34e36b15a4278cb17"],"assessments":["67641b594e36b15a4278cb20"],"announcements":[{"title":"Become a doctor now","details":"This is your very chance to become a doctor"}],"certificate":["675fec0e6fe5ccac4b4ac00b"],"showInstructor":true}
+2025-01-10 12:51:25 [info]: POST /lesson 200 - Request Body: {"title":"This is the title","objectives":"This is the objective for this lesson","link":"https://www.youtube.com"}
+2025-01-10 12:51:50 [info]: POST /add 500 - Request Body: {"code":"AJI-452","price":50000,"title":"Beginners guide to Medicine","objective":"Introduction to Biology I","duration":"six weeks","lessonFormat":".xls","lessons":["678109bd88676e31ce545ebb"],"assessments":["67641b594e36b15a4278cb20"],"announcements":[{"title":"Become a doctor now","details":"This is your very chance to become a doctor"}],"certificate":["675fec0e6fe5ccac4b4ac00b"],"showInstructor":true}
+2025-01-10 13:48:20 [info]: POST /add 500 - Request Body: {"code":"AJI-452","price":50000,"title":"Beginners guide to Medicine","objective":"Introduction to Biology I","duration":"six weeks","lessonFormat":".xls","lessons":["678109bd88676e31ce545ebb"],"assessments":["67641b594e36b15a4278cb20"],"announcements":[{"title":"Become a doctor now","details":"This is your very chance to become a doctor"}],"certificate":["675fec0e6fe5ccac4b4ac00b"],"showInstructor":true}
+2025-01-10 13:57:02 [info]: POST /add 201 - Request Body: {"code":"AJI-452","price":50000,"title":"Beginners guide to Medicine","objective":"Introduction to Biology I","duration":"six weeks","lessonFormat":".xls","lessons":["678109bd88676e31ce545ebb"],"assessments":["67641b594e36b15a4278cb20"],"announcements":[{"title":"Become a doctor now","details":"This is your very chance to become a doctor"}],"certificate":["675fec0e6fe5ccac4b4ac00b"],"showInstructor":true}
+2025-01-10 14:55:04 [info]: POST /login 200 - Request Body: {"email":"bimpe@gmail.com","password":"Timpearl05$$$"}
+2025-01-10 14:56:58 [info]: POST /6781191e2a2533ae97550a98/assign 200 - Request Body: {"userIds":["676965e49626eab20cafeb69"],"dueDate":"12-31-2025"}
+2025-01-10 14:57:05 [info]: POST /login 200 - Request Body: {"email":"bimpe@gmail.com","password":"Timpearl05$$$"}
+2025-01-10 16:39:39 [info]: POST /add 400 - Request Body: {"code":"AJI-452","price":50000,"title":"Beginners guide to Medicine","objective":"Introduction to Biology I","duration":"six weeks","lessonFormat":".xls","lessons":["678109bd88676e31ce545ebb","67641a614e36b15a4278cb0b","67641ab04e36b15a4278cb0e","67641abd4e36b15a4278cb11","67641aca4e36b15a4278cb14","67641ad34e36b15a4278cb17"],"assessments":["67641b594e36b15a4278cb20"],"announcements":[{"title":"Become a doctor now","details":"This is your very chance to become a doctor"}],"certificate":["675fec0e6fe5ccac4b4ac00b"],"showInstructor":true}
+2025-01-10 16:39:50 [info]: POST /add 400 - Request Body: {"code":"LL-452","price":50000,"title":"Beginners guide to Medicine","objective":"Introduction to Biology I","duration":"six weeks","lessonFormat":".xls","lessons":["678109bd88676e31ce545ebb","67641a614e36b15a4278cb0b","67641ab04e36b15a4278cb0e","67641abd4e36b15a4278cb11","67641aca4e36b15a4278cb14","67641ad34e36b15a4278cb17"],"assessments":["67641b594e36b15a4278cb20"],"announcements":[{"title":"Become a doctor now","details":"This is your very chance to become a doctor"}],"certificate":["675fec0e6fe5ccac4b4ac00b"],"showInstructor":true}
+2025-01-10 16:41:32 [info]: POST /add 400 - Request Body: {"code":"LL-452","price":50000,"title":"Beginners guide to Medicine","objective":"Introduction to Biology I","duration":"six weeks","lessonFormat":".xls","lessons":["678109bd88676e31ce545ebb","67641a614e36b15a4278cb0b","67641ab04e36b15a4278cb0e","67641abd4e36b15a4278cb11","67641aca4e36b15a4278cb14","67641ad34e36b15a4278cb17"],"assessments":["67641b594e36b15a4278cb20"],"announcements":[{"title":"Become a doctor now","details":"This is your very chance to become a doctor"}],"certificate":["675fec0e6fe5ccac4b4ac00b"],"showInstructor":true}
+2025-01-10 16:41:42 [info]: POST /add 201 - Request Body: {"code":"LL-452","price":50000,"title":"Beginners guide to Medicine","objective":"Introduction to Biology I","duration":"six weeks","lessonFormat":".xls","lessons":["67641a614e36b15a4278cb0b","67641ab04e36b15a4278cb0e","67641abd4e36b15a4278cb11","67641aca4e36b15a4278cb14","67641ad34e36b15a4278cb17"],"assessments":["67641b594e36b15a4278cb20"],"announcements":[{"title":"Become a doctor now","details":"This is your very chance to become a doctor"}],"certificate":["675fec0e6fe5ccac4b4ac00b"],"showInstructor":true}
+2025-01-10 16:55:19 [info]: POST /api/v1/course/lesson 500 - Request Body: {"title":"This is the title","objectives":"This is the objective for this lesson","link":"https://www.youtube.com"}
+2025-01-10 16:57:19 [info]: POST /lesson 200 - Request Body: {"title":"This is the title","objectives":"This is the objective for this lesson","link":"https://www.youtube.com"}
+2025-01-10 17:00:14 [info]: POST /add 400 - Request Body: {"code":"LL-452","price":50000,"title":"Beginners guide to Medicine","objective":"Introduction to Biology I","duration":"six weeks","lessonFormat":".xls","lessons":["6781435ed564f6d283a73cc7","67641a614e36b15a4278cb0b","67641ab04e36b15a4278cb0e","67641abd4e36b15a4278cb11","67641aca4e36b15a4278cb14","67641ad34e36b15a4278cb17"],"assessments":["67641b594e36b15a4278cb20"],"announcements":[{"title":"Become a doctor now","details":"This is your very chance to become a doctor"}],"certificate":["675fec0e6fe5ccac4b4ac00b"],"showInstructor":true}
+2025-01-10 17:00:28 [info]: POST /add 201 - Request Body: {"code":"LW-452","price":50000,"title":"Beginners guide to Medicine","objective":"Introduction to Biology I","duration":"six weeks","lessonFormat":".xls","lessons":["6781435ed564f6d283a73cc7","67641a614e36b15a4278cb0b","67641ab04e36b15a4278cb0e","67641abd4e36b15a4278cb11","67641aca4e36b15a4278cb14","67641ad34e36b15a4278cb17"],"assessments":["67641b594e36b15a4278cb20"],"announcements":[{"title":"Become a doctor now","details":"This is your very chance to become a doctor"}],"certificate":["675fec0e6fe5ccac4b4ac00b"],"showInstructor":true}
+2025-01-13 09:43:17 [info]: GET /user/67642cbf7f34c03dff42d943 401
+2025-01-13 09:43:36 [info]: POST /login 200 - Request Body: {"email":"bimpe@gmail.com","password":"Timpearl05$$$"}
+2025-01-13 09:44:14 [info]: GET /user/67642cbf7f34c03dff42d943 200
+2025-01-13 09:49:42 [info]: GET /user/6781478167ae0d45375fe1e7 200
+2025-01-16 07:55:00 [info]: POST /login 200 - Request Body: {"email":"seunoduez@gmail.com","password":"Timpearl05$$$"}
+2025-01-16 07:57:26 [info]: GET /auth/subadmin/register 200 - Request Body: {"firstName":"Ola","lastName":"Balogun","email":"olabalogun@gmail.com"}
+2025-01-16 07:57:35 [info]: POST /subadmin/register 201 - Request Body: {"firstName":"Ola","lastName":"Balogun","email":"olabalogun@gmail.com"}
+2025-01-16 07:58:48 [info]: POST /subadmin/register 500 - Request Body: {"firstName":"Ola","lastName":"Balogun","email":"olabalogun@gmail.com"}
+2025-01-16 07:59:47 [info]: POST /subadmin/register 400 - Request Body: {"firstName":"Ola","lastName":"Balogun","email":"olabalogun@gmail.com"}
+2025-01-16 07:59:57 [info]: POST /subadmin/register 201 - Request Body: {"firstName":"Ola","lastName":"Balogun","email":"olabalo@gmail.com"}
+2025-01-16 08:02:02 [info]: POST /subadmin/register 201 - Request Body: {"firstName":"Ola","lastName":"Balogun","email":"olabalogun@gmail.com"}
+2025-01-16 08:03:02 [info]: POST /subadmin/register 201 - Request Body: {"firstName":"Ola","lastName":"Balogun","email":"olabalogun@gmail.com"}
+2025-01-16 08:05:24 [info]: POST /subadmin/login 200 - Request Body: {"email":"olabalogun@gmail.com","password":"OlaBalogun123#"}
+2025-01-16 08:06:20 [info]: POST /subadmin/login 200 - Request Body: {"email":"olabalogun@gmail.com","password":"OlaBalogun123#"}
+2025-01-16 08:30:03 [info]: POST /single-create 403
+2025-01-16 08:30:10 [info]: POST /single-create 403
+2025-01-16 08:30:45 [info]: POST /single-create 403
+2025-01-16 08:30:48 [info]: POST /single-create 403
+2025-01-16 08:31:55 [info]: POST /single-create 403
+2025-01-16 08:33:08 [info]: POST /single-create 403
+2025-01-16 08:33:50 [info]: POST /single-create 403
+2025-01-16 08:34:59 [info]: POST /single-create 403
+2025-01-16 09:00:16 [info]: POST /subadmin/assign-permissions 404 - Request Body: {"subAdminId":"63fcd9b9f7890a1234567890","permissions":["6788b4b78a216e3330f392ac","6788b4b78a216e3330f392ad"]}
+2025-01-16 09:00:43 [info]: POST /subadmin/assign-permissions 200 - Request Body: {"subAdminId":"6788af25687d5051315a0ce3","permissions":["6788b4b78a216e3330f392ac","6788b4b78a216e3330f392ad"]}
+2025-01-16 09:01:48 [info]: POST /subadmin/assign-permissions 200 - Request Body: {"subAdminId":"6788af25687d5051315a0ce3","permissions":["6788b4b78a216e3330f392ac","6788b4b78a216e3330f392ad"]}
+2025-01-16 09:02:08 [info]: POST /single-create 401
+2025-01-16 09:03:51 [info]: POST /subadmin/login 200 - Request Body: {"email":"olabalogun@gmail.com","password":"OlaBalogun123#"}
+2025-01-16 09:04:35 [info]: POST /single-create 401
+2025-01-16 09:05:33 [info]: POST /single-create 401
+2025-01-16 09:06:34 [info]: POST /single-create 500 - Request Body: {"firstName":"Timpel","lastName":"Timpearl","email":"biola@gmail.com","userId":"2024-08-01","password":"Timpearl05$$$","country":"United States of America","username":"Timpearl","otherName":"Timileyin","phone":"+2349066318539","userType":"learner","gender":"female","dateOfBirth":"05-04-2004","address":"38, Ogunlana street","city":"Alimosho","LGA":"Alimosho","state":"Lagos","officeAddress":"1A, Hughes Street","officeCity":"Alagomeji","officeLGA":"Yaba","officeState":"Lagos","employerName":"Mr Green"}
+2025-01-16 09:08:46 [info]: POST /single-create 500 - Request Body: {"firstName":"Timpel","lastName":"Timpearl","email":"biola@gmail.com","userId":"2024-08-01","password":"Timpearl05$$$","country":"United States of America","username":"Timpearl","otherName":"Timileyin","phone":"+2349066318539","userType":"learner","gender":"female","dateOfBirth":"05-04-2004","address":"38, Ogunlana street","city":"Alimosho","LGA":"Alimosho","state":"Lagos","officeAddress":"1A, Hughes Street","officeCity":"Alagomeji","officeLGA":"Yaba","officeState":"Lagos","employerName":"Mr Green"}
+2025-01-16 09:11:06 [info]: POST /single-create 500 - Request Body: {"firstName":"Timpel","lastName":"Timpearl","email":"biola@gmail.com","userId":"2024-08-01","password":"Timpearl05$$$","country":"United States of America","username":"Timpearl","otherName":"Timileyin","phone":"+2349066318539","userType":"learner","gender":"female","dateOfBirth":"05-04-2004","address":"38, Ogunlana street","city":"Alimosho","LGA":"Alimosho","state":"Lagos","officeAddress":"1A, Hughes Street","officeCity":"Alagomeji","officeLGA":"Yaba","officeState":"Lagos","employerName":"Mr Green"}
+2025-01-16 09:22:49 [info]: POST /single-create 404 - Request Body: {"firstName":"Timpel","lastName":"Timpearl","email":"biola@gmail.com","userId":"2024-08-01","password":"Timpearl05$$$","country":"United States of America","username":"Timpearl","otherName":"Timileyin","phone":"+2349066318539","userType":"learner","gender":"female","dateOfBirth":"05-04-2004","address":"38, Ogunlana street","city":"Alimosho","LGA":"Alimosho","state":"Lagos","officeAddress":"1A, Hughes Street","officeCity":"Alagomeji","officeLGA":"Yaba","officeState":"Lagos","employerName":"Mr Green"}
+2025-01-16 09:23:46 [info]: POST /single-create 201 - Request Body: {"firstName":"Timpel","lastName":"Timpearl","email":"biola@gmail.com","userId":"2024-08-01","password":"Timpearl05$$$","country":"United States of America","username":"Timpearl","otherName":"Timileyin","phone":"+2349066318539","userType":"learner","gender":"female","dateOfBirth":"05-04-2004","address":"38, Ogunlana street","city":"Alimosho","LGA":"Alimosho","state":"Lagos","officeAddress":"1A, Hughes Street","officeCity":"Alagomeji","officeLGA":"Yaba","officeState":"Lagos","employerName":"Mr Green"}
+2025-01-16 09:24:47 [info]: POST /single-create 400 - Request Body: {"firstName":"Timpel","lastName":"Timpearl","email":"biola@gmail.com","userId":"2024-08-01","password":"Timpearl05$$$","country":"United States of America","username":"Timpearl","otherName":"Timileyin","phone":"+2349066318539","userType":"learner","gender":"female","dateOfBirth":"05-04-2004","address":"38, Ogunlana street","city":"Alimosho","LGA":"Alimosho","state":"Lagos","officeAddress":"1A, Hughes Street","officeCity":"Alagomeji","officeLGA":"Yaba","officeState":"Lagos","employerName":"Mr Green"}
+2025-01-16 09:24:58 [info]: POST /single-create 201 - Request Body: {"firstName":"Timpel","lastName":"Timpearl","email":"biola2@gmail.com","userId":"2024-08-01","password":"Timpearl05$$$","country":"United States of America","username":"Timpearl","otherName":"Timileyin","phone":"+2349066318539","userType":"learner","gender":"female","dateOfBirth":"05-04-2004","address":"38, Ogunlana street","city":"Alimosho","LGA":"Alimosho","state":"Lagos","officeAddress":"1A, Hughes Street","officeCity":"Alagomeji","officeLGA":"Yaba","officeState":"Lagos","employerName":"Mr Green"}
+2025-01-16 13:02:25 [info]: POST /single-create 400 - Request Body: {"firstName":"Timpel","lastName":"Timpearl","email":"biola2@gmail.com","userId":"2024-08-01","password":"Timpearl05$$$","country":"United States of America","username":"Timpearl","otherName":"Timileyin","phone":"+2349066318539","userType":"learner","gender":"female","dateOfBirth":"05-04-2004","address":"38, Ogunlana street","city":"Alimosho","LGA":"Alimosho","state":"Lagos","officeAddress":"1A, Hughes Street","officeCity":"Alagomeji","officeLGA":"Yaba","officeState":"Lagos","employerName":"Mr Green"}
+2025-01-16 13:02:38 [info]: POST /single-create 201 - Request Body: {"firstName":"Timpel","lastName":"Timpearl","email":"biola3@gmail.com","userId":"2024-08-01","password":"Timpearl05$$$","country":"United States of America","username":"Timpearl","otherName":"Timileyin","phone":"+2349066318539","userType":"learner","gender":"female","dateOfBirth":"05-04-2004","address":"38, Ogunlana street","city":"Alimosho","LGA":"Alimosho","state":"Lagos","officeAddress":"1A, Hughes Street","officeCity":"Alagomeji","officeLGA":"Yaba","officeState":"Lagos","employerName":"Mr Green"}
+2025-01-16 13:03:22 [info]: POST /single-create 201 - Request Body: {"firstName":"Timpel","lastName":"Timpearl","email":"biola4@gmail.com","userId":"2024-08-01","password":"Timpearl05$$$","country":"United States of America","username":"Timpearl","otherName":"Timileyin","phone":"+2349066318539","userType":"learner","gender":"female","dateOfBirth":"05-04-2004","address":"38, Ogunlana street","city":"Alimosho","LGA":"Alimosho","state":"Lagos","officeAddress":"1A, Hughes Street","officeCity":"Alagomeji","officeLGA":"Yaba","officeState":"Lagos","employerName":"Mr Green","groupId":"67531925998dfac026b08f61"}
+2025-01-16 13:08:03 [info]: POST /api/v1/auth/bulk-create 500
+2025-01-16 13:09:04 [info]: POST /single-create 403
+2025-01-16 13:09:15 [info]: POST /login 200 - Request Body: {"email":"seunoduez@gmail.com","password":"Timpearl05$$$"}
+2025-01-16 13:09:52 [info]: POST /single-create 403
+2025-01-16 13:11:46 [info]: POST /single-create 201 - Request Body: {"firstName":"Timpel","lastName":"Timpearl","email":"biola5@gmail.com","userId":"2024-08-01","password":"Timpearl05$$$","country":"United States of America","username":"Timpearl","otherName":"Timileyin","phone":"+2349066318539","userType":"learner","gender":"female","dateOfBirth":"05-04-2004","address":"38, Ogunlana street","city":"Alimosho","LGA":"Alimosho","state":"Lagos","officeAddress":"1A, Hughes Street","officeCity":"Alagomeji","officeLGA":"Yaba","officeState":"Lagos","employerName":"Mr Green","groupId":"67531925998dfac026b08f61"}
+2025-01-16 13:14:30 [info]: POST /single-create 403
+2025-01-16 13:19:22 [info]: POST /single-create 400 - Request Body: {"firstName":"Timpel","lastName":"Timpearl","email":"biola5@gmail.com","userId":"2024-08-01","password":"Timpearl05$$$","country":"United States of America","username":"Timpearl","otherName":"Timileyin","phone":"+2349066318539","userType":"learner","gender":"female","dateOfBirth":"05-04-2004","address":"38, Ogunlana street","city":"Alimosho","LGA":"Alimosho","state":"Lagos","officeAddress":"1A, Hughes Street","officeCity":"Alagomeji","officeLGA":"Yaba","officeState":"Lagos","employerName":"Mr Green","groupId":"67531925998dfac026b08f61"}
+2025-01-16 13:19:33 [info]: POST /single-create 201 - Request Body: {"firstName":"Timpel","lastName":"Timpearl","email":"biola6@gmail.com","userId":"2024-08-01","password":"Timpearl05$$$","country":"United States of America","username":"Timpearl","otherName":"Timileyin","phone":"+2349066318539","userType":"learner","gender":"female","dateOfBirth":"05-04-2004","address":"38, Ogunlana street","city":"Alimosho","LGA":"Alimosho","state":"Lagos","officeAddress":"1A, Hughes Street","officeCity":"Alagomeji","officeLGA":"Yaba","officeState":"Lagos","employerName":"Mr Green","groupId":"67531925998dfac026b08f61"}
+2025-01-10 15:15:54 [info]: GET /all-landing-page 401
+2025-01-10 15:15:54 [info]: GET /status 401
+2025-01-10 15:15:54 [info]: GET /allCourses 401
+2025-01-10 15:15:57 [info]: GET /status 304
+2025-01-10 15:15:58 [info]: GET /allCourses 200
+2025-01-10 15:15:58 [info]: GET /all-landing-page 200
+2025-01-10 15:16:59 [info]: GET /all-landing-page 304
+2025-01-10 15:17:00 [info]: GET /allCourses 304
+2025-01-10 15:17:00 [info]: GET /status 304
+2025-01-10 15:17:53 [info]: GET /status 304
+2025-01-10 15:17:54 [info]: GET /allCourses 304
+2025-01-10 15:17:54 [info]: GET /all-landing-page 304
+2025-01-10 15:18:30 [info]: GET /status 304
+2025-01-10 15:18:30 [info]: GET /all-landing-page 304
+2025-01-10 15:18:30 [info]: GET /allCourses 304
+2025-01-10 15:21:01 [info]: GET /status 304
+2025-01-10 15:21:02 [info]: GET /all-landing-page 304
+2025-01-10 15:21:02 [info]: GET /allCourses 304
+2025-01-10 15:21:42 [info]: GET /status 304
+2025-01-10 15:21:42 [info]: GET /all-landing-page 304
+2025-01-10 15:21:42 [info]: GET /allCourses 304
+2025-01-10 15:24:04 [info]: POST /login 200 - Request Body: {"email":"test@gmail.com","password":"Test2024!"}
+2025-01-10 15:24:13 [info]: GET / 304
+2025-01-10 15:24:30 [info]: GET /all 200
+2025-01-10 15:25:47 [info]: GET /lesson/getAll 200
+2025-01-10 15:25:52 [info]: GET / 304
+2025-01-10 15:25:58 [info]: GET / 304
+2025-01-10 15:26:05 [info]: POST /add 400 - Request Body: {"title":"Paid course 2","objective":"PD2","price":"2000","duration":"2000","instructorId":"67405d421a49e4a70bfd2d3b","lessonFormat":"pdf","code":"PD2","showInstructor":"true","assessments":["678110a570afb170374c986f"],"lessons":["67780f67a0d2a9a95fa14fb8"],"certificate":["675b2bf9a36549113b5b3511"]}
+2025-01-10 15:26:26 [info]: POST /add 400 - Request Body: {"title":"Paid course 2","objective":"PD2","price":"2000","duration":"2000","instructorId":"67405d421a49e4a70bfd2d3b","lessonFormat":"pdf","code":"PD2","showInstructor":"true","assessments":["678110a570afb170374c986f"],"lessons":["67780f67a0d2a9a95fa14fb8"],"certificate":["675b2bf9a36549113b5b3511"]}
+2025-01-10 15:26:39 [info]: GET / 304
+2025-01-10 15:26:41 [info]: GET /lesson/getAll 304
+2025-01-10 15:26:52 [info]: GET / 304
+2025-01-10 15:27:00 [info]: GET / 304
+2025-01-10 15:27:07 [info]: POST /add 400 - Request Body: {"title":"Paid course 2","objective":"PD2","price":"2000","duration":"2000","instructorId":"67405d421a49e4a70bfd2d3b","lessonFormat":"pdf","code":"PD2","showInstructor":"true","assessments":["678110a570afb170374c986f"],"lessons":["67780f67a0d2a9a95fa14fb8"],"certificate":["675b2bf9a36549113b5b3511","677befebd8d18bac8177fa5e"]}
+2025-01-10 15:27:32 [info]: GET /all 304
+2025-01-10 15:27:33 [info]: GET / 304
+2025-01-10 15:28:14 [info]: GET /lesson/getAll 304
+2025-01-10 15:28:43 [info]: POST /lesson 200 - Request Body: {"title":"PAID","objectives":"PAID"}
+2025-01-10 15:28:49 [info]: GET /all 304
+2025-01-10 15:28:52 [info]: GET /lesson/getAll 304
+2025-01-10 15:29:48 [info]: GET /lesson/getAll 401
+2025-01-10 15:29:49 [info]: GET /lesson/getAll 304
+2025-01-10 15:30:51 [info]: POST /lesson 200 - Request Body: {"title":"PAID","objectives":"PAID"}
+2025-01-10 15:31:11 [info]: GET /lesson/getAll 401
+2025-01-10 15:31:12 [info]: GET /lesson/getAll 304
+2025-01-10 15:32:01 [info]: POST /login 200 - Request Body: {"email":"test@gmail.com","password":"Test2024!"}
+2025-01-10 15:32:07 [info]: GET / 304
+2025-01-10 15:32:16 [info]: GET /lesson/getAll 304
+2025-01-10 15:32:58 [info]: GET /lesson/getAll 304
+2025-01-10 15:33:06 [info]: GET /lesson/getAll 304
+2025-01-10 15:33:07 [info]: GET /all-landing-page 304
+2025-01-10 15:33:08 [info]: GET /allCourses 304
+2025-01-10 15:33:09 [info]: GET /status 304
+2025-01-10 16:32:23 [info]: GET /allCourses 401
+2025-01-10 16:32:23 [info]: GET /status 401
+2025-01-10 16:32:27 [info]: GET /allCourses 401
+2025-01-10 16:32:27 [info]: GET /status 401
+2025-01-10 16:32:28 [info]: GET /all-landing-page 401
+2025-01-10 16:32:51 [info]: POST /login 200 - Request Body: {"email":"test@gmail.com","password":"Test2024!"}
+2025-01-10 16:32:56 [info]: GET / 200
+2025-01-10 16:33:17 [info]: GET /lesson/getAll 200
+2025-01-10 16:33:51 [info]: GET /lesson/getAll 401
+2025-01-10 16:33:52 [info]: GET /lesson/getAll 304
+2025-01-10 16:34:43 [info]: GET /all 200
+2025-01-10 16:35:26 [info]: GET /lesson/getAll 304
+2025-01-10 16:35:32 [info]: GET / 200
+2025-01-10 16:35:38 [info]: GET / 200
+2025-01-10 16:35:53 [info]: POST /add 400 - Request Body: {"title":"Paid course 2","objective":"ss","price":"2000","duration":"2000","instructorId":"67405d421a49e4a70bfd2d3b","lessonFormat":"powerpoint","code":"PD2","showInstructor":"true","assessments":["678110a570afb170374c986f"],"lessons":["67780f67a0d2a9a95fa14fb8"],"certificate":["675b2bf9a36549113b5b3511"]}
+2025-01-10 16:36:47 [info]: GET /all 304
+2025-01-10 16:36:47 [info]: GET / 304
+2025-01-10 16:39:16 [info]: GET /all 304
+2025-01-10 16:39:17 [info]: GET / 304
+2025-01-10 16:43:58 [info]: POST /login 200 - Request Body: {"email":"test@gmail.com","password":"Test2024!"}
+2025-01-10 16:43:59 [info]: GET / 304
+2025-01-10 16:44:12 [info]: GET /lesson/getAll 304
+2025-01-10 16:46:21 [info]: GET /lesson/getAll 304
+2025-01-10 16:46:27 [info]: GET /lesson/getAll 304
+2025-01-10 17:02:00 [info]: GET /all 304
+2025-01-10 17:02:10 [info]: GET / 304
+2025-01-10 17:02:10 [info]: POST /add 201 - Request Body: {"title":"cost test","objective":"cost","price":"2000","duration":"2000","instructorId":"67405d421a49e4a70bfd2d3b","lessonFormat":"pdf","code":"cst","showInstructor":"true","assessments":["678110a570afb170374c986f"],"lessons":["67780f67a0d2a9a95fa14fb8"],"certificate":["675b2bf9a36549113b5b3511"]}
+2025-01-10 17:03:03 [info]: GET /lesson/getAll 200
+2025-01-10 17:03:17 [info]: POST /login 200 - Request Body: {"email":"test1@gmail.com","password":"Test2024!"}
+2025-01-10 17:03:28 [info]: GET /user/programs 200
+2025-01-10 17:03:28 [info]: GET /status 200
+2025-01-10 17:04:11 [info]: GET /status 304
+2025-01-10 17:04:14 [info]: GET /all-landing-page 200
+2025-01-10 17:04:22 [info]: GET /allCourses 200
+2025-01-10 17:05:11 [info]: POST /login 200 - Request Body: {"email":"test@gmail.com","password":"Test2024!"}
+2025-01-10 17:05:18 [info]: GET / 304
+2025-01-10 17:05:42 [info]: GET /all 200
+2025-01-10 17:05:45 [info]: GET /users 200
+2025-01-10 17:06:35 [info]: POST /678144814efe65193e916e1d/assign 200 - Request Body: {"userIds":["6758cedce0630e76956c0598","677e7d48ad3ab554703e9cd4","677e98c0a96f2f0632d9ca29","677e99dea96f2f0632d9ca7d","677ea1bf5d3cfd1c0325c719","67810f2370afb170374c983e"],"dueDate":"12-31-2024"}
+2025-01-10 17:06:35 [info]: POST /678144814efe65193e916e1d/assign 200 - Request Body: {"userIds":["6758cedce0630e76956c0598","677e7d48ad3ab554703e9cd4","677e98c0a96f2f0632d9ca29","677e99dea96f2f0632d9ca7d","677ea1bf5d3cfd1c0325c719","67810f2370afb170374c983e"],"dueDate":"12-31-2024"}
+2025-01-10 17:06:57 [info]: POST /login 200 - Request Body: {"email":"test1@gmail.com","password":"Test2024!"}
+2025-01-10 17:07:02 [info]: GET /user/programs 304
+2025-01-10 17:07:04 [info]: GET /status 200
+2025-01-10 17:07:12 [info]: GET /status 304
+2025-01-10 17:07:14 [info]: GET /all-landing-page 304
+2025-01-10 17:07:17 [info]: GET /allCourses 200
+2025-01-10 17:08:41 [info]: GET / 304
+2025-01-10 17:08:51 [info]: POST /login 200 - Request Body: {"email":"test@gmail.com","password":"Test2024!"}
+2025-01-10 17:08:52 [info]: GET / 304
+2025-01-10 17:09:05 [info]: GET /all 200
+2025-01-10 17:09:37 [info]: GET /report 500
+2025-01-10 17:09:37 [info]: GET /all 304
+2025-01-10 17:09:38 [info]: GET /users 200
+2025-01-10 17:09:38 [info]: GET /report 500
+2025-01-10 17:09:40 [info]: GET /report 500
+2025-01-10 17:09:44 [info]: GET /report 500
+2025-01-10 17:09:46 [info]: GET /all 304
+2025-01-10 17:10:16 [info]: GET /lesson/getAll 304
+2025-01-10 17:10:20 [info]: GET / 304
+2025-01-10 17:10:26 [info]: GET / 304
+2025-01-10 17:14:54 [info]: GET /all 304
+2025-01-10 17:14:54 [info]: GET / 304
+2025-01-10 17:14:58 [info]: POST /add 201 - Request Body: {"title":"free test","objective":"free test","price":"0","duration":"2000","instructorId":"67405d421a49e4a70bfd2d3b","lessonFormat":"pdf","code":"frt","showInstructor":"true","assessments":["678110a570afb170374c986f"],"lessons":["67780f67a0d2a9a95fa14fb8"],"certificate":["675b2bf9a36549113b5b3511"]}
+2025-01-10 17:15:18 [info]: POST /login 200 - Request Body: {"email":"test1@gmail.com","password":"Test2024!"}
+2025-01-10 17:15:25 [info]: GET /user/programs 304
+2025-01-10 17:15:26 [info]: GET /status 304
+2025-01-10 17:15:38 [info]: GET /status 304
+2025-01-10 17:15:38 [info]: GET /all-landing-page 304
+2025-01-10 17:15:39 [info]: GET /allCourses 200
+2025-01-10 17:15:53 [info]: GET /allCourses 401
+2025-01-10 17:15:53 [info]: GET /all-landing-page 401
+2025-01-10 17:15:53 [info]: GET /status 401
+2025-01-10 17:15:55 [info]: GET /status 304
+2025-01-10 17:15:55 [info]: GET /all-landing-page 304
+2025-01-10 17:15:56 [info]: GET /allCourses 304
+2025-01-10 17:16:40 [info]: GET /user/programs 304
+2025-01-10 17:16:40 [info]: GET /status 304
+2025-01-10 17:16:47 [info]: POST /login 200 - Request Body: {"email":"test@gmail.com","password":"Test2024!"}
+2025-01-10 17:16:49 [info]: GET / 304
+2025-01-10 17:17:06 [info]: GET /all 200
+2025-01-10 17:17:06 [info]: GET /users 304
+2025-01-10 17:17:18 [info]: POST /6781478167ae0d45375fe1e7/assign 200 - Request Body: {"userIds":["6758cedce0630e76956c0598","677e7d48ad3ab554703e9cd4","677e98c0a96f2f0632d9ca29","677e99dea96f2f0632d9ca7d","677ea1bf5d3cfd1c0325c719","67810f2370afb170374c983e"],"dueDate":"12-31-2024"}
+2025-01-10 17:17:47 [info]: POST /login 200 - Request Body: {"email":"test1@gmail.com","password":"Test2024!"}
+2025-01-10 17:17:47 [info]: GET /user/programs 304
+2025-01-10 17:17:47 [info]: GET /status 200
+2025-01-10 17:17:49 [info]: GET /status 304
+2025-01-10 17:17:50 [info]: GET /all-landing-page 304
+2025-01-10 17:18:02 [info]: GET /allCourses 401
+2025-01-10 17:18:02 [info]: GET /all-landing-page 401
+2025-01-10 17:18:02 [info]: GET /status 401
+2025-01-10 17:18:04 [info]: GET /status 304
+2025-01-10 17:18:04 [info]: GET /all-landing-page 304
+2025-01-10 17:18:04 [info]: GET /allCourses 200
+2025-01-10 17:19:22 [info]: GET /status 304
+2025-01-10 17:19:23 [info]: GET /all-landing-page 304
+2025-01-10 17:19:23 [info]: GET /allCourses 304
+2025-01-10 17:22:22 [info]: GET /status 304
+2025-01-10 17:22:22 [info]: GET /all-landing-page 304
+2025-01-10 17:22:22 [info]: GET /allCourses 304
+2025-01-10 17:23:00 [info]: GET /status 304
+2025-01-10 17:23:00 [info]: GET /all-landing-page 304
+2025-01-10 17:23:00 [info]: GET /allCourses 304
+2025-01-10 17:23:25 [info]: GET /status 304
+2025-01-10 17:23:26 [info]: GET /all-landing-page 304
+2025-01-10 17:23:26 [info]: GET /allCourses 304
+2025-01-10 17:28:35 [info]: GET /status 304
+2025-01-10 17:28:35 [info]: GET /all-landing-page 304
+2025-01-10 17:28:36 [info]: GET /allCourses 304
+2025-01-10 17:40:06 [info]: GET /user-profile/67810f2370afb170374c983e 403
+2025-01-10 17:40:06 [info]: GET /status 304
+2025-01-10 17:40:07 [info]: GET /all-landing-page 304
+2025-01-10 17:40:07 [info]: GET /allCourses 304
+2025-01-10 17:40:09 [info]: GET /user-profile/67810f2370afb170374c983e 403
+2025-01-10 17:40:10 [info]: GET /status 304
+2025-01-10 17:40:10 [info]: GET /all-landing-page 304
+2025-01-10 17:40:11 [info]: GET /allCourses 304
+2025-01-10 17:40:12 [info]: GET /user-profile/67810f2370afb170374c983e 403
+2025-01-10 17:40:16 [info]: GET /user-profile/67810f2370afb170374c983e 403
+2025-01-10 17:47:15 [info]: GET /user-profile/67810f2370afb170374c983e 500
+2025-01-10 17:47:15 [info]: GET /status 304
+2025-01-10 17:47:16 [info]: GET /allCourses 304
+2025-01-10 17:47:16 [info]: GET /all-landing-page 304
+2025-01-10 17:47:19 [info]: GET /status 401
+2025-01-10 17:47:34 [info]: GET /user-profile/67810f2370afb170374c983e 500
+2025-01-10 17:47:34 [info]: GET /status 304
+2025-01-10 17:47:34 [info]: GET /all-landing-page 304
+2025-01-10 17:47:34 [info]: GET /allCourses 304
+2025-01-10 17:47:35 [info]: GET /user-profile/67810f2370afb170374c983e 500
+2025-01-10 17:47:37 [info]: GET /user-profile/67810f2370afb170374c983e 500
+2025-01-10 17:47:41 [info]: GET /user-profile/67810f2370afb170374c983e 500
+2025-01-10 17:58:44 [info]: GET /user-profile/67810f2370afb170374c983e 403
+2025-01-10 17:58:44 [info]: GET /status 304
+2025-01-10 17:58:45 [info]: GET /all-landing-page 304
+2025-01-10 17:58:45 [info]: GET /allCourses 304
+2025-01-10 17:58:46 [info]: GET /user-profile/67810f2370afb170374c983e 403
+2025-01-10 17:58:48 [info]: GET /user-profile/67810f2370afb170374c983e 403
+2025-01-10 17:58:52 [info]: GET /user-profile/67810f2370afb170374c983e 403
+2025-01-10 17:58:55 [info]: GET /user-profile/67810f2370afb170374c983e 403
+2025-01-10 17:58:55 [info]: GET /status 304
+2025-01-10 17:58:56 [info]: GET /user-profile/67810f2370afb170374c983e 403
+2025-01-10 17:58:56 [info]: GET /all-landing-page 304
+2025-01-10 17:58:56 [info]: GET /allCourses 304
+2025-01-10 18:02:18 [info]: GET /user-profile/67810f2370afb170374c983e 403
+2025-01-10 18:02:18 [info]: GET /status 304
+2025-01-10 18:02:18 [info]: GET /all-landing-page 304
+2025-01-10 18:02:19 [info]: GET /allCourses 304
+2025-01-10 18:02:22 [info]: GET /user-profile/67810f2370afb170374c983e 403
+2025-01-10 18:02:51 [info]: GET /user-profile/67810f2370afb170374c983e 403
+2025-01-10 18:02:51 [info]: GET /status 304
+2025-01-10 18:02:52 [info]: GET /all-landing-page 304
+2025-01-10 18:02:52 [info]: GET /allCourses 304
+2025-01-10 18:02:52 [info]: GET /user-profile/67810f2370afb170374c983e 403
+2025-01-10 18:03:01 [info]: GET /user-profile/67810f2370afb170374c983e 403
+2025-01-10 18:03:01 [info]: GET /status 304
+2025-01-10 18:03:01 [info]: GET /all-landing-page 304
+2025-01-10 18:03:02 [info]: GET /allCourses 304
+2025-01-10 18:03:16 [info]: GET /user-profile/67810f2370afb170374c983e 403
+2025-01-10 18:03:16 [info]: GET /status 304
+2025-01-10 18:03:17 [info]: GET /all-landing-page 304
+2025-01-10 18:03:17 [info]: GET /allCourses 304
+2025-01-10 18:03:30 [info]: GET /user-profile/67810f2370afb170374c983e 403
+2025-01-10 18:03:31 [info]: GET /status 304
+2025-01-10 18:03:31 [info]: GET /all-landing-page 304
+2025-01-10 18:03:31 [info]: GET /allCourses 304
+2025-01-10 18:03:33 [info]: GET /user-profile/67810f2370afb170374c983e 403
+2025-01-10 18:03:33 [info]: GET /status 304
+2025-01-10 18:03:34 [info]: GET /all-landing-page 304
+2025-01-10 18:03:34 [info]: GET /allCourses 304
+2025-01-10 18:03:35 [info]: GET /user-profile/67810f2370afb170374c983e 403
+2025-01-10 18:03:39 [info]: GET /user-profile/67810f2370afb170374c983e 403
+2025-01-10 18:03:41 [info]: GET /user-profile/67810f2370afb170374c983e 401
+2025-01-10 18:03:42 [info]: GET /user-profile/67810f2370afb170374c983e 403
+2025-01-10 18:03:43 [info]: GET /all-landing-page 304
+2025-01-10 18:03:43 [info]: GET /status 304
+2025-01-10 18:03:43 [info]: GET /allCourses 304
+2025-01-10 18:03:45 [info]: GET /get-user/67405d421a49e4a70bfd2d3b 404
+2025-01-10 18:03:45 [info]: GET /status 304
+2025-01-10 18:03:45 [info]: GET /all-landing-page 304
+2025-01-10 18:03:46 [info]: GET /allCourses 304
+2025-01-10 18:03:47 [info]: GET /get-user/67405d421a49e4a70bfd2d3b 404
+2025-01-10 18:03:50 [info]: GET /status 304
+2025-01-10 18:03:50 [info]: GET /all-landing-page 304
+2025-01-10 18:03:50 [info]: GET /allCourses 304
+2025-01-10 18:03:52 [info]: GET /get-user/67405d421a49e4a70bfd2d3b 404
+2025-01-10 18:03:57 [info]: GET /get-user/67405d421a49e4a70bfd2d3b 401
+2025-01-10 18:04:01 [info]: GET /status 304
+2025-01-10 18:04:01 [info]: GET /get-user/67405d421a49e4a70bfd2d3b 404
+2025-01-10 18:04:01 [info]: GET /all-landing-page 304
+2025-01-10 18:04:02 [info]: GET /allCourses 304
+2025-01-10 18:04:02 [info]: GET /get-user/67405d421a49e4a70bfd2d3b 404
+2025-01-10 18:04:04 [info]: GET /get-user/67405d421a49e4a70bfd2d3b 404
+2025-01-10 18:04:09 [info]: GET /get-user/67405d421a49e4a70bfd2d3b 404
+2025-01-10 18:06:01 [info]: GET /allCourses 500
+2025-01-10 18:06:01 [info]: GET /status 500
+2025-01-10 18:06:01 [info]: GET /get-user/67405d421a49e4a70bfd2d3b 500
+2025-01-10 18:06:01 [info]: GET /api/v1/landing-page/all-landing-page 500
+2025-01-10 18:06:58 [info]: GET /get-user/67405d421a49e4a70bfd2d3b 500
+2025-01-10 18:06:58 [info]: GET /status 200
+2025-01-10 18:06:58 [info]: GET /all-landing-page 200
+2025-01-10 18:06:58 [info]: GET /allCourses 200
+2025-01-10 18:06:59 [info]: GET /get-user/67405d421a49e4a70bfd2d3b 500
+2025-01-10 18:07:01 [info]: GET /get-user/67405d421a49e4a70bfd2d3b 500
+2025-01-10 18:07:05 [info]: GET /get-user/67405d421a49e4a70bfd2d3b 500
+2025-01-10 18:08:45 [info]: GET /get-user/67405d421a49e4a70bfd2d3b 500
+2025-01-10 18:08:45 [info]: GET /status 304
+2025-01-10 18:08:46 [info]: GET /all-landing-page 304
+2025-01-10 18:08:46 [info]: GET /allCourses 304
+2025-01-10 18:09:01 [info]: GET /get-user/67405d421a49e4a70bfd2d3b 500
+2025-01-10 18:09:01 [info]: GET /status 304
+2025-01-10 18:09:01 [info]: GET /all-landing-page 304
+2025-01-10 18:09:01 [info]: GET /allCourses 304
+2025-01-10 18:09:02 [info]: GET /get-user/67405d421a49e4a70bfd2d3b 500
+2025-01-10 18:09:04 [info]: GET /get-user/67405d421a49e4a70bfd2d3b 500
+2025-01-10 18:09:41 [info]: GET /get-user/undefined 401
+2025-01-10 18:09:41 [info]: GET /allCourses 401
+2025-01-10 18:09:41 [info]: GET /all-landing-page 401
+2025-01-10 18:09:41 [info]: GET /status 401
+2025-01-10 18:09:45 [info]: GET /get-user/67405d421a49e4a70bfd2d3b 500
+2025-01-10 18:09:45 [info]: GET /status 304
+2025-01-10 18:09:45 [info]: GET /all-landing-page 304
+2025-01-10 18:09:46 [info]: GET /allCourses 304
+2025-01-10 18:09:47 [info]: GET /get-user/67405d421a49e4a70bfd2d3b 500
+2025-01-10 18:09:55 [info]: GET /get-user/67405d421a49e4a70bfd2d3b 500
+2025-01-10 18:09:56 [info]: GET /status 304
+2025-01-10 18:09:56 [info]: GET /all-landing-page 304
+2025-01-10 18:09:57 [info]: GET /allCourses 304
+2025-01-10 18:12:06 [info]: GET /get-user/67405d421a49e4a70bfd2d3b 404
+2025-01-10 18:12:06 [info]: GET /status 304
+2025-01-10 18:12:07 [info]: GET /all-landing-page 304
+2025-01-10 18:12:07 [info]: GET /allCourses 304
+2025-01-10 18:12:07 [info]: GET /get-user/67405d421a49e4a70bfd2d3b 404
+2025-01-10 18:12:24 [info]: GET /get-user/67405d421a49e4a70bfd2d3b 404
+2025-01-10 18:12:24 [info]: GET /status 304
+2025-01-10 18:12:24 [info]: GET /all-landing-page 304
+2025-01-10 18:12:25 [info]: GET /allCourses 304
+2025-01-10 18:12:28 [info]: GET /get-user/67405d421a49e4a70bfd2d3b 404
+2025-01-10 18:13:39 [info]: GET /get-user/67405d421a49e4a70bfd2d3b 401
+2025-01-10 18:13:43 [info]: GET /get-user/67405d421a49e4a70bfd2d3b 404
+2025-01-10 18:13:43 [info]: GET /status 304
+2025-01-10 18:13:43 [info]: GET /all-landing-page 304
+2025-01-10 18:13:43 [info]: GET /allCourses 304
+2025-01-10 18:13:44 [info]: GET /get-user/67405d421a49e4a70bfd2d3b 404
+2025-01-10 18:15:24 [info]: GET /get-user/67405d421a49e4a70bfd2d3b 500
+2025-01-10 18:15:25 [info]: GET /status 304
+2025-01-10 18:15:25 [info]: GET /all-landing-page 304
+2025-01-10 18:15:26 [info]: GET /allCourses 304
+2025-01-10 18:15:28 [info]: GET /get-user/67405d421a49e4a70bfd2d3b 500
+2025-01-10 18:16:05 [info]: GET /status 304
+2025-01-10 18:16:05 [info]: GET /allCourses 304
+2025-01-10 18:16:05 [info]: GET /get-user/67405d421a49e4a70bfd2d3b 200
+2025-01-10 18:16:05 [info]: GET /all-landing-page 304
+2025-01-10 18:17:18 [info]: GET /status 304
+2025-01-10 18:17:19 [info]: GET /get-user/67405d421a49e4a70bfd2d3b 304
+2025-01-10 18:17:19 [info]: GET /all-landing-page 304
+2025-01-10 18:17:19 [info]: GET /allCourses 304
+2025-01-10 18:18:43 [info]: GET /status 304
+2025-01-10 18:18:43 [info]: GET /get-user/67405d421a49e4a70bfd2d3b 304
+2025-01-10 18:18:43 [info]: GET /all-landing-page 304
+2025-01-10 18:18:44 [info]: GET /allCourses 304
+2025-01-10 18:23:10 [info]: GET /status 304
+2025-01-10 18:23:11 [info]: GET /get-user/67405d421a49e4a70bfd2d3b 200
+2025-01-10 18:23:11 [info]: GET /all-landing-page 304
+2025-01-10 18:23:11 [info]: GET /allCourses 304
+2025-01-10 21:57:34 [info]: GET /user/programs 304
+2025-01-10 21:57:43 [info]: GET /user/programs 304
+2025-01-10 21:57:44 [info]: GET /all-landing-page 304
+2025-01-10 21:57:50 [info]: GET /status 304
+2025-01-10 21:57:51 [info]: GET /allCourses 304
+2025-01-10 21:57:52 [info]: GET /status 304
+2025-01-10 21:57:53 [info]: GET /get-user/67405d421a49e4a70bfd2d3b 304
+2025-01-10 21:57:56 [info]: GET /status 304
+2025-01-10 21:58:00 [info]: GET /all-landing-page 304
+2025-01-10 21:58:12 [info]: GET /allCourses 304
+2025-01-13 08:10:07 [info]: POST /login 200 - Request Body: {"email":"test1@gmail.com","password":"Test2024!"}
+2025-01-13 08:10:14 [info]: GET /user/programs 200
+2025-01-13 08:10:14 [info]: GET /status 200
+2025-01-13 08:11:05 [info]: GET /status 304
+2025-01-13 08:11:05 [info]: GET /get-user/67405d421a49e4a70bfd2d3b 200
+2025-01-13 08:11:05 [info]: GET /all-landing-page 200
+2025-01-13 08:11:05 [info]: GET /allCourses 200
+2025-01-13 08:11:19 [info]: GET /status 304
+2025-01-13 08:11:19 [info]: GET /all-landing-page 304
+2025-01-13 08:11:19 [info]: GET /get-user/67405d421a49e4a70bfd2d3b 304
+2025-01-13 08:11:19 [info]: GET /allCourses 304
+2025-01-13 08:11:50 [info]: GET /status 304
+2025-01-13 08:11:51 [info]: GET /get-user/67405d421a49e4a70bfd2d3b 304
+2025-01-13 08:11:51 [info]: GET /allCourses 304
+2025-01-13 08:11:51 [info]: GET /all-landing-page 304
+2025-01-13 08:21:40 [info]: GET /status 304
+2025-01-13 08:21:41 [info]: GET /get-user/67405d421a49e4a70bfd2d3b 304
+2025-01-13 08:21:41 [info]: GET /all-landing-page 304
+2025-01-13 08:21:41 [info]: GET /allCourses 304
+2025-01-13 08:24:20 [info]: GET /status 304
+2025-01-13 08:24:20 [info]: GET /all-landing-page 304
+2025-01-13 08:24:20 [info]: GET /get-user/67405d421a49e4a70bfd2d3b 304
+2025-01-13 08:24:20 [info]: GET /allCourses 304
+2025-01-13 08:24:40 [info]: GET /status 304
+2025-01-13 08:24:40 [info]: GET /all-landing-page 304
+2025-01-13 08:24:40 [info]: GET /get-user/67405d421a49e4a70bfd2d3b 304
+2025-01-13 08:24:40 [info]: GET /allCourses 304
+2025-01-13 08:26:37 [info]: GET /status 304
+2025-01-13 08:26:37 [info]: GET /all-landing-page 304
+2025-01-13 08:26:37 [info]: GET /get-user/67405d421a49e4a70bfd2d3b 304
+2025-01-13 08:26:38 [info]: GET /allCourses 304
+2025-01-13 08:26:52 [info]: GET /status 304
+2025-01-13 08:26:52 [info]: GET /get-user/67405d421a49e4a70bfd2d3b 304
+2025-01-13 08:26:52 [info]: GET /all-landing-page 304
+2025-01-13 08:26:52 [info]: GET /allCourses 304
+2025-01-13 09:17:00 [info]: GET /status 304
+2025-01-13 09:17:01 [info]: GET /allCourses 304
+2025-01-13 09:17:01 [info]: GET /all-landing-page 304
+2025-01-13 09:17:02 [info]: GET /get-user/67405d421a49e4a70bfd2d3b 304
+2025-01-13 09:17:20 [info]: PATCH /678110bc70afb170374c9881/move-to-ongoing 200
+2025-01-13 09:17:20 [info]: PATCH /678110bc70afb170374c9881/move-to-ongoing 200
+2025-01-13 09:17:21 [info]: GET /user/678110bc70afb170374c9881 200
+2025-01-13 09:17:29 [info]: GET /get-user/67405d421a49e4a70bfd2d3b 200
+2025-01-13 09:17:29 [info]: GET /allCourses 304
+2025-01-13 09:17:30 [info]: GET /status 200
+2025-01-13 09:17:31 [info]: GET /all-landing-page 304
+2025-01-13 09:17:36 [info]: GET /user/678144814efe65193e916e1d 200
+2025-01-13 09:17:37 [info]: PATCH /678144814efe65193e916e1d/move-to-ongoing 400
+2025-01-13 09:17:37 [info]: PATCH /678144814efe65193e916e1d/move-to-ongoing 400
+2025-01-13 09:17:48 [info]: GET /status 200
+2025-01-13 09:17:48 [info]: GET /all-landing-page 304
+2025-01-13 09:17:48 [info]: GET /get-user/67405d421a49e4a70bfd2d3b 200
+2025-01-13 09:17:48 [info]: GET /allCourses 304
+2025-01-13 09:18:22 [info]: GET /get-user/undefined 401
+2025-01-13 09:18:23 [info]: GET /allCourses 401
+2025-01-13 09:18:23 [info]: GET /all-landing-page 401
+2025-01-13 09:18:23 [info]: GET /status 401
+2025-01-13 09:18:24 [info]: GET /status 304
+2025-01-13 09:18:24 [info]: GET /get-user/67405d421a49e4a70bfd2d3b 304
+2025-01-13 09:18:24 [info]: GET /all-landing-page 304
+2025-01-13 09:18:24 [info]: GET /allCourses 304
+2025-01-13 09:18:54 [info]: GET /get-user/undefined 401
+2025-01-13 09:18:54 [info]: GET /all-landing-page 401
+2025-01-13 09:18:54 [info]: GET /status 401
+2025-01-13 09:18:54 [info]: GET /allCourses 401
+2025-01-13 09:20:19 [info]: GET /status 304
+2025-01-13 09:20:20 [info]: GET /get-user/67405d421a49e4a70bfd2d3b 304
+2025-01-13 09:20:20 [info]: GET /all-landing-page 304
+2025-01-13 09:20:20 [info]: GET /allCourses 304
+2025-01-13 09:23:46 [info]: GET /status 304
+2025-01-13 09:23:46 [info]: GET /get-user/67405d421a49e4a70bfd2d3b 304
+2025-01-13 09:23:46 [info]: GET /all-landing-page 304
+2025-01-13 09:23:47 [info]: GET /allCourses 304
+2025-01-13 09:23:51 [info]: GET /status 304
+2025-01-13 09:23:52 [info]: GET /get-user/67405d421a49e4a70bfd2d3b 304
+2025-01-13 09:23:52 [info]: GET /all-landing-page 304
+2025-01-13 09:23:52 [info]: GET /allCourses 304
+2025-01-13 09:25:28 [info]: GET /user/678144814efe65193e916e1d 304
+2025-01-13 09:26:12 [info]: GET /user/678144814efe65193e916e1d 304
+2025-01-13 09:26:17 [info]: GET /user/678144814efe65193e916e1d 304
+2025-01-13 09:29:26 [info]: GET /user/678144814efe65193e916e1d 304
+2025-01-13 09:29:39 [info]: GET /user/678144814efe65193e916e1d 304
+2025-01-13 09:29:42 [info]: GET /user/678144814efe65193e916e1d 304
+2025-01-13 09:29:51 [info]: GET /user/678144814efe65193e916e1d 304
+2025-01-13 09:29:52 [info]: GET /user/678144814efe65193e916e1d 304
+2025-01-13 09:30:15 [info]: GET /user/678144814efe65193e916e1d 304
+2025-01-13 09:30:15 [info]: GET /user/678144814efe65193e916e1d 304
+2025-01-13 09:32:02 [info]: GET /user/678144814efe65193e916e1d 304
+2025-01-13 09:33:47 [info]: GET /user/678144814efe65193e916e1d 304
+2025-01-13 09:33:59 [info]: GET /user/678144814efe65193e916e1d 304
+2025-01-13 09:34:27 [info]: GET /user/678144814efe65193e916e1d 304
+2025-01-13 09:34:49 [info]: GET /user/678144814efe65193e916e1d 304
+2025-01-13 09:35:43 [info]: GET /user/678144814efe65193e916e1d 304
+2025-01-13 09:35:47 [info]: GET /user/678144814efe65193e916e1d 304
+2025-01-13 09:35:58 [info]: GET /user/678144814efe65193e916e1d 304
+2025-01-13 09:39:13 [info]: GET /user/678144814efe65193e916e1d 304
+2025-01-13 09:54:03 [info]: GET /user/678144814efe65193e916e1d 200
+2025-01-13 09:54:09 [info]: GET /user/678144814efe65193e916e1d 304
+2025-01-13 09:54:34 [info]: GET /user/678144814efe65193e916e1d 304
+2025-01-13 09:54:42 [info]: GET /user/678144814efe65193e916e1d 304
+2025-01-13 09:55:05 [info]: GET /user/678144814efe65193e916e1d 304
+2025-01-13 09:55:27 [info]: GET /user/678144814efe65193e916e1d 304
+2025-01-13 09:55:43 [info]: GET /user/678144814efe65193e916e1d 304
+2025-01-13 09:56:17 [info]: GET /user/678144814efe65193e916e1d 304
+2025-01-13 09:59:40 [info]: GET /user/678144814efe65193e916e1d 304
+2025-01-13 10:00:06 [info]: GET /user/null 401
+2025-01-13 10:00:13 [info]: GET /user/null 500
+2025-01-13 10:00:15 [info]: GET /user/null 500
+2025-01-13 10:00:17 [info]: GET /user/programs 304
+2025-01-13 10:00:17 [info]: GET /status 304
+2025-01-13 10:00:21 [info]: GET /user/null 500
+2025-01-13 10:00:23 [info]: GET /user/null 500
+2025-01-13 10:00:25 [info]: GET /user/null 500
+2025-01-13 10:00:29 [info]: GET /user/null 500
+2025-01-13 10:00:47 [info]: GET /get-user/undefined 401
+2025-01-13 10:00:47 [info]: GET /allCourses 401
+2025-01-13 10:00:47 [info]: GET /all-landing-page 401
+2025-01-13 10:00:47 [info]: GET /status 401
+2025-01-13 10:00:49 [info]: GET /status 304
+2025-01-13 10:00:49 [info]: GET /all-landing-page 304
+2025-01-13 10:00:49 [info]: GET /get-user/67405d421a49e4a70bfd2d3b 304
+2025-01-13 10:00:49 [info]: GET /allCourses 304
+2025-01-13 10:01:56 [info]: GET /user/6781478167ae0d45375fe1e7 200
+2025-01-13 10:01:56 [info]: PATCH /6781478167ae0d45375fe1e7/move-to-ongoing 200
+2025-01-13 10:01:56 [info]: PATCH /6781478167ae0d45375fe1e7/move-to-ongoing 200
+2025-01-13 10:02:00 [info]: GET /status 200
+2025-01-13 10:02:01 [info]: GET /all-landing-page 304
+2025-01-13 10:02:01 [info]: GET /get-user/67405d421a49e4a70bfd2d3b 200
+2025-01-13 10:02:01 [info]: GET /allCourses 304
+2025-01-13 10:02:13 [info]: GET /status 304
+2025-01-13 10:02:14 [info]: GET /get-user/67405d421a49e4a70bfd2d3b 304
+2025-01-13 10:02:14 [info]: GET /all-landing-page 304
+2025-01-13 10:02:14 [info]: GET /allCourses 304
+2025-01-13 10:03:38 [info]: GET /user/678144814efe65193e916e1d 304
+2025-01-13 12:28:00 [info]: GET /user/678144814efe65193e916e1d 304
+2025-01-13 12:34:14 [info]: GET /user/678144814efe65193e916e1d 304
+2025-01-13 12:34:42 [info]: GET /get-user/undefined 401
+2025-01-13 12:34:42 [info]: GET /allCourses 401
+2025-01-13 12:34:42 [info]: GET /all-landing-page 401
+2025-01-13 12:34:42 [info]: GET /status 401
+2025-01-13 12:34:44 [info]: GET /allCourses 304
+2025-01-13 12:34:45 [info]: GET /all-landing-page 304
+2025-01-13 12:34:45 [info]: GET /status 304
+2025-01-13 12:34:46 [info]: GET /get-user/67405d421a49e4a70bfd2d3b 304
+2025-01-13 12:34:53 [info]: GET /user/678144814efe65193e916e1d 304
+2025-01-13 12:35:39 [info]: GET /user/678144814efe65193e916e1d 304
+2025-01-13 12:35:55 [info]: GET /user/678144814efe65193e916e1d 304
+2025-01-13 12:36:08 [info]: GET /user/678144814efe65193e916e1d 304
+2025-01-13 12:36:36 [info]: GET /user/678144814efe65193e916e1d 304
+2025-01-13 12:36:52 [info]: GET /user/678144814efe65193e916e1d 304
+2025-01-13 12:37:28 [info]: GET /user/678144814efe65193e916e1d 401
+2025-01-13 12:37:55 [info]: GET /user/678144814efe65193e916e1d 304
+2025-01-13 12:37:56 [info]: GET /user/678144814efe65193e916e1d 304
+2025-01-13 12:38:10 [info]: GET /user/678144814efe65193e916e1d 304
+2025-01-13 12:38:10 [info]: GET /user/678144814efe65193e916e1d 304
+2025-01-13 12:38:24 [info]: GET /user/678144814efe65193e916e1d 304
+2025-01-13 12:38:39 [info]: GET /user/678144814efe65193e916e1d 304
+2025-01-13 12:41:12 [info]: GET /user/678144814efe65193e916e1d 304
+2025-01-13 12:41:49 [info]: GET /user/678144814efe65193e916e1d 304
+2025-01-13 12:43:37 [info]: GET /user/678144814efe65193e916e1d 304
+2025-01-13 12:43:51 [info]: GET /user/678144814efe65193e916e1d 304
+2025-01-13 12:44:32 [info]: GET /user/678144814efe65193e916e1d 304
+2025-01-13 12:50:33 [info]: GET /user/678144814efe65193e916e1d 304
+2025-01-13 12:50:44 [info]: POST /make-payment 404
+2025-01-13 12:51:31 [info]: GET /user/678144814efe65193e916e1d 304
+2025-01-13 12:51:39 [info]: POST /make-payment 404
+2025-01-13 12:52:13 [info]: GET /user/678144814efe65193e916e1d 304
+2025-01-13 12:52:54 [info]: GET /user/678144814efe65193e916e1d 304
+2025-01-13 12:52:55 [info]: GET /user/678144814efe65193e916e1d 304
+2025-01-13 12:53:09 [info]: GET /user/678144814efe65193e916e1d 304
+2025-01-13 12:53:18 [info]: GET /user/678144814efe65193e916e1d 304
+2025-01-13 12:53:46 [info]: GET /user/678144814efe65193e916e1d 304
+2025-01-13 12:53:49 [info]: GET /user/678144814efe65193e916e1d 304
+2025-01-13 12:53:55 [info]: POST /make-payment 200 - Request Body: {"courseId":"678144814efe65193e916e1d","amount":2000}
+2025-01-13 12:57:53 [info]: GET /user/678144814efe65193e916e1d 304
+2025-01-13 12:58:58 [info]: GET /user/678144814efe65193e916e1d 304
+2025-01-13 12:59:06 [info]: POST /make-payment 200 - Request Body: {"courseId":"678144814efe65193e916e1d","amount":2000}
+2025-01-13 13:03:06 [info]: GET /user/678144814efe65193e916e1d 304
+2025-01-13 13:03:20 [info]: GET /user/678144814efe65193e916e1d 304
+2025-01-13 13:03:40 [info]: GET /user/678144814efe65193e916e1d 304
+2025-01-13 13:03:40 [info]: GET /user/678144814efe65193e916e1d 304
+2025-01-13 13:03:45 [info]: GET /user/678144814efe65193e916e1d 304
+2025-01-13 13:03:58 [info]: GET /user/678144814efe65193e916e1d 304
+2025-01-13 13:04:27 [info]: GET /user/678144814efe65193e916e1d 304
+2025-01-13 13:04:32 [info]: GET /user/678144814efe65193e916e1d 304
+2025-01-13 13:04:53 [info]: GET /user/678144814efe65193e916e1d 304
+2025-01-13 13:04:57 [info]: GET /user/678144814efe65193e916e1d 304
+2025-01-13 13:05:24 [info]: POST /make-payment 200 - Request Body: {"courseId":"678144814efe65193e916e1d","amount":2000}
+2025-01-13 13:10:08 [info]: GET /get-user/undefined 401
+2025-01-13 13:10:08 [info]: GET /status 401
+2025-01-13 13:10:08 [info]: GET /all-landing-page 401
+2025-01-13 13:10:08 [info]: GET /allCourses 401
+2025-01-13 13:45:55 [info]: GET /status 304
+2025-01-13 13:45:56 [info]: GET /get-user/67405d421a49e4a70bfd2d3b 200
+2025-01-13 13:45:56 [info]: GET /all-landing-page 304
+2025-01-13 13:45:56 [info]: GET /allCourses 200
+2025-01-13 13:46:32 [info]: GET /user/678144814efe65193e916e1d 304
+2025-01-13 13:46:55 [info]: POST /make-payment 200 - Request Body: {"courseId":"678144814efe65193e916e1d","amount":2000}
+2025-01-13 13:48:39 [info]: GET /get-user/undefined 401
+2025-01-13 13:48:39 [info]: GET /all-landing-page 401
+2025-01-13 13:48:39 [info]: GET /allCourses 401
+2025-01-13 13:48:39 [info]: GET /status 401
+2025-01-13 14:07:05 [info]: GET /status 304
+2025-01-13 14:07:05 [info]: GET /get-user/67405d421a49e4a70bfd2d3b 200
+2025-01-13 14:07:06 [info]: GET /all-landing-page 304
+2025-01-13 14:07:06 [info]: GET /allCourses 304
+2025-01-13 14:07:26 [info]: GET /user/678144814efe65193e916e1d 304
+2025-01-13 14:07:31 [info]: POST /make-payment 200 - Request Body: {"courseId":"678144814efe65193e916e1d","amount":2000}
+2025-01-13 15:06:52 [info]: GET /get-user/undefined 401
+2025-01-13 15:07:01 [info]: GET /status 401
+2025-01-13 15:07:01 [info]: GET /all-landing-page 401
+2025-01-13 15:07:01 [info]: GET /allCourses 401
+2025-01-13 15:11:48 [info]: GET /get-user/6734bd795f604ef68c0f4984 404
+2025-01-13 15:11:48 [info]: GET /status 404
+2025-01-13 15:11:48 [info]: GET /all-landing-page 304
+2025-01-13 15:11:49 [info]: GET /allCourses 200
+2025-01-13 15:12:26 [info]: GET /get-user/6734bd795f604ef68c0f4984 404
+2025-01-13 15:12:26 [info]: GET /status 404
+2025-01-13 15:12:26 [info]: GET /all-landing-page 304
+2025-01-13 15:12:26 [info]: GET /allCourses 304
+2025-01-13 15:12:30 [info]: GET /get-user/6734bd795f604ef68c0f4984 404
+2025-01-13 15:12:30 [info]: GET /status 404
+2025-01-13 15:13:47 [info]: GET /get-user/6734bd795f604ef68c0f4984 404
+2025-01-13 15:13:47 [info]: GET /status 404
+2025-01-13 15:13:47 [info]: GET /all-landing-page 304
+2025-01-13 15:13:47 [info]: GET /allCourses 304
+2025-01-13 15:13:48 [info]: GET /get-user/6734bd795f604ef68c0f4984 404
+2025-01-13 15:13:48 [info]: GET /status 404
+2025-01-13 15:13:50 [info]: GET /get-user/6734bd795f604ef68c0f4984 404
+2025-01-13 15:13:50 [info]: GET /status 404
+2025-01-13 15:16:51 [info]: GET /status 404
+2025-01-13 15:16:51 [info]: GET /get-user/6734bd795f604ef68c0f4984 404
+2025-01-13 15:16:52 [info]: GET /all-landing-page 304
+2025-01-13 15:16:52 [info]: GET /allCourses 304
+2025-01-13 15:17:19 [info]: GET /get-user/6734bd795f604ef68c0f4984 404
+2025-01-13 15:17:19 [info]: GET /status 404
+2025-01-13 15:17:19 [info]: GET /all-landing-page 304
+2025-01-13 15:17:20 [info]: GET /allCourses 304
+2025-01-13 15:17:20 [info]: GET /get-user/6734bd795f604ef68c0f4984 404
+2025-01-13 15:17:20 [info]: GET /status 404
+2025-01-13 15:17:22 [info]: GET /get-user/6734bd795f604ef68c0f4984 404
+2025-01-13 15:17:22 [info]: GET /status 404
+2025-01-13 15:17:27 [info]: GET /get-user/6734bd795f604ef68c0f4984 404
+2025-01-13 15:17:27 [info]: GET /status 404
+2025-01-13 15:17:49 [info]: GET /status 404
+2025-01-13 15:17:49 [info]: GET /get-user/6734bd795f604ef68c0f4984 404
+2025-01-13 15:17:49 [info]: GET /all-landing-page 304
+2025-01-13 15:17:50 [info]: GET /allCourses 304
+2025-01-13 15:17:50 [info]: GET /status 404
+2025-01-13 15:17:50 [info]: GET /get-user/6734bd795f604ef68c0f4984 404
+2025-01-13 15:17:52 [info]: GET /get-user/6734bd795f604ef68c0f4984 404
+2025-01-13 15:17:52 [info]: GET /status 404
+2025-01-13 15:17:57 [info]: GET /status 404
+2025-01-13 15:17:57 [info]: GET /get-user/6734bd795f604ef68c0f4984 404
+2025-01-13 15:19:21 [info]: GET /status 404
+2025-01-13 15:19:21 [info]: GET /get-user/6734bd795f604ef68c0f4984 404
+2025-01-13 15:19:22 [info]: GET /all-landing-page 304
+2025-01-13 15:19:22 [info]: GET /allCourses 304
+2025-01-13 15:19:23 [info]: GET /status 404
+2025-01-13 15:19:23 [info]: GET /get-user/6734bd795f604ef68c0f4984 404
+2025-01-13 15:19:25 [info]: GET /get-user/6734bd795f604ef68c0f4984 404
+2025-01-13 15:19:25 [info]: GET /status 404
+2025-01-13 15:19:29 [info]: GET /status 404
+2025-01-13 15:19:29 [info]: GET /get-user/6734bd795f604ef68c0f4984 404
+2025-01-13 15:20:16 [info]: GET /get-user/undefined 401
+2025-01-13 15:20:16 [info]: GET /allCourses 401
+2025-01-13 15:20:16 [info]: GET /all-landing-page 401
+2025-01-13 15:20:16 [info]: GET /status 401
+2025-01-13 15:22:41 [info]: GET /status 404
+2025-01-13 15:22:41 [info]: GET /get-user/6734bd795f604ef68c0f4984 404
+2025-01-13 15:22:41 [info]: GET /all-landing-page 304
+2025-01-13 15:22:42 [info]: GET /allCourses 304
+2025-01-13 16:53:01 [info]: GET /allCourses 401
+2025-01-13 16:53:01 [info]: GET /get-user/undefined 401
+2025-01-13 16:53:01 [info]: GET /all-landing-page 401
+2025-01-13 16:53:01 [info]: GET /status 401
+2025-01-13 16:53:02 [info]: GET /status 404
+2025-01-13 16:53:02 [info]: GET /get-user/6734bd795f604ef68c0f4984 404
+2025-01-13 16:53:03 [info]: GET /all-landing-page 200
+2025-01-13 16:53:03 [info]: GET /allCourses 200
+2025-01-13 16:53:05 [info]: GET /status 404
+2025-01-13 16:53:05 [info]: GET /get-user/6734bd795f604ef68c0f4984 404
+2025-01-13 16:53:09 [info]: GET /status 404
+2025-01-13 16:53:09 [info]: GET /get-user/6734bd795f604ef68c0f4984 404
+2025-01-13 16:54:40 [info]: GET /get-user/6734bd795f604ef68c0f4984 404
+2025-01-13 16:54:40 [info]: GET /status 404
+2025-01-13 16:54:42 [info]: GET /all-landing-page 304
+2025-01-13 16:54:42 [info]: GET /get-user/6734bd795f604ef68c0f4984 404
+2025-01-13 16:54:42 [info]: GET /status 404
+2025-01-13 16:54:42 [info]: GET /allCourses 304
+2025-01-13 16:54:44 [info]: GET /get-user/6734bd795f604ef68c0f4984 404
+2025-01-13 16:54:44 [info]: GET /status 404
+2025-01-13 16:54:50 [info]: GET /status 404
+2025-01-13 16:54:50 [info]: GET /get-user/6734bd795f604ef68c0f4984 404
+2025-01-13 16:54:50 [info]: GET /all-landing-page 304
+2025-01-13 16:54:51 [info]: GET /allCourses 304
+2025-01-13 16:55:41 [info]: GET /get-user/undefined 401
+2025-01-13 16:55:41 [info]: GET /allCourses 401
+2025-01-13 16:55:41 [info]: GET /all-landing-page 401
+2025-01-13 16:55:41 [info]: GET /status 401
+2025-01-13 16:55:53 [info]: GET /get-user/undefined 401
+2025-01-13 16:55:54 [info]: GET /status 401
+2025-01-13 16:55:54 [info]: GET /allCourses 401
+2025-01-13 16:55:54 [info]: GET /all-landing-page 401
+2025-01-13 16:55:57 [info]: GET /get-user/undefined 401
+2025-01-13 16:55:57 [info]: GET /status 401
+2025-01-13 16:55:57 [info]: GET /allCourses 401
+2025-01-13 16:55:57 [info]: GET /all-landing-page 401
+2025-01-13 16:56:01 [info]: GET /get-user/undefined 401
+2025-01-13 16:56:01 [info]: GET /status 401
+2025-01-13 16:56:01 [info]: GET /allCourses 401
+2025-01-13 16:56:02 [info]: GET /all-landing-page 401
+2025-01-13 16:57:12 [info]: POST /login 200 - Request Body: {"email":"test1@gmail.com","password":"Test2024!"}
+2025-01-13 16:57:25 [info]: GET /user/programs 200
+2025-01-13 16:57:26 [info]: GET /status 200
+2025-01-13 16:57:33 [info]: GET /status 304
+2025-01-13 16:57:33 [info]: GET /get-user/67405d421a49e4a70bfd2d3b 200
+2025-01-13 16:57:33 [info]: GET /all-landing-page 304
+2025-01-13 16:57:33 [info]: GET /allCourses 304
+2025-01-13 16:57:52 [info]: GET /user/678144814efe65193e916e1d 200
+2025-01-13 16:58:34 [info]: POST /make-payment 200 - Request Body: {"courseId":"678144814efe65193e916e1d","amount":2000}
+2025-01-13 17:25:48 [info]: POST /login 200 - Request Body: {"email":"test1@gmail.com","password":"Test2024!"}
+2025-01-13 17:26:46 [info]: GET /user/programs 200
+2025-01-13 17:26:47 [info]: GET /status 200
+2025-01-13 17:27:01 [info]: GET /user/programs 304
+2025-01-13 17:27:01 [info]: GET /status 304
+2025-01-13 17:27:43 [info]: GET /status 304
+2025-01-13 17:27:43 [info]: GET /all-landing-page 200
+2025-01-13 17:27:43 [info]: GET /get-user/67405d421a49e4a70bfd2d3b 200
+2025-01-13 17:27:43 [info]: GET /allCourses 200
+2025-01-13 17:27:57 [info]: GET /user/678144814efe65193e916e1d 200
+2025-01-13 17:28:12 [info]: POST /make-payment 200 - Request Body: {"courseId":"678144814efe65193e916e1d","amount":2000}
+2025-01-13 22:09:04 [info]: GET /get-user/undefined 401
+2025-01-13 22:09:09 [info]: GET /allCourses 401
+2025-01-13 22:09:09 [info]: GET /all-landing-page 401
+2025-01-13 22:09:09 [info]: GET /status 401
+2025-01-13 22:13:28 [info]: GET /get-user/6734bd795f604ef68c0f4984 404
+2025-01-13 22:13:29 [info]: GET /status 404
+2025-01-13 22:13:30 [info]: GET /get-user/6734bd795f604ef68c0f4984 404
+2025-01-13 22:13:30 [info]: GET /all-landing-page 304
+2025-01-13 22:13:30 [info]: GET /status 404
+2025-01-13 22:13:31 [info]: GET /allCourses 304
+2025-01-13 22:13:32 [info]: GET /get-user/6734bd795f604ef68c0f4984 404
+2025-01-13 22:13:54 [info]: GET /get-user/undefined 401
+2025-01-13 22:13:54 [info]: GET /allCourses 401
+2025-01-13 22:13:54 [info]: GET /all-landing-page 401
+2025-01-13 22:13:54 [info]: GET /status 401
+2025-01-13 22:13:56 [info]: GET /get-user/6734bd795f604ef68c0f4984 404
+2025-01-13 22:13:56 [info]: GET /status 404
+2025-01-13 22:13:59 [info]: GET /all-landing-page 304
+2025-01-13 22:14:01 [info]: GET /status 404
+2025-01-13 22:14:01 [info]: GET /get-user/6734bd795f604ef68c0f4984 404
+2025-01-13 22:14:05 [info]: GET /allCourses 304
+2025-01-13 22:14:05 [info]: GET /status 404
+2025-01-13 22:14:08 [info]: GET /get-user/6734bd795f604ef68c0f4984 404
+2025-01-13 22:17:04 [info]: POST /login 200 - Request Body: {"email":"test1@gmail.com","password":"Test2024!"}
+2025-01-13 22:17:07 [info]: GET /user/programs 304
+2025-01-13 22:17:07 [info]: GET /status 200
+2025-01-13 22:19:00 [info]: GET /user/programs 304
+2025-01-13 22:19:00 [info]: GET /status 304
+2025-01-13 22:19:12 [info]: GET /status 304
+2025-01-13 22:19:13 [info]: GET /get-user/67405d421a49e4a70bfd2d3b 200
+2025-01-13 22:19:13 [info]: GET /all-landing-page 304
+2025-01-13 22:19:13 [info]: GET /allCourses 304
+2025-01-13 22:23:28 [info]: GET /status 304
+2025-01-13 22:23:55 [info]: POST //api/v1/payments/verify-payment/null 404 - Request Body: {"transaction_id":null}
+2025-01-13 22:23:55 [info]: POST //api/v1/payments/verify-payment/null 404 - Request Body: {"transaction_id":null}
+2025-01-17 15:28:00 [info]: POST /login 200 - Request Body: {"email":"seunoduez@gmail.com","password":"Timpearl05$$$"}
+2025-01-17 15:35:03 [info]: PUT /general-learner-term 200 - Request Body: {"generalLearnerTerm":"user"}
+2025-01-17 15:38:38 [info]: PUT /general-learner-group-term 200 - Request Body: {"generalLearnerGroupTerm":"group"}
+2025-01-17 15:39:48 [info]: PUT /general-sublearner-group-term 200 - Request Body: {"generalSubLearnerGroupTerm":"cohort"}
+2025-01-17 15:40:25 [info]: PUT /general-instructor-term 200 - Request Body: {"generalInstructorTerm":"facilitator"}
+2025-01-17 15:40:38 [info]: POST /login 200 - Request Body: {"email":"seunoduez@gmail.com","password":"Timpearl05$$$"}

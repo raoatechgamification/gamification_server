@@ -18,7 +18,7 @@ const router = Router();
 router.post(
   "/",
   authenticate,
-  authorize("admin"),
+  authorize(["admin"]),
   upload.array("file", 10),
   generateCertificate
 )
@@ -26,7 +26,7 @@ router.post(
 router.put(
   "/:id",
   authenticate,
-  authorize("admin"),
+  authorize(["admin"]),
   upload.array("file", 10),
   editCertificate
 )
@@ -46,7 +46,7 @@ router.get(
 router.get(
   "/",
   authenticate,
-  authorize("admin"),
+  authorize(["admin"]),
   getAllCertificates
 )
 

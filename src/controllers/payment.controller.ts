@@ -1,12 +1,10 @@
-import { Request, Response, NextFunction } from "express";
-import PaymentService from "../services/payment.service";
-import User from "../models/user.model";
-import Course, { ICourse } from "../models/course.model";
-import Bill, { BillDocument } from "../models/bill.model";
-import AssignedBill from "../models/assignedBill.model";
-import Payment from "../models/payment.model";
-import { ResponseHandler } from "../middlewares/responseHandler.middleware";
 import dotenv from "dotenv";
+import { Request, Response } from "express";
+import { ResponseHandler } from "../middlewares/responseHandler.middleware";
+import Course from "../models/course.model";
+import Payment from "../models/payment.model";
+import User from "../models/user.model";
+import PaymentService from "../services/payment.service";
 dotenv.config();
 
 class PaymentController {
@@ -22,17 +20,27 @@ class PaymentController {
       const { assignedBillId } = req.params;
 
       if (!user.assignedPrograms) {
-        return ResponseHandler.failure(res, "No assigned programs found for the user", 404);
+        return ResponseHandler.failure(
+          res,
+          "No assigned programs found for the user",
+          404
+        );
       }
 
       const assignedBill = user.assignedPrograms.find(
-        (program) => program._id?.toString() === assignedBillId && program.status === "unpaid"
+        (program) =>
+          program._id?.toString() === assignedBillId &&
+          program.status === "unpaid"
       );
 
       if (!assignedBill) {
-        return ResponseHandler.failure(res, "No matching unpaid assigned bill found", 404);
+        return ResponseHandler.failure(
+          res,
+          "No matching unpaid assigned bill found",
+          404
+        );
       }
-      
+
       const { courseId, amount } = assignedBill;
 
       const course = await Course.findOne({ _id: courseId });
@@ -64,6 +72,61 @@ class PaymentController {
         { _id: userId, "assignedPrograms._id": assignedBillId },
         { $set: { "assignedPrograms.$.status": "pending" } }
       );
+
+      return ResponseHandler.success(
+        res,
+        paymentResult,
+        "Payment link created"
+      );
+    } catch (error: any) {
+      return ResponseHandler.failure(
+        res,
+        `Server error: ${error.message}`,
+        500
+      );
+    }
+  }
+
+  async processPayment2(req: Request, res: Response) {
+    try {
+      const userId = req.user.id;
+
+      const user = await User.findOne({ _id: userId });
+      if (!user) {
+        return ResponseHandler.failure(res, "User not found", 404);
+      }
+
+      const { courseId, amount } = req.body;
+      console.log(courseId, amount);
+
+      const course = await Course.findOne({ _id: courseId });
+      if (!course) {
+        return ResponseHandler.failure(res, "Course not found", 404);
+      }
+
+      const reference = `TX-${userId}-${Date.now()}`;
+
+      const paymentPayload = {
+        reference,
+        userId,
+        billId: courseId,
+        email: user.email,
+        amount,
+      };
+
+      const paymentResult = await PaymentService.processPayment(paymentPayload);
+
+      await Payment.create({
+        userId,
+        courseId,
+        status: "pending",
+        reference,
+      });
+
+      // await User.updateOne(
+      //   { _id: userId, "assignedPrograms._id": assignedBillId },
+      //   { $set: { "assignedPrograms.$.status": "pending" } }
+      // );
 
       return ResponseHandler.success(
         res,
@@ -125,24 +188,28 @@ class PaymentController {
 
   async paymentWebhook(req: Request, res: Response) {
     try {
-      const flutterwaveVerifHash = req.headers["verif-hash"];
-      const secretHash = process.env.FLUTTERWAVE_SECRET_HASH;
+      console.log(12);
+      // const flutterwaveVerifHash = req.headers["verif-hash"];
+      // const secretHash = process.env.FLUTTERWAVE_SECRET_HASH;
 
-      if (flutterwaveVerifHash !== secretHash) {
-        console.log("Hash mismatch - Unauthorized request");
-        return res.status(403).json({ message: "Invalid signature" });
-      }
+      // if (flutterwaveVerifHash !== secretHash) {
+      //   console.log("Hash mismatch - Unauthorized request");
+      //   return res.status(403).json({ message: "Invalid signature" });
+      // }
 
       const data = req.body;
       console.log("Webhook received with data (request body)", data);
+      console.log(data.data.status, "status before if statement");
+      if (data.data.status === "successful") {
+        const { tx_ref } = data.data;
+        console.log(tx_ref, "tx_ref");
 
-      if (data.status === "successful") {
-        const { txRef } = data
-        console.log("Transaction reference:", data.txRef);
+        console.log("Transaction reference:", tx_ref);
 
         // Retrieve the payment using the correct reference key
-        const payment = await Payment.findOne({ reference: txRef });
+        const payment = await Payment.findOne({ reference: tx_ref });
 
+        console.log(payment, "payment");
         if (payment) {
           const { userId, assignedBillId, courseId } = payment;
 
@@ -153,8 +220,8 @@ class PaymentController {
           );
 
           await User.updateOne(
-            { _id: userId, "assignedPrograms._id": assignedBillId },
-            { $set: { "assignedPrograms.$.status": "paid" } }
+            { _id: userId },
+            { $push: { purchasedCourses: courseId } }
           );
 
           await Course.updateOne(
@@ -164,10 +231,10 @@ class PaymentController {
 
           console.log("Payment successful and completed");
         }
-      } else if (data.status === "failed") {
-        const { txRef } = data;
+      } else if (data.data.status === "failed") {
+        const { tx_ref } = data.data;
 
-        const payment = await Payment.findOne({ reference: data.txRef });
+        const payment = await Payment.findOne({ reference: data.data.tx_ref });
 
         if (payment) {
           await Payment.updateOne(

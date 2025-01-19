@@ -1,4 +1,4 @@
-import mongoose, { Schema, Document, Model } from "mongoose";
+import mongoose, { Document, Model, Schema } from "mongoose";
 import { ICourse } from "../models/course.model";
 
 export interface IOngoingProgram {
@@ -30,7 +30,9 @@ export interface IUser extends Document {
   groups?: mongoose.Schema.Types.ObjectId[];
   subLearnerGroups?: mongoose.Schema.Types.ObjectId[];
   organizationId?: mongoose.Schema.Types.ObjectId;
+  purchasedCourses?: mongoose.Schema.Types.ObjectId[];
   role: string;
+  specialRole?: string;
   password: string;
   batch?: string;
   userType?: string;
@@ -68,12 +70,11 @@ export interface IUser extends Document {
       [lessonId: string]: number;
     };
   };
-  contactPersonPlaceOfEmployment?: string,
-  nameOfContactPerson?: string,
-  contactEmail?: string,
-  contactPersonPhoneNumber?: string,
-
-
+  contactPersonPlaceOfEmployment?: string;
+  nameOfContactPerson?: string;
+  contactEmail?: string;
+  contactPersonPhoneNumber?: string;
+  purchasedPrograms?: mongoose.Schema.Types.ObjectId[];
 }
 
 const AssignedProgramSchema = new Schema<IAssignedProgram>(
@@ -128,7 +129,7 @@ const UserSchema: Schema<IUser> = new Schema(
     nameOfContactPerson: { type: String, default: null },
     contactEmail: { type: String, default: null },
     contactPersonPhoneNumber: { type: String, default: null },
-    
+    purchasedCourses: [{ type: mongoose.Schema.Types.ObjectId, default: [] }],
     assignedPrograms: {
       type: [AssignedProgramSchema],
       default: [],
@@ -149,6 +150,7 @@ const UserSchema: Schema<IUser> = new Schema(
           lessons: { type: Array, default: [] },
           assignedLearnersIds: { type: [mongoose.Types.ObjectId], default: [] },
           assessments: { type: [mongoose.Types.ObjectId], default: [] },
+          cost: { type: Number },
           duration: { type: String },
           courseCode: { type: String },
           courseImage: { type: Array, default: [] },
@@ -179,6 +181,7 @@ const UserSchema: Schema<IUser> = new Schema(
           lessons: { type: Array, default: [] },
           assignedLearnersIds: { type: [mongoose.Types.ObjectId], default: [] },
           assessments: { type: [mongoose.Types.ObjectId], default: [] },
+          cost: { type: Number },
           duration: { type: String },
           courseCode: { type: String },
           courseImage: { type: Array, default: [] },
@@ -209,6 +212,7 @@ const UserSchema: Schema<IUser> = new Schema(
           lessons: { type: Array, default: [] },
           assignedLearnersIds: { type: [mongoose.Types.ObjectId], default: [] },
           assessments: { type: [mongoose.Types.ObjectId], default: [] },
+          cost: { type: Number },
           duration: { type: String },
           courseCode: { type: String },
           courseImage: { type: Array, default: [] },

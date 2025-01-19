@@ -1281,7 +1281,7 @@ class ObjectAssessmentController {
 
         if (!isAlreadyCompleted) {
           const completedProgram = { ...ongoingProgram.course };
-          delete completedProgram.assignedLearnersIds;
+          delete completedProgram.assignedLearnerIds;
           delete completedProgram.learnerIds;
 
           await User.updateOne(

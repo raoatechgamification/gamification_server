@@ -347,7 +347,7 @@ export class GroupController {
       }
   
       const sanitizedCourse = { ...course };
-      delete sanitizedCourse.assignedLearnersIds;
+      delete sanitizedCourse.assignedLearnerIds;
       delete sanitizedCourse.learnerIds;
   
       // Initialize program fields for users without them

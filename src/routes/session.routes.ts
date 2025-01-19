@@ -17,7 +17,7 @@ const router = Router();
 router.post(
   "/",
   authenticate,
-  authorize("admin"),
+  authorize(["admin"]),
   ...createOrEditSessionValidator,
   createSession
 );
@@ -25,7 +25,7 @@ router.post(
 router.put(
   "/:sessionId",
   authenticate,
-  authorize("admin"),
+  authorize(["admin"]),
   ...createOrEditSessionValidator,
   editSession
 );
@@ -40,14 +40,14 @@ router.get(
 router.get(
   "/",
   authenticate, 
-  authorize("admin"), 
+  authorize(["admin"]), 
   viewAllSessions
 );
 
 router.delete(
   "/:sessionId",
   authenticate, 
-  authorize("admin"),
+  authorize(["admin"]),
   ...sessionIdValidator,
   deleteSession
 )
