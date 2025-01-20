@@ -1,6 +1,7 @@
 import mongoose, { Schema, Document, Model } from "mongoose";
 
 export interface ISubGroup {
+  _id: mongoose.Schema.Types.ObjectId; // Add this line
   name: string;
   members: mongoose.Schema.Types.ObjectId[];
 }

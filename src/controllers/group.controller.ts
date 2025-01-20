@@ -426,7 +426,144 @@ export class GroupController {
     }
   }  
 
+  // async addUsersToGroup(req: Request, res: Response) {
+  //   try {
+  //     const { groupId, subGroupId } = req.params; // Extract groupId and subGroupId from the request
+  //     const { userIds } = req.body;
+  //     const organizationId = req.admin._id;
+  
+  //     // Find the group by its ID
+  //     const group = await Group.findById(groupId);
+  //     if (!group) {
+  //       return ResponseHandler.failure(res, "Group not found", 404);
+  //     }
+  
+  //     // Find the users by their IDs and ensure they belong to the same organization
+  //     const users = await User.find({
+  //       _id: { $in: userIds },
+  //       organizationId,
+  //     });
+  
+  //     // Check if some users do not belong to the organization
+  //     if (users.length !== userIds.length) {
+  //       return ResponseHandler.failure(
+  //         res,
+  //         "Some users do not belong to this organization",
+  //         400
+  //       );
+  //     }
+  
+  //     if (subGroupId) {
+  //       // If a subGroupId is provided, validate the subgroup
+  //       const subGroup = group.subGroups.find((sub) => sub._id?.toString() === subGroupId);
+  
+  //       if (!subGroup) {
+  //         return ResponseHandler.failure(res, "Subgroup not found", 404);
+  //       }
+  
+  //       // Add users to the subgroup's members array if they are not already present
+  //       users.forEach((user) => {
+  //         if (!subGroup.members.includes(user.id)) {
+  //           subGroup.members.push(user._id as mongoose.Schema.Types.ObjectId);
+  //         }
+  //       });
+  //     } else {
+  //       // If no subGroupId is provided, add users to the group's members array
+  //       if (!group.members) {
+  //         group.members = []; // Initialize if undefined
+  //       }
+  
+  //       users.forEach((user) => {
+  //         if (!group.members.includes(user.id)) {
+  //           group.members.push(user._id as mongoose.Schema.Types.ObjectId);
+  //         }
+  //       });
+  //     }
+  
+  //     // Save the updated group
+  //     await group.save();
+  
+  //     return ResponseHandler.success(res, group, "Users added to group successfully");
+  //   } catch (error: any) {
+  //     return ResponseHandler.failure(res, error.message || "Error adding users to group");
+  //   }
+  // }  
+
   async addUsersToGroup(req: Request, res: Response) {
+    try {
+      const { groupId, subGroupId } = req.params;
+      const { userIds } = req.body;
+      const organizationId = req.admin._id;
+  
+      // Find the group by its ID
+      const group = await Group.findById(groupId);
+      if (!group) {
+        return ResponseHandler.failure(res, "Group not found", 404);
+      }
+  
+      // Ensure members array is initialized
+      group.members = group.members ?? [];
+  
+      // Find the users by their IDs and ensure they belong to the same organization
+      const users = await User.find({
+        _id: { $in: userIds },
+        organizationId,
+      });
+  
+      if (users.length !== userIds.length) {
+        return ResponseHandler.failure(
+          res,
+          "Some users do not belong to this organization",
+          400
+        );
+      }
+  
+      if (subGroupId) {
+        // Find the subgroup by its ID
+        const subGroup = group.subGroups.find(
+          (sub) => sub._id?.toString() === subGroupId
+        );
+  
+        if (!subGroup) {
+          return ResponseHandler.failure(res, "Subgroup not found", 404);
+        }
+  
+        // Add users to the subgroup's members array
+        users.forEach((user) => {
+          const userId = user._id as mongoose.Schema.Types.ObjectId;
+          if (!subGroup.members.includes(userId)) {
+            subGroup.members.push(userId);
+          }
+        });
+      } else {
+        // Add users to the group's members array
+        users.forEach((user) => {
+          if (user._id && group.members) {
+            // Ensure group.members is initialized if it's undefined
+            if (!group.members.includes(user._id as mongoose.Schema.Types.ObjectId)) {
+              group.members.push(user._id as mongoose.Schema.Types.ObjectId);
+            }
+          } else {
+            // Initialize members if it's undefined
+            if (!group.members) {
+              group.members = [];
+            }
+            // Add the user to the group
+            group.members.push(user._id as mongoose.Schema.Types.ObjectId);
+          }
+        });
+      }
+  
+      // Save the updated group
+      await group.save();
+  
+      return ResponseHandler.success(res, group, "Users added to group successfully");
+    } catch (error: any) {
+      return ResponseHandler.failure(res, error.message || "Error adding users to group");
+    }
+  }
+  
+  async addUsersToGroupo(req: Request, res: Response) {
     try {
       const { groupId, subGroupName } = req.params; // Extract groupId and subGroupName from the request
       const { userIds } = req.body;
@@ -490,13 +627,6 @@ export class GroupController {
         if (!group.members) {
           group.members = []; // Initialize if undefined
         }
-  
-        // Add users to the group-level members array if they are not already present
-        // users.forEach((user) => {
-        //   if (!group.members.includes(user._id)) {
-        //     group.members.push(user._id as mongoose.Schema.Types.ObjectId);
-        //   }
-        // });
 
         users.forEach((user) => {
           if (user._id && group.members) {

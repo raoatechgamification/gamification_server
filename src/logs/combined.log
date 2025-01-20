@@ -7560,3 +7560,37 @@
 2025-01-17 15:39:48 [info]: PUT /general-sublearner-group-term 200 - Request Body: {"generalSubLearnerGroupTerm":"cohort"}
 2025-01-17 15:40:25 [info]: PUT /general-instructor-term 200 - Request Body: {"generalInstructorTerm":"facilitator"}
 2025-01-17 15:40:38 [info]: POST /login 200 - Request Body: {"email":"seunoduez@gmail.com","password":"Timpearl05$$$"}
+2025-01-19 22:42:02 [info]: POST /login 200 - Request Body: {"email":"seunoduez@gmail.com","password":"Timpearl05$$$"}
+2025-01-19 22:44:54 [info]: POST /lesson 200 - Request Body: {"title":"This is the title","objectives":"This is the objective for this lesson","link":"https://www.youtube.com"}
+2025-01-19 22:47:29 [info]: POST /lesson 200 - Request Body: {"title":"This is the title","objectives":"This is the objective for this lesson","link":"https://www.youtube.com"}
+2025-01-19 23:05:52 [info]: POST /lesson 200 - Request Body: {"title":"This is the title","objectives":"This is the objective for this lesson","link":"https://www.youtube.com"}
+2025-01-20 06:55:59 [info]: POST /groups/create 200 - Request Body: {"name":"Science Club","numberOfArms":3,"subGroups":[{"name":"Physics"},{"name":"Chemistry"},{"name":"Biology"}]}
+2025-01-20 06:56:14 [info]: POST / 403 - Request Body: {"name":"Science Club","numberOfArms":3,"subGroups":[{"name":"Physics"},{"name":"Chemistry"},{"name":"Biology"}]}
+2025-01-20 06:56:30 [info]: POST /login 200 - Request Body: {"email":"seunoduez@gmail.com","password":"Timpearl05$$$"}
+2025-01-20 06:58:45 [info]: POST / 500 - Request Body: {"name":"Science Club","numberOfArms":3,"subGroups":[{"name":"Physics"},{"name":"Chemistry"},{"name":"Biology"}]}
+2025-01-20 07:03:08 [info]: POST / 500 - Request Body: {"name":"Science Club","numberOfArms":3,"subGroups":[{"name":"Physics"},{"name":"Chemistry"},{"name":"Biology"}]}
+2025-01-20 07:03:30 [info]: POST / 500 - Request Body: {"name":"Science Club","numberOfArms":3,"subGroups":[{"name":"Physics"},{"name":"Chemistry"},{"name":"Biology"}]}
+2025-01-20 07:07:38 [info]: POST / 500 - Request Body: {"name":"Science Club","numberOfArms":3,"subGroups":[{"name":"Physics"},{"name":"Chemistry"},{"name":"Biology"}]}
+2025-01-20 07:08:59 [info]: POST / 500 - Request Body: {"name":"Science Club","numberOfArms":3,"subGroups":[{"name":"Physics"},{"name":"Chemistry"},{"name":"Biology"}]}
+2025-01-20 07:10:57 [info]: POST / 500 - Request Body: {"name":"Science Club","numberOfArms":3}
+2025-01-20 07:12:40 [info]: POST / 200 - Request Body: {"name":"Science Club","numberOfArms":3,"subGroups":[{"name":"Physics"},{"name":"Chemistry"},{"name":"Biology"}]}
+2025-01-20 07:16:29 [info]: PUT /678de958c4c0a360bb7e0b2b 500 - Request Body: {"name":"Updated Science Club","numberOfArms":2,"subGroups":[{"name":"Astronomy"},{"name":"Geology"}]}
+2025-01-20 07:26:00 [info]: PUT /678de958c4c0a360bb7e0b2b 200 - Request Body: {"name":"Updated Science Club","numberOfArms":2,"subGroups":[{"name":"Astronomy"},{"name":"Geology"}]}
+2025-01-20 07:26:56 [info]: POST / 500 - Request Body: {"name":"Science Club"}
+2025-01-20 07:28:15 [info]: POST / 200 - Request Body: {"name":"Science Club","numberOfArms":3}
+2025-01-20 07:28:28 [info]: POST / 200 - Request Body: {"name":"Science Club","numberOfArms":0}
+2025-01-20 07:30:08 [info]: POST / 400 - Request Body: {"name":"Science Club","numberOfArms":3,"subGroups":[{"name":"Physics"},{"name":"Chemistry"}]}
+2025-01-20 07:30:18 [info]: POST / 400 - Request Body: {"name":"Science Club","numberOfArms":2,"subGroups":[{"name":"Physics"},{"name":"Chemistry"},{"name":"Biology"}]}
+2025-01-20 07:30:36 [info]: POST / 200 - Request Body: {"name":"Science Club","numberOfArms":3,"subGroups":[{"name":"Physics"},{"name":"Chemistry"},{"name":"Biology"}]}
+2025-01-20 07:31:41 [info]: GET / 200
+2025-01-20 07:34:58 [info]: POST /678de958c4c0a360bb7e0b2b/assign/Geology? 200 - Request Body: {"userIds":["676965e49626eab20cafeb69"]}
+2025-01-20 07:38:17 [info]: POST /678de958c4c0a360bb7e0b2b/assign 200 - Request Body: {"userIds":["676965e49626eab20cafeb69"]}
+2025-01-20 07:46:07 [info]: POST /678de958c4c0a360bb7e0b2b/assign/Geology? 200 - Request Body: {"userIds":["676965e49626eab20cafeb69"]}
+2025-01-20 07:46:19 [info]: POST /678de958c4c0a360bb7e0b2b/assign/Geology? 200 - Request Body: {"userIds":["676965e49626eab20cafeb69"]}
+2025-01-20 10:44:54 [info]: GET / 200
+2025-01-20 14:11:07 [info]: POST /678ded8cfc769e07e57372af/assign/678ded8cfc769e07e57372b0? 200 - Request Body: {"userIds":["676965e49626eab20cafeb69"],"groupId":"677f7d3299967fb3ccc3ed01","subLearnerGroupId":"677f7d3299967fb3ccc3ed04"}
+2025-01-20 14:13:03 [info]: POST /678ded8cfc769e07e57372af/assign/678ded8cfc769e07e57372b0? 200 - Request Body: {"userIds":["676965e49626eab20cafeb69"],"groupId":"677f7d3299967fb3ccc3ed01","subLearnerGroupId":"677f7d3299967fb3ccc3ed04"}
+2025-01-20 14:13:17 [info]: POST /678ded8cfc769e07e57372af/assign/678ded8cfc769e07e57372b0? 200 - Request Body: {"userIds":["676965e49626eab20cafeb69"],"groupId":"677f7d3299967fb3ccc3ed01","subLearnerGroupId":"677f7d3299967fb3ccc3ed04"}
+2025-01-20 14:13:35 [info]: POST /678ded8cfc769e07e57372af/assign 200 - Request Body: {"userIds":["676965e49626eab20cafeb69"],"groupId":"677f7d3299967fb3ccc3ed01","subLearnerGroupId":"677f7d3299967fb3ccc3ed04"}
+2025-01-20 14:13:40 [info]: POST /678ded8cfc769e07e57372af/assign 200 - Request Body: {"userIds":["676965e49626eab20cafeb69"],"groupId":"677f7d3299967fb3ccc3ed01","subLearnerGroupId":"677f7d3299967fb3ccc3ed04"}
+2025-01-20 14:13:54 [info]: POST /678ded8cfc769e07e57372af/assign 200 - Request Body: {"userIds":["676965e49626eab20cafeb69"],"groupId":"677f7d3299967fb3ccc3ed01","subLearnerGroupId":"677f7d3299967fb3ccc3ed04"}
