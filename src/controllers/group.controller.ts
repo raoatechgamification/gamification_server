@@ -1,7 +1,7 @@
 import { Request, Response, NextFunction } from "express";
 import mongoose from "mongoose";
 // import Group from "../models/group.model";
-import Group from "../models/groupp.model";
+import Group, { ISubGroup } from "../models/groupp.model";
 import User, { IUser } from "../models/user.model";
 import Course from "../models/course.model";
 import { ResponseHandler } from "../middlewares/responseHandler.middleware";
@@ -11,7 +11,7 @@ export class GroupController {
     try {
       const { name, numberOfArms, subGroups, members } = req.body;
       const organizationId = req.admin._id;
-  
+
       // Validate that `numberOfArms` matches subgroups length (if subgroups exist)
       if (subGroups && numberOfArms !== subGroups.length) {
         return ResponseHandler.failure(
@@ -20,7 +20,7 @@ export class GroupController {
           400
         );
       }
-  
+
       const group = new Group({
         name,
         numberOfArms,
@@ -33,14 +33,17 @@ export class GroupController {
         members: members || [], // Set members directly for the group
         organizationId,
       });
-  
+
       await group.save();
       return ResponseHandler.success(res, group, "Group created successfully");
     } catch (error: any) {
-      return ResponseHandler.failure(res, error.message || "Error creating group");
+      return ResponseHandler.failure(
+        res,
+        error.message || "Error creating group"
+      );
     }
   }
-  
+
   // async createGroup(req: Request, res: Response) {
   //   try {
   //     const {
@@ -105,8 +108,6 @@ export class GroupController {
   //     );
   //   }
   // }
-
-  
 
   // async editGroup(req: Request, res: Response) {
   //   try {
@@ -190,7 +191,7 @@ export class GroupController {
       const { groupId } = req.params;
       const { name, numberOfArms, subGroups } = req.body;
       const organizationId = req.admin._id;
-  
+
       const group = await Group.findOne({ _id: groupId, organizationId });
       if (!group) {
         return ResponseHandler.failure(
@@ -199,7 +200,7 @@ export class GroupController {
           404
         );
       }
-  
+
       if (numberOfArms !== subGroups.length) {
         return ResponseHandler.failure(
           res,
@@ -207,21 +208,24 @@ export class GroupController {
           400
         );
       }
-  
+
       group.name = name;
       group.numberOfArms = numberOfArms;
       group.subGroups = subGroups.map((subGroup: { name: string }) => ({
         name: subGroup.name,
         members: [],
       })); // Correctly map the array of objects
-  
+
       await group.save();
       return ResponseHandler.success(res, group, "Group updated successfully");
     } catch (error: any) {
-      return ResponseHandler.failure(res, error.message || "Error editing group");
+      return ResponseHandler.failure(
+        res,
+        error.message || "Error editing group"
+      );
     }
   }
-  
+
   async getGroupById(req: Request, res: Response) {
     try {
       const { groupId } = req.params;
@@ -298,11 +302,11 @@ export class GroupController {
   //     });
 
   //     if (!group) {
-        // return ResponseHandler.failure(
-        //   res,
-        //   "Group not found or does not belong to your organization.",
-        //   404
-        // );
+  // return ResponseHandler.failure(
+  //   res,
+  //   "Group not found or does not belong to your organization.",
+  //   404
+  // );
   //     }
 
   //     if (subLearnerGroupId) {
@@ -394,17 +398,17 @@ export class GroupController {
       const { groupId } = req.params;
       const { userIds } = req.body;
       const organizationId = req.admin._id;
-  
+
       const group = await Group.findById(groupId);
       if (!group) {
         return ResponseHandler.failure(res, "Group not found", 404);
       }
-  
+
       const users = await User.find({
         _id: { $in: userIds },
         organizationId,
       });
-  
+
       if (users.length !== userIds.length) {
         return ResponseHandler.failure(
           res,
@@ -412,39 +416,48 @@ export class GroupController {
           400
         );
       }
-  
+
       // Add users to the group-level members array
       if (!group.members) {
         group.members = []; // Initialize if undefined
       }
-      
-      group.members.push(...users.map((user) => user._id as mongoose.Types.ObjectId)); // Cast to ObjectId
+
+      group.members.push(
+        ...users.map((user) => user._id as mongoose.Types.ObjectId)
+      ); // Cast to ObjectId
       await group.save();
-      
-      return ResponseHandler.success(res, group, "Users added to group successfully");
+
+      return ResponseHandler.success(
+        res,
+        group,
+        "Users added to group successfully"
+      );
     } catch (error: any) {
-      return ResponseHandler.failure(res, error.message || "Error adding users to group");
+      return ResponseHandler.failure(
+        res,
+        error.message || "Error adding users to group"
+      );
     }
-  }  
+  }
 
   // async addUsersToGroup(req: Request, res: Response) {
   //   try {
   //     const { groupId, subGroupId } = req.params; // Extract groupId and subGroupId from the request
   //     const { userIds } = req.body;
   //     const organizationId = req.admin._id;
-  
+
   //     // Find the group by its ID
   //     const group = await Group.findById(groupId);
   //     if (!group) {
   //       return ResponseHandler.failure(res, "Group not found", 404);
   //     }
-  
+
   //     // Find the users by their IDs and ensure they belong to the same organization
   //     const users = await User.find({
   //       _id: { $in: userIds },
   //       organizationId,
   //     });
-  
+
   //     // Check if some users do not belong to the organization
   //     if (users.length !== userIds.length) {
   //       return ResponseHandler.failure(
@@ -453,15 +466,15 @@ export class GroupController {
   //         400
   //       );
   //     }
-  
+
   //     if (subGroupId) {
   //       // If a subGroupId is provided, validate the subgroup
   //       const subGroup = group.subGroups.find((sub) => sub._id?.toString() === subGroupId);
-  
+
   //       if (!subGroup) {
   //         return ResponseHandler.failure(res, "Subgroup not found", 404);
   //       }
-  
+
   //       // Add users to the subgroup's members array if they are not already present
   //       users.forEach((user) => {
   //         if (!subGroup.members.includes(user.id)) {
@@ -473,44 +486,44 @@ export class GroupController {
   //       if (!group.members) {
   //         group.members = []; // Initialize if undefined
   //       }
-  
+
   //       users.forEach((user) => {
   //         if (!group.members.includes(user.id)) {
   //           group.members.push(user._id as mongoose.Schema.Types.ObjectId);
   //         }
   //       });
   //     }
-  
+
   //     // Save the updated group
   //     await group.save();
-  
+
   //     return ResponseHandler.success(res, group, "Users added to group successfully");
   //   } catch (error: any) {
   //     return ResponseHandler.failure(res, error.message || "Error adding users to group");
   //   }
-  // }  
+  // }
 
   async addUsersToGroup(req: Request, res: Response) {
     try {
       const { groupId, subGroupId } = req.params;
       const { userIds } = req.body;
       const organizationId = req.admin._id;
-  
+
       // Find the group by its ID
       const group = await Group.findById(groupId);
       if (!group) {
         return ResponseHandler.failure(res, "Group not found", 404);
       }
-  
+
       // Ensure members array is initialized
       group.members = group.members ?? [];
-  
+
       // Find the users by their IDs and ensure they belong to the same organization
       const users = await User.find({
         _id: { $in: userIds },
         organizationId,
       });
-  
+
       if (users.length !== userIds.length) {
         return ResponseHandler.failure(
           res,
@@ -518,17 +531,17 @@ export class GroupController {
           400
         );
       }
-  
+
       if (subGroupId) {
         // Find the subgroup by its ID
         const subGroup = group.subGroups.find(
           (sub) => sub._id?.toString() === subGroupId
         );
-  
+
         if (!subGroup) {
           return ResponseHandler.failure(res, "Subgroup not found", 404);
         }
-  
+
         // Add users to the subgroup's members array
         users.forEach((user) => {
           const userId = user._id as mongoose.Types.ObjectId;
@@ -554,34 +567,41 @@ export class GroupController {
           }
         });
       }
-  
+
       // Save the updated group
       await group.save();
-  
-      return ResponseHandler.success(res, group, "Users added to group successfully");
+
+      return ResponseHandler.success(
+        res,
+        group,
+        "Users added to group successfully"
+      );
     } catch (error: any) {
-      return ResponseHandler.failure(res, error.message || "Error adding users to group");
+      return ResponseHandler.failure(
+        res,
+        error.message || "Error adding users to group"
+      );
     }
   }
-  
+
   async addUsersToGroupo(req: Request, res: Response) {
     try {
       const { groupId, subGroupName } = req.params; // Extract groupId and subGroupName from the request
       const { userIds } = req.body;
       const organizationId = req.admin._id;
-  
+
       // Find the group by its ID
       const group = await Group.findById(groupId);
       if (!group) {
         return ResponseHandler.failure(res, "Group not found", 404);
       }
-  
+
       // Find the users by their IDs and ensure they belong to the same organization
       const users = await User.find({
         _id: { $in: userIds },
         organizationId,
       });
-  
+
       // Check if some users do not belong to the organization
       if (users.length !== userIds.length) {
         return ResponseHandler.failure(
@@ -590,22 +610,24 @@ export class GroupController {
           400
         );
       }
-  
+
       // If a subGroupName is provided, check if the subgroup exists and add users there
       if (subGroupName) {
-        const subGroup = group.subGroups.find((sub) => sub.name === subGroupName);
-  
+        const subGroup = group.subGroups.find(
+          (sub) => sub.name === subGroupName
+        );
+
         if (!subGroup) {
           return ResponseHandler.failure(res, "Subgroup not found", 404);
         }
-  
+
         // Add users to the subgroup's members array if they are not already present
         // users.forEach((user) => {
         //   if (!subGroup.members.includes(user._id)) {
         //     subGroup.members.push(user._id as mongoose.Schema.Types.ObjectId);
         //   }
         // });
-        
+
         users.forEach((user) => {
           if (user._id && group.members) {
             // Ensure group.members is initialized if it's undefined
@@ -621,8 +643,6 @@ export class GroupController {
             group.members.push(user._id as mongoose.Types.ObjectId);
           }
         });
-        
-  
       } else {
         // If no subgroup name is provided, add users to the group's members array
         if (!group.members) {
@@ -644,61 +664,80 @@ export class GroupController {
             group.members.push(user._id as mongoose.Types.ObjectId);
           }
         });
-        
       }
-  
+
       // Save the updated group
       await group.save();
-  
-      return ResponseHandler.success(res, group, "Users added to group successfully");
+
+      return ResponseHandler.success(
+        res,
+        group,
+        "Users added to group successfully"
+      );
     } catch (error: any) {
-      return ResponseHandler.failure(res, error.message || "Error adding users to group");
+      return ResponseHandler.failure(
+        res,
+        error.message || "Error adding users to group"
+      );
     }
   }
-  
-  
+
   async assignCourseToGroup(req: Request, res: Response) {
     try {
       const { groupId, dueDate } = req.body;
       const { courseId } = req.params;
       const adminId = req.admin._id;
-  
+
       // Fetch course details
       const course = await Course.findById(courseId).lean();
       if (!course) {
         return ResponseHandler.failure(res, "Course not found", 404);
       }
-  
-      // Find users belonging to the group
-      const usersInGroup = await User.find({
-        groups: groupId,
+
+      // Find the group by groupId to get subgroups
+      const group = await Group.findOne({
+        _id: groupId,
         organizationId: adminId,
       });
-  
+      if (!group) {
+        return ResponseHandler.failure(res, "Group not found", 404);
+      }
+
+      // Find users belonging to the group and its subgroups
+      const usersInGroup = await User.find({
+        $or: [
+          { groups: groupId },
+          {
+            subGroups: {
+              $in: group.subGroups.map((subGroup: ISubGroup) => subGroup._id),
+            },
+          },
+        ],
+        organizationId: adminId,
+      });
+
       if (usersInGroup.length === 0) {
         return ResponseHandler.failure(
           res,
-          "No users found in the specified group or group does not exist",
+          "No users found in the specified group or subgroups",
           404
         );
       }
-  
+
       let status = "unpaid";
       if (!course.cost || course.cost === 0) {
         status = "free";
       }
-  
+
       const sanitizedCourse = { ...course };
       delete sanitizedCourse.assignedLearnerIds;
       delete sanitizedCourse.learnerIds;
-  
+
       // Initialize program fields for users without them
       await User.updateMany(
         {
           _id: { $in: usersInGroup.map((user) => user._id) },
-          $or: [
-            { unattemptedPrograms: { $exists: false } },
-          ],
+          $or: [{ unattemptedPrograms: { $exists: false } }],
         },
         {
           $set: {
@@ -708,7 +747,7 @@ export class GroupController {
           },
         }
       );
-  
+
       // Prepare bulk updates for assigning the course to users
       const bulkUpdates = usersInGroup.map((user) => ({
         updateOne: {
@@ -732,27 +771,27 @@ export class GroupController {
           },
         },
       }));
-  
+
       const result = await User.bulkWrite(bulkUpdates);
-  
+
       const learnersToAdd = usersInGroup.map((user) => ({
         userId: user._id,
         progress: 0,
       }));
-  
+
       // Update course to reflect new learners
       const updateQuery: any = {
         $addToSet: {
           learnerIds: { $each: learnersToAdd },
         },
       };
-  
+
       if (status === "free") {
         updateQuery.$addToSet["learnerIds"] = { $each: learnersToAdd };
       }
-  
+
       await Course.updateOne({ _id: courseId }, updateQuery);
-  
+
       return ResponseHandler.success(
         res,
         {
@@ -772,5 +811,120 @@ export class GroupController {
       );
     }
   }
-  
+
+  // async assignCourseToGroup(req: Request, res: Response) {
+  //   try {
+  //     const { groupId, dueDate } = req.body;
+  //     const { courseId } = req.params;
+  //     const adminId = req.admin._id;
+
+  //     // Fetch course details
+  //     const course = await Course.findById(courseId).lean();
+  //     if (!course) {
+  //       return ResponseHandler.failure(res, "Course not found", 404);
+  //     }
+
+  //     // Find users belonging to the group
+  //     const usersInGroup = await User.find({
+  //       groups: groupId,
+  //       organizationId: adminId,
+  //     });
+
+  //     if (usersInGroup.length === 0) {
+  //       return ResponseHandler.failure(
+  //         res,
+  //         "No users found in the specified group or group does not exist",
+  //         404
+  //       );
+  //     }
+
+  //     let status = "unpaid";
+  //     if (!course.cost || course.cost === 0) {
+  //       status = "free";
+  //     }
+
+  //     const sanitizedCourse = { ...course };
+  //     delete sanitizedCourse.assignedLearnerIds;
+  //     delete sanitizedCourse.learnerIds;
+
+  //     // Initialize program fields for users without them
+  //     await User.updateMany(
+  //       {
+  //         _id: { $in: usersInGroup.map((user) => user._id) },
+  //         $or: [
+  //           { unattemptedPrograms: { $exists: false } },
+  //         ],
+  //       },
+  //       {
+  //         $set: {
+  //           ongoingPrograms: [],
+  //           completedPrograms: [],
+  //           unattemptedPrograms: [],
+  //         },
+  //       }
+  //     );
+
+  //     // Prepare bulk updates for assigning the course to users
+  //     const bulkUpdates = usersInGroup.map((user) => ({
+  //       updateOne: {
+  //         filter: {
+  //           _id: user._id,
+  //           "assignedPrograms.courseId": { $ne: courseId },
+  //         },
+  //         update: {
+  //           $push: {
+  //             assignedPrograms: {
+  //               courseId: new mongoose.Types.ObjectId(courseId),
+  //               dueDate: new Date(dueDate),
+  //               status,
+  //               amount: course.cost,
+  //             },
+  //             unattemptedPrograms: {
+  //               course: sanitizedCourse,
+  //               status,
+  //             },
+  //           },
+  //         },
+  //       },
+  //     }));
+
+  //     const result = await User.bulkWrite(bulkUpdates);
+
+  //     const learnersToAdd = usersInGroup.map((user) => ({
+  //       userId: user._id,
+  //       progress: 0,
+  //     }));
+
+  //     // Update course to reflect new learners
+  //     const updateQuery: any = {
+  //       $addToSet: {
+  //         learnerIds: { $each: learnersToAdd },
+  //       },
+  //     };
+
+  //     if (status === "free") {
+  //       updateQuery.$addToSet["learnerIds"] = { $each: learnersToAdd };
+  //     }
+
+  //     await Course.updateOne({ _id: courseId }, updateQuery);
+
+  //     return ResponseHandler.success(
+  //       res,
+  //       {
+  //         matchedCount: result.matchedCount,
+  //         modifiedCount: result.modifiedCount,
+  //         upsertedCount: result.upsertedCount,
+  //       },
+  //       "Course assigned to group successfully",
+  //       200
+  //     );
+  //   } catch (error: any) {
+  //     console.error("Error assigning course to group:", error.message);
+  //     return ResponseHandler.failure(
+  //       res,
+  //       `Server error: ${error.message}`,
+  //       500
+  //     );
+  //   }
+  // }
 }
