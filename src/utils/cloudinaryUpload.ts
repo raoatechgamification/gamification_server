@@ -5,6 +5,7 @@ export const uploadToCloudinary = async (
   mimetype: string,
   folder: string
 ) => {
+  console.log(fileBuffer, mimetype);
   try {
     const fileBase64 = `data:${mimetype};base64,${fileBuffer.toString("base64")}`;
     const result = await cloudinary.uploader.upload(fileBase64, {
@@ -35,7 +36,7 @@ export const optimizedUploadToCloudinary = async (
 ): Promise<CloudinaryUploadResult> => {
   return new Promise((resolve, reject) => {
     const stream = cloudinary.uploader.upload_stream(
-      { folder, resource_type: "auto" },
+      { folder, resource_type: "raw" },
       (error, result) => {
         if (error) {
           reject(new Error(`Cloudinary upload failed: ${error.message}`));

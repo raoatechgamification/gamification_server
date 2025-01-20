@@ -1,4 +1,4 @@
-import mongoose, { Schema, Document, Model } from "mongoose";
+import mongoose, { Document, Model, Schema } from "mongoose";
 
 interface SubLearnerGroup {
   [x: string]: any;
@@ -9,9 +9,9 @@ interface SubLearnerGroup {
 interface IGroup extends Document {
   name: string;
   organizationId: mongoose.Schema.Types.ObjectId;
-  numberOfArms: number; 
+  numberOfArms: number;
   subGroupsName?: {
-    name: string
+    name: string;
   }[];
   basicCustomization: {
     generalLearnerTerm: "learner" | "staff" | "student" | "trainee" | "user";
@@ -24,7 +24,12 @@ interface IGroup extends Document {
       subLearnerGroups: SubLearnerGroup[];
     };
     instructor: {
-      generalInstructorTerm: "instructor" | "teacher" | "facilitator" | "trainer" | "lecturer";
+      generalInstructorTerm:
+        | "instructor"
+        | "teacher"
+        | "facilitator"
+        | "trainer"
+        | "lecturer";
       names: { name: string }[];
     };
   };
