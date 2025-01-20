@@ -132,6 +132,6 @@ const GroupSchema: Schema<IGroup> = new Schema(
   { timestamps: true }
 );
 
-const Group: Model<IGroup> = mongoose.model<IGroup>("Group", GroupSchema);
+const Groupp: Model<IGroup> = mongoose.model<IGroup>("Groupp", GroupSchema);
 
-export default Group;
+export default Groupp;

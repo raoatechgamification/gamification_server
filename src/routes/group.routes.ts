@@ -11,21 +11,21 @@ const {
   editGroup,
   getGroupById, 
   getAllGroups,
-  assignUsersToGroup,
+  addUsersToGroup,
   assignCourseToGroup 
 } = new GroupController();
 
 const router = Router();
 
 router.post(
-  "/create", 
+  "/", 
   authenticate, 
   authorize(["admin"]), 
   // ...validateCreateGroup,
   createGroup);
 
 router.put(
-  "/edit/:groupId", 
+  "/:groupId", 
   authenticate, 
   authorize(["admin"]), 
   // ...validateEditGroup,
@@ -47,10 +47,10 @@ router.get(
 )
 
 router.post(
-  "/assign-users",
+  "/:groupId/assign/:subGroupName?",
   authenticate,
   authorize(["admin"]),
-  assignUsersToGroup
+  addUsersToGroup
 )
 
 router.post(
