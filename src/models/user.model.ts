@@ -27,8 +27,8 @@ export interface IUser extends Document {
   email: string;
   phone?: string;
   userId?: string;
-  groups?: mongoose.Schema.Types.ObjectId[];
-  subLearnerGroups?: mongoose.Schema.Types.ObjectId[];
+  groups?: mongoose.Types.ObjectId[];
+  subGroups?: mongoose.Types.ObjectId[];
   organizationId?: mongoose.Schema.Types.ObjectId;
   purchasedCourses?: mongoose.Schema.Types.ObjectId[];
   role: string;
@@ -104,7 +104,7 @@ const UserSchema: Schema<IUser> = new Schema(
     groups: [
       { type: mongoose.Schema.Types.ObjectId, sparse: true, ref: "Group" },
     ],
-    subLearnerGroups: [{ type: mongoose.Schema.Types.ObjectId }],
+    subGroups: [{ type: mongoose.Schema.Types.ObjectId }],
     organizationId: { type: mongoose.Schema.Types.ObjectId, default: null },
     role: { type: String, default: "user", required: true },
     password: { type: String, required: true },

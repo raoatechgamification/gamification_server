@@ -189,8 +189,9 @@ export class GroupController {
     try {
       const { groupId } = req.params;
       const { name, numberOfArms, subGroups } = req.body;
+      const organizationId = req.admin._id;
   
-      const group = await Group.findById(groupId);
+      const group = await Group.findOne({ _id: groupId, organizationId });
       if (!group) {
         return ResponseHandler.failure(
           res,
@@ -417,7 +418,7 @@ export class GroupController {
         group.members = []; // Initialize if undefined
       }
       
-      group.members.push(...users.map((user) => user._id as mongoose.Schema.Types.ObjectId)); // Cast to ObjectId
+      group.members.push(...users.map((user) => user._id as mongoose.Types.ObjectId)); // Cast to ObjectId
       await group.save();
       
       return ResponseHandler.success(res, group, "Users added to group successfully");
@@ -530,7 +531,7 @@ export class GroupController {
   
         // Add users to the subgroup's members array
         users.forEach((user) => {
-          const userId = user._id as mongoose.Schema.Types.ObjectId;
+          const userId = user._id as mongoose.Types.ObjectId;
           if (!subGroup.members.includes(userId)) {
             subGroup.members.push(userId);
           }
@@ -540,8 +541,8 @@ export class GroupController {
         users.forEach((user) => {
           if (user._id && group.members) {
             // Ensure group.members is initialized if it's undefined
-            if (!group.members.includes(user._id as mongoose.Schema.Types.ObjectId)) {
-              group.members.push(user._id as mongoose.Schema.Types.ObjectId);
+            if (!group.members.includes(user._id as mongoose.Types.ObjectId)) {
+              group.members.push(user._id as mongoose.Types.ObjectId);
             }
           } else {
             // Initialize members if it's undefined
@@ -549,7 +550,7 @@ export class GroupController {
               group.members = [];
             }
             // Add the user to the group
-            group.members.push(user._id as mongoose.Schema.Types.ObjectId);
+            group.members.push(user._id as mongoose.Types.ObjectId);
           }
         });
       }
@@ -608,8 +609,8 @@ export class GroupController {
         users.forEach((user) => {
           if (user._id && group.members) {
             // Ensure group.members is initialized if it's undefined
-            if (!group.members.includes(user._id as mongoose.Schema.Types.ObjectId)) {
-              group.members.push(user._id as mongoose.Schema.Types.ObjectId);
+            if (!group.members.includes(user._id as mongoose.Types.ObjectId)) {
+              group.members.push(user._id as mongoose.Types.ObjectId);
             }
           } else {
             // Initialize members if it's undefined
@@ -617,7 +618,7 @@ export class GroupController {
               group.members = [];
             }
             // Add the user to the group
-            group.members.push(user._id as mongoose.Schema.Types.ObjectId);
+            group.members.push(user._id as mongoose.Types.ObjectId);
           }
         });
         
@@ -631,8 +632,8 @@ export class GroupController {
         users.forEach((user) => {
           if (user._id && group.members) {
             // Ensure group.members is initialized if it's undefined
-            if (!group.members.includes(user._id as mongoose.Schema.Types.ObjectId)) {
-              group.members.push(user._id as mongoose.Schema.Types.ObjectId);
+            if (!group.members.includes(user._id as mongoose.Types.ObjectId)) {
+              group.members.push(user._id as mongoose.Types.ObjectId);
             }
           } else {
             // Initialize members if it's undefined
@@ -640,7 +641,7 @@ export class GroupController {
               group.members = [];
             }
             // Add the user to the group
-            group.members.push(user._id as mongoose.Schema.Types.ObjectId);
+            group.members.push(user._id as mongoose.Types.ObjectId);
           }
         });
         
