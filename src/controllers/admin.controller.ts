@@ -64,158 +64,26 @@ class AdminController {
     }
   }
 
-  async editUserProfille(req: Request, res: Response) {
-    try {
-      const organizationId = await getOrganizationId(req, res);
-      if (!organizationId) {
-        return;
-      }
-
-      const organization = await Organization.findById(organizationId);
-      if (!organization) {
-        return ResponseHandler.failure(res, "Organization not found", 400);
-      }
-
-      const image = req.file;
-      const userId = req.params.userId;
-      const {
-        groups: groupIds = [],
-        subGroups: subGroupIds = [],
-        ...rest
-      } = req.body;
-
-      // Ensure all groupIds and subGroupIds are converted to ObjectIds if they are passed as strings
-      const groupObjectIds = groupIds.map(
-        (id: string) => new mongoose.Types.ObjectId(id)
-      );
-      const subGroupObjectIds = subGroupIds.map(
-        (id: string) => new mongoose.Types.ObjectId(id)
-      );
-
-      // Find the user by their userId and ensure they're in the correct organization
-      const user = await User.findOne({ _id: userId, organizationId });
-      if (!user) {
-        return ResponseHandler.failure(
-          res,
-          "User not found in your organization",
-          404
-        );
-      }
-
-      let fileUploadResult: any = null;
-      if (image) {
-        fileUploadResult = await uploadToCloudinary(
-          image.buffer,
-          image.mimetype,
-          "userDisplayPictures"
-        );
-      }
-
-      // Fetch all groups that match the groupIds
-      const validGroups = await Group.find({
-        _id: { $in: groupObjectIds },
-        organizationId,
-      });
-
-      // If the number of valid groups doesn't match the requested groupIds, return an error
-      if (validGroups.length !== groupObjectIds.length) {
-        return ResponseHandler.failure(
-          res,
-          "Some group IDs are invalid or not under your organization",
-          400
-        );
-      }
-
-      const updatedGroups: mongoose.Types.ObjectId[] = [];
-      const updatedSubGroups: mongoose.Types.ObjectId[] = [];
-
-      // Process each group to validate and update subgroups and members
-      for (const group of validGroups) {
-        const validSubGroups = group.subGroups.filter((subGroup) =>
-          subGroupObjectIds
-            .map((id: mongoose.Types.ObjectId) => id.toString())
-            .includes(subGroup._id.toString())
-        );
-
-        if (validSubGroups.length > 0) {
-          updatedSubGroups.push(
-            ...validSubGroups.map((subGroup) => subGroup._id)
-          );
-          group.members = group.members || [];
-          group.members.push(new mongoose.Types.ObjectId(userId));
-
-          for (const subGroupId of validSubGroups) {
-            const subGroupInGroup = group.subGroups.find(
-              (subGroup) => subGroup._id.toString() === subGroupId.toString()
-            );
-            if (subGroupInGroup) {
-              subGroupInGroup.members.push(new mongoose.Types.ObjectId(userId));
-            }
-          }
-        } else {
-          updatedGroups.push(group._id);
-          group.members = group.members || [];
-          group.members.push(new mongoose.Types.ObjectId(userId));
-        }
-
-        await group.save(); // Save the group with updated members and subgroups
-      }
-
-      // Update the user's groups and subgroups
-      user.groups = updatedGroups;
-      user.subGroups = updatedSubGroups;
-
-      // Assign other updated fields and the new profile image (if uploaded)
-      Object.assign(user, {
-        ...rest,
-        image: fileUploadResult ? fileUploadResult.secure_url : user.image,
-      });
-
-      await user.save(); // Save the updated user profile
-
-      return ResponseHandler.success(
-        res,
-        user,
-        "User details and groups updated successfully"
-      );
-    } catch (error: any) {
-      return ResponseHandler.failure(
-        res,
-        `Server error: ${error.message}`,
-        500
-      );
-    }
-  }
-
   async editUserProfile(req: Request, res: Response) {
     try {
       const organizationId = await getOrganizationId(req, res);
       if (!organizationId) {
         return;
       }
-
+  
       const organization = await Organization.findById(organizationId);
       if (!organization) {
         return ResponseHandler.failure(res, "Organization not found", 400);
       }
-
+  
       const image = req.file;
       const userId = req.params.userId;
-      const {
-        groups: groupIds = [],
-        subGroups: subGroupIds = [],
-        ...rest
-      } = req.body;
-
-      // Ensure all groupIds and subGroupIds are converted to ObjectIds if they are passed as strings
-      const groupObjectIds = groupIds.map(
-        (id: string) => new mongoose.Types.ObjectId(id)
-      );
-      const subGroupObjectIds = subGroupIds.map(
-        (id: string) => new mongoose.Types.ObjectId(id)
-      );
-
-      // Find the user by their userId and ensure they're in the correct organization
+      const { ids = [], ...rest } = req.body; // 'ids' array containing group or subgroup IDs
+  
+      // Ensure all IDs are converted to ObjectId
+      const objectIds = ids.map((id: string) => new mongoose.Types.ObjectId(id));
+  
+      // Fetch the user and ensure they belong to the organization
       let user = await User.findOne({ _id: userId, organizationId });
       if (!user) {
         return ResponseHandler.failure(
@@ -224,7 +92,7 @@ class AdminController {
           404
         );
       }
-
+  
       let fileUploadResult: any = null;
       if (image) {
         fileUploadResult = await uploadToCloudinary(
@@ -233,94 +101,92 @@ class AdminController {
           "userDisplayPictures"
         );
       }
-
-      // Fetch all groups that match the groupIds
-      const validGroups = await Group.find({
-        _id: { $in: groupObjectIds },
-        organizationId,
-      });
-
-      // If the number of valid groups doesn't match the requested groupIds, return an error
-      if (validGroups.length !== groupObjectIds.length) {
-        return ResponseHandler.failure(
-          res,
-          "Some group IDs are invalid or not under your organization",
-          400
-        );
-      }
-
-      const updatedGroups: mongoose.Types.ObjectId[] = [];
-      const updatedSubGroups: mongoose.Types.ObjectId[] = [];
+  
+      // Initialize variables for updates
+      let updatedGroups: mongoose.Types.ObjectId[] = user.groups || [];
+      let updatedSubGroups: mongoose.Types.ObjectId[] = user.subGroups || [];
       const bulkGroupOps: any[] = [];
-
-      // Process each group to validate and update subgroups and members
-      for (const group of validGroups) {
-        const validSubGroups = group.subGroups.filter((subGroup) =>
-          subGroupObjectIds
-            .map((id: mongoose.Types.ObjectId) => id.toString())
-            .includes(subGroup._id.toString())
-        );
-
-        if (validSubGroups.length > 0) {
-          updatedSubGroups.push(
-            ...validSubGroups.map((subGroup) => subGroup._id)
-          );
-          group.members = group.members || [];
-
-          // Check if the userId already exists in the group's members array
-          if (!group.members.includes(new mongoose.Types.ObjectId(userId))) {
-            group.members.push(new mongoose.Types.ObjectId(userId));
+  
+      for (const id of objectIds) {
+        // Define the userIdObject once per iteration
+        const userIdObject = new mongoose.Types.ObjectId(userId);
+      
+        // Check if the ID belongs to a group
+        const group = await Group.findOne({
+          _id: id,
+          organizationId,
+        });
+      
+        if (group) {
+          if (!group.members) {
+            group.members = []; // Initialize as an empty array if undefined
           }
-
-          for (const subGroup of validSubGroups) {
-            const subGroupInGroup = group.subGroups.find(
-              (subGroup) => subGroup._id.toString() === subGroup._id.toString()
-            );
-            if (subGroupInGroup) {
-              // Ensure the userId isn't already added to the subgroup's members
-              if (
-                !subGroupInGroup.members.includes(
-                  new mongoose.Types.ObjectId(userId)
-                )
-              ) {
-                subGroupInGroup.members.push(
-                  new mongoose.Types.ObjectId(userId)
-                );
-              }
+      
+          // Add user to the group's members if not already a member
+          if (!group.members.some((memberId) => memberId.equals(userIdObject))) {
+            group.members.push(userIdObject);
+            bulkGroupOps.push({
+              updateOne: {
+                filter: { _id: group._id },
+                update: { members: group.members },
+              },
+            });
+          }
+      
+          // Add group ID to user's groups if not already added
+          if (!updatedGroups.some((groupId) => groupId.equals(group._id))) {
+            updatedGroups.push(group._id);
+          }
+          continue;
+        }
+      
+        // Check if the ID belongs to a subgroup
+        const groupWithSubgroup = await Group.findOne({
+          "subGroups._id": id,
+          organizationId,
+        });
+      
+        if (groupWithSubgroup) {
+          const subgroup = groupWithSubgroup.subGroups.find(
+            (subGroup) => subGroup._id.equals(id)
+          );
+      
+          if (subgroup) {
+            // Add user to the subgroup's members if not already a member
+            if (!subgroup.members.some((memberId) => memberId.equals(userIdObject))) {
+              subgroup.members.push(userIdObject);
+              bulkGroupOps.push({
+                updateOne: {
+                  filter: { _id: groupWithSubgroup._id },
+                  update: { subGroups: groupWithSubgroup.subGroups },
+                },
+              });
+            }
+      
+            // Add subgroup ID to user's subGroups if not already added
+            if (!updatedSubGroups.some((subGroupId) => subGroupId.equals(subgroup._id))) {
+              updatedSubGroups.push(subgroup._id);
             }
           }
-
-          // Push update operation for group members and subgroups
-          bulkGroupOps.push({
-            updateOne: {
-              filter: { _id: group._id },
-              update: { members: group.members, subGroups: group.subGroups },
-            },
-          });
-        } else {
-          updatedGroups.push(group._id);
-          group.members = group.members || [];
-
-          // Ensure the userId isn't already added to the group's members
-          if (!group.members.includes(new mongoose.Types.ObjectId(userId))) {
-            group.members.push(new mongoose.Types.ObjectId(userId));
-          }
-
-          // Push update operation for group members
-          bulkGroupOps.push({
-            updateOne: {
-              filter: { _id: group._id },
-              update: { members: group.members },
-            },
-          });
         }
       }
-
-      // Execute bulk write for groups
-      await Group.bulkWrite(bulkGroupOps);
-
-      // Update the user's groups and subgroups using updateOne to avoid save()
-      const returned = await User.updateOne(
+      
+  
+      // Execute bulk operations to update groups and subgroups
+      if (bulkGroupOps.length > 0) {
+        await Group.bulkWrite(bulkGroupOps);
+      }
+  
+      // Deduplicate group and subgroup arrays before updating the user
+      updatedGroups = Array.from(new Set(updatedGroups.map((id) => id.toString()))).map(
+        (id) => new mongoose.Types.ObjectId(id)
+      );
+      updatedSubGroups = Array.from(
+        new Set(updatedSubGroups.map((id) => id.toString()))
+      ).map((id) => new mongoose.Types.ObjectId(id));
+  
+      // Update the user's groups, subGroups, and other details
+      await User.updateOne(
         { _id: userId },
         {
           $set: {
@@ -331,15 +197,13 @@ class AdminController {
           },
         }
       );
-
-      console.log("returned: ", returned);
-
+  
       user = await User.findById(userId).select("-password");
-
+  
       return ResponseHandler.success(
         res,
         user,
-        "User details and groups updated successfully"
+        "User details and memberships updated successfully"
       );
     } catch (error: any) {
       return ResponseHandler.failure(
@@ -349,6 +213,147 @@ class AdminController {
       );
     }
   }
+  
+
+  // async editUserProfile(req: Request, res: Response) {
+  //   try {
+  //     const organizationId = await getOrganizationId(req, res);
+  //     if (!organizationId) {
+  //       return;
+  //     }
+  
+  //     const organization = await Organization.findById(organizationId);
+  //     if (!organization) {
+  //       return ResponseHandler.failure(res, "Organization not found", 400);
+  //     }
+  
+  //     const image = req.file;
+  //     const userId = req.params.userId;
+  //     const { ids = [], ...rest } = req.body; // 'ids' array containing group or subgroup IDs
+  
+  //     // Ensure all IDs are converted to ObjectId
+  //     const objectIds = ids.map((id: string) => new mongoose.Types.ObjectId(id));
+  
+  //     // Fetch the user and ensure they belong to the organization
+  //     let user = await User.findOne({ _id: userId, organizationId });
+  //     if (!user) {
+  //       return ResponseHandler.failure(
+  //         res,
+  //         "User not found in your organization",
+  //         404
+  //       );
+  //     }
+  
+  //     let fileUploadResult: any = null;
+  //     if (image) {
+  //       fileUploadResult = await uploadToCloudinary(
+  //         image.buffer,
+  //         image.mimetype,
+  //         "userDisplayPictures"
+  //       );
+  //     }
+  
+  //     // Initialize variables for updates
+  //     const updatedGroups: mongoose.Types.ObjectId[] = [...(user.groups || [])];
+  //     const updatedSubGroups: mongoose.Types.ObjectId[] = [
+  //       ...(user.subGroups || []),
+  //     ];
+  //     const bulkGroupOps: any[] = [];
+  
+  //     for (const id of objectIds) {
+  //       // Check if the ID belongs to a group
+  //       const group = await Group.findOne({
+  //         _id: id,
+  //         organizationId,
+  //       });
+  
+  //       if (group) {
+  //         if (!group.members) {
+  //           group.members = []; // Initialize as an empty array if undefined
+  //         }
+
+  //         // Add user to the group's members if not already a member
+  //         if (!group.members.includes(new mongoose.Types.ObjectId(userId))) {
+  //           group.members.push(new mongoose.Types.ObjectId(userId));
+  //           bulkGroupOps.push({
+  //             updateOne: {
+  //               filter: { _id: group._id },
+  //               update: { members: group.members },
+  //             },
+  //           });
+  //         }
+  
+  //         // Add group ID to user's groups if not already added
+  //         if (!updatedGroups.includes(group._id)) {
+  //           updatedGroups.push(group._id);
+  //         }
+  //         continue;
+  //       }
+  
+  //       // Check if the ID belongs to a subgroup
+  //       const groupWithSubgroup = await Group.findOne({
+  //         "subGroups._id": id,
+  //         organizationId,
+  //       });
+  
+  //       if (groupWithSubgroup) {
+  //         const subgroup = groupWithSubgroup.subGroups.find(
+  //           (subGroup) => subGroup._id.toString() === id.toString()
+  //         );
+  
+  //         if (subgroup) {
+  //           // Add user to the subgroup's members if not already a member
+  //           if (!subgroup.members.includes(new mongoose.Types.ObjectId(userId))) {
+  //             subgroup.members.push(new mongoose.Types.ObjectId(userId));
+  //             bulkGroupOps.push({
+  //               updateOne: {
+  //                 filter: { _id: groupWithSubgroup._id },
+  //                 update: { subGroups: groupWithSubgroup.subGroups },
+  //               },
+  //             });
+  //           }
+  
+  //           // Add subgroup ID to user's subGroups if not already added
+  //           if (!updatedSubGroups.includes(subgroup._id)) {
+  //             updatedSubGroups.push(subgroup._id);
+  //           }
+  //         }
+  //       }
+  //     }
+  
+  //     // Execute bulk operations to update groups and subgroups
+  //     if (bulkGroupOps.length > 0) {
+  //       await Group.bulkWrite(bulkGroupOps);
+  //     }
+  
+  //     // Update the user's groups, subGroups, and other details
+  //     await User.updateOne(
+  //       { _id: userId },
+  //       {
+  //         $set: {
+  //           groups: updatedGroups,
+  //           subGroups: updatedSubGroups,
+  //           ...rest,
+  //           image: fileUploadResult ? fileUploadResult.secure_url : user.image,
+  //         },
+  //       }
+  //     );
+  
+  //     user = await User.findById(userId).select("-password");
+  
+  //     return ResponseHandler.success(
+  //       res,
+  //       user,
+  //       "User details and memberships updated successfully"
+  //     );
+  //   } catch (error: any) {
+  //     return ResponseHandler.failure(
+  //       res,
+  //       `Server error: ${error.message}`,
+  //       500
+  //     );
+  //   }
+  // }
 
   async editUserProfilee(req: Request, res: Response) {
     try {
@@ -526,104 +531,6 @@ class AdminController {
       );
     }
   }
-
-  // async generateCourseReport(req: Request, res: Response) {
-  //   try {
-  //     const { courseId } = req.params;  // Get courseId from the URL parameters
-
-  //     // Fetch the course by ID and populate the assigned learners and assessments
-  //     const course = await Course.findById(courseId)
-  //       .populate('assignedLearnersIds.userId')
-  //       .populate('assessments');
-  //     if (!course) {
-  //       return res.status(404).json({ message: 'Course not found' });
-  //     }
-
-  //     // Get all users assigned to the course
-  //     const assignedUsers = course.assignedLearnersIds?.map((learner: any) => learner.userId) || [];
-
-  //     console.log("assignedUsers", assignedUsers)
-
-  //     const totalUsers = assignedUsers.length;
-
-  //     // Fetch submissions for the course
-  //     const submissions = await Submission.find({ courseId }).populate('learnerId').populate('assessmentId');
-
-  //     const learnerReport = [];
-  //     let completedCount = 0;
-  //     let passCount = 0;
-  //     let failCount = 0;
-
-  //     // Loop through each user assigned to the course
-  //     for (const user of assignedUsers) {
-  //       const userDetails = await User.findById(user._id)
-  //       if (!userDetails) {
-  //         return ResponseHandler.failure(
-  //           res,
-  //           "User not found",
-  //           400
-  //         );
-  //       }
-  //       const submission = submissions.find(sub => sub.learnerId._id.toString() === user._id.toString());
-
-  //       if (submission) {
-  //         // If the user has taken the assessment, include their details
-
-  //         learnerReport.push({
-  //           userId: userDetails.userId,
-  //           firstName: userDetails.firstName,
-  //           lastName: userDetails.lastName,
-  //           score: submission.score || null,
-  //           maxObtainableMarks: submission.maxObtainableMarks || null,
-  //           percentageScore: submission.percentageScore || null,
-  //           passOrFail: submission.passOrFail || null
-  //         });
-
-  //         // Update counts for completed, pass, and fail
-  //         completedCount++;
-  //         if (submission.passOrFail === 'Pass') passCount++;
-  //         if (submission.passOrFail === 'Fail') failCount++;
-  //       } else {
-  //         // If the user hasn't taken the assessment, set null values
-  //         learnerReport.push({
-  //           userId: userDetails.userId,
-  //           firstName: userDetails.firstName,
-  //           lastName: userDetails.lastName,
-  //           score: null,
-  //           maxObtainableMarks: null,
-  //           percentageScore: null,
-  //           passOrFail: null
-  //         });
-  //       }
-  //     }
-
-  //     // Calculate completion percentages
-  //     const percentageCompleted = ((completedCount / totalUsers) * 100).toFixed(2);
-  //     const percentageIncomplete = (100 - parseFloat(percentageCompleted)).toFixed(2);
-
-  //     // Calculate success and failure percentages excluding users who haven't taken the course
-  //     const successPercentage = completedCount > 0 ? ((passCount / completedCount) * 100).toFixed(2) : '0';
-  //     const failurePercentage = completedCount > 0 ? ((failCount / completedCount) * 100).toFixed(2) : '0';
-
-  //     // Return the course report
-  //     return res.status(200).json({
-  //       totalUsers,
-  //       completion: {
-  //         percentageCompleted,
-  //         percentageIncomplete
-  //       },
-  //       successRate: {
-  //         successPercentage,
-  //         failurePercentage
-  //       },
-  //       learnerReport
-  //     });
-
-  //   } catch (error) {
-  //     console.error('Error generating course report:', error);
-  //     return res.status(500).json({ message: 'Server error' });
-  //   }
-  // }
 
   async generateCourseReport(req: Request, res: Response) {
     try {
