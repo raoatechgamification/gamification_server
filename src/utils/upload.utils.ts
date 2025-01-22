@@ -3,6 +3,16 @@ import path from "path";
 import { Request } from "express";
 
 // Define allowed MIME types and extensions
+const allowedMimeTypesForBulkUpload = [
+  "application/vnd.ms-excel", // For .xls files
+  "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet", // For .xlsx files
+];
+
+const allowedExtensionsForBulkUpload = [
+  ".xls",
+  ".xlsx",
+];
+
 const allowedMimeTypes = [
   "image/jpeg",
   "image/jpg",
@@ -13,6 +23,7 @@ const allowedMimeTypes = [
   "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
   "application/vnd.ms-powerpoint",
   "application/vnd.openxmlformats-officedocument.presentationml.presentation",
+  
   "audio/mpeg", // MP3
   "video/mp4",
   "video/webm",
@@ -72,7 +83,7 @@ export const bulkUpload = multer({
   storage,
   fileFilter: (req: any, file: Express.Multer.File, cb: any) => {
     const ext = path.extname(file.originalname).toLowerCase();
-    if (allowedExtensions.includes(ext)) {
+    if (allowedExtensionsForBulkUpload.includes(ext)) {
       cb(null, true);
     } else {
       cb(new Error("Invalid file type for bulk upload"), false);
@@ -87,7 +98,7 @@ export const Optimizedupload = multer({
   },
   fileFilter: (req: Request, file: Express.Multer.File, cb) => {
     const ext = path.extname(file.originalname).toLowerCase();
-    if (allowedExtensions.includes(ext)) {
+    if (allowedMimeTypes.includes(file.mimetype) && allowedExtensions.includes(ext)) {
       cb(null, true);
     } else {
       cb(
