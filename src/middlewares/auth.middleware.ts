@@ -38,19 +38,21 @@ export const authenticate = async (
     const decoded = verifyToken(token);
     req.user = decoded;
 
-    const user = await User.findById(decoded.id);
-    if (!user) {
-      return res.status(401).json({ status: false, message: "User not found" });
-    }
+    if (decoded.role === "user") {
+      const user = await User.findById(decoded.id);
+      if (!user) {
+        return res.status(401).json({ status: false, message: "User not found" });
+      }
 
-    if (user.isDisabled) {
-      return res.status(403).json({ status: false, message: "User account is disabled" });
-    }
+      if (user.isDisabled) {
+        return res.status(403).json({ status: false, message: "User account is disabled" });
+      }
 
-    if (user.isArchived) {
-      return res.status(403).json({ status: false, message: "User account is archived" });
+      if (user.isArchived) {
+        return res.status(403).json({ status: false, message: "User account is archived" });
+      }
     }
-
+    
     // Check if user is a subAdmin
     if (decoded.role === "subAdmin") {
       const subAdmin = await SubAdmin.findById(decoded.id).populate("permissions");

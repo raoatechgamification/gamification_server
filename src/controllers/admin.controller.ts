@@ -723,15 +723,46 @@ class AdminController {
     }
   }
 
+  async verifyOrganization(adminOrganizationId: string, userId: string) {
+    try {
+      console.log("Verifying organization...");
+      const user = await User.findById(userId);
+      if (!user) {
+        throw new Error("User not found");
+      }
+      if (String(user.organizationId) !== adminOrganizationId) {
+        throw new Error("Unauthorized: User does not belong to your organization");
+      }
+      return user;
+    } catch (error: any) {
+      console.error("Error in verifyOrganization:", error.message);
+      throw error;
+    }
+  }
+
   async archiveUser(req: Request, res: Response) {
     try {
       const { userId } = req.params;
+
+      let organizationId = await getOrganizationId(req, res);
+      if (!organizationId) {
+        return;
+      }
+
+      const organization = await Organization.findById(organizationId);
+      if (!organization) {
+        return ResponseHandler.failure(res, "Organization not found", 400);
+      }
+
+      console.log("Archiving user with ID:", userId, "in organization:", organizationId);
+
+      await new AdminController().verifyOrganization(String(organizationId), userId)
   
       const user = await User.findByIdAndUpdate(
         userId,
         { isArchived: true },
         { new: true }
-      );
+      ).select(" -password ");
   
       if (!user) {
         return ResponseHandler.failure(res, "User not found", 404);
@@ -745,6 +776,18 @@ class AdminController {
   async enableUser(req: Request, res: Response) {
     try {
       const { userId } = req.params;
+
+      let organizationId = await getOrganizationId(req, res);
+      if (!organizationId) {
+        return;
+      }
+
+      const organization = await Organization.findById(organizationId);
+      if (!organization) {
+        return ResponseHandler.failure(res, "Organization not found", 400);
+      }
+
+      await this.verifyOrganization(String(organizationId), userId)
   
       const user = await User.findByIdAndUpdate(
         userId,
@@ -761,9 +804,21 @@ class AdminController {
     }
   }
 
-  async disabledUser(req: Request, res: Response) {
+  async disableUser(req: Request, res: Response) {
     try {
       const { userId } = req.params;
+
+      let organizationId = await getOrganizationId(req, res);
+      if (!organizationId) {
+        return;
+      }
+
+      const organization = await Organization.findById(organizationId);
+      if (!organization) {
+        return ResponseHandler.failure(res, "Organization not found", 400);
+      }
+
+      await this.verifyOrganization(String(organizationId), userId)
   
       const user = await User.findByIdAndUpdate(
         userId,

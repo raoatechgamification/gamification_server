@@ -7735,3 +7735,11 @@
 2025-01-22 13:16:04 [info]: POST /groups/6790d72cc4ed8f1c3134d8c1/assign 200 - Request Body: {"userIds":["676965e49626eab20cafeb69","674d6507cad288132dd56fc1","67909f65a2cfe9e1e3ffc7a1"]}
 2025-01-22 13:16:20 [info]: POST /6790d72cc4ed8f1c3134d8c1/add-users 200 - Request Body: {"userIds":["676965e49626eab20cafeb69","674d6507cad288132dd56fc1","67909f65a2cfe9e1e3ffc7a1"]}
 2025-01-22 13:18:49 [info]: POST /6790d72cc4ed8f1c3134d8be/add-users 200 - Request Body: {"userIds":["676965e49626eab20cafeb69","674d6507cad288132dd56fc1","67909f65a2cfe9e1e3ffc7a1"]}
+2025-01-22 16:21:28 [info]: PATCH /user/67909f65a2cfe9e1e3ffc7a1/archive 401
+2025-01-22 16:22:20 [info]: PATCH /user/67909f65a2cfe9e1e3ffc7a1/archive 401
+2025-01-22 16:23:31 [info]: PATCH /user/67909f65a2cfe9e1e3ffc7a1/archive 401
+2025-01-22 16:25:21 [info]: PATCH /user/67909f65a2cfe9e1e3ffc7a1/archive 401
+2025-01-22 16:40:27 [info]: PATCH /user/67909f65a2cfe9e1e3ffc7a1/archive 200
+2025-01-22 16:42:17 [info]: PATCH /user/67909f65a2cfe9e1e3ffc7a1/archive 200
+2025-01-22 16:42:50 [info]: POST /login 200 - Request Body: {"email":"nimi3@gmail.com","password":"Moyooo10#"}
+2025-01-22 16:44:33 [info]: PUT /profile/edit 403 - Request Body: {"yearOfExperience":5,"highestEducationLevel":"Bachelor of Science","gender":"female","dateOfBirth":"05-09-2000","username":"same_same","firstName":"Oluwaseun","lastName":"Odueso","phone":"+2349066318566"}
