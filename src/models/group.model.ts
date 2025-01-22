@@ -1,137 +1,50 @@
 import mongoose, { Schema, Document, Model } from "mongoose";
 
-interface SubLearnerGroup {
-  [x: string]: any;
-  // _id: string;
-  name: string;
+export interface IAssignedCourse {
+  courseId: mongoose.Types.ObjectId;
+  courseName: string;
 }
 
-interface IGroup extends Document {
+export interface ISubGroup {
+  _id: mongoose.Types.ObjectId; // Add this line
   name: string;
-  organizationId: mongoose.Schema.Types.ObjectId;
-  numberOfArms: number; 
-  subGroupsName?: {
-    name: string
-  }[];
-  basicCustomization: {
-    generalLearnerTerm: "learner" | "staff" | "student" | "trainee" | "user";
-    learnerGroup: {
-      generalLearnerGroupTerm: "class" | "group" | "batch";
-      groups: { name: string }[];
-    };
-    subLearnerGroup: {
-      generalSubLearnerGroupTerm: "facilitator" | "arm" | "cohort";
-      subLearnerGroups: SubLearnerGroup[];
-    };
-    instructor: {
-      generalInstructorTerm: "instructor" | "teacher" | "facilitator" | "trainer" | "lecturer";
-      names: { name: string }[];
-    };
-  };
-  advancedCustomization: {
-    academicProgram: {
-      maxMembersPerProgram: number;
-    };
-    idFormat: "learner" | "staff" | "student" | "trainee" | "user";
-    personalization: string;
-  };
+  members: mongoose.Types.ObjectId[];
+  assignedCourses?: IAssignedCourse[];
 }
+
+export interface IGroup extends Document {
+  _id: mongoose.Types.ObjectId; 
+  name: string;
+  numberOfArms: number;
+  subGroups: ISubGroup[];
+  members: mongoose.Types.ObjectId[]; 
+  assignedCourses?: IAssignedCourse[];
+  organizationId: mongoose.Types.ObjectId;
+}
+
+const AssignedCourseSchema: Schema<IAssignedCourse> = new Schema({
+  courseId: { type: mongoose.Schema.Types.ObjectId, ref: "Course", required: true },
+  courseName: { type: String, required: true },
+});
+
+const SubGroupSchema: Schema<ISubGroup> = new Schema({
+  name: { type: String, required: true },
+  members: [{ type: mongoose.Schema.Types.ObjectId, ref: "User", default: [] }],
+  assignedCourses: { type: [AssignedCourseSchema], default: [] }, 
+});
 
 const GroupSchema: Schema<IGroup> = new Schema(
   {
-    name: {
-      type: String,
-      required: true,
-    },
-    organizationId: { type: mongoose.Schema.Types.ObjectId, required: true },
+    name: { type: String, required: true },
     numberOfArms: { type: Number, required: true },
-    subGroupsName: {
-      type: [
-        {
-          name: {
-            type: String,
-            required: true,
-          },
-        },
-      ],
-      default: [],
-    },
-    basicCustomization: {
-      generalLearnerTerm: {
-        type: String,
-        enum: ["learner", "staff", "student", "trainee", "user"],
-        required: true,
-      },
-      learnerGroup: {
-        generalLearnerGroupTerm: {
-          type: String,
-          enum: ["class", "group", "batch"],
-          required: true,
-        },
-        groups: [
-          {
-            name: {
-              type: String,
-              required: true,
-            },
-          },
-        ],
-      },
-      subLearnerGroup: {
-        generalSubLearnerGroupTerm: {
-          type: String,
-          enum: ["facilitator", "arm", "cohort"],
-          required: true,
-        },
-        subLearnerGroups: [
-          {
-            // _id: {
-            //   type: mongoose.Schema.Types.ObjectId,  // Ensure _id is ObjectId
-            // },
-            name: {
-              type: String,
-              required: true,
-            },
-          },
-        ],
-      },
-      instructor: {
-        generalInstructorTerm: {
-          type: String,
-          enum: ["instructor", "teacher", "facilitator", "trainer", "lecturer"],
-          required: true,
-        },
-        names: [
-          {
-            name: {
-              type: String,
-              required: true,
-            },
-          },
-        ],
-      },
-    },
-    advancedCustomization: {
-      academicProgram: {
-        maxMembersPerProgram: {
-          type: Number,
-          required: true,
-        },
-      },
-      idFormat: {
-        type: String,
-        enum: ["learner", "staff", "student", "trainee", "user"],
-        required: true,
-      },
-      personalization: {
-        type: String,
-        default: "",
-      },
-    },
+    subGroups: { type: [SubGroupSchema], default: [] },
+    members: [{ type: mongoose.Schema.Types.ObjectId, ref: "User", default: [] }],
+    assignedCourses: { type: [AssignedCourseSchema], default: [] }, // New field for group courses
+    organizationId: { type: mongoose.Schema.Types.ObjectId, ref: "Organization", required: true },
   },
   { timestamps: true }
 );
 
-const Groupp: Model<IGroup> = mongoose.model<IGroup>("Groupp", GroupSchema);
+const Group: Model<IGroup> = mongoose.model<IGroup>("Group", GroupSchema);
 
-export default Groupp;
+export default Group;
