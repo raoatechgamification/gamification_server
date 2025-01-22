@@ -2,7 +2,7 @@ import mongoose from "mongoose";
 import dotenv from "dotenv";
 import { Request, Response } from "express";
 import { ResponseHandler } from "../../middlewares/responseHandler.middleware";
-import Group from "../../models/group.model";
+import Group, { IGroup } from "../../models/groupp.model";
 import Organization, { IOrganization } from "../../models/organization.model";
 import SuperAdmin, { ISuperAdmin } from "../../models/superadmin.model";
 import User, { IUser } from "../../models/user.model";
@@ -19,14 +19,12 @@ import { getOrganizationId } from "../../utils/getOrganizationId.util"
 export class UserAuthController {
   static async createSingleUser(req: Request, res: Response) {
     try {
-      let {
+      const {
         firstName,
         lastName,
         otherName,
         email,
         phone,
-        userId,
-        groupId,
         gender,
         dateOfBirth,
         country,
@@ -41,43 +39,46 @@ export class UserAuthController {
         employerName,
         role,
         batch,
-        password,
+        password: rawPassword,
         sendEmail,
         contactPersonPlaceOfEmployment,
         nameOfContactPerson,
         contactEmail,
         contactPersonPhoneNumber,
+        ids = "[]",
       } = req.body;
-
+  
       const image = req.file;
-
-      // const organizationId = req.admin._id;
-      // let organizationId: mongoose.Schema.Types.ObjectId;
-      // if (req.admin) {
-      //   organizationId = req.admin._id;
-      // } else if (req.user && req.user.role === "subAdmin") {
-      //   const subAdmin = await SubAdmin.findById(req.user.id);
-      //   console.log("req.user.id: ", req.user.id)
-      //   if (!subAdmin) {
-      //     return ResponseHandler.failure(res, "Subadmin not found", 404);
-      //   }
-      //   organizationId = subAdmin.organizationId; // Assuming subadmins have an organizationId field
-      // } else {
-      //   return ResponseHandler.failure(res, "Unauthorized access", 403);
-      // }
-
-      let organizationId = await getOrganizationId(req, res);
+  
+      const organizationId = await getOrganizationId(req, res);
       if (!organizationId) {
-        return; 
+        return;
       }
-
+  
       const organization = await Organization.findById(organizationId);
       if (!organization) {
         return ResponseHandler.failure(res, "Organization not found", 400);
       }
-
+  
+      let parsedIds: string[] = [];
+      try {
+        parsedIds = JSON.parse(ids);
+      } catch (error) {
+        return ResponseHandler.failure(res, "Invalid 'ids' format", 400);
+      }
+  
+      const objectIds = parsedIds.map((id: string) => new mongoose.Types.ObjectId(id));
+  
+      const existingAccount =
+        (await Organization.findOne({ email })) ||
+        (await User.findOne({ email })) ||
+        (await SuperAdmin.findOne({ email }));
+  
+      if (existingAccount) {
+        return ResponseHandler.failure(res, "Email already registered", 400);
+      }
+  
       let fileUploadResult: any = null;
-
       if (image) {
         fileUploadResult = await uploadToCloudinary(
           image.buffer,
@@ -85,45 +86,16 @@ export class UserAuthController {
           "userDisplayPictures"
         );
       }
-
-      if (!password) {
-        password = `${firstName}${lastName}123#`;
-      }
-
-      const existingAccount =
-        (await Organization.findOne({ email })) ||
-        (await User.findOne({ email })) ||
-        (await SuperAdmin.findOne({ email }));
-
-      if (existingAccount) {
-        return ResponseHandler.failure(res, "Email already registered", 400);
-      }
-
-      if (groupId) {
-        const group = await Group.findOne({
-          _id: groupId,
-          organizationId,
-        });
-
-        if (!group) {
-          return ResponseHandler.failure(
-            res,
-            "Group not found for this organization",
-            400
-          );
-        }
-      }
-
+  
+      const password = rawPassword || `${firstName}${lastName}123#`;
       const hashedPassword = await hashPassword(password);
-
+  
       const newUser = await User.create({
         firstName,
         lastName,
         otherName,
         email,
         phone,
-        groups: [groupId],
-        userId,
         gender,
         dateOfBirth,
         image: fileUploadResult ? fileUploadResult.secure_url : null,
@@ -137,20 +109,75 @@ export class UserAuthController {
         officeLGA,
         employerName,
         officeState,
+        role,
+        batch,
         password: hashedPassword,
         organizationId,
-        batch,
         contactPersonPlaceOfEmployment,
-        contactEmail,
         nameOfContactPerson,
+        contactEmail,
         contactPersonPhoneNumber,
-        userType: role,
       });
-
-      const userResponse = await User.findById(newUser._id).select(
-        "-password -role"
-      );
-
+  
+      const userIdObject = newUser._id as mongoose.Types.ObjectId;
+  
+      const userGroups: mongoose.Types.ObjectId[] = [];
+      const userSubGroups: mongoose.Types.ObjectId[] = [];
+  
+      const bulkOps: any[] = [];
+  
+      for (const id of objectIds) {
+        const group = await Group.findOne({ _id: id, organizationId });
+        if (group?.members) {
+          group.members.push(userIdObject);
+          bulkOps.push({
+            updateOne: {
+              filter: { _id: group._id },
+              update: { members: group.members },
+            },
+          });
+          if (!userGroups.includes(group._id)) {
+            userGroups.push(group._id);
+          }
+          continue;
+        }
+  
+        const groupWithSubgroup = await Group.findOne({
+          "subGroups._id": id,
+          organizationId,
+        });
+  
+        if (groupWithSubgroup) {
+          const subgroup = groupWithSubgroup.subGroups.find((sg) =>
+            sg._id.equals(id)
+          );
+          if (subgroup) {
+            subgroup.members.push(userIdObject);
+            bulkOps.push({
+              updateOne: {
+                filter: { _id: groupWithSubgroup._id },
+                update: { subGroups: groupWithSubgroup.subGroups },
+              },
+            });
+  
+            if (!userSubGroups.includes(subgroup._id)) {
+              userSubGroups.push(subgroup._id);
+            }
+            if (!userGroups.includes(groupWithSubgroup._id)) {
+              userGroups.push(groupWithSubgroup._id);
+            }
+          }
+        }
+      }
+  
+      if (bulkOps.length > 0) {
+        await Group.bulkWrite(bulkOps);
+      }
+  
+      newUser.groups = userGroups;
+      newUser.subGroups = userSubGroups;
+      await newUser.save();
+  
       if (sendEmail) {
         const emailVariables = {
           email,
@@ -159,29 +186,185 @@ export class UserAuthController {
           organizationName: organization.name,
           subject: "Onboarding Email",
         };
-
         await sendLoginEmail(emailVariables);
       }
-
+  
+      const userResponse = await User.findById(newUser._id).select("-password");
       return res.status(201).json({
         message: "User account created successfully",
         userResponse,
-        loginUrl: `${process.env.FRONTENT_BASEURL}/auth/login`,
+        loginUrl: `${process.env.FRONTEND_BASEURL}/auth/login`,
       });
     } catch (error: any) {
-      return ResponseHandler.failure(
-        res,
-        `Server error: ${error.message}`,
-        500
-      );
+      return ResponseHandler.failure(res, `Server error: ${error.message}`, 500);
     }
-  }
+  }  
+  
+  // static async createSingleUser(req: Request, res: Response) {
+  //   try {
+  //     let {
+  //       firstName,
+  //       lastName,
+  //       otherName,
+  //       email,
+  //       phone,
+  //       userId,
+  //       groupId,
+  //       gender,
+  //       dateOfBirth,
+  //       country,
+  //       address,
+  //       city,
+  //       LGA,
+  //       state,
+  //       officeAddress,
+  //       officeCity,
+  //       officeLGA,
+  //       officeState,
+  //       employerName,
+  //       role,
+  //       batch,
+  //       password,
+  //       sendEmail,
+  //       contactPersonPlaceOfEmployment,
+  //       nameOfContactPerson,
+  //       contactEmail,
+  //       contactPersonPhoneNumber,
+  //     } = req.body;
+
+  //     const image = req.file;
+
+  //     // const organizationId = req.admin._id;
+  //     // let organizationId: mongoose.Schema.Types.ObjectId;
+  //     // if (req.admin) {
+  //     //   organizationId = req.admin._id;
+  //     // } else if (req.user && req.user.role === "subAdmin") {
+  //     //   const subAdmin = await SubAdmin.findById(req.user.id);
+  //     //   console.log("req.user.id: ", req.user.id)
+  //     //   if (!subAdmin) {
+  //     //     return ResponseHandler.failure(res, "Subadmin not found", 404);
+  //     //   }
+  //     //   organizationId = subAdmin.organizationId; // Assuming subadmins have an organizationId field
+  //     // } else {
+  //     //   return ResponseHandler.failure(res, "Unauthorized access", 403);
+  //     // }
+
+  //     let organizationId = await getOrganizationId(req, res);
+  //     if (!organizationId) {
+  //       return; 
+  //     }
+
+  //     const organization = await Organization.findById(organizationId);
+  //     if (!organization) {
+  //       return ResponseHandler.failure(res, "Organization not found", 400);
+  //     }
+
+  //     let fileUploadResult: any = null;
+
+  //     if (image) {
+  //       fileUploadResult = await uploadToCloudinary(
+  //         image.buffer,
+  //         image.mimetype,
+  //         "userDisplayPictures"
+  //       );
+  //     }
+
+  //     if (!password) {
+  //       password = `${firstName}${lastName}123#`;
+  //     }
+
+  //     const existingAccount =
+  //       (await Organization.findOne({ email })) ||
+  //       (await User.findOne({ email })) ||
+  //       (await SuperAdmin.findOne({ email }));
+
+  //     if (existingAccount) {
+  //       return ResponseHandler.failure(res, "Email already registered", 400);
+  //     }
+
+  //     if (groupId) {
+  //       const group = await Group.findOne({
+  //         _id: groupId,
+  //         organizationId,
+  //       });
+
+  //       if (!group) {
+  //         return ResponseHandler.failure(
+  //           res,
+  //           "Group not found for this organization",
+  //           400
+  //         );
+  //       }
+  //     }
+
+  //     const hashedPassword = await hashPassword(password);
+
+  //     const newUser = await User.create({
+  //       firstName,
+  //       lastName,
+  //       otherName,
+  //       email,
+  //       phone,
+  //       groups: [groupId],
+  //       userId,
+  //       gender,
+  //       dateOfBirth,
+  //       image: fileUploadResult ? fileUploadResult.secure_url : null,
+  //       country,
+  //       address,
+  //       city,
+  //       LGA,
+  //       state,
+  //       officeAddress,
+  //       officeCity,
+  //       officeLGA,
+  //       employerName,
+  //       officeState,
+  //       password: hashedPassword,
+  //       organizationId,
+  //       batch,
+  //       contactPersonPlaceOfEmployment,
+  //       contactEmail,
+  //       nameOfContactPerson,
+  //       contactPersonPhoneNumber,
+  //       userType: role,
+  //     });
+
+  //     const userResponse = await User.findById(newUser._id).select(
+  //       "-password -role"
+  //     );
+
+  //     if (sendEmail) {
+  //       const emailVariables = {
+  //         email,
+  //         firstName,
+  //         password,
+  //         organizationName: organization.name,
+  //         subject: "Onboarding Email",
+  //       };
+
+  //       await sendLoginEmail(emailVariables);
+  //     }
+
+  //     return res.status(201).json({
+  //       message: "User account created successfully",
+  //       userResponse,
+  //       loginUrl: `${process.env.FRONTENT_BASEURL}/auth/login`,
+  //     });
+  //   } catch (error: any) {
+  //     return ResponseHandler.failure(
+  //       res,
+  //       `Server error: ${error.message}`,
+  //       500
+  //     );
+  //   }
+  // }
 
   static async bulkCreateUsers(req: Request, res: Response) {
     try {
       // const organizationId = req.admin._id;
 
-      let organizationId = await getOrganizationId(req, res);
+      const organizationId = await getOrganizationId(req, res);
       if (!organizationId) {
         return; 
       }
@@ -192,8 +375,7 @@ export class UserAuthController {
       }
 
       if (!req.file) {
-        res.status(400).json({ success: false, error: "No file uploaded" });
-        return;
+        return ResponseHandler.failure(res, "No file uploaded", 400)
       }
 
       const { duplicateEmails, duplicatePhones } =
@@ -210,6 +392,7 @@ export class UserAuthController {
         });
       }
 
+
       res.status(201).json({
         success: true,
         message: "Users created successfully.",
@@ -217,7 +400,7 @@ export class UserAuthController {
     } catch (error: any) {
       return res.status(500).json({
         success: false,
-        message: "An error occurred while creating bulk accounts",
+        message: "An error occurred during bulk user creation",
         error: error.message,
       });
     }
