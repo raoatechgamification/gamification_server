@@ -11,7 +11,7 @@ export interface IGroup extends Document {
   name: string;
   numberOfArms: number;
   subGroups: ISubGroup[];
-  members?: mongoose.Types.ObjectId[]; 
+  members: mongoose.Types.ObjectId[]; 
   organizationId: mongoose.Types.ObjectId;
 }
 

@@ -100,7 +100,7 @@ const UserSchema: Schema<IUser> = new Schema(
     otherName: { type: String, default: null },
     email: { type: String, required: true, unique: true },
     phone: { type: String, sparse: true },
-    userId: { type: String, default: null },
+    userId: { type: String, default: null, required: false },
     groups: [
       { type: mongoose.Schema.Types.ObjectId, sparse: true, ref: "Group" },
     ],
