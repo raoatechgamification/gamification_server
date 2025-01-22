@@ -206,7 +206,7 @@ class AdminController {
       return ResponseHandler.success(
         res,
         user,
-        "User details and memberships updated successfully"
+        "User details"
       );
     } catch (error: any) {
       return ResponseHandler.failure(res, `Server error: ${error.message}`, 500);
