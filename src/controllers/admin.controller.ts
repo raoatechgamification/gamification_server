@@ -229,128 +229,128 @@ class AdminController {
     }
   }
 
-  async editUserProfilee(req: Request, res: Response) {
-    try {
-      // const organizationId = req.admin._id;
-      let organizationId = await getOrganizationId(req, res);
-      if (!organizationId) {
-        return;
-      }
+  // async editUserProfilee(req: Request, res: Response) {
+  //   try {
+  //     // const organizationId = req.admin._id;
+  //     let organizationId = await getOrganizationId(req, res);
+  //     if (!organizationId) {
+  //       return;
+  //     }
 
-      const organization = await Organization.findById(organizationId);
-      if (!organization) {
-        return ResponseHandler.failure(res, "Organization not found", 400);
-      }
+  //     const organization = await Organization.findById(organizationId);
+  //     if (!organization) {
+  //       return ResponseHandler.failure(res, "Organization not found", 400);
+  //     }
 
-      const image = req.file;
+  //     const image = req.file;
 
-      const userId = req.params.userId;
-      const {
-        firstName,
-        lastName,
-        otherName,
-        email,
-        phone,
-        username,
-        groupId,
-        gender,
-        dateOfBirth,
-        country,
-        address,
-        city,
-        LGA,
-        state,
-        officeAddress,
-        officeCity,
-        officeLGA,
-        officeState,
-        employerName,
-        role,
-        batch,
-        image: cloudinaryImage,
-        // password,
-        sendEmail,
-        yearsOfExperience,
-        highestEducationLevel,
-        contactPersonPlaceOfEmployment,
-        nameOfContactPerson,
-        contactEmail,
-        contactPersonPhoneNumber,
-        userId: userIdCode,
-      } = req.body;
+  //     const userId = req.params.userId;
+  //     const {
+  //       firstName,
+  //       lastName,
+  //       otherName,
+  //       email,
+  //       phone,
+  //       username,
+  //       groupId,
+  //       gender,
+  //       dateOfBirth,
+  //       country,
+  //       address,
+  //       city,
+  //       LGA,
+  //       state,
+  //       officeAddress,
+  //       officeCity,
+  //       officeLGA,
+  //       officeState,
+  //       employerName,
+  //       role,
+  //       batch,
+  //       image: cloudinaryImage,
+  //       // password,
+  //       sendEmail,
+  //       yearsOfExperience,
+  //       highestEducationLevel,
+  //       contactPersonPlaceOfEmployment,
+  //       nameOfContactPerson,
+  //       contactEmail,
+  //       contactPersonPhoneNumber,
+  //       userId: userIdCode,
+  //     } = req.body;
 
-      const user = await User.findOne({ _id: userId, organizationId });
-      if (!user) {
-        return ResponseHandler.failure(
-          res,
-          "User not found in your organization",
-          404
-        );
-      }
+  //     const user = await User.findOne({ _id: userId, organizationId });
+  //     if (!user) {
+  //       return ResponseHandler.failure(
+  //         res,
+  //         "User not found in your organization",
+  //         404
+  //       );
+  //     }
 
-      let fileUploadResult: any = null;
-      if (image) {
-        fileUploadResult = await uploadToCloudinary(
-          image.buffer,
-          image.mimetype,
-          "userDisplayPictures"
-        );
-      }
+  //     let fileUploadResult: any = null;
+  //     if (image) {
+  //       fileUploadResult = await uploadToCloudinary(
+  //         image.buffer,
+  //         image.mimetype,
+  //         "userDisplayPictures"
+  //       );
+  //     }
 
-      const updatedUser = await User.findByIdAndUpdate(
-        userId,
-        {
-          $set: {
-            userId: userIdCode,
-            username,
-            firstName,
-            lastName,
-            batch,
-            userType: role,
-            yearsOfExperience,
-            highestEducationLevel,
-            gender,
-            dateOfBirth,
-            otherName,
-            email,
-            phone,
-            country,
-            address,
-            city,
-            LGA,
-            image: fileUploadResult
-              ? fileUploadResult.secure_url
-              : cloudinaryImage,
-            state,
-            officeAddress,
-            officeCity,
-            officeLGA,
-            officeState,
-            employerName,
-            // password,
-            sendEmail,
-            contactPersonPlaceOfEmployment,
-            nameOfContactPerson,
-            contactEmail,
-            contactPersonPhoneNumber,
-          },
-        },
-        { new: true, runValidators: true }
-      );
+  //     const updatedUser = await User.findByIdAndUpdate(
+  //       userId,
+  //       {
+  //         $set: {
+  //           userId: userIdCode,
+  //           username,
+  //           firstName,
+  //           lastName,
+  //           batch,
+  //           userType: role,
+  //           yearsOfExperience,
+  //           highestEducationLevel,
+  //           gender,
+  //           dateOfBirth,
+  //           otherName,
+  //           email,
+  //           phone,
+  //           country,
+  //           address,
+  //           city,
+  //           LGA,
+  //           image: fileUploadResult
+  //             ? fileUploadResult.secure_url
+  //             : cloudinaryImage,
+  //           state,
+  //           officeAddress,
+  //           officeCity,
+  //           officeLGA,
+  //           officeState,
+  //           employerName,
+  //           // password,
+  //           sendEmail,
+  //           contactPersonPlaceOfEmployment,
+  //           nameOfContactPerson,
+  //           contactEmail,
+  //           contactPersonPhoneNumber,
+  //         },
+  //       },
+  //       { new: true, runValidators: true }
+  //     );
 
-      return ResponseHandler.success(
-        res,
-        updatedUser,
-        "User details updated successfully"
-      );
-    } catch (error: any) {
-      return ResponseHandler.failure(
-        res,
-        `Server error: ${error.message}`,
-        500
-      );
-    }
-  }
+  //     return ResponseHandler.success(
+  //       res,
+  //       updatedUser,
+  //       "User details updated successfully"
+  //     );
+  //   } catch (error: any) {
+  //     return ResponseHandler.failure(
+  //       res,
+  //       `Server error: ${error.message}`,
+  //       500
+  //     );
+  //   }
+  // }
 
   async viewAUserProfile(req: Request, res: Response) {
     try {
@@ -720,6 +720,25 @@ class AdminController {
         res,
         error.message || "Failed to update general instructor term"
       );
+    }
+  }
+
+  async archiveUser(req: Request, res: Response) {
+    try {
+      const { userId } = req.params;
+  
+      const user = await User.findByIdAndUpdate(
+        userId,
+        { isArchived: true },
+        { new: true }
+      );
+  
+      if (!user) {
+        return ResponseHandler.failure(res, "User not found", 404);
+      }
+  
+      return ResponseHandler.success(res, user, "User archived successfully");
+    } catch (error) {
     }
   }
 }

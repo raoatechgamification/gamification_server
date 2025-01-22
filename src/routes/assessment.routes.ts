@@ -44,7 +44,7 @@ const { submitAssessment } = new SubmissionController();
 router.post(
   "/create",
   authenticate,
-    authorize(["admin"]),
+  authorize(["admin"]),
   upload.single("file"),
   ...createAssessmentValidator,
   createAssessmentHandler
