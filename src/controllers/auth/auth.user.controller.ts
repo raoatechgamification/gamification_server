@@ -2,7 +2,7 @@ import mongoose from "mongoose";
 import dotenv from "dotenv";
 import { Request, Response } from "express";
 import { ResponseHandler } from "../../middlewares/responseHandler.middleware";
-import Group, { IGroup } from "../../models/groupp.model";
+import Group, { IGroup } from "../../models/group.model";
 import Organization, { IOrganization } from "../../models/organization.model";
 import SuperAdmin, { ISuperAdmin } from "../../models/superadmin.model";
 import User, { IUser } from "../../models/user.model";
@@ -13,8 +13,7 @@ import { uploadToCloudinary } from "../../utils/cloudinaryUpload";
 import { comparePassword, hashPassword } from "../../utils/hash";
 import { generateToken } from "../../utils/jwt";
 dotenv.config();
-import { getOrganizationId } from "../../utils/getOrganizationId.util"
-
+import { getOrganizationId } from "../../utils/getOrganizationId.util";
 
 export class UserAuthController {
   static async createSingleUser(req: Request, res: Response) {
@@ -47,37 +46,39 @@ export class UserAuthController {
         contactPersonPhoneNumber,
         ids = "[]",
       } = req.body;
-  
+
       const image = req.file;
-  
+
       const organizationId = await getOrganizationId(req, res);
       if (!organizationId) {
         return;
       }
-  
+
       const organization = await Organization.findById(organizationId);
       if (!organization) {
         return ResponseHandler.failure(res, "Organization not found", 400);
       }
-  
+
       let parsedIds: string[] = [];
       try {
         parsedIds = JSON.parse(ids);
       } catch (error) {
         return ResponseHandler.failure(res, "Invalid 'ids' format", 400);
       }
-  
-      const objectIds = parsedIds.map((id: string) => new mongoose.Types.ObjectId(id));
-  
+
+      const objectIds = parsedIds.map(
+        (id: string) => new mongoose.Types.ObjectId(id)
+      );
+
       const existingAccount =
         (await Organization.findOne({ email })) ||
         (await User.findOne({ email })) ||
         (await SuperAdmin.findOne({ email }));
-  
+
       if (existingAccount) {
         return ResponseHandler.failure(res, "Email already registered", 400);
       }
-  
+
       let fileUploadResult: any = null;
       if (image) {
         fileUploadResult = await uploadToCloudinary(
@@ -86,10 +87,10 @@ export class UserAuthController {
           "userDisplayPictures"
         );
       }
-  
+
       const password = rawPassword || `${firstName}${lastName}123#`;
       const hashedPassword = await hashPassword(password);
-  
+
       const newUser = await User.create({
         firstName,
         lastName,
@@ -118,14 +119,14 @@ export class UserAuthController {
         contactEmail,
         contactPersonPhoneNumber,
       });
-  
+
       const userIdObject = newUser._id as mongoose.Types.ObjectId;
-  
+
       const userGroups: mongoose.Types.ObjectId[] = [];
       const userSubGroups: mongoose.Types.ObjectId[] = [];
-  
+
       const bulkOps: any[] = [];
-  
+
       for (const id of objectIds) {
         const group = await Group.findOne({ _id: id, organizationId });
         if (group?.members) {
@@ -141,12 +142,12 @@ export class UserAuthController {
           }
           continue;
         }
-  
+
         const groupWithSubgroup = await Group.findOne({
           "subGroups._id": id,
           organizationId,
         });
-  
+
         if (groupWithSubgroup) {
           const subgroup = groupWithSubgroup.subGroups.find((sg) =>
             sg._id.equals(id)
@@ -159,7 +160,7 @@ export class UserAuthController {
                 update: { subGroups: groupWithSubgroup.subGroups },
               },
             });
-  
+
             if (!userSubGroups.includes(subgroup._id)) {
               userSubGroups.push(subgroup._id);
             }
@@ -169,15 +170,15 @@ export class UserAuthController {
           }
         }
       }
-  
+
       if (bulkOps.length > 0) {
         await Group.bulkWrite(bulkOps);
       }
-  
+
       newUser.groups = userGroups;
       newUser.subGroups = userSubGroups;
       await newUser.save();
-  
+
       if (sendEmail) {
         const emailVariables = {
           email,
@@ -188,7 +189,7 @@ export class UserAuthController {
         };
         await sendLoginEmail(emailVariables);
       }
-  
+
       const userResponse = await User.findById(newUser._id).select("-password");
       return res.status(201).json({
         message: "User account created successfully",
@@ -196,10 +197,14 @@ export class UserAuthController {
         loginUrl: `${process.env.FRONTEND_BASEURL}/auth/login`,
       });
     } catch (error: any) {
-      return ResponseHandler.failure(res, `Server error: ${error.message}`, 500);
+      return ResponseHandler.failure(
+        res,
+        `Server error: ${error.message}`,
+        500
+      );
     }
-  }  
-  
+  }
+
   // static async createSingleUser(req: Request, res: Response) {
   //   try {
   //     let {
@@ -251,7 +256,7 @@ export class UserAuthController {
 
   //     let organizationId = await getOrganizationId(req, res);
   //     if (!organizationId) {
-  //       return; 
+  //       return;
   //     }
 
   //     const organization = await Organization.findById(organizationId);
@@ -366,7 +371,7 @@ export class UserAuthController {
 
       const organizationId = await getOrganizationId(req, res);
       if (!organizationId) {
-        return; 
+        return;
       }
 
       const organization = await Organization.findById(organizationId);
@@ -375,7 +380,7 @@ export class UserAuthController {
       }
 
       if (!req.file) {
-        return ResponseHandler.failure(res, "No file uploaded", 400)
+        return ResponseHandler.failure(res, "No file uploaded", 400);
       }
 
       const { duplicateEmails, duplicatePhones } =
@@ -392,7 +397,6 @@ export class UserAuthController {
         });
       }
 
-
       res.status(201).json({
         success: true,
         message: "Users created successfully.",
@@ -405,7 +409,7 @@ export class UserAuthController {
       });
     }
   }
-  
+
   static async registerUser(req: Request, res: Response) {
     try {
       let { email, username, organizationId, password } = req.body;

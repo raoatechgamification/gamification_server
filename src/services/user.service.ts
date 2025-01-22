@@ -4,12 +4,11 @@ import User, { IUser } from "../models/user.model";
 import Organization, {
   OrganizationDocument,
 } from "../models/organization.model";
-import Group from "../models/groupp.model";
+import Group from "../models/group.model";
 import SuperAdmin from "../models/superadmin.model";
 import { sendLoginEmail } from "./sendMail.service";
 import moment from "moment";
 import mongoose from "mongoose";
-
 
 class UserService {
   async createUsersFromExcel(
@@ -21,7 +20,7 @@ class UserService {
     const workbook = XLSX.read(buffer, { type: "buffer" });
     const sheetName = workbook.SheetNames[0];
     const sheet = workbook.Sheets[sheetName];
-  
+
     const userData: any[] = XLSX.utils.sheet_to_json(sheet);
     const requiredFields = ["Email", "FirstName", "LastName"];
     const defaultPassword = "DefaultPassword123";
@@ -32,23 +31,23 @@ class UserService {
         `The file contains ${userData.length} entries, which exceeds the maximum allowed limit of ${MAX_ENTRIES}.`
       );
     }
-  
+
     const duplicateEmails: string[] = [];
     const duplicatePhones: string[] = [];
     const seenEmails = new Set<string>();
-  
+
     const usersToCreate: any[] = [];
     const groupUpdates: any[] = [];
-  
+
     for (const data of userData) {
-      const { 
-        Email, 
-        FirstName, 
-        LastName, 
-        OtherName, 
-        Password, 
-        Phone, 
-        GroupIds, 
+      const {
+        Email,
+        FirstName,
+        LastName,
+        OtherName,
+        Password,
+        Phone,
+        GroupIds,
         Username,
         Batch,
         Gender,
@@ -62,57 +61,58 @@ class UserService {
         OfficeCity,
         OfficeLGA,
         OfficeState,
-        EmployerName, } = data;
-  
+        EmployerName,
+      } = data;
+
       // Validate required fields
-      if (!Email || !FirstName || !LastName ) {
-        throw new Error(`Missing required fields in row: ${JSON.stringify(data)}`);
+      if (!Email || !FirstName || !LastName) {
+        throw new Error(
+          `Missing required fields in row: ${JSON.stringify(data)}`
+        );
       }
-  
+
       if (seenEmails.has(Email)) {
         duplicateEmails.push(Email);
         continue;
       }
       seenEmails.add(Email);
-  
+
       // Check for duplicate emails across systems
       const existingEmailAccount =
         (await Organization.findOne({ email: Email })) ||
         (await User.findOne({ email: Email }));
-  
+
       if (existingEmailAccount) {
         duplicateEmails.push(Email);
         continue;
       }
-  
 
       // Normalize phone and check duplicates
       // const normalizedPhone = Phone ? Phone.replace(/[\s()-]/g, "").trim() : null;
 
-      const normalizedPhone = 
-        typeof Phone === "string" 
-          ? Phone.replace(/[\s()-]/g, "").trim() 
-          : null;
-
+      const normalizedPhone =
+        typeof Phone === "string" ? Phone.replace(/[\s()-]/g, "").trim() : null;
 
       if (normalizedPhone) {
-        const existingPhoneAccount = await User.findOne({ phone: normalizedPhone });
+        const existingPhoneAccount = await User.findOne({
+          phone: normalizedPhone,
+        });
         if (existingPhoneAccount) {
           duplicatePhones.push(normalizedPhone);
           continue;
         }
       }
-  
-      console.log("The request got here")
+
+      console.log("The request got here");
 
       // Prepare user data
       const userId = new mongoose.Types.ObjectId();
-      const parsedIds = GroupIds? JSON.parse(GroupIds) : [];
+      const parsedIds = GroupIds ? JSON.parse(GroupIds) : [];
       const userGroups: mongoose.Types.ObjectId[] = [];
       const userSubGroups: mongoose.Types.ObjectId[] = [];
-      
-      console.log("A")
-      if(parsedIds.length > 0) {
+
+      console.log("A");
+      if (parsedIds.length > 0) {
         for (const id of parsedIds) {
           const group = await Group.findById(id);
           if (group) {
@@ -120,8 +120,9 @@ class UserService {
           } else {
             const parentGroup = await Group.findOne({ "subGroups._id": id });
             if (parentGroup) {
-              const subGroup = parentGroup.subGroups.find((sg: { _id: { equals: (arg0: any) => any; }; }) =>
-                sg._id.equals(id)
+              const subGroup = parentGroup.subGroups.find(
+                (sg: { _id: { equals: (arg0: any) => any } }) =>
+                  sg._id.equals(id)
               );
               if (subGroup) {
                 userSubGroups.push(subGroup._id);
@@ -132,7 +133,7 @@ class UserService {
         }
       }
 
-      console.log("B")
+      console.log("B");
 
       let parsedDateOfBirth = null;
       if (DateOfBirth) {
@@ -142,19 +143,19 @@ class UserService {
           true
         ).toDate();
       }
-      
-      console.log("C")
+
+      console.log("C");
 
       usersToCreate.push({
         _id: userId,
         email: Email,
         firstName: FirstName,
         lastName: LastName,
-        username: Username || null, 
+        username: Username || null,
         otherName: OtherName || null,
         phone: normalizedPhone || undefined,
-        password: Password 
-          ? await hashPassword(Password) 
+        password: Password
+          ? await hashPassword(Password)
           : hashedDefaultPassword,
         groups: userGroups,
         subGroups: userSubGroups,
@@ -173,8 +174,8 @@ class UserService {
         officeState: OfficeState || null,
         employerName: EmployerName || null,
       });
-  
-      console.log("D")
+
+      console.log("D");
 
       // Prepare bulk updates for groups and subgroups
       userGroups.forEach((groupId) =>
@@ -185,8 +186,8 @@ class UserService {
           },
         })
       );
-  
-      console.log("E")
+
+      console.log("E");
 
       userSubGroups.forEach((subGroupId) =>
         groupUpdates.push({
@@ -197,18 +198,18 @@ class UserService {
         })
       );
     }
-    
-    console.log("F")
+
+    console.log("F");
 
     if (duplicateEmails.length || duplicatePhones.length) {
       return { duplicateEmails, duplicatePhones };
     }
-  
+
     await User.insertMany(usersToCreate);
     await Group.bulkWrite(groupUpdates);
 
-    console.log("G")
-  
+    console.log("G");
+
     return { duplicateEmails: [], duplicatePhones: [] };
   }
 
@@ -395,4 +396,3 @@ class UserService {
 }
 
 export default new UserService();
-
