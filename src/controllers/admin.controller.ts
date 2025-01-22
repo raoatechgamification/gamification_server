@@ -741,6 +741,44 @@ class AdminController {
     } catch (error) {
     }
   }
+
+  async enableUser(req: Request, res: Response) {
+    try {
+      const { userId } = req.params;
+  
+      const user = await User.findByIdAndUpdate(
+        userId,
+        { isEnabled: true, isDisabled: false },
+        { new: true }
+      );
+  
+      if (!user) {
+        return ResponseHandler.failure(res, "User not found", 404);
+      }
+  
+      return ResponseHandler.success(res, user, "User enabled successfully");
+    } catch (error: any) {
+    }
+  }
+
+  async disabledUser(req: Request, res: Response) {
+    try {
+      const { userId } = req.params;
+  
+      const user = await User.findByIdAndUpdate(
+        userId,
+        { isEnabled: false, isDisabled: true },
+        { new: true }
+      );
+  
+      if (!user) {
+        return ResponseHandler.failure(res, "User not found", 404);
+      }
+  
+      return ResponseHandler.success(res, user, "User disabled successfully");
+    } catch (error) {
+    }
+  }
 }
 
 export default new AdminController();
