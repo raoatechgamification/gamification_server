@@ -7,7 +7,7 @@ import Organization from "../models/organization.model";
 import Payment from "../models/payment.model";
 import Submission from "../models/submission.model";
 import User from "../models/user.model";
-import Group from "../models/groupp.model";
+import Group from "../models/group.model";
 import { uploadToCloudinary } from "../utils/cloudinaryUpload";
 import { getOrganizationId } from "../utils/getOrganizationId.util";
 
@@ -70,34 +70,40 @@ class AdminController {
       if (!organizationId) {
         return;
       }
-  
+
       const organization = await Organization.findById(organizationId);
       if (!organization) {
         return ResponseHandler.failure(res, "Organization not found", 400);
       }
-  
+
       const image = req.file; // Uploaded image
       const userId = req.params.userId;
-  
+
       // Parse `ids` from the form-data
       const { ids = "[]", ...rest } = req.body; // Default to empty array if not provided
       let parsedIds: string[] = [];
-  
+
       try {
         parsedIds = JSON.parse(ids); // Parse `ids` into an array
       } catch (error) {
         return ResponseHandler.failure(res, "Invalid 'ids' format", 400);
       }
-  
+
       // Ensure all IDs are converted to ObjectId
-      const objectIds = parsedIds.map((id: string) => new mongoose.Types.ObjectId(id));
-  
+      const objectIds = parsedIds.map(
+        (id: string) => new mongoose.Types.ObjectId(id)
+      );
+
       // Fetch the user and ensure they belong to the organization
       let user = await User.findOne({ _id: userId, organizationId });
       if (!user) {
-        return ResponseHandler.failure(res, "User not found in your organization", 404);
+        return ResponseHandler.failure(
+          res,
+          "User not found in your organization",
+          404
+        );
       }
-  
+
       let fileUploadResult: any = null;
       if (image) {
         fileUploadResult = await uploadToCloudinary(
@@ -106,28 +112,30 @@ class AdminController {
           "userDisplayPictures"
         );
       }
-  
+
       // Initialize variables for updates
       let updatedGroups: mongoose.Types.ObjectId[] = user.groups || [];
       let updatedSubGroups: mongoose.Types.ObjectId[] = user.subGroups || [];
       const bulkGroupOps: any[] = [];
-  
+
       for (const id of objectIds) {
         const userIdObject = new mongoose.Types.ObjectId(userId);
-  
+
         // Check if the ID belongs to a group
         const group = await Group.findOne({
           _id: id,
           organizationId,
         });
-  
+
         if (group) {
           if (!group.members) {
             group.members = []; // Initialize as an empty array if undefined
           }
-  
+
           // Add user to the group's members if not already a member
-          if (!group.members.some((memberId) => memberId.equals(userIdObject))) {
+          if (
+            !group.members.some((memberId) => memberId.equals(userIdObject))
+          ) {
             group.members.push(userIdObject);
             bulkGroupOps.push({
               updateOne: {
@@ -136,28 +144,32 @@ class AdminController {
               },
             });
           }
-  
+
           // Add group ID to user's groups if not already added
           if (!updatedGroups.some((groupId) => groupId.equals(group._id))) {
             updatedGroups.push(group._id);
           }
           continue;
         }
-  
+
         // Check if the ID belongs to a subgroup
         const groupWithSubgroup = await Group.findOne({
           "subGroups._id": id,
           organizationId,
         });
-  
+
         if (groupWithSubgroup) {
           const subgroup = groupWithSubgroup.subGroups.find((subGroup) =>
             subGroup._id.equals(id)
           );
-  
+
           if (subgroup) {
             // Add user to the subgroup's members if not already a member
-            if (!subgroup.members.some((memberId) => memberId.equals(userIdObject))) {
+            if (
+              !subgroup.members.some((memberId) =>
+                memberId.equals(userIdObject)
+              )
+            ) {
               subgroup.members.push(userIdObject);
               bulkGroupOps.push({
                 updateOne: {
@@ -166,28 +178,32 @@ class AdminController {
                 },
               });
             }
-  
+
             // Add subgroup ID to user's subGroups if not already added
-            if (!updatedSubGroups.some((subGroupId) => subGroupId.equals(subgroup._id))) {
+            if (
+              !updatedSubGroups.some((subGroupId) =>
+                subGroupId.equals(subgroup._id)
+              )
+            ) {
               updatedSubGroups.push(subgroup._id);
             }
           }
         }
       }
-  
+
       // Execute bulk operations to update groups and subgroups
       if (bulkGroupOps.length > 0) {
         await Group.bulkWrite(bulkGroupOps);
       }
-  
+
       // Deduplicate group and subgroup arrays before updating the user
-      updatedGroups = Array.from(new Set(updatedGroups.map((id) => id.toString()))).map(
-        (id) => new mongoose.Types.ObjectId(id)
-      );
-      updatedSubGroups = Array.from(new Set(updatedSubGroups.map((id) => id.toString()))).map(
-        (id) => new mongoose.Types.ObjectId(id)
-      );
-  
+      updatedGroups = Array.from(
+        new Set(updatedGroups.map((id) => id.toString()))
+      ).map((id) => new mongoose.Types.ObjectId(id));
+      updatedSubGroups = Array.from(
+        new Set(updatedSubGroups.map((id) => id.toString()))
+      ).map((id) => new mongoose.Types.ObjectId(id));
+
       // Update the user's groups, subGroups, and other details
       await User.updateOne(
         { _id: userId },
@@ -200,180 +216,18 @@ class AdminController {
           },
         }
       );
-  
+
       user = await User.findById(userId).select("-password");
-  
-      return ResponseHandler.success(
-        res,
-        user,
-        "User details"
-      );
+
+      return ResponseHandler.success(res, user, "User details");
     } catch (error: any) {
-      return ResponseHandler.failure(res, `Server error: ${error.message}`, 500);
+      return ResponseHandler.failure(
+        res,
+        `Server error: ${error.message}`,
+        500
+      );
     }
   }
-  
-
-  // async editUserProfile(req: Request, res: Response) {
-  //   try {
-  //     const organizationId = await getOrganizationId(req, res);
-  //     if (!organizationId) {
-  //       return;
-  //     }
-
-  //     const organization = await Organization.findById(organizationId);
-  //     if (!organization) {
-  //       return ResponseHandler.failure(res, "Organization not found", 400);
-  //     }
-
-  //     const image = req.file;
-  //     const userId = req.params.userId;
-  //     const { ids = [], ...rest } = req.body; // 'ids' array containing group or subgroup IDs
-
-  //     // Ensure all IDs are converted to ObjectId
-  //     const objectIds = ids.map(
-  //       (id: string) => new mongoose.Types.ObjectId(id)
-  //     );
-
-  //     // Fetch the user and ensure they belong to the organization
-  //     let user = await User.findOne({ _id: userId, organizationId });
-  //     if (!user) {
-  //       return ResponseHandler.failure(
-  //         res,
-  //         "User not found in your organization",
-  //         404
-  //       );
-  //     }
-
-  //     let fileUploadResult: any = null;
-  //     if (image) {
-  //       fileUploadResult = await uploadToCloudinary(
-  //         image.buffer,
-  //         image.mimetype,
-  //         "userDisplayPictures"
-  //       );
-  //     }
-
-  //     // Initialize variables for updates
-  //     let updatedGroups: mongoose.Types.ObjectId[] = user.groups || [];
-  //     let updatedSubGroups: mongoose.Types.ObjectId[] = user.subGroups || [];
-  //     const bulkGroupOps: any[] = [];
-
-  //     for (const id of objectIds) {
-  //       // Define the userIdObject once per iteration
-  //       const userIdObject = new mongoose.Types.ObjectId(userId);
-
-  //       // Check if the ID belongs to a group
-  //       const group = await Group.findOne({
-  //         _id: id,
-  //         organizationId,
-  //       });
-
-  //       if (group) {
-  //         if (!group.members) {
-  //           group.members = []; // Initialize as an empty array if undefined
-  //         }
-
-  //         // Add user to the group's members if not already a member
-  //         if (
-  //           !group.members.some((memberId) => memberId.equals(userIdObject))
-  //         ) {
-  //           group.members.push(userIdObject);
-  //           bulkGroupOps.push({
-  //             updateOne: {
-  //               filter: { _id: group._id },
-  //               update: { members: group.members },
-  //             },
-  //           });
-  //         }
-
-  //         // Add group ID to user's groups if not already added
-  //         if (!updatedGroups.some((groupId) => groupId.equals(group._id))) {
-  //           updatedGroups.push(group._id);
-  //         }
-  //         continue;
-  //       }
-
-  //       // Check if the ID belongs to a subgroup
-  //       const groupWithSubgroup = await Group.findOne({
-  //         "subGroups._id": id,
-  //         organizationId,
-  //       });
-
-  //       if (groupWithSubgroup) {
-  //         const subgroup = groupWithSubgroup.subGroups.find((subGroup) =>
-  //           subGroup._id.equals(id)
-  //         );
-
-  //         if (subgroup) {
-  //           // Add user to the subgroup's members if not already a member
-  //           if (
-  //             !subgroup.members.some((memberId) =>
-  //               memberId.equals(userIdObject)
-  //             )
-  //           ) {
-  //             subgroup.members.push(userIdObject);
-  //             bulkGroupOps.push({
-  //               updateOne: {
-  //                 filter: { _id: groupWithSubgroup._id },
-  //                 update: { subGroups: groupWithSubgroup.subGroups },
-  //               },
-  //             });
-  //           }
-
-  //           // Add subgroup ID to user's subGroups if not already added
-  //           if (
-  //             !updatedSubGroups.some((subGroupId) =>
-  //               subGroupId.equals(subgroup._id)
-  //             )
-  //           ) {
-  //             updatedSubGroups.push(subgroup._id);
-  //           }
-  //         }
-  //       }
-  //     }
-
-  //     // Execute bulk operations to update groups and subgroups
-  //     if (bulkGroupOps.length > 0) {
-  //       await Group.bulkWrite(bulkGroupOps);
-  //     }
-
-  //     // Deduplicate group and subgroup arrays before updating the user
-  //     updatedGroups = Array.from(
-  //       new Set(updatedGroups.map((id) => id.toString()))
-  //     ).map((id) => new mongoose.Types.ObjectId(id));
-  //     updatedSubGroups = Array.from(
-  //       new Set(updatedSubGroups.map((id) => id.toString()))
-  //     ).map((id) => new mongoose.Types.ObjectId(id));
-
-  //     // Update the user's groups, subGroups, and other details
-  //     await User.updateOne(
-  //       { _id: userId },
-  //       {
-  //         $set: {
-  //           groups: updatedGroups,
-  //           subGroups: updatedSubGroups,
-  //           ...rest,
-  //           image: fileUploadResult ? fileUploadResult.secure_url : user.image,
-  //         },
-  //       }
-  //     );
-
-  //     user = await User.findById(userId).select("-password");
-
-  //     return ResponseHandler.success(
-  //       res,
-  //       user,
-  //       "User details and memberships updated successfully"
-  //     );
-  //   } catch (error: any) {
-  //     return ResponseHandler.failure(
-  //       res,
-  //       `Server error: ${error.message}`,
-  //       500
-  //     );
-  //   }
-  // }
 
   async editUserProfilee(req: Request, res: Response) {
     try {
