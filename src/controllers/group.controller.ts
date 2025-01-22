@@ -141,74 +141,154 @@ export class GroupController {
     }
   }
 
-  async addUsersToGroupp(req: Request, res: Response) {
-    try {
-      const { groupId } = req.params;
-      const { userIds } = req.body;
-      const organizationId = req.admin._id;
+  // async addUsersToGroup(req: Request, res: Response) {
+  //   try {
+  //     const { groupId, subGroupId } = req.params;
+  //     const { userIds } = req.body;
+  //     const organizationId = req.admin._id;
 
-      const group = await Group.findById(groupId);
-      if (!group) {
-        return ResponseHandler.failure(res, "Group not found", 404);
-      }
+  //     // Find the group by its ID
+  //     const group = await Group.findById(groupId);
+  //     if (!group) {
+  //       return ResponseHandler.failure(res, "Group not found", 404);
+  //     }
 
-      const users = await User.find({
-        _id: { $in: userIds },
-        organizationId,
-      });
+  //     // Ensure members array is initialized
+  //     group.members = group.members ?? [];
 
-      if (users.length !== userIds.length) {
-        return ResponseHandler.failure(
-          res,
-          "Some users do not belong to this organization",
-          400
-        );
-      }
+  //     // Find the users by their IDs and ensure they belong to the same organization
+  //     const users = await User.find({
+  //       _id: { $in: userIds },
+  //       organizationId,
+  //     });
 
-      // Add users to the group-level members array
-      if (!group.members) {
-        group.members = []; // Initialize if undefined
-      }
+  //     if (users.length !== userIds.length) {
+  //       return ResponseHandler.failure(
+  //         res,
+  //         "Some users do not belong to this organization",
+  //         400
+  //       );
+  //     }
 
-      group.members.push(
-        ...users.map((user) => user._id as mongoose.Types.ObjectId)
-      ); // Cast to ObjectId
-      await group.save();
+  //     if (subGroupId) {
+  //       // Find the subgroup by its ID
+  //       const subGroup = group.subGroups.find(
+  //         (sub) => sub._id?.toString() === subGroupId
+  //       );
 
-      return ResponseHandler.success(
-        res,
-        group,
-        "Users added to group successfully"
-      );
-    } catch (error: any) {
-      return ResponseHandler.failure(
-        res,
-        error.message || "Error adding users to group"
-      );
-    }
-  }
+  //       if (!subGroup) {
+  //         return ResponseHandler.failure(res, "Subgroup not found", 404);
+  //       }
+
+  //       // Add users to the subgroup's members array
+  //       users.forEach((user) => {
+  //         const userId = user._id as mongoose.Types.ObjectId;
+  //         if (!subGroup.members.includes(userId)) {
+  //           subGroup.members.push(userId);
+  //         }
+  //       });
+  //     } else {
+  //       // Add users to the group's members array
+  //       users.forEach((user) => {
+  //         if (user._id && group.members) {
+  //           // Ensure group.members is initialized if it's undefined
+  //           if (!group.members.includes(user._id as mongoose.Types.ObjectId)) {
+  //             group.members.push(user._id as mongoose.Types.ObjectId);
+  //           }
+  //         } else {
+  //           // Initialize members if it's undefined
+  //           if (!group.members) {
+  //             group.members = [];
+  //           }
+  //           // Add the user to the group
+  //           group.members.push(user._id as mongoose.Types.ObjectId);
+  //         }
+  //       });
+  //     }
+
+  //     // Save the updated group
+  //     await group.save();
+
+  //     return ResponseHandler.success(
+  //       res,
+  //       group,
+  //       "Users added to group successfully"
+  //     );
+  //   } catch (error: any) {
+  //     return ResponseHandler.failure(
+  //       res,
+  //       error.message || "Error adding users to group"
+  //     );
+  //   }
+  // }
 
   async addUsersToGroup(req: Request, res: Response) {
     try {
-      const { groupId, subGroupId } = req.params;
+      const { id } = req.params; // Single ID is passed
       const { userIds } = req.body;
       const organizationId = req.admin._id;
-
-      // Find the group by its ID
-      const group = await Group.findById(groupId);
-      if (!group) {
-        return ResponseHandler.failure(res, "Group not found", 404);
+  
+      // Check if the ID corresponds to a group
+      const group = await Group.findById(id);
+      if (group) {
+        // Ensure members array is initialized
+        group.members = group.members ?? [];
+  
+        // Find the users by their IDs and ensure they belong to the same organization
+        const users = await User.find({
+          _id: { $in: userIds },
+          organizationId,
+        });
+  
+        if (users.length !== userIds.length) {
+          return ResponseHandler.failure(
+            res,
+            "Some users do not belong to this organization",
+            400
+          );
+        }
+  
+        // Add users to the group's members array
+        users.forEach((user) => {
+          const userId = user._id as mongoose.Types.ObjectId;
+          if (!group.members.includes(userId)) {
+            group.members.push(userId);
+          }
+        });
+  
+        // Save the updated group
+        await group.save();
+  
+        return ResponseHandler.success(
+          res,
+          group,
+          "Users added to group successfully"
+        );
       }
-
-      // Ensure members array is initialized
-      group.members = group.members ?? [];
-
+  
+      // If not a group, check if it corresponds to a subgroup
+      const parentGroup = await Group.findOne({ "subGroups._id": id });
+      if (!parentGroup) {
+        return ResponseHandler.failure(res, "Group or Subgroup not found", 404);
+      }
+  
+      // Find the specific subgroup
+      const subGroup = parentGroup.subGroups.find(
+        (sub) => sub._id?.toString() === id
+      );
+      if (!subGroup) {
+        return ResponseHandler.failure(res, "Subgroup not found", 404);
+      }
+  
+      // Ensure subgroup's members array is initialized
+      subGroup.members = subGroup.members ?? [];
+  
       // Find the users by their IDs and ensure they belong to the same organization
       const users = await User.find({
         _id: { $in: userIds },
         organizationId,
       });
-
+  
       if (users.length !== userIds.length) {
         return ResponseHandler.failure(
           res,
@@ -216,58 +296,30 @@ export class GroupController {
           400
         );
       }
-
-      if (subGroupId) {
-        // Find the subgroup by its ID
-        const subGroup = group.subGroups.find(
-          (sub) => sub._id?.toString() === subGroupId
-        );
-
-        if (!subGroup) {
-          return ResponseHandler.failure(res, "Subgroup not found", 404);
+  
+      // Add users to the subgroup's members array
+      users.forEach((user) => {
+        const userId = user._id as mongoose.Types.ObjectId;
+        if (!subGroup.members.includes(userId)) {
+          subGroup.members.push(userId);
         }
-
-        // Add users to the subgroup's members array
-        users.forEach((user) => {
-          const userId = user._id as mongoose.Types.ObjectId;
-          if (!subGroup.members.includes(userId)) {
-            subGroup.members.push(userId);
-          }
-        });
-      } else {
-        // Add users to the group's members array
-        users.forEach((user) => {
-          if (user._id && group.members) {
-            // Ensure group.members is initialized if it's undefined
-            if (!group.members.includes(user._id as mongoose.Types.ObjectId)) {
-              group.members.push(user._id as mongoose.Types.ObjectId);
-            }
-          } else {
-            // Initialize members if it's undefined
-            if (!group.members) {
-              group.members = [];
-            }
-            // Add the user to the group
-            group.members.push(user._id as mongoose.Types.ObjectId);
-          }
-        });
-      }
-
-      // Save the updated group
-      await group.save();
-
+      });
+  
+      // Save the updated parent group
+      await parentGroup.save();
+  
       return ResponseHandler.success(
         res,
-        group,
-        "Users added to group successfully"
+        parentGroup,
+        "Users added to subgroup successfully"
       );
     } catch (error: any) {
       return ResponseHandler.failure(
         res,
-        error.message || "Error adding users to group"
+        error.message || "Error adding users to group or subgroup"
       );
     }
-  }
+  }  
 
   async assignCourseToGroup(req: Request, res: Response) {
     try {

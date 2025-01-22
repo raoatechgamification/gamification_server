@@ -47,7 +47,7 @@ router.get(
 )
 
 router.post(
-  "/:groupId/assign/:subGroupId?",
+  "/:id/add-users",
   authenticate,
   authorize(["admin"]),
   addUsersToGroup
