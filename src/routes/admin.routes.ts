@@ -75,6 +75,13 @@ router.put(
 )
 
 router.patch(
+  "/user/:userId/disable", 
+  authenticate,
+  authorize(["admin", "subAdmin"]),
+  disableUser
+);
+
+router.patch(
   "/user/:userId/archive", 
   authenticate,
   authorize(["admin", "subAdmin"]),
@@ -88,12 +95,6 @@ router.patch(
   enableUser
 );
 
-router.patch(
-  "/user/:userId/disable", 
-  authenticate,
-  authorize(["admin", "subAdmin"]),
-  disableUser
-);
 
 
 export default router;

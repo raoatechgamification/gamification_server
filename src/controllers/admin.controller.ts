@@ -754,8 +754,6 @@ class AdminController {
         return ResponseHandler.failure(res, "Organization not found", 400);
       }
 
-      console.log("Archiving user with ID:", userId, "in organization:", organizationId);
-
       await new AdminController().verifyOrganization(String(organizationId), userId)
   
       const user = await User.findByIdAndUpdate(
@@ -787,14 +785,14 @@ class AdminController {
         return ResponseHandler.failure(res, "Organization not found", 400);
       }
 
-      await this.verifyOrganization(String(organizationId), userId)
+      await new AdminController().verifyOrganization(String(organizationId), userId)
   
       const user = await User.findByIdAndUpdate(
         userId,
         { isEnabled: true, isDisabled: false },
         { new: true }
       );
-  
+      
       if (!user) {
         return ResponseHandler.failure(res, "User not found", 404);
       }
@@ -812,13 +810,13 @@ class AdminController {
       if (!organizationId) {
         return;
       }
-
+      
       const organization = await Organization.findById(organizationId);
       if (!organization) {
         return ResponseHandler.failure(res, "Organization not found", 400);
       }
 
-      await this.verifyOrganization(String(organizationId), userId)
+      await new AdminController().verifyOrganization(String(organizationId), userId)
   
       const user = await User.findByIdAndUpdate(
         userId,
@@ -829,7 +827,7 @@ class AdminController {
       if (!user) {
         return ResponseHandler.failure(res, "User not found", 404);
       }
-  
+      
       return ResponseHandler.success(res, user, "User disabled successfully");
     } catch (error) {
     }
