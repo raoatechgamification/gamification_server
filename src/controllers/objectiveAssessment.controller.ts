@@ -1364,7 +1364,7 @@ class ObjectAssessmentController {
     }
   }
 
-  async getAllAssessmentsForOrganization(req: Request, res: Response) {
+  async getAllAssessmentsForAnOrganization(req: Request, res: Response) {
     // const organizationId = req.admin._id;
 
     let organizationId = await getOrganizationId(req, res);

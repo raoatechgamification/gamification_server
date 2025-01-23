@@ -150,7 +150,6 @@ class AdminController {
     }
   }
   
-  
   async viewAllUserss(req: Request, res: Response) {
     try {
       // const organizationId = req.admin._id;
