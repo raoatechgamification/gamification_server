@@ -10,7 +10,9 @@ import QuestionsBank from "../models/questionsBank.model";
 import Submission from "../models/submission.model";
 import Course, { ICourse } from "../models/course.model";
 import User from "../models/user.model";
+import Organization from "../models/organization.model";
 import { ResponseHandler } from "../middlewares/responseHandler.middleware";
+import { getOrganizationId } from "../utils/getOrganizationId.util"
 
 class ObjectAssessmentController {
   //  async createObjectiveAssessment(req: Request, res: Response) {
@@ -185,7 +187,17 @@ class ObjectAssessmentController {
         newGroupName,
       } = req.body;
 
-      const organizationId = req.admin._id;
+      // const organizationId = req.admin._id;
+
+      let organizationId = await getOrganizationId(req, res);
+      if (!organizationId) {
+        return;
+      }
+  
+      const organization = await Organization.findById(organizationId);
+      if (!organization) {
+        return ResponseHandler.failure(res, "Organization not found", 400);
+      }
 
       // Validate required fields
       if (
@@ -337,7 +349,16 @@ class ObjectAssessmentController {
         numberOfQuestions,
       } = req.body;
 
-      const organizationId = req.admin._id;
+      // const organizationId = req.admin._id;
+      let organizationId = await getOrganizationId(req, res);
+      if (!organizationId) {
+        return;
+      }
+  
+      const organization = await Organization.findById(organizationId);
+      if (!organization) {
+        return ResponseHandler.failure(res, "Organization not found", 400);
+      }
 
       const questionsBank = await QuestionsBank.findById(questionsBankId);
       if (!questionsBank) {
@@ -539,7 +560,17 @@ class ObjectAssessmentController {
   async bulkUploadQuestions(req: Request, res: Response) {
     try {
       const { groupId, groupName } = req.body;
-      const organizationId = req.admin._id;
+      // const organizationId = req.admin._id;
+
+      let organizationId = await getOrganizationId(req, res);
+      if (!organizationId) {
+        return;
+      }
+  
+      const organization = await Organization.findById(organizationId);
+      if (!organization) {
+        return ResponseHandler.failure(res, "Organization not found", 400);
+      }
 
       if (!groupId && !groupName) {
         return res.status(400).json({
@@ -727,7 +758,17 @@ class ObjectAssessmentController {
   async uploadQuestionsManually(req: Request, res: Response) {
     try {
       const { groupId, groupName, questions } = req.body;
-      const organizationId = req.admin._id;
+      // const organizationId = req.admin._id;
+
+      let organizationId = await getOrganizationId(req, res);
+      if (!organizationId) {
+        return;
+      }
+  
+      const organization = await Organization.findById(organizationId);
+      if (!organization) {
+        return ResponseHandler.failure(res, "Organization not found", 400);
+      }
 
       if (!groupId && !groupName) {
         return res.status(400).json({
@@ -896,7 +937,17 @@ class ObjectAssessmentController {
         assessmentCode,
       } = req.body;
 
-      const organizationId = req.admin._id;
+      // const organizationId = req.admin._id;
+
+      let organizationId = await getOrganizationId(req, res);
+      if (!organizationId) {
+        return;
+      }
+  
+      const organization = await Organization.findById(organizationId);
+      if (!organization) {
+        return ResponseHandler.failure(res, "Organization not found", 400);
+      }
 
       const assessment = await ObjectiveAssessment.findOne({
         _id: assessmentId,
@@ -1314,7 +1365,17 @@ class ObjectAssessmentController {
   }
 
   async getAllAssessmentsForOrganization(req: Request, res: Response) {
-    const organizationId = req.admin._id;
+    // const organizationId = req.admin._id;
+
+    let organizationId = await getOrganizationId(req, res);
+      if (!organizationId) {
+        return;
+      }
+  
+      const organization = await Organization.findById(organizationId);
+      if (!organization) {
+        return ResponseHandler.failure(res, "Organization not found", 400);
+      }
 
     try {
       const assessments = await ObjectiveAssessment.find({ organizationId });
