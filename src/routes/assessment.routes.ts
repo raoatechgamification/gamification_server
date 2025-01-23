@@ -36,6 +36,7 @@ const {
   takeAndGradeAssessment,
   getAssessmentById,
   getAllAssessmentsForAnOrganization,
+  assessmentResultSlipByAdmin,
   assessmentResultSlip,
 } = ObjectAssessmentController;
 
@@ -136,6 +137,13 @@ router.get(
   authorize(["user"]),
   ...submissionIdValidator,
   assessmentResultSlip
+);
+
+router.get(
+  "/results",
+  authenticate,
+  authorize(["admin", "subAdmin"]),
+  assessmentResultSlipByAdmin
 );
 
 router.get(

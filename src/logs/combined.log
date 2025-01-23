@@ -7775,3 +7775,39 @@
 2025-01-23 11:16:41 [info]: GET /submissions/674ea0dcab4c91e5edb72073 500
 2025-01-23 11:20:43 [info]: GET / 200
 2025-01-23 11:21:56 [info]: GET /677788f6acd7d8dccbce4369 200
+2025-01-23 16:11:23 [info]: GET /results 400
+2025-01-23 16:12:07 [info]: GET /results 400
+2025-01-23 16:14:40 [info]: GET /results?assessmentId=67779860f512eb9b8cda0e00 400 - Query Params: {"assessmentId":"67779860f512eb9b8cda0e00"}
+2025-01-23 16:14:40 [info]: GET /results?assessmentId=67779860f512eb9b8cda0e00 400
+2025-01-23 16:15:31 [info]: GET /results?assessmentId=67779860f512eb9b8cda0e00&userId=676965e49626eab20cafeb69 200 - Query Params: {"assessmentId":"67779860f512eb9b8cda0e00","userId":"676965e49626eab20cafeb69"}
+2025-01-23 16:15:31 [info]: GET /results?assessmentId=67779860f512eb9b8cda0e00&userId=676965e49626eab20cafeb69 200
+2025-01-23 16:31:22 [info]: GET /results?assessmentId=67779860f512eb9b8cda0e00&userId=676965e49626eab20cafeb69 200 - Query Params: {"assessmentId":"67779860f512eb9b8cda0e00","userId":"676965e49626eab20cafeb69"}
+2025-01-23 16:31:22 [info]: GET /results?assessmentId=67779860f512eb9b8cda0e00&userId=676965e49626eab20cafeb69 200
+2025-01-23 16:36:36 [info]: GET /results?assessmentId=67779860f512eb9b8cda0e00&userId=676965e49626eab20cafeb69 200 - Query Params: {"assessmentId":"67779860f512eb9b8cda0e00","userId":"676965e49626eab20cafeb69"}
+2025-01-23 16:36:36 [info]: GET /results?assessmentId=67779860f512eb9b8cda0e00&userId=676965e49626eab20cafeb69 200
+2025-01-23 16:37:58 [info]: GET /results?assessmentId=676a9f2e2b97cb4cbd07ff7b&userId=6756cc88393ceb0beb0bd71e 404 - Query Params: {"assessmentId":"676a9f2e2b97cb4cbd07ff7b","userId":"6756cc88393ceb0beb0bd71e"}
+2025-01-23 16:37:58 [info]: GET /results?assessmentId=676a9f2e2b97cb4cbd07ff7b&userId=6756cc88393ceb0beb0bd71e 404
+2025-01-23 16:39:30 [info]: GET /results?assessmentId=6769a64e3bbe3a45f6bce825&userId=676965e49626eab20cafeb69 200 - Query Params: {"assessmentId":"6769a64e3bbe3a45f6bce825","userId":"676965e49626eab20cafeb69"}
+2025-01-23 16:39:30 [info]: GET /results?assessmentId=6769a64e3bbe3a45f6bce825&userId=676965e49626eab20cafeb69 200
+2025-01-23 16:43:35 [info]: GET /results?assessmentId=6769a64e3bbe3a45f6bce825&userId=676965e49626eab20cafeb69 200 - Query Params: {"assessmentId":"6769a64e3bbe3a45f6bce825","userId":"676965e49626eab20cafeb69"}
+2025-01-23 16:43:35 [info]: GET /results?assessmentId=6769a64e3bbe3a45f6bce825&userId=676965e49626eab20cafeb69 200
+2025-01-23 16:55:30 [info]: GET /results?assessmentId=6769a64e3bbe3a45f6bce825&userId=676965e49626eab20cafeb69 400 - Query Params: {"assessmentId":"6769a64e3bbe3a45f6bce825","userId":"676965e49626eab20cafeb69"}
+2025-01-23 16:55:30 [info]: GET /results?assessmentId=6769a64e3bbe3a45f6bce825&userId=676965e49626eab20cafeb69 400
+2025-01-23 16:56:40 [info]: GET /results?courseId=676152d8f425385247c76eb3&userId=676965e49626eab20cafeb69 404 - Query Params: {"courseId":"676152d8f425385247c76eb3","userId":"676965e49626eab20cafeb69"}
+2025-01-23 16:56:40 [info]: GET /results?courseId=676152d8f425385247c76eb3&userId=676965e49626eab20cafeb69 404
+2025-01-23 16:57:11 [info]: GET /results?courseId=6769d66af2911fd9e5ce7995&userId=676965e49626eab20cafeb69 200 - Query Params: {"courseId":"6769d66af2911fd9e5ce7995","userId":"676965e49626eab20cafeb69"}
+2025-01-23 16:57:11 [info]: GET /results?courseId=6769d66af2911fd9e5ce7995&userId=676965e49626eab20cafeb69 200
+2025-01-23 17:05:36 [info]: GET /results?courseId=6769d66af2911fd9e5ce7995&userId=676965e49626eab20cafeb69 404 - Query Params: {"courseId":"6769d66af2911fd9e5ce7995","userId":"676965e49626eab20cafeb69"}
+2025-01-23 17:05:36 [info]: GET /results?courseId=6769d66af2911fd9e5ce7995&userId=676965e49626eab20cafeb69 404
+2025-01-23 17:05:54 [info]: GET /results?courseId=6769d66af2911fd9e5ce7995 404 - Query Params: {"courseId":"6769d66af2911fd9e5ce7995"}
+2025-01-23 17:05:54 [info]: GET /results?courseId=6769d66af2911fd9e5ce7995 404
+2025-01-23 17:07:51 [info]: GET /results?courseId=6769d66af2911fd9e5ce7995&userId=676965e49626eab20cafeb69 404 - Query Params: {"courseId":"6769d66af2911fd9e5ce7995","userId":"676965e49626eab20cafeb69"}
+2025-01-23 17:07:51 [info]: GET /results?courseId=6769d66af2911fd9e5ce7995&userId=676965e49626eab20cafeb69 404
+2025-01-23 17:09:36 [info]: GET /results?courseId=6769d66af2911fd9e5ce7995&userId=676965e49626eab20cafeb69 200 - Query Params: {"courseId":"6769d66af2911fd9e5ce7995","userId":"676965e49626eab20cafeb69"}
+2025-01-23 17:09:36 [info]: GET /results?courseId=6769d66af2911fd9e5ce7995&userId=676965e49626eab20cafeb69 200
+2025-01-23 17:11:08 [info]: GET /results?courseId=6769d66af2911fd9e5ce7995&userId=676965e49626eab20cafeb69 200 - Query Params: {"courseId":"6769d66af2911fd9e5ce7995","userId":"676965e49626eab20cafeb69"}
+2025-01-23 17:11:08 [info]: GET /results?courseId=6769d66af2911fd9e5ce7995&userId=676965e49626eab20cafeb69 200
+2025-01-23 17:18:08 [info]: GET /results?courseId=6769d66af2911fd9e5ce7995&userId=676965e49626eab20cafeb69 200 - Query Params: {"courseId":"6769d66af2911fd9e5ce7995","userId":"676965e49626eab20cafeb69"}
+2025-01-23 17:18:08 [info]: GET /results?courseId=6769d66af2911fd9e5ce7995&userId=676965e49626eab20cafeb69 200
+2025-01-23 17:22:07 [info]: GET /results?courseId=6769d66af2911fd9e5ce7995&userId=676965e49626eab20cafeb69 200 - Query Params: {"courseId":"6769d66af2911fd9e5ce7995","userId":"676965e49626eab20cafeb69"}
+2025-01-23 17:22:07 [info]: GET /results?courseId=6769d66af2911fd9e5ce7995&userId=676965e49626eab20cafeb69 200
