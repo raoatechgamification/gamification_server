@@ -46,5 +46,6 @@ const GroupSchema: Schema<IGroup> = new Schema(
 );
 
 const Group: Model<IGroup> = mongoose.model<IGroup>("Group", GroupSchema);
+export const SubGroup: Model<ISubGroup> = mongoose.model<ISubGroup>("SubGroup", SubGroupSchema)
 
 export default Group;

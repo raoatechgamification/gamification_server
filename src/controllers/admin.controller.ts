@@ -7,16 +7,151 @@ import Organization from "../models/organization.model";
 import Payment from "../models/payment.model";
 import Submission from "../models/submission.model";
 import User from "../models/user.model";
-import Group from "../models/group.model";
+import Group, {SubGroup } from "../models/group.model";
 import { uploadToCloudinary } from "../utils/cloudinaryUpload";
 import { getOrganizationId } from "../utils/getOrganizationId.util";
 
-function isPopulated<T>(value: mongoose.Types.ObjectId | T): value is T {
-  return typeof value === "object" && value !== null && !isValidObjectId(value);
-}
-
 class AdminController {
+  // async viewAllUsers(req: Request, res: Response) {
+  //   try {
+  //     let organizationId = await getOrganizationId(req, res);
+  //     if (!organizationId) {
+  //       return;
+  //     }
+  
+  //     const organization = await Organization.findById(organizationId);
+  //     if (!organization) {
+  //       return ResponseHandler.failure(res, "Organization not found", 400);
+  //     }
+  
+  //     const users = await User.find({ organizationId })
+  //       .select("-password")
+  //       .populate([
+  //         { path: "groups", select: "name" },
+  //         { path: "subGroups", select: "name" },
+  //       ]);
+  
+  //     if (!users || users.length === 0) {
+  //       return ResponseHandler.failure(
+  //         res,
+  //         "You have no users under your organization, start by creating users",
+  //         400
+  //       );
+  //     }
+  
+  //     const usersWithDetails = await Promise.all(
+  //       users.map(async (user) => {
+  //         const paymentHistory = await Payment.find({ userId: user._id });
+  //         const assignedBills = await AssignedBill.find({
+  //           assigneeId: user._id,
+  //         });
+  //         return {
+  //           ...user.toObject(),
+  //           groups: user.groups,
+  //           subGroups: user.subGroups,
+  //           paymentHistory,
+  //           assignedBills,
+  //         };
+  //       })
+  //     );
+  
+  //     return ResponseHandler.success(
+  //       res,
+  //       usersWithDetails,
+  //       "Users fetched successfully"
+  //     );
+  //   } catch (error: any) {
+  //     return ResponseHandler.failure(
+  //       res,
+  //       `Server error: ${error.message}`,
+  //       500
+  //     );
+  //   }
+  // }  
+  
   async viewAllUsers(req: Request, res: Response) {
+    try {
+      let organizationId = await getOrganizationId(req, res);
+      if (!organizationId) {
+        return;
+      }
+  
+      const organization = await Organization.findById(organizationId);
+      if (!organization) {
+        return ResponseHandler.failure(res, "Organization not found", 400);
+      }
+  
+      const users = await User.find({ organizationId })
+        .select("-password")
+        .populate([{ path: "groups", select: "name" }]);
+  
+      if (!users || users.length === 0) {
+        return ResponseHandler.failure(
+          res,
+          "You have no users under your organization, start by creating users",
+          400
+        );
+      }
+  
+      const usersWithDetails = await Promise.all(
+        users.map(async (user) => {
+          const populatedGroups = await Promise.all(
+            (user.groups || []).map(async (groupId) => {
+              const group = await Group.findById(groupId).select("name subGroups");
+  
+              if (group) {
+                // Make sure subGroups is an array of ObjectId
+                const userSubGroups = user.subGroups || [];
+  
+                return {
+                  ...group.toObject(),
+                  subGroups: group.subGroups.filter((subGroup) =>
+                    userSubGroups.some((userSubGroup) =>
+                      userSubGroup.equals(subGroup._id) // Compare ObjectId with ObjectId
+                    )
+                  ),
+                };
+              }
+              return null;
+            })
+          );
+  
+          const paymentHistory = await Payment.find({ userId: user._id });
+          const assignedBills = await AssignedBill.find({
+            assigneeId: user._id,
+          });
+  
+          return {
+            ...user.toObject(),
+            groups: populatedGroups.filter((g) => g !== null), // Filter out null groups
+            subGroups: populatedGroups
+              .flatMap((group) => group?.subGroups || [])
+              .map((subGroup) => ({
+                _id: subGroup._id,
+                name: subGroup.name,
+              })),
+            paymentHistory,
+            assignedBills,
+          };
+        })
+      );
+  
+      return ResponseHandler.success(
+        res,
+        usersWithDetails,
+        "Users fetched successfully"
+      );
+    } catch (error: any) {
+      return ResponseHandler.failure(
+        res,
+        `Server error: ${error.message}`,
+        500
+      );
+    }
+  }
+  
+  
+  async viewAllUserss(req: Request, res: Response) {
     try {
       // const organizationId = req.admin._id;
 
@@ -30,7 +165,7 @@ class AdminController {
         return ResponseHandler.failure(res, "Organization not found", 400);
       }
 
-      const users = await User.find({ organizationId });
+      const users = await User.find({ organizationId }).select("-password");
 
       if (!users || users.length === 0) {
         return ResponseHandler.failure(

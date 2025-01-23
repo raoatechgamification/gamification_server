@@ -7762,3 +7762,10 @@
 2025-01-22 17:24:28 [info]: PUT /profile/edit 403 - Request Body: {"yearOfExperience":5,"highestEducationLevel":"Bachelor of Science","gender":"female","dateOfBirth":"05-09-2000","username":"same_same","firstName":"Oluwaseun","lastName":"Odueso","phone":"+2349066318566"}
 2025-01-22 17:25:08 [info]: PATCH /user/67909f65a2cfe9e1e3ffc7a1/disable 200
 2025-01-22 17:25:12 [info]: PUT /profile/edit 403 - Request Body: {"yearOfExperience":5,"highestEducationLevel":"Bachelor of Science","gender":"female","dateOfBirth":"05-09-2000","username":"same_same","firstName":"Oluwaseun","lastName":"Odueso","phone":"+2349066318566"}
+2025-01-23 10:07:59 [info]: POST /login 200 - Request Body: {"email":"seunoduez@gmail.com","password":"Timpearl05$$$"}
+2025-01-23 10:08:41 [info]: GET /users 401
+2025-01-23 10:09:20 [info]: GET /users 200
+2025-01-23 10:10:59 [info]: GET /users 200
+2025-01-23 10:24:37 [info]: GET /users 200
+2025-01-23 10:35:42 [info]: GET /users 200
+2025-01-23 10:52:35 [info]: GET /users 200
