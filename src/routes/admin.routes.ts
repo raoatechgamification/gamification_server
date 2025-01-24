@@ -14,7 +14,8 @@ const {
   updateGeneralInstructorTerm,
   archiveUser,
   enableUser,
-  disableUser
+  disableUser,
+  archiveCourse
 } = AdminController;
 
 const router = Router();
@@ -78,6 +79,7 @@ router.patch(
   "/user/:userId/disable", 
   authenticate,
   authorize(["admin", "subAdmin"]),
+  checkSubadminPermission("User Management", "Disable User"),
   disableUser
 );
 
@@ -85,6 +87,7 @@ router.patch(
   "/user/:userId/archive", 
   authenticate,
   authorize(["admin", "subAdmin"]),
+  checkSubadminPermission("User Management", "Archive User"),
   archiveUser
 );
 
@@ -92,9 +95,17 @@ router.patch(
   "/user/:userId/enable", 
   authenticate,
   authorize(["admin", "subAdmin"]),
+  checkSubadminPermission("User Management", "Enable User"),
   enableUser
 );
 
+router.patch(
+  "/courses/:courseId/archive",
+  authenticate,
+  authorize(["admin", "subAdmin"]),
+  checkSubadminPermission("Course Management", "Archive Course"),
+  archiveCourse
+)
 
 
 export default router;
