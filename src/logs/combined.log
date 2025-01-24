@@ -7811,3 +7811,96 @@
 2025-01-23 17:18:08 [info]: GET /results?courseId=6769d66af2911fd9e5ce7995&userId=676965e49626eab20cafeb69 200
 2025-01-23 17:22:07 [info]: GET /results?courseId=6769d66af2911fd9e5ce7995&userId=676965e49626eab20cafeb69 200 - Query Params: {"courseId":"6769d66af2911fd9e5ce7995","userId":"676965e49626eab20cafeb69"}
 2025-01-23 17:22:07 [info]: GET /results?courseId=6769d66af2911fd9e5ce7995&userId=676965e49626eab20cafeb69 200
+2025-01-24 12:59:57 [info]: POST /login 200 - Request Body: {"email":"seunoduez@gmail.com","password":"Timpearl05$$$"}
+2025-01-24 13:01:43 [info]: POST /objective 201 - Request Body: {"title":"Mixed Question Types Quiz","description":"A quiz with various question types to test your knowledge.","marksPerQuestion":5,"numberOfTrials":5,"purpose":"Learning assessment","passMark":60,"duration":30,"totalMark":100,"startDate":"2024-11-25","endDate":"2024-12-01","questions":[{"question":"The Eiffel Tower is in London.","type":"True or False","answer":"false","mark":15},{"question":"______ is the largest ocean on Earth.","type":"Fill in the Gap","answer":"Pacific Ocean","mark":25},{"question":"Is climate change a global concern?","type":"Yes or No","answer":"yes","mark":15},{"question":"Which of these is a prime number?","type":"Multichoice","options":["4","6","7","9"],"answer":"7","mark":15},{"question":"Is a Dog a mammal?","type":"Yes or No","answer":"yes","mark":10}]}
+2025-01-24 13:09:42 [info]: POST /add 201 - Request Body: {"code":"MOQ-246","price":50000,"title":"Sociology and Test","objective":"Sociology and Test","instructorId":"67453884a835dc3c8062914d","duration":"six weeks","lessonFormat":".xls","assessments":["679381270cde8880899ab59c"],"certificate":["675fec0e6fe5ccac4b4ac00b"],"showInstructor":true}
+2025-01-24 13:13:23 [info]: POST / 200 - Request Body: {"name":"Tehcnical Drawing Club","numberOfArms":3,"subGroups":[{"name":"Physics"},{"name":"Chemistry"},{"name":"Biology"}]}
+2025-01-24 13:19:14 [info]: POST /679383e20cde8880899ab5b1/add-users 200 - Request Body: {"userIds":["676965e49626eab20cafeb69","674d6507cad288132dd56fc1","67909f65a2cfe9e1e3ffc7a1"]}
+2025-01-24 13:20:56 [info]: POST /assign-course/679383060cde8880899ab5ac 200 - Request Body: {"groupId":"679383e20cde8880899ab5b1","dueDate":"12-31-2025"}
+2025-01-24 13:23:03 [info]: POST /login 200 - Request Body: {"email":"bimpe@gmail.com","password":"Timpearl05$$$"}
+2025-01-24 13:38:37 [info]: PATCH /679383060cde8880899ab5ac/move-to-ongoing 200
+2025-01-24 13:38:43 [info]: POST /login 200 - Request Body: {"email":"bimpe@gmail.com","password":"Timpearl05$$$"}
+2025-01-24 13:45:38 [info]: POST /679383060cde8880899ab5ac/679381270cde8880899ab59c/take 201 - Request Body: {"answers":[{"questionId":"679381270cde8880899ab59d","answer":false},{"questionId":"679381270cde8880899ab59e","answer":"Pacific Ocean"},{"questionId":"679381270cde8880899ab59f","answer":"yes"},{"questionId":"679381270cde8880899ab5a0","answer":"7"},{"questionId":"679381270cde8880899ab5a1","answer":"no"}]}
+2025-01-24 13:46:40 [info]: GET /results?courseId=6769d66af2911fd9e5ce7995&userId=676965e49626eab20cafeb69 200 - Query Params: {"courseId":"6769d66af2911fd9e5ce7995","userId":"676965e49626eab20cafeb69"}
+2025-01-24 13:46:40 [info]: GET /results?courseId=6769d66af2911fd9e5ce7995&userId=676965e49626eab20cafeb69 200
+2025-01-24 13:51:54 [info]: GET /679383e20cde8880899ab5af 200
+2025-01-24 13:53:45 [info]: GET /results?courseId=6769d66af2911fd9e5ce7995&subGroupId=679383e20cde8880899ab5b1 404 - Query Params: {"courseId":"6769d66af2911fd9e5ce7995","subGroupId":"679383e20cde8880899ab5b1"}
+2025-01-24 13:53:45 [info]: GET /results?courseId=6769d66af2911fd9e5ce7995&subGroupId=679383e20cde8880899ab5b1 404
+2025-01-24 13:54:30 [info]: GET /results?courseId=679383060cde8880899ab5ac&subGroupId=679383e20cde8880899ab5b1 404 - Query Params: {"courseId":"679383060cde8880899ab5ac","subGroupId":"679383e20cde8880899ab5b1"}
+2025-01-24 13:54:30 [info]: GET /results?courseId=679383060cde8880899ab5ac&subGroupId=679383e20cde8880899ab5b1 404
+2025-01-24 13:55:00 [info]: GET /results?courseId=679383060cde8880899ab5ac&groupId=679383e20cde8880899ab5af 404 - Query Params: {"courseId":"679383060cde8880899ab5ac","groupId":"679383e20cde8880899ab5af"}
+2025-01-24 13:55:00 [info]: GET /results?courseId=679383060cde8880899ab5ac&groupId=679383e20cde8880899ab5af 404
+2025-01-24 14:12:41 [info]: GET /results?courseId=679383060cde8880899ab5ac&subGroupId=679383e20cde8880899ab5b1 200 - Query Params: {"courseId":"679383060cde8880899ab5ac","subGroupId":"679383e20cde8880899ab5b1"}
+2025-01-24 14:12:41 [info]: GET /results?courseId=679383060cde8880899ab5ac&subGroupId=679383e20cde8880899ab5b1 200
+2025-01-24 14:14:15 [info]: GET /results?courseId=679383060cde8880899ab5ac&groupId=679383e20cde8880899ab5af 500 - Query Params: {"courseId":"679383060cde8880899ab5ac","groupId":"679383e20cde8880899ab5af"}
+2025-01-24 14:14:15 [info]: GET /results?courseId=679383060cde8880899ab5ac&groupId=679383e20cde8880899ab5af 500
+2025-01-24 14:14:53 [info]: GET /results?courseId=679383060cde8880899ab5ac&userId=676965e49626eab20cafeb69 500 - Query Params: {"courseId":"679383060cde8880899ab5ac","userId":"676965e49626eab20cafeb69"}
+2025-01-24 14:14:53 [info]: GET /results?courseId=679383060cde8880899ab5ac&userId=676965e49626eab20cafeb69 500
+2025-01-24 14:14:58 [info]: GET /results?courseId=679383060cde8880899ab5ac&userId=676965e49626eab20cafeb69 500 - Query Params: {"courseId":"679383060cde8880899ab5ac","userId":"676965e49626eab20cafeb69"}
+2025-01-24 14:14:58 [info]: GET /results?courseId=679383060cde8880899ab5ac&userId=676965e49626eab20cafeb69 500
+2025-01-24 14:15:16 [info]: GET /results?courseId=679383060cde8880899ab5ac&subGroupId=679383e20cde8880899ab5b1 500 - Query Params: {"courseId":"679383060cde8880899ab5ac","subGroupId":"679383e20cde8880899ab5b1"}
+2025-01-24 14:15:16 [info]: GET /results?courseId=679383060cde8880899ab5ac&subGroupId=679383e20cde8880899ab5b1 500
+2025-01-24 14:16:52 [info]: GET /results?courseId=679383060cde8880899ab5ac&userId=676965e49626eab20cafeb69 200 - Query Params: {"courseId":"679383060cde8880899ab5ac","userId":"676965e49626eab20cafeb69"}
+2025-01-24 14:16:52 [info]: GET /results?courseId=679383060cde8880899ab5ac&userId=676965e49626eab20cafeb69 200
+2025-01-24 14:17:17 [info]: GET /results?courseId=679383060cde8880899ab5ac&subGroupId=679383e20cde8880899ab5b1 200 - Query Params: {"courseId":"679383060cde8880899ab5ac","subGroupId":"679383e20cde8880899ab5b1"}
+2025-01-24 14:17:17 [info]: GET /results?courseId=679383060cde8880899ab5ac&subGroupId=679383e20cde8880899ab5b1 200
+2025-01-24 14:17:30 [info]: GET /results?courseId=679383060cde8880899ab5ac&groupId=679383e20cde8880899ab5af 500 - Query Params: {"courseId":"679383060cde8880899ab5ac","groupId":"679383e20cde8880899ab5af"}
+2025-01-24 14:17:30 [info]: GET /results?courseId=679383060cde8880899ab5ac&groupId=679383e20cde8880899ab5af 500
+2025-01-24 14:21:17 [info]: GET /results?courseId=679383060cde8880899ab5ac&groupId=679383e20cde8880899ab5af 200 - Query Params: {"courseId":"679383060cde8880899ab5ac","groupId":"679383e20cde8880899ab5af"}
+2025-01-24 14:21:17 [info]: GET /results?courseId=679383060cde8880899ab5ac&groupId=679383e20cde8880899ab5af 200
+2025-01-24 14:27:00 [info]: GET /results?courseId=679383060cde8880899ab5ac&groupId=679383e20cde8880899ab5af 500 - Query Params: {"courseId":"679383060cde8880899ab5ac","groupId":"679383e20cde8880899ab5af"}
+2025-01-24 14:27:00 [info]: GET /results?courseId=679383060cde8880899ab5ac&groupId=679383e20cde8880899ab5af 500
+2025-01-24 14:28:15 [info]: GET /results?courseId=679383060cde8880899ab5ac&groupId=679383e20cde8880899ab5af 200 - Query Params: {"courseId":"679383060cde8880899ab5ac","groupId":"679383e20cde8880899ab5af"}
+2025-01-24 14:28:15 [info]: GET /results?courseId=679383060cde8880899ab5ac&groupId=679383e20cde8880899ab5af 200
+2025-01-24 14:42:51 [info]: GET /results?courseId=679383060cde8880899ab5ac&groupId=679383e20cde8880899ab5af 200 - Query Params: {"courseId":"679383060cde8880899ab5ac","groupId":"679383e20cde8880899ab5af"}
+2025-01-24 14:42:51 [info]: GET /results?courseId=679383060cde8880899ab5ac&groupId=679383e20cde8880899ab5af 200
+2025-01-24 14:43:03 [info]: GET /results?courseId=679383060cde8880899ab5ac&subGroupId=679383e20cde8880899ab5b1 404 - Query Params: {"courseId":"679383060cde8880899ab5ac","subGroupId":"679383e20cde8880899ab5b1"}
+2025-01-24 14:43:03 [info]: GET /results?courseId=679383060cde8880899ab5ac&subGroupId=679383e20cde8880899ab5b1 404
+2025-01-24 14:43:19 [info]: GET /results?courseId=679383060cde8880899ab5ac&userId=676965e49626eab20cafeb69 200 - Query Params: {"courseId":"679383060cde8880899ab5ac","userId":"676965e49626eab20cafeb69"}
+2025-01-24 14:43:19 [info]: GET /results?courseId=679383060cde8880899ab5ac&userId=676965e49626eab20cafeb69 200
+2025-01-24 14:43:49 [info]: GET /results?courseId=679383060cde8880899ab5ac&subGroupId=679383e20cde8880899ab5b1 404 - Query Params: {"courseId":"679383060cde8880899ab5ac","subGroupId":"679383e20cde8880899ab5b1"}
+2025-01-24 14:43:49 [info]: GET /results?courseId=679383060cde8880899ab5ac&subGroupId=679383e20cde8880899ab5b1 404
+2025-01-24 14:45:13 [info]: GET /results?courseId=679383060cde8880899ab5ac&subGroupId=679383e20cde8880899ab5b1 404 - Query Params: {"courseId":"679383060cde8880899ab5ac","subGroupId":"679383e20cde8880899ab5b1"}
+2025-01-24 14:45:13 [info]: GET /results?courseId=679383060cde8880899ab5ac&subGroupId=679383e20cde8880899ab5b1 404
+2025-01-24 15:01:48 [info]: GET /results?courseId=679383060cde8880899ab5ac&subGroupId=679383e20cde8880899ab5b1 200 - Query Params: {"courseId":"679383060cde8880899ab5ac","subGroupId":"679383e20cde8880899ab5b1"}
+2025-01-24 15:01:48 [info]: GET /results?courseId=679383060cde8880899ab5ac&subGroupId=679383e20cde8880899ab5b1 200
+2025-01-24 15:02:23 [info]: GET /results?courseId=679383060cde8880899ab5ac&userId=676965e49626eab20cafeb69 200 - Query Params: {"courseId":"679383060cde8880899ab5ac","userId":"676965e49626eab20cafeb69"}
+2025-01-24 15:02:23 [info]: GET /results?courseId=679383060cde8880899ab5ac&userId=676965e49626eab20cafeb69 200
+2025-01-24 15:02:53 [info]: GET /results?courseId=679383060cde8880899ab5ac&groupId=679383e20cde8880899ab5af 200 - Query Params: {"courseId":"679383060cde8880899ab5ac","groupId":"679383e20cde8880899ab5af"}
+2025-01-24 15:02:53 [info]: GET /results?courseId=679383060cde8880899ab5ac&groupId=679383e20cde8880899ab5af 200
+2025-01-24 15:03:38 [info]: GET /results?courseId=679383060cde8880899ab5ac&subGroupId=679383e20cde8880899ab5b1 200 - Query Params: {"courseId":"679383060cde8880899ab5ac","subGroupId":"679383e20cde8880899ab5b1"}
+2025-01-24 15:03:38 [info]: GET /results?courseId=679383060cde8880899ab5ac&subGroupId=679383e20cde8880899ab5b1 200
+2025-01-24 15:03:41 [info]: GET /results?courseId=679383060cde8880899ab5ac&subGroupId=679383e20cde8880899ab5b1 200 - Query Params: {"courseId":"679383060cde8880899ab5ac","subGroupId":"679383e20cde8880899ab5b1"}
+2025-01-24 15:03:41 [info]: GET /results?courseId=679383060cde8880899ab5ac&subGroupId=679383e20cde8880899ab5b1 200
+2025-01-24 15:10:27 [info]: GET /results?courseId=679383060cde8880899ab5ac&subGroupId=679383e20cde8880899ab5b1 200 - Query Params: {"courseId":"679383060cde8880899ab5ac","subGroupId":"679383e20cde8880899ab5b1"}
+2025-01-24 15:10:27 [info]: GET /results?courseId=679383060cde8880899ab5ac&subGroupId=679383e20cde8880899ab5b1 200
+2025-01-24 15:10:33 [info]: GET /results?courseId=679383060cde8880899ab5ac&subGroupId=679383e20cde8880899ab5b1 200 - Query Params: {"courseId":"679383060cde8880899ab5ac","subGroupId":"679383e20cde8880899ab5b1"}
+2025-01-24 15:10:33 [info]: GET /results?courseId=679383060cde8880899ab5ac&subGroupId=679383e20cde8880899ab5b1 200
+2025-01-24 15:10:36 [info]: GET /results?courseId=679383060cde8880899ab5ac&subGroupId=679383e20cde8880899ab5b1 200 - Query Params: {"courseId":"679383060cde8880899ab5ac","subGroupId":"679383e20cde8880899ab5b1"}
+2025-01-24 15:10:36 [info]: GET /results?courseId=679383060cde8880899ab5ac&subGroupId=679383e20cde8880899ab5b1 200
+2025-01-24 15:11:01 [info]: GET /results?courseId=679383060cde8880899ab5ac&subGroupId=679383e20cde8880899ab5b1 200 - Query Params: {"courseId":"679383060cde8880899ab5ac","subGroupId":"679383e20cde8880899ab5b1"}
+2025-01-24 15:11:01 [info]: GET /results?courseId=679383060cde8880899ab5ac&subGroupId=679383e20cde8880899ab5b1 200
+2025-01-24 15:11:46 [info]: GET /results?courseId=679383060cde8880899ab5ac&subGroupId=679383e20cde8880899ab5b1 200 - Query Params: {"courseId":"679383060cde8880899ab5ac","subGroupId":"679383e20cde8880899ab5b1"}
+2025-01-24 15:11:46 [info]: GET /results?courseId=679383060cde8880899ab5ac&subGroupId=679383e20cde8880899ab5b1 200
+2025-01-24 15:13:49 [info]: GET /results?courseId=679383060cde8880899ab5ac&subGroupId=679383e20cde8880899ab5b1 200 - Query Params: {"courseId":"679383060cde8880899ab5ac","subGroupId":"679383e20cde8880899ab5b1"}
+2025-01-24 15:13:49 [info]: GET /results?courseId=679383060cde8880899ab5ac&subGroupId=679383e20cde8880899ab5b1 200
+2025-01-24 15:23:32 [info]: GET /results?courseId=679383060cde8880899ab5ac&subGroupId=679383e20cde8880899ab5b1 200 - Query Params: {"courseId":"679383060cde8880899ab5ac","subGroupId":"679383e20cde8880899ab5b1"}
+2025-01-24 15:23:32 [info]: GET /results?courseId=679383060cde8880899ab5ac&subGroupId=679383e20cde8880899ab5b1 200
+2025-01-24 15:31:02 [info]: GET /results?courseId=679383060cde8880899ab5ac&subGroupId=679383e20cde8880899ab5b1 200 - Query Params: {"courseId":"679383060cde8880899ab5ac","subGroupId":"679383e20cde8880899ab5b1"}
+2025-01-24 15:31:02 [info]: GET /results?courseId=679383060cde8880899ab5ac&subGroupId=679383e20cde8880899ab5b1 200
+2025-01-24 15:31:48 [info]: GET /results?courseId=679383060cde8880899ab5ac&subGroupId=679383e20cde8880899ab5b1 200 - Query Params: {"courseId":"679383060cde8880899ab5ac","subGroupId":"679383e20cde8880899ab5b1"}
+2025-01-24 15:31:48 [info]: GET /results?courseId=679383060cde8880899ab5ac&subGroupId=679383e20cde8880899ab5b1 200
+2025-01-24 15:35:29 [info]: POST /add 400 - Request Body: {"code":"MOQ-246","price":50000,"title":"Sociology and Test","objective":"Sociology and Test","instructorId":"67453884a835dc3c8062914d","duration":"six weeks","lessonFormat":".xls","assessments":["679381270cde8880899ab59c"],"certificate":["675fec0e6fe5ccac4b4ac00b"],"showInstructor":true}
+2025-01-24 15:35:30 [info]: POST /add 400 - Request Body: {"code":"MOQ-246","price":50000,"title":"Sociology and Test","objective":"Sociology and Test","instructorId":"67453884a835dc3c8062914d","duration":"six weeks","lessonFormat":".xls","assessments":["679381270cde8880899ab59c"],"certificate":["675fec0e6fe5ccac4b4ac00b"],"showInstructor":true}
+2025-01-24 15:35:56 [info]: GET /results?courseId=679383060cde8880899ab5ac&subGroupId=679383e20cde8880899ab5b1 200 - Query Params: {"courseId":"679383060cde8880899ab5ac","subGroupId":"679383e20cde8880899ab5b1"}
+2025-01-24 15:35:56 [info]: GET /results?courseId=679383060cde8880899ab5ac&subGroupId=679383e20cde8880899ab5b1 200
+2025-01-24 15:45:18 [info]: GET /results?courseId=679383060cde8880899ab5ac&subGroupId=679383e20cde8880899ab5b1 404 - Query Params: {"courseId":"679383060cde8880899ab5ac","subGroupId":"679383e20cde8880899ab5b1"}
+2025-01-24 15:45:18 [info]: GET /results?courseId=679383060cde8880899ab5ac&subGroupId=679383e20cde8880899ab5b1 404
+2025-01-24 15:52:22 [info]: GET /results?courseId=679383060cde8880899ab5ac&subGroupId=679383e20cde8880899ab5b1 200 - Query Params: {"courseId":"679383060cde8880899ab5ac","subGroupId":"679383e20cde8880899ab5b1"}
+2025-01-24 15:52:22 [info]: GET /results?courseId=679383060cde8880899ab5ac&subGroupId=679383e20cde8880899ab5b1 200
+2025-01-24 16:11:12 [info]: GET /results?courseId=679383060cde8880899ab5ac&subGroupId=679383e20cde8880899ab5b1 500 - Query Params: {"courseId":"679383060cde8880899ab5ac","subGroupId":"679383e20cde8880899ab5b1"}
+2025-01-24 16:11:12 [info]: GET /results?courseId=679383060cde8880899ab5ac&subGroupId=679383e20cde8880899ab5b1 500
+2025-01-24 16:11:18 [info]: GET /results?courseId=679383060cde8880899ab5ac&subGroupId=679383e20cde8880899ab5b1 500 - Query Params: {"courseId":"679383060cde8880899ab5ac","subGroupId":"679383e20cde8880899ab5b1"}
+2025-01-24 16:11:18 [info]: GET /results?courseId=679383060cde8880899ab5ac&subGroupId=679383e20cde8880899ab5b1 500
+2025-01-24 16:14:40 [info]: GET /results?courseId=679383060cde8880899ab5ac&subGroupId=679383e20cde8880899ab5b1 200 - Query Params: {"courseId":"679383060cde8880899ab5ac","subGroupId":"679383e20cde8880899ab5b1"}
+2025-01-24 16:14:40 [info]: GET /results?courseId=679383060cde8880899ab5ac&subGroupId=679383e20cde8880899ab5b1 200
