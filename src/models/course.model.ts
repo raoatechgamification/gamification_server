@@ -6,6 +6,7 @@ export interface ICourse extends Document {
   requirement?: string;
   topContent?: boolean;
   objective?: string;
+  isArchived: boolean;
   organizationId?: string;
   lessonFormat?: string;
   instructor: mongoose.Types.ObjectId | string; // Union handled in TypeScript only
@@ -46,6 +47,7 @@ const CourseSchema = new Schema<ICourse>({
   requirement: { type: String },
   topContent: { type: Boolean },
   objective: { type: String },
+  isArchived: { type: Boolean, default: false },
   organizationId: { type: String },
   lessonFormat: { type: String },
   // instructor: { type: Schema.Types.ObjectId, ref: 'User' },

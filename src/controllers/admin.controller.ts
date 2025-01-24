@@ -966,6 +966,44 @@ class AdminController {
     } catch (error) {
     }
   }
+
+  async archiveCourse(req: Request, res: Response) {
+    try {
+      const { courseId } = req.params;
+
+      let adminId = await getOrganizationId(req, res);
+      if (!adminId) {
+        return;
+      }
+  
+      const organization = await Organization.findById(adminId);
+      if (!organization) {
+        return ResponseHandler.failure(res, "Organization not found", 400);
+      }
+
+      // const adminId = req.user._id; // Assume the admin's ID is extracted from a middleware
+      
+      // Validate admin privileges (if applicable)
+      const admin = await Organization.findById(adminId);
+      if (!admin || admin.role !== "admin") {
+        return ResponseHandler.failure(res, "Unauthorized access", 403);
+      }
+  
+      // Find the course
+      const course = await Course.findById(courseId);
+      if (!course) {
+        return ResponseHandler.failure(res, "Course not found", 404);
+      }
+  
+      // Archive the course
+      course.isArchived = true;
+      await course.save();
+  
+      return ResponseHandler.success(res, null, "Course archived successfully");
+    } catch (error: any) {
+      return ResponseHandler.failure(res, `Error archiving course: ${error.message}`, 500);
+    }
+  }
 }
 
 export default new AdminController();
