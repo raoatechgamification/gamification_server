@@ -1,16 +1,20 @@
 import { Router } from "express";
-import { authenticate, authorize, checkSubadminPermission } from "../middlewares/auth.middleware";
 import AdminController from "../controllers/admin.controller";
+import {
+  authenticate,
+  authorize,
+  checkSubadminPermission,
+} from "../middlewares/auth.middleware";
 
 import { CourseController } from "../controllers/course.controller";
+import { upload } from "../utils/upload.utils";
 import {
-  validateCreateCourse,
   courseContentValidator,
   createAnnouncementValidator,
-  validateCourseId,
   createCourseValidator,
+  validateCourseId,
+  validateCreateCourse,
 } from "../validators/course.validator";
-import { upload, Optimizedupload } from "../utils/upload.utils";
 
 const {
   createCourse,
@@ -32,7 +36,7 @@ const {
   getCourseCompletionLevel,
   getCourseDetails,
   getPrograms,
-  generalMarketPlace
+  generalMarketPlace,
 } = new CourseController();
 
 const { generateCourseReport } = AdminController;
@@ -43,17 +47,17 @@ router.get(
   "/status",
   authenticate,
   authorize(["user", "admin", "subAdmin"]),
-  checkSubadminPermission("Course Management", "Get User Programs"), 
+  checkSubadminPermission("Course Management", "Get User Programs"),
   getPrograms
-)
+);
 
 router.get(
   "/marketplace",
   authenticate,
   authorize(["user", "subAdmin", "admin", "superAdmin"]),
-  checkSubadminPermission("Course Management", "Get Marketplace"), 
+  checkSubadminPermission("Course Management", "Get Marketplace"),
   generalMarketPlace
-)
+);
 
 router.post(
   "/create",
@@ -88,16 +92,17 @@ router.put(
   "/:courseId",
   authenticate,
   authorize(["admin", "subAdmin"]),
-  checkSubadminPermission("Course Management", "Edit Course"),  
+  checkSubadminPermission("Course Management", "Edit Course"),
   ...validateCourseId,
   editCourse
 );
 
 router.get(
-  "/all", 
-  authenticate, 
+  "/all",
+  authenticate,
   authorize(["user", "admin", "subAdmin", "superAdmin"]),
-  checkSubadminPermission("Course Management", "View All Courses"),  getAllCourses
+  checkSubadminPermission("Course Management", "View All Courses"),
+  getAllCourses
 );
 
 router.get("/allCourses", authenticate, getAllCoursesForUsers);
@@ -107,17 +112,17 @@ router.post(
   "/lesson",
   authenticate,
   authorize(["admin", "subAdmin"]),
-  checkSubadminPermission("Course Management", "Create Lesson"),    
-  Optimizedupload.array("file", 10),
+  checkSubadminPermission("Course Management", "Create Lesson"),
+  upload.array("file", 10),
   ...courseContentValidator,
   createLesson
 );
 
 router.get(
-  "/lesson/getAll", 
-  authenticate, 
+  "/lesson/getAll",
+  authenticate,
   authorize(["user", "admin", "subAdmin", "superAdmin"]),
-  checkSubadminPermission("Course Management", "View All Lessons"),     
+  checkSubadminPermission("Course Management", "View All Lessons"),
   getAllLessons
 );
 
@@ -125,7 +130,7 @@ router.get(
   "/curriculum/:courseId",
   authenticate,
   authorize(["user", "admin", "subAdmin", "superAdmin"]),
-  checkSubadminPermission("Course Management", "View All Lessons"), 
+  checkSubadminPermission("Course Management", "View All Lessons"),
   ...validateCourseId,
   getCourseLessons
 );
@@ -134,7 +139,7 @@ router.post(
   "/announcement/:courseId",
   authenticate,
   authorize(["admin", "subAdmin"]),
-  checkSubadminPermission("Announcement Management", "Create Announcement"), 
+  checkSubadminPermission("Announcement Management", "Create Announcement"),
   ...createAnnouncementValidator,
   createAnnouncement
 );

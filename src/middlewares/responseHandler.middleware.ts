@@ -1,5 +1,10 @@
 export class ResponseHandler {
-  static success(res: any, data?: any, message: string = 'Success', statusCode: number = 200) {
+  static success(
+    res: any,
+    data?: any,
+    message: string = "Success",
+    statusCode: number = 200
+  ) {
     return res.status(statusCode).json({
       success: true,
       message,
@@ -7,7 +12,12 @@ export class ResponseHandler {
     });
   }
 
-  static failure(res: any, message: string = 'Failure', statusCode: number = 500, error?: any) {
+  static failure(
+    res: any,
+    message: string = "Failure",
+    statusCode: number = 500,
+    error?: any
+  ) {
     return res.status(statusCode).json({
       success: false,
       message,
@@ -15,7 +25,13 @@ export class ResponseHandler {
     });
   }
 
-  static loginResponse(res: any, token: string, data: any, message: string = 'Success', statusCode: number = 200) {
+  static loginResponse(
+    res: any,
+    token: string,
+    data: any,
+    message: string = "Success",
+    statusCode: number = 200
+  ) {
     return res.status(statusCode).json({
       success: true,
       message,

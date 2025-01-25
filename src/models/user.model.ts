@@ -27,8 +27,8 @@ export interface IUser extends Document {
   email: string;
   phone?: string;
   userId?: string;
-  groups?: mongoose.Schema.Types.ObjectId[];
-  subLearnerGroups?: mongoose.Schema.Types.ObjectId[];
+  groups?: mongoose.Types.ObjectId[];
+  subGroups?: mongoose.Types.ObjectId[];
   organizationId?: mongoose.Schema.Types.ObjectId;
   purchasedCourses?: mongoose.Schema.Types.ObjectId[];
   role: string;
@@ -36,6 +36,9 @@ export interface IUser extends Document {
   password: string;
   batch?: string;
   userType?: string;
+  isArchived: boolean;
+  isEnabled: boolean;
+  isDisabled: boolean;
   yearsOfExperience?: number;
   highestEducationLevel?: string;
   gender?: string;
@@ -100,16 +103,19 @@ const UserSchema: Schema<IUser> = new Schema(
     otherName: { type: String, default: null },
     email: { type: String, required: true, unique: true },
     phone: { type: String, sparse: true },
-    userId: { type: String, default: null },
+    userId: { type: String, default: null, required: false },
     groups: [
       { type: mongoose.Schema.Types.ObjectId, sparse: true, ref: "Group" },
     ],
-    subLearnerGroups: [{ type: mongoose.Schema.Types.ObjectId }],
+    subGroups: [{ type: mongoose.Schema.Types.ObjectId }],
     organizationId: { type: mongoose.Schema.Types.ObjectId, default: null },
     role: { type: String, default: "user", required: true },
     password: { type: String, required: true },
     batch: { type: String },
     userType: { type: String, default: "learner" },
+    isArchived: { type: Boolean, default: false },
+    isEnabled: { type: Boolean, default: true },
+    isDisabled: { type: Boolean, default: false},
     yearsOfExperience: { type: Number, default: null },
     highestEducationLevel: { type: String, default: null },
     gender: { type: String, default: null },

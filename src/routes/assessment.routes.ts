@@ -1,5 +1,5 @@
 import { Router } from "express";
-import { authenticate, authorize } from "../middlewares/auth.middleware";
+import { authenticate, authorize, checkSubadminPermission } from "../middlewares/auth.middleware";
 import { AssessmentController } from "../controllers/assessment.controller";
 import { SubmissionController } from "../controllers/submission.controller";
 import ObjectAssessmentController from "../controllers/objectiveAssessment.controller";
@@ -35,7 +35,8 @@ const {
   editObjectiveAssessment,
   takeAndGradeAssessment,
   getAssessmentById,
-  getAllAssessmentsForOrganization,
+  getAllAssessmentsForAnOrganization,
+  assessmentResultSlipByAdmin,
   assessmentResultSlip,
 } = ObjectAssessmentController;
 
@@ -44,7 +45,8 @@ const { submitAssessment } = new SubmissionController();
 router.post(
   "/create",
   authenticate,
-    authorize(["admin"]),
+  authorize(["admin", "subAdmin"]),
+  checkSubadminPermission("Assessment Management", "Create Theory Assessment"),
   upload.single("file"),
   ...createAssessmentValidator,
   createAssessmentHandler
@@ -53,7 +55,8 @@ router.post(
 router.post(
   "/objective",
   authenticate,
-    authorize(["admin"]),
+  authorize(["admin", "subAdmin"]),
+  checkSubadminPermission("Assessment Management", "Create Objective Assessment"),
   ...createObjectiveAssessmentValidator,
   createObjectiveAssessment
 );
@@ -61,7 +64,8 @@ router.post(
 router.post(
   "/objective/from-question-bank",
   authenticate,
-  authorize(["admin"]),
+  authorize(["admin", "subAdmin"]),
+  checkSubadminPermission("Assessment Management", "Create Objective Assessment"),
   ...validateObjectiveAssessmentUsingQuestionsBank,
   createObjectiveAssessmentFromQuestionsBank
 );
@@ -69,7 +73,8 @@ router.post(
 router.post(
   "/questions/bulk-upload",
   authenticate,
-  authorize(["admin"]),
+  checkSubadminPermission("Assessment Management", "Create Questions"),
+  authorize(["admin", "subAdmin"]),
   ...validateBulkUploadRequest,
   bulkUploadQuestions
 );
@@ -77,7 +82,8 @@ router.post(
 router.post(
   "/questions/manual-upload",
   authenticate,
-    authorize(["admin"]),
+  authorize(["admin", "subAdmin"]),
+  checkSubadminPermission("Assessment Management", "Create Questions"),
   ...validateManualQuestionsUpload,
   uploadQuestionsManually
 );
@@ -85,64 +91,75 @@ router.post(
 router.put(
   "/:assessmentId",
   authenticate,
-    authorize(["admin"]),
+  authorize(["admin", "subAdmin"]),
+  checkSubadminPermission("Assessment Management", "Edit Assessment"),
   ...assessmentIdValidator,
   ...createObjectiveAssessmentValidator,
   editObjectiveAssessment
 );
 
-router.put(
-  "/:submissionId/grade",
-  authenticate,
-    authorize(["admin"]),
-  ...gradeAssessmentValidator,
-  gradeSubmission
-);
+// router.put(
+//   "/:submissionId/grade",
+//   authenticate,
+//   authorize(["admin", "subAdmin"]),
+//   ...gradeAssessmentValidator,
+//   gradeSubmission
+// );
 
-router.get(
-  "/submissions/:assessmentId",
-  authenticate,
-    authorize(["admin"]),
-  ...assessmentIdValidator,
-  getSubmissionsForAssessment
-);
+// router.get(
+//   "/submissions/:assessmentId",
+//   authenticate,
+//   authorize(["admin", "subAdmin"]),
+//   ...assessmentIdValidator,
+//   getSubmissionsForAssessment
+// );
 
 router.post(
   "/:courseId/:assessmentId/take",
   authenticate,
-    authorize(["user"]),
+  authorize(["user"]),
   ...submissionIdsValidator,
   takeAndGradeAssessment
 );
 
-router.post(
-  "/submit/:assessmentId",
-  authenticate,
-    authorize(["user"]),
-  upload.single("file"),
-  ...submissionValidator,
-  submitAssessment
-);
+// router.post(
+//   "/submit/:assessmentId",
+//   authenticate,
+//   authorize(["user"]),
+//   upload.single("file"),
+//   ...submissionValidator,
+//   submitAssessment
+// );
 
 router.get(
   "/result-slip/:submissionId",
   authenticate,
-    authorize(["user"]),
+  authorize(["user"]),
   ...submissionIdValidator,
   assessmentResultSlip
 );
 
 router.get(
+  "/results",
+  authenticate,
+  authorize(["admin", "subAdmin"]),
+  assessmentResultSlipByAdmin
+);
+
+router.get(
   "/",
   authenticate,
-    authorize(["admin"]),
-  getAllAssessmentsForOrganization
+  authorize(["admin", "subAdmin", "user", "superAdmin"]),
+  checkSubadminPermission("Assessment Management", "View Assessment"),
+  getAllAssessmentsForAnOrganization
 );
 
 router.get(
   "/:assessmentId",
   authenticate,
+  authorize(["admin", "subAdmin", "user", "superAdmin"]),
   ...assessmentIdValidator,
+  checkSubadminPermission("Assessment", "View Assessment"),
   getAssessmentById
 );
 

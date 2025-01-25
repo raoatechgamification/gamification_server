@@ -95,7 +95,7 @@ export class UserController {
           },
         },
         { new: true, runValidators: true }
-      );
+      ).select("-password");
 
       if (!updatedUser) {
         return ResponseHandler.failure(res, "User not found", 404);
