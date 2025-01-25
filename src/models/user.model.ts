@@ -36,6 +36,9 @@ export interface IUser extends Document {
   password: string;
   batch?: string;
   userType?: string;
+  isArchived: boolean;
+  isEnabled: boolean;
+  isDisabled: boolean;
   yearsOfExperience?: number;
   highestEducationLevel?: string;
   gender?: string;
@@ -100,7 +103,7 @@ const UserSchema: Schema<IUser> = new Schema(
     otherName: { type: String, default: null },
     email: { type: String, required: true, unique: true },
     phone: { type: String, sparse: true },
-    userId: { type: String, default: null },
+    userId: { type: String, default: null, required: false },
     groups: [
       { type: mongoose.Schema.Types.ObjectId, sparse: true, ref: "Group" },
     ],
@@ -110,6 +113,9 @@ const UserSchema: Schema<IUser> = new Schema(
     password: { type: String, required: true },
     batch: { type: String },
     userType: { type: String, default: "learner" },
+    isArchived: { type: Boolean, default: false },
+    isEnabled: { type: Boolean, default: true },
+    isDisabled: { type: Boolean, default: false},
     yearsOfExperience: { type: Number, default: null },
     highestEducationLevel: { type: String, default: null },
     gender: { type: String, default: null },

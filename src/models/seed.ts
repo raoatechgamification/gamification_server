@@ -35,7 +35,8 @@ const seedPermissions = async () => {
     // Assessment Management Permissions
     { module: "Assessment Management", action: "Create Objective Assessment" },
     { module: "Assessment Management", action: "Create Theory Assessment" },
-    { module: "Assessment Management", action: "View All Assessments" },
+    { module: "Assessment Management", action: "Create Questions" },
+    { module: "Assessment Management", action: "View Assessment" },
     { module: "Assessment Management", action: "Edit Assessment" },
     { module: "Assessment Management", action: "View Assessment Result" },
 

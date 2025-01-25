@@ -1,9 +1,9 @@
 import { Request, Response } from "express";
-import mongoose, { isValidObjectId } from "mongoose"; // Ensure this is imported if not already
+import mongoose from "mongoose"; // Ensure this is imported if not already
 import { ResponseHandler } from "../middlewares/responseHandler.middleware";
 import AssignedBill from "../models/assignedBill.model";
 import Course from "../models/course.model";
-import Group from "../models/groupp.model";
+import Group from "../models/group.model";
 import Organization from "../models/organization.model";
 import Payment from "../models/payment.model";
 import Submission from "../models/submission.model";
@@ -11,12 +11,147 @@ import User from "../models/user.model";
 import { uploadToCloudinary } from "../utils/cloudinaryUpload";
 import { getOrganizationId } from "../utils/getOrganizationId.util";
 
-function isPopulated<T>(value: mongoose.Types.ObjectId | T): value is T {
-  return typeof value === "object" && value !== null && !isValidObjectId(value);
-}
-
 class AdminController {
+  // async viewAllUsers(req: Request, res: Response) {
+  //   try {
+  //     let organizationId = await getOrganizationId(req, res);
+  //     if (!organizationId) {
+  //       return;
+  //     }
+
+  //     const organization = await Organization.findById(organizationId);
+  //     if (!organization) {
+  //       return ResponseHandler.failure(res, "Organization not found", 400);
+  //     }
+
+  //     const users = await User.find({ organizationId })
+  //       .select("-password")
+  //       .populate([
+  //         { path: "groups", select: "name" },
+  //         { path: "subGroups", select: "name" },
+  //       ]);
+
+  //     if (!users || users.length === 0) {
+  //       return ResponseHandler.failure(
+  //         res,
+  //         "You have no users under your organization, start by creating users",
+  //         400
+  //       );
+  //     }
+
+  //     const usersWithDetails = await Promise.all(
+  //       users.map(async (user) => {
+  //         const paymentHistory = await Payment.find({ userId: user._id });
+  //         const assignedBills = await AssignedBill.find({
+  //           assigneeId: user._id,
+  //         });
+  //         return {
+  //           ...user.toObject(),
+  //           groups: user.groups,
+  //           subGroups: user.subGroups,
+  //           paymentHistory,
+  //           assignedBills,
+  //         };
+  //       })
+  //     );
+
+  //     return ResponseHandler.success(
+  //       res,
+  //       usersWithDetails,
+  //       "Users fetched successfully"
+  //     );
+  //   } catch (error: any) {
+  //     return ResponseHandler.failure(
+  //       res,
+  //       `Server error: ${error.message}`,
+  //       500
+  //     );
+  //   }
+  // }
+
   async viewAllUsers(req: Request, res: Response) {
+    try {
+      let organizationId = await getOrganizationId(req, res);
+      if (!organizationId) {
+        return;
+      }
+
+      const organization = await Organization.findById(organizationId);
+      if (!organization) {
+        return ResponseHandler.failure(res, "Organization not found", 400);
+      }
+
+      const users = await User.find({ organizationId })
+        .select("-password")
+        .populate([{ path: "groups", select: "name" }]);
+
+      if (!users || users.length === 0) {
+        return ResponseHandler.failure(
+          res,
+          "You have no users under your organization, start by creating users",
+          400
+        );
+      }
+
+      const usersWithDetails = await Promise.all(
+        users.map(async (user) => {
+          const populatedGroups = await Promise.all(
+            (user.groups || []).map(async (groupId) => {
+              const group =
+                await Group.findById(groupId).select("name subGroups");
+
+              if (group) {
+                // Make sure subGroups is an array of ObjectId
+                const userSubGroups = user.subGroups || [];
+
+                return {
+                  ...group.toObject(),
+                  subGroups: group.subGroups.filter((subGroup) =>
+                    userSubGroups.some(
+                      (userSubGroup) => userSubGroup.equals(subGroup._id) // Compare ObjectId with ObjectId
+                    )
+                  ),
+                };
+              }
+              return null;
+            })
+          );
+
+          const paymentHistory = await Payment.find({ userId: user._id });
+          const assignedBills = await AssignedBill.find({
+            assigneeId: user._id,
+          });
+
+          return {
+            ...user.toObject(),
+            groups: populatedGroups.filter((g) => g !== null), // Filter out null groups
+            subGroups: populatedGroups
+              .flatMap((group) => group?.subGroups || [])
+              .map((subGroup) => ({
+                _id: subGroup._id,
+                name: subGroup.name,
+              })),
+            paymentHistory,
+            assignedBills,
+          };
+        })
+      );
+
+      return ResponseHandler.success(
+        res,
+        usersWithDetails,
+        "Users fetched successfully"
+      );
+    } catch (error: any) {
+      return ResponseHandler.failure(
+        res,
+        `Server error: ${error.message}`,
+        500
+      );
+    }
+  }
+
+  async viewAllUserss(req: Request, res: Response) {
     try {
       // const organizationId = req.admin._id;
 
@@ -30,7 +165,7 @@ class AdminController {
         return ResponseHandler.failure(res, "Organization not found", 400);
       }
 
-      const users = await User.find({ organizationId });
+      const users = await User.find({ organizationId }).select("-password");
 
       if (!users || users.length === 0) {
         return ResponseHandler.failure(
@@ -66,8 +201,6 @@ class AdminController {
 
   async editUserProfile(req: Request, res: Response) {
     try {
-      // console.log("here");
-      // console.log(req.body);
       const organizationId = await getOrganizationId(req, res);
       if (!organizationId) {
         return;
@@ -80,11 +213,10 @@ class AdminController {
 
       const image = req.file; // Uploaded image
       const userId = req.params.userId;
-      console.log(userId);
+
       // Parse `ids` from the form-data
       const { ids = "[]", ...rest } = req.body; // Default to empty array if not provided
       let parsedIds: string[] = [];
-      console.log("A");
 
       try {
         parsedIds = JSON.parse(ids); // Parse `ids` into an array
@@ -92,14 +224,11 @@ class AdminController {
         return ResponseHandler.failure(res, "Invalid 'ids' format", 400);
       }
 
-      console.log("B");
-
       // Ensure all IDs are converted to ObjectId
       const objectIds = parsedIds.map(
         (id: string) => new mongoose.Types.ObjectId(id)
       );
 
-      console.log("C");
       // Fetch the user and ensure they belong to the organization
       let user = await User.findOne({ _id: userId, organizationId });
       if (!user) {
@@ -110,7 +239,6 @@ class AdminController {
         );
       }
 
-      console.log("D");
       let fileUploadResult: any = null;
       if (image) {
         fileUploadResult = await uploadToCloudinary(
@@ -120,16 +248,12 @@ class AdminController {
         );
       }
 
-      console.log("E");
       // Initialize variables for updates
       let updatedGroups: mongoose.Types.ObjectId[] = user.groups || [];
       let updatedSubGroups: mongoose.Types.ObjectId[] = user.subGroups || [];
       const bulkGroupOps: any[] = [];
 
-      console.log("F");
-
       for (const id of objectIds) {
-        console.log("G");
         const userIdObject = new mongoose.Types.ObjectId(userId);
 
         // Check if the ID belongs to a group
@@ -137,8 +261,6 @@ class AdminController {
           _id: id,
           organizationId,
         });
-
-        console.log("H");
 
         if (group) {
           if (!group.members) {
@@ -204,26 +326,19 @@ class AdminController {
         }
       }
 
-      console.log("I");
       // Execute bulk operations to update groups and subgroups
       if (bulkGroupOps.length > 0) {
         await Group.bulkWrite(bulkGroupOps);
       }
 
-      console.log("J");
       // Deduplicate group and subgroup arrays before updating the user
       updatedGroups = Array.from(
         new Set(updatedGroups.map((id) => id.toString()))
       ).map((id) => new mongoose.Types.ObjectId(id));
-
-      console.log("updatedGroups: ", updatedGroups);
-
       updatedSubGroups = Array.from(
         new Set(updatedSubGroups.map((id) => id.toString()))
       ).map((id) => new mongoose.Types.ObjectId(id));
-      console.log("updatedSubGroups: ", updatedSubGroups);
 
-      console.log("K");
       // Update the user's groups, subGroups, and other details
       await User.updateOne(
         { _id: userId },
@@ -237,17 +352,9 @@ class AdminController {
         }
       );
 
-      console.log("L");
-
       user = await User.findById(userId).select("-password");
 
-      console.log("M");
-
-      return ResponseHandler.success(
-        res,
-        user,
-        "User details and memberships updated successfully"
-      );
+      return ResponseHandler.success(res, user, "User details");
     } catch (error: any) {
       return ResponseHandler.failure(
         res,
@@ -257,9 +364,10 @@ class AdminController {
     }
   }
 
-  // async editUserProfile(req: Request, res: Response) {
+  // async editUserProfilee(req: Request, res: Response) {
   //   try {
-  //     const organizationId = await getOrganizationId(req, res);
+  //     // const organizationId = req.admin._id;
+  //     let organizationId = await getOrganizationId(req, res);
   //     if (!organizationId) {
   //       return;
   //     }
@@ -270,16 +378,43 @@ class AdminController {
   //     }
 
   //     const image = req.file;
+
   //     const userId = req.params.userId;
-  //     const { ids = [], ...rest } = req.body; // 'ids' array containing group or subgroup IDs
+  //     const {
+  //       firstName,
+  //       lastName,
+  //       otherName,
+  //       email,
+  //       phone,
+  //       username,
+  //       groupId,
+  //       gender,
+  //       dateOfBirth,
+  //       country,
+  //       address,
+  //       city,
+  //       LGA,
+  //       state,
+  //       officeAddress,
+  //       officeCity,
+  //       officeLGA,
+  //       officeState,
+  //       employerName,
+  //       role,
+  //       batch,
+  //       image: cloudinaryImage,
+  //       // password,
+  //       sendEmail,
+  //       yearsOfExperience,
+  //       highestEducationLevel,
+  //       contactPersonPlaceOfEmployment,
+  //       nameOfContactPerson,
+  //       contactEmail,
+  //       contactPersonPhoneNumber,
+  //       userId: userIdCode,
+  //     } = req.body;
 
-  //     // Ensure all IDs are converted to ObjectId
-  //     const objectIds = ids.map(
-  //       (id: string) => new mongoose.Types.ObjectId(id)
-  //     );
-
-  //     // Fetch the user and ensure they belong to the organization
-  //     let user = await User.findOne({ _id: userId, organizationId });
+  //     const user = await User.findOne({ _id: userId, organizationId });
   //     if (!user) {
   //       return ResponseHandler.failure(
   //         res,
@@ -297,117 +432,51 @@ class AdminController {
   //       );
   //     }
 
-  //     // Initialize variables for updates
-  //     let updatedGroups: mongoose.Types.ObjectId[] = user.groups || [];
-  //     let updatedSubGroups: mongoose.Types.ObjectId[] = user.subGroups || [];
-  //     const bulkGroupOps: any[] = [];
-
-  //     for (const id of objectIds) {
-  //       // Define the userIdObject once per iteration
-  //       const userIdObject = new mongoose.Types.ObjectId(userId);
-
-  //       // Check if the ID belongs to a group
-  //       const group = await Group.findOne({
-  //         _id: id,
-  //         organizationId,
-  //       });
-
-  //       if (group) {
-  //         if (!group.members) {
-  //           group.members = []; // Initialize as an empty array if undefined
-  //         }
-
-  //         // Add user to the group's members if not already a member
-  //         if (
-  //           !group.members.some((memberId) => memberId.equals(userIdObject))
-  //         ) {
-  //           group.members.push(userIdObject);
-  //           bulkGroupOps.push({
-  //             updateOne: {
-  //               filter: { _id: group._id },
-  //               update: { members: group.members },
-  //             },
-  //           });
-  //         }
-
-  //         // Add group ID to user's groups if not already added
-  //         if (!updatedGroups.some((groupId) => groupId.equals(group._id))) {
-  //           updatedGroups.push(group._id);
-  //         }
-  //         continue;
-  //       }
-
-  //       // Check if the ID belongs to a subgroup
-  //       const groupWithSubgroup = await Group.findOne({
-  //         "subGroups._id": id,
-  //         organizationId,
-  //       });
-
-  //       if (groupWithSubgroup) {
-  //         const subgroup = groupWithSubgroup.subGroups.find((subGroup) =>
-  //           subGroup._id.equals(id)
-  //         );
-
-  //         if (subgroup) {
-  //           // Add user to the subgroup's members if not already a member
-  //           if (
-  //             !subgroup.members.some((memberId) =>
-  //               memberId.equals(userIdObject)
-  //             )
-  //           ) {
-  //             subgroup.members.push(userIdObject);
-  //             bulkGroupOps.push({
-  //               updateOne: {
-  //                 filter: { _id: groupWithSubgroup._id },
-  //                 update: { subGroups: groupWithSubgroup.subGroups },
-  //               },
-  //             });
-  //           }
-
-  //           // Add subgroup ID to user's subGroups if not already added
-  //           if (
-  //             !updatedSubGroups.some((subGroupId) =>
-  //               subGroupId.equals(subgroup._id)
-  //             )
-  //           ) {
-  //             updatedSubGroups.push(subgroup._id);
-  //           }
-  //         }
-  //       }
-  //     }
-
-  //     // Execute bulk operations to update groups and subgroups
-  //     if (bulkGroupOps.length > 0) {
-  //       await Group.bulkWrite(bulkGroupOps);
-  //     }
-
-  //     // Deduplicate group and subgroup arrays before updating the user
-  //     updatedGroups = Array.from(
-  //       new Set(updatedGroups.map((id) => id.toString()))
-  //     ).map((id) => new mongoose.Types.ObjectId(id));
-  //     updatedSubGroups = Array.from(
-  //       new Set(updatedSubGroups.map((id) => id.toString()))
-  //     ).map((id) => new mongoose.Types.ObjectId(id));
-
-  //     // Update the user's groups, subGroups, and other details
-  //     await User.updateOne(
-  //       { _id: userId },
+  //     const updatedUser = await User.findByIdAndUpdate(
+  //       userId,
   //       {
   //         $set: {
-  //           groups: updatedGroups,
-  //           subGroups: updatedSubGroups,
-  //           ...rest,
-  //           image: fileUploadResult ? fileUploadResult.secure_url : user.image,
+  //           userId: userIdCode,
+  //           username,
+  //           firstName,
+  //           lastName,
+  //           batch,
+  //           userType: role,
+  //           yearsOfExperience,
+  //           highestEducationLevel,
+  //           gender,
+  //           dateOfBirth,
+  //           otherName,
+  //           email,
+  //           phone,
+  //           country,
+  //           address,
+  //           city,
+  //           LGA,
+  //           image: fileUploadResult
+  //             ? fileUploadResult.secure_url
+  //             : cloudinaryImage,
+  //           state,
+  //           officeAddress,
+  //           officeCity,
+  //           officeLGA,
+  //           officeState,
+  //           employerName,
+  //           // password,
+  //           sendEmail,
+  //           contactPersonPlaceOfEmployment,
+  //           nameOfContactPerson,
+  //           contactEmail,
+  //           contactPersonPhoneNumber,
   //         },
-  //       }
+  //       },
+  //       { new: true, runValidators: true }
   //     );
-
-  //     user = await User.findById(userId).select("-password");
 
   //     return ResponseHandler.success(
   //       res,
-  //       user,
-  //       "User details and memberships updated successfully"
+  //       updatedUser,
+  //       "User details updated successfully"
   //     );
   //   } catch (error: any) {
   //     return ResponseHandler.failure(
@@ -417,129 +486,6 @@ class AdminController {
   //     );
   //   }
   // }
-
-  async editUserProfilee(req: Request, res: Response) {
-    try {
-      // const organizationId = req.admin._id;
-      let organizationId = await getOrganizationId(req, res);
-      if (!organizationId) {
-        return;
-      }
-
-      const organization = await Organization.findById(organizationId);
-      if (!organization) {
-        return ResponseHandler.failure(res, "Organization not found", 400);
-      }
-
-      const image = req.file;
-
-      const userId = req.params.userId;
-      const {
-        firstName,
-        lastName,
-        otherName,
-        email,
-        phone,
-        username,
-        groupId,
-        gender,
-        dateOfBirth,
-        country,
-        address,
-        city,
-        LGA,
-        state,
-        officeAddress,
-        officeCity,
-        officeLGA,
-        officeState,
-        employerName,
-        role,
-        batch,
-        image: cloudinaryImage,
-        // password,
-        sendEmail,
-        yearsOfExperience,
-        highestEducationLevel,
-        contactPersonPlaceOfEmployment,
-        nameOfContactPerson,
-        contactEmail,
-        contactPersonPhoneNumber,
-        userId: userIdCode,
-      } = req.body;
-
-      const user = await User.findOne({ _id: userId, organizationId });
-      if (!user) {
-        return ResponseHandler.failure(
-          res,
-          "User not found in your organization",
-          404
-        );
-      }
-
-      let fileUploadResult: any = null;
-      if (image) {
-        fileUploadResult = await uploadToCloudinary(
-          image.buffer,
-          image.mimetype,
-          "userDisplayPictures"
-        );
-      }
-
-      const updatedUser = await User.findByIdAndUpdate(
-        userId,
-        {
-          $set: {
-            userId: userIdCode,
-            username,
-            firstName,
-            lastName,
-            batch,
-            userType: role,
-            yearsOfExperience,
-            highestEducationLevel,
-            gender,
-            dateOfBirth,
-            otherName,
-            email,
-            phone,
-            country,
-            address,
-            city,
-            LGA,
-            image: fileUploadResult
-              ? fileUploadResult.secure_url
-              : cloudinaryImage,
-            state,
-            officeAddress,
-            officeCity,
-            officeLGA,
-            officeState,
-            employerName,
-            // password,
-            sendEmail,
-            contactPersonPlaceOfEmployment,
-            nameOfContactPerson,
-            contactEmail,
-            contactPersonPhoneNumber,
-          },
-        },
-        { new: true, runValidators: true }
-      );
-
-      return ResponseHandler.success(
-        res,
-        updatedUser,
-        "User details updated successfully"
-      );
-    } catch (error: any) {
-      return ResponseHandler.failure(
-        res,
-        `Server error: ${error.message}`,
-        500
-      );
-    }
-  }
 
   async viewAUserProfile(req: Request, res: Response) {
     try {
@@ -910,6 +856,124 @@ class AdminController {
         error.message || "Failed to update general instructor term"
       );
     }
+  }
+
+  async verifyOrganization(adminOrganizationId: string, userId: string) {
+    try {
+      console.log("Verifying organization...");
+      const user = await User.findById(userId);
+      if (!user) {
+        throw new Error("User not found");
+      }
+      if (String(user.organizationId) !== adminOrganizationId) {
+        throw new Error(
+          "Unauthorized: User does not belong to your organization"
+        );
+      }
+      return user;
+    } catch (error: any) {
+      console.error("Error in verifyOrganization:", error.message);
+      throw error;
+    }
+  }
+
+  async archiveUser(req: Request, res: Response) {
+    try {
+      const { userId } = req.params;
+
+      let organizationId = await getOrganizationId(req, res);
+      if (!organizationId) {
+        return;
+      }
+
+      const organization = await Organization.findById(organizationId);
+      if (!organization) {
+        return ResponseHandler.failure(res, "Organization not found", 400);
+      }
+
+      await new AdminController().verifyOrganization(
+        String(organizationId),
+        userId
+      );
+
+      const user = await User.findByIdAndUpdate(
+        userId,
+        { isArchived: true },
+        { new: true }
+      ).select(" -password ");
+
+      if (!user) {
+        return ResponseHandler.failure(res, "User not found", 404);
+      }
+
+      return ResponseHandler.success(res, user, "User archived successfully");
+    } catch (error) {}
+  }
+
+  async enableUser(req: Request, res: Response) {
+    try {
+      const { userId } = req.params;
+
+      let organizationId = await getOrganizationId(req, res);
+      if (!organizationId) {
+        return;
+      }
+
+      const organization = await Organization.findById(organizationId);
+      if (!organization) {
+        return ResponseHandler.failure(res, "Organization not found", 400);
+      }
+
+      await new AdminController().verifyOrganization(
+        String(organizationId),
+        userId
+      );
+
+      const user = await User.findByIdAndUpdate(
+        userId,
+        { isEnabled: true, isDisabled: false },
+        { new: true }
+      );
+
+      if (!user) {
+        return ResponseHandler.failure(res, "User not found", 404);
+      }
+
+      return ResponseHandler.success(res, user, "User enabled successfully");
+    } catch (error: any) {}
+  }
+
+  async disableUser(req: Request, res: Response) {
+    try {
+      const { userId } = req.params;
+
+      let organizationId = await getOrganizationId(req, res);
+      if (!organizationId) {
+        return;
+      }
+
+      const organization = await Organization.findById(organizationId);
+      if (!organization) {
+        return ResponseHandler.failure(res, "Organization not found", 400);
+      }
+
+      await new AdminController().verifyOrganization(
+        String(organizationId),
+        userId
+      );
+
+      const user = await User.findByIdAndUpdate(
+        userId,
+        { isEnabled: false, isDisabled: true },
+        { new: true }
+      );
+
+      if (!user) {
+        return ResponseHandler.failure(res, "User not found", 404);
+      }
+
+      return ResponseHandler.success(res, user, "User disabled successfully");
+    } catch (error) {}
   }
 }
 

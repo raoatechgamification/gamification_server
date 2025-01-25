@@ -12,6 +12,9 @@ const {
   updateGeneralLearnerGroupTerm, 
   updateGeneralSubLearnerGroupTerm, 
   updateGeneralInstructorTerm,
+  archiveUser,
+  enableUser,
+  disableUser
 } = AdminController;
 
 const router = Router();
@@ -70,5 +73,28 @@ router.put(
   authorize(["admin"]),
   updateGeneralInstructorTerm
 )
+
+router.patch(
+  "/user/:userId/disable", 
+  authenticate,
+  authorize(["admin", "subAdmin"]),
+  disableUser
+);
+
+router.patch(
+  "/user/:userId/archive", 
+  authenticate,
+  authorize(["admin", "subAdmin"]),
+  archiveUser
+);
+
+router.patch(
+  "/user/:userId/enable", 
+  authenticate,
+  authorize(["admin", "subAdmin"]),
+  enableUser
+);
+
+
 
 export default router;

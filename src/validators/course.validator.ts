@@ -18,8 +18,8 @@ const validateOptionalFile = [
         "application/vnd.ms-excel", 
         "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet", 
 
-        "application/vnd.ms-powerpoint", 
-        "application/vnd.openxmlformats-officedocument.presentationml.presentation", 
+        // "application/vnd.ms-powerpoint", 
+        // "application/vnd.openxmlformats-officedocument.presentationml.presentation", 
 
         "audio/mpeg",
         "video/mp4",
