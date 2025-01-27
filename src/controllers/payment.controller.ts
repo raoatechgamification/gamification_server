@@ -128,6 +128,7 @@ class PaymentController {
       //   { $set: { "assignedPrograms.$.status": "pending" } }
       // );
 
+      console.log(paymentResult);
       return ResponseHandler.success(
         res,
         paymentResult,

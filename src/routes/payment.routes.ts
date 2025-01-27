@@ -22,6 +22,13 @@ router.post(
   processPayment
 );
 
+router.post(
+  "/make-payment",
+  authenticate,
+  authorize(["user"]),
+  processPayment2
+);
+
 router.get("/verify-payment/:transactionId", authenticate, verifyPayment);
 
 router.post("/webhook", paymentWebhook);

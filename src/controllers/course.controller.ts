@@ -5,18 +5,14 @@ import { ResponseHandler } from "../middlewares/responseHandler.middleware";
 import Announcement from "../models/announcement.model";
 import Course, { ICourse } from "../models/course.model";
 import Lesson, { CompletionDetails } from "../models/lesson.model";
-import Submission from "../models/submission.model";
-import Organization, { IOrganization } from "../models/organization.model";
-import User, { IUser } from "../models/user.model";
-import {
-  optimizedUploadToCloudinary,
-  uploadToCloudinary,
-} from "../utils/cloudinaryUpload";
 import ObjectiveAssessment, {
   IObjectiveAssessment,
 } from "../models/objectiveAssessment.model";
-import { getOrganizationId } from "../utils/getOrganizationId.util"
-
+import Organization from "../models/organization.model";
+import Submission from "../models/submission.model";
+import User, { IUser } from "../models/user.model";
+import { uploadToCloudinary } from "../utils/cloudinaryUpload";
+import { getOrganizationId } from "../utils/getOrganizationId.util";
 
 const { createNotification } = new NotificationController();
 
@@ -83,7 +79,7 @@ export class CourseController {
 
       let organizationId = await getOrganizationId(req, res);
       if (!organizationId) {
-        return; 
+        return;
       }
 
       const organization = await Organization.findById(organizationId);
@@ -159,7 +155,7 @@ export class CourseController {
 
       let organizationId = await getOrganizationId(req, res);
       if (!organizationId) {
-        return; 
+        return;
       }
 
       const organization = await Organization.findById(organizationId);
@@ -250,7 +246,7 @@ export class CourseController {
       // const organizationId = req.admin._id;
       let organizationId = await getOrganizationId(req, res);
       if (!organizationId) {
-        return; 
+        return;
       }
 
       const organization = await Organization.findById(organizationId);
@@ -266,8 +262,9 @@ export class CourseController {
       if (files && files.length > 0) {
         for (const file of files) {
           try {
-            const uploadResult = await optimizedUploadToCloudinary(
+            const uploadResult = await uploadToCloudinary(
               file.buffer,
+              file.mimetype,
               "course-content"
             );
             if (uploadResult && uploadResult.secure_url) {
@@ -304,7 +301,7 @@ export class CourseController {
 
       let instructorId = await getOrganizationId(req, res);
       if (!instructorId) {
-        return; 
+        return;
       }
 
       const organization = await Organization.findById(instructorId);
@@ -353,7 +350,7 @@ export class CourseController {
       // const adminId = req.admin._id;
       let adminId = await getOrganizationId(req, res);
       if (!adminId) {
-        return; 
+        return;
       }
 
       const organization = await Organization.findById(adminId);
@@ -493,7 +490,7 @@ export class CourseController {
       // const adminId = req.admin._id;
       let adminId = await getOrganizationId(req, res);
       if (!adminId) {
-        return; 
+        return;
       }
 
       const organization = await Organization.findById(adminId);
@@ -616,7 +613,7 @@ export class CourseController {
 
       let adminId = await getOrganizationId(req, res);
       if (!adminId) {
-        return; 
+        return;
       }
 
       const organization = await Organization.findById(adminId);
@@ -763,7 +760,7 @@ export class CourseController {
 
       let instructorId = await getOrganizationId(req, res);
       if (!instructorId) {
-        return; 
+        return;
       }
 
       const organization = await Organization.findById(instructorId);
