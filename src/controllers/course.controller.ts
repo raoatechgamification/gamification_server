@@ -195,7 +195,7 @@ export class CourseController {
         return ResponseHandler.success(
           res,
           [],
-          "No courses found. Start by creating a course!",
+          "No course found. Start by creating a course!",
           200
         );
       }

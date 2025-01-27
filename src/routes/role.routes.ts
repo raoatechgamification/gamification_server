@@ -3,7 +3,8 @@ import RolesAndPermissionsController from "../controllers/rolesAndPermissions.co
 import { authenticate, authorize } from "../middlewares/auth.middleware";
 
 const {
-  createRole
+  createRole,
+  getAllRoles
 } = RolesAndPermissionsController;
 
 const router = Router();
@@ -13,6 +14,13 @@ router.post(
   authenticate,
   authorize(["admin"]),
   createRole
+)
+
+router.get(
+  "/",
+  authenticate,
+  authorize(["admin"]),
+  getAllRoles
 )
 
 export default router;

@@ -7736,3 +7736,7 @@
 2025-01-27 17:39:59 [info]: POST / 400 - Request Body: {"name":"User Admin","permissions":["678a1dca6e8607a38ca491bb","64bfaea2d4f5e72f12345679"]}
 2025-01-27 17:40:21 [info]: POST / 201 - Request Body: {"name":"User Admin","permissions":["678a1dca6e8607a38ca491bb","678a1dca6e8607a38ca491b9"]}
 2025-01-27 17:41:07 [info]: POST / 409 - Request Body: {"name":"User Admin","permissions":["678a1dca6e8607a38ca491bb","678a1dca6e8607a38ca491b9"]}
+2025-01-27 18:01:40 [info]: GET / 500
+2025-01-27 18:02:41 [info]: GET / 500
+2025-01-27 18:03:57 [info]: GET / 500
+2025-01-27 18:08:50 [info]: GET / 200

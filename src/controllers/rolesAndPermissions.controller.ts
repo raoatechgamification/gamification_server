@@ -68,7 +68,7 @@ class RolesAndPermissionsController {
         name,
         organizationId 
       });
-      
+
       if (existingRole) {
         return res.status(409).json({
           success: false,
@@ -103,6 +103,34 @@ class RolesAndPermissionsController {
       res.status(500).json({
         success: false,
         message: "An error occurred while creating the role.",
+      });
+    }
+  }
+
+  async getAllRoles(req: Request, res: Response) {
+    try {
+      let organizationId = await getOrganizationId(req, res);
+      if (!organizationId) {
+        return;
+      }
+
+      const organization = await Organization.findById(organizationId)
+      if (!organization) {
+        return ResponseHandler.failure(res, "Organization not found", 400);
+      }
+
+      const roles = await Role.find({ organizationId }).populate("permissions");
+
+      if (!roles || roles.length === 0) {
+        return ResponseHandler.failure(res, "No role found. Start by creating a role!")
+      }
+
+      ResponseHandler.success(res, roles, "Roles fetched successfully")
+    } catch (error: any) {
+      console.error("Error fetching roles:", error);
+      res.status(500).json({
+        success: false,
+        message: "An error occurred while fetching roles",
       });
     }
   }
