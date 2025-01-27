@@ -7732,3 +7732,7 @@
 2025-01-27 16:16:20 [info]: POST /login 200 - Request Body: {"email":"seunoduez@gmail.com","password":"Timpearl05$$$"}
 2025-01-27 16:16:56 [info]: GET / 200
 2025-01-27 16:17:42 [info]: GET / 200
+2025-01-27 17:38:27 [info]: POST /roles 200 - Request Body: {"name":"User Admin","permissions":["678a1dca6e8607a38ca491bb","64bfaea2d4f5e72f12345679"]}
+2025-01-27 17:39:59 [info]: POST / 400 - Request Body: {"name":"User Admin","permissions":["678a1dca6e8607a38ca491bb","64bfaea2d4f5e72f12345679"]}
+2025-01-27 17:40:21 [info]: POST / 201 - Request Body: {"name":"User Admin","permissions":["678a1dca6e8607a38ca491bb","678a1dca6e8607a38ca491b9"]}
+2025-01-27 17:41:07 [info]: POST / 409 - Request Body: {"name":"User Admin","permissions":["678a1dca6e8607a38ca491bb","678a1dca6e8607a38ca491b9"]}

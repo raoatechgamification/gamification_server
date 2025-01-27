@@ -1,5 +1,10 @@
 import { Request, Response } from "express";
+import { ResponseHandler } from "../middlewares/responseHandler.middleware";
+import Role from "../models/role.model";
 import Permission from "../models/permission.model";
+import { getOrganizationId } from "../utils/getOrganizationId.util";
+import Organization from "../models/organization.model";
+
 
 class RolesAndPermissionsController {
   async getAllPermissions(req: Request, res: Response) {
@@ -32,6 +37,72 @@ class RolesAndPermissionsController {
       res.status(500).json({
         success: false,
         message: "An error occurred while fetching permissions",
+      });
+    }
+  }
+
+  async createRole(req: Request, res: Response) {
+    try {
+      const { name, permissions } = req.body;
+  
+      // Validate input
+      if (!name || !permissions || !Array.isArray(permissions)) {
+        return res.status(400).json({
+          success: false,
+          message: "Role name and permissions are required.",
+        });
+      }
+
+      let organizationId = await getOrganizationId(req, res);
+      if (!organizationId) {
+        return;
+      }
+
+      const organization = await Organization.findById(organizationId);
+      if (!organization) {
+        return ResponseHandler.failure(res, "Organization not found", 400);
+      }
+  
+      // Check if the role name already exists
+      const existingRole = await Role.findOne({ 
+        name,
+        organizationId 
+      });
+      
+      if (existingRole) {
+        return res.status(409).json({
+          success: false,
+          message: "Role name already exists.",
+        });
+      }
+  
+      // Validate permissions
+      const validPermissions = await Permission.find({ _id: { $in: permissions } });
+      if (validPermissions.length !== permissions.length) {
+        return res.status(400).json({
+          success: false,
+          message: "One or more permissions are invalid.",
+        });
+      }
+  
+      const newRole = new Role({
+        name,
+        organizationId,
+        permissions: validPermissions.map((perm) => perm._id),
+      });
+  
+      await newRole.save();
+  
+      res.status(201).json({
+        success: true,
+        message: "Role created successfully.",
+        data: newRole,
+      });
+    } catch (error) {
+      console.error("Error creating role:", error);
+      res.status(500).json({
+        success: false,
+        message: "An error occurred while creating the role.",
       });
     }
   }
