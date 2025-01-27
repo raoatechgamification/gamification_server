@@ -1,11 +1,9 @@
 import { Request, Response } from "express";
-import mongoose, { ObjectId } from "mongoose";
+import mongoose from "mongoose";
 import { shuffle } from "lodash";
 import * as XLSX from "xlsx";
-import fileUpload from "express-fileupload";
-import ObjectiveAssessment, {
-  IObjectiveAssessment,
-} from "../models/objectiveAssessment.model";
+import ObjectiveAssessment from "../models/objectiveAssessment.model";
+import TheoryAssessment from "../models/theoryAssessment.model";
 import QuestionsBank from "../models/questionsBank.model";
 import Submission from "../models/submission.model";
 import Course, { ICourse } from "../models/course.model";
@@ -1380,7 +1378,24 @@ class ObjectAssessmentController {
     }
 
     try {
-      const assessments = await ObjectiveAssessment.find({ organizationId });
+      // const assessments = await ObjectiveAssessment.find({ organizationId });
+
+      const [objectiveAssessments, theoryAssessments] = await Promise.all([
+        ObjectiveAssessment.find({ organizationId }),
+        TheoryAssessment.find({ organizationId }),
+      ]);
+  
+      // Combine results from both models
+      const assessments = [
+        ...objectiveAssessments.map((a) => ({
+          ...a.toObject(),
+          type: "Objective", // Label to identify assessment type
+        })),
+        ...theoryAssessments.map((a) => ({
+          ...a.toObject(),
+          type: "Theory", // Label to identify assessment type
+        })),
+      ];
 
       if (!assessments.length) {
         return ResponseHandler.failure(
@@ -1441,7 +1456,10 @@ class ObjectAssessmentController {
     try {
       const { assessmentId } = req.params;
 
-      const assessment = await ObjectiveAssessment.findById(assessmentId);
+      const assessment = (
+        await ObjectiveAssessment.findById(assessmentId) ||
+        await TheoryAssessment.findById(assessmentId)
+      );
 
       if (!assessment) {
         return ResponseHandler.failure(res, "Assessment not found", 404);
@@ -1533,130 +1551,6 @@ class ObjectAssessmentController {
   //   }
   // }
 
-  // async assessmentResultSlipByAdminn(req: Request, res: Response) {
-  //   const { userId, subGroupId, groupId, courseId } = req.query;
-  
-  //   try {
-  //     // Validate the courseId
-  //     if (!courseId) {
-  //       return res.status(400).json({ message: "Course ID is required" });
-  //     }
-  
-  //     if (typeof courseId !== 'string') {
-  //       return res.status(400).json({ message: "Invalid course ID" });
-  //     }
-  
-  //     // Fetch the assessmentId from the course
-  //     const course = await Course.findById(courseId).populate("assessments");
-  //     if (!course) {
-  //       return res.status(404).json({ message: "Course not found" });
-  //     }
-  
-  //     const assessmentId = course.assessments?.[0];
-  //     if (!assessmentId) {
-  //       return res
-  //         .status(404)
-  //         .json({ message: "No assessments found for the specified course" });
-  //     }
-  
-  //     let submissions;
-  
-  //     // 1. Query by userId
-  //     if (userId) {
-  //       submissions = await Submission.find({
-  //         learnerId: userId,
-  //         courseId,
-  //         assessmentId,
-  //       });
-  //     }
-  
-  //     // 2. Query by subGroupId
-  //     else if (subGroupId) {
-  //       // Fetch the specific subgroup by subGroupId
-  //       const group = await Group.findOne(
-  //         { "subGroups._id": subGroupId },
-  //         { "subGroups.$": 1 }
-  //       );
-  
-  //       if (!group || !group.subGroups || group.subGroups.length === 0) {
-  //         return res.status(404).json({ message: "SubGroup not found" });
-  //       }
-  
-  //       const subGroup = group.subGroups.find(
-  //         (sg) => sg._id.toString() === subGroupId.toString()
-  //       );
-  //       if (!subGroup) {
-  //         return res.status(404).json({ message: "SubGroup not found in the group" });
-  //       }
-  
-  //       const memberIds = subGroup.members.map((id) => new mongoose.Types.ObjectId(id));
-  //       const courseIdObjectId = new mongoose.Types.ObjectId(courseId);
-  
-  //       submissions = await Submission.find({
-  //         learnerId: { $in: memberIds },
-  //         courseId: courseIdObjectId,
-  //         assessmentId: assessmentId._id,
-  //       })
-  //         .populate("learnerId", "firstName lastName userId image")
-  //         .populate("assessmentId", "totalMark")
-  //         .sort({ createdAt: -1 }) // Sort submissions by creation date (most recent first)
-  //         .limit(1);
-  //     }
-  
-  //     // 3. Query by groupId
-  //     else if (groupId) {
-  //       const group = await Group.findById(groupId).select("members subGroups");
-  //       if (!group) {
-  //         return res.status(404).json({ message: "Group not found" });
-  //       }
-  
-  //       // Collect all member IDs from both group members and subgroup members
-  //       const groupMemberIds = group.members;
-  //       const subGroupMemberIds = group.subGroups.flatMap((subGroup) => subGroup.members);
-  //       const allMemberIds = [...groupMemberIds, ...subGroupMemberIds];
-  
-  //       submissions = await Submission.find({
-  //         learnerId: { $in: allMemberIds },
-  //         courseId,
-  //         assessmentId,
-  //       });
-  //     }
-  
-  //     // If no query parameter is valid
-  //     else {
-  //       return res.status(400).json({ message: "Provide userId, subGroupId, or groupId" });
-  //     }
-  
-  //     // Process and format the response as needed
-  //     const formattedResults = submissions.map((submission) => {
-  //       const learner = submission.learnerId;
-  //       const assessment = submission.assessmentId;
-  
-  //       return {
-  //         courseTitle: course?.title || null,
-  //         courseCode: course?.courseCode || null,
-  //         firstName: learner?.firstName || null,
-  //         lastName: learner?.lastName || null,
-  //         userId: learner?.userId || null,
-  //         realUserId: learner?._id || null,
-  //         totalMarksObtained: submission.score || 0,
-  //         totalObtainableMarks: assessment?.totalMark || 0,
-  //         percentageOfTotalObtainableMarks: submission.percentageScore || 0,
-  //         status: submission.passOrFail === "Fail" ? "Retake" : "Pass",
-  //         picture: learner?.image || null,
-  //         resultGeneratedOn: new Date().toLocaleDateString("en-GB"), // Format: DD/MM/YYYY
-  //       };
-  //     });
-  
-  //     return res.status(200).json({ results: formattedResults });
-  
-  //   } catch (error) {
-  //     console.error("Error fetching submissions:", error);
-  //     return res.status(500).json({ message: "An error occurred", error });
-  //   }
-  // }
-  
-
   async assessmentResultSlipByAdmin(req: Request, res: Response) {
     const { userId, subGroupId, groupId, courseId } = req.query;
   
@@ -1719,6 +1613,7 @@ class ObjectAssessmentController {
       
         // const memberIds = subGroup.members;
         const memberIds = subGroup.members.map((id) => new mongoose.Types.ObjectId(id));
+        console.log("membersIds: ", memberIds)
         const courseIdObjectId = new mongoose.Types.ObjectId(courseId);
       
         // Query the submissions

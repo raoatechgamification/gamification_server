@@ -7904,3 +7904,21 @@
 2025-01-24 16:11:18 [info]: GET /results?courseId=679383060cde8880899ab5ac&subGroupId=679383e20cde8880899ab5b1 500
 2025-01-24 16:14:40 [info]: GET /results?courseId=679383060cde8880899ab5ac&subGroupId=679383e20cde8880899ab5b1 200 - Query Params: {"courseId":"679383060cde8880899ab5ac","subGroupId":"679383e20cde8880899ab5b1"}
 2025-01-24 16:14:40 [info]: GET /results?courseId=679383060cde8880899ab5ac&subGroupId=679383e20cde8880899ab5b1 200
+2025-01-24 17:45:05 [info]: POST /login 200 - Request Body: {"email":"backendseun@gmail.com","password":"OluwaseunOdueso123#"}
+2025-01-24 17:48:27 [info]: PATCH /679383060cde8880899ab5ac/move-to-ongoing 401
+2025-01-24 17:49:23 [info]: POST /login 200 - Request Body: {"email":"backendseun@gmail.com","password":"OluwaseunOdueso123#"}
+2025-01-24 17:51:17 [info]: PATCH /679383060cde8880899ab5ac/move-to-ongoing 200
+2025-01-24 17:52:07 [info]: PATCH /679383060cde8880899ab5ac/move-to-ongoing 401
+2025-01-24 17:52:21 [info]: PATCH /679383060cde8880899ab5ac/move-to-ongoing 400
+2025-01-24 17:52:25 [info]: POST /679383060cde8880899ab5ac/679381270cde8880899ab59c/take 201 - Request Body: {"answers":[{"questionId":"679381270cde8880899ab59d","answer":false},{"questionId":"679381270cde8880899ab59e","answer":"Pacific Ocean"},{"questionId":"679381270cde8880899ab59f","answer":"yes"},{"questionId":"679381270cde8880899ab5a0","answer":"7"},{"questionId":"679381270cde8880899ab5a1","answer":"no"}]}
+2025-01-24 17:52:45 [info]: GET /results?courseId=679383060cde8880899ab5ac&subGroupId=679383e20cde8880899ab5b1 200 - Query Params: {"courseId":"679383060cde8880899ab5ac","subGroupId":"679383e20cde8880899ab5b1"}
+2025-01-24 17:52:45 [info]: GET /results?courseId=679383060cde8880899ab5ac&subGroupId=679383e20cde8880899ab5b1 200
+2025-01-24 17:53:02 [info]: GET /results?courseId=679383060cde8880899ab5ac&subGroupId=679383e20cde8880899ab5b1 200 - Query Params: {"courseId":"679383060cde8880899ab5ac","subGroupId":"679383e20cde8880899ab5b1"}
+2025-01-24 17:53:02 [info]: GET /results?courseId=679383060cde8880899ab5ac&subGroupId=679383e20cde8880899ab5b1 200
+2025-01-24 17:54:09 [info]: POST /679383060cde8880899ab5ac/679381270cde8880899ab59c/take 201 - Request Body: {"answers":[{"questionId":"679381270cde8880899ab59d","answer":false},{"questionId":"679381270cde8880899ab59e","answer":"Pacific Ocean"},{"questionId":"679381270cde8880899ab59f","answer":"yes"},{"questionId":"679381270cde8880899ab5a0","answer":"7"},{"questionId":"679381270cde8880899ab5a1","answer":"no"}]}
+2025-01-24 17:55:07 [info]: GET /results?courseId=679383060cde8880899ab5ac&subGroupId=679383e20cde8880899ab5b1 200 - Query Params: {"courseId":"679383060cde8880899ab5ac","subGroupId":"679383e20cde8880899ab5b1"}
+2025-01-24 17:55:07 [info]: GET /results?courseId=679383060cde8880899ab5ac&subGroupId=679383e20cde8880899ab5b1 200
+2025-01-27 16:15:55 [info]: GET / 401
+2025-01-27 16:16:20 [info]: POST /login 200 - Request Body: {"email":"seunoduez@gmail.com","password":"Timpearl05$$$"}
+2025-01-27 16:16:56 [info]: GET / 200
+2025-01-27 16:17:42 [info]: GET / 200

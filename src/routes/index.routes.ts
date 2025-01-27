@@ -13,6 +13,7 @@ import billRoutes from "./bill.routes";
 import sessionRoutes from "./session.routes";
 import adminRoutes from "./admin.routes";
 import certificateRoutes from "./certificate.routes";
+import permissionRoutes from "./rolesAndPermissions.routes";
 
 import LandingPageRoute from "./landingpage.routes"
 router.use("/auth", authRoutes);
@@ -28,6 +29,7 @@ router.use("/bill", billRoutes);
 router.use("/session", sessionRoutes);
 router.use("/certificates", certificateRoutes);
 router.use("/landing-page", LandingPageRoute)
+router.use("/permissions", permissionRoutes);
 
 router.use("/", (req, res) => {
   res.json({
