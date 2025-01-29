@@ -168,6 +168,30 @@ class RolesAndPermissionsController {
       });
     }
   }
+
+  async getRole(req: Request, res: Response) {
+    try {
+      const { id } = req.params;
+
+      const role = await Role.findById(id).populate("permissions")
+
+      if (!role) {
+        return ResponseHandler.failure(res, "Role not found")
+      }
+
+      return ResponseHandler.success(
+        res,
+        role,
+        "Role fetched successfully"
+      )
+    } catch (error: any) {
+      console.error("Error fetching role:", error);
+      res.status(500).json({
+        success: false,
+        message: "An error occurred while fetching role",
+      });
+    }
+  }
 }
 
 export default new RolesAndPermissionsController()
