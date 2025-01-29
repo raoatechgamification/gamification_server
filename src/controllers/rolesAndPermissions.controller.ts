@@ -176,7 +176,7 @@ class RolesAndPermissionsController {
       const role = await Role.findById(id).populate("permissions")
 
       if (!role) {
-        return ResponseHandler.failure(res, "Role not found")
+        return ResponseHandler.failure(res, "Role not found", 403)
       }
 
       return ResponseHandler.success(
