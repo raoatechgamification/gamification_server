@@ -126,18 +126,20 @@ class RolesAndPermissionsController {
       });
   
       await newRole.save();
-  
-      res.status(201).json({
-        success: true,
-        message: "Role created successfully.",
-        data: newRole,
-      });
-    } catch (error) {
+
+      return ResponseHandler.success(
+        res,
+        newRole,
+        "Role created successfully.",
+        201
+      );
+    } catch (error: any) {
       console.error("Error creating role:", error);
-      res.status(500).json({
-        success: false,
-        message: "An error occurred while creating the role.",
-      });
+      return ResponseHandler.failure(
+        res,
+        error.message || "An error occurred while creating the role.",
+        error.status || 500
+      );
     }
   }
 
@@ -162,21 +164,35 @@ class RolesAndPermissionsController {
       ResponseHandler.success(res, roles, "Roles fetched successfully")
     } catch (error: any) {
       console.error("Error fetching roles:", error);
-      res.status(500).json({
-        success: false,
-        message: "An error occurred while fetching roles",
-      });
+      return ResponseHandler.failure(
+        res,
+        error.message || "An error occurred while fetching roles.",
+        error.status || 500
+      );
     }
   }
 
   async getRole(req: Request, res: Response) {
     try {
+      let organizationId = await getOrganizationId(req, res);
+      if (!organizationId) {
+        return;
+      }
+
+      const organization = await Organization.findById(organizationId);
+      if (!organization) {
+        return ResponseHandler.failure(res, "Organization not found", 400);
+      }
+
       const { id } = req.params;
 
-      const role = await Role.findById(id).populate("permissions")
+      const role = await Role.findOne({
+        _id: id,
+        organizationId
+      }).populate("permissions")
 
       if (!role) {
-        return ResponseHandler.failure(res, "Role not found", 403)
+        return ResponseHandler.failure(res, "Role not found or not found within your organization", 403)
       }
 
       return ResponseHandler.success(
@@ -186,10 +202,51 @@ class RolesAndPermissionsController {
       )
     } catch (error: any) {
       console.error("Error fetching role:", error);
-      res.status(500).json({
-        success: false,
-        message: "An error occurred while fetching role",
-      });
+      return ResponseHandler.failure(
+        res,
+        error.message || "An error occurred while fetching role.",
+        error.status || 500
+      );
+    }
+  }
+
+  async deleteRole(req: Request, res: Response) {
+    try {
+      let organizationId = await getOrganizationId(req, res);
+      if (!organizationId) {
+        return;
+      }
+
+      const organization = await Organization.findById(organizationId);
+      if (!organization) {
+        return ResponseHandler.failure(res, "Organization not found", 400);
+      }
+
+      const { id } = req.params
+
+      const deletedRole = await Role.findOneAndDelete({
+        _id: id,
+        organizationId
+      })
+
+      console.log("Deleted role: ", deletedRole)
+
+      if (!deletedRole) {
+        return ResponseHandler.failure(res, "Role not found or not found within your organization", 403)
+      }
+
+      return ResponseHandler.success(
+        res,
+        [],
+        "Role deleted successfully"
+      )
+    } catch (error: any) {
+      console.error("Error deleting role:", error);
+      return ResponseHandler.failure(
+        res,
+        error.message || "An error occurred while deleting role.",
+        error.status || 500
+      );
     }
   }
 }

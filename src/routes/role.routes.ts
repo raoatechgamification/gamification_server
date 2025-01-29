@@ -5,7 +5,8 @@ import { authenticate, authorize } from "../middlewares/auth.middleware";
 const {
   createRole,
   getAllRoles,
-  getRole
+  getRole,
+  deleteRole
 } = RolesAndPermissionsController;
 
 const router = Router();
@@ -29,6 +30,13 @@ router.get(
   authenticate,
   authorize(["admin"]),
   getRole
+)
+
+router.delete(
+  "/:id",
+  authenticate,
+  authorize(["admin"]),
+  deleteRole
 )
 
 export default router;
