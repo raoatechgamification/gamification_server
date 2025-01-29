@@ -45,6 +45,8 @@ export class SubAdminController {
         contactPersonPhoneNumber,
       } = req.body;
 
+      console.log(firstName, lastName, email)
+
       const image = req.file;
       const organizationId = req.admin._id;
 
@@ -78,8 +80,9 @@ export class SubAdminController {
       }
 
       const hashedPassword = await hashPassword(password);
+      console.log(firstName, lastName, email)
 
-      const newUser = await SubAdmin.create({
+      const newSubAdmin = await SubAdmin.create({
         firstName,
         lastName,
         otherName,
@@ -109,7 +112,9 @@ export class SubAdminController {
         userType: "subAdmin",
       });
 
-      const response = await SubAdmin.findById(newUser._id).select(
+      console.log("The request got here")
+
+      const response = await SubAdmin.findById(newSubAdmin._id).select(
         "-password "
       );
 

@@ -34,6 +34,7 @@ router.post(
   "/subadmin/register",
   authenticate,
   authorize(["admin"]),
+  upload.single("image"),
   createSubAdminAccount
 )
 
