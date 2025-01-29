@@ -166,7 +166,7 @@ export class CourseController {
       const courses = await Course.find({ organizationId, isArchived: false });
 
       if (!courses || courses.length === 0) {
-        return ResponseHandler.success(
+        return ResponseHandler.failure(
           res,
           "You have no courses yet, start by creating a course!"
         );
@@ -192,9 +192,8 @@ export class CourseController {
       const courses = await Course.find({ isArchived: false }); 
 
       if (!courses || courses.length === 0) {
-        return ResponseHandler.success(
+        return ResponseHandler.failure(
           res,
-          [],
           "No course found. Start by creating a course!",
           200
         );
@@ -223,7 +222,7 @@ export class CourseController {
       const course = await Course.findOne({ _id: courseId, isArchived: false });
 
       if (!course) {
-        return ResponseHandler.success(res, null, "Course not found", 404);
+        return ResponseHandler.failure(res, "Course not found", 404);
       }
 
       return ResponseHandler.success(
