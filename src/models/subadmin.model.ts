@@ -1,5 +1,6 @@
 import mongoose, { Document, Schema, Model } from "mongoose";
 import { IPermission } from "./permission.model";
+import { IRole } from "./role.model";
 
 export interface ISubAdmin extends Document {
   username?: string;
@@ -31,6 +32,7 @@ export interface ISubAdmin extends Document {
   officeState?: string;
   employerName?: string;
   permissions?: mongoose.Types.ObjectId[] | IPermission[];
+  roles?: mongoose.Types.ObjectId[] | IRole[];
 }
 
 const SubAdminSchema: Schema<ISubAdmin> = new Schema({
@@ -64,6 +66,7 @@ const SubAdminSchema: Schema<ISubAdmin> = new Schema({
   officeState: { type: String, default: null },
   employerName: { type: String, default: null },
   permissions: [{ type: Schema.Types.ObjectId, ref: "Permission" }],
+  roles: [{ type: Schema.Types.ObjectId, ref: "Role" }]
 });
 
 const SubAdmin: Model<ISubAdmin> = mongoose.model<ISubAdmin>(

@@ -1,5 +1,5 @@
-import dotenv from "dotenv";
 import { Request, Response } from "express";
+import mongoose from "mongoose";
 import User from "../../models/user.model";
 import SubAdmin from "../../models/subadmin.model";
 import Role from "../../models/role.model";
@@ -35,7 +35,7 @@ export class SubAdminController {
         officeLGA,
         officeState,
         employerName,
-        role,
+        roleId, // Role ID passed in the request body
         batch,
         password,
         sendEmail,
@@ -45,13 +45,12 @@ export class SubAdminController {
         contactPersonPhoneNumber,
       } = req.body;
 
-      console.log(firstName, lastName, email)
+      console.log(firstName, lastName, email);
 
       const image = req.file;
       const organizationId = req.admin._id;
 
       let fileUploadResult: any = null;
-
       if (image) {
         fileUploadResult = await uploadToCloudinary(
           image.buffer,
@@ -80,8 +79,25 @@ export class SubAdminController {
       }
 
       const hashedPassword = await hashPassword(password);
-      console.log(firstName, lastName, email)
+      console.log(firstName, lastName, email);
 
+      // **Find Role and Permissions**
+      let role = null;
+      let permissionIds: mongoose.Types.ObjectId[] = [];
+      if (roleId) {
+        role = await Role.findOne({
+          _id: roleId,
+          organizationId
+        }).populate("permissions");
+
+        if (!role) {
+          return ResponseHandler.failure(res, "Role not found", 400);
+        }
+
+        permissionIds = role.permissions.map((perm: any) => perm._id);
+      }
+
+      // **Create SubAdmin with Role and Permissions**
       const newSubAdmin = await SubAdmin.create({
         firstName,
         lastName,
@@ -110,13 +126,15 @@ export class SubAdminController {
         nameOfContactPerson,
         contactPersonPhoneNumber,
         userType: "subAdmin",
+        roles: roleId ? [roleId] : [], // Assign role if provided
+        permissions: permissionIds // Assign permissions if a role is provided
       });
 
-      console.log("The request got here")
+      console.log("The request got here");
 
-      const response = await SubAdmin.findById(newSubAdmin._id).select(
-        "-password "
-      );
+      const response = await SubAdmin.findById(newSubAdmin._id)
+        .populate("roles permissions")
+        .select("-password");
 
       return res.status(201).json({
         message: "Sub-admin account created successfully",
@@ -131,6 +149,123 @@ export class SubAdminController {
       });
     }
   }
+
+  // async createSubAdminAccount(req: Request, res: Response) {
+  //   try {
+  //     let {
+  //       firstName,
+  //       lastName,
+  //       otherName,
+  //       email,
+  //       phone,
+  //       userId,
+  //       gender,
+  //       dateOfBirth,
+  //       country,
+  //       address,
+  //       city,
+  //       LGA,
+  //       state,
+  //       officeAddress,
+  //       officeCity,
+  //       officeLGA,
+  //       officeState,
+  //       employerName,
+  //       role,
+  //       batch,
+  //       password,
+  //       sendEmail,
+  //       contactPersonPlaceOfEmployment,
+  //       nameOfContactPerson,
+  //       contactEmail,
+  //       contactPersonPhoneNumber,
+  //     } = req.body;
+
+  //     console.log(firstName, lastName, email)
+
+  //     const image = req.file;
+  //     const organizationId = req.admin._id;
+
+  //     let fileUploadResult: any = null;
+  //     if (image) {
+  //       fileUploadResult = await uploadToCloudinary(
+  //         image.buffer,
+  //         image.mimetype,
+  //         "userDisplayPictures"
+  //       );
+  //     }
+
+  //     if (!password) {
+  //       password = `${firstName}${lastName}123#`;
+  //     }
+
+  //     const organization = await Organization.findById(organizationId);
+  //     if (!organization) {
+  //       return ResponseHandler.failure(res, "Organization not found", 400);
+  //     }
+
+  //     const existingAccount =
+  //       (await Organization.findOne({ email })) ||
+  //       (await User.findOne({ email })) ||
+  //       (await SuperAdmin.findOne({ email })) ||
+  //       (await SubAdmin.findOne({ email }));
+
+  //     if (existingAccount) {
+  //       return ResponseHandler.failure(res, "Email already registered", 400);
+  //     }
+
+  //     const hashedPassword = await hashPassword(password);
+  //     console.log(firstName, lastName, email)
+
+  //     const newSubAdmin = await SubAdmin.create({
+  //       firstName,
+  //       lastName,
+  //       otherName,
+  //       email,
+  //       phone,
+  //       userId,
+  //       gender,
+  //       dateOfBirth,
+  //       image: fileUploadResult ? fileUploadResult.secure_url : null,
+  //       country,
+  //       address,
+  //       city,
+  //       LGA,
+  //       state,
+  //       officeAddress,
+  //       officeCity,
+  //       officeLGA,
+  //       employerName,
+  //       officeState,
+  //       password: hashedPassword,
+  //       organizationId,
+  //       batch,
+  //       contactPersonPlaceOfEmployment,
+  //       contactEmail,
+  //       nameOfContactPerson,
+  //       contactPersonPhoneNumber,
+  //       userType: "subAdmin",
+  //     });
+
+  //     console.log("The request got here")
+
+  //     const response = await SubAdmin.findById(newSubAdmin._id).select(
+  //       "-password "
+  //     );
+
+  //     return res.status(201).json({
+  //       message: "Sub-admin account created successfully",
+  //       data: response,
+  //       loginUrl: `${process.env.FRONTENT_BASEURL}/auth/subadmin/login`,
+  //     });
+  //   } catch (error: any) {
+  //     return res.status(500).json({
+  //       success: false,
+  //       message: "An error occurred while creating sub-admin account",
+  //       error: error.message,
+  //     });
+  //   }
+  // }
 
   async loginSubAdmin(req: Request, res: Response) {
     try {
