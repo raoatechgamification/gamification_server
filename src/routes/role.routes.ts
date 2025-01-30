@@ -6,7 +6,8 @@ const {
   createRole,
   getAllRoles,
   getRole,
-  deleteRole
+  deleteRole,
+  assignRoleToASubAdmin
 } = RolesAndPermissionsController;
 
 const router = Router();
@@ -37,6 +38,13 @@ router.delete(
   authenticate,
   authorize(["admin"]),
   deleteRole
+)
+
+router.patch(
+  "/:roleId/subadmins/:subAdminId",
+  authenticate,
+  authorize(["admin"]),
+  assignRoleToASubAdmin
 )
 
 export default router;

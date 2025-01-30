@@ -7797,3 +7797,14 @@
 2025-01-30 09:54:15 [info]: GET /subadmins 200
 2025-01-30 09:56:01 [info]: GET /subadmins 200
 2025-01-30 09:56:05 [info]: GET /subadmins 200
+2025-01-30 10:07:45 [info]: POST / 201 - Request Body: {"name":"User Admin","permissions":["678a1dca6e8607a38ca491bb","678a1dca6e8607a38ca491b9"]}
+2025-01-30 10:07:51 [info]: POST / 409 - Request Body: {"name":"User Admin","permissions":["678a1dca6e8607a38ca491bb","678a1dca6e8607a38ca491b9"]}
+2025-01-30 10:08:10 [info]: POST / 201 - Request Body: {"name":"Advisor","permissions":["678a1dca6e8607a38ca491bb","678a1dca6e8607a38ca491b9"]}
+2025-01-30 10:08:21 [info]: GET / 200
+2025-01-30 12:25:07 [info]: GET /subadmins 200
+2025-01-30 12:26:10 [info]: GET / 200
+2025-01-30 12:26:20 [info]: POST / 409 - Request Body: {"name":"Advisor","permissions":["678a1dca6e8607a38ca491bb","678a1dca6e8607a38ca491b9"]}
+2025-01-30 12:30:54 [info]: POST / 201 - Request Body: {"name":"Bursar","permissions":["678a1dca6e8607a38ca491bb","678a1dca6e8607a38ca491b9","678a1dca6e8607a38ca491c1","678a1dca6e8607a38ca491c2","678a1dca6e8607a38ca491c4","678a1dca6e8607a38ca491c6","678a1dca6e8607a38ca491c8"]}
+2025-01-30 12:31:15 [info]: PATCH /679b62eec02596c85c0db31c/subadmins/679a7a97a954e144af79599f 200
+2025-01-30 12:31:41 [info]: GET /subadmins 200
+2025-01-30 12:33:19 [info]: PATCH /679b62eec02596c85c0db31c/subadmins/679a7a97a954e144af79599f 200

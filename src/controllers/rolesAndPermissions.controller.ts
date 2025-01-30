@@ -1,6 +1,7 @@
 import { Request, Response } from "express";
 import { ResponseHandler } from "../middlewares/responseHandler.middleware";
 import Role from "../models/role.model";
+import SubAdmin from "../models/subadmin.model";
 import Permission from "../models/permission.model";
 import { getOrganizationId } from "../utils/getOrganizationId.util";
 import Organization from "../models/organization.model";
@@ -247,6 +248,52 @@ class RolesAndPermissionsController {
         error.message || "An error occurred while deleting role.",
         error.status || 500
       );
+    }
+  }
+
+  async assignRoleToASubAdmin(req: Request, res: Response) {
+    try {
+      const { roleId, subAdminId } = req.params;
+      const organizationId = req.admin._id;
+
+      if (!roleId || !subAdminId) {
+        return ResponseHandler.failure(res, "Role ID and SubAdmin ID are required", 400);
+      }
+
+      const role = await Role.findOne({
+        _id: roleId,
+        organizationId
+      }).populate("permissions")
+
+      if (!role) return ResponseHandler.failure(res, "Role not found", 400)
+
+      const subAdmin = await SubAdmin.findById(subAdminId);
+      if (!subAdmin) {
+        return ResponseHandler.failure(res, "SubAdmin not found", 404);
+      }
+
+      const permissionIds = role.permissions.map((perm: any) => perm._id);
+
+      const updatedSubAdmin = await SubAdmin.findByIdAndUpdate(
+        subAdminId,
+        {
+          $addToSet: { 
+            roles: roleId, 
+            permissions: { $each: permissionIds }
+          }
+        },
+        { new: true }
+      ).populate("roles permissions").select("-password");
+
+      return ResponseHandler.success(
+        res, 
+        updatedSubAdmin,
+        "role assigned successfully"
+      )
+    } catch (error: any) {
+      res.status(error.status || 500).json({
+        message: error.message || "An error occurred while assigning role to subadmin",
+      });
     }
   }
 }

@@ -1,8 +1,8 @@
 import dotenv from "dotenv";
 import { Request, Response } from "express";
 import User from "../../models/user.model";
-import SubAdmin from "../../models/subadmin.model"
-import Role from "../../models/subadmin.model";
+import SubAdmin from "../../models/subadmin.model";
+import Role from "../../models/role.model";
 import SuperAdmin, { ISuperAdmin } from "../../models/superadmin.model";
 import Organization, { IOrganization } from "../../models/organization.model";
 import Permission from "../../models/permission.model";
