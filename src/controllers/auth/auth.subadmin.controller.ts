@@ -10,7 +10,7 @@ import { ResponseHandler } from "../../middlewares/responseHandler.middleware";
 import { uploadToCloudinary } from "../../utils/cloudinaryUpload"
 import { comparePassword, hashPassword } from "../../utils/hash";
 import { generateToken } from "../../utils/jwt";
-
+import { getOrganizationId } from "../../utils/getOrganizationId.util";
 
 
 export class SubAdminController {
@@ -239,4 +239,33 @@ export class SubAdminController {
       });
     }
   };
+
+  async getAllSubadmins(req: Request, res: Response) {
+    try {
+      let organizationId = await getOrganizationId(req, res);
+      if (!organizationId) {
+        return;
+      }
+
+      const organization = await Organization.findById(organizationId)
+      if (!organization) {
+        return ResponseHandler.failure(res, "Organization not found", 400);
+      }
+
+      const subadmins = await SubAdmin.find({ organizationId }).select("-password")
+
+      if (!subadmins || subadmins.length === 0) {
+        return ResponseHandler.failure(res, "No subadmin found.")
+      }
+
+      ResponseHandler.success(res, subadmins, "Subadmins fetched successfully")
+    } catch (error: any) {
+      console.error("Error fetching subadmins:", error);
+      return ResponseHandler.failure(
+        res,
+        error.message || "An error occurred while fetching subadmins.",
+        error.status || 500
+      );
+    }
+  }
 }
