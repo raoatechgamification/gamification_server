@@ -11,6 +11,8 @@ const RoleSchema: Schema<IRole> = new Schema({
   name: { type: String, required: true },
   organizationId: { type: Schema.Types.ObjectId, ref: "Organization"},
   permissions: [{ type: Schema.Types.ObjectId, ref: "Permission" }],
+}, {
+  timestamps: true,
 });
 
 const RoleModel: Model<IRole> = mongoose.model<IRole>("Role", RoleSchema);
