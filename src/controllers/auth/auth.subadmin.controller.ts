@@ -267,6 +267,107 @@ export class SubAdminController {
   //   }
   // }
 
+  async editSubAdminAccount(req: Request, res: Response) {
+    try {
+      const { subAdminId } = req.params;
+      const {
+        firstName,
+        lastName,
+        otherName,
+        phone,
+        gender,
+        dateOfBirth,
+        country,
+        address,
+        city,
+        LGA,
+        state,
+        officeAddress,
+        officeCity,
+        officeLGA,
+        officeState,
+        employerName,
+        roleId, // Optional role update
+        batch,
+        contactPersonPlaceOfEmployment,
+        nameOfContactPerson,
+        contactEmail,
+        contactPersonPhoneNumber,
+      } = req.body;
+
+      const image = req.file;
+      const organizationId = req.admin._id;
+
+      // Find the sub-admin
+      const subAdmin = await SubAdmin.findOne({ _id: subAdminId, organizationId });
+      if (!subAdmin) {
+        return ResponseHandler.failure(res, "SubAdmin not found", 404);
+      }
+
+      // Handle image upload if a new image is provided
+      let fileUploadResult: any = null;
+      if (image) {
+        fileUploadResult = await uploadToCloudinary(image.buffer, image.mimetype, "userDisplayPictures");
+      }
+
+      // Update sub-admin details
+      const updateData: any = {
+        firstName,
+        lastName,
+        otherName,
+        phone,
+        gender,
+        dateOfBirth,
+        country,
+        address,
+        city,
+        LGA,
+        state,
+        officeAddress,
+        officeCity,
+        officeLGA,
+        officeState,
+        employerName,
+        batch,
+        contactPersonPlaceOfEmployment,
+        nameOfContactPerson,
+        contactEmail,
+        contactPersonPhoneNumber,
+      };
+
+      if (fileUploadResult) {
+        updateData.image = fileUploadResult.secure_url;
+      }
+
+      // If roleId is provided, update roles and permissions
+      if (roleId) {
+        const role = await Role.findOne({ _id: roleId, organizationId }).populate("permissions");
+        if (!role) {
+          return ResponseHandler.failure(res, "Role not found", 400);
+        }
+
+        const permissionIds = role.permissions.map((perm: any) => perm._id);
+        updateData.roles = [roleId];
+        updateData.permissions = permissionIds;
+      }
+
+      // Update the sub-admin
+      const updatedSubAdmin = await SubAdmin.findByIdAndUpdate(subAdminId, updateData, {
+        new: true,
+      })
+      .populate("roles permissions")
+      .select("-password");
+
+      return ResponseHandler.success(res, updatedSubAdmin, "SubAdmin account updated successfully");
+    } catch (error: any) {
+      return res.status(500).json({
+        success: false,
+        message: "An error occurred while updating sub-admin account",
+        error: error.message,
+      });
+    }
+  }
+
   async loginSubAdmin(req: Request, res: Response) {
     try {
       const { email, password } = req.body;
@@ -322,58 +423,58 @@ export class SubAdminController {
     }
   }
 
-  async assignPermissionsToSubAdmin(req: Request, res: Response) {
-  try {
-    const { subAdminId, permissions } = req.body;
+  // async assignPermissionsToSubAdmin(req: Request, res: Response) {
+  // try {
+  //   const { subAdminId, permissions } = req.body;
 
-    if (!subAdminId || !permissions || !Array.isArray(permissions)) {
-      return ResponseHandler.failure(
-        res,
-        "SubAdmin ID and permissions are required.",
-        400
-      );
-    }
+  //   if (!subAdminId || !permissions || !Array.isArray(permissions)) {
+  //     return ResponseHandler.failure(
+  //       res,
+  //       "SubAdmin ID and permissions are required.",
+  //       400
+  //     );
+  //   }
 
-    // Validate if the permissions exist
-    const validPermissions = await Permission.find({
-      _id: { $in: permissions },
-    });
+  //   // Validate if the permissions exist
+  //   const validPermissions = await Permission.find({
+  //     _id: { $in: permissions },
+  //   });
 
-      if (validPermissions.length !== permissions.length) {
-        return ResponseHandler.failure(
-          res,
-          "Some permissions are invalid.",
-          400
-        );
-      }
+  //     if (validPermissions.length !== permissions.length) {
+  //       return ResponseHandler.failure(
+  //         res,
+  //         "Some permissions are invalid.",
+  //         400
+  //       );
+  //     }
 
-      // Update subAdmin's permissions
-      const updatedSubAdmin = await SubAdmin.findByIdAndUpdate(
-        subAdminId,
-        { permissions: validPermissions.map((perm) => perm._id) },
-        { new: true }
-      ).populate("permissions").select(
-        "-password"
-      );;
+  //     // Update subAdmin's permissions
+  //     const updatedSubAdmin = await SubAdmin.findByIdAndUpdate(
+  //       subAdminId,
+  //       { permissions: validPermissions.map((perm) => perm._id) },
+  //       { new: true }
+  //     ).populate("permissions").select(
+  //       "-password"
+  //     );;
 
-      if (!updatedSubAdmin) {
-        return ResponseHandler.failure(
-          res,
-          "SubAdmin not found.",
-          404
-        );
-      }
+  //     if (!updatedSubAdmin) {
+  //       return ResponseHandler.failure(
+  //         res,
+  //         "SubAdmin not found.",
+  //         404
+  //       );
+  //     }
 
-      res.status(200).json({
-        message: "Permissions successfully assigned.",
-        subAdmin: updatedSubAdmin,
-      });
-    } catch (error: any) {
-      res.status(error.status || 500).json({
-        message: error.message || "An error occurred.",
-      });
-    }
-  };
+  //     res.status(200).json({
+  //       message: "Permissions successfully assigned.",
+  //       subAdmin: updatedSubAdmin,
+  //     });
+  //   } catch (error: any) {
+  //     res.status(error.status || 500).json({
+  //       message: error.message || "An error occurred.",
+  //     });
+  //   }
+  // };
 
   async getAllSubadmins(req: Request, res: Response) {
     try {
