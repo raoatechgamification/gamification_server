@@ -163,7 +163,9 @@ export class CourseController {
         return ResponseHandler.failure(res, "Organization not found", 404);
       }
 
-      const courses = await Course.find({ organizationId, isArchived: false });
+      // const courses = await Course.find({ organizationId, isArchived: false });
+
+      const courses = await Course.find({ organizationId });
 
       if (!courses || courses.length === 0) {
         return ResponseHandler.failure(
@@ -189,7 +191,8 @@ export class CourseController {
 
   async getAllCoursesForUsers(req: Request, res: Response) {
     try {
-      const courses = await Course.find({ isArchived: false }); 
+      // const courses = await Course.find({ isArchived: false }); 
+      const courses = await Course.find(); 
 
       if (!courses || courses.length === 0) {
         return ResponseHandler.failure(
@@ -218,8 +221,8 @@ export class CourseController {
     try {
       const { courseId } = req.params;
 
-      // const course = await Course.findById(courseId);
-      const course = await Course.findOne({ _id: courseId, isArchived: false });
+      const course = await Course.findById(courseId);
+      // const course = await Course.findOne({ _id: courseId, isArchived: false });
 
       if (!course) {
         return ResponseHandler.failure(res, "Course not found", 404);
@@ -620,8 +623,8 @@ export class CourseController {
         return ResponseHandler.failure(res, "Organization not found", 404);
       }
 
-      // const course = await Course.findById(courseId).lean();
-      const course = await Course.findOne({ _id: courseId, isArchived: false }).lean();
+      const course = await Course.findById(courseId).lean();
+      // const course = await Course.findOne({ _id: courseId, isArchived: false }).lean();
       if (!course) {
         return ResponseHandler.failure(res, "Course not found", 404);
       }
@@ -728,8 +731,8 @@ export class CourseController {
     try {
       const { courseId } = req.params;
 
-      // const course = await Course.findById(courseId);
-      const course = await Course.findOne({ _id: courseId, isArchived: false });
+      const course = await Course.findById(courseId);
+      // const course = await Course.findOne({ _id: courseId, isArchived: false });
 
       if (!course) {
         return ResponseHandler.failure(res, "Course not found", 400);
@@ -971,13 +974,13 @@ export class CourseController {
       );
 
       // Query for courses that are not assigned to the user
-      // const availableCourses = await Course.find({
-      //   _id: { $nin: assignedProgramIds },
-      // }).exec();
       const availableCourses = await Course.find({
         _id: { $nin: assignedProgramIds },
-        isArchived: false,
       }).exec();
+      // const availableCourses = await Course.find({
+      //   _id: { $nin: assignedProgramIds },
+      //   isArchived: false,
+      // }).exec();
 
       return res.status(200).json({ availableCourses });
     } catch (error) {
