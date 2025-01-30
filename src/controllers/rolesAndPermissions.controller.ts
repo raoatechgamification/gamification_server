@@ -1,6 +1,7 @@
 import { Request, Response } from "express";
 import { ResponseHandler } from "../middlewares/responseHandler.middleware";
 import Role from "../models/role.model";
+import SubAdmin from "../models/subadmin.model";
 import Permission from "../models/permission.model";
 import { getOrganizationId } from "../utils/getOrganizationId.util";
 import Organization from "../models/organization.model";
@@ -17,7 +18,7 @@ class RolesAndPermissionsController {
         if (!acc[permission.module]) {
           acc[permission.module] = [];
         }
-        acc[permission.module].push(permission.action);
+        acc[permission.module].push({ id: permission._id, action: permission.action });
         return acc;
       }, {});
   
@@ -40,6 +41,40 @@ class RolesAndPermissionsController {
       });
     }
   }
+  
+  // async getAllPermissions(req: Request, res: Response) {
+  //   try {
+  //     // Fetch all permissions from the database
+  //     const permissions = await Permission.find();
+  
+  //     // Group permissions by module
+  //     const groupedPermissions = permissions.reduce((acc: any, permission) => {
+  //       if (!acc[permission.module]) {
+  //         acc[permission.module] = [];
+  //       }
+  //       acc[permission.module].push(permission.action);
+  //       return acc;
+  //     }, {});
+  
+  //     // Format grouped permissions as an array of objects
+  //     const formattedPermissions = Object.keys(groupedPermissions).map((module) => ({
+  //       module,
+  //       actions: groupedPermissions[module],
+  //     }));
+  
+  //     res.status(200).json({
+  //       success: true,
+  //       message: "Permissions fetched successfully",
+  //       data: formattedPermissions,
+  //     });
+  //   } catch (error) {
+  //     console.error("Error fetching permissions:", error);
+  //     res.status(500).json({
+  //       success: false,
+  //       message: "An error occurred while fetching permissions",
+  //     });
+  //   }
+  // }
 
   async createRole(req: Request, res: Response) {
     try {
@@ -92,18 +127,20 @@ class RolesAndPermissionsController {
       });
   
       await newRole.save();
-  
-      res.status(201).json({
-        success: true,
-        message: "Role created successfully.",
-        data: newRole,
-      });
-    } catch (error) {
+
+      return ResponseHandler.success(
+        res,
+        newRole,
+        "Role created successfully.",
+        201
+      );
+    } catch (error: any) {
       console.error("Error creating role:", error);
-      res.status(500).json({
-        success: false,
-        message: "An error occurred while creating the role.",
-      });
+      return ResponseHandler.failure(
+        res,
+        error.message || "An error occurred while creating the role.",
+        error.status || 500
+      );
     }
   }
 
@@ -128,9 +165,134 @@ class RolesAndPermissionsController {
       ResponseHandler.success(res, roles, "Roles fetched successfully")
     } catch (error: any) {
       console.error("Error fetching roles:", error);
-      res.status(500).json({
-        success: false,
-        message: "An error occurred while fetching roles",
+      return ResponseHandler.failure(
+        res,
+        error.message || "An error occurred while fetching roles.",
+        error.status || 500
+      );
+    }
+  }
+
+  async getRole(req: Request, res: Response) {
+    try {
+      let organizationId = await getOrganizationId(req, res);
+      if (!organizationId) {
+        return;
+      }
+
+      const organization = await Organization.findById(organizationId);
+      if (!organization) {
+        return ResponseHandler.failure(res, "Organization not found", 400);
+      }
+
+      const { id } = req.params;
+
+      const role = await Role.findOne({
+        _id: id,
+        organizationId
+      }).populate("permissions")
+
+      if (!role) {
+        return ResponseHandler.failure(res, "Role not found or not found within your organization", 403)
+      }
+
+      return ResponseHandler.success(
+        res,
+        role,
+        "Role fetched successfully"
+      )
+    } catch (error: any) {
+      console.error("Error fetching role:", error);
+      return ResponseHandler.failure(
+        res,
+        error.message || "An error occurred while fetching role.",
+        error.status || 500
+      );
+    }
+  }
+
+  async deleteRole(req: Request, res: Response) {
+    try {
+      let organizationId = await getOrganizationId(req, res);
+      if (!organizationId) {
+        return;
+      }
+
+      const organization = await Organization.findById(organizationId);
+      if (!organization) {
+        return ResponseHandler.failure(res, "Organization not found", 400);
+      }
+
+      const { id } = req.params
+
+      const deletedRole = await Role.findOneAndDelete({
+        _id: id,
+        organizationId
+      })
+
+      console.log("Deleted role: ", deletedRole)
+
+      if (!deletedRole) {
+        return ResponseHandler.failure(res, "Role not found or not found within your organization", 403)
+      }
+
+      return ResponseHandler.success(
+        res,
+        [],
+        "Role deleted successfully"
+      )
+    } catch (error: any) {
+      console.error("Error deleting role:", error);
+      return ResponseHandler.failure(
+        res,
+        error.message || "An error occurred while deleting role.",
+        error.status || 500
+      );
+    }
+  }
+
+  async assignRoleToASubAdmin(req: Request, res: Response) {
+    try {
+      const { roleId, subAdminId } = req.params;
+      const organizationId = req.admin._id;
+
+      if (!roleId || !subAdminId) {
+        return ResponseHandler.failure(res, "Role ID and SubAdmin ID are required", 400);
+      }
+
+      const role = await Role.findOne({
+        _id: roleId,
+        organizationId
+      }).populate("permissions")
+
+      if (!role) return ResponseHandler.failure(res, "Role not found", 400)
+
+      const subAdmin = await SubAdmin.findById(subAdminId);
+      if (!subAdmin) {
+        return ResponseHandler.failure(res, "SubAdmin not found", 404);
+      }
+
+      const permissionIds = role.permissions.map((perm: any) => perm._id);
+
+      const updatedSubAdmin = await SubAdmin.findByIdAndUpdate(
+        subAdminId,
+        {
+          $addToSet: { 
+            roles: roleId, 
+            permissions: { $each: permissionIds }
+          }
+        },
+        { new: true }
+      ).populate("roles permissions").select("-password");
+
+      return ResponseHandler.success(
+        res, 
+        updatedSubAdmin,
+        "role assigned successfully"
+      )
+    } catch (error: any) {
+      res.status(error.status || 500).json({
+        message: error.message || "An error occurred while assigning role to subadmin",
       });
     }
   }

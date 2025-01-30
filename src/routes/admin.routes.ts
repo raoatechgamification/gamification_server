@@ -1,5 +1,6 @@
 import { Router } from "express";
 import AdminController from "../controllers/admin.controller";
+import { SubAdminController } from "../controllers/auth/auth.subadmin.controller"
 import { authenticate, authorize, checkSubadminPermission } from "../middlewares/auth.middleware";
 import { upload } from "../utils/upload.utils";
 import { userIdValidator } from "../validators/admin.validator";
@@ -18,7 +19,16 @@ const {
   archiveCourse
 } = AdminController;
 
+const { getAllSubadmins } = new SubAdminController()
+
 const router = Router();
+
+router.get(
+  "/subadmins",
+  authenticate,
+  authorize(["admin"]),
+  getAllSubadmins
+)
 
 router.get(
   "/users", 

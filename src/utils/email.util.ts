@@ -79,6 +79,7 @@ export async function sendEmail({
 
   try {
     if (service === "postmark") {
+      console.log("The handler got here")
       await postmarkClient.sendEmail({
         From: senderEmail,
         To: variables.email,

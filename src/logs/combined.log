@@ -7740,3 +7740,71 @@
 2025-01-27 18:02:41 [info]: GET / 500
 2025-01-27 18:03:57 [info]: GET / 500
 2025-01-27 18:08:50 [info]: GET / 200
+2025-01-28 09:49:41 [info]: POST /login 200 - Request Body: {"email":"seunoduez@gmail.com","password":"Timpearl05$$$"}
+2025-01-28 10:58:26 [info]: POST /single-create 201 - Request Body: {"firstName":"Timpel","lastName":"Timpearl","email":"backendseun@gmail.com","password":"Timpearl05$$$","country":"United States of America","username":"Timpearl","otherName":"Timileyin","phone":"+2349066318539","userType":"learner","gender":"female","dateOfBirth":"05-04-2004","address":"38, Ogunlana street","city":"Alimosho","LGA":"Alimosho","state":"Lagos","officeAddress":"1A, Hughes Street","officeCity":"Alagomeji","officeLGA":"Yaba","officeState":"Lagos","employerName":"Mr Green","ids":"[\"678dec783210215f3ff3d061\", \"678decfffc769e07e57372a7\"]"}
+2025-01-28 11:02:13 [info]: POST /single-create 500 - Request Body: {"firstName":"Timpel","lastName":"Timpearl","email":"backendseun@gmail.com","password":"Timpearl05$$$","country":"United States of America","username":"Timpearl","otherName":"Timileyin","phone":"+2349066318539","userType":"learner","gender":"female","dateOfBirth":"05-04-2004","address":"38, Ogunlana street","city":"Alimosho","LGA":"Alimosho","state":"Lagos","officeAddress":"1A, Hughes Street","officeCity":"Alagomeji","officeLGA":"Yaba","officeState":"Lagos","employerName":"Mr Green","ids":"[\"678dec783210215f3ff3d061\", \"678decfffc769e07e57372a7\"]","sendEmail":"true"}
+2025-01-28 11:03:35 [info]: POST /single-create 201 - Request Body: {"firstName":"Timpel","lastName":"Timpearl","email":"backendseun@gmail.com","password":"Timpearl05$$$","country":"United States of America","username":"Timpearl","otherName":"Timileyin","phone":"+2349066318539","userType":"learner","gender":"female","dateOfBirth":"05-04-2004","address":"38, Ogunlana street","city":"Alimosho","LGA":"Alimosho","state":"Lagos","officeAddress":"1A, Hughes Street","officeCity":"Alagomeji","officeLGA":"Yaba","officeState":"Lagos","employerName":"Mr Green","ids":"[\"678dec783210215f3ff3d061\", \"678decfffc769e07e57372a7\"]","sendEmail":"true"}
+2025-01-28 15:40:52 [info]: POST /login 200 - Request Body: {"email":"seunoduez@gmail.com","password":"Timpearl05$$$"}
+2025-01-28 15:41:12 [info]: GET / 200
+2025-01-28 15:55:14 [info]: GET / 200
+2025-01-28 16:43:10 [info]: POST /theory 401
+2025-01-28 16:43:39 [info]: POST /login 200 - Request Body: {"email":"seunoduez@gmail.com","password":"Timpearl05$$$"}
+2025-01-28 16:44:30 [info]: POST /theory 401
+2025-01-28 16:44:40 [info]: POST /api/v1/assessment/theory 500 - Request Body: {"title":"Sample Assessment","description":"This is a test assessment.","position":"1","totalMark":"100","passMark":"50","duration":"60","assessmentCode":"ABC123","questions":[{"question":"What is 2 + 2","mark":"10"}]}
+2025-01-28 17:06:45 [info]: POST /api/v1/assessment/theory 500 - Request Body: {"title":"Sample Assessment","description":"This is a test assessment.","position":"1","totalMark":"100","passMark":"50","duration":"60","assessmentCode":"ABC123","questions":[{"question":"What is 2 + 2","mark":"10"}]}
+2025-01-28 17:13:27 [info]: POST /api/v1/assessment/theory 500 - Request Body: {"title":"Sample Assessment","description":"This is a test assessment.","position":"1","totalMark":"100","passMark":"50","duration":"60","assessmentCode":"ABC123","questions":[{"question":"What is 2 + 2","mark":"10"}]}
+2025-01-28 17:14:09 [info]: POST /theory 400 - Request Body: {"title":"Sample Assessment","description":"This is a test assessment.","position":"1","totalMark":"100","passMark":"50","duration":"60","assessmentCode":"ABC123","questions":[{"question":"What is 2 + 2","mark":"10"},{"question":"Explain gravity","mark":"20"}]}
+2025-01-28 17:14:57 [info]: POST /theory 200 - Request Body: {"title":"Sample Assessment","description":"This is a test assessment.","position":"1","totalMark":"100","passMark":"50","duration":"60","assessmentCode":"ABC123","questions":[{"question":"What is 2 + 2","mark":"10"},{"question":"Explain gravity","mark":"20"}]}
+2025-01-28 17:19:50 [info]: POST /theory 200 - Request Body: {"title":"Sample Assessment","description":"This is a test assessment.","position":"1","totalMark":"100","passMark":"50","duration":"60","assessmentCode":"ABC123","questions":[{"question":"What is 2 + 2","mark":"10"},{"question":"Explain gravity","mark":"20"}]}
+2025-01-28 17:22:02 [info]: POST /theory 200 - Request Body: {"title":"Sample Assessment","description":"This is a test assessment.","position":"1","totalMark":"100","passMark":"50","duration":"60","assessmentCode":"ABC123","questions":[{"question":"What is 2 + 2","mark":"10"},{"question":"Explain gravity","mark":"20"}]}
+2025-01-28 17:30:06 [info]: POST /theory 200 - Request Body: {"title":"Sample Assessment","description":"This is a test assessment.","position":"1","totalMark":"100","passMark":"50","duration":"60","assessmentCode":"ABC123","questions":[{"question":"What is 2 + 2","mark":"10"},{"question":"Explain gravity","mark":"20"}]}
+2025-01-28 17:40:48 [info]: POST /theory 200 - Request Body: {"title":"Sample Assessment","description":"This is a test assessment.","position":"1","totalMark":"100","passMark":"50","duration":"60","assessmentCode":"ABC123","questions":[{"question":"What is 2 + 2","mark":"10"},{"question":"Explain gravity","mark":"20"}]}
+2025-01-28 17:53:58 [info]: POST /theory 200 - Request Body: {"title":"Sample Assessment","description":"This is a test assessment.","position":"1","totalMark":"100","passMark":"50","duration":"60","assessmentCode":"ABC123","questions":[{"question":"What is 2 + 2","mark":"10"},{"question":"Explain gravity","mark":"20"}]}
+2025-01-29 19:26:40 [info]: POST /login 200 - Request Body: {"email":"seunoduez@gmail.com","password":"Timpearl05$$$"}
+2025-01-29 19:34:28 [info]: POST /subadmin/register 401
+2025-01-29 19:35:07 [info]: POST /subadmin/register 500
+2025-01-29 19:39:03 [info]: POST /subadmin/register 500
+2025-01-29 19:41:22 [info]: POST /subadmin/register 500
+2025-01-29 19:52:00 [info]: POST /subadmin/register 500
+2025-01-29 19:53:02 [info]: POST /subadmin/register 500
+2025-01-29 19:55:05 [info]: POST /subadmin/register 500
+2025-01-29 19:57:32 [info]: POST /subadmin/register 500
+2025-01-29 19:59:37 [info]: POST /subadmin/register 201 - Request Body: {"firstName":"Ore","lastName":"Ife","email":"oreofe@gmail.com","password":"oreofe10#"}
+2025-01-29 20:14:05 [info]: POST /subadmin/register 500
+2025-01-29 20:16:27 [info]: POST /subadmin/register 500
+2025-01-29 20:24:34 [info]: POST /single-create 201 - Request Body: {"firstName":"Timpel","lastName":"Timpearl","email":"nana@gmail.com","password":"Timpearl05$$$","country":"United States of America","username":"Timpearl","otherName":"Timileyin","phone":"+2349066318539","userType":"learner","gender":"female","dateOfBirth":"05-04-2004","address":"38, Ogunlana street","city":"Alimosho","LGA":"Alimosho","state":"Lagos","officeAddress":"1A, Hughes Street","officeCity":"Alagomeji","officeLGA":"Yaba","officeState":"Lagos","employerName":"Mr Green","ids":"[\"678dec783210215f3ff3d061\", \"678decfffc769e07e57372a7\"]","sendEmail":"false"}
+2025-01-29 20:26:38 [info]: POST /subadmin/register 201 - Request Body: {"firstName":"Sewa","lastName":"Olabode","email":"sewa@gmail.com","password":"sewaOla309$"}
+2025-01-29 22:16:03 [info]: GET /role/6797b6f46f26743df7c1c749 200
+2025-01-29 22:16:14 [info]: GET /6797b6f46f26743df7c1c749 401
+2025-01-29 22:16:39 [info]: POST /login 200 - Request Body: {"email":"seunoduez@gmail.com","password":"Timpearl05$$$"}
+2025-01-29 22:16:49 [info]: POST /login 200 - Request Body: {"email":"seunoduez@gmail.com","password":"Timpearl05$$$"}
+2025-01-29 22:17:24 [info]: GET /6797b6f46f26743df7c1c749 200
+2025-01-29 22:18:34 [info]: GET /6797b6f46f26743df7c1c749 200
+2025-01-29 22:24:07 [info]: GET /6797b6f46f26743df7c1c745 500
+2025-01-29 22:25:13 [info]: GET /6797b6f46f26743df7c1c745 403
+2025-01-29 22:41:32 [info]: GET /6797b6f46f26743df7c1c745 403
+2025-01-29 22:42:31 [info]: GET /6797b6f46f26743df7c1c745 403
+2025-01-29 22:42:38 [info]: GET /6797b6f46f26743df7c1c749 200
+2025-01-29 22:49:51 [info]: DELETE /678a1dcb6e8607a38ca491db 403
+2025-01-29 22:50:16 [info]: DELETE /6797b6f46f26743df7c1c749 200
+2025-01-29 22:50:30 [info]: GET /6797b6f46f26743df7c1c749 403
+2025-01-29 22:58:22 [info]: POST / 201 - Request Body: {"name":"User Admin","permissions":["678a1dca6e8607a38ca491bb","678a1dca6e8607a38ca491b9"]}
+2025-01-29 22:58:40 [info]: GET /679aa47ee4ca50e057252461 200
+2025-01-29 22:59:13 [info]: DELETE /679aa47ee4ca50e057252461 200
+2025-01-29 22:59:28 [info]: DELETE /679aa47ee4ca50e057252461 403
+2025-01-30 09:52:23 [info]: POST /login 200 - Request Body: {"email":"seunoduez@gmail.com","password":"Timpearl05$$$"}
+2025-01-30 09:52:35 [info]: POST /login 200 - Request Body: {"email":"seunoduez@gmail.com","password":"Timpearl05$$$"}
+2025-01-30 09:54:15 [info]: GET /subadmins 200
+2025-01-30 09:56:01 [info]: GET /subadmins 200
+2025-01-30 09:56:05 [info]: GET /subadmins 200
+2025-01-30 10:07:45 [info]: POST / 201 - Request Body: {"name":"User Admin","permissions":["678a1dca6e8607a38ca491bb","678a1dca6e8607a38ca491b9"]}
+2025-01-30 10:07:51 [info]: POST / 409 - Request Body: {"name":"User Admin","permissions":["678a1dca6e8607a38ca491bb","678a1dca6e8607a38ca491b9"]}
+2025-01-30 10:08:10 [info]: POST / 201 - Request Body: {"name":"Advisor","permissions":["678a1dca6e8607a38ca491bb","678a1dca6e8607a38ca491b9"]}
+2025-01-30 10:08:21 [info]: GET / 200
+2025-01-30 12:25:07 [info]: GET /subadmins 200
+2025-01-30 12:26:10 [info]: GET / 200
+2025-01-30 12:26:20 [info]: POST / 409 - Request Body: {"name":"Advisor","permissions":["678a1dca6e8607a38ca491bb","678a1dca6e8607a38ca491b9"]}
+2025-01-30 12:30:54 [info]: POST / 201 - Request Body: {"name":"Bursar","permissions":["678a1dca6e8607a38ca491bb","678a1dca6e8607a38ca491b9","678a1dca6e8607a38ca491c1","678a1dca6e8607a38ca491c2","678a1dca6e8607a38ca491c4","678a1dca6e8607a38ca491c6","678a1dca6e8607a38ca491c8"]}
+2025-01-30 12:31:15 [info]: PATCH /679b62eec02596c85c0db31c/subadmins/679a7a97a954e144af79599f 200
+2025-01-30 12:31:41 [info]: GET /subadmins 200
+2025-01-30 12:33:19 [info]: PATCH /679b62eec02596c85c0db31c/subadmins/679a7a97a954e144af79599f 200

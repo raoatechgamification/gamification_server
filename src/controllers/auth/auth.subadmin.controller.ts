@@ -1,8 +1,8 @@
 import dotenv from "dotenv";
 import { Request, Response } from "express";
 import User from "../../models/user.model";
-import SubAdmin from "../../models/subadmin.model"
-import Role from "../../models/subadmin.model";
+import SubAdmin from "../../models/subadmin.model";
+import Role from "../../models/role.model";
 import SuperAdmin, { ISuperAdmin } from "../../models/superadmin.model";
 import Organization, { IOrganization } from "../../models/organization.model";
 import Permission from "../../models/permission.model";
@@ -10,7 +10,7 @@ import { ResponseHandler } from "../../middlewares/responseHandler.middleware";
 import { uploadToCloudinary } from "../../utils/cloudinaryUpload"
 import { comparePassword, hashPassword } from "../../utils/hash";
 import { generateToken } from "../../utils/jwt";
-
+import { getOrganizationId } from "../../utils/getOrganizationId.util";
 
 
 export class SubAdminController {
@@ -45,6 +45,8 @@ export class SubAdminController {
         contactPersonPhoneNumber,
       } = req.body;
 
+      console.log(firstName, lastName, email)
+
       const image = req.file;
       const organizationId = req.admin._id;
 
@@ -78,8 +80,9 @@ export class SubAdminController {
       }
 
       const hashedPassword = await hashPassword(password);
+      console.log(firstName, lastName, email)
 
-      const newUser = await SubAdmin.create({
+      const newSubAdmin = await SubAdmin.create({
         firstName,
         lastName,
         otherName,
@@ -109,7 +112,9 @@ export class SubAdminController {
         userType: "subAdmin",
       });
 
-      const response = await SubAdmin.findById(newUser._id).select(
+      console.log("The request got here")
+
+      const response = await SubAdmin.findById(newSubAdmin._id).select(
         "-password "
       );
 
@@ -234,4 +239,33 @@ export class SubAdminController {
       });
     }
   };
+
+  async getAllSubadmins(req: Request, res: Response) {
+    try {
+      let organizationId = await getOrganizationId(req, res);
+      if (!organizationId) {
+        return;
+      }
+
+      const organization = await Organization.findById(organizationId)
+      if (!organization) {
+        return ResponseHandler.failure(res, "Organization not found", 400);
+      }
+
+      const subadmins = await SubAdmin.find({ organizationId }).select("-password")
+
+      if (!subadmins || subadmins.length === 0) {
+        return ResponseHandler.failure(res, "No subadmin found.")
+      }
+
+      ResponseHandler.success(res, subadmins, "Subadmins fetched successfully")
+    } catch (error: any) {
+      console.error("Error fetching subadmins:", error);
+      return ResponseHandler.failure(
+        res,
+        error.message || "An error occurred while fetching subadmins.",
+        error.status || 500
+      );
+    }
+  }
 }
