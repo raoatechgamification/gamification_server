@@ -7819,3 +7819,10 @@
 2025-01-30 16:43:20 [info]: POST /login 200 - Request Body: {"email":"seunoduez@gmail.com","password":"Timpearl05$$$"}
 2025-01-30 16:43:39 [info]: PUT /subadmin/679a7a97a954e144af79599f 401
 2025-01-30 16:43:57 [info]: PUT /subadmin/679a7a97a954e144af79599f 200
+2025-01-30 17:02:43 [info]: GET / 200
+2025-01-30 17:13:34 [info]: GET / 200
+2025-01-30 17:16:01 [info]: PUT /679b417af57f3f0e78a8c51b 404 - Request Body: {"name":"Advisor Sub-admin","permissions":["678a1dca6e8607a38ca491b9","678a1dca6e8607a38ca491bb","678a1dca6e8607a38ca491c4","678a1dca6e8607a38ca491c6","678a1dca6e8607a38ca491c8"]}
+2025-01-30 17:16:29 [info]: PUT /679b417af57f3f0e78a8c51b 404 - Request Body: {"name":"Advisor Sub-admin","permissions":["678a1dca6e8607a38ca491b9","678a1dca6e8607a38ca491bb","678a1dca6e8607a38ca491c4","678a1dca6e8607a38ca491c6","678a1dca6e8607a38ca491c8"]}
+2025-01-30 17:17:36 [info]: PUT /679b417af57f3f0e78a8c51b 200 - Request Body: {"name":"Advisor Sub-admin","permissions":["678a1dca6e8607a38ca491b9","678a1dca6e8607a38ca491bb","678a1dca6e8607a38ca491c4","678a1dca6e8607a38ca491c6","678a1dca6e8607a38ca491c8"]}
+2025-01-30 17:19:39 [info]: PUT /679b417af57f3f0e78a8c51b 200 - Request Body: {"name":"Advisor","permissions":["678a1dca6e8607a38ca491b9","678a1dca6e8607a38ca491bb","678a1dca6e8607a38ca491c4","678a1dca6e8607a38ca491c6","678a1dca6e8607a38ca491c8"]}
+2025-01-30 17:20:59 [info]: POST / 201 - Request Body: {"name":"Chief Security Officer","permissions":["678a1dca6e8607a38ca491c4","678a1dca6e8607a38ca491c6","678a1dca6e8607a38ca491c8"]}
