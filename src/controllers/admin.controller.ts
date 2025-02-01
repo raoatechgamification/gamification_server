@@ -201,6 +201,7 @@ class AdminController {
 
   async editUserProfile(req: Request, res: Response) {
     try {
+      console.log("a");
       const organizationId = await getOrganizationId(req, res);
       if (!organizationId) {
         return;
@@ -210,24 +211,28 @@ class AdminController {
       if (!organization) {
         return ResponseHandler.failure(res, "Organization not found", 400);
       }
+      console.log("b");
 
       const image = req.file; // Uploaded image
+      console.log("c");
       const userId = req.params.userId;
-
+      console.log("d");
       // Parse `ids` from the form-data
       const { ids = "[]", ...rest } = req.body; // Default to empty array if not provided
       let parsedIds: string[] = [];
-
+      console.log("e");
       try {
         parsedIds = JSON.parse(ids); // Parse `ids` into an array
       } catch (error) {
         return ResponseHandler.failure(res, "Invalid 'ids' format", 400);
       }
+      console.log("f");
 
       // Ensure all IDs are converted to ObjectId
       const objectIds = parsedIds.map(
         (id: string) => new mongoose.Types.ObjectId(id)
       );
+      console.log("g");
 
       // Fetch the user and ensure they belong to the organization
       let user = await User.findOne({ _id: userId, organizationId });
@@ -238,8 +243,9 @@ class AdminController {
           404
         );
       }
-
+      console.log("h");
       let fileUploadResult: any = null;
+      console.log("g");
       if (image) {
         fileUploadResult = await uploadToCloudinary(
           image.buffer,
@@ -247,12 +253,15 @@ class AdminController {
           "userDisplayPictures"
         );
       }
+      console.log("i");
 
       // Initialize variables for updates
       let updatedGroups: mongoose.Types.ObjectId[] = user.groups || [];
+      console.log("j");
       let updatedSubGroups: mongoose.Types.ObjectId[] = user.subGroups || [];
+      console.log("k");
       const bulkGroupOps: any[] = [];
-
+      console.log("l");
       for (const id of objectIds) {
         const userIdObject = new mongoose.Types.ObjectId(userId);
 
@@ -286,12 +295,14 @@ class AdminController {
           }
           continue;
         }
+        console.log("m");
 
         // Check if the ID belongs to a subgroup
         const groupWithSubgroup = await Group.findOne({
           "subGroups._id": id,
           organizationId,
         });
+        console.log("n");
 
         if (groupWithSubgroup) {
           const subgroup = groupWithSubgroup.subGroups.find((subGroup) =>
@@ -325,12 +336,13 @@ class AdminController {
           }
         }
       }
+      console.log("o");
 
       // Execute bulk operations to update groups and subgroups
       if (bulkGroupOps.length > 0) {
         await Group.bulkWrite(bulkGroupOps);
       }
-
+      console.log("p");
       // Deduplicate group and subgroup arrays before updating the user
       updatedGroups = Array.from(
         new Set(updatedGroups.map((id) => id.toString()))
@@ -339,6 +351,7 @@ class AdminController {
         new Set(updatedSubGroups.map((id) => id.toString()))
       ).map((id) => new mongoose.Types.ObjectId(id));
 
+      console.log("q");
       // Update the user's groups, subGroups, and other details
       await User.updateOne(
         { _id: userId },
@@ -351,9 +364,9 @@ class AdminController {
           },
         }
       );
-
+      console.log("r");
       user = await User.findById(userId).select("-password");
-
+      console.log("s");
       return ResponseHandler.success(res, user, "User details");
     } catch (error: any) {
       return ResponseHandler.failure(
@@ -984,33 +997,37 @@ class AdminController {
       if (!adminId) {
         return;
       }
-  
+
       const organization = await Organization.findById(adminId);
       if (!organization) {
         return ResponseHandler.failure(res, "Organization not found", 400);
       }
 
       // const adminId = req.user._id; // Assume the admin's ID is extracted from a middleware
-      
+
       // Validate admin privileges (if applicable)
       const admin = await Organization.findById(adminId);
       if (!admin || admin.role !== "admin") {
         return ResponseHandler.failure(res, "Unauthorized access", 403);
       }
-  
+
       // Find the course
       const course = await Course.findById(courseId);
       if (!course) {
         return ResponseHandler.failure(res, "Course not found", 404);
       }
-  
+
       // Archive the course
       course.isArchived = true;
       await course.save();
-  
+
       return ResponseHandler.success(res, null, "Course archived successfully");
     } catch (error: any) {
-      return ResponseHandler.failure(res, `Error archiving course: ${error.message}`, 500);
+      return ResponseHandler.failure(
+        res,
+        `Error archiving course: ${error.message}`,
+        500
+      );
     }
   }
 }

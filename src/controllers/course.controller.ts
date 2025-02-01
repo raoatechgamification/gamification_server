@@ -163,7 +163,7 @@ export class CourseController {
         return ResponseHandler.failure(res, "Organization not found", 404);
       }
 
-      const courses = await Course.find({ organizationId, isArchived: false });
+      const courses = await Course.find({ organizationId });
 
       if (!courses || courses.length === 0) {
         return ResponseHandler.failure(
@@ -189,7 +189,7 @@ export class CourseController {
 
   async getAllCoursesForUsers(req: Request, res: Response) {
     try {
-      const courses = await Course.find({ isArchived: false }); 
+      const courses = await Course.find({ isArchived: false });
 
       if (!courses || courses.length === 0) {
         return ResponseHandler.failure(
@@ -621,7 +621,10 @@ export class CourseController {
       }
 
       // const course = await Course.findById(courseId).lean();
-      const course = await Course.findOne({ _id: courseId, isArchived: false }).lean();
+      const course = await Course.findOne({
+        _id: courseId,
+        isArchived: false,
+      }).lean();
       if (!course) {
         return ResponseHandler.failure(res, "Course not found", 404);
       }
