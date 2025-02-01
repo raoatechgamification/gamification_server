@@ -199,7 +199,7 @@ class AdminController {
     }
   }
 
-  async editUserProfile(req: Request, res: Response) {
+  async editUserProfilee(req: Request, res: Response) {
     try {
       const organizationId = await getOrganizationId(req, res);
       if (!organizationId) {
@@ -332,12 +332,12 @@ class AdminController {
       }
 
       // Deduplicate group and subgroup arrays before updating the user
-      updatedGroups = Array.from(
-        new Set(updatedGroups.map((id) => id.toString()))
-      ).map((id) => new mongoose.Types.ObjectId(id));
-      updatedSubGroups = Array.from(
-        new Set(updatedSubGroups.map((id) => id.toString()))
-      ).map((id) => new mongoose.Types.ObjectId(id));
+      // updatedGroups = Array.from(
+      //   new Set(updatedGroups.map((id) => id.toString()))
+      // ).map((id) => new mongoose.Types.ObjectId(id));
+      // updatedSubGroups = Array.from(
+      //   new Set(updatedSubGroups.map((id) => id.toString()))
+      // ).map((id) => new mongoose.Types.ObjectId(id));
 
       // Update the user's groups, subGroups, and other details
       await User.updateOne(
@@ -364,10 +364,10 @@ class AdminController {
     }
   }
 
-  // async editUserProfilee(req: Request, res: Response) {
+  // async editUserProfile(req: Request, res: Response) {
   //   try {
-  //     // const organizationId = req.admin._id;
-  //     let organizationId = await getOrganizationId(req, res);
+  //     // const organizationId = req.admin._id
+  //     const organizationId = await getOrganizationId(req, res);
   //     if (!organizationId) {
   //       return;
   //     }
@@ -377,50 +377,97 @@ class AdminController {
   //       return ResponseHandler.failure(res, "Organization not found", 400);
   //     }
 
+  //     const { userId } = req.params;
   //     const image = req.file;
+  //     const { ids, ...rest } = req.body;
 
-  //     const userId = req.params.userId;
-  //     const {
-  //       firstName,
-  //       lastName,
-  //       otherName,
-  //       email,
-  //       phone,
-  //       username,
-  //       groupId,
-  //       gender,
-  //       dateOfBirth,
-  //       country,
-  //       address,
-  //       city,
-  //       LGA,
-  //       state,
-  //       officeAddress,
-  //       officeCity,
-  //       officeLGA,
-  //       officeState,
-  //       employerName,
-  //       role,
-  //       batch,
-  //       image: cloudinaryImage,
-  //       // password,
-  //       sendEmail,
-  //       yearsOfExperience,
-  //       highestEducationLevel,
-  //       contactPersonPlaceOfEmployment,
-  //       nameOfContactPerson,
-  //       contactEmail,
-  //       contactPersonPhoneNumber,
-  //       userId: userIdCode,
-  //     } = req.body;
+  //     if (!userId) {
+  //       return ResponseHandler.failure(res, "User ID is required", 400);
+  //     }
 
-  //     const user = await User.findOne({ _id: userId, organizationId });
+  //     let user = await User.findById(userId);
   //     if (!user) {
-  //       return ResponseHandler.failure(
-  //         res,
-  //         "User not found in your organization",
-  //         404
-  //       );
+  //       return ResponseHandler.failure(res, "User not found", 404);
+  //     }
+
+  //     const parsedIds = JSON.parse(ids || "[]").filter((id: any) => id); // Remove nulls
+  //     const objectIds = parsedIds.map(
+  //       (id: string) => new mongoose.Types.ObjectId(id)
+  //     );
+
+  //     let updatedGroups: mongoose.Types.ObjectId[] = Array.isArray(user.groups)
+  //       ? user.groups.filter((g) => g)
+  //       : [];
+  //     let updatedSubGroups: mongoose.Types.ObjectId[] = Array.isArray(
+  //       user.subGroups
+  //     )
+  //       ? user.subGroups.filter((sg) => sg)
+  //       : [];
+
+  //     const bulkGroupOps: any[] = [];
+  //     const userIdObject = new mongoose.Types.ObjectId(userId);
+
+  //     for (const id of objectIds) {
+  //       const group = await Group.findOne({ _id: id, organizationId });
+  //       if (group) {
+  //         group.members = Array.isArray(group.members)
+  //           ? group.members.filter((m) => m)
+  //           : [];
+  //         if (
+  //           !group.members.some((memberId) => memberId.equals(userIdObject))
+  //         ) {
+  //           group.members.push(userIdObject);
+  //           bulkGroupOps.push({
+  //             updateOne: {
+  //               filter: { _id: group._id },
+  //               update: { members: group.members },
+  //             },
+  //           });
+  //         }
+  //         if (!updatedGroups.some((groupId) => groupId.equals(group._id))) {
+  //           updatedGroups.push(group._id);
+  //         }
+  //         continue;
+  //       }
+
+  //       const groupWithSubgroup = await Group.findOne({
+  //         "subGroups._id": id,
+  //         organizationId,
+  //       });
+  //       if (groupWithSubgroup) {
+  //         const subgroup = groupWithSubgroup.subGroups.find((subGroup) =>
+  //           subGroup?._id?.equals(id)
+  //         );
+  //         if (subgroup) {
+  //           subgroup.members = Array.isArray(subgroup.members)
+  //             ? subgroup.members.filter((m) => m)
+  //             : [];
+  //           if (
+  //             !subgroup.members.some((memberId) =>
+  //               memberId.equals(userIdObject)
+  //             )
+  //           ) {
+  //             subgroup.members.push(userIdObject);
+  //             bulkGroupOps.push({
+  //               updateOne: {
+  //                 filter: { _id: groupWithSubgroup._id },
+  //                 update: { subGroups: groupWithSubgroup.subGroups },
+  //               },
+  //             });
+  //           }
+  //           if (
+  //             !updatedSubGroups.some((subGroupId) =>
+  //               subGroupId.equals(subgroup._id)
+  //             )
+  //           ) {
+  //             updatedSubGroups.push(subgroup._id);
+  //           }
+  //         }
+  //       }
+  //     }
+
+  //     if (bulkGroupOps.length > 0) {
+  //       await Group.bulkWrite(bulkGroupOps);
   //     }
 
   //     let fileUploadResult: any = null;
@@ -432,51 +479,53 @@ class AdminController {
   //       );
   //     }
 
-  //     const updatedUser = await User.findByIdAndUpdate(
+  //     console.log("Updated Groups:", updatedGroups);
+  //     console.log("Updated SubGroups:", updatedSubGroups);
+
+  //     // await User.updateOne(
+  //     //   { _id: userId },
+  //     //   {
+  //     //     groups: updatedGroups,
+  //     //     subGroups: updatedSubGroups
+  //     //   }
+  //     // );
+
+  //     // await User.updateOne(
+  //     //   { _id: userId },
+  //     //   {
+  //     //     $set: {
+  //     //       groups: updatedGroups,
+  //     //       subGroups: updatedSubGroups,
+  //     //       ...rest,
+  //     //       image: fileUploadResult ? fileUploadResult.secure_url : user.image,
+  //     //     },
+  //     //   }
+  //     // );
+
+  //     // user = await User.findById(userId).select("-password");
+
+  //     user = await User.findByIdAndUpdate(
   //       userId,
   //       {
   //         $set: {
-  //           userId: userIdCode,
-  //           username,
-  //           firstName,
-  //           lastName,
-  //           batch,
-  //           userType: role,
-  //           yearsOfExperience,
-  //           highestEducationLevel,
-  //           gender,
-  //           dateOfBirth,
-  //           otherName,
-  //           email,
-  //           phone,
-  //           country,
-  //           address,
-  //           city,
-  //           LGA,
-  //           image: fileUploadResult
-  //             ? fileUploadResult.secure_url
-  //             : cloudinaryImage,
-  //           state,
-  //           officeAddress,
-  //           officeCity,
-  //           officeLGA,
-  //           officeState,
-  //           employerName,
-  //           // password,
-  //           sendEmail,
-  //           contactPersonPlaceOfEmployment,
-  //           nameOfContactPerson,
-  //           contactEmail,
-  //           contactPersonPhoneNumber,
+  //           groups: updatedGroups,
+  //           subGroups: updatedSubGroups,
+  //           ...rest,
+  //           image: fileUploadResult ? fileUploadResult.secure_url : user.image,
   //         },
   //       },
-  //       { new: true, runValidators: true }
-  //     );
+  //       { new: true } // This ensures you get the updated user
+  //     ).select("-password");      
+
+  //     user = await User.findById(userId).select("groups subGroups");
+  //     console.log("Updated User Groups:", user?.groups);
+  //     console.log("Updated User SubGroups:", user?.subGroups);
+
 
   //     return ResponseHandler.success(
   //       res,
-  //       updatedUser,
-  //       "User details updated successfully"
+  //       user,
+  //       "User groups updated successfully"
   //     );
   //   } catch (error: any) {
   //     return ResponseHandler.failure(
@@ -486,6 +535,128 @@ class AdminController {
   //     );
   //   }
   // }
+
+  async editUserProfile(req: Request, res: Response) {
+    try {
+        const organizationId = await getOrganizationId(req, res);
+        if (!organizationId) {
+            return;
+        }
+
+        const organization = await Organization.findById(organizationId);
+        if (!organization) {
+            return ResponseHandler.failure(res, "Organization not found", 400);
+        }
+
+        const { userId } = req.params;
+        const image = req.file;
+        const { ids, ...rest } = req.body;
+
+        if (!userId) {
+            return ResponseHandler.failure(res, "User ID is required", 400);
+        }
+
+        let user = await User.findById(userId);
+        if (!user) {
+            return ResponseHandler.failure(res, "User not found", 404);
+        }
+
+        // Parse `ids` safely
+        let parsedIds: string[] = [];
+        try {
+            parsedIds = Array.isArray(ids) ? ids : JSON.parse(ids || "[]");
+        } catch (error) {
+            return ResponseHandler.failure(res, "Invalid `ids` format", 400);
+        }
+
+        const updatedGroups: mongoose.Types.ObjectId[] = [];
+        const updatedSubGroups: mongoose.Types.ObjectId[] = [];
+        const bulkGroupOps: any[] = [];
+        const userIdObject = new mongoose.Types.ObjectId(userId);
+
+        for (const id of parsedIds) {
+          const objectId = new mongoose.Types.ObjectId(id);
+
+          // Check if ID belongs to a group
+          const group = await Group.findOne({ _id: objectId, organizationId });
+          if (group) {
+              if (!group.members.some((memberId) => memberId.equals(userIdObject))) {
+                  group.members.push(userIdObject);
+                  bulkGroupOps.push({
+                      updateOne: {
+                          filter: { _id: group._id },
+                          update: { $addToSet: { members: userIdObject } },
+                      },
+                  });
+              }
+              updatedGroups.push(group._id);
+              continue;
+          }
+
+          // Check if ID belongs to a subgroup
+          const groupWithSubgroup = await Group.findOne({
+              "subGroups._id": objectId,
+              organizationId,
+          });
+
+          if (groupWithSubgroup) {
+              const subgroup = groupWithSubgroup.subGroups.find((sub) =>
+                  sub._id.equals(objectId)
+              );
+
+              if (subgroup) {
+                  if (!subgroup.members.some((memberId) => memberId.equals(userIdObject))) {
+                      subgroup.members.push(userIdObject);
+                      bulkGroupOps.push({
+                          updateOne: {
+                              filter: { _id: groupWithSubgroup._id, "subGroups._id": objectId },
+                              update: { $addToSet: { "subGroups.$.members": userIdObject } },
+                          },
+                      });
+                  }
+                  updatedSubGroups.push(subgroup._id);
+              }
+          }
+        }
+
+        // Perform bulk updates if needed
+        if (bulkGroupOps.length > 0) {
+            await Group.bulkWrite(bulkGroupOps);
+        }
+
+        // Handle image upload if provided
+        let fileUploadResult: any = null;
+        if (image) {
+            fileUploadResult = await uploadToCloudinary(
+                image.buffer,
+                image.mimetype,
+                "userDisplayPictures"
+            );
+        }
+
+        // **Update user with correct groups and subgroups**
+        user = await User.findByIdAndUpdate(
+            userId,
+            {
+                $set: {
+                    groups: updatedGroups.length ? updatedGroups : user.groups,
+                    subGroups: updatedSubGroups.length ? updatedSubGroups : user.subGroups,
+                    ...rest,
+                    image: fileUploadResult ? fileUploadResult.secure_url : user.image,
+                },
+            },
+            { new: true }
+        ).select("-password");
+
+        console.log("Updated User Groups:", user?.groups);
+        console.log("Updated User SubGroups:", user?.subGroups);
+
+        return ResponseHandler.success(res, user, "User profile updated successfully");
+    } catch (error: any) {
+      console.error("Error updating user profile:", error);
+      return ResponseHandler.failure(res, `Server error: ${error.message}`, 500);
+    }
+  }
 
   async viewAUserProfile(req: Request, res: Response) {
     try {
@@ -984,33 +1155,37 @@ class AdminController {
       if (!adminId) {
         return;
       }
-  
+
       const organization = await Organization.findById(adminId);
       if (!organization) {
         return ResponseHandler.failure(res, "Organization not found", 400);
       }
 
       // const adminId = req.user._id; // Assume the admin's ID is extracted from a middleware
-      
+
       // Validate admin privileges (if applicable)
       const admin = await Organization.findById(adminId);
       if (!admin || admin.role !== "admin") {
         return ResponseHandler.failure(res, "Unauthorized access", 403);
       }
-  
+
       // Find the course
       const course = await Course.findById(courseId);
       if (!course) {
         return ResponseHandler.failure(res, "Course not found", 404);
       }
-  
+
       // Archive the course
       course.isArchived = true;
       await course.save();
-  
+
       return ResponseHandler.success(res, null, "Course archived successfully");
     } catch (error: any) {
-      return ResponseHandler.failure(res, `Error archiving course: ${error.message}`, 500);
+      return ResponseHandler.failure(
+        res,
+        `Error archiving course: ${error.message}`,
+        500
+      );
     }
   }
 }
