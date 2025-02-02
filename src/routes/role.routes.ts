@@ -4,6 +4,7 @@ import { authenticate, authorize } from "../middlewares/auth.middleware";
 
 const {
   createRole,
+  editRole,
   getAllRoles,
   getRole,
   deleteRole,
@@ -17,6 +18,13 @@ router.post(
   authenticate,
   authorize(["admin"]),
   createRole
+)
+
+router.put(
+  "/:id",
+  authenticate,
+  authorize(["admin"]),
+  editRole
 )
 
 router.get(

@@ -23,7 +23,7 @@ const { registerOrganization, loginOrganization } = AdminAuthController;
 const { registerUser, bulkCreateUsers, createSingleUser, login } =
   UserAuthController;
 const { registerSuperAdmin, loginSuperAdmin } = SuperAdminAuthController;
-const { createSubAdminAccount, loginSubAdmin, assignPermissionsToSubAdmin } = new SubAdminController()
+const { createSubAdminAccount, loginSubAdmin, editSubAdminAccount } = new SubAdminController()
 
 const router = Router();
 
@@ -45,11 +45,11 @@ router.post(
 )
 
 // Assign permissions to sub-admin
-router.post(
-  "/subadmin/assign-permissions",
+router.put(
+  "/subadmin/:subAdminId",
   authenticate,
   authorize(["admin"]),
-  assignPermissionsToSubAdmin  
+  editSubAdminAccount  
 )
 
 // Organization Auth
