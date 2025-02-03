@@ -1,24 +1,23 @@
-import mongoose, { Schema, Document } from 'mongoose';
+import mongoose, { Schema, Document } from "mongoose";
 
 export interface AssessmentQuestionInterface {
   _id: string;
   question: string;
-  answer: string; 
+  answer: string;
   mark?: number;
 }
 
 export interface AssessmentInterface {
   _id: string;
-  questions: AssessmentQuestionInterface[]; 
+  questions: AssessmentQuestionInterface[];
   marksPerQuestion?: number;
 }
-
 
 export interface IObjectiveAssessment extends Document {
   organizationId: mongoose.Types.ObjectId;
   title: string;
   description: string;
-  marksPerQuestion?: number; 
+  marksPerQuestion?: number;
   numberOfTrials?: number;
   purpose?: string;
   position: number;
@@ -33,12 +32,12 @@ export interface IObjectiveAssessment extends Document {
     type: string;
     options?: string[];
     answer: string;
-    mark: number; 
+    mark: number;
   }[];
 }
 
 const objectiveAssessmentSchema = new Schema<IObjectiveAssessment>({
-  organizationId: { type: Schema.Types.ObjectId, required: true},
+  organizationId: { type: Schema.Types.ObjectId, required: true },
   title: { type: String, required: true },
   description: { type: String, required: true },
   marksPerQuestion: { type: Number },
@@ -56,19 +55,21 @@ const objectiveAssessmentSchema = new Schema<IObjectiveAssessment>({
       question: { type: String, required: true },
       type: {
         type: String,
-        enum: ['True or False', 'Yes or No', 'Fill in the Gap', 'Multichoice'],
+        enum: ["True or False", "Yes or No", "Fill in the Gap", "Multichoice"],
         required: true,
       },
       options: { type: [String], default: [] },
       answer: { type: String, required: true },
-      mark: { type: Number, required: true }, 
+      mark: { type: Number, required: true },
     },
   ],
 });
 
 const ObjectiveAssessment =
   mongoose.models.ObjectiveAssessment ||
-  mongoose.model<IObjectiveAssessment>('ObjectiveAssessment', objectiveAssessmentSchema);
+  mongoose.model<IObjectiveAssessment>(
+    "ObjectiveAssessment",
+    objectiveAssessmentSchema
+  );
 
 export default ObjectiveAssessment;
-

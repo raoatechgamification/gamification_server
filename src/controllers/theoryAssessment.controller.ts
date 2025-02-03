@@ -82,49 +82,90 @@ class TheoryAssessmentController {
       return ResponseHandler.failure(res, "Error creating theory assessment", 500, error);
     }
   }
-  
+
   async editTheoryAssessment(req: Request, res: Response) {
     try {
       const { id } = req.params;
-      const updateFields = { ...req.body };
-      let questions = JSON.parse(req.body.questions);
+      const {
+        title,
+        description,
+        totalMark,
+        passMark,
+        duration,
+        assessmentCode,
+      } = req.body;
+
+      console.log(req.body.questions)
+      console.log("title: ", title)
   
+      let organizationId = await getOrganizationId(req, res);
+      if (!organizationId) {
+        return;
+      }
+  
+      const organization = await Organization.findById(organizationId);
+      if (!organization) {
+        return ResponseHandler.failure(res, "Organization not found", 400);
+      }
+  
+      let assessment = await TheoryAssessment.findById(id);
+      if (!assessment) {
+        return ResponseHandler.failure(res, "Theory assessment not found", 404);
+      }
+
+      console.log("A")
+  
+      let questions = JSON.parse(req.body.questions);
       if (!Array.isArray(questions)) {
         return ResponseHandler.failure(res, "Invalid questions format", 400);
       }
       
-      console.log("A")
+      console.log("B")
+      // Handle file uploads
       if (req.files) {
-        for (const [index, file] of Object.entries(req.files)) {
-          const questionIndex = parseInt(index.replace("questionFile", ""));
+        for (const file of req.files as Express.Multer.File[]) {
+          const questionIndex = parseInt(file.fieldname.replace("questionFile", ""));
           if (!isNaN(questionIndex) && questions[questionIndex]) {
-            const result = await uploadToCloudinary(
-              file[0].buffer,
-              file[0].mimetype,
-              "theory_assessments"
-            );
-            questions[questionIndex].file = result.secure_url;
+            try {
+              const result = await uploadToCloudinary(
+                file.buffer,
+                file.mimetype,
+                "theory_assessments"
+              );
+              questions[questionIndex].file = result.secure_url;
+              console.log("File uploaded successfully:", result.secure_url);
+            } catch (uploadError) {
+              console.error("Error uploading file:", uploadError);
+              return ResponseHandler.failure(res, "File upload failed", 500, uploadError);
+            }
           }
         }
       }
-
-      console.log("B")
-  
-      updateFields.questions = questions;
-  
-      const updatedAssessment = await TheoryAssessment.findByIdAndUpdate(id, updateFields, { new: true });
-      if (!updatedAssessment) {
-        return ResponseHandler.failure(res, "Theory assessment not found", 404);
-      }
-
+      
       console.log("C")
+      // Update the assessment
+      assessment.title = title;
+      assessment.description = description;
+      assessment.totalMark = totalMark;
+      assessment.passMark = passMark;
+      assessment.duration = duration;
+      assessment.assessmentCode = assessmentCode || assessment.assessmentCode;
+      assessment.questions = questions;
   
-      return ResponseHandler.success(res, updatedAssessment.$assertPopulated, "Theory assessment updated successfully", 200);
+      await assessment.save();
+  
+      console.log("D")
+      return ResponseHandler.success(
+        res,
+        assessment,
+        "Theory assessment updated successfully",
+        200
+      );
     } catch (error: any) {
       console.log(error)
       return ResponseHandler.failure(res, "Error updating theory assessment", 500, error);
     }
-  }
+  }   
 
   async submitTheoryAssessment(req: Request, res: Response) {
     try {
