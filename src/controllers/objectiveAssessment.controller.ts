@@ -1,19 +1,17 @@
 import { Request, Response } from "express";
-import mongoose, { ObjectId} from "mongoose";
+import mongoose from "mongoose";
 import { shuffle } from "lodash";
 import * as XLSX from "xlsx";
-import fileUpload from "express-fileupload";
-import ObjectiveAssessment, {
-  IObjectiveAssessment,
-} from "../models/objectiveAssessment.model";
+import ObjectiveAssessment from "../models/objectiveAssessment.model";
+import TheoryAssessment from "../models/theoryAssessment.model";
 import QuestionsBank from "../models/questionsBank.model";
 import Submission from "../models/submission.model";
 import Course, { ICourse } from "../models/course.model";
 import User, { IUser } from "../models/user.model";
-import Group, { SubGroup } from "../models/group.model"
+import Group, { SubGroup } from "../models/group.model";
 import Organization from "../models/organization.model";
 import { ResponseHandler } from "../middlewares/responseHandler.middleware";
-import { getOrganizationId } from "../utils/getOrganizationId.util"
+import { getOrganizationId } from "../utils/getOrganizationId.util";
 
 class ObjectAssessmentController {
   //  async createObjectiveAssessment(req: Request, res: Response) {
@@ -194,7 +192,7 @@ class ObjectAssessmentController {
       if (!organizationId) {
         return;
       }
-  
+
       const organization = await Organization.findById(organizationId);
       if (!organization) {
         return ResponseHandler.failure(res, "Organization not found", 400);
@@ -355,7 +353,7 @@ class ObjectAssessmentController {
       if (!organizationId) {
         return;
       }
-  
+
       const organization = await Organization.findById(organizationId);
       if (!organization) {
         return ResponseHandler.failure(res, "Organization not found", 400);
@@ -567,7 +565,7 @@ class ObjectAssessmentController {
       if (!organizationId) {
         return;
       }
-  
+
       const organization = await Organization.findById(organizationId);
       if (!organization) {
         return ResponseHandler.failure(res, "Organization not found", 400);
@@ -765,7 +763,7 @@ class ObjectAssessmentController {
       if (!organizationId) {
         return;
       }
-  
+
       const organization = await Organization.findById(organizationId);
       if (!organization) {
         return ResponseHandler.failure(res, "Organization not found", 400);
@@ -944,7 +942,7 @@ class ObjectAssessmentController {
       if (!organizationId) {
         return;
       }
-  
+
       const organization = await Organization.findById(organizationId);
       if (!organization) {
         return ResponseHandler.failure(res, "Organization not found", 400);
@@ -1268,7 +1266,8 @@ class ObjectAssessmentController {
       const percentageScore = Math.round(
         (totalScore / maxObtainableMarks) * 100
       );
-      const passOrFail = percentageScore >= assessment.passMark ? "Pass" : "Fail";
+      const passOrFail =
+        percentageScore >= assessment.passMark ? "Pass" : "Fail";
 
       const certificateId = course.certificate;
 
@@ -1369,17 +1368,34 @@ class ObjectAssessmentController {
     // const organizationId = req.admin._id;
 
     let organizationId = await getOrganizationId(req, res);
-      if (!organizationId) {
-        return;
-      }
-  
-      const organization = await Organization.findById(organizationId);
-      if (!organization) {
-        return ResponseHandler.failure(res, "Organization not found", 400);
-      }
+    if (!organizationId) {
+      return;
+    }
+
+    const organization = await Organization.findById(organizationId);
+    if (!organization) {
+      return ResponseHandler.failure(res, "Organization not found", 400);
+    }
 
     try {
-      const assessments = await ObjectiveAssessment.find({ organizationId });
+      // const assessments = await ObjectiveAssessment.find({ organizationId });
+
+      const [objectiveAssessments, theoryAssessments] = await Promise.all([
+        ObjectiveAssessment.find({ organizationId }),
+        TheoryAssessment.find({ organizationId }),
+      ]);
+  
+      // Combine results from both models
+      const assessments = [
+        ...objectiveAssessments.map((a) => ({
+          ...a.toObject(),
+          type: "Objective", // Label to identify assessment type
+        })),
+        ...theoryAssessments.map((a) => ({
+          ...a.toObject(),
+          type: "Theory", // Label to identify assessment type
+        })),
+      ];
 
       if (!assessments.length) {
         return ResponseHandler.failure(
@@ -1440,7 +1456,10 @@ class ObjectAssessmentController {
     try {
       const { assessmentId } = req.params;
 
-      const assessment = await ObjectiveAssessment.findById(assessmentId);
+      const assessment = (
+        await ObjectiveAssessment.findById(assessmentId) ||
+        await TheoryAssessment.findById(assessmentId)
+      );
 
       if (!assessment) {
         return ResponseHandler.failure(res, "Assessment not found", 404);
@@ -1468,47 +1487,47 @@ class ObjectAssessmentController {
       );
     }
   }
-  
+
   // async assessmentResultSlip(req: Request, res: Response) {
   //   try {
   //     const { courseId, userId, groupId, subGroupId } = req.query;
-  
+
   //     // Validate required query parameters
   //     if (!courseId) {
   //       return ResponseHandler.failure(res, "Missing required parameter: courseId", 400);
   //     }
-  
+
   //     // Fetch the course and populate assessments
   //     const course = await Course.findById(courseId).populate("assessments");
   //     if (!course) {
   //       return ResponseHandler.failure(res, "Course not found", 404);
   //     }
-  
+
   //     const { assessments, courseCode, title: courseTitle } = course;
-  
+
   //     if (!assessments || assessments.length === 0) {
   //       return ResponseHandler.failure(res, "No assessments found for the course", 404);
   //     }
-  
+
   //     // Query submissions based on the provided filters
   //     const filters: any = { courseId };
   //     if (userId) filters.learnerId = userId;
   //     if (groupId) filters.groupId = groupId;
   //     if (subGroupId) filters.subGroupId = subGroupId;
-  
+
   //     const submissions = await Submission.find(filters)
   //       .populate("learnerId", "firstName lastName userId image")
   //       .populate("assessmentId", "totalMark");
-  
+
   //     if (!submissions || submissions.length === 0) {
   //       return ResponseHandler.failure(res, "No submissions found for the provided filters", 404);
   //     }
-  
+
   //     // Format the results
   //     const results = submissions.map((submission) => {
   //       const learner = submission.learnerId as any;
   //       const assessment = submission.assessmentId as any;
-  
+
   //       return {
   //         courseTitle,
   //         courseCode,
@@ -1524,7 +1543,7 @@ class ObjectAssessmentController {
   //         resultGeneratedOn: new Date().toLocaleDateString("en-GB"), // Format: DD/MM/YYYY
   //       };
   //     });
-  
+
   //     return ResponseHandler.success(res, results, "Assessment result slips fetched successfully");
   //   } catch (error) {
   //     console.error("Error fetching assessment result slips:", error);
@@ -1533,77 +1552,215 @@ class ObjectAssessmentController {
   // }
 
   async assessmentResultSlipByAdmin(req: Request, res: Response) {
-    try {
-      const { courseId, userId, groupId, subGroupId } = req.query;
+    const { userId, subGroupId, groupId, courseId } = req.query;
   
-      // Validate required query parameters
+    try {
+      // Validate the courseId
       if (!courseId) {
-        return ResponseHandler.failure(res, "Missing required parameter: courseId", 400);
+        return res.status(400).json({ message: "Course ID is required" });
+      }
+
+      if (typeof courseId !== 'string') {
+        return res.status(400).json({ message: "Invalid course ID" });
       }
   
-      // Fetch the course and populate assessments
+      // Fetch the assessmentId from the course
       const course = await Course.findById(courseId).populate("assessments");
       if (!course) {
-        return ResponseHandler.failure(res, "Course not found", 404);
+        return res.status(404).json({ message: "Course not found" });
       }
   
-      const { assessments, courseCode, title: courseTitle } = course;
-  
-      if (!assessments || assessments.length === 0) {
-        return ResponseHandler.failure(res, "No assessments found for the course", 404);
+      const assessmentId = course.assessments?.[0];
+      if (!assessmentId) {
+        return res
+          .status(404)
+          .json({ message: "No assessments found for the specified course" });
       }
   
-      // Query submissions based on the provided filters
-      const filters: any = { courseId };
+      let submissions;
   
-      // Apply filters for userId, groupId, or subGroupId
-      if (userId) filters.learnerId = userId;
-      if (groupId) filters.groupId = groupId;
-      if (subGroupId) filters.subGroupId = subGroupId;
-  
-      // Fetch submissions and sort by createdAt in descending order to get the latest one
-      const submissions = await Submission.find(filters)
-        .populate("learnerId", "firstName lastName userId image")
-        .populate("assessmentId", "totalMark")
-        .sort({ createdAt: -1 })  // Sort submissions by creation date (most recent first)
-        .limit(1);  // Limit to the latest submission
-  
-      if (!submissions || submissions.length === 0) {
-        return ResponseHandler.failure(res, "No submissions found for the provided filters", 404);
+      // 1. Query by userId
+      if (userId) {
+        submissions = await Submission.find({
+          learnerId: userId,
+          courseId,
+          assessmentId,
+        })
+          .populate("learnerId", "firstName lastName userId image")
+          .populate("assessmentId", "totalMark")
+          .populate("courseId", "title code") 
+          .sort({ createdAt: -1 }) // Sort submissions by creation date (most recent first)
+          .limit(1);
       }
   
-      // Format the results
-      const results = submissions.map((submission) => {
-        const learner = submission.learnerId as any;
-        const assessment = submission.assessmentId as any;
+      // 2. Query by subGroupId
+      else if (subGroupId) {  
+        // Fetch the specific subgroup by subGroupId
+        const group = await Group.findOne(
+          { "subGroups._id": subGroupId },
+          { "subGroups.$": 1 } // Select only the matching subgroup
+        );
+      
+        if (!group || !group.subGroups || group.subGroups.length === 0) {
+          return res.status(404).json({ message: "SubGroup not found" });
+        }
+      
+        // Get the specific subgroup and its members
+        const subGroup = group.subGroups.find((sg) => sg._id.toString() === subGroupId.toString());
+        if (!subGroup) {
+          return res.status(404).json({ message: "SubGroup not found in the group" });
+        }
+      
+        // const memberIds = subGroup.members;
+        const memberIds = subGroup.members.map((id) => new mongoose.Types.ObjectId(id));
+        console.log("membersIds: ", memberIds)
+        const courseIdObjectId = new mongoose.Types.ObjectId(courseId);
+      
+        // Query the submissions
+        submissions = await Submission.find({
+          learnerId: { $in: memberIds },
+          courseId: courseIdObjectId,
+          assessmentId: assessmentId._id,
+        })
+          .populate("learnerId", "firstName lastName userId image")
+          .populate("assessmentId", "totalMark")
+          .populate("courseId", "title code") 
+          .sort({ createdAt: -1 }) // Sort submissions by creation date (most recent first)
+          .limit(1);
+
+        console.log("Submissions: ", submissions)
+      }      
   
-        return {
-          courseTitle,
-          courseCode,
-          firstName: learner?.firstName || null,
-          lastName: learner?.lastName || null,
-          userId: learner?.userId || null,
-          realUserId: learner?._id || null,
-          totalMarksObtained: submission.score || 0,
-          totalObtainableMarks: assessment?.totalMark || 0,
-          percentageOfTotalObtainableMarks: submission.percentageScore || 0,
-          status: submission.passOrFail === "Fail" ? "Retake" : "Pass",
-          picture: learner?.image || null,
-          resultGeneratedOn: new Date().toLocaleDateString("en-GB"), // Format: DD/MM/YYYY
-        };
-      });
+      // 3. Query by groupId
+      else if (groupId) {
+        const group = await Group.findById(groupId).select("members subGroups");
+        if (!group) {
+          return res.status(404).json({ message: "Group not found" });
+        }
   
-      return ResponseHandler.success(res, results, "Assessment result slip fetched successfully");
+        // Collect all member IDs from both group members and subgroup members
+        const groupMemberIds = group.members;
+        const subGroupMemberIds = group.subGroups.flatMap((subGroup) => subGroup.members);
+        const allMemberIds = [...groupMemberIds, ...subGroupMemberIds];
+  
+        submissions = await Submission.find({
+          learnerId: { $in: allMemberIds },
+          courseId,
+          assessmentId,
+        })
+          .populate("learnerId", "firstName lastName userId image")
+          .populate("assessmentId", "totalMark")
+          .populate("courseId", "title code") 
+          .sort({ createdAt: -1 }) // Sort submissions by creation date (most recent first)
+          .limit(1);
+      }
+  
+      // If no query parameter is valid
+      else {
+        return res
+          .status(400)
+          .json({ message: "Provide userId, subGroupId, or groupId" });
+      }
+  
+      return res.status(200).json({ submissions });
     } catch (error) {
-      console.error("Error fetching assessment result slip:", error);
-      return ResponseHandler.failure(res, "An error occurred while fetching the assessment result slip", 500);
+      console.error("Error fetching submissions:", error);
+      return res.status(500).json({ message: "An error occurred", error });
     }
-  }  
+  }
+
+  // async assessmentResultSlipByAdminn(req: Request, res: Response) {
+  //   try {
+  //     const { courseId, userId, groupId, subGroupId } = req.query;
+
+  //     // Validate required query parameters
+  //     if (!courseId) {
+  //       return ResponseHandler.failure(
+  //         res,
+  //         "Missing required parameter: courseId",
+  //         400
+  //       );
+  //     }
+
+  //     // Fetch the course and populate assessments
+  //     const course = await Course.findById(courseId).populate("assessments");
+  //     if (!course) {
+  //       return ResponseHandler.failure(res, "Course not found", 404);
+  //     }
+
+  //     const { assessments, courseCode, title: courseTitle } = course;
+
+  //     if (!assessments || assessments.length === 0) {
+  //       return ResponseHandler.failure(
+  //         res,
+  //         "No assessments found for the course",
+  //         404
+  //       );
+  //     }
+
+  //     // Query submissions based on the provided filters
+  //     const filters: any = { courseId };
+
+  //     // Apply filters for userId, groupId, or subGroupId
+  //     if (userId) filters.learnerId = userId;
+  //     if (groupId) filters.groupId = groupId;
+  //     if (subGroupId) filters.subGroupId = subGroupId;
+
+  //     // Fetch submissions and sort by createdAt in descending order to get the latest one
+      // const submissions = await Submission.find(filters)
+      //   .populate("learnerId", "firstName lastName userId image")
+      //   .populate("assessmentId", "totalMark")
+      //   .sort({ createdAt: -1 }) // Sort submissions by creation date (most recent first)
+      //   .limit(1); // Limit to the latest submission
+
+  //     if (!submissions || submissions.length === 0) {
+  //       return ResponseHandler.failure(
+  //         res,
+  //         "No submissions found for the provided filters",
+  //         404
+  //       );
+  //     }
+
+  //     // Format the results
+  //     const results = submissions.map((submission) => {
+  //       const learner = submission.learnerId as any;
+  //       const assessment = submission.assessmentId as any;
+
+      //   return {
+      //     courseTitle,
+      //     courseCode,
+      //     firstName: learner?.firstName || null, D
+      //     lastName: learner?.lastName || null, D
+      //     userId: learner?.userId || null, D
+      //     realUserId: learner?._id || null,
+      //     totalMarksObtained: submission.score || 0, D
+      //     totalObtainableMarks: assessment?.totalMark || 0, D
+      //     percentageOfTotalObtainableMarks: submission.percentageScore || 0, D
+      //     status: submission.passOrFail === "Fail" ? "Retake" : "Pass", D
+      //     picture: learner?.image || null, D
+      //     resultGeneratedOn: new Date().toLocaleDateString("en-GB"), // Format: DD/MM/YYYY
+      //   };
+      // });
+
+  //     return ResponseHandler.success(
+  //       res,
+  //       results,
+  //       "Assessment result slip fetched successfully"
+  //     );
+  //   } catch (error) {
+  //     console.error("Error fetching assessment result slip:", error);
+  //     return ResponseHandler.failure(
+  //       res,
+  //       "An error occurred while fetching the assessment result slip",
+  //       500
+  //     );
+  //   }
+  // }
 
   async assessmentResultSlipWORKING(req: Request, res: Response) {
     try {
       const { assessmentId, userId, groupId, subGroupId } = req.query;
-  
+
       // Validate required query parameters
       if (!assessmentId) {
         return ResponseHandler.failure(
@@ -1612,10 +1769,10 @@ class ObjectAssessmentController {
           400
         );
       }
-  
+
       const organizationId = await getOrganizationId(req, res);
       if (!organizationId) return; // `getOrganizationId` already sends a response on failure.
-  
+
       // Fetch the assessment and ensure it's linked to the organization
       const assessment = await ObjectiveAssessment.findOne({
         _id: assessmentId,
@@ -1628,9 +1785,9 @@ class ObjectAssessmentController {
           404
         );
       }
-  
+
       let learners: IUser[] = [];
-  
+
       // Fetch learners based on the query parameters
       if (userId) {
         // Single user
@@ -1680,7 +1837,7 @@ class ObjectAssessmentController {
           400
         );
       }
-  
+
       if (!learners.length) {
         return ResponseHandler.failure(
           res,
@@ -1688,13 +1845,13 @@ class ObjectAssessmentController {
           404
         );
       }
-  
+
       // Fetch submissions for the specified learners and assessment
       const submissions = await Submission.find({
         assessmentId,
         learnerId: { $in: learners.map((user) => user._id) },
       });
-  
+
       if (!submissions.length) {
         return ResponseHandler.success(
           res,
@@ -1703,7 +1860,7 @@ class ObjectAssessmentController {
           200
         );
       }
-  
+
       // Generate result slips for each submission
       const resultSlips = submissions.map((submission) => {
         const learner = learners.find(
@@ -1711,7 +1868,7 @@ class ObjectAssessmentController {
             (user._id as unknown as string).toString() ===
             submission.learnerId.toString()
         );
-  
+
         return {
           courseTitle: assessment.courseTitle,
           courseCode: assessment.courseCode,
@@ -1726,7 +1883,7 @@ class ObjectAssessmentController {
           resultGeneratedOn: new Date().toISOString(),
         };
       });
-  
+
       return ResponseHandler.success(
         res,
         resultSlips,
@@ -1740,7 +1897,7 @@ class ObjectAssessmentController {
         error.status || 500
       );
     }
-  }  
+  }
 
   async assessmentResultSlip(req: Request, res: Response) {
     try {
@@ -1750,7 +1907,7 @@ class ObjectAssessmentController {
       const submission = await Submission.findOne({
         _id: submissionId,
         learnerId: userId,
-      }); 
+      });
 
       if (!submission) {
         return ResponseHandler.failure(res, "Submission not found");

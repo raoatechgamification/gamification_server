@@ -1,6 +1,6 @@
 import { Request, Response } from "express";
 import Submission from "../models/submission.model";
-import Assessment from "../models/assessment.model";
+import Assessment from "../models/theoryAssessment.model";
 import { ResponseHandler } from "../middlewares/responseHandler.middleware";
 import { uploadToCloudinary } from "../utils/cloudinaryUpload";
 import multer from "multer";
@@ -34,7 +34,11 @@ export class SubmissionController {
       let fileUploadResult: any = null;
 
       if (file) {
-        fileUploadResult = await uploadToCloudinary(file.buffer, file.mimetype, "submission");
+        fileUploadResult = await uploadToCloudinary(
+          file.buffer,
+          file.mimetype,
+          "submission"
+        );
 
         // const filename = `${Date.now()}-${file.originalname}`;
         // const fileStream = file.buffer;
@@ -54,7 +58,7 @@ export class SubmissionController {
         answerText,
         learnerId: learnerId,
         assessmentId: assessmentId,
-        submittedFile: fileUploadResult ? fileUploadResult.secure_url : null, 
+        submittedFile: fileUploadResult ? fileUploadResult.secure_url : null,
         // submittedFile: fileUploadResult ? fileUploadResult.Location : null,
       });
 

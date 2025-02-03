@@ -13,8 +13,10 @@ import billRoutes from "./bill.routes";
 import sessionRoutes from "./session.routes";
 import adminRoutes from "./admin.routes";
 import certificateRoutes from "./certificate.routes";
-
+import permissionRoutes from "./permissions.routes";
+import roleRoutes from "./role.routes";
 import LandingPageRoute from "./landingpage.routes"
+
 router.use("/auth", authRoutes);
 router.use("/super-admin", superAdminRoutes);
 router.use("/admin", adminRoutes);
@@ -28,6 +30,8 @@ router.use("/bill", billRoutes);
 router.use("/session", sessionRoutes);
 router.use("/certificates", certificateRoutes);
 router.use("/landing-page", LandingPageRoute)
+router.use("/permissions", permissionRoutes);
+router.use("/roles", roleRoutes)
 
 router.use("/", (req, res) => {
   res.json({

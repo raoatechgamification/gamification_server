@@ -1,5 +1,6 @@
 import { Router } from "express";
 import AdminController from "../controllers/admin.controller";
+import { SubAdminController } from "../controllers/auth/auth.subadmin.controller"
 import { authenticate, authorize, checkSubadminPermission } from "../middlewares/auth.middleware";
 import { upload } from "../utils/upload.utils";
 import { userIdValidator } from "../validators/admin.validator";
@@ -14,10 +15,20 @@ const {
   updateGeneralInstructorTerm,
   archiveUser,
   enableUser,
-  disableUser
+  disableUser,
+  archiveCourse
 } = AdminController;
 
+const { getAllSubadmins } = new SubAdminController()
+
 const router = Router();
+
+router.get(
+  "/subadmins",
+  authenticate,
+  authorize(["admin"]),
+  getAllSubadmins
+)
 
 router.get(
   "/users", 
@@ -78,6 +89,7 @@ router.patch(
   "/user/:userId/disable", 
   authenticate,
   authorize(["admin", "subAdmin"]),
+  checkSubadminPermission("User Management", "Disable User"),
   disableUser
 );
 
@@ -85,6 +97,7 @@ router.patch(
   "/user/:userId/archive", 
   authenticate,
   authorize(["admin", "subAdmin"]),
+  checkSubadminPermission("User Management", "Archive User"),
   archiveUser
 );
 
@@ -92,9 +105,17 @@ router.patch(
   "/user/:userId/enable", 
   authenticate,
   authorize(["admin", "subAdmin"]),
+  checkSubadminPermission("User Management", "Enable User"),
   enableUser
 );
 
+router.patch(
+  "/courses/:courseId/archive",
+  authenticate,
+  authorize(["admin", "subAdmin"]),
+  checkSubadminPermission("Course Management", "Archive Course"),
+  archiveCourse
+)
 
 
 export default router;

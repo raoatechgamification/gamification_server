@@ -3,6 +3,7 @@ import { authenticate, authorize, checkSubadminPermission } from "../middlewares
 import { AssessmentController } from "../controllers/assessment.controller";
 import { SubmissionController } from "../controllers/submission.controller";
 import ObjectAssessmentController from "../controllers/objectiveAssessment.controller";
+import TheoryAssessmentController from "../controllers/theoryAssessment.controller";
 
 import {
   createAssessmentValidator,
@@ -40,6 +41,11 @@ const {
   assessmentResultSlip,
 } = ObjectAssessmentController;
 
+const {
+  createTheoryAssessment,
+  editTheoryAssessment
+} = TheoryAssessmentController;
+
 const { submitAssessment } = new SubmissionController();
 
 router.post(
@@ -60,6 +66,14 @@ router.post(
   ...createObjectiveAssessmentValidator,
   createObjectiveAssessment
 );
+
+router.post(
+  "/theory",
+  authenticate,
+  authorize(["admin", "subAdmin"]),
+  checkSubadminPermission("Assessment Management", "Create Theory Assessment"),
+  createTheoryAssessment
+)
 
 router.post(
   "/objective/from-question-bank",
@@ -97,6 +111,14 @@ router.put(
   ...createObjectiveAssessmentValidator,
   editObjectiveAssessment
 );
+
+router.put(
+  "/:id",
+  authenticate,
+  authorize(["admin", "subAdmin"]),
+  checkSubadminPermission("Assessment Management", "Edit Assessment"),
+  editTheoryAssessment
+)
 
 // router.put(
 //   "/:submissionId/grade",

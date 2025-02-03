@@ -7621,3 +7621,735 @@
 2025-01-20 18:01:36 [info]: POST /678ded8cfc769e07e57372af/assign/:subGroupId? 404 - Request Body: {"userIds":["676965e49626eab20cafeb69","674d6507cad288132dd56fc1"]}
 2025-01-20 18:01:49 [info]: POST /678ded8cfc769e07e57372af/assign 200 - Request Body: {"userIds":["676965e49626eab20cafeb69","674d6507cad288132dd56fc1"]}
 2025-01-20 18:31:58 [info]: POST /assign-course/677f95f78d05d203b62c0711 200 - Request Body: {"groupId":"678e7898079d899002b90e77","dueDate":"12-31-2025"}
+2025-01-24 12:59:57 [info]: POST /login 200 - Request Body: {"email":"seunoduez@gmail.com","password":"Timpearl05$$$"}
+2025-01-24 13:01:43 [info]: POST /objective 201 - Request Body: {"title":"Mixed Question Types Quiz","description":"A quiz with various question types to test your knowledge.","marksPerQuestion":5,"numberOfTrials":5,"purpose":"Learning assessment","passMark":60,"duration":30,"totalMark":100,"startDate":"2024-11-25","endDate":"2024-12-01","questions":[{"question":"The Eiffel Tower is in London.","type":"True or False","answer":"false","mark":15},{"question":"______ is the largest ocean on Earth.","type":"Fill in the Gap","answer":"Pacific Ocean","mark":25},{"question":"Is climate change a global concern?","type":"Yes or No","answer":"yes","mark":15},{"question":"Which of these is a prime number?","type":"Multichoice","options":["4","6","7","9"],"answer":"7","mark":15},{"question":"Is a Dog a mammal?","type":"Yes or No","answer":"yes","mark":10}]}
+2025-01-24 13:09:42 [info]: POST /add 201 - Request Body: {"code":"MOQ-246","price":50000,"title":"Sociology and Test","objective":"Sociology and Test","instructorId":"67453884a835dc3c8062914d","duration":"six weeks","lessonFormat":".xls","assessments":["679381270cde8880899ab59c"],"certificate":["675fec0e6fe5ccac4b4ac00b"],"showInstructor":true}
+2025-01-24 13:13:23 [info]: POST / 200 - Request Body: {"name":"Tehcnical Drawing Club","numberOfArms":3,"subGroups":[{"name":"Physics"},{"name":"Chemistry"},{"name":"Biology"}]}
+2025-01-24 13:19:14 [info]: POST /679383e20cde8880899ab5b1/add-users 200 - Request Body: {"userIds":["676965e49626eab20cafeb69","674d6507cad288132dd56fc1","67909f65a2cfe9e1e3ffc7a1"]}
+2025-01-24 13:20:56 [info]: POST /assign-course/679383060cde8880899ab5ac 200 - Request Body: {"groupId":"679383e20cde8880899ab5b1","dueDate":"12-31-2025"}
+2025-01-24 13:23:03 [info]: POST /login 200 - Request Body: {"email":"bimpe@gmail.com","password":"Timpearl05$$$"}
+2025-01-24 13:38:37 [info]: PATCH /679383060cde8880899ab5ac/move-to-ongoing 200
+2025-01-24 13:38:43 [info]: POST /login 200 - Request Body: {"email":"bimpe@gmail.com","password":"Timpearl05$$$"}
+2025-01-24 13:45:38 [info]: POST /679383060cde8880899ab5ac/679381270cde8880899ab59c/take 201 - Request Body: {"answers":[{"questionId":"679381270cde8880899ab59d","answer":false},{"questionId":"679381270cde8880899ab59e","answer":"Pacific Ocean"},{"questionId":"679381270cde8880899ab59f","answer":"yes"},{"questionId":"679381270cde8880899ab5a0","answer":"7"},{"questionId":"679381270cde8880899ab5a1","answer":"no"}]}
+2025-01-24 13:46:40 [info]: GET /results?courseId=6769d66af2911fd9e5ce7995&userId=676965e49626eab20cafeb69 200 - Query Params: {"courseId":"6769d66af2911fd9e5ce7995","userId":"676965e49626eab20cafeb69"}
+2025-01-24 13:46:40 [info]: GET /results?courseId=6769d66af2911fd9e5ce7995&userId=676965e49626eab20cafeb69 200
+2025-01-24 13:51:54 [info]: GET /679383e20cde8880899ab5af 200
+2025-01-24 13:53:45 [info]: GET /results?courseId=6769d66af2911fd9e5ce7995&subGroupId=679383e20cde8880899ab5b1 404 - Query Params: {"courseId":"6769d66af2911fd9e5ce7995","subGroupId":"679383e20cde8880899ab5b1"}
+2025-01-24 13:53:45 [info]: GET /results?courseId=6769d66af2911fd9e5ce7995&subGroupId=679383e20cde8880899ab5b1 404
+2025-01-24 13:54:30 [info]: GET /results?courseId=679383060cde8880899ab5ac&subGroupId=679383e20cde8880899ab5b1 404 - Query Params: {"courseId":"679383060cde8880899ab5ac","subGroupId":"679383e20cde8880899ab5b1"}
+2025-01-24 13:54:30 [info]: GET /results?courseId=679383060cde8880899ab5ac&subGroupId=679383e20cde8880899ab5b1 404
+2025-01-24 13:55:00 [info]: GET /results?courseId=679383060cde8880899ab5ac&groupId=679383e20cde8880899ab5af 404 - Query Params: {"courseId":"679383060cde8880899ab5ac","groupId":"679383e20cde8880899ab5af"}
+2025-01-24 13:55:00 [info]: GET /results?courseId=679383060cde8880899ab5ac&groupId=679383e20cde8880899ab5af 404
+2025-01-24 14:12:41 [info]: GET /results?courseId=679383060cde8880899ab5ac&subGroupId=679383e20cde8880899ab5b1 200 - Query Params: {"courseId":"679383060cde8880899ab5ac","subGroupId":"679383e20cde8880899ab5b1"}
+2025-01-24 14:12:41 [info]: GET /results?courseId=679383060cde8880899ab5ac&subGroupId=679383e20cde8880899ab5b1 200
+2025-01-24 14:14:15 [info]: GET /results?courseId=679383060cde8880899ab5ac&groupId=679383e20cde8880899ab5af 500 - Query Params: {"courseId":"679383060cde8880899ab5ac","groupId":"679383e20cde8880899ab5af"}
+2025-01-24 14:14:15 [info]: GET /results?courseId=679383060cde8880899ab5ac&groupId=679383e20cde8880899ab5af 500
+2025-01-24 14:14:53 [info]: GET /results?courseId=679383060cde8880899ab5ac&userId=676965e49626eab20cafeb69 500 - Query Params: {"courseId":"679383060cde8880899ab5ac","userId":"676965e49626eab20cafeb69"}
+2025-01-24 14:14:53 [info]: GET /results?courseId=679383060cde8880899ab5ac&userId=676965e49626eab20cafeb69 500
+2025-01-24 14:14:58 [info]: GET /results?courseId=679383060cde8880899ab5ac&userId=676965e49626eab20cafeb69 500 - Query Params: {"courseId":"679383060cde8880899ab5ac","userId":"676965e49626eab20cafeb69"}
+2025-01-24 14:14:58 [info]: GET /results?courseId=679383060cde8880899ab5ac&userId=676965e49626eab20cafeb69 500
+2025-01-24 14:15:16 [info]: GET /results?courseId=679383060cde8880899ab5ac&subGroupId=679383e20cde8880899ab5b1 500 - Query Params: {"courseId":"679383060cde8880899ab5ac","subGroupId":"679383e20cde8880899ab5b1"}
+2025-01-24 14:15:16 [info]: GET /results?courseId=679383060cde8880899ab5ac&subGroupId=679383e20cde8880899ab5b1 500
+2025-01-24 14:16:52 [info]: GET /results?courseId=679383060cde8880899ab5ac&userId=676965e49626eab20cafeb69 200 - Query Params: {"courseId":"679383060cde8880899ab5ac","userId":"676965e49626eab20cafeb69"}
+2025-01-24 14:16:52 [info]: GET /results?courseId=679383060cde8880899ab5ac&userId=676965e49626eab20cafeb69 200
+2025-01-24 14:17:17 [info]: GET /results?courseId=679383060cde8880899ab5ac&subGroupId=679383e20cde8880899ab5b1 200 - Query Params: {"courseId":"679383060cde8880899ab5ac","subGroupId":"679383e20cde8880899ab5b1"}
+2025-01-24 14:17:17 [info]: GET /results?courseId=679383060cde8880899ab5ac&subGroupId=679383e20cde8880899ab5b1 200
+2025-01-24 14:17:30 [info]: GET /results?courseId=679383060cde8880899ab5ac&groupId=679383e20cde8880899ab5af 500 - Query Params: {"courseId":"679383060cde8880899ab5ac","groupId":"679383e20cde8880899ab5af"}
+2025-01-24 14:17:30 [info]: GET /results?courseId=679383060cde8880899ab5ac&groupId=679383e20cde8880899ab5af 500
+2025-01-24 14:21:17 [info]: GET /results?courseId=679383060cde8880899ab5ac&groupId=679383e20cde8880899ab5af 200 - Query Params: {"courseId":"679383060cde8880899ab5ac","groupId":"679383e20cde8880899ab5af"}
+2025-01-24 14:21:17 [info]: GET /results?courseId=679383060cde8880899ab5ac&groupId=679383e20cde8880899ab5af 200
+2025-01-24 14:27:00 [info]: GET /results?courseId=679383060cde8880899ab5ac&groupId=679383e20cde8880899ab5af 500 - Query Params: {"courseId":"679383060cde8880899ab5ac","groupId":"679383e20cde8880899ab5af"}
+2025-01-24 14:27:00 [info]: GET /results?courseId=679383060cde8880899ab5ac&groupId=679383e20cde8880899ab5af 500
+2025-01-24 14:28:15 [info]: GET /results?courseId=679383060cde8880899ab5ac&groupId=679383e20cde8880899ab5af 200 - Query Params: {"courseId":"679383060cde8880899ab5ac","groupId":"679383e20cde8880899ab5af"}
+2025-01-24 14:28:15 [info]: GET /results?courseId=679383060cde8880899ab5ac&groupId=679383e20cde8880899ab5af 200
+2025-01-24 14:42:51 [info]: GET /results?courseId=679383060cde8880899ab5ac&groupId=679383e20cde8880899ab5af 200 - Query Params: {"courseId":"679383060cde8880899ab5ac","groupId":"679383e20cde8880899ab5af"}
+2025-01-24 14:42:51 [info]: GET /results?courseId=679383060cde8880899ab5ac&groupId=679383e20cde8880899ab5af 200
+2025-01-24 14:43:03 [info]: GET /results?courseId=679383060cde8880899ab5ac&subGroupId=679383e20cde8880899ab5b1 404 - Query Params: {"courseId":"679383060cde8880899ab5ac","subGroupId":"679383e20cde8880899ab5b1"}
+2025-01-24 14:43:03 [info]: GET /results?courseId=679383060cde8880899ab5ac&subGroupId=679383e20cde8880899ab5b1 404
+2025-01-24 14:43:19 [info]: GET /results?courseId=679383060cde8880899ab5ac&userId=676965e49626eab20cafeb69 200 - Query Params: {"courseId":"679383060cde8880899ab5ac","userId":"676965e49626eab20cafeb69"}
+2025-01-24 14:43:19 [info]: GET /results?courseId=679383060cde8880899ab5ac&userId=676965e49626eab20cafeb69 200
+2025-01-24 14:43:49 [info]: GET /results?courseId=679383060cde8880899ab5ac&subGroupId=679383e20cde8880899ab5b1 404 - Query Params: {"courseId":"679383060cde8880899ab5ac","subGroupId":"679383e20cde8880899ab5b1"}
+2025-01-24 14:43:49 [info]: GET /results?courseId=679383060cde8880899ab5ac&subGroupId=679383e20cde8880899ab5b1 404
+2025-01-24 14:45:13 [info]: GET /results?courseId=679383060cde8880899ab5ac&subGroupId=679383e20cde8880899ab5b1 404 - Query Params: {"courseId":"679383060cde8880899ab5ac","subGroupId":"679383e20cde8880899ab5b1"}
+2025-01-24 14:45:13 [info]: GET /results?courseId=679383060cde8880899ab5ac&subGroupId=679383e20cde8880899ab5b1 404
+2025-01-24 15:01:48 [info]: GET /results?courseId=679383060cde8880899ab5ac&subGroupId=679383e20cde8880899ab5b1 200 - Query Params: {"courseId":"679383060cde8880899ab5ac","subGroupId":"679383e20cde8880899ab5b1"}
+2025-01-24 15:01:48 [info]: GET /results?courseId=679383060cde8880899ab5ac&subGroupId=679383e20cde8880899ab5b1 200
+2025-01-24 15:02:23 [info]: GET /results?courseId=679383060cde8880899ab5ac&userId=676965e49626eab20cafeb69 200 - Query Params: {"courseId":"679383060cde8880899ab5ac","userId":"676965e49626eab20cafeb69"}
+2025-01-24 15:02:23 [info]: GET /results?courseId=679383060cde8880899ab5ac&userId=676965e49626eab20cafeb69 200
+2025-01-24 15:02:53 [info]: GET /results?courseId=679383060cde8880899ab5ac&groupId=679383e20cde8880899ab5af 200 - Query Params: {"courseId":"679383060cde8880899ab5ac","groupId":"679383e20cde8880899ab5af"}
+2025-01-24 15:02:53 [info]: GET /results?courseId=679383060cde8880899ab5ac&groupId=679383e20cde8880899ab5af 200
+2025-01-24 15:03:38 [info]: GET /results?courseId=679383060cde8880899ab5ac&subGroupId=679383e20cde8880899ab5b1 200 - Query Params: {"courseId":"679383060cde8880899ab5ac","subGroupId":"679383e20cde8880899ab5b1"}
+2025-01-24 15:03:38 [info]: GET /results?courseId=679383060cde8880899ab5ac&subGroupId=679383e20cde8880899ab5b1 200
+2025-01-24 15:03:41 [info]: GET /results?courseId=679383060cde8880899ab5ac&subGroupId=679383e20cde8880899ab5b1 200 - Query Params: {"courseId":"679383060cde8880899ab5ac","subGroupId":"679383e20cde8880899ab5b1"}
+2025-01-24 15:03:41 [info]: GET /results?courseId=679383060cde8880899ab5ac&subGroupId=679383e20cde8880899ab5b1 200
+2025-01-24 15:10:27 [info]: GET /results?courseId=679383060cde8880899ab5ac&subGroupId=679383e20cde8880899ab5b1 200 - Query Params: {"courseId":"679383060cde8880899ab5ac","subGroupId":"679383e20cde8880899ab5b1"}
+2025-01-24 15:10:27 [info]: GET /results?courseId=679383060cde8880899ab5ac&subGroupId=679383e20cde8880899ab5b1 200
+2025-01-24 15:10:33 [info]: GET /results?courseId=679383060cde8880899ab5ac&subGroupId=679383e20cde8880899ab5b1 200 - Query Params: {"courseId":"679383060cde8880899ab5ac","subGroupId":"679383e20cde8880899ab5b1"}
+2025-01-24 15:10:33 [info]: GET /results?courseId=679383060cde8880899ab5ac&subGroupId=679383e20cde8880899ab5b1 200
+2025-01-24 15:10:36 [info]: GET /results?courseId=679383060cde8880899ab5ac&subGroupId=679383e20cde8880899ab5b1 200 - Query Params: {"courseId":"679383060cde8880899ab5ac","subGroupId":"679383e20cde8880899ab5b1"}
+2025-01-24 15:10:36 [info]: GET /results?courseId=679383060cde8880899ab5ac&subGroupId=679383e20cde8880899ab5b1 200
+2025-01-24 15:11:01 [info]: GET /results?courseId=679383060cde8880899ab5ac&subGroupId=679383e20cde8880899ab5b1 200 - Query Params: {"courseId":"679383060cde8880899ab5ac","subGroupId":"679383e20cde8880899ab5b1"}
+2025-01-24 15:11:01 [info]: GET /results?courseId=679383060cde8880899ab5ac&subGroupId=679383e20cde8880899ab5b1 200
+2025-01-24 15:11:46 [info]: GET /results?courseId=679383060cde8880899ab5ac&subGroupId=679383e20cde8880899ab5b1 200 - Query Params: {"courseId":"679383060cde8880899ab5ac","subGroupId":"679383e20cde8880899ab5b1"}
+2025-01-24 15:11:46 [info]: GET /results?courseId=679383060cde8880899ab5ac&subGroupId=679383e20cde8880899ab5b1 200
+2025-01-24 15:13:49 [info]: GET /results?courseId=679383060cde8880899ab5ac&subGroupId=679383e20cde8880899ab5b1 200 - Query Params: {"courseId":"679383060cde8880899ab5ac","subGroupId":"679383e20cde8880899ab5b1"}
+2025-01-24 15:13:49 [info]: GET /results?courseId=679383060cde8880899ab5ac&subGroupId=679383e20cde8880899ab5b1 200
+2025-01-24 15:23:32 [info]: GET /results?courseId=679383060cde8880899ab5ac&subGroupId=679383e20cde8880899ab5b1 200 - Query Params: {"courseId":"679383060cde8880899ab5ac","subGroupId":"679383e20cde8880899ab5b1"}
+2025-01-24 15:23:32 [info]: GET /results?courseId=679383060cde8880899ab5ac&subGroupId=679383e20cde8880899ab5b1 200
+2025-01-24 15:31:02 [info]: GET /results?courseId=679383060cde8880899ab5ac&subGroupId=679383e20cde8880899ab5b1 200 - Query Params: {"courseId":"679383060cde8880899ab5ac","subGroupId":"679383e20cde8880899ab5b1"}
+2025-01-24 15:31:02 [info]: GET /results?courseId=679383060cde8880899ab5ac&subGroupId=679383e20cde8880899ab5b1 200
+2025-01-24 15:31:48 [info]: GET /results?courseId=679383060cde8880899ab5ac&subGroupId=679383e20cde8880899ab5b1 200 - Query Params: {"courseId":"679383060cde8880899ab5ac","subGroupId":"679383e20cde8880899ab5b1"}
+2025-01-24 15:31:48 [info]: GET /results?courseId=679383060cde8880899ab5ac&subGroupId=679383e20cde8880899ab5b1 200
+2025-01-24 15:35:29 [info]: POST /add 400 - Request Body: {"code":"MOQ-246","price":50000,"title":"Sociology and Test","objective":"Sociology and Test","instructorId":"67453884a835dc3c8062914d","duration":"six weeks","lessonFormat":".xls","assessments":["679381270cde8880899ab59c"],"certificate":["675fec0e6fe5ccac4b4ac00b"],"showInstructor":true}
+2025-01-24 15:35:30 [info]: POST /add 400 - Request Body: {"code":"MOQ-246","price":50000,"title":"Sociology and Test","objective":"Sociology and Test","instructorId":"67453884a835dc3c8062914d","duration":"six weeks","lessonFormat":".xls","assessments":["679381270cde8880899ab59c"],"certificate":["675fec0e6fe5ccac4b4ac00b"],"showInstructor":true}
+2025-01-24 15:35:56 [info]: GET /results?courseId=679383060cde8880899ab5ac&subGroupId=679383e20cde8880899ab5b1 200 - Query Params: {"courseId":"679383060cde8880899ab5ac","subGroupId":"679383e20cde8880899ab5b1"}
+2025-01-24 15:35:56 [info]: GET /results?courseId=679383060cde8880899ab5ac&subGroupId=679383e20cde8880899ab5b1 200
+2025-01-24 15:45:18 [info]: GET /results?courseId=679383060cde8880899ab5ac&subGroupId=679383e20cde8880899ab5b1 404 - Query Params: {"courseId":"679383060cde8880899ab5ac","subGroupId":"679383e20cde8880899ab5b1"}
+2025-01-24 15:45:18 [info]: GET /results?courseId=679383060cde8880899ab5ac&subGroupId=679383e20cde8880899ab5b1 404
+2025-01-24 15:52:22 [info]: GET /results?courseId=679383060cde8880899ab5ac&subGroupId=679383e20cde8880899ab5b1 200 - Query Params: {"courseId":"679383060cde8880899ab5ac","subGroupId":"679383e20cde8880899ab5b1"}
+2025-01-24 15:52:22 [info]: GET /results?courseId=679383060cde8880899ab5ac&subGroupId=679383e20cde8880899ab5b1 200
+2025-01-24 16:11:12 [info]: GET /results?courseId=679383060cde8880899ab5ac&subGroupId=679383e20cde8880899ab5b1 500 - Query Params: {"courseId":"679383060cde8880899ab5ac","subGroupId":"679383e20cde8880899ab5b1"}
+2025-01-24 16:11:12 [info]: GET /results?courseId=679383060cde8880899ab5ac&subGroupId=679383e20cde8880899ab5b1 500
+2025-01-24 16:11:18 [info]: GET /results?courseId=679383060cde8880899ab5ac&subGroupId=679383e20cde8880899ab5b1 500 - Query Params: {"courseId":"679383060cde8880899ab5ac","subGroupId":"679383e20cde8880899ab5b1"}
+2025-01-24 16:11:18 [info]: GET /results?courseId=679383060cde8880899ab5ac&subGroupId=679383e20cde8880899ab5b1 500
+2025-01-24 16:14:40 [info]: GET /results?courseId=679383060cde8880899ab5ac&subGroupId=679383e20cde8880899ab5b1 200 - Query Params: {"courseId":"679383060cde8880899ab5ac","subGroupId":"679383e20cde8880899ab5b1"}
+2025-01-24 16:14:40 [info]: GET /results?courseId=679383060cde8880899ab5ac&subGroupId=679383e20cde8880899ab5b1 200
+2025-01-24 17:45:05 [info]: POST /login 200 - Request Body: {"email":"backendseun@gmail.com","password":"OluwaseunOdueso123#"}
+2025-01-24 17:48:27 [info]: PATCH /679383060cde8880899ab5ac/move-to-ongoing 401
+2025-01-24 17:49:23 [info]: POST /login 200 - Request Body: {"email":"backendseun@gmail.com","password":"OluwaseunOdueso123#"}
+2025-01-24 17:51:17 [info]: PATCH /679383060cde8880899ab5ac/move-to-ongoing 200
+2025-01-24 17:52:07 [info]: PATCH /679383060cde8880899ab5ac/move-to-ongoing 401
+2025-01-24 17:52:21 [info]: PATCH /679383060cde8880899ab5ac/move-to-ongoing 400
+2025-01-24 17:52:25 [info]: POST /679383060cde8880899ab5ac/679381270cde8880899ab59c/take 201 - Request Body: {"answers":[{"questionId":"679381270cde8880899ab59d","answer":false},{"questionId":"679381270cde8880899ab59e","answer":"Pacific Ocean"},{"questionId":"679381270cde8880899ab59f","answer":"yes"},{"questionId":"679381270cde8880899ab5a0","answer":"7"},{"questionId":"679381270cde8880899ab5a1","answer":"no"}]}
+2025-01-24 17:52:45 [info]: GET /results?courseId=679383060cde8880899ab5ac&subGroupId=679383e20cde8880899ab5b1 200 - Query Params: {"courseId":"679383060cde8880899ab5ac","subGroupId":"679383e20cde8880899ab5b1"}
+2025-01-24 17:52:45 [info]: GET /results?courseId=679383060cde8880899ab5ac&subGroupId=679383e20cde8880899ab5b1 200
+2025-01-24 17:53:02 [info]: GET /results?courseId=679383060cde8880899ab5ac&subGroupId=679383e20cde8880899ab5b1 200 - Query Params: {"courseId":"679383060cde8880899ab5ac","subGroupId":"679383e20cde8880899ab5b1"}
+2025-01-24 17:53:02 [info]: GET /results?courseId=679383060cde8880899ab5ac&subGroupId=679383e20cde8880899ab5b1 200
+2025-01-24 17:54:09 [info]: POST /679383060cde8880899ab5ac/679381270cde8880899ab59c/take 201 - Request Body: {"answers":[{"questionId":"679381270cde8880899ab59d","answer":false},{"questionId":"679381270cde8880899ab59e","answer":"Pacific Ocean"},{"questionId":"679381270cde8880899ab59f","answer":"yes"},{"questionId":"679381270cde8880899ab5a0","answer":"7"},{"questionId":"679381270cde8880899ab5a1","answer":"no"}]}
+2025-01-24 17:55:07 [info]: GET /results?courseId=679383060cde8880899ab5ac&subGroupId=679383e20cde8880899ab5b1 200 - Query Params: {"courseId":"679383060cde8880899ab5ac","subGroupId":"679383e20cde8880899ab5b1"}
+2025-01-24 17:55:07 [info]: GET /results?courseId=679383060cde8880899ab5ac&subGroupId=679383e20cde8880899ab5b1 200
+2025-01-27 16:15:55 [info]: GET / 401
+2025-01-27 16:16:20 [info]: POST /login 200 - Request Body: {"email":"seunoduez@gmail.com","password":"Timpearl05$$$"}
+2025-01-27 16:16:56 [info]: GET / 200
+2025-01-27 16:17:42 [info]: GET / 200
+2025-01-27 17:38:27 [info]: POST /roles 200 - Request Body: {"name":"User Admin","permissions":["678a1dca6e8607a38ca491bb","64bfaea2d4f5e72f12345679"]}
+2025-01-27 17:39:59 [info]: POST / 400 - Request Body: {"name":"User Admin","permissions":["678a1dca6e8607a38ca491bb","64bfaea2d4f5e72f12345679"]}
+2025-01-27 17:40:21 [info]: POST / 201 - Request Body: {"name":"User Admin","permissions":["678a1dca6e8607a38ca491bb","678a1dca6e8607a38ca491b9"]}
+2025-01-27 17:41:07 [info]: POST / 409 - Request Body: {"name":"User Admin","permissions":["678a1dca6e8607a38ca491bb","678a1dca6e8607a38ca491b9"]}
+2025-01-27 18:01:40 [info]: GET / 500
+2025-01-27 18:02:41 [info]: GET / 500
+2025-01-27 18:03:57 [info]: GET / 500
+2025-01-27 18:08:50 [info]: GET / 200
+2025-01-28 09:49:41 [info]: POST /login 200 - Request Body: {"email":"seunoduez@gmail.com","password":"Timpearl05$$$"}
+2025-01-28 10:58:26 [info]: POST /single-create 201 - Request Body: {"firstName":"Timpel","lastName":"Timpearl","email":"backendseun@gmail.com","password":"Timpearl05$$$","country":"United States of America","username":"Timpearl","otherName":"Timileyin","phone":"+2349066318539","userType":"learner","gender":"female","dateOfBirth":"05-04-2004","address":"38, Ogunlana street","city":"Alimosho","LGA":"Alimosho","state":"Lagos","officeAddress":"1A, Hughes Street","officeCity":"Alagomeji","officeLGA":"Yaba","officeState":"Lagos","employerName":"Mr Green","ids":"[\"678dec783210215f3ff3d061\", \"678decfffc769e07e57372a7\"]"}
+2025-01-28 11:02:13 [info]: POST /single-create 500 - Request Body: {"firstName":"Timpel","lastName":"Timpearl","email":"backendseun@gmail.com","password":"Timpearl05$$$","country":"United States of America","username":"Timpearl","otherName":"Timileyin","phone":"+2349066318539","userType":"learner","gender":"female","dateOfBirth":"05-04-2004","address":"38, Ogunlana street","city":"Alimosho","LGA":"Alimosho","state":"Lagos","officeAddress":"1A, Hughes Street","officeCity":"Alagomeji","officeLGA":"Yaba","officeState":"Lagos","employerName":"Mr Green","ids":"[\"678dec783210215f3ff3d061\", \"678decfffc769e07e57372a7\"]","sendEmail":"true"}
+2025-01-28 11:03:35 [info]: POST /single-create 201 - Request Body: {"firstName":"Timpel","lastName":"Timpearl","email":"backendseun@gmail.com","password":"Timpearl05$$$","country":"United States of America","username":"Timpearl","otherName":"Timileyin","phone":"+2349066318539","userType":"learner","gender":"female","dateOfBirth":"05-04-2004","address":"38, Ogunlana street","city":"Alimosho","LGA":"Alimosho","state":"Lagos","officeAddress":"1A, Hughes Street","officeCity":"Alagomeji","officeLGA":"Yaba","officeState":"Lagos","employerName":"Mr Green","ids":"[\"678dec783210215f3ff3d061\", \"678decfffc769e07e57372a7\"]","sendEmail":"true"}
+2025-01-28 15:40:52 [info]: POST /login 200 - Request Body: {"email":"seunoduez@gmail.com","password":"Timpearl05$$$"}
+2025-01-28 15:41:12 [info]: GET / 200
+2025-01-28 15:55:14 [info]: GET / 200
+2025-01-28 16:43:10 [info]: POST /theory 401
+2025-01-28 16:43:39 [info]: POST /login 200 - Request Body: {"email":"seunoduez@gmail.com","password":"Timpearl05$$$"}
+2025-01-28 16:44:30 [info]: POST /theory 401
+2025-01-28 16:44:40 [info]: POST /api/v1/assessment/theory 500 - Request Body: {"title":"Sample Assessment","description":"This is a test assessment.","position":"1","totalMark":"100","passMark":"50","duration":"60","assessmentCode":"ABC123","questions":[{"question":"What is 2 + 2","mark":"10"}]}
+2025-01-28 17:06:45 [info]: POST /api/v1/assessment/theory 500 - Request Body: {"title":"Sample Assessment","description":"This is a test assessment.","position":"1","totalMark":"100","passMark":"50","duration":"60","assessmentCode":"ABC123","questions":[{"question":"What is 2 + 2","mark":"10"}]}
+2025-01-28 17:13:27 [info]: POST /api/v1/assessment/theory 500 - Request Body: {"title":"Sample Assessment","description":"This is a test assessment.","position":"1","totalMark":"100","passMark":"50","duration":"60","assessmentCode":"ABC123","questions":[{"question":"What is 2 + 2","mark":"10"}]}
+2025-01-28 17:14:09 [info]: POST /theory 400 - Request Body: {"title":"Sample Assessment","description":"This is a test assessment.","position":"1","totalMark":"100","passMark":"50","duration":"60","assessmentCode":"ABC123","questions":[{"question":"What is 2 + 2","mark":"10"},{"question":"Explain gravity","mark":"20"}]}
+2025-01-28 17:14:57 [info]: POST /theory 200 - Request Body: {"title":"Sample Assessment","description":"This is a test assessment.","position":"1","totalMark":"100","passMark":"50","duration":"60","assessmentCode":"ABC123","questions":[{"question":"What is 2 + 2","mark":"10"},{"question":"Explain gravity","mark":"20"}]}
+2025-01-28 17:19:50 [info]: POST /theory 200 - Request Body: {"title":"Sample Assessment","description":"This is a test assessment.","position":"1","totalMark":"100","passMark":"50","duration":"60","assessmentCode":"ABC123","questions":[{"question":"What is 2 + 2","mark":"10"},{"question":"Explain gravity","mark":"20"}]}
+2025-01-28 17:22:02 [info]: POST /theory 200 - Request Body: {"title":"Sample Assessment","description":"This is a test assessment.","position":"1","totalMark":"100","passMark":"50","duration":"60","assessmentCode":"ABC123","questions":[{"question":"What is 2 + 2","mark":"10"},{"question":"Explain gravity","mark":"20"}]}
+2025-01-28 17:30:06 [info]: POST /theory 200 - Request Body: {"title":"Sample Assessment","description":"This is a test assessment.","position":"1","totalMark":"100","passMark":"50","duration":"60","assessmentCode":"ABC123","questions":[{"question":"What is 2 + 2","mark":"10"},{"question":"Explain gravity","mark":"20"}]}
+2025-01-28 17:40:48 [info]: POST /theory 200 - Request Body: {"title":"Sample Assessment","description":"This is a test assessment.","position":"1","totalMark":"100","passMark":"50","duration":"60","assessmentCode":"ABC123","questions":[{"question":"What is 2 + 2","mark":"10"},{"question":"Explain gravity","mark":"20"}]}
+2025-01-28 17:53:58 [info]: POST /theory 200 - Request Body: {"title":"Sample Assessment","description":"This is a test assessment.","position":"1","totalMark":"100","passMark":"50","duration":"60","assessmentCode":"ABC123","questions":[{"question":"What is 2 + 2","mark":"10"},{"question":"Explain gravity","mark":"20"}]}
+2025-01-29 19:26:40 [info]: POST /login 200 - Request Body: {"email":"seunoduez@gmail.com","password":"Timpearl05$$$"}
+2025-01-29 19:34:28 [info]: POST /subadmin/register 401
+2025-01-29 19:35:07 [info]: POST /subadmin/register 500
+2025-01-29 19:39:03 [info]: POST /subadmin/register 500
+2025-01-29 19:41:22 [info]: POST /subadmin/register 500
+2025-01-29 19:52:00 [info]: POST /subadmin/register 500
+2025-01-29 19:53:02 [info]: POST /subadmin/register 500
+2025-01-29 19:55:05 [info]: POST /subadmin/register 500
+2025-01-29 19:57:32 [info]: POST /subadmin/register 500
+2025-01-29 19:59:37 [info]: POST /subadmin/register 201 - Request Body: {"firstName":"Ore","lastName":"Ife","email":"oreofe@gmail.com","password":"oreofe10#"}
+2025-01-29 20:14:05 [info]: POST /subadmin/register 500
+2025-01-29 20:16:27 [info]: POST /subadmin/register 500
+2025-01-29 20:24:34 [info]: POST /single-create 201 - Request Body: {"firstName":"Timpel","lastName":"Timpearl","email":"nana@gmail.com","password":"Timpearl05$$$","country":"United States of America","username":"Timpearl","otherName":"Timileyin","phone":"+2349066318539","userType":"learner","gender":"female","dateOfBirth":"05-04-2004","address":"38, Ogunlana street","city":"Alimosho","LGA":"Alimosho","state":"Lagos","officeAddress":"1A, Hughes Street","officeCity":"Alagomeji","officeLGA":"Yaba","officeState":"Lagos","employerName":"Mr Green","ids":"[\"678dec783210215f3ff3d061\", \"678decfffc769e07e57372a7\"]","sendEmail":"false"}
+2025-01-29 20:26:38 [info]: POST /subadmin/register 201 - Request Body: {"firstName":"Sewa","lastName":"Olabode","email":"sewa@gmail.com","password":"sewaOla309$"}
+2025-01-29 22:16:03 [info]: GET /role/6797b6f46f26743df7c1c749 200
+2025-01-29 22:16:14 [info]: GET /6797b6f46f26743df7c1c749 401
+2025-01-29 22:16:39 [info]: POST /login 200 - Request Body: {"email":"seunoduez@gmail.com","password":"Timpearl05$$$"}
+2025-01-29 22:16:49 [info]: POST /login 200 - Request Body: {"email":"seunoduez@gmail.com","password":"Timpearl05$$$"}
+2025-01-29 22:17:24 [info]: GET /6797b6f46f26743df7c1c749 200
+2025-01-29 22:18:34 [info]: GET /6797b6f46f26743df7c1c749 200
+2025-01-29 22:24:07 [info]: GET /6797b6f46f26743df7c1c745 500
+2025-01-29 22:25:13 [info]: GET /6797b6f46f26743df7c1c745 403
+2025-01-29 22:41:32 [info]: GET /6797b6f46f26743df7c1c745 403
+2025-01-29 22:42:31 [info]: GET /6797b6f46f26743df7c1c745 403
+2025-01-29 22:42:38 [info]: GET /6797b6f46f26743df7c1c749 200
+2025-01-29 22:49:51 [info]: DELETE /678a1dcb6e8607a38ca491db 403
+2025-01-29 22:50:16 [info]: DELETE /6797b6f46f26743df7c1c749 200
+2025-01-29 22:50:30 [info]: GET /6797b6f46f26743df7c1c749 403
+2025-01-29 22:58:22 [info]: POST / 201 - Request Body: {"name":"User Admin","permissions":["678a1dca6e8607a38ca491bb","678a1dca6e8607a38ca491b9"]}
+2025-01-29 22:58:40 [info]: GET /679aa47ee4ca50e057252461 200
+2025-01-29 22:59:13 [info]: DELETE /679aa47ee4ca50e057252461 200
+2025-01-29 22:59:28 [info]: DELETE /679aa47ee4ca50e057252461 403
+2025-01-30 09:52:23 [info]: POST /login 200 - Request Body: {"email":"seunoduez@gmail.com","password":"Timpearl05$$$"}
+2025-01-30 09:52:35 [info]: POST /login 200 - Request Body: {"email":"seunoduez@gmail.com","password":"Timpearl05$$$"}
+2025-01-30 09:54:15 [info]: GET /subadmins 200
+2025-01-30 09:56:01 [info]: GET /subadmins 200
+2025-01-30 09:56:05 [info]: GET /subadmins 200
+2025-01-30 10:07:45 [info]: POST / 201 - Request Body: {"name":"User Admin","permissions":["678a1dca6e8607a38ca491bb","678a1dca6e8607a38ca491b9"]}
+2025-01-30 10:07:51 [info]: POST / 409 - Request Body: {"name":"User Admin","permissions":["678a1dca6e8607a38ca491bb","678a1dca6e8607a38ca491b9"]}
+2025-01-30 10:08:10 [info]: POST / 201 - Request Body: {"name":"Advisor","permissions":["678a1dca6e8607a38ca491bb","678a1dca6e8607a38ca491b9"]}
+2025-01-30 10:08:21 [info]: GET / 200
+2025-01-30 12:25:07 [info]: GET /subadmins 200
+2025-01-30 12:26:10 [info]: GET / 200
+2025-01-30 12:26:20 [info]: POST / 409 - Request Body: {"name":"Advisor","permissions":["678a1dca6e8607a38ca491bb","678a1dca6e8607a38ca491b9"]}
+2025-01-30 12:30:54 [info]: POST / 201 - Request Body: {"name":"Bursar","permissions":["678a1dca6e8607a38ca491bb","678a1dca6e8607a38ca491b9","678a1dca6e8607a38ca491c1","678a1dca6e8607a38ca491c2","678a1dca6e8607a38ca491c4","678a1dca6e8607a38ca491c6","678a1dca6e8607a38ca491c8"]}
+2025-01-30 12:31:15 [info]: PATCH /679b62eec02596c85c0db31c/subadmins/679a7a97a954e144af79599f 200
+2025-01-30 12:31:41 [info]: GET /subadmins 200
+2025-01-30 12:33:19 [info]: PATCH /679b62eec02596c85c0db31c/subadmins/679a7a97a954e144af79599f 200
+2025-01-30 14:33:32 [info]: POST / 201 - Request Body: {"name":"Account Officer","permissions":["678a1dca6e8607a38ca491c4","678a1dca6e8607a38ca491c6","678a1dca6e8607a38ca491c8"]}
+2025-01-30 14:34:44 [info]: POST /subadmin/register 400 - Request Body: {"firstName":"Sewa","lastName":"Olabode","email":"tola@gmail.com","password":"sewaOla309$","roleId":"679b7fac5b8d8f26be5b5766"}
+2025-01-30 14:35:28 [info]: POST /subadmin/register 201 - Request Body: {"firstName":"Sewa","lastName":"Olabode","email":"tola@gmail.com","password":"sewaOla309$","roleId":"679b7fac5b8d8f26be5b5765"}
+2025-01-30 15:58:14 [info]: GET /subadmins 200
+2025-01-30 16:36:02 [info]: GET /subadmins 200
+2025-01-30 16:41:34 [info]: PUT /subadmin/679a7a97a954e144af79599f 401
+2025-01-30 16:41:44 [info]: POST /login 200 - Request Body: {"email":"seunoduez@gmail.com","password":"Timpearl05$$$"}
+2025-01-30 16:42:03 [info]: PUT /subadmin/679a7a97a954e144af79599f 401
+2025-01-30 16:43:20 [info]: POST /login 200 - Request Body: {"email":"seunoduez@gmail.com","password":"Timpearl05$$$"}
+2025-01-30 16:43:39 [info]: PUT /subadmin/679a7a97a954e144af79599f 401
+2025-01-30 16:43:57 [info]: PUT /subadmin/679a7a97a954e144af79599f 200
+2025-01-30 17:02:43 [info]: GET / 200
+2025-01-30 17:13:34 [info]: GET / 200
+2025-01-30 17:16:01 [info]: PUT /679b417af57f3f0e78a8c51b 404 - Request Body: {"name":"Advisor Sub-admin","permissions":["678a1dca6e8607a38ca491b9","678a1dca6e8607a38ca491bb","678a1dca6e8607a38ca491c4","678a1dca6e8607a38ca491c6","678a1dca6e8607a38ca491c8"]}
+2025-01-30 17:16:29 [info]: PUT /679b417af57f3f0e78a8c51b 404 - Request Body: {"name":"Advisor Sub-admin","permissions":["678a1dca6e8607a38ca491b9","678a1dca6e8607a38ca491bb","678a1dca6e8607a38ca491c4","678a1dca6e8607a38ca491c6","678a1dca6e8607a38ca491c8"]}
+2025-01-30 17:17:36 [info]: PUT /679b417af57f3f0e78a8c51b 200 - Request Body: {"name":"Advisor Sub-admin","permissions":["678a1dca6e8607a38ca491b9","678a1dca6e8607a38ca491bb","678a1dca6e8607a38ca491c4","678a1dca6e8607a38ca491c6","678a1dca6e8607a38ca491c8"]}
+2025-01-30 17:19:39 [info]: PUT /679b417af57f3f0e78a8c51b 200 - Request Body: {"name":"Advisor","permissions":["678a1dca6e8607a38ca491b9","678a1dca6e8607a38ca491bb","678a1dca6e8607a38ca491c4","678a1dca6e8607a38ca491c6","678a1dca6e8607a38ca491c8"]}
+2025-01-30 17:20:59 [info]: POST / 201 - Request Body: {"name":"Chief Security Officer","permissions":["678a1dca6e8607a38ca491c4","678a1dca6e8607a38ca491c6","678a1dca6e8607a38ca491c8"]}
+2025-01-31 07:55:39 [info]: POST /theory 200 - Request Body: {"title":"Sample Assessment","description":"This is a test assessment.","position":"1","totalMark":"100","passMark":"50","duration":"60","assessmentCode":"ABC123","questions":[{"question":"What is 2 + 2","mark":"10"},{"question":"Explain gravity","mark":"20"}]}
+2025-01-31 13:34:12 [info]: POST /login 200 - Request Body: {"email":"seunoduez@gmail.com","password":"Timpearl05$$$"}
+2025-01-31 13:41:38 [info]: PUT /user-details/674d6507cad288132dd56fc1 404 - Request Body: {"ids":"[\"678f86504f614a98970656db\", \"678f8311f84b8609d51fd4b7\", \"678f7ba2304eb74fcfab905f\", \"678f7b0f304eb74fcfab905a\", \"678f7ac8304eb74fcfab9053\"]","firstName":"Seun","lastName":"Odueso","email":"backendseun@gmail.com"}
+2025-01-31 14:17:29 [info]: PUT /user-details/6788f955e4d0ee1d2ec99e25 200 - Request Body: {"ids":"[\"678f86504f614a98970656db\", \"678f8311f84b8609d51fd4b7\", \"678f7ba2304eb74fcfab905f\", \"678f7b0f304eb74fcfab905a\", \"678f7ac8304eb74fcfab9053\"]","firstName":"Emmanuel","lastName":"Akinrodemi","email":"biola6@gmail.com"}
+2025-01-31 16:19:38 [info]: PUT /user-details/6788f955e4d0ee1d2ec99e25 200 - Request Body: {"firstName":"Emmanuel","lastName":"Akinrodemi","email":"biola6@gmail.com"}
+2025-01-31 16:25:03 [info]: PUT /user-details/6745e9c6884e5b0a2bdbdf48 200 - Request Body: {"firstName":"Alabiii","lastName":"Joy","email":"alabi@gmail.com"}
+2025-01-31 16:25:22 [info]: PUT /user-details/6745e9c6884e5b0a2bdbdf48 200 - Request Body: {"ids":"[\"678f86504f614a98970656db\", \"678f8311f84b8609d51fd4b7\", \"678f7ba2304eb74fcfab905f\", \"678f7b0f304eb74fcfab905a\", \"678f7ac8304eb74fcfab9053\"]","firstName":"Alabiii","lastName":"Joy","email":"alabi@gmail.com"}
+2025-01-31 16:30:28 [info]: POST /login 400 - Request Body: {"email":"test@gmail.com","password":"test2024!"}
+2025-01-31 16:30:35 [info]: POST /login 200 - Request Body: {"email":"test@gmail.com","password":"Test2024!"}
+2025-01-31 16:33:41 [info]: PUT /user-details/673b6fdc38eb1f07d73f5241 200 - Request Body: {"firstName":"Emma","lastName":"Adetomiwa","email":"ajibadeemmanuel58@gmail.com"}
+2025-01-31 16:33:54 [info]: PUT /user-details/673b6fdc38eb1f07d73f5241 200 - Request Body: {"ids":"[\"678f86504f614a98970656db\", \"678f8311f84b8609d51fd4b7\", \"678f7ba2304eb74fcfab905f\", \"678f7b0f304eb74fcfab905a\", \"678f7ac8304eb74fcfab9053\"]","firstName":"Emma","lastName":"Adetomiwa","email":"ajibadeemmanuel58@gmail.com"}
+2025-01-31 16:49:41 [info]: POST /login 200 - Request Body: {"email":"test@gmail.com","password":"Test2024!"}
+2025-01-31 16:51:41 [info]: PUT /user-details/6758ba9ababf4ec5fd24a9fa 500 - Request Body: {"firstName":"Ajibade","lastName":"Emmanuel2","email":"richardsonmarcus3@gmail.com"}
+2025-01-31 16:51:53 [info]: PUT /user-details/6758ba9ababf4ec5fd24a9fa 500 - Request Body: {"ids":"[\"678f86504f614a98970656db\", \"678f8311f84b8609d51fd4b7\", \"678f7ba2304eb74fcfab905f\", \"678f7b0f304eb74fcfab905a\", \"678f7ac8304eb74fcfab9053\"]","firstName":"Ajibade","lastName":"Emmanuel2","email":"richardsonmarcus3@gmail.com"}
+2025-01-31 16:53:16 [info]: PUT /user-details/6758ba9ababf4ec5fd24a9fa 200 - Request Body: {"ids":"[\"678f86504f614a98970656db\", \"678f8311f84b8609d51fd4b7\", \"678f7ba2304eb74fcfab905f\", \"678f7b0f304eb74fcfab905a\", \"678f7ac8304eb74fcfab9053\"]","firstName":"Ajibade","lastName":"Emmanuel2","email":"richardsonmarcus3@gmail.com"}
+2025-01-31 17:00:15 [info]: PUT /user-details/6758ba9ababf4ec5fd24a9fa 500 - Request Body: {"ids":"[\"678f86504f614a98970656db\", \"678f8311f84b8609d51fd4b7\", \"678f7ba2304eb74fcfab905f\", \"678f7b0f304eb74fcfab905a\", \"678f7ac8304eb74fcfab9053\"]","firstName":"Ajibade","lastName":"Emmanuel2","email":"richardsonmarcus3@gmail.com"}
+2025-01-31 17:00:29 [info]: PUT /user-details/6758ba9ababf4ec5fd24a9fa 500 - Request Body: {"firstName":"Ajibade","lastName":"Emmanuel2","email":"richardsonmarcus3@gmail.com"}
+2025-01-31 17:00:32 [info]: PUT /user-details/6758ba9ababf4ec5fd24a9fa 500 - Request Body: {"firstName":"Ajibade","lastName":"Emmanuel2","email":"richardsonmarcus3@gmail.com"}
+2025-01-31 17:03:38 [info]: PUT /user-details/6758ba9ababf4ec5fd24a9fa 500 - Request Body: {"firstName":"Ajibade","lastName":"Emmanuel2","email":"richardsonmarcus3@gmail.com"}
+2025-01-31 17:03:52 [info]: PUT /user-details/6758ba9ababf4ec5fd24a9fa 500 - Request Body: {"ids":"[\"678f86504f614a98970656db\", \"678f8311f84b8609d51fd4b7\", \"678f7ba2304eb74fcfab905f\", \"678f7b0f304eb74fcfab905a\", \"678f7ac8304eb74fcfab9053\"]","firstName":"Ajibade","lastName":"Emmanuel2","email":"richardsonmarcus3@gmail.com"}
+2025-01-31 17:12:47 [info]: PUT /user-details/6758ba9ababf4ec5fd24a9fa 500 - Request Body: {"firstName":"Ajibade","lastName":"Emmanuel2","email":"richardsonmarcus3@gmail.com"}
+2025-01-31 17:12:55 [info]: PUT /user-details/6758ba9ababf4ec5fd24a9fa 500 - Request Body: {"ids":"[\"678f86504f614a98970656db\", \"678f8311f84b8609d51fd4b7\", \"678f7ba2304eb74fcfab905f\", \"678f7b0f304eb74fcfab905a\", \"678f7ac8304eb74fcfab9053\"]","firstName":"Ajibade","lastName":"Emmanuel2","email":"richardsonmarcus3@gmail.com"}
+2025-01-31 17:18:11 [info]: PUT /user-details/6758ba9ababf4ec5fd24a9fa 500 - Request Body: {"firstName":"Ajibade","lastName":"Emmanuel2","email":"richardsonmarcus3@gmail.com"}
+2025-01-31 17:18:52 [info]: PUT /user-details/6758ba9ababf4ec5fd24a9fa 200 - Request Body: {"firstName":"Ajibade","lastName":"Emmanuel2","email":"richardsonmarcus3@gmail.com"}
+2025-01-31 17:19:03 [info]: PUT /user-details/6758ba9ababf4ec5fd24a9fa 200 - Request Body: {"ids":"[\"678f86504f614a98970656db\", \"678f8311f84b8609d51fd4b7\", \"678f7ba2304eb74fcfab905f\", \"678f7b0f304eb74fcfab905a\", \"678f7ac8304eb74fcfab9053\"]","firstName":"Ajibade","lastName":"Emmanuel2","email":"richardsonmarcus3@gmail.com"}
+2025-01-31 17:25:33 [info]: PUT /user-details/6758ba9ababf4ec5fd24a9fa 400 - Request Body: {"ids":"[\"678f86504f614a98970656db\", \"678f8311f84b8609d51fd4b7\", \"678f7ba2304eb74fcfab905f\", \"678f7b0f304eb74fcfab905a\", \"678f7ac8304eb74fcfab9053\"]","firstName":"Ajibade","lastName":"Emmanuel2","email":"richardsonmarcus3@gmail.com"}
+2025-01-31 17:28:24 [info]: PUT /user-details/6758ba9ababf4ec5fd24a9fa 200 - Request Body: {"ids":"[\"678f86504f614a98970656db\", \"678f8311f84b8609d51fd4b7\", \"678f7ba2304eb74fcfab905f\", \"678f7b0f304eb74fcfab905a\", \"678f7ac8304eb74fcfab9053\"]","firstName":"Ajibade","lastName":"Emmanuel2","email":"richardsonmarcus3@gmail.com"}
+2025-02-01 06:40:03 [info]: PUT /user-details/6758ba9ababf4ec5fd24a9fa 200 - Request Body: {"ids":"[\"678f86504f614a98970656db\", \"678f8311f84b8609d51fd4b7\", \"678f7ba2304eb74fcfab905f\", \"678f7b0f304eb74fcfab905a\", \"678f7ac8304eb74fcfab9053\"]","firstName":"Ajibade","lastName":"Emmanuel2","email":"richardsonmarcus3@gmail.com"}
+2025-02-01 06:40:59 [info]: PUT /user-details/6758ba9ababf4ec5fd24a9fa 200 - Request Body: {"ids":"[\"678f86504f614a98970656db\", \"678f8311f84b8609d51fd4b7\", \"678f7ba2304eb74fcfab905f\", \"678f7b0f304eb74fcfab905a\", \"678f7ac8304eb74fcfab9053\"]","firstName":"Ajibade","lastName":"Emmanuel2","email":"richardsonmarcus3@gmail.com"}
+2025-02-01 06:42:59 [info]: PUT /user-details/6758ba9ababf4ec5fd24a9fa 200 - Request Body: {"ids":"[\"678f86504f614a98970656db\", \"678f8311f84b8609d51fd4b7\", \"678f7ba2304eb74fcfab905f\", \"678f7b0f304eb74fcfab905a\", \"678f7ac8304eb74fcfab9053\"]","firstName":"Ajibade","lastName":"Emmanuel","email":"richardsonmarcus3@gmail.com"}
+2025-02-01 06:49:17 [info]: PUT /user-details/6758ba9ababf4ec5fd24a9fa 200 - Request Body: {"ids":"[\"678f86504f614a98970656db\", \"678f8311f84b8609d51fd4b7\", \"678f7ba2304eb74fcfab905f\", \"678f7b0f304eb74fcfab905a\", \"678f7ac8304eb74fcfab9053\"]","firstName":"Ajibade","lastName":"Emmanuel","email":"richardsonmarcus3@gmail.com"}
+2025-02-01 13:19:24 [info]: POST /login 200 - Request Body: {"email":"seunoduez@gmail.com","password":"Timpearl05$$$"}
+2025-02-01 13:20:08 [info]: POST /login 200 - Request Body: {"email":"seunoduez@gmail.com","password":"Timpearl05$$$"}
+2025-02-01 13:28:33 [info]: POST /login 200 - Request Body: {"email":"seunoduez@gmail.com","password":"Timpearl05$$$"}
+2025-02-01 13:30:14 [info]: PUT /user-details/6758ba9ababf4ec5fd24a9fa 500 - Request Body: {"ids":"[\"678f86504f614a98970656db\", \"678f8311f84b8609d51fd4b7\", \"678f7ba2304eb74fcfab905f\", \"678f7b0f304eb74fcfab905a\", \"678f7ac8304eb74fcfab9053\"]","firstName":"Emma","lastName":"Adetomiwa","email":"ajibadeemmanuel58@gmail.com"}
+2025-02-01 13:34:59 [info]: PUT /user-details/6758ba9ababf4ec5fd24a9fa 200 - Request Body: {"ids":"[\"678f86504f614a98970656db\", \"678f8311f84b8609d51fd4b7\", \"678f7ba2304eb74fcfab905f\", \"678f7b0f304eb74fcfab905a\", \"678f7ac8304eb74fcfab9053\"]","firstName":"Emma","lastName":"Adetomiwa","email":"richardsonmarcus3@gmail.com"}
+2025-02-01 13:43:56 [info]: PUT /user-details/6758ba9ababf4ec5fd24a9fa 200 - Request Body: {"ids":"[\"678f86504f614a98970656db\", \"678f8311f84b8609d51fd4b7\", \"678f7ba2304eb74fcfab905f\", \"678f7b0f304eb74fcfab905a\", \"678f7ac8304eb74fcfab9053\"]","firstName":"Emma","lastName":"Adetomiwa","email":"richardsonmarcus3@gmail.com"}
+2025-02-01 13:49:07 [info]: PUT /user-details/6758ba9ababf4ec5fd24a9fa 200 - Request Body: {"ids":"[\"678f86504f614a98970656db\", \"678f8311f84b8609d51fd4b7\", \"678f7ba2304eb74fcfab905f\", \"678f7b0f304eb74fcfab905a\", \"678f7ac8304eb74fcfab9053\"]","firstName":"Emma","lastName":"Adetomiwa","email":"richardsonmarcus3@gmail.com"}
+2025-02-01 14:03:54 [info]: PUT /user-details/6758ba9ababf4ec5fd24a9fa 200 - Request Body: {"ids":"[\"678f86504f614a98970656db\", \"678f8311f84b8609d51fd4b7\", \"678f7ba2304eb74fcfab905f\", \"678f7b0f304eb74fcfab905a\", \"678f7ac8304eb74fcfab9053\"]","firstName":"Emma","lastName":"Adetomiwa","email":"richardsonmarcus3@gmail.com"}
+2025-02-01 14:04:42 [info]: POST / 200 - Request Body: {"name":"Agric Club","numberOfArms":3,"subGroups":[{"name":"Physics"},{"name":"Chemistry"},{"name":"Biology"}]}
+2025-02-01 14:06:09 [info]: POST / 500 - Request Body: {"name":"Tech Club"}
+2025-02-01 14:06:27 [info]: POST / 200 - Request Body: {"name":"Tech Club","numberOfArms":0}
+2025-02-01 14:06:50 [info]: PUT /user-details/6758ba9ababf4ec5fd24a9fa 200 - Request Body: {"ids":"[\"679e1bead3e6034c61895b27\", \"679e1c52d3e6034c61895b2d\"]","firstName":"Emma","lastName":"Adetomiwa","email":"richardsonmarcus3@gmail.com"}
+2025-02-01 14:08:53 [info]: PUT /user-details/6758ba9ababf4ec5fd24a9fa 200 - Request Body: {"firstName":"Emma","lastName":"Adetomiwa","email":"richardsonmarcus3@gmail.com"}
+2025-02-01 14:09:49 [info]: PUT /user-details/6758ba9ababf4ec5fd24a9fa 200 - Request Body: {"ids":"[\"679e1bead3e6034c61895b27\", \"679e1c52d3e6034c61895b2d\"]","firstName":"Emma","lastName":"Adetomiwa","email":"richardsonmarcus3@gmail.com"}
+2025-02-01 14:11:01 [info]: PUT /user-details/6758ba9ababf4ec5fd24a9fa 200 - Request Body: {"ids":"[\"679e1bead3e6034c61895b27\", \"679e1c52d3e6034c61895b2d\"]","firstName":"Emma","lastName":"Adetomiwa","email":"richardsonmarcus3@gmail.com"}
+2025-02-01 14:11:15 [info]: PUT /user-details/6758ba9ababf4ec5fd24a9fa 200 - Request Body: {"firstName":"Emma","lastName":"Adetomiwa","email":"richardsonmarcus3@gmail.com"}
+2025-02-01 14:11:28 [info]: PUT /user-details/6758ba9ababf4ec5fd24a9fa 200 - Request Body: {"firstName":"Emma","lastName":"Adetomiwa","email":"richardsonmarcus3@gmail.com"}
+2025-02-01 14:11:37 [info]: PUT /user-details/6758ba9ababf4ec5fd24a9fa 200 - Request Body: {"ids":"[\"679e1bead3e6034c61895b27\", \"679e1c52d3e6034c61895b2d\"]","firstName":"Emma","lastName":"Adetomiwa","email":"richardsonmarcus3@gmail.com"}
+2025-02-01 14:12:04 [info]: PUT /user-details/6758ba9ababf4ec5fd24a9fa 200 - Request Body: {"ids":"[\"679e1bead3e6034c61895b27\", \"679e1c52d3e6034c61895b2d\"]","firstName":"Emmanuel","lastName":"Adetomiwa","email":"richardsonmarcus3@gmail.com"}
+2025-02-01 14:12:35 [info]: PUT /user-details/6758ba9ababf4ec5fd24a9fa 200 - Request Body: {"ids":"[\"679e1bead3e6034c61895b27\", \"679e1c52d3e6034c61895b2d\"]","firstName":"Emmanuel","lastName":"Adetomiwa","email":"richardsonmarcus3@gmail.com","otherName":"Akin"}
+2025-02-01 14:12:48 [info]: POST / 200 - Request Body: {"name":"Test Club","numberOfArms":0}
+2025-02-01 14:13:11 [info]: PUT /user-details/6758ba9ababf4ec5fd24a9fa 400 - Request Body: {"ids":"[\"679e1bead3e6034c61895b27\", \"679e1c52d3e6034c61895b2d\", \"679e1dd00b9e3fae51583a96]","firstName":"Emmanuel","lastName":"Adetomiwa","email":"richardsonmarcus3@gmail.com","otherName":"Akin"}
+2025-02-01 14:13:46 [info]: PUT /user-details/6758ba9ababf4ec5fd24a9fa 200 - Request Body: {"ids":"[\"679e1bead3e6034c61895b27\", \"679e1c52d3e6034c61895b2d\", \"679e1dd00b9e3fae51583a96\"]","firstName":"Emmanuel","lastName":"Adetomiwa","email":"richardsonmarcus3@gmail.com","otherName":"Akin"}
+2025-02-01 14:15:17 [info]: PUT /user-details/6758ba9ababf4ec5fd24a9fa 200 - Request Body: {"ids":"[\"679e1bead3e6034c61895b27\", \"679e1c52d3e6034c61895b2d\", \"679e1dd00b9e3fae51583a96\"]","firstName":"Emmanuel","lastName":"Adetomiwa","email":"richardsonmarcus3@gmail.com","otherName":"Akin"}
+2025-01-30 14:03:27 [info]: POST /login 200 - Request Body: {"email":"test@gmail.com","password":"Test2024!"}
+2025-01-30 14:04:05 [info]: GET / 200
+2025-01-30 14:04:54 [info]: GET / 304
+2025-01-30 14:05:21 [info]: GET / 200
+2025-01-30 14:05:22 [info]: GET /all 500
+2025-01-30 14:05:24 [info]: GET /users 200
+2025-01-30 14:05:42 [info]: GET / 304
+2025-01-30 14:05:42 [info]: GET /all 500
+2025-01-30 14:05:43 [info]: GET /users 304
+2025-01-30 14:05:45 [info]: GET /all 500
+2025-01-30 14:05:50 [info]: GET /all 500
+2025-01-30 14:06:39 [info]: GET /all 500
+2025-01-30 14:06:40 [info]: GET /all 500
+2025-01-30 14:06:43 [info]: GET /all 500
+2025-01-30 14:06:53 [info]: POST /login 200 - Request Body: {"email":"ajibadeemmanuel08781@gmail.com","password":"Test2024!"}
+2025-01-30 14:07:09 [info]: GET /status 200
+2025-01-30 14:07:10 [info]: GET /get-user/67405d421a49e4a70bfd2d3b 200
+2025-01-30 14:08:18 [info]: GET /status 304
+2025-01-30 14:08:18 [info]: GET /get-user/67405d421a49e4a70bfd2d3b 304
+2025-01-30 14:08:40 [info]: POST /login 200 - Request Body: {"email":"test@gmail.com","password":"Test2024!"}
+2025-01-30 14:08:41 [info]: GET / 304
+2025-01-30 14:08:59 [info]: GET / 304
+2025-01-30 14:10:34 [info]: GET / 304
+2025-01-30 14:10:55 [info]: GET / 304
+2025-01-30 14:12:11 [info]: GET / 304
+2025-01-30 14:12:20 [info]: GET / 304
+2025-01-30 14:20:12 [info]: GET / 304
+2025-01-30 14:20:13 [info]: GET /all 403
+2025-01-30 14:20:13 [info]: GET / 304
+2025-01-30 14:20:14 [info]: GET /all 403
+2025-01-30 14:20:14 [info]: GET /users 304
+2025-01-30 14:20:16 [info]: GET /all 403
+2025-01-30 14:20:20 [info]: GET /all 403
+2025-01-30 14:20:47 [info]: GET /all 403
+2025-01-30 14:20:48 [info]: GET / 304
+2025-01-30 14:20:49 [info]: GET /all 403
+2025-01-30 14:20:49 [info]: GET /users 304
+2025-01-30 14:20:51 [info]: GET /all 403
+2025-01-30 14:20:55 [info]: GET /all 403
+2025-01-30 14:21:17 [info]: GET /all 403
+2025-01-30 14:21:18 [info]: GET / 304
+2025-01-30 14:21:19 [info]: GET /users 304
+2025-01-30 14:21:19 [info]: GET /all 403
+2025-01-30 14:21:21 [info]: GET /all 403
+2025-01-30 14:21:25 [info]: GET /all 403
+2025-01-30 14:21:52 [info]: GET /all 403
+2025-01-30 14:22:31 [info]: GET /users 401
+2025-01-30 14:22:31 [info]: GET / 401
+2025-01-30 14:22:31 [info]: GET /all 401
+2025-01-30 14:23:17 [info]: GET /all 403
+2025-01-30 14:23:18 [info]: GET / 200
+2025-01-30 14:23:19 [info]: GET /users 200
+2025-01-30 14:23:21 [info]: GET /all 403
+2025-01-30 14:23:25 [info]: GET /all 403
+2025-01-30 14:23:39 [info]: POST /login 200 - Request Body: {"email":"test@gmail.com","password":"Test2024!"}
+2025-01-30 14:23:41 [info]: GET / 304
+2025-01-30 14:23:49 [info]: GET / 304
+2025-01-30 14:23:56 [info]: GET /all 403
+2025-01-30 14:23:57 [info]: GET / 304
+2025-01-30 14:23:57 [info]: GET /all 403
+2025-01-30 14:23:58 [info]: GET /users 304
+2025-01-30 14:23:59 [info]: GET /all 403
+2025-01-30 14:24:03 [info]: GET /all 403
+2025-01-30 14:24:10 [info]: GET /all 403
+2025-01-30 14:24:11 [info]: GET / 304
+2025-01-30 14:24:11 [info]: GET /all 403
+2025-01-30 14:24:12 [info]: GET /users 304
+2025-01-30 14:24:13 [info]: GET /all 403
+2025-01-30 14:24:17 [info]: GET /all 403
+2025-01-30 14:27:52 [info]: GET / 304
+2025-01-30 14:27:53 [info]: GET /all 200
+2025-01-30 14:27:54 [info]: GET /users 304
+2025-01-30 14:28:20 [info]: GET / 401
+2025-01-30 14:28:22 [info]: GET /favicon.ico 404
+2025-01-30 14:28:24 [info]: GET / 304
+2025-01-30 14:28:24 [info]: GET /all 304
+2025-01-30 14:28:25 [info]: GET /users 304
+2025-01-30 14:33:51 [info]: POST /login 200 - Request Body: {"email":"test@gmail.com","password":"Test2024!"}
+2025-01-30 14:33:52 [info]: GET / 304
+2025-01-30 14:33:59 [info]: GET / 200
+2025-01-30 14:34:01 [info]: GET /all 200
+2025-01-30 14:34:03 [info]: GET /users 200
+2025-01-30 14:59:38 [info]: GET /all 403
+2025-01-30 14:59:38 [info]: GET /users 403
+2025-01-30 14:59:38 [info]: GET / 403
+2025-01-30 14:59:39 [info]: GET /all 403
+2025-01-30 14:59:39 [info]: GET /users 403
+2025-01-30 14:59:39 [info]: GET / 403
+2025-01-30 14:59:42 [info]: GET /all 403
+2025-01-30 14:59:42 [info]: GET /users 403
+2025-01-30 14:59:42 [info]: GET / 403
+2025-01-30 15:01:15 [info]: POST /login 200 - Request Body: {"email":"techtrainings@raoatech.com","password":"Password@123"}
+2025-01-30 15:01:16 [info]: GET / 304
+2025-01-30 15:01:39 [info]: GET / 200
+2025-01-30 15:01:39 [info]: GET /all 200
+2025-01-30 15:01:46 [info]: GET /users 200
+2025-01-30 15:01:58 [info]: GET / 304
+2025-01-30 15:01:59 [info]: GET /user-profile/678d806174f6def313e9af70 200
+2025-01-30 15:02:25 [info]: GET /all 304
+2025-01-30 15:02:29 [info]: GET / 304
+2025-01-30 15:02:30 [info]: GET /user-profile/678d806174f6def313e9af70 304
+2025-01-30 15:02:30 [info]: GET /users 304
+2025-01-30 15:02:35 [info]: PUT /user-details/678d806174f6def313e9af70 500 - Request Body: {"firstName":"TEST","lastName":"TEST1","phone":"","otherName":"","email":"testtest@yopmail.com","password":"","role":"user","ids":"[]","userId":"","gender":"","dateOfBirth":"","country":"","address":"","city":"","LGA":"","state":"","officeAddress":"","officeCity":"","officeLGA":"","employerName":"","officeState":"","contactPersonPlaceOfEmployment":"","nameOfContactPerson":"","contactEmail":"","contactPersonPhoneNumber":"","sendEmail":"true"}
+2025-01-30 15:02:58 [info]: GET / 304
+2025-01-30 15:02:58 [info]: GET /all 304
+2025-01-30 15:02:59 [info]: GET /user-profile/678d806174f6def313e9af70 304
+2025-01-30 15:03:09 [info]: GET /users 304
+2025-01-30 15:04:07 [info]: GET / 304
+2025-01-30 15:04:07 [info]: GET /all 304
+2025-01-30 15:04:08 [info]: GET /user-profile/678d806174f6def313e9af70 304
+2025-01-30 15:04:11 [info]: GET /users 304
+2025-01-30 15:04:22 [info]: GET / 304
+2025-01-30 15:04:24 [info]: GET /all 304
+2025-01-30 15:04:25 [info]: GET /user-profile/678d806174f6def313e9af70 304
+2025-01-30 15:04:29 [info]: GET /users 304
+2025-01-30 15:04:41 [info]: GET / 304
+2025-01-30 15:04:42 [info]: GET /all 304
+2025-01-30 15:04:42 [info]: GET /user-profile/678d806174f6def313e9af70 304
+2025-01-30 15:04:47 [info]: GET /users 304
+2025-01-30 15:04:54 [info]: GET / 304
+2025-01-30 15:04:55 [info]: GET /all 304
+2025-01-30 15:04:55 [info]: GET /user-profile/678d806174f6def313e9af70 304
+2025-01-30 15:04:57 [info]: GET /users 304
+2025-01-30 15:08:05 [info]: GET / 304
+2025-01-30 15:08:05 [info]: GET /all 304
+2025-01-30 15:08:06 [info]: GET /user-profile/678d806174f6def313e9af70 304
+2025-01-30 15:08:10 [info]: GET /users 304
+2025-01-30 15:08:22 [info]: GET / 304
+2025-01-30 15:08:23 [info]: GET /all 304
+2025-01-30 15:08:23 [info]: GET /user-profile/678d806174f6def313e9af70 304
+2025-01-30 15:08:26 [info]: GET /users 304
+2025-01-30 15:08:31 [info]: GET / 304
+2025-01-30 15:08:31 [info]: GET /all 304
+2025-01-30 15:08:32 [info]: GET /user-profile/678d806174f6def313e9af70 304
+2025-01-30 15:12:50 [info]: GET / 304
+2025-01-30 15:12:53 [info]: GET /user-profile/678d806174f6def313e9af70 304
+2025-01-30 15:12:54 [info]: PUT /user-details/678d806174f6def313e9af70 500 - Request Body: {"firstName":"TEST","lastName":"TEST1","phone":"","otherName":"","email":"testtest@yopmail.com","password":"","role":"user","ids":"[]","userId":"","gender":"","dateOfBirth":"","country":"","address":"","city":"","LGA":"","state":"","officeAddress":"","officeCity":"","officeLGA":"","employerName":"","officeState":"","contactPersonPlaceOfEmployment":"","nameOfContactPerson":"","contactEmail":"","contactPersonPhoneNumber":"","sendEmail":"true"}
+2025-01-30 15:12:55 [info]: GET /all 304
+2025-01-30 15:13:04 [info]: GET /users 304
+2025-01-30 15:17:17 [info]: GET / 304
+2025-01-30 15:17:18 [info]: GET /all 304
+2025-01-30 15:17:18 [info]: GET /user-profile/678d806174f6def313e9af70 304
+2025-01-30 15:17:24 [info]: PUT /user-details/678d806174f6def313e9af70 500 - Request Body: {"firstName":"TEST","lastName":"TEST1","phone":"","otherName":"","email":"testtest@yopmail.com","password":"","role":"user","ids":"[]","userId":"","gender":"","dateOfBirth":"","country":"","address":"","city":"","LGA":"","state":"","officeAddress":"","officeCity":"","officeLGA":"","employerName":"","officeState":"","contactPersonPlaceOfEmployment":"","nameOfContactPerson":"","contactEmail":"","contactPersonPhoneNumber":"","sendEmail":"true"}
+2025-01-30 15:17:24 [info]: GET /users 304
+2025-01-30 15:18:52 [info]: GET / 304
+2025-01-30 15:18:53 [info]: GET /all 304
+2025-01-30 15:18:53 [info]: GET /user-profile/678d806174f6def313e9af70 304
+2025-01-30 15:18:58 [info]: GET /users 304
+2025-01-30 15:28:59 [info]: GET / 304
+2025-01-30 15:29:00 [info]: GET /all 304
+2025-01-30 15:29:00 [info]: GET /user-profile/678d806174f6def313e9af70 304
+2025-01-30 15:29:07 [info]: GET /users 304
+2025-01-30 15:29:08 [info]: PUT /user-details/678d806174f6def313e9af70 200 - Request Body: {"firstName":"TEST","lastName":"TEST1","phone":"","otherName":"","email":"testtest@yopmail.com","password":"","role":"user","ids":"[]","userId":"","gender":"","dateOfBirth":"","country":"","address":"","city":"","LGA":"","state":"","officeAddress":"","officeCity":"","officeLGA":"","employerName":"","officeState":"","contactPersonPlaceOfEmployment":"","nameOfContactPerson":"","contactEmail":"","contactPersonPhoneNumber":"","sendEmail":"true"}
+2025-01-30 15:29:21 [info]: GET / 304
+2025-01-30 15:29:22 [info]: GET /user-profile/678d806174f6def313e9af70 200
+2025-01-30 15:29:29 [info]: PUT /user-details/678d806174f6def313e9af70 200 - Request Body: {"firstName":"TEST","lastName":"TEST","phone":"","otherName":"","email":"testtest@yopmail.com","password":"","role":"user","ids":"[]","userId":"","gender":"","dateOfBirth":"","country":"","address":"","city":"","LGA":"","state":"","officeAddress":"","officeCity":"","officeLGA":"","employerName":"","officeState":"","contactPersonPlaceOfEmployment":"","nameOfContactPerson":"","contactEmail":"","contactPersonPhoneNumber":"","sendEmail":"true"}
+2025-01-30 15:30:03 [info]: GET / 304
+2025-01-30 15:30:03 [info]: GET /all 304
+2025-01-30 15:30:04 [info]: GET /user-profile/678d806174f6def313e9af70 200
+2025-01-30 15:30:09 [info]: GET /users 200
+2025-01-30 15:31:03 [info]: GET / 304
+2025-01-30 15:31:04 [info]: GET /all 304
+2025-01-30 15:31:04 [info]: GET /user-profile/678d806174f6def313e9af70 304
+2025-01-30 15:31:08 [info]: GET /users 304
+2025-01-30 15:31:24 [info]: GET / 304
+2025-01-30 15:31:24 [info]: GET /all 304
+2025-01-30 15:31:25 [info]: GET /user-profile/678d806174f6def313e9af70 304
+2025-01-30 15:31:30 [info]: GET /users 304
+2025-01-30 15:32:29 [info]: GET / 403
+2025-01-30 15:32:29 [info]: GET /users 403
+2025-01-30 15:32:29 [info]: GET /user-profile/678d806174f6def313e9af70 403
+2025-01-30 15:32:29 [info]: GET /all 403
+2025-01-30 15:32:34 [info]: GET / 403
+2025-01-30 15:32:34 [info]: GET /users 403
+2025-01-30 15:32:34 [info]: GET /user-profile/678d806174f6def313e9af70 403
+2025-01-30 15:32:34 [info]: GET /all 403
+2025-01-30 15:39:00 [info]: GET /all 403
+2025-01-30 15:39:00 [info]: GET /users 403
+2025-01-30 15:39:00 [info]: GET / 403
+2025-01-30 15:39:00 [info]: GET /user-profile/678d806174f6def313e9af70 403
+2025-01-30 15:39:02 [info]: GET /users 403
+2025-01-30 15:39:02 [info]: GET /all 403
+2025-01-30 15:39:02 [info]: GET / 403
+2025-01-30 15:39:02 [info]: GET /user-profile/678d806174f6def313e9af70 403
+2025-01-30 15:39:07 [info]: GET /users 403
+2025-01-30 15:39:07 [info]: GET /all 403
+2025-01-30 15:39:07 [info]: GET /user-profile/678d806174f6def313e9af70 403
+2025-01-30 15:39:07 [info]: GET / 403
+2025-01-30 15:40:05 [info]: GET /all 403
+2025-01-30 15:40:05 [info]: GET /users 403
+2025-01-30 15:40:05 [info]: GET /user-profile/678d806174f6def313e9af70 403
+2025-01-30 15:40:05 [info]: GET / 403
+2025-01-30 15:40:06 [info]: GET /all 403
+2025-01-30 15:40:06 [info]: GET /users 403
+2025-01-30 15:40:06 [info]: GET / 403
+2025-01-30 15:40:06 [info]: GET /user-profile/678d806174f6def313e9af70 403
+2025-01-30 15:40:09 [info]: GET /users 403
+2025-01-30 15:40:09 [info]: GET /all 403
+2025-01-30 15:40:09 [info]: GET / 403
+2025-01-30 15:40:13 [info]: GET /users 403
+2025-01-30 15:40:13 [info]: GET / 403
+2025-01-30 15:40:13 [info]: GET /all 403
+2025-01-30 15:40:22 [info]: POST /login 200 - Request Body: {"email":"test@gmail.com","password":"Test2024!"}
+2025-01-30 15:40:24 [info]: GET / 304
+2025-01-30 15:40:37 [info]: GET / 200
+2025-01-30 15:40:37 [info]: GET /all 200
+2025-01-30 15:40:38 [info]: GET /users 200
+2025-01-30 15:41:01 [info]: GET / 304
+2025-01-30 15:41:02 [info]: GET /user-profile/677e7d48ad3ab554703e9cd4 200
+2025-01-30 15:41:09 [info]: PUT /user-details/677e7d48ad3ab554703e9cd4 500 - Request Body: {"firstName":"Marcus","lastName":"Rashford1","phone":"","otherName":"MR","email":"rash1@gmail.com","password":"","role":"user","ids":"[]","userId":"rash10","gender":"","dateOfBirth":"2025-01-01","image":"https://res.cloudinary.com/dldchwdkn/image/upload/v1736348775/userDisplayPictures/bnjfmekkzjbady8bqlvs.png","country":"Nigeria","address":"Nigerian Meteorology Agency, close to Nigerian Armed Forces, Resettlement center, behind Blind center, off Fiiro road, Oshodi, Lagos","city":"Houston","LGA":"surulere","state":"Oyo","officeAddress":"40 ifelodun street","officeCity":"ota","officeLGA":"ado odo ota","employerName":"ajY","officeState":"ogun","contactPersonPlaceOfEmployment":"","nameOfContactPerson":"AJIBADE Emmanuel","contactEmail":"ajibadeemmanuel58@gmail.com","contactPersonPhoneNumber":"09056983150","sendEmail":"true"}
+2025-01-30 15:41:25 [info]: GET / 304
+2025-01-30 15:41:26 [info]: GET /all 304
+2025-01-30 15:41:26 [info]: GET /user-profile/677e7d48ad3ab554703e9cd4 304
+2025-01-30 15:41:28 [info]: GET /users 304
+2025-01-30 15:46:00 [info]: GET / 304
+2025-01-30 15:46:01 [info]: GET /all 304
+2025-01-30 15:46:01 [info]: GET /user-profile/677e7d48ad3ab554703e9cd4 304
+2025-01-30 15:46:01 [info]: PUT /user-details/677e7d48ad3ab554703e9cd4 200 - Request Body: {"firstName":"Marcus","lastName":"Rashford1","phone":"","otherName":"MR","email":"rash1@gmail.com","password":"","role":"user","ids":"[]","userId":"rash10","gender":"","dateOfBirth":"2025-01-01","image":"https://res.cloudinary.com/dldchwdkn/image/upload/v1736348775/userDisplayPictures/bnjfmekkzjbady8bqlvs.png","country":"Nigeria","address":"Nigerian Meteorology Agency, close to Nigerian Armed Forces, Resettlement center, behind Blind center, off Fiiro road, Oshodi, Lagos","city":"Houston","LGA":"surulere","state":"Oyo","officeAddress":"40 ifelodun street","officeCity":"ota","officeLGA":"ado odo ota","employerName":"ajY","officeState":"ogun","contactPersonPlaceOfEmployment":"","nameOfContactPerson":"AJIBADE Emmanuel","contactEmail":"ajibadeemmanuel58@gmail.com","contactPersonPhoneNumber":"09056983150","sendEmail":"true"}
+2025-01-30 15:46:04 [info]: GET /users 304
+2025-01-30 15:48:13 [info]: GET / 304
+2025-01-30 15:48:14 [info]: GET /user-profile/6758cedce0630e76956c0598 200
+2025-01-30 15:49:32 [info]: GET / 304
+2025-01-30 15:49:33 [info]: GET /all 304
+2025-01-30 15:49:33 [info]: GET /user-profile/6758cedce0630e76956c0598 304
+2025-01-30 15:49:35 [info]: GET /users 200
+2025-01-30 15:49:53 [info]: PUT /user-details/6758cedce0630e76956c0598 500 - Request Body: {"firstName":"AJIBADE","lastName":"Emmanuel","phone":"","otherName":"","email":"ajibadeemmanuel08781@gmail.com","password":"","role":"user","ids":"[\"678fd2f782a356aeafeae1b8\"]","userId":"","gender":"","dateOfBirth":"","country":"","address":"","city":"","LGA":"surulere","state":"","officeAddress":"40 ifelodun street","officeCity":"","officeLGA":"ado odo ota","employerName":"ajY","officeState":"","contactPersonPlaceOfEmployment":"","nameOfContactPerson":"","contactEmail":"","contactPersonPhoneNumber":"","sendEmail":"true"}
+2025-01-30 15:50:22 [info]: GET / 200
+2025-01-30 15:50:22 [info]: GET /all 304
+2025-01-30 15:50:23 [info]: GET /users 304
+2025-01-30 15:50:41 [info]: GET / 304
+2025-01-30 15:50:42 [info]: GET /user-profile/678fc27706b00459559fc4df 200
+2025-01-30 15:51:08 [info]: PUT /user-details/678fc27706b00459559fc4df 500 - Request Body: {"firstName":"Emma","lastName":"Ajibade","phone":"","otherName":"","email":"ajibadeemmanuel5168@gmail.com","password":"","role":"user","ids":"[\"678fd2f782a356aeafeae1b8\"]","userId":"test@gmail.com","gender":"","dateOfBirth":"","image":"https://res.cloudinary.com/dldchwdkn/image/upload/v1737474677/userDisplayPictures/h9bmlnb3nppgetnweo6i.jpg","country":"Nigeria","address":"Nigerian Meteorology Agency, close to Nigerian Armed Forces, Resettlement center, behind Blind center, off Fiiro road, Oshodi, Lagos","city":"ota","LGA":"","state":"ogun","officeAddress":"","officeCity":"","officeLGA":"","employerName":"","officeState":"","contactPersonPlaceOfEmployment":"","nameOfContactPerson":"","contactEmail":"","contactPersonPhoneNumber":"","sendEmail":"true"}
+2025-01-30 15:51:47 [info]: GET / 304
+2025-01-30 15:51:47 [info]: GET /all 304
+2025-01-30 15:51:48 [info]: GET /users 304
+2025-01-30 15:52:13 [info]: GET / 304
+2025-01-30 15:52:13 [info]: GET /all 304
+2025-01-30 15:52:19 [info]: GET /users 304
+2025-01-30 15:53:06 [info]: GET / 304
+2025-01-30 15:53:07 [info]: GET /user-profile/6758cedce0630e76956c0598 304
+2025-01-30 15:53:37 [info]: GET / 304
+2025-01-30 15:53:43 [info]: GET /all 304
+2025-01-30 15:54:11 [info]: GET /users 304
+2025-01-30 15:54:29 [info]: GET / 304
+2025-01-30 15:54:30 [info]: GET /all 304
+2025-01-30 15:54:32 [info]: GET /users 304
+2025-01-30 15:56:31 [info]: GET /users 401
+2025-01-30 15:56:32 [info]: GET /all 401
+2025-01-30 15:56:32 [info]: GET / 401
+2025-01-30 15:57:06 [info]: GET / 304
+2025-01-30 15:57:10 [info]: GET /all 304
+2025-01-30 15:57:29 [info]: GET /users 304
+2025-01-30 15:58:15 [info]: GET / 304
+2025-01-30 15:58:19 [info]: GET /all 304
+2025-01-30 15:58:39 [info]: GET /users 304
+2025-01-30 16:06:07 [info]: GET / 304
+2025-01-30 16:06:12 [info]: GET /all 304
+2025-01-30 16:06:20 [info]: GET / 304
+2025-01-30 16:06:24 [info]: GET /all 304
+2025-01-30 16:06:53 [info]: GET / 304
+2025-01-30 16:06:57 [info]: GET /all 304
+2025-01-30 16:07:02 [info]: GET / 304
+2025-01-30 16:07:19 [info]: GET /users 304
+2025-01-30 16:14:14 [info]: POST /login 200 - Request Body: {"email":"test@gmail.com","password":"Test2024!"}
+2025-01-30 16:14:17 [info]: GET / 304
+2025-01-30 16:14:23 [info]: GET / 304
+2025-01-30 16:15:11 [info]: GET / 200
+2025-01-30 16:15:39 [info]: GET /all 200
+2025-01-30 16:16:49 [info]: GET /users 401
+2025-01-30 16:16:50 [info]: GET /all 401
+2025-01-30 16:16:50 [info]: GET / 401
+2025-01-30 16:16:52 [info]: GET / 304
+2025-01-30 16:17:03 [info]: GET / 304
+2025-01-30 16:17:11 [info]: GET / 304
+2025-01-30 16:17:16 [info]: GET / 304
+2025-01-30 16:17:20 [info]: GET /all 304
+2025-01-30 16:17:33 [info]: GET / 304
+2025-01-30 16:18:11 [info]: GET /users 200
+2025-01-31 16:03:49 [info]: GET / 304
+2025-01-31 16:04:27 [info]: GET / 304
+2025-01-31 16:04:30 [info]: GET / 304
+2025-01-31 16:05:29 [info]: GET / 200
+2025-01-31 16:05:29 [info]: GET /all 200
+2025-01-31 16:05:34 [info]: GET /users 200
+2025-01-31 16:06:34 [info]: GET / 304
+2025-01-31 16:06:36 [info]: GET /all 304
+2025-01-31 16:06:39 [info]: GET /users 304
+2025-01-31 16:07:57 [info]: GET / 304
+2025-01-31 16:07:58 [info]: GET /all 304
+2025-01-31 16:08:01 [info]: GET /users 304
+2025-01-31 16:08:06 [info]: GET / 304
+2025-01-31 16:08:07 [info]: GET /user-profile/6758b1e7e7681f7088ff6141 200
+2025-01-31 16:15:43 [info]: GET / 304
+2025-01-31 16:15:43 [info]: GET /all 304
+2025-01-31 16:15:44 [info]: GET /user-profile/6758b1e7e7681f7088ff6141 304
+2025-01-31 16:15:46 [info]: GET / 304
+2025-01-31 16:15:47 [info]: GET /all 304
+2025-01-31 16:15:48 [info]: GET /users 304
+2025-01-31 16:15:57 [info]: GET / 304
+2025-01-31 16:15:57 [info]: GET /all 304
+2025-01-31 16:15:58 [info]: GET /user-profile/6758b1e7e7681f7088ff6141 304
+2025-01-31 16:16:03 [info]: GET /users 304
+2025-01-31 16:17:02 [info]: GET / 304
+2025-01-31 16:17:02 [info]: PUT /user-details/6758b1e7e7681f7088ff6141 500 - Request Body: {"firstName":"AJIBADE1","lastName":"Emmanuel","phone":"","otherName":"","email":"richardsonmarcus@gmail.com","password":"","role":"user","ids":"[]","userId":"","gender":"","dateOfBirth":"","country":"","address":"","city":"","LGA":"","state":"","officeAddress":"","officeCity":"","officeLGA":"","employerName":"","officeState":"","contactPersonPlaceOfEmployment":"","nameOfContactPerson":"","contactEmail":"","contactPersonPhoneNumber":"","sendEmail":"true"}
+2025-01-31 16:17:04 [info]: GET /user-profile/6758b1e7e7681f7088ff6141 304
+2025-01-31 16:17:10 [info]: GET /all 304
+2025-01-31 16:17:13 [info]: GET /users 304
+2025-01-31 16:18:07 [info]: GET / 304
+2025-01-31 16:18:07 [info]: GET /all 304
+2025-01-31 16:18:08 [info]: GET /user-profile/6758b1e7e7681f7088ff6141 304
+2025-01-31 16:18:12 [info]: GET /users 304
+2025-01-31 16:18:57 [info]: GET / 304
+2025-01-31 16:18:57 [info]: GET /all 304
+2025-01-31 16:18:58 [info]: GET /user-profile/6758b1e7e7681f7088ff6141 304
+2025-01-31 16:18:59 [info]: GET /users 304
+2025-01-31 16:21:02 [info]: GET / 304
+2025-01-31 16:21:03 [info]: GET /all 304
+2025-01-31 16:21:04 [info]: GET /user-profile/6758b1e7e7681f7088ff6141 304
+2025-01-31 16:21:09 [info]: GET /users 304
+2025-01-31 16:21:13 [info]: PUT /user-details/6758b1e7e7681f7088ff6141 200 - Request Body: {"firstName":"AJIBADE1","lastName":"Emmanuel","phone":"","otherName":"","email":"richardsonmarcus@gmail.com","password":"","role":"user","ids":"[]","userId":"","gender":"","dateOfBirth":"","country":"","address":"","city":"","LGA":"","state":"","officeAddress":"","officeCity":"","officeLGA":"","employerName":"","officeState":"","contactPersonPlaceOfEmployment":"","nameOfContactPerson":"","contactEmail":"","contactPersonPhoneNumber":"","sendEmail":"true"}
+2025-01-31 16:21:13 [info]: PUT /user-details/6758b1e7e7681f7088ff6141 200 - Request Body: {"firstName":"AJIBADE1","lastName":"Emmanuel","phone":"","otherName":"","email":"richardsonmarcus@gmail.com","password":"","role":"user","ids":"[]","userId":"","gender":"","dateOfBirth":"","country":"","address":"","city":"","LGA":"","state":"","officeAddress":"","officeCity":"","officeLGA":"","employerName":"","officeState":"","contactPersonPlaceOfEmployment":"","nameOfContactPerson":"","contactEmail":"","contactPersonPhoneNumber":"","sendEmail":"true"}
+2025-01-31 16:21:18 [info]: GET /users 200
+2025-01-31 16:21:25 [info]: GET /users 304
+2025-01-31 16:21:36 [info]: GET / 304
+2025-01-31 16:21:37 [info]: GET /all 304
+2025-01-31 16:21:37 [info]: GET /user-profile/6758b1e7e7681f7088ff6141 200
+2025-01-31 16:21:41 [info]: GET /users 304
+2025-01-31 16:22:06 [info]: GET / 304
+2025-01-31 16:22:07 [info]: GET /all 304
+2025-01-31 16:22:07 [info]: GET /user-profile/6758b1e7e7681f7088ff6141 304
+2025-01-31 16:22:11 [info]: GET /users 304
+2025-01-31 16:22:28 [info]: GET / 304
+2025-01-31 16:22:29 [info]: GET /all 304
+2025-01-31 16:22:29 [info]: GET /user-profile/6758b1e7e7681f7088ff6141 304
+2025-01-31 16:22:33 [info]: GET /users 304
+2025-01-31 18:57:21 [info]: GET /all 304
+2025-01-31 18:57:23 [info]: GET / 200
+2025-01-31 18:57:27 [info]: GET /user-profile/6758b1e7e7681f7088ff6141 304
+2025-01-31 18:57:28 [info]: GET /users 200
+2025-01-31 18:58:00 [info]: GET / 304
+2025-01-31 18:58:02 [info]: GET /all 304
+2025-01-31 18:58:06 [info]: GET /user-profile/6758b1e7e7681f7088ff6141 304
+2025-01-31 18:58:10 [info]: GET / 304
+2025-01-31 18:58:14 [info]: GET /all 304
+2025-01-31 18:58:18 [info]: GET /users 304
+2025-01-31 18:59:03 [info]: GET / 304
+2025-01-31 18:59:04 [info]: GET /all 304
+2025-01-31 18:59:05 [info]: GET /user-profile/6758b1e7e7681f7088ff6141 304
+2025-02-01 21:04:24 [info]: POST /login 200 - Request Body: {"email":"test@gmail.com","password":"Test2024!"}
+2025-02-01 21:05:04 [info]: GET / 304
+2025-02-01 21:05:27 [info]: GET / 304
+2025-02-01 21:07:28 [info]: GET / 304
+2025-02-01 21:12:25 [info]: POST /login 200 - Request Body: {"email":"test@gmail.com","password":"Test2024!"}
+2025-02-01 21:12:26 [info]: GET / 304
+2025-02-01 21:12:35 [info]: GET / 200
+2025-02-01 21:12:35 [info]: GET /all 200
+2025-02-01 21:12:36 [info]: GET /users 200
+2025-02-01 21:12:43 [info]: GET / 304
+2025-02-01 21:12:44 [info]: GET /user-profile/678fc27706b00459559fc4df 200
+2025-02-01 21:12:50 [info]: PUT /user-details/678fc27706b00459559fc4df 200 - Request Body: {"firstName":"Emma1","lastName":"Ajibade","phone":"","otherName":"","email":"ajibadeemmanuel5168@gmail.com","password":"","role":"user","ids":"[]","userId":"test@gmail.com","gender":"","dateOfBirth":"","image":"https://res.cloudinary.com/dldchwdkn/image/upload/v1737474677/userDisplayPictures/h9bmlnb3nppgetnweo6i.jpg","country":"Nigeria","address":"Nigerian Meteorology Agency, close to Nigerian Armed Forces, Resettlement center, behind Blind center, off Fiiro road, Oshodi, Lagos","city":"ota","LGA":"","state":"ogun","officeAddress":"","officeCity":"","officeLGA":"","employerName":"","officeState":"","contactPersonPlaceOfEmployment":"","nameOfContactPerson":"","contactEmail":"","contactPersonPhoneNumber":"","sendEmail":"true"}
+2025-02-01 21:12:52 [info]: GET /users 200
+2025-02-01 21:13:05 [info]: GET / 304
+2025-02-01 21:13:05 [info]: GET /user-profile/677e7d48ad3ab554703e9cd4 200
+2025-02-01 21:13:14 [info]: PUT /user-details/677e7d48ad3ab554703e9cd4 200 - Request Body: {"firstName":"Marcus1","lastName":"Rashford1","phone":"","otherName":"MR","email":"rash1@gmail.com","password":"","role":"user","ids":"[]","userId":"rash10","gender":"","dateOfBirth":"2025-01-01","image":"https://res.cloudinary.com/dldchwdkn/image/upload/v1736348775/userDisplayPictures/bnjfmekkzjbady8bqlvs.png","country":"Nigeria","address":"Nigerian Meteorology Agency, close to Nigerian Armed Forces, Resettlement center, behind Blind center, off Fiiro road, Oshodi, Lagos","city":"Houston","LGA":"surulere","state":"Oyo","officeAddress":"40 ifelodun street","officeCity":"ota","officeLGA":"ado odo ota","employerName":"ajY","officeState":"ogun","contactPersonPlaceOfEmployment":"","nameOfContactPerson":"AJIBADE Emmanuel","contactEmail":"ajibadeemmanuel58@gmail.com","contactPersonPhoneNumber":"09056983150","sendEmail":"true"}
+2025-02-01 21:13:15 [info]: GET /users 200
+2025-02-01 21:25:35 [info]: GET /users 403
+2025-02-01 21:25:36 [info]: GET /all 403
+2025-02-01 21:25:36 [info]: GET / 403
+2025-02-01 21:25:37 [info]: GET /users 403
+2025-02-01 21:25:37 [info]: GET /all 403
+2025-02-01 21:25:37 [info]: GET / 403
+2025-02-01 21:25:39 [info]: GET /users 403
+2025-02-01 21:25:39 [info]: GET /all 403
+2025-02-01 21:25:39 [info]: GET / 403
+2025-02-01 21:25:44 [info]: GET /users 403
+2025-02-01 21:25:44 [info]: GET /all 403
+2025-02-01 21:25:44 [info]: GET / 403
+2025-02-01 21:25:53 [info]: POST /login 200 - Request Body: {"email":"test@gmail.com","password":"Test2024!"}
+2025-02-01 21:25:54 [info]: GET / 304
+2025-02-01 21:26:00 [info]: GET / 200
+2025-02-01 21:26:00 [info]: GET /all 200
+2025-02-01 21:26:04 [info]: GET /users 200
+2025-02-01 21:26:06 [info]: GET / 304
+2025-02-01 21:26:07 [info]: GET /user-profile/675407fb2905ff2ccabcff7e 200
+2025-02-01 21:26:13 [info]: PUT /user-details/675407fb2905ff2ccabcff7e 200 - Request Body: {"firstName":"AJIBADE12","lastName":"Emmanuel","phone":"","otherName":"","email":"ajibade@gmail.com","password":"","role":"user","ids":"[]","userId":"","gender":"","dateOfBirth":"","country":"","address":"","city":"","LGA":"","state":"","officeAddress":"","officeCity":"","officeLGA":"","employerName":"","officeState":"","contactPersonPlaceOfEmployment":"","nameOfContactPerson":"","contactEmail":"","contactPersonPhoneNumber":"","sendEmail":"true"}
+2025-02-01 21:26:16 [info]: GET /users 200
+2025-02-01 21:26:19 [info]: GET / 304
+2025-02-01 21:26:19 [info]: GET /user-profile/6758ba21babf4ec5fd24a9e0 200
+2025-02-01 21:26:25 [info]: PUT /user-details/6758ba21babf4ec5fd24a9e0 200 - Request Body: {"firstName":"AJIBADE22","lastName":"Emmanuel","phone":"","otherName":"","email":"richardsonmarcus123@gmail.com","password":"","role":"user","ids":"[]","userId":"","gender":"","dateOfBirth":"","country":"","address":"","city":"","LGA":"","state":"","officeAddress":"","officeCity":"","officeLGA":"","employerName":"","officeState":"","contactPersonPlaceOfEmployment":"","nameOfContactPerson":"","contactEmail":"","contactPersonPhoneNumber":"","sendEmail":"true"}
+2025-02-01 21:26:30 [info]: GET /users 200
+2025-02-01 21:26:32 [info]: GET / 304
+2025-02-01 21:26:33 [info]: GET /user-profile/6758c2fac0f74d84829fc0fc 200
+2025-02-01 21:27:03 [info]: GET /users 401
+2025-02-01 21:27:03 [info]: GET /all 401
+2025-02-01 21:27:03 [info]: GET / 401
+2025-02-01 21:28:17 [info]: GET / 304
+2025-02-01 21:28:18 [info]: GET /all 304
+2025-02-01 21:28:21 [info]: GET /users 304
+2025-02-01 21:28:26 [info]: GET / 304
+2025-02-01 21:28:27 [info]: GET /user-profile/673b6fdc38eb1f07d73f5241 200
+2025-02-01 21:29:08 [info]: GET / 304
+2025-02-01 21:29:08 [info]: GET /all 304
+2025-02-01 21:29:09 [info]: GET /user-profile/673b6fdc38eb1f07d73f5241 304
+2025-02-01 21:29:10 [info]: GET /users 304
+2025-02-01 21:30:07 [info]: GET / 304
+2025-02-01 21:30:07 [info]: GET /all 304
+2025-02-01 21:30:07 [info]: GET /user-profile/673b6fdc38eb1f07d73f5241 304
+2025-02-01 21:30:09 [info]: GET /users 304
+2025-02-01 21:30:25 [info]: PUT /user-details/673b6fdc38eb1f07d73f5241 200 - Request Body: {"firstName":"Emma","lastName":"Adetomiwa","phone":"","otherName":"Adet","email":"ajibadeemmanuel58@gmail.com","password":"","role":"user","ids":"[\"678e6c666b5c6da8547c6115\"]","userId":"test@gmail.com","gender":"","dateOfBirth":"","image":"https://res.cloudinary.com/dldchwdkn/image/upload/v1736369643/userDisplayPictures/o04lufwvurldhilabxyd.png","country":"Nigeria","address":"Nigerian Meteorology Agency, close to Nigerian Armed Forces, Resettlement center, behind Blind center, off Fiiro road, Oshodi, Lagos","city":"Houston","LGA":"surulere","state":"Oyo","officeAddress":"40 ifelodun street","officeCity":"ota","officeLGA":"ado odo ota","employerName":"ajY","officeState":"ogun","contactPersonPlaceOfEmployment":"","nameOfContactPerson":"AJIBADE Emmanuel","contactEmail":"ajibadeemmanuel58@gmail.com","contactPersonPhoneNumber":"09056983150","sendEmail":"true"}
+2025-02-01 21:30:28 [info]: GET /users 200
+2025-02-01 21:30:30 [info]: GET / 304
+2025-02-01 21:30:31 [info]: GET /user-profile/675407fb2905ff2ccabcff7e 200
+2025-02-01 21:30:58 [info]: GET / 304
+2025-02-01 21:30:58 [info]: GET /user-profile/675407fb2905ff2ccabcff7e 304
+2025-02-01 21:31:05 [info]: PUT /user-details/675407fb2905ff2ccabcff7e 200 - Request Body: {"firstName":"AJIBADE","lastName":"Emmanuel","phone":"","otherName":"","email":"ajibade@gmail.com","password":"","role":"user","ids":"[]","userId":"","gender":"","dateOfBirth":"","country":"","address":"","city":"","LGA":"","state":"","officeAddress":"","officeCity":"","officeLGA":"","employerName":"","officeState":"","contactPersonPlaceOfEmployment":"","nameOfContactPerson":"","contactEmail":"","contactPersonPhoneNumber":"","sendEmail":"true"}
+2025-02-01 21:31:06 [info]: GET /users 200
+2025-02-01 21:31:27 [info]: GET / 304
+2025-02-01 21:31:27 [info]: GET /user-profile/673b6fdc38eb1f07d73f5241 200
+2025-02-01 21:34:35 [info]: GET / 304
+2025-02-01 21:34:35 [info]: GET /all 304
+2025-02-01 21:34:36 [info]: GET /users 304
+2025-02-01 21:34:41 [info]: GET / 304
+2025-02-01 21:34:41 [info]: GET /user-profile/6758b1e7e7681f7088ff6141 200
+2025-02-01 21:35:09 [info]: GET / 304
+2025-02-01 21:35:09 [info]: GET /user-profile/675407fb2905ff2ccabcff7e 200
+2025-02-01 21:35:16 [info]: PUT /user-details/675407fb2905ff2ccabcff7e 200 - Request Body: {"firstName":"AJIBADE1","lastName":"Emmanuel","phone":"","otherName":"","email":"ajibade@gmail.com","password":"","role":"user","ids":"[]","userId":"","gender":"","dateOfBirth":"","country":"","address":"","city":"","LGA":"","state":"","officeAddress":"","officeCity":"","officeLGA":"","employerName":"","officeState":"","contactPersonPlaceOfEmployment":"","nameOfContactPerson":"","contactEmail":"","contactPersonPhoneNumber":"","sendEmail":"true"}
+2025-02-01 21:35:18 [info]: GET /users 200
+2025-02-01 21:35:38 [info]: GET / 304
+2025-02-01 21:35:38 [info]: GET /user-profile/673b6fdc38eb1f07d73f5241 304
+2025-02-01 21:37:19 [info]: GET / 304
+2025-02-01 21:37:20 [info]: GET /user-profile/675407fb2905ff2ccabcff7e 200
+2025-02-01 21:37:33 [info]: PUT /user-details/675407fb2905ff2ccabcff7e 200 - Request Body: {"firstName":"AJIBADE has no group","lastName":"Emmanuel","phone":"","otherName":"","email":"ajibade@gmail.com","password":"","role":"user","ids":"[]","userId":"","gender":"","dateOfBirth":"","country":"","address":"","city":"","LGA":"","state":"","officeAddress":"","officeCity":"","officeLGA":"","employerName":"","officeState":"","contactPersonPlaceOfEmployment":"","nameOfContactPerson":"","contactEmail":"","contactPersonPhoneNumber":"","sendEmail":"true"}
+2025-02-01 21:37:35 [info]: GET /users 200
+2025-02-01 21:37:37 [info]: GET / 304
+2025-02-01 21:37:37 [info]: GET /user-profile/6758b1e7e7681f7088ff6141 304
+2025-02-01 21:39:58 [info]: PUT /user-details/6758b1e7e7681f7088ff6141 200 - Request Body: {"firstName":"Emmanuel","lastName":"Adetomiwa","phone":"","otherName":"Akin","email":"richardsonmarcus@gmail.com","password":"","role":"user","ids":"[\"678e9627610baccf20ecc091\"]","userId":"","gender":"","dateOfBirth":"","country":"","address":"","city":"","LGA":"","state":"","officeAddress":"","officeCity":"","officeLGA":"","employerName":"","officeState":"","contactPersonPlaceOfEmployment":"","nameOfContactPerson":"","contactEmail":"","contactPersonPhoneNumber":"","sendEmail":"true"}
+2025-02-01 21:40:00 [info]: GET /users 200
+2025-02-01 21:41:33 [info]: GET /users 401
+2025-02-01 21:41:33 [info]: GET /all 401
+2025-02-01 21:41:33 [info]: GET / 401
+2025-02-01 21:41:35 [info]: GET / 200
+2025-02-01 21:41:36 [info]: GET /all 304
+2025-02-01 21:41:40 [info]: GET /users 304
+2025-02-01 21:42:14 [info]: GET / 304
+2025-02-01 21:42:14 [info]: GET /user-profile/6758b1e7e7681f7088ff6141 200
+2025-02-01 21:43:45 [info]: GET / 304
+2025-02-01 21:43:45 [info]: GET /user-profile/673b6fdc38eb1f07d73f5241 304
+2025-02-01 21:43:59 [info]: PUT /user-details/673b6fdc38eb1f07d73f5241 200 - Request Body: {"firstName":"Emma","lastName":"Adetomiwa","phone":"","otherName":"Adet","email":"ajibadeemmanuel58@gmail.com","password":"","role":"user","ids":"[\"678e6c666b5c6da8547c6115\"]","userId":"test@gmail.com","gender":"","dateOfBirth":"","image":"https://res.cloudinary.com/dldchwdkn/image/upload/v1736369643/userDisplayPictures/o04lufwvurldhilabxyd.png","country":"Nigeria","address":"Nigerian Meteorology Agency, close to Nigerian Armed Forces, Resettlement center, behind Blind center, off Fiiro road, Oshodi, Lagos","city":"Houston","LGA":"surulere","state":"Oyo","officeAddress":"40 ifelodun street","officeCity":"ota","officeLGA":"ado odo ota","employerName":"ajY","officeState":"ogun","contactPersonPlaceOfEmployment":"","nameOfContactPerson":"AJIBADE Emmanuel","contactEmail":"ajibadeemmanuel58@gmail.com","contactPersonPhoneNumber":"09056983150","sendEmail":"true"}
+2025-02-01 21:44:02 [info]: GET /users 200
+2025-02-01 21:44:17 [info]: GET / 304
+2025-02-01 21:44:17 [info]: GET /user-profile/673b6fdc38eb1f07d73f5241 200
+2025-02-01 21:45:00 [info]: GET /users 401
+2025-02-01 21:45:00 [info]: GET / 401
+2025-02-01 21:45:00 [info]: GET /all 401
+2025-02-01 21:45:02 [info]: GET / 304
+2025-02-01 21:45:02 [info]: GET /all 304
+2025-02-01 21:45:03 [info]: GET /users 304
+2025-02-01 21:45:16 [info]: GET / 304
+2025-02-01 21:45:17 [info]: GET /user-profile/673b6fdc38eb1f07d73f5241 304
+2025-02-01 21:48:43 [info]: GET / 304
+2025-02-01 21:48:43 [info]: GET /user-profile/673b6fdc38eb1f07d73f5241 304
+2025-02-01 21:49:25 [info]: PUT /user-details/673b6fdc38eb1f07d73f5241 200 - Request Body: {"firstName":"Emma","lastName":"Adetomiwa","phone":"","otherName":"Adet","email":"ajibadeemmanuel58@gmail.com","password":"","role":"user","ids":"[\"678e6c666b5c6da8547c6116\"]","userId":"test@gmail.com","gender":"","dateOfBirth":"","image":"https://res.cloudinary.com/dldchwdkn/image/upload/v1736369643/userDisplayPictures/o04lufwvurldhilabxyd.png","country":"Nigeria","address":"Nigerian Meteorology Agency, close to Nigerian Armed Forces, Resettlement center, behind Blind center, off Fiiro road, Oshodi, Lagos","city":"Houston","LGA":"surulere","state":"Oyo","officeAddress":"40 ifelodun street","officeCity":"ota","officeLGA":"ado odo ota","employerName":"ajY","officeState":"ogun","contactPersonPlaceOfEmployment":"","nameOfContactPerson":"AJIBADE Emmanuel","contactEmail":"ajibadeemmanuel58@gmail.com","contactPersonPhoneNumber":"09056983150","sendEmail":"true"}
+2025-02-01 21:49:28 [info]: GET /users 200
+2025-02-01 21:49:40 [info]: GET /all 401
+2025-02-01 21:49:40 [info]: GET /users 401
+2025-02-01 21:49:41 [info]: GET / 401
+2025-02-01 21:49:42 [info]: GET / 200
+2025-02-01 21:49:43 [info]: GET /all 304
+2025-02-01 21:49:44 [info]: GET /users 304
+2025-02-01 22:17:22 [info]: GET / 304
+2025-02-01 22:17:23 [info]: GET /all 304
+2025-02-01 22:17:27 [info]: GET /users 304
