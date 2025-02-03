@@ -172,7 +172,8 @@ class CertificateController {
 
   async getAllCertificates(req: Request, res: Response) {
     try {
-      const certificates = await Certificate.find({});
+      const organizationId = req.admin._id;
+      const certificates = await Certificate.find({organizationId: organizationId});
       return ResponseHandler.success(res, certificates);
     } catch (error: any) {
       return ResponseHandler.failure(
