@@ -515,12 +515,11 @@ class AdminController {
   //         },
   //       },
   //       { new: true } // This ensures you get the updated user
-  //     ).select("-password");      
+  //     ).select("-password");
 
   //     user = await User.findById(userId).select("groups subGroups");
   //     console.log("Updated User Groups:", user?.groups);
   //     console.log("Updated User SubGroups:", user?.subGroups);
-
 
   //     return ResponseHandler.success(
   //       res,
@@ -538,123 +537,144 @@ class AdminController {
 
   async editUserProfile(req: Request, res: Response) {
     try {
-        const organizationId = await getOrganizationId(req, res);
-        if (!organizationId) {
-            return;
-        }
+      const organizationId = await getOrganizationId(req, res);
+      if (!organizationId) {
+        return;
+      }
 
-        const organization = await Organization.findById(organizationId);
-        if (!organization) {
-            return ResponseHandler.failure(res, "Organization not found", 400);
-        }
+      const organization = await Organization.findById(organizationId);
+      if (!organization) {
+        return ResponseHandler.failure(res, "Organization not found", 400);
+      }
 
-        const { userId } = req.params;
-        const image = req.file;
-        const { ids, ...rest } = req.body;
+      const { userId } = req.params;
+      const image = req.file;
+      const { ids, ...rest } = req.body;
 
-        if (!userId) {
-            return ResponseHandler.failure(res, "User ID is required", 400);
-        }
+      if (!userId) {
+        return ResponseHandler.failure(res, "User ID is required", 400);
+      }
 
-        let user = await User.findById(userId);
-        if (!user) {
-            return ResponseHandler.failure(res, "User not found", 404);
-        }
+      let user = await User.findById(userId);
+      if (!user) {
+        return ResponseHandler.failure(res, "User not found", 404);
+      }
 
-        // Parse `ids` safely
-        let parsedIds: string[] = [];
-        try {
-            parsedIds = Array.isArray(ids) ? ids : JSON.parse(ids || "[]");
-        } catch (error) {
-            return ResponseHandler.failure(res, "Invalid `ids` format", 400);
-        }
+      // Parse `ids` safely
+      let parsedIds: string[] = [];
+      try {
+        parsedIds = Array.isArray(ids) ? ids : JSON.parse(ids || "[]");
+      } catch (error) {
+        return ResponseHandler.failure(res, "Invalid `ids` format", 400);
+      }
 
-        const updatedGroups: mongoose.Types.ObjectId[] = [];
-        const updatedSubGroups: mongoose.Types.ObjectId[] = [];
-        const bulkGroupOps: any[] = [];
-        const userIdObject = new mongoose.Types.ObjectId(userId);
+      const updatedGroups: mongoose.Types.ObjectId[] = [];
+      const updatedSubGroups: mongoose.Types.ObjectId[] = [];
+      const bulkGroupOps: any[] = [];
+      const userIdObject = new mongoose.Types.ObjectId(userId);
 
-        for (const id of parsedIds) {
-          const objectId = new mongoose.Types.ObjectId(id);
+      for (const id of parsedIds) {
+        const objectId = new mongoose.Types.ObjectId(id);
 
-          // Check if ID belongs to a group
-          const group = await Group.findOne({ _id: objectId, organizationId });
-          if (group) {
-              if (!group.members.some((memberId) => memberId.equals(userIdObject))) {
-                  group.members.push(userIdObject);
-                  bulkGroupOps.push({
-                      updateOne: {
-                          filter: { _id: group._id },
-                          update: { $addToSet: { members: userIdObject } },
-                      },
-                  });
-              }
-              updatedGroups.push(group._id);
-              continue;
+        // Check if ID belongs to a group
+        const group = await Group.findOne({ _id: objectId, organizationId });
+        if (group) {
+          if (
+            !group.members.some((memberId) => memberId.equals(userIdObject))
+          ) {
+            group.members.push(userIdObject);
+            bulkGroupOps.push({
+              updateOne: {
+                filter: { _id: group._id },
+                update: { $addToSet: { members: userIdObject } },
+              },
+            });
           }
-
-          // Check if ID belongs to a subgroup
-          const groupWithSubgroup = await Group.findOne({
-              "subGroups._id": objectId,
-              organizationId,
-          });
-
-          if (groupWithSubgroup) {
-              const subgroup = groupWithSubgroup.subGroups.find((sub) =>
-                  sub._id.equals(objectId)
-              );
-
-              if (subgroup) {
-                  if (!subgroup.members.some((memberId) => memberId.equals(userIdObject))) {
-                      subgroup.members.push(userIdObject);
-                      bulkGroupOps.push({
-                          updateOne: {
-                              filter: { _id: groupWithSubgroup._id, "subGroups._id": objectId },
-                              update: { $addToSet: { "subGroups.$.members": userIdObject } },
-                          },
-                      });
-                  }
-                  updatedSubGroups.push(subgroup._id);
-              }
-          }
+          updatedGroups.push(group._id);
+          continue;
         }
 
-        // Perform bulk updates if needed
-        if (bulkGroupOps.length > 0) {
-            await Group.bulkWrite(bulkGroupOps);
-        }
+        // Check if ID belongs to a subgroup
+        const groupWithSubgroup = await Group.findOne({
+          "subGroups._id": objectId,
+          organizationId,
+        });
 
-        // Handle image upload if provided
-        let fileUploadResult: any = null;
-        if (image) {
-            fileUploadResult = await uploadToCloudinary(
-                image.buffer,
-                image.mimetype,
-                "userDisplayPictures"
-            );
-        }
+        if (groupWithSubgroup) {
+          const subgroup = groupWithSubgroup.subGroups.find((sub) =>
+            sub._id.equals(objectId)
+          );
 
-        // **Update user with correct groups and subgroups**
-        user = await User.findByIdAndUpdate(
-            userId,
-            {
-                $set: {
-                    groups: updatedGroups.length ? updatedGroups : user.groups,
-                    subGroups: updatedSubGroups.length ? updatedSubGroups : user.subGroups,
-                    ...rest,
-                    image: fileUploadResult ? fileUploadResult.secure_url : user.image,
+          if (subgroup) {
+            if (
+              !subgroup.members.some((memberId) =>
+                memberId.equals(userIdObject)
+              )
+            ) {
+              subgroup.members.push(userIdObject);
+              bulkGroupOps.push({
+                updateOne: {
+                  filter: {
+                    _id: groupWithSubgroup._id,
+                    "subGroups._id": objectId,
+                  },
+                  update: {
+                    $addToSet: { "subGroups.$.members": userIdObject },
+                  },
                 },
-            },
-            { new: true }
-        ).select("-password");
+              });
+            }
+            updatedSubGroups.push(subgroup._id);
+          }
+        }
+      }
 
-        console.log("Updated User Groups:", user?.groups);
-        console.log("Updated User SubGroups:", user?.subGroups);
+      // Perform bulk updates if needed
+      if (bulkGroupOps.length > 0) {
+        await Group.bulkWrite(bulkGroupOps);
+      }
 
-        return ResponseHandler.success(res, user, "User profile updated successfully");
+      // Handle image upload if provided
+      let fileUploadResult: any = null;
+      if (image) {
+        fileUploadResult = await uploadToCloudinary(
+          image.buffer,
+          image.mimetype,
+          "userDisplayPictures"
+        );
+      }
+
+      // **Update user with correct groups and subgroups**
+      user = await User.findByIdAndUpdate(
+        userId,
+        {
+          $set: {
+            groups: updatedGroups.length ? updatedGroups : user.groups,
+            subGroups: updatedSubGroups.length
+              ? updatedSubGroups
+              : user.subGroups,
+            ...rest,
+            image: fileUploadResult ? fileUploadResult.secure_url : user.image,
+          },
+        },
+        { new: true }
+      ).select("-password");
+
+      console.log("Updated User Groups:", user?.groups);
+      console.log("Updated User SubGroups:", user?.subGroups);
+
+      return ResponseHandler.success(
+        res,
+        user,
+        "User profile updated successfully"
+      );
     } catch (error: any) {
       console.error("Error updating user profile:", error);
-      return ResponseHandler.failure(res, `Server error: ${error.message}`, 500);
+      return ResponseHandler.failure(
+        res,
+        `Server error: ${error.message}`,
+        500
+      );
     }
   }
 
