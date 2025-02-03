@@ -1,6 +1,6 @@
-import { Router } from "express";
+import { Request, Response, NextFunction, Router } from "express";
 import { authenticate, authorize, checkSubadminPermission } from "../middlewares/auth.middleware";
-import { AssessmentController } from "../controllers/assessment.controller";
+// import { AssessmentController } from "../controllers/assessment.controller";
 import { SubmissionController } from "../controllers/submission.controller";
 import ObjectAssessmentController from "../controllers/objectiveAssessment.controller";
 import TheoryAssessmentController from "../controllers/theoryAssessment.controller";
@@ -22,11 +22,11 @@ import { upload } from "../utils/upload.utils";
 
 const router = Router();
 
-const {
-  createAssessment: createAssessmentHandler,
-  getSubmissionsForAssessment,
-  gradeSubmission,
-} = new AssessmentController();
+// const {
+//   createAssessment: createAssessmentHandler,
+//   getSubmissionsForAssessment,
+//   gradeSubmission,
+// } = new AssessmentController();
 
 const {
   createObjectiveAssessment,
@@ -49,13 +49,13 @@ const {
 const { submitAssessment } = new SubmissionController();
 
 router.post(
-  "/create",
+  "/theory",
   authenticate,
   authorize(["admin", "subAdmin"]),
   checkSubadminPermission("Assessment Management", "Create Theory Assessment"),
-  upload.single("file"),
-  ...createAssessmentValidator,
-  createAssessmentHandler
+  upload.any(),
+  // ...createAssessmentValidator,
+  createTheoryAssessment
 );
 
 router.post(
@@ -66,14 +66,6 @@ router.post(
   ...createObjectiveAssessmentValidator,
   createObjectiveAssessment
 );
-
-router.post(
-  "/theory",
-  authenticate,
-  authorize(["admin", "subAdmin"]),
-  checkSubadminPermission("Assessment Management", "Create Theory Assessment"),
-  createTheoryAssessment
-)
 
 router.post(
   "/objective/from-question-bank",
@@ -113,10 +105,11 @@ router.put(
 );
 
 router.put(
-  "/:id",
+  "/theory/:id",
   authenticate,
   authorize(["admin", "subAdmin"]),
   checkSubadminPermission("Assessment Management", "Edit Assessment"),
+  upload.any(),
   editTheoryAssessment
 )
 
