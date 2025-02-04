@@ -1187,7 +1187,7 @@ export class CourseController {
 
       // Find the course by ID and populate lessons and assessments
       // const course = await Course.findById(courseId)
-      const course = await Course.findOne({ _id: courseId, isArchived: false })
+      const course = await Course.findOne({ _id: courseId})
         .populate<{ lessons: LessonDocument[] }>("lessons")
         .populate<{ assessments: AssessmentDocument[] }>("assessments"); // Ensure assessments are populated too
 
