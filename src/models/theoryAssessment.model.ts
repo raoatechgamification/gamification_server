@@ -12,6 +12,7 @@ export interface ITheoryAssessment extends Document {
   duration: number;
   assessmentCode: string;
   questions: {
+    [x: string]: any;
     question: string;
     marks: number; 
     time?: string;

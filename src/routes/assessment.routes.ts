@@ -22,12 +22,6 @@ import { upload } from "../utils/upload.utils";
 
 const router = Router();
 
-// const {
-//   createAssessment: createAssessmentHandler,
-//   getSubmissionsForAssessment,
-//   gradeSubmission,
-// } = new AssessmentController();
-
 const {
   createObjectiveAssessment,
   createObjectiveAssessmentFromQuestionsBank,
@@ -43,10 +37,9 @@ const {
 
 const {
   createTheoryAssessment,
-  editTheoryAssessment
+  editTheoryAssessment,
+  submitTheoryAssessment
 } = TheoryAssessmentController;
-
-const { submitAssessment } = new SubmissionController();
 
 router.post(
   "/theory",
@@ -113,22 +106,6 @@ router.put(
   editTheoryAssessment
 )
 
-// router.put(
-//   "/:submissionId/grade",
-//   authenticate,
-//   authorize(["admin", "subAdmin"]),
-//   ...gradeAssessmentValidator,
-//   gradeSubmission
-// );
-
-// router.get(
-//   "/submissions/:assessmentId",
-//   authenticate,
-//   authorize(["admin", "subAdmin"]),
-//   ...assessmentIdValidator,
-//   getSubmissionsForAssessment
-// );
-
 router.post(
   "/:courseId/:assessmentId/take",
   authenticate,
@@ -136,15 +113,6 @@ router.post(
   ...submissionIdsValidator,
   takeAndGradeAssessment
 );
-
-// router.post(
-//   "/submit/:assessmentId",
-//   authenticate,
-//   authorize(["user"]),
-//   upload.single("file"),
-//   ...submissionValidator,
-//   submitAssessment
-// );
 
 router.get(
   "/result-slip/:submissionId",
@@ -177,5 +145,13 @@ router.get(
   checkSubadminPermission("Assessment", "View Assessment"),
   getAssessmentById
 );
+
+router.post(
+  "/theory/:courseId/:assessmentId",
+  authenticate,
+  authorize(["user"]),
+  upload.any(),
+  submitTheoryAssessment
+)
 
 export default router;

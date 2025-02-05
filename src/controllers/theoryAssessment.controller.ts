@@ -167,32 +167,133 @@ class TheoryAssessmentController {
     }
   }   
 
+  // async submitTheoryAssessment(req: Request, res: Response) {
+  //   try {
+  //     const { assessmentId, courseId } = req.params;
+  //     const { answers } = req.body;
+  //     const userId = req.user.id
+
+  //     const course = await Course.findById(courseId).populate("lessons");
+  //     if (!course) {
+  //       return ResponseHandler.failure(res, "Course not found", 404);
+  //     }
+
+  //     if (!course.lessons) {
+  //       return ResponseHandler.failure(
+  //         res,
+  //         "No lessons found for this course",
+  //         404
+  //       );
+  //     }
+
+  //     const incompleteLessons = course.lessons.filter((lesson: any) => {
+  //       const completionDetail = lesson.completionDetails?.find(
+  //         (detail: any) => detail.userId.toString() === userId
+  //       );
+  //       return (completionDetail?.percentage || 0) < 100;
+  //     });
+
+  //     if (incompleteLessons.length > 0) {
+  //       return ResponseHandler.failure(
+  //         res,
+  //         "You must complete all lessons in the course before submitting assessments",
+  //         403
+  //       );
+  //     }
+  
+  //     // Validate assessment existence
+  //     const assessment = await TheoryAssessment.findById(assessmentId);
+  //     if (!assessment) return ResponseHandler.failure(res, "Assessment not found", 404);
+
+  //     const validQuestionIds = assessment.questions.map((q) => q._id.toString());
+  //     const invalidQuestions = answers.filter(
+  //       (answer: { questionId: string }) => !validQuestionIds.includes(answer.questionId)
+  //     );
+
+  //     if (invalidQuestions.length > 0) {
+  //       return ResponseHandler.failure(
+  //         res,
+  //         `Invalid question IDs in answers: ${invalidQuestions.map((q: { questionId: any; }) => q.questionId).join(", ")}`,
+  //         400
+  //       );
+  //     }
+
+  //     if (req.files) {
+  //       for (const file of req.files as Express.Multer.File[]) {
+  //         const answerIndex = parseInt(file.fieldname.replace("questionFile", ""));
+  //         if (!isNaN(answerIndex) && answers[answerIndex]) {
+  //           try {
+  //             const result = await uploadToCloudinary(
+  //               file.buffer, 
+  //               file.mimetype, 
+  //               "theory_assessments_submissions"
+  //             );
+  //             answers[answerIndex].file = result.secure_url;
+  //             console.log("File uploaded successfully:", result.secure_url);
+  //           } catch (uploadError) {
+  //             console.error("Error uploading file:", uploadError);
+  //             return ResponseHandler.failure(res, "File upload failed", 500, uploadError);
+  //           }
+  //         }
+  //       }
+  //     }
+  
+  //     const submission = await Submission.create({
+  //       learnerId: userId,
+  //       courseId,
+  //       assessmentId,
+  //       answer: answers,
+  //     });
+  
+  //     return ResponseHandler.success(
+  //       res, 
+  //       submission, 
+  //       "Submission created successfully"
+  //     );
+  //   } catch (error: any) {
+  //     console.log(error)
+  //     return ResponseHandler.failure(res, error.message);
+  //   }
+  // }
+
   async submitTheoryAssessment(req: Request, res: Response) {
     try {
       const { assessmentId, courseId } = req.params;
-      const { answers } = req.body;
-      const userId = req.user.id
-
+      let { answers } = req.body; // Use `let` to allow reassignment
+      const userId = req.user.id;
+  
+      // Parse answers if it's a JSON string
+      if (typeof answers === "string") {
+        try {
+          answers = JSON.parse(answers);
+        } catch (error) {
+          return ResponseHandler.failure(res, "Invalid JSON format for answers", 400);
+        }
+      }
+  
+      // Ensure answers is an array
+      if (!Array.isArray(answers)) {
+        return ResponseHandler.failure(res, "Answers must be an array", 400);
+      }
+  
+      // Fetch the course and validate
       const course = await Course.findById(courseId).populate("lessons");
       if (!course) {
         return ResponseHandler.failure(res, "Course not found", 404);
       }
-
+  
       if (!course.lessons) {
-        return ResponseHandler.failure(
-          res,
-          "No lessons found for this course",
-          404
-        );
+        return ResponseHandler.failure(res, "No lessons found for this course", 404);
       }
-
+  
+      // Check incomplete lessons
       const incompleteLessons = course.lessons.filter((lesson: any) => {
         const completionDetail = lesson.completionDetails?.find(
           (detail: any) => detail.userId.toString() === userId
         );
         return (completionDetail?.percentage || 0) < 100;
       });
-
+  
       if (incompleteLessons.length > 0) {
         return ResponseHandler.failure(
           res,
@@ -201,22 +302,63 @@ class TheoryAssessmentController {
         );
       }
   
-      // Validate assessment existence
+      // Validate the assessment existence
       const assessment = await TheoryAssessment.findById(assessmentId);
-      if (!assessment) return ResponseHandler.failure(res, "Assessment not found", 404);
+      if (!assessment) {
+        return ResponseHandler.failure(res, "Assessment not found", 404);
+      }
   
+      // Validate question IDs in answers
+      const validQuestionIds = assessment.questions.map((q) => q._id.toString());
+      const invalidQuestions = answers.filter(
+        (answer: { questionId: string }) => !validQuestionIds.includes(answer.questionId)
+      );
+  
+      if (invalidQuestions.length > 0) {
+        return ResponseHandler.failure(
+          res,
+          `Invalid question IDs in answers: ${invalidQuestions
+            .map((q: { questionId: string }) => q.questionId)
+            .join(", ")}`,
+          400
+        );
+      }
+  
+      // Handle file uploads
+      if (req.files) {
+        for (const file of req.files as Express.Multer.File[]) {
+          const answerIndex = parseInt(file.fieldname.replace("questionFile", ""));
+          if (!isNaN(answerIndex) && answers[answerIndex]) {
+            try {
+              const result = await uploadToCloudinary(
+                file.buffer,
+                file.mimetype,
+                "theory_assessments_submissions"
+              );
+              answers[answerIndex].file = result.secure_url;
+              console.log("File uploaded successfully:", result.secure_url);
+            } catch (uploadError) {
+              console.error("Error uploading file:", uploadError);
+              return ResponseHandler.failure(res, "File upload failed", 500, uploadError);
+            }
+          }
+        }
+      }
+  
+      // Create the submission
       const submission = await Submission.create({
         learnerId: userId,
         courseId,
         assessmentId,
         answer: answers,
-      });
+      })
   
       return ResponseHandler.success(res, submission, "Submission created successfully");
     } catch (error: any) {
-      return ResponseHandler.failure(res, error.message);
+      console.error("Error in submitTheoryAssessment:", error);
+      return ResponseHandler.failure(res, error.message, 500);
     }
-  }
+  }  
 
   async gradeTheoryAssessment(req: Request, res: Response) {
     try {

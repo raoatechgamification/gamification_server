@@ -36,12 +36,16 @@ export interface SubmissionInterface {
 }
 
 export interface ISubmission extends Document {
-  answer: {
+  answer?: {
     questionId: Schema.Types.ObjectId;
     answer: Schema.Types.Mixed;
     isCorrect?: boolean;
+    file?: string;
+    mark?: number
   }[];
+  // theoryAnswer?: string | boolean | number;
   learnerId: mongoose.Types.ObjectId | PopulatedLearner;
+  organizationId?: mongoose.Types.ObjectId;
   courseId: mongoose.Types.ObjectId;
   assessmentId: mongoose.Types.ObjectId | PopulatedAssessment;
   submittedFile?: string;
@@ -58,6 +62,7 @@ export interface ISubmission extends Document {
 const submissionSchema = new Schema<ISubmission>(
   {
     learnerId: { type: Schema.Types.ObjectId, ref: "User", required: true },
+    organizationId: { types: Schema.Types.ObjectId },
     assessmentId: { type: String, required: true,ref: "ObjectiveAssessment", },
     courseId: { type: Schema.Types.ObjectId, ref: "Course", required: true }, 
     answer: [
@@ -65,8 +70,11 @@ const submissionSchema = new Schema<ISubmission>(
         questionId: { type: Schema.Types.ObjectId, required: true },
         answer: Schema.Types.Mixed, 
         isCorrect: { type: Boolean },
+        file: { type: String },
+        mark: { type: Number }
       },
     ],  
+    // theoryAnswer: { type: String || Number || Boolean },
     score: { type: Number, min: 0 },
     status: { type: String, enum: ['Ungraded', 'Graded'], default: 'Ungraded' },
     gradedAnswers: [
@@ -80,7 +88,7 @@ const submissionSchema = new Schema<ISubmission>(
     comments: { type: String },
     maxObtainableMarks: { type: Number, min: 0},
     percentageScore: { type: Number, min: 0, max: 100 },
-    passOrFail: { type: String, enum: ["Pass", "Fail"], default: "Fail" },
+    passOrFail: { type: String, enum: ["Pass", "Fail"] },
   },
   {
     timestamps: true,
