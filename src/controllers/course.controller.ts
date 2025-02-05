@@ -8,6 +8,7 @@ import Lesson, { CompletionDetails } from "../models/lesson.model";
 import ObjectiveAssessment, {
   IObjectiveAssessment,
 } from "../models/objectiveAssessment.model";
+import TheoryAssessment from "../models/theoryAssessment.model";
 import Organization from "../models/organization.model";
 import Submission from "../models/submission.model";
 import User, { IUser } from "../models/user.model";
@@ -344,6 +345,7 @@ export class CourseController {
         lessonFormat,
         lessons,
         assessments,
+        // assessmentId,
         certificate,
         announcements,
         showInstructor,
@@ -365,11 +367,40 @@ export class CourseController {
         return ResponseHandler.failure(res, "Course code already exists", 400);
       }
 
+      // const validAssessment = await ObjectiveAssessment.find({
+      //   _id: assessmentId,
+      //   organizationId: adminId,
+      // }) || await TheoryAssessment.find({
+      //   _id: assessmentId,
+      //   organizationId: adminId,
+      // });
+      // if (!validAssessment) {
+      //   return ResponseHandler.failure(
+      //     res,
+      //     "One or more assessments are invalid",
+      //     400
+      //   );
+      // }
+
       if (assessments) {
-        const validAssessments = await ObjectiveAssessment.find({
+        // const validAssessments = await ObjectiveAssessment.find({
+        //   _id: { $in: assessments },
+        //   organizationId: adminId,
+        // }) || await TheoryAssessment.find({
+        //   _id: { $in: assessments },
+        //   organizationId: adminI333333333333333333d,
+        // });
+
+        const validAssessments = 
+        // (await ObjectiveAssessment.find({
+        //   _id: { $in: assessments },
+        //   organizationId: adminId,
+        // })) ||
+        (await ObjectiveAssessment.find({
           _id: { $in: assessments },
           organizationId: adminId,
-        });
+        }))
+
         if (validAssessments.length !== assessments.length) {
           return ResponseHandler.failure(
             res,
@@ -442,6 +473,7 @@ export class CourseController {
         lessonFormat,
         lessons,
         assessments,
+        // validAssessment,
         certificate,
         announcements: announcementIds,
         instructor,
