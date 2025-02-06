@@ -1,3 +1,4 @@
+import { timeStamp } from "console";
 import mongoose, { Schema, model, Document } from "mongoose";
 
 export interface ICourse extends Document {
@@ -100,6 +101,8 @@ const CourseSchema = new Schema<ICourse>({
   teachingMethod: { type: String },
   passMark: { type: Number },
   maximumNumberOfTrials: { type: Number },
+}, {
+  timestamps: true,
 });
 
 const Course = model<ICourse>("Course", CourseSchema);

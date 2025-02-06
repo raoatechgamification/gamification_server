@@ -175,9 +175,11 @@ export class CourseController {
         );
       }
 
+      const reversedCourses = courses.reverse();
+
       return ResponseHandler.success(
         res,
-        courses,
+        reversedCourses,
         "Courses retrieved successfully",
         200
       );
