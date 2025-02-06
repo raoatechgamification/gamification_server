@@ -244,7 +244,7 @@ export class CourseController {
     }
   }
 
-  async createLesson(req: Request, res: Response, next: NextFunction) {
+  async createLesson(req: Request, res: Response) {
     try {
       // const organizationId = req.admin._id;
       let organizationId = await getOrganizationId(req, res);
@@ -293,12 +293,16 @@ export class CourseController {
         lesson,
         "Lesson uploaded successfully"
       );
-    } catch (error) {
-      next(error);
+    } catch (error: any) {
+      return ResponseHandler.failure(
+        res,
+        `Server error: ${error.message}`,
+        500
+      );
     }
   }
 
-  async getAllLessons(req: Request, res: Response, next: NextFunction) {
+  async getAllLessons(req: Request, res: Response) {
     try {
       // const instructorId = req.admin._id;
 
@@ -327,8 +331,12 @@ export class CourseController {
         lessons,
         "Lessons retrieved successfully"
       );
-    } catch (error) {
-      next(error);
+    } catch (error: any) {
+      return ResponseHandler.failure(
+        res,
+        `Server error: ${error.message}`,
+        500
+      );
     }
   }
 
@@ -366,21 +374,6 @@ export class CourseController {
       if (codeExists) {
         return ResponseHandler.failure(res, "Course code already exists", 400);
       }
-
-      // const validAssessment = await ObjectiveAssessment.find({
-      //   _id: assessmentId,
-      //   organizationId: adminId,
-      // }) || await TheoryAssessment.find({
-      //   _id: assessmentId,
-      //   organizationId: adminId,
-      // });
-      // if (!validAssessment) {
-      //   return ResponseHandler.failure(
-      //     res,
-      //     "One or more assessments are invalid",
-      //     400
-      //   );
-      // }
 
       if (assessments) {
         // const validAssessments = await ObjectiveAssessment.find({
@@ -517,26 +510,153 @@ export class CourseController {
     }
   }
 
+  // async editCourse(req: Request, res: Response) {
+  //   try {
+  //     const courseId = req.params.courseId;
+
+  //     console.log(req.body)
+
+  //     // const adminId = req.admin._id;
+  //     let adminId = await getOrganizationId(req, res);
+  //     if (!adminId) {
+  //       return;
+  //     }
+
+  //     const organization = await Organization.findById(adminId);
+  //     if (!organization) {
+  //       return ResponseHandler.failure(res, "Organization not found", 404);
+  //     }
+
+  //     const updates = req.body;
+  //     const files = req.files as Express.Multer.File[];
+
+  //     const assessments = updates.assessments;
+  //     if (assessments) {
+  //       const validAssessments = await ObjectiveAssessment.find({
+  //         _id: { $in: assessments },
+  //         organizationId: adminId,
+  //       });
+  //       if (validAssessments.length !== assessments.length) {
+  //         return ResponseHandler.failure(
+  //           res,
+  //           "One or more assessments are invalid",
+  //           400
+  //         );
+  //       }
+  //     }
+
+  //     const lessons = updates.lessons;
+  //     let validLessons;
+  //     if (lessons) {
+  //       validLessons = await Lesson.find({
+  //         _id: { $in: lessons },
+  //         instructorId: adminId,
+  //       });
+
+  //       if (validLessons.length !== lessons.length) {
+  //         return ResponseHandler.failure(
+  //           res,
+  //           "One or more lessons are invalid",
+  //           400
+  //         );
+  //       }
+  //     }
+
+  //     let Urls: string[] = [];
+  //     if (files && files.length > 0) {
+  //       for (let file of files) {
+  //         const uploadResult = await uploadToCloudinary(
+  //           file.buffer,
+  //           file.mimetype,
+  //           "course-content"
+  //         );
+  //         if (uploadResult && uploadResult.secure_url) {
+  //           Urls.push(uploadResult.secure_url);
+  //         }
+  //       }
+  //       updates.courseImage = Urls; // Update courseImage if new files uploaded
+  //     }
+
+  //     // Handle announcements
+  //     if (updates.announcements) {
+  //       const announcementIds: mongoose.Types.ObjectId[] = [];
+
+  //       for (const announcement of updates.announcements) {
+  //         if (announcement._id) {
+  //           // If _id exists, assume it's an existing announcement
+  //           announcementIds.push(announcement._id as mongoose.Types.ObjectId);
+  //         } else if (announcement.title && announcement.details) {
+  //           // Create a new announcement if details are provided
+  //           const newAnnouncement = await Announcement.create({
+  //             title: announcement.title,
+  //             details: announcement.details,
+  //           });
+  //           announcementIds.push(
+  //             newAnnouncement._id as mongoose.Types.ObjectId
+  //           );
+  //         }
+  //       }
+
+  //       updates.announcements = announcementIds; // Replace with array of ObjectIds
+  //     }
+
+  //     const updatedCourse = await Course.findByIdAndUpdate(
+  //       courseId,
+  //       { $set: updates },
+  //       { new: true, runValidators: true }
+  //     );
+
+  //     if (!updatedCourse) {
+  //       return ResponseHandler.failure(res, "Course not found", 404);
+  //     }
+
+  //     if (updates.lessons) {
+  //       await Lesson.updateMany(
+  //         { _id: { $in: updates.lessons } },
+  //         { $push: { courseIds: updatedCourse._id } }
+  //       );
+  //     }
+
+  //     const courseResponse = updatedCourse.toObject();
+  //     return ResponseHandler.success(
+  //       res,
+  //       courseResponse,
+  //       "Course updated successfully",
+  //       200
+  //     );
+  //   } catch (error: any) {
+  //     console.error("Error updating course:", error.message);
+  //     return ResponseHandler.failure(
+  //       res,
+  //       `Server error: ${error.message}`,
+  //       500
+  //     );
+  //   }
+  // }
+
   async editCourse(req: Request, res: Response) {
     try {
       const courseId = req.params.courseId;
-
-      // const adminId = req.admin._id;
-      let adminId = await getOrganizationId(req, res);
-      if (!adminId) {
-        return;
-      }
+      const adminId = await getOrganizationId(req, res);
+      if (!adminId) return;
 
       const organization = await Organization.findById(adminId);
       if (!organization) {
         return ResponseHandler.failure(res, "Organization not found", 404);
       }
-
+  
       const updates = req.body;
-      const files = req.files as Express.Multer.File[];
+      
+      // Parse arrays (if they come as strings)
+      const lessons = Array.isArray(updates.lessons)
+        ? updates.lessons
+        : JSON.parse(updates.lessons || "[]");
+  
+      const assessments = []
+      assessments.push(updates.assessments)
 
-      const assessments = updates.assessments;
-      if (assessments) {
+      // Validate assessments
+      if (assessments.length) {
         const validAssessments = await ObjectiveAssessment.find({
           _id: { $in: assessments },
           organizationId: adminId,
@@ -549,15 +669,13 @@ export class CourseController {
           );
         }
       }
-
-      const lessons = updates.lessons;
-      let validLessons;
-      if (lessons) {
-        validLessons = await Lesson.find({
+  
+      // Validate lessons
+      if (lessons.length) {
+        const validLessons = await Lesson.find({
           _id: { $in: lessons },
           instructorId: adminId,
         });
-
         if (validLessons.length !== lessons.length) {
           return ResponseHandler.failure(
             res,
@@ -566,66 +684,62 @@ export class CourseController {
           );
         }
       }
-
-      let Urls: string[] = [];
+      
+      // Handle file uploads
+      const files = req.files as Express.Multer.File[];
       if (files && files.length > 0) {
+        const Urls = [];
         for (let file of files) {
           const uploadResult = await uploadToCloudinary(
             file.buffer,
             file.mimetype,
             "course-content"
           );
-          if (uploadResult && uploadResult.secure_url) {
+          if (uploadResult?.secure_url) {
             Urls.push(uploadResult.secure_url);
           }
         }
-        updates.courseImage = Urls; // Update courseImage if new files uploaded
+        updates.courseImage = Urls;
       }
-
+  
       // Handle announcements
       if (updates.announcements) {
         const announcementIds: mongoose.Types.ObjectId[] = [];
-
         for (const announcement of updates.announcements) {
           if (announcement._id) {
-            // If _id exists, assume it's an existing announcement
-            announcementIds.push(announcement._id as mongoose.Types.ObjectId);
+            announcementIds.push(announcement._id);
           } else if (announcement.title && announcement.details) {
-            // Create a new announcement if details are provided
-            const newAnnouncement = await Announcement.create({
+            const newAnnouncement: any = await Announcement.create({
               title: announcement.title,
               details: announcement.details,
             });
-            announcementIds.push(
-              newAnnouncement._id as mongoose.Types.ObjectId
-            );
+            announcementIds.push(newAnnouncement._id);
           }
         }
-
-        updates.announcements = announcementIds; // Replace with array of ObjectIds
+        updates.announcements = announcementIds;
       }
-
+  
       const updatedCourse = await Course.findByIdAndUpdate(
         courseId,
         { $set: updates },
         { new: true, runValidators: true }
       );
-
+  
       if (!updatedCourse) {
         return ResponseHandler.failure(res, "Course not found", 404);
       }
-
-      if (updates.lessons) {
+  
+      // Update lessons with courseId
+      if (lessons.length) {
         await Lesson.updateMany(
-          { _id: { $in: updates.lessons } },
+          { _id: { $in: lessons } },
           { $push: { courseIds: updatedCourse._id } }
         );
       }
-
-      const courseResponse = updatedCourse.toObject();
+      
       return ResponseHandler.success(
         res,
-        courseResponse,
+        updatedCourse.toObject(),
         "Course updated successfully",
         200
       );
@@ -637,7 +751,7 @@ export class CourseController {
         500
       );
     }
-  }
+  }  
 
   async assignCourseToUsers(req: Request, res: Response) {
     try {
