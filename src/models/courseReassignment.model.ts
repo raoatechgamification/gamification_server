@@ -29,6 +29,8 @@ const CourseReassignmentSchema = new Schema<ICourseReassignment>({
     },
   ],
   assessments: [{ type: Schema.Types.ObjectId, ref: 'Assessment' }]
+}, {
+  timestamps: true,
 })
 
 const Course = model<ICourseReassignment>("ReassignedCourse", CourseReassignmentSchema)

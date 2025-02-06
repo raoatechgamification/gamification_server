@@ -13,7 +13,10 @@ const OrganisationContactSchema = new Schema<OrganisationContact>({
     address: { type: String, required: true },
     phoneNumber: { type: String, required: true },
     organisationId: { type: Schema.Types.ObjectId, ref: 'Organization', required: true }
-});
+}, {
+    timestamps: true,
+  }
+);
 
 const OrganisationContactModel = model<OrganisationContact>('OrganisationContact', OrganisationContactSchema);
 

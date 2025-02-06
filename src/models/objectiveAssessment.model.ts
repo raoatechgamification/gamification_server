@@ -63,6 +63,8 @@ const objectiveAssessmentSchema = new Schema<IObjectiveAssessment>({
       mark: { type: Number, required: true },
     },
   ],
+}, {
+  timestamps: true,
 });
 
 const ObjectiveAssessment =

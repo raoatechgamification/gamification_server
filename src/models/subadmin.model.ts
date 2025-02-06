@@ -67,6 +67,8 @@ const SubAdminSchema: Schema<ISubAdmin> = new Schema({
   employerName: { type: String, default: null },
   permissions: [{ type: Schema.Types.ObjectId, ref: "Permission" }],
   roles: [{ type: Schema.Types.ObjectId, ref: "Role" }]
+}, {
+  timestamps: true,
 });
 
 const SubAdmin: Model<ISubAdmin> = mongoose.model<ISubAdmin>(
