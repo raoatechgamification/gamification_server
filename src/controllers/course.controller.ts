@@ -621,7 +621,6 @@ export class CourseController {
           { $push: { courseIds: updatedCourse._id } }
         );
       }
-
       const courseResponse = updatedCourse.toObject();
       return ResponseHandler.success(
         res,

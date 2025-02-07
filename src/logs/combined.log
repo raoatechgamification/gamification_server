@@ -8473,3 +8473,72 @@
 2025-02-05 17:08:37 [info]: POST /objective 201 - Request Body: {"title":"Mixed Question Types Quiz","description":"A quiz with various question types to test your knowledge.","marksPerQuestion":5,"numberOfTrials":5,"purpose":"Learning assessment","passMark":60,"duration":30,"totalMark":100,"startDate":"2024-11-25","endDate":"2024-12-01","questions":[{"question":"The Eiffel Tower is in London.","type":"True or False","answer":"false","mark":15},{"question":"______ is the largest ocean on Earth.","type":"Fill in the Gap","answer":"Pacific Ocean","mark":25},{"question":"Is climate change a global concern?","type":"Yes or No","answer":"yes","mark":15},{"question":"Which of these is a prime number?","type":"Multichoice","options":["4","6","7","9"],"answer":"7","mark":15},{"question":"Is a Dog a mammal?","type":"Yes or No","answer":"yes","mark":10}]}
 2025-02-05 17:08:53 [info]: POST /add 400 - Request Body: {"code":"WIWI-252","price":50000,"title":"Toxicology","objective":"Introduction to Biology I","instructorId":"67453884a835dc3c8062914d","duration":"six weeks","lessonFormat":".xls","assessments":["67a38d0583ab5aa68ffd93c0"],"announcements":[{"title":"Become a doctor now","details":"This is your very chance to become a doctor"}],"certificate":["675fec0e6fe5ccac4b4ac00b"],"showInstructor":true}
 2025-02-05 17:09:02 [info]: POST /add 201 - Request Body: {"code":"WIWIB-252","price":50000,"title":"Toxicology","objective":"Introduction to Biology I","instructorId":"67453884a835dc3c8062914d","duration":"six weeks","lessonFormat":".xls","assessments":["67a38d0583ab5aa68ffd93c0"],"announcements":[{"title":"Become a doctor now","details":"This is your very chance to become a doctor"}],"certificate":["675fec0e6fe5ccac4b4ac00b"],"showInstructor":true}
+2025-02-05 18:03:47 [info]: GET /all 403
+2025-02-05 18:03:48 [info]: GET /all 401
+2025-02-05 18:03:54 [info]: POST /login 200 - Request Body: {"email":"test@gmail.com","password":"Test2024!"}
+2025-02-05 18:03:55 [info]: GET / 200
+2025-02-05 18:04:18 [info]: GET /all 200
+2025-02-05 18:04:30 [info]: GET /all 304
+2025-02-05 18:04:48 [info]: GET /678110bc70afb170374c9881 200
+2025-02-05 18:04:48 [info]: GET / 200
+2025-02-05 18:04:48 [info]: GET /lesson/getAll 200
+2025-02-05 18:04:48 [info]: GET / 200
+2025-02-05 18:05:03 [info]: PUT /678110bc70afb170374c9881 200
+2025-02-05 18:05:05 [info]: GET /all 304
+2025-02-05 18:06:30 [info]: GET /all 304
+2025-02-05 18:07:15 [info]: GET /all 304
+2025-02-05 18:07:44 [info]: GET /all 304
+2025-02-05 18:07:45 [info]: GET /all 304
+2025-02-05 18:07:56 [info]: GET /678110bc70afb170374c9881 200
+2025-02-05 18:07:56 [info]: GET / 304
+2025-02-05 18:07:57 [info]: GET / 304
+2025-02-05 18:07:57 [info]: GET /lesson/getAll 304
+2025-02-05 18:08:17 [info]: GET /all 304
+2025-02-05 18:08:19 [info]: GET /all 304
+2025-02-05 18:09:12 [info]: GET /all 304
+2025-02-05 18:10:09 [info]: GET /all 304
+2025-02-05 18:10:15 [info]: GET /all 304
+2025-02-05 19:54:19 [info]: GET /auth/login 200
+2025-02-05 19:54:19 [info]: GET /favicon.ico 404
+2025-02-05 19:54:27 [info]: POST /login 500 - Request Body: {"email":"test@gmail.com","password":"Test2024!"}
+2025-02-05 19:54:42 [info]: POST /login 200 - Request Body: {"email":"test@gmail.com","password":"Test2024!"}
+2025-02-05 19:54:42 [info]: GET / 304
+2025-02-05 19:54:49 [info]: GET /all 304
+2025-02-05 19:54:57 [info]: GET /678110bc70afb170374c9881 304
+2025-02-05 19:54:57 [info]: GET / 304
+2025-02-05 19:54:58 [info]: GET /lesson/getAll 304
+2025-02-05 19:54:58 [info]: GET / 304
+2025-02-05 19:55:05 [info]: POST /add 400 - Request Body: {"title":"Paid course duplicate","description":"pdtc","courseCode":"pdtc","duration":"2000","startDate":"","endDate":"","assessments":"undefined","certificate":"677befebd8d18bac8177fa5e","cost":"2000","lessons":["67780f67a0d2a9a95fa14fb8"],"file":"https://res.cloudinary.com/dldchwdkn/image/upload/v1736511675/course-content/gpt0klpapnqb1t2yixpj.png"}
+2025-02-05 19:55:15 [info]: POST /add 400 - Request Body: {"title":"Paid course duplicate","description":"pdtccc","courseCode":"pdtc","duration":"2000","startDate":"","endDate":"","assessments":"undefined","certificate":"677befebd8d18bac8177fa5e","cost":"2000","lessons":["67780f67a0d2a9a95fa14fb8"],"file":"https://res.cloudinary.com/dldchwdkn/image/upload/v1736511675/course-content/gpt0klpapnqb1t2yixpj.png"}
+2025-02-05 19:55:24 [info]: POST /add 400 - Request Body: {"title":"Paid course duplicate","description":"pdtccccc","courseCode":"pdtc","duration":"2000","startDate":"","endDate":"","assessments":"undefined","certificate":"677befebd8d18bac8177fa5e","cost":"2000","lessons":["67780f67a0d2a9a95fa14fb8"],"file":"https://res.cloudinary.com/dldchwdkn/image/upload/v1736511675/course-content/gpt0klpapnqb1t2yixpj.png"}
+2025-02-05 19:56:07 [info]: GET /678110bc70afb170374c9881 304
+2025-02-05 19:56:07 [info]: GET / 304
+2025-02-05 19:56:08 [info]: GET /lesson/getAll 304
+2025-02-05 19:56:08 [info]: GET / 304
+2025-02-05 19:56:25 [info]: GET /678110bc70afb170374c9881 304
+2025-02-05 19:56:25 [info]: GET / 304
+2025-02-05 19:56:25 [info]: GET / 304
+2025-02-05 19:56:25 [info]: GET /lesson/getAll 304
+2025-02-05 19:56:36 [info]: GET /678110bc70afb170374c9881 304
+2025-02-05 19:56:37 [info]: GET / 304
+2025-02-05 19:56:37 [info]: GET / 304
+2025-02-05 19:56:37 [info]: GET /lesson/getAll 304
+2025-02-05 19:56:38 [info]: GET /678110bc70afb170374c9881 304
+2025-02-05 19:56:38 [info]: GET / 304
+2025-02-05 19:56:38 [info]: GET /678110bc70afb170374c9881 304
+2025-02-05 19:56:38 [info]: GET / 304
+2025-02-05 19:56:38 [info]: GET /lesson/getAll 304
+2025-02-05 19:56:41 [info]: GET /all 304
+2025-02-05 19:56:47 [info]: GET /678110bc70afb170374c9881 304
+2025-02-05 19:56:47 [info]: GET / 304
+2025-02-05 19:56:47 [info]: GET /lesson/getAll 304
+2025-02-05 19:56:47 [info]: GET / 304
+2025-02-05 19:56:50 [info]: PUT /678110bc70afb170374c9881 200
+2025-02-05 19:56:51 [info]: GET /all 304
+2025-02-05 19:57:08 [info]: GET /678110bc70afb170374c9881 401
+2025-02-05 19:57:11 [info]: GET /all 304
+2025-02-05 19:57:28 [info]: GET /678110bc70afb170374c9881 200
+2025-02-05 19:57:29 [info]: GET / 304
+2025-02-05 19:57:29 [info]: GET / 304
+2025-02-05 19:57:29 [info]: GET /lesson/getAll 304
+2025-02-05 19:57:38 [info]: POST /add 400 - Request Body: {"title":"Paid course","description":"pdtc","code":"pdtc","duration":"2000","startDate":"","endDate":"","assessments":"undefined","certificate":"677befebd8d18bac8177fa5e","cost":"2000","lessons":["67780f67a0d2a9a95fa14fb8"],"file":"https://res.cloudinary.com/dldchwdkn/image/upload/v1736511675/course-content/gpt0klpapnqb1t2yixpj.png"}
