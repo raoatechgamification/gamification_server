@@ -1,3 +1,4 @@
+import { timeStamp } from "console";
 import mongoose, { Schema, model, Document } from "mongoose";
 
 export interface ICourse extends Document {
@@ -39,6 +40,9 @@ export interface ICourse extends Document {
   teachingMethod?: string;
   passMark?: number;
   maximumNumberOfTrials?: number;
+  isDuplicate: boolean;
+  duplicatedFrom?: string;
+  duplicateCount: number;
 }
 
 const CourseSchema = new Schema<ICourse>({
@@ -100,6 +104,11 @@ const CourseSchema = new Schema<ICourse>({
   teachingMethod: { type: String },
   passMark: { type: Number },
   maximumNumberOfTrials: { type: Number },
+  isDuplicate: { type: Boolean, default: false },
+  duplicateCount: { type: Number, default: 0 },
+  duplicatedFrom: { type: String },
+}, {
+  timestamps: true,
 });
 
 const Course = model<ICourse>("Course", CourseSchema);

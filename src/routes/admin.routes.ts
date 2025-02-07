@@ -19,7 +19,7 @@ const {
   archiveCourse
 } = AdminController;
 
-const { getAllSubadmins } = new SubAdminController()
+const { getAllSubAdmins, getASubAdmin } = new SubAdminController()
 
 const router = Router();
 
@@ -27,7 +27,14 @@ router.get(
   "/subadmins",
   authenticate,
   authorize(["admin"]),
-  getAllSubadmins
+  getAllSubAdmins
+)
+
+router.get(
+  "/subadmins/:id",
+  authenticate,
+  authorize(["admin"]),
+  getASubAdmin
 )
 
 router.get(

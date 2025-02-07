@@ -8473,6 +8473,47 @@
 2025-02-05 17:08:37 [info]: POST /objective 201 - Request Body: {"title":"Mixed Question Types Quiz","description":"A quiz with various question types to test your knowledge.","marksPerQuestion":5,"numberOfTrials":5,"purpose":"Learning assessment","passMark":60,"duration":30,"totalMark":100,"startDate":"2024-11-25","endDate":"2024-12-01","questions":[{"question":"The Eiffel Tower is in London.","type":"True or False","answer":"false","mark":15},{"question":"______ is the largest ocean on Earth.","type":"Fill in the Gap","answer":"Pacific Ocean","mark":25},{"question":"Is climate change a global concern?","type":"Yes or No","answer":"yes","mark":15},{"question":"Which of these is a prime number?","type":"Multichoice","options":["4","6","7","9"],"answer":"7","mark":15},{"question":"Is a Dog a mammal?","type":"Yes or No","answer":"yes","mark":10}]}
 2025-02-05 17:08:53 [info]: POST /add 400 - Request Body: {"code":"WIWI-252","price":50000,"title":"Toxicology","objective":"Introduction to Biology I","instructorId":"67453884a835dc3c8062914d","duration":"six weeks","lessonFormat":".xls","assessments":["67a38d0583ab5aa68ffd93c0"],"announcements":[{"title":"Become a doctor now","details":"This is your very chance to become a doctor"}],"certificate":["675fec0e6fe5ccac4b4ac00b"],"showInstructor":true}
 2025-02-05 17:09:02 [info]: POST /add 201 - Request Body: {"code":"WIWIB-252","price":50000,"title":"Toxicology","objective":"Introduction to Biology I","instructorId":"67453884a835dc3c8062914d","duration":"six weeks","lessonFormat":".xls","assessments":["67a38d0583ab5aa68ffd93c0"],"announcements":[{"title":"Become a doctor now","details":"This is your very chance to become a doctor"}],"certificate":["675fec0e6fe5ccac4b4ac00b"],"showInstructor":true}
+2025-02-05 17:45:34 [info]: POST /login 200 - Request Body: {"email":"test@gmail.com","password":"Test2024!"}
+2025-02-05 17:46:32 [info]: POST /add 400 - Request Body: {"code":"WIWIB-252","price":50000,"title":"Toxicology","objective":"Introduction to Biology I","instructorId":"67453884a835dc3c8062914d","duration":"six weeks","lessonFormat":".xls","assessments":["67a38d0583ab5aa68ffd93c0"],"announcements":[{"title":"Become a doctor now","details":"This is your very chance to become a doctor"}],"certificate":["675fec0e6fe5ccac4b4ac00b"],"showInstructor":true}
+2025-02-05 17:47:13 [info]: POST /add 400 - Request Body: {"code":"NONO-246","price":50000,"title":"Toxicology","objective":"Introduction to Biology I","instructorId":"67453884a835dc3c8062914d","duration":"six weeks","lessonFormat":".xls","lessons":["67641a614e36b15a4278cb0b","67641ab04e36b15a4278cb0e","67641abd4e36b15a4278cb11","67641aca4e36b15a4278cb14","67641ad34e36b15a4278cb17"],"announcements":[{"title":"Become a doctor now","details":"This is your very chance to become a doctor"}],"certificate":["675fec0e6fe5ccac4b4ac00b"],"showInstructor":true}
+2025-02-05 17:47:34 [info]: POST /objective 201 - Request Body: {"title":"Mixed Question Types Quiz","description":"A quiz with various question types to test your knowledge.","marksPerQuestion":5,"numberOfTrials":5,"purpose":"Learning assessment","passMark":60,"duration":30,"totalMark":100,"startDate":"2024-11-25","endDate":"2024-12-01","questions":[{"question":"The Eiffel Tower is in London.","type":"True or False","answer":"false","mark":15},{"question":"______ is the largest ocean on Earth.","type":"Fill in the Gap","answer":"Pacific Ocean","mark":25},{"question":"Is climate change a global concern?","type":"Yes or No","answer":"yes","mark":15},{"question":"Which of these is a prime number?","type":"Multichoice","options":["4","6","7","9"],"answer":"7","mark":15},{"question":"Is a Dog a mammal?","type":"Yes or No","answer":"yes","mark":10}]}
+2025-02-05 17:48:35 [info]: POST /add 201 - Request Body: {"code":"NONO-246","price":50000,"title":"Toxicology","objective":"Introduction to Biology I","instructorId":"67453884a835dc3c8062914d","duration":"six weeks","lessonFormat":".xls","assessments":["67a396251f9cd81895b60b57"],"announcements":[{"title":"Become a doctor now","details":"This is your very chance to become a doctor"}],"certificate":["675fec0e6fe5ccac4b4ac00b"],"showInstructor":true}
+2025-02-05 17:49:12 [info]: PUT /67a396621f9cd81895b60b69 400 - Request Body: {"code":"MPP-252","price":50000,"title":"Pharmacology","objective":"This is Introduction","instructorId":"67453884a835dc3c8062914d","duration":"five weeks","lessonFormat":".pdf","assessments":["67a31a220522bbabdbae6ec1"],"announcements":[{"title":"Become a doctor now","details":"This is your very chance to become a doctor"}],"certificate":["675fec0e6fe5ccac4b4ac00b"],"showInstructor":true}
+2025-02-05 17:50:59 [info]: PUT /67a396621f9cd81895b60b69 200 - Request Body: {"code":"NP-246","price":50000,"title":"This is not toxicology","objective":"Introduction to Biology I","instructorId":"67453884a835dc3c8062914d","duration":"six weeks","lessonFormat":".xls","assessments":["67a396251f9cd81895b60b57"],"announcements":["67a396f21f9cd81895b60b77"],"certificate":["675fec0e6fe5ccac4b4ac00b"],"showInstructor":true}
+2025-02-05 17:51:42 [info]: GET /67a396621f9cd81895b60b69 200
+2025-02-06 09:43:19 [info]: POST /add 403 - Request Body: {"code":"NONO-246","price":50000,"title":"Toxicology","objective":"Introduction to Biology I","instructorId":"67453884a835dc3c8062914d","duration":"six weeks","lessonFormat":".xls","lessons":["67641a614e36b15a4278cb0b","67641ab04e36b15a4278cb0e","67641abd4e36b15a4278cb11","67641aca4e36b15a4278cb14","67641ad34e36b15a4278cb17"],"assessments":["67641b594e36b15a4278cb20"],"announcements":[{"title":"Become a doctor now","details":"This is your very chance to become a doctor"}],"certificate":["675fec0e6fe5ccac4b4ac00b"],"showInstructor":true}
+2025-02-06 09:44:47 [info]: POST /login 200 - Request Body: {"email":"seunoduez@gmail.com","password":"Timpearl05$$$"}
+2025-02-06 09:45:21 [info]: POST /add 201 - Request Body: {"code":"SMSM-246","price":50000,"title":"Toxicology","objective":"Introduction to Biology I","instructorId":"67453884a835dc3c8062914d","duration":"six weeks","lessonFormat":".xls","lessons":["67641a614e36b15a4278cb0b","67641ab04e36b15a4278cb0e","67641abd4e36b15a4278cb11","67641aca4e36b15a4278cb14","67641ad34e36b15a4278cb17"],"assessments":["67641b594e36b15a4278cb20"],"announcements":[{"title":"Become a doctor now","details":"This is your very chance to become a doctor"}],"certificate":["675fec0e6fe5ccac4b4ac00b"],"showInstructor":true}
+2025-02-06 09:45:46 [info]: PUT /67a476a02724f0b74eb5c2ab 400 - Request Body: {"title":"Update Course Title","description":"Updated Course Description","lessons":["67641a614e36b15a4278cb0b","67641ab04e36b15a4278cb0e"],"assessments":"67641b594e36b15a4278cb20","announcements":["{\"title\":\"Announcement 1\",\"details\":\"Details about announcement 1\"}\t","{\"title\":\"Announcement 2\",\"details\":\"Details about announcement 2\"}"]}
+2025-02-06 09:46:32 [info]: PUT /67a476a02724f0b74eb5c2ab 400 - Request Body: {"title":"Update Course Title","description":"Updated Course Description","lessons":"67641ab04e36b15a4278cb0e","assessments":"67641b594e36b15a4278cb20","announcements":["{\"title\":\"Announcement 1\",\"details\":\"Details about announcement 1\"}\t","{\"title\":\"Announcement 2\",\"details\":\"Details about announcement 2\"}"]}
+2025-02-06 09:46:39 [info]: PUT /67a476a02724f0b74eb5c2ab 400 - Request Body: {"title":"Update Course Title","description":"Updated Course Description","lessons":"67641a614e36b15a4278cb0b","assessments":"67641b594e36b15a4278cb20","announcements":["{\"title\":\"Announcement 1\",\"details\":\"Details about announcement 1\"}\t","{\"title\":\"Announcement 2\",\"details\":\"Details about announcement 2\"}"]}
+2025-02-06 09:46:53 [info]: POST /objective 201 - Request Body: {"title":"Mixed Question Types Quiz","description":"A quiz with various question types to test your knowledge.","marksPerQuestion":5,"numberOfTrials":5,"purpose":"Learning assessment","passMark":60,"duration":30,"totalMark":100,"startDate":"2024-11-25","endDate":"2024-12-01","questions":[{"question":"The Eiffel Tower is in London.","type":"True or False","answer":"false","mark":15},{"question":"______ is the largest ocean on Earth.","type":"Fill in the Gap","answer":"Pacific Ocean","mark":25},{"question":"Is climate change a global concern?","type":"Yes or No","answer":"yes","mark":15},{"question":"Which of these is a prime number?","type":"Multichoice","options":["4","6","7","9"],"answer":"7","mark":15},{"question":"Is a Dog a mammal?","type":"Yes or No","answer":"yes","mark":10}]}
+2025-02-06 09:47:38 [info]: PUT /67a476a02724f0b74eb5c2ab 400 - Request Body: {"title":"Update Course Title","description":"Updated Course Description","lessons":["67641a614e36b15a4278cb0b","67641ab04e36b15a4278cb0e"],"assessments":"67a476fc2724f0b74eb5c2cf","announcements":["{\"title\":\"Announcement 1\",\"details\":\"Details about announcement 1\"}\t","{\"title\":\"Announcement 2\",\"details\":\"Details about announcement 2\"}"]}
+2025-02-06 09:49:27 [info]: PUT /67a476a02724f0b74eb5c2ab 500 - Request Body: {"title":"Update Course Title","description":"Updated Course Description","lessons":["67641a614e36b15a4278cb0b","67641ab04e36b15a4278cb0e"],"assessments":"67a476fc2724f0b74eb5c2cf"}
+2025-02-06 09:50:29 [info]: PUT /67a476a02724f0b74eb5c2ab 500 - Request Body: {"title":"Update Course Title","description":"Updated Course Description","lessons":["67641a614e36b15a4278cb0b","67641ab04e36b15a4278cb0e"],"assessments":"67a476fc2724f0b74eb5c2cf"}
+2025-02-06 09:53:17 [info]: PUT /67a476a02724f0b74eb5c2ab 500 - Request Body: {"title":"Update Course Title","description":"Updated Course Description","lessons":["67641a614e36b15a4278cb0b","67641ab04e36b15a4278cb0e"],"assessments":"67a476fc2724f0b74eb5c2cf"}
+2025-02-06 09:53:43 [info]: PUT /67a476a02724f0b74eb5c2ab 500 - Request Body: {"title":"Update Course Title","description":"Updated Course Description","lessons":["67641a614e36b15a4278cb0b","67641ab04e36b15a4278cb0e"],"assessments":"67a476fc2724f0b74eb5c2cf"}
+2025-02-06 09:54:45 [info]: PUT /67a476a02724f0b74eb5c2ab 500 - Request Body: {"title":"Update Course Title","description":"Updated Course Description","lessons":["67641a614e36b15a4278cb0b","67641ab04e36b15a4278cb0e"],"assessments":"67a476fc2724f0b74eb5c2cf"}
+2025-02-06 09:59:13 [info]: PUT /67a476a02724f0b74eb5c2ab 500 - Request Body: {"title":"Update Course Title","description":"Updated Course Description","lessons":["67641a614e36b15a4278cb0b","67641ab04e36b15a4278cb0e"],"assessments":"67a476fc2724f0b74eb5c2cf"}
+2025-02-06 10:11:01 [info]: PUT /67a476a02724f0b74eb5c2ab 500 - Request Body: {"title":"Update Course Title","description":"Updated Course Description","lessons":["67641a614e36b15a4278cb0b","67641ab04e36b15a4278cb0e"],"assessments":"67a476fc2724f0b74eb5c2cf"}
+2025-02-06 10:12:40 [info]: PUT /67a476a02724f0b74eb5c2ab 500 - Request Body: {"title":"Update Course Title","description":"Updated Course Description","lessons":["67641a614e36b15a4278cb0b","67641ab04e36b15a4278cb0e"],"assessments":"67a476fc2724f0b74eb5c2cf"}
+2025-02-06 10:15:04 [info]: PUT /67a476a02724f0b74eb5c2ab 500 - Request Body: {"title":"Update Course Title","description":"Updated Course Description","lessons":["67641a614e36b15a4278cb0b","67641ab04e36b15a4278cb0e"],"assessments":"67a476fc2724f0b74eb5c2cf"}
+2025-02-06 10:15:28 [info]: PUT /67a476a02724f0b74eb5c2ab 500 - Request Body: {"title":"Update Course Title","description":"Updated Course Description","lessons":["67641a614e36b15a4278cb0b","67641ab04e36b15a4278cb0e"],"assessments":"[67a476fc2724f0b74eb5c2cf]"}
+2025-02-06 10:15:57 [info]: PUT /67a476a02724f0b74eb5c2ab 500 - Request Body: {"title":"Update Course Title","description":"Updated Course Description","lessons":["67641a614e36b15a4278cb0b","67641ab04e36b15a4278cb0e"],"assessments":"[\"67a476fc2724f0b74eb5c2cf\"]","courseImage":["https://res.cloudinary.com/dldchwdkn/image/upload/v1738833357/course-content/xikccjpztd9prbl4n26a.png"]}
+2025-02-06 10:19:19 [info]: PUT /67a476a02724f0b74eb5c2ab 500 - Request Body: {"title":"Update Course Title","description":"Updated Course Description","lessons":["67641a614e36b15a4278cb0b","67641ab04e36b15a4278cb0e"],"assessments":"67a476fc2724f0b74eb5c2cf"}
+2025-02-06 10:20:35 [info]: PUT /67a476a02724f0b74eb5c2ab 500 - Request Body: {"title":"Update Course Title","description":"Updated Course Description","lessons":["67641a614e36b15a4278cb0b","67641ab04e36b15a4278cb0e"],"assessments":"67a476fc2724f0b74eb5c2cf"}
+2025-02-06 10:22:54 [info]: PUT /67a476a02724f0b74eb5c2ab 500 - Request Body: {"title":"Update Course Title","description":"Updated Course Description","lessons":["67641a614e36b15a4278cb0b","67641ab04e36b15a4278cb0e"],"assessments":"67a476fc2724f0b74eb5c2cf"}
+2025-02-06 10:23:39 [info]: PUT /67a476a02724f0b74eb5c2ab 200 - Request Body: {"title":"Update Course Title","description":"Updated Course Description","lessons":["67641a614e36b15a4278cb0b","67641ab04e36b15a4278cb0e"],"assessments":"67a476fc2724f0b74eb5c2cf","courseImage":["https://res.cloudinary.com/dldchwdkn/image/upload/v1738833819/course-content/y0ukuirus1oq4lo30po8.png"]}
+2025-02-06 10:29:11 [info]: PUT /67a476a02724f0b74eb5c2ab 200 - Request Body: {"title":"Updated Course Title","description":"Updated Course Description","lessons":["67641a614e36b15a4278cb0b","67641ab04e36b15a4278cb0e"],"assessments":"67a476fc2724f0b74eb5c2cf","announcements":[],"courseImage":["https://res.cloudinary.com/dldchwdkn/image/upload/v1738834151/course-content/mkea395qv8ga1nzsz2eb.png"]}
+2025-02-06 10:30:35 [info]: PUT /67a476a02724f0b74eb5c2ab 200 - Request Body: {"code":"SMSP-246","title":"Updated Course Title","description":"Updated Course Description","lessons":["67641a614e36b15a4278cb0b","67641ab04e36b15a4278cb0e"],"assessments":"67a476fc2724f0b74eb5c2cf","announcements":[],"courseImage":["https://res.cloudinary.com/dldchwdkn/image/upload/v1738834233/course-content/jk7pyevegv1zburzvjlx.png"]}
+2025-02-06 10:31:50 [info]: PUT /67a476a02724f0b74eb5c2ab 200 - Request Body: {"code":"SMSP-246","title":"New and Updated Course Title","description":"New and Updated Course Description","lessons":["67641a614e36b15a4278cb0b","67641ab04e36b15a4278cb0e"],"assessments":"67a476fc2724f0b74eb5c2cf","announcements":[],"courseImage":["https://res.cloudinary.com/dldchwdkn/image/upload/v1738834310/course-content/awbllhod2ej5poeerzx0.png"]}
+2025-02-06 10:33:08 [info]: PUT /67a476a02724f0b74eb5c2ab 200 - Request Body: {"code":"SMSP-246","title":"New and Updated Course Title","objective":"New and updated objective","description":"New and Updated Course Description","lessons":["67641a614e36b15a4278cb0b","67641ab04e36b15a4278cb0e"],"assessments":"67a476fc2724f0b74eb5c2cf","announcements":[],"courseImage":["https://res.cloudinary.com/dldchwdkn/image/upload/v1738834388/course-content/j6frlvqvhiwnny8lftas.png"]}
+2025-02-06 10:39:45 [info]: PUT /67a476a02724f0b74eb5c2ab 200 - Request Body: {"courseCode":"SMSP-246","title":"New and Updated Course Title","objective":"New and updated objective","description":"New and Updated Course Description","lessons":["67641a614e36b15a4278cb0b","67641ab04e36b15a4278cb0e"],"assessments":"67a476fc2724f0b74eb5c2cf","announcements":[],"courseImage":["https://res.cloudinary.com/dldchwdkn/image/upload/v1738834785/course-content/tlfotcyqu4z7cs8gp7ag.png"]}
+2025-02-06 10:40:37 [info]: PUT /67a476a02724f0b74eb5c2ab 200 - Request Body: {"courseCode":"UPD-246","title":"New and Updated Course Title","objective":"New and updated objective","description":"New and Updated Course Description","duration":"12 weeks","lessons":["67641a614e36b15a4278cb0b","67641ab04e36b15a4278cb0e"],"assessments":"67a476fc2724f0b74eb5c2cf","announcements":[],"courseImage":["https://res.cloudinary.com/dldchwdkn/image/upload/v1738834837/course-content/lfpsmf92kmead9yi2cvo.png"]}
+2025-02-06 10:41:46 [info]: PUT /67a476a02724f0b74eb5c2ab 200 - Request Body: {"courseCode":"UPD-246","title":"New and Updated Course Title","objective":"New and updated objective","description":"New and Updated Course Description","duration":"12 weeks","lessons":["67641a614e36b15a4278cb0b","67641ab04e36b15a4278cb0e"],"assessments":"67a476fc2724f0b74eb5c2cf","announcements":[],"cost":"10000","courseImage":["https://res.cloudinary.com/dldchwdkn/image/upload/v1738834906/course-content/uutddlovspbw6tmwivas.png"]}
+2025-02-06 10:42:13 [info]: PUT /67a476a02724f0b74eb5c2ab 200 - Request Body: {"courseCode":"UPD-246","title":"New and Updated Course Title","objective":"New and updated objective","description":"New and Updated Course Description","duration":"12 weeks","lessons":["67641a614e36b15a4278cb0b","67641ab04e36b15a4278cb0e"],"assessments":"67a476fc2724f0b74eb5c2cf","announcements":[],"cost":"10000","lessonFormat":".pdf","courseImage":["https://res.cloudinary.com/dldchwdkn/image/upload/v1738834932/course-content/orknjf7ryd5bcpkxxzre.png"]}
+2025-02-06 13:24:34 [info]: GET /all 200
+2025-02-06 13:29:20 [info]: GET /all 200
 2025-02-05 18:03:47 [info]: GET /all 403
 2025-02-05 18:03:48 [info]: GET /all 401
 2025-02-05 18:03:54 [info]: POST /login 200 - Request Body: {"email":"test@gmail.com","password":"Test2024!"}
@@ -8542,3 +8583,308 @@
 2025-02-05 19:57:29 [info]: GET / 304
 2025-02-05 19:57:29 [info]: GET /lesson/getAll 304
 2025-02-05 19:57:38 [info]: POST /add 400 - Request Body: {"title":"Paid course","description":"pdtc","code":"pdtc","duration":"2000","startDate":"","endDate":"","assessments":"undefined","certificate":"677befebd8d18bac8177fa5e","cost":"2000","lessons":["67780f67a0d2a9a95fa14fb8"],"file":"https://res.cloudinary.com/dldchwdkn/image/upload/v1736511675/course-content/gpt0klpapnqb1t2yixpj.png"}
+2025-02-07 16:19:22 [info]: POST /login 400 - Request Body: {"email":"isholalolade55@gmail.com","password":"Password@123"}
+2025-02-07 16:20:19 [info]: POST /login 400 - Request Body: {"email":"isholalolade55@gmail.com","password":"Password@123D"}
+2025-02-07 16:24:06 [info]: POST /login 400 - Request Body: {"email":"isholalolade55@gmail.com","password":"Password@123"}
+2025-02-07 16:24:57 [info]: POST /login 400 - Request Body: {"email":"isholalolade55@gmail.com","password":"Password@123"}
+2025-02-07 16:25:21 [info]: POST /login 400 - Request Body: {"email":"isholalolade55@gmail.com","password":"Password@123"}
+2025-02-07 16:26:29 [info]: POST /login 400 - Request Body: {"email":"isholalolade55@gmail.com","password":"Password@123"}
+2025-02-07 16:27:26 [info]: POST /login 400 - Request Body: {"email":"isholalolade55@gmail.com","password":"Password@123"}
+2025-02-07 16:28:10 [info]: POST /login 400 - Request Body: {"email":"isholalolade55@gmail.com","password":"Password@123"}
+2025-02-07 17:11:23 [info]: POST /login 400 - Request Body: {"email":"isholalolade55@gmail.com","password":"Password@123"}
+2025-02-07 17:12:21 [info]: POST /login 400 - Request Body: {"email":"isholalolade55@gmail.com","password":"Password@123"}
+2025-02-07 17:13:22 [info]: POST /login 400 - Request Body: {"email":"isholalolade55@gmail.com","password":"Password@123"}
+2025-02-07 17:13:41 [info]: POST /login 400 - Request Body: {"email":"Isholalolade55@gmail.com","password":"Password@123"}
+2025-02-07 17:17:19 [info]: POST /login 400 - Request Body: {"email":"Isholalolade55@gmail.com","password":"password@123"}
+2025-02-07 17:18:14 [info]: POST /login 400 - Request Body: {"email":"Isholalolade55@gmail.com","password":""}
+2025-02-07 17:18:14 [info]: POST /login 400 - Request Body: {"email":"Isholalolade55@gmail.com","password":""}
+2025-02-07 17:18:26 [info]: POST /login 400 - Request Body: {"email":"Isholalolade55@gmail.com","password":""}
+2025-02-07 17:19:03 [info]: POST /login 400 - Request Body: {"email":"Isholalolade55@gmail.com","password":"\"\""}
+2025-02-07 17:19:09 [info]: POST /login 400 - Request Body: {"email":"Isholalolade55@gmail.com","password":""}
+2025-02-07 20:21:02 [info]: POST /login 400 - Request Body: {"email":"test@gmail.com","password":"Test2024!"}
+2025-02-07 20:21:29 [info]: POST /login 200 - Request Body: {"email":"test@gmail.com","password":"Test2024!"}
+2025-02-07 20:21:35 [info]: GET / 200
+2025-02-07 20:22:25 [info]: GET /all 200
+2025-02-07 20:22:52 [info]: GET / 200
+2025-02-07 20:22:53 [info]: GET / 200
+2025-02-07 20:22:53 [info]: GET /all 304
+2025-02-07 20:24:07 [info]: GET /6786072435a35845f35c5a0a 200
+2025-02-07 20:24:14 [info]: GET /6786072435a35845f35c5a0a 304
+2025-02-07 20:24:14 [info]: GET / 304
+2025-02-07 20:24:14 [info]: GET / 304
+2025-02-07 20:24:15 [info]: GET /all 304
+2025-02-07 20:24:18 [info]: GET /lesson/getAll 200
+2025-02-07 20:25:20 [info]: GET /all 401
+2025-02-07 20:25:20 [info]: GET / 401
+2025-02-07 20:25:20 [info]: GET / 401
+2025-02-07 20:25:21 [info]: GET / 304
+2025-02-07 20:25:21 [info]: GET / 304
+2025-02-07 20:25:22 [info]: GET /all 304
+2025-02-07 20:28:39 [info]: GET / 304
+2025-02-07 20:28:40 [info]: GET / 304
+2025-02-07 20:28:40 [info]: GET /all 304
+2025-02-07 20:30:25 [info]: GET / 304
+2025-02-07 20:30:26 [info]: GET / 304
+2025-02-07 20:30:26 [info]: GET /all 304
+2025-02-07 20:31:13 [info]: GET / 304
+2025-02-07 20:31:13 [info]: GET / 304
+2025-02-07 20:31:14 [info]: GET /all 304
+2025-02-07 20:31:16 [info]: GET / 304
+2025-02-07 20:31:16 [info]: GET / 304
+2025-02-07 20:31:17 [info]: GET /all 304
+2025-02-07 20:31:17 [info]: GET / 304
+2025-02-07 20:31:18 [info]: GET / 304
+2025-02-07 20:31:18 [info]: GET /all 304
+2025-02-07 20:31:48 [info]: GET /67851e6ffe00b78e34a60dd5 200
+2025-02-07 20:31:52 [info]: GET /lesson/getAll 304
+2025-02-07 20:32:57 [info]: GET /67851e6ffe00b78e34a60dd5 304
+2025-02-07 20:32:57 [info]: GET / 304
+2025-02-07 20:32:57 [info]: GET /lesson/getAll 304
+2025-02-07 20:32:57 [info]: GET / 304
+2025-02-07 20:32:58 [info]: GET /all 304
+2025-02-07 20:33:30 [info]: GET /all 401
+2025-02-07 20:33:30 [info]: GET / 401
+2025-02-07 20:33:30 [info]: GET / 401
+2025-02-07 20:33:32 [info]: GET / 304
+2025-02-07 20:33:32 [info]: GET / 304
+2025-02-07 20:33:33 [info]: GET /all 304
+2025-02-07 20:34:22 [info]: GET /67a4e8020115b9c5daadf5cb 200
+2025-02-07 20:34:50 [info]: GET /lesson/getAll 304
+2025-02-07 20:36:24 [info]: GET /all 401
+2025-02-07 20:36:24 [info]: GET / 401
+2025-02-07 20:36:24 [info]: GET / 401
+2025-02-07 20:36:26 [info]: GET / 304
+2025-02-07 20:36:27 [info]: GET /all 304
+2025-02-07 20:36:27 [info]: GET / 304
+2025-02-07 20:37:03 [info]: GET /67a3cd6712a43d12521d117d 200
+2025-02-07 20:37:12 [info]: GET /67a4e8020115b9c5daadf5cb 304
+2025-02-07 20:37:44 [info]: GET /all 401
+2025-02-07 20:37:44 [info]: GET / 401
+2025-02-07 20:37:44 [info]: GET / 401
+2025-02-07 20:37:45 [info]: GET / 304
+2025-02-07 20:37:46 [info]: GET / 304
+2025-02-07 20:37:47 [info]: GET /all 304
+2025-02-07 20:38:30 [info]: GET /67a396621f9cd81895b60b69 200
+2025-02-07 20:38:59 [info]: GET /lesson/getAll 304
+2025-02-07 20:39:02 [info]: GET /all 401
+2025-02-07 20:39:04 [info]: GET /all 304
+2025-02-07 20:39:31 [info]: GET /67a4e8020115b9c5daadf5cb 304
+2025-02-07 20:39:31 [info]: GET / 304
+2025-02-07 20:39:31 [info]: GET /lesson/getAll 304
+2025-02-07 20:39:31 [info]: GET / 304
+2025-02-07 20:44:45 [info]: GET /67a4e8020115b9c5daadf5cb 304
+2025-02-07 20:44:46 [info]: GET / 304
+2025-02-07 20:44:46 [info]: GET / 304
+2025-02-07 20:44:46 [info]: GET /lesson/getAll 304
+2025-02-07 20:46:45 [info]: GET /67a4e8020115b9c5daadf5cb 500
+2025-02-07 20:47:29 [info]: GET /67a4e8020115b9c5daadf5cb 200
+2025-02-07 20:47:29 [info]: GET / 304
+2025-02-07 20:47:30 [info]: GET / 304
+2025-02-07 20:47:30 [info]: GET /lesson/getAll 304
+2025-02-07 20:47:47 [info]: GET /67a4e8020115b9c5daadf5cb 304
+2025-02-07 20:47:47 [info]: GET / 304
+2025-02-07 20:47:48 [info]: GET /lesson/getAll 304
+2025-02-07 20:47:48 [info]: GET / 304
+2025-02-07 20:47:57 [info]: GET /67a4e8020115b9c5daadf5cb 304
+2025-02-07 20:47:58 [info]: GET / 304
+2025-02-07 20:47:58 [info]: GET / 304
+2025-02-07 20:47:58 [info]: GET /lesson/getAll 304
+2025-02-07 20:48:17 [info]: GET /67a4e8020115b9c5daadf5cb 304
+2025-02-07 20:48:17 [info]: GET / 304
+2025-02-07 20:48:18 [info]: GET /lesson/getAll 304
+2025-02-07 20:48:18 [info]: GET / 304
+2025-02-07 20:48:23 [info]: GET /67a4e8020115b9c5daadf5cb 304
+2025-02-07 20:48:24 [info]: GET / 304
+2025-02-07 20:48:24 [info]: GET / 304
+2025-02-07 20:48:24 [info]: GET /lesson/getAll 304
+2025-02-07 20:55:37 [info]: GET /67a4e8020115b9c5daadf5cb 304
+2025-02-07 20:55:37 [info]: GET / 304
+2025-02-07 20:55:38 [info]: GET / 304
+2025-02-07 20:55:39 [info]: GET /lesson/getAll 304
+2025-02-07 20:56:03 [info]: GET /67a4e8020115b9c5daadf5cb 304
+2025-02-07 20:56:03 [info]: GET / 304
+2025-02-07 20:56:03 [info]: GET / 304
+2025-02-07 20:56:03 [info]: GET /lesson/getAll 304
+2025-02-07 20:56:45 [info]: GET /67a4e8020115b9c5daadf5cb 304
+2025-02-07 20:56:45 [info]: GET / 304
+2025-02-07 20:56:45 [info]: GET / 304
+2025-02-07 20:56:45 [info]: GET /lesson/getAll 304
+2025-02-07 20:56:56 [info]: GET /67a4e8020115b9c5daadf5cb 304
+2025-02-07 20:56:56 [info]: GET / 304
+2025-02-07 20:56:56 [info]: GET /lesson/getAll 304
+2025-02-07 20:56:56 [info]: GET / 304
+2025-02-07 20:57:40 [info]: GET /67a4e8020115b9c5daadf5cb 304
+2025-02-07 20:57:40 [info]: GET / 304
+2025-02-07 20:57:40 [info]: GET / 304
+2025-02-07 20:57:40 [info]: GET /lesson/getAll 304
+2025-02-07 20:58:53 [info]: GET /67a4e8020115b9c5daadf5cb 304
+2025-02-07 20:58:54 [info]: GET / 304
+2025-02-07 20:58:54 [info]: GET / 304
+2025-02-07 20:58:54 [info]: GET /lesson/getAll 304
+2025-02-07 21:05:02 [info]: GET /67a4e8020115b9c5daadf5cb 304
+2025-02-07 21:05:02 [info]: GET / 304
+2025-02-07 21:05:03 [info]: GET /lesson/getAll 304
+2025-02-07 21:05:03 [info]: GET / 304
+2025-02-07 21:28:38 [info]: GET /67a4e8020115b9c5daadf5cb 304
+2025-02-07 21:28:38 [info]: GET /lesson/getAll 304
+2025-02-07 21:28:39 [info]: GET / 304
+2025-02-07 21:28:40 [info]: GET / 304
+2025-02-07 21:28:56 [info]: GET /67a4e8020115b9c5daadf5cb 304
+2025-02-07 21:28:56 [info]: GET / 304
+2025-02-07 21:28:56 [info]: GET / 304
+2025-02-07 21:28:56 [info]: GET /lesson/getAll 304
+2025-02-07 21:29:13 [info]: GET /67a4e8020115b9c5daadf5cb 304
+2025-02-07 21:29:13 [info]: GET / 304
+2025-02-07 21:29:13 [info]: GET / 304
+2025-02-07 21:29:13 [info]: GET /lesson/getAll 304
+2025-02-07 21:29:31 [info]: GET /all 200
+2025-02-07 21:29:41 [info]: GET /all 304
+2025-02-07 21:30:29 [info]: GET /lesson/getAll 304
+2025-02-07 21:30:37 [info]: GET / 304
+2025-02-07 21:30:50 [info]: GET / 304
+2025-02-07 21:31:02 [info]: POST /add 500 - Request Body: {"title":"test course","objective":"ycs","price":"0","duration":"2 weeks","instructorId":"6734bd795f604ef68c0f4984","lessonFormat":"pdf","code":"tc","showInstructor":"true","assessments":["675d95e896d0319d030e5d68"],"lessons":["6762a3efd3cda33637014acd"],"certificate":["675c00a42a4d1f4da44b184a"]}
+2025-02-07 21:31:14 [info]: POST /add 201 - Request Body: {"title":"test course","objective":"ycs","price":"0","duration":"2 weeks","instructorId":"6734bd795f604ef68c0f4984","lessonFormat":"pdf","code":"tc","showInstructor":"true","assessments":["675d95e896d0319d030e5d68"],"lessons":["6762a3efd3cda33637014acd"],"certificate":["675c00a42a4d1f4da44b184a"]}
+2025-02-07 21:31:26 [info]: GET /all 200
+2025-02-07 21:31:33 [info]: GET /67a66d9147b57fb8258ced09 200
+2025-02-07 21:31:34 [info]: GET / 304
+2025-02-07 21:31:34 [info]: GET /lesson/getAll 200
+2025-02-07 21:31:34 [info]: GET / 304
+2025-02-07 21:31:42 [info]: POST /add 400 - Request Body: {"title":"test course - Duplicated 1","objective":"ycs","code":"tc","instructorId":"6734bd795f604ef68c0f4984","lessonFormat":"pdf","showInstructor":"true","duration":"2 weeks","startDate":"","endDate":"","assessments":["675d95e896d0319d030e5d68"],"certificate":"675c00a42a4d1f4da44b184a","cost":"0","lessons":["6762a3efd3cda33637014acd"],"file":"https://res.cloudinary.com/dldchwdkn/image/upload/v1738960273/course-content/mwlrfis4ebbinme0wc2q.jpg"}
+2025-02-07 21:32:01 [info]: POST /add 201 - Request Body: {"title":"test course - Duplicated 1","objective":"ycs","code":"tc1","instructorId":"6734bd795f604ef68c0f4984","lessonFormat":"pdf","showInstructor":"true","duration":"2 weeks","startDate":"","endDate":"","assessments":["675d95e896d0319d030e5d68"],"certificate":"675c00a42a4d1f4da44b184a","cost":"0","lessons":["6762a3efd3cda33637014acd"],"file":"https://res.cloudinary.com/dldchwdkn/image/upload/v1738960273/course-content/mwlrfis4ebbinme0wc2q.jpg"}
+2025-02-07 21:32:02 [info]: GET /all 200
+2025-02-07 21:32:11 [info]: GET /67a66dc047b57fb8258ceea4 200
+2025-02-07 21:32:11 [info]: GET / 304
+2025-02-07 21:32:11 [info]: GET /lesson/getAll 200
+2025-02-07 21:32:11 [info]: GET / 304
+2025-02-07 21:32:40 [info]: POST /add 400 - Request Body: {"title":"test course - Duplicated 1 - Duplicated 1","objective":"ycs","code":"tc1","instructorId":"6734bd795f604ef68c0f4984","lessonFormat":"pdf","showInstructor":"true","duration":"2 weeks","startDate":"","endDate":"","assessments":["675d95e896d0319d030e5d68"],"certificate":"675c00a42a4d1f4da44b184a","cost":"0","lessons":["6762a3efd3cda33637014acd"]}
+2025-02-07 21:32:53 [info]: POST /add 201 - Request Body: {"title":"test course - Duplicated 1 - Duplicated 1","objective":"ycs","code":"tc2","instructorId":"6734bd795f604ef68c0f4984","lessonFormat":"pdf","showInstructor":"true","duration":"2 weeks","startDate":"","endDate":"","assessments":["675d95e896d0319d030e5d68"],"certificate":"675c00a42a4d1f4da44b184a","cost":"0","lessons":["6762a3efd3cda33637014acd"]}
+2025-02-07 21:32:55 [info]: GET /all 200
+2025-02-07 21:33:02 [info]: GET /67a66dc047b57fb8258ceea4 304
+2025-02-07 21:33:03 [info]: GET / 304
+2025-02-07 21:33:03 [info]: GET / 304
+2025-02-07 21:33:03 [info]: GET /lesson/getAll 200
+2025-02-07 21:33:15 [info]: GET /all 304
+2025-02-07 21:33:20 [info]: GET /67a66d9147b57fb8258ced09 304
+2025-02-07 21:33:20 [info]: GET / 304
+2025-02-07 21:33:20 [info]: GET / 304
+2025-02-07 21:33:20 [info]: GET /lesson/getAll 304
+2025-02-07 21:33:46 [info]: GET /all 304
+2025-02-07 21:33:55 [info]: GET /67a66d9147b57fb8258ced09 304
+2025-02-07 21:33:55 [info]: GET / 304
+2025-02-07 21:33:55 [info]: GET / 304
+2025-02-07 21:33:55 [info]: GET /lesson/getAll 304
+2025-02-07 21:34:15 [info]: GET /67a66d9147b57fb8258ced09 304
+2025-02-07 21:34:15 [info]: GET / 304
+2025-02-07 21:34:15 [info]: GET / 304
+2025-02-07 21:34:15 [info]: GET /lesson/getAll 304
+2025-02-07 21:34:28 [info]: GET /67a66d9147b57fb8258ced09 304
+2025-02-07 21:34:28 [info]: GET / 304
+2025-02-07 21:34:28 [info]: GET /lesson/getAll 304
+2025-02-07 21:34:28 [info]: GET / 304
+2025-02-07 21:35:56 [info]: GET /67a66d9147b57fb8258ced09 304
+2025-02-07 21:35:56 [info]: GET / 304
+2025-02-07 21:35:56 [info]: GET / 304
+2025-02-07 21:35:56 [info]: GET /lesson/getAll 304
+2025-02-07 21:36:39 [info]: GET /67a66d9147b57fb8258ced09 304
+2025-02-07 21:36:40 [info]: GET / 304
+2025-02-07 21:36:40 [info]: GET /lesson/getAll 304
+2025-02-07 21:36:40 [info]: GET / 304
+2025-02-07 21:36:49 [info]: GET /67a66d9147b57fb8258ced09 304
+2025-02-07 21:36:50 [info]: GET / 304
+2025-02-07 21:36:50 [info]: GET /lesson/getAll 304
+2025-02-07 21:36:50 [info]: GET / 304
+2025-02-07 21:37:08 [info]: GET /67a66d9147b57fb8258ced09 304
+2025-02-07 21:37:08 [info]: GET / 304
+2025-02-07 21:37:08 [info]: GET /lesson/getAll 304
+2025-02-07 21:37:08 [info]: GET / 304
+2025-02-07 21:37:33 [info]: GET /67a66d9147b57fb8258ced09 304
+2025-02-07 21:37:33 [info]: GET / 304
+2025-02-07 21:37:33 [info]: GET / 304
+2025-02-07 21:37:34 [info]: GET /lesson/getAll 304
+2025-02-07 21:37:37 [info]: GET /all 304
+2025-02-07 21:38:23 [info]: GET /all 304
+2025-02-07 21:38:31 [info]: GET /67a66d9147b57fb8258ced09 304
+2025-02-07 21:38:31 [info]: GET / 304
+2025-02-07 21:38:31 [info]: GET /lesson/getAll 304
+2025-02-07 21:38:31 [info]: GET / 304
+2025-02-07 21:38:49 [info]: GET /all 304
+2025-02-07 21:38:53 [info]: GET /67a4e8020115b9c5daadf5cb 304
+2025-02-07 21:38:53 [info]: GET / 304
+2025-02-07 21:38:54 [info]: GET /lesson/getAll 304
+2025-02-07 21:38:54 [info]: GET / 304
+2025-02-07 21:39:20 [info]: POST /add 400 - Request Body: {"title":"Content test 22 - Duplicated 1","objective":"s","code":"CtSs22","instructorId":"6734bd795f604ef68c0f4984","duplicatedFrom":"67a4e8020115b9c5daadf5cb","lessonFormat":"pdf","showInstructor":"true","duration":"12","startDate":"","endDate":"","assessments":[""],"certificate":"675c00a42a4d1f4da44b184a","cost":"2000","lessons":["67619ac7b18c3c36fe04df47"]}
+2025-02-07 21:42:56 [info]: GET /67a4e8020115b9c5daadf5cb 304
+2025-02-07 21:42:56 [info]: GET / 304
+2025-02-07 21:42:56 [info]: GET / 304
+2025-02-07 21:42:56 [info]: GET /lesson/getAll 304
+2025-02-07 21:43:08 [info]: POST /add 400 - Request Body: {"title":"Content test 22 - Duplicated 1","objective":"s","code":"CtSs22","instructorId":"6734bd795f604ef68c0f4984","duplicatedFrom":"67a4e8020115b9c5daadf5cb","lessonFormat":"pdf","showInstructor":"true","duration":"12","startDate":"","endDate":"","assessments":["67a0f30377d591b7ef52f3f7"],"certificate":"675c00a42a4d1f4da44b184a","cost":"2000","lessons":["67619ac7b18c3c36fe04df47"]}
+2025-02-07 21:43:22 [info]: POST /add 201 - Request Body: {"title":"Content test 22 - Duplicated 1","objective":"s","code":"CtSs222","instructorId":"6734bd795f604ef68c0f4984","duplicatedFrom":"67a4e8020115b9c5daadf5cb","lessonFormat":"pdf","showInstructor":"true","duration":"12","startDate":"","endDate":"","assessments":["67a0f30377d591b7ef52f3f7"],"certificate":"675c00a42a4d1f4da44b184a","cost":"2000","lessons":["67619ac7b18c3c36fe04df47"]}
+2025-02-07 21:43:23 [info]: GET /all 200
+2025-02-07 21:43:30 [info]: GET /67a4e8020115b9c5daadf5cb 304
+2025-02-07 21:43:31 [info]: GET / 304
+2025-02-07 21:43:31 [info]: GET /lesson/getAll 200
+2025-02-07 21:43:31 [info]: GET / 304
+2025-02-08 00:28:43 [info]: GET /all 401
+2025-02-08 00:30:07 [info]: GET /all 304
+2025-02-08 00:30:27 [info]: GET /all 304
+2025-02-08 00:32:16 [info]: GET /all 304
+2025-02-08 00:33:11 [info]: GET /all 304
+2025-02-08 00:35:00 [info]: GET /all 304
+2025-02-08 00:39:08 [info]: GET /all 304
+2025-02-08 00:39:18 [info]: GET /67a66d9147b57fb8258ced09 304
+2025-02-08 00:39:18 [info]: GET / 304
+2025-02-08 00:39:19 [info]: GET / 304
+2025-02-08 00:39:19 [info]: GET /lesson/getAll 304
+2025-02-08 00:39:28 [info]: GET /67a66d9147b57fb8258ced09 304
+2025-02-08 00:39:29 [info]: GET / 304
+2025-02-08 00:39:29 [info]: GET /lesson/getAll 304
+2025-02-08 00:39:29 [info]: GET / 304
+2025-02-08 00:39:44 [info]: POST /add 400 - Request Body: {"title":"test course - Duplicated 1","objective":"ycsq","code":"tc","instructorId":"6734bd795f604ef68c0f4984","duplicatedFrom":"67a66d9147b57fb8258ced09","lessonFormat":"pdf","showInstructor":"true","duration":"2 weeks","startDate":"","endDate":"","assessments":["675d95e896d0319d030e5d68"],"certificate":"675c00a42a4d1f4da44b184a","cost":"0","lessons":["6762a3efd3cda33637014acd"],"file":"https://res.cloudinary.com/dldchwdkn/image/upload/v1738960273/course-content/mwlrfis4ebbinme0wc2q.jpg"}
+2025-02-08 00:39:51 [info]: POST /add 400 - Request Body: {"title":"test course - Duplicated 1","objective":"ycsq","code":"tc1","instructorId":"6734bd795f604ef68c0f4984","duplicatedFrom":"67a66d9147b57fb8258ced09","lessonFormat":"pdf","showInstructor":"true","duration":"2 weeks","startDate":"","endDate":"","assessments":["675d95e896d0319d030e5d68"],"certificate":"675c00a42a4d1f4da44b184a","cost":"0","lessons":["6762a3efd3cda33637014acd"],"file":"https://res.cloudinary.com/dldchwdkn/image/upload/v1738960273/course-content/mwlrfis4ebbinme0wc2q.jpg"}
+2025-02-08 00:39:59 [info]: POST /add 201 - Request Body: {"title":"test course - Duplicated 1","objective":"ycsq","code":"tc11","instructorId":"6734bd795f604ef68c0f4984","duplicatedFrom":"67a66d9147b57fb8258ced09","lessonFormat":"pdf","showInstructor":"true","duration":"2 weeks","startDate":"","endDate":"","assessments":["675d95e896d0319d030e5d68"],"certificate":"675c00a42a4d1f4da44b184a","cost":"0","lessons":["6762a3efd3cda33637014acd"],"file":"https://res.cloudinary.com/dldchwdkn/image/upload/v1738960273/course-content/mwlrfis4ebbinme0wc2q.jpg"}
+2025-02-08 00:40:00 [info]: GET /all 200
+2025-02-08 00:40:10 [info]: GET /67a66d9147b57fb8258ced09 304
+2025-02-08 00:40:10 [info]: GET / 304
+2025-02-08 00:40:10 [info]: GET / 304
+2025-02-08 00:40:10 [info]: GET /lesson/getAll 200
+2025-02-08 00:40:39 [info]: GET /67a66d9147b57fb8258ced09 304
+2025-02-08 00:40:39 [info]: GET / 304
+2025-02-08 00:40:39 [info]: GET / 304
+2025-02-08 00:40:39 [info]: GET /lesson/getAll 304
+2025-02-08 00:40:43 [info]: GET /67a66d9147b57fb8258ced09 304
+2025-02-08 00:40:43 [info]: GET / 304
+2025-02-08 00:40:43 [info]: GET /lesson/getAll 304
+2025-02-08 00:40:43 [info]: GET / 304
+2025-02-08 00:40:45 [info]: GET /67a66d9147b57fb8258ced09 304
+2025-02-08 00:40:45 [info]: GET / 304
+2025-02-08 00:40:45 [info]: GET / 304
+2025-02-08 00:40:45 [info]: GET /lesson/getAll 304
+2025-02-08 00:41:04 [info]: POST /add 400 - Request Body: {"title":"test course - Duplicated 11","objective":"ycs","code":"tc2","instructorId":"6734bd795f604ef68c0f4984","isDuplicate":"true","duplicatedFrom":"67a66d9147b57fb8258ced09","lessonFormat":"pdf","showInstructor":"true","duration":"2 weeks","startDate":"","endDate":"","assessments":["675d95e896d0319d030e5d68"],"certificate":"675c00a42a4d1f4da44b184a","cost":"0","lessons":["6762a3efd3cda33637014acd"],"file":"https://res.cloudinary.com/dldchwdkn/image/upload/v1738960273/course-content/mwlrfis4ebbinme0wc2q.jpg"}
+2025-02-08 00:41:13 [info]: POST /add 201 - Request Body: {"title":"test course - Duplicated 11","objective":"ycs","code":"tc22","instructorId":"6734bd795f604ef68c0f4984","isDuplicate":"true","duplicatedFrom":"67a66d9147b57fb8258ced09","lessonFormat":"pdf","showInstructor":"true","duration":"2 weeks","startDate":"","endDate":"","assessments":["675d95e896d0319d030e5d68"],"certificate":"675c00a42a4d1f4da44b184a","cost":"0","lessons":["6762a3efd3cda33637014acd"],"file":"https://res.cloudinary.com/dldchwdkn/image/upload/v1738960273/course-content/mwlrfis4ebbinme0wc2q.jpg"}
+2025-02-08 00:41:14 [info]: GET /all 200
+2025-02-08 00:41:26 [info]: GET /67a66d9147b57fb8258ced09 200
+2025-02-08 00:41:26 [info]: GET / 304
+2025-02-08 00:41:26 [info]: GET /lesson/getAll 200
+2025-02-08 00:41:26 [info]: GET / 304
+2025-02-08 00:41:59 [info]: GET /67a66d9147b57fb8258ced09 304
+2025-02-08 00:42:02 [info]: GET / 304
+2025-02-08 00:42:02 [info]: GET / 304
+2025-02-08 00:42:02 [info]: GET /lesson/getAll 304
+2025-02-08 00:42:23 [info]: GET /all 304
+2025-02-08 00:42:27 [info]: GET /67a66d9147b57fb8258ced09 304
+2025-02-08 00:42:27 [info]: GET / 304
+2025-02-08 00:42:27 [info]: GET /lesson/getAll 304
+2025-02-08 00:42:27 [info]: GET / 304
+2025-02-08 00:42:35 [info]: GET /all 304
+2025-02-08 00:42:42 [info]: GET /67a69a18729dd1aab3ce6930 200
+2025-02-08 00:42:42 [info]: GET / 304
+2025-02-08 00:42:43 [info]: GET /lesson/getAll 304
+2025-02-08 00:42:43 [info]: GET / 304
+2025-02-08 00:43:01 [info]: GET /67a69a18729dd1aab3ce6930 304
+2025-02-08 00:43:01 [info]: GET / 304
+2025-02-08 00:43:01 [info]: GET /lesson/getAll 304
+2025-02-08 00:43:01 [info]: GET / 304
+2025-02-08 00:43:54 [info]: GET /67a69a18729dd1aab3ce6930 304
+2025-02-08 00:43:54 [info]: GET / 304
+2025-02-08 00:43:54 [info]: GET / 304
+2025-02-08 00:43:54 [info]: GET /lesson/getAll 304

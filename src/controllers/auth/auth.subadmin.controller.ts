@@ -476,7 +476,7 @@ export class SubAdminController {
   //   }
   // };
 
-  async getAllSubadmins(req: Request, res: Response) {
+  async getAllSubAdmins(req: Request, res: Response) {
     try {
       let organizationId = await getOrganizationId(req, res);
       if (!organizationId) {
@@ -500,6 +500,40 @@ export class SubAdminController {
       return ResponseHandler.failure(
         res,
         error.message || "An error occurred while fetching subadmins.",
+        error.status || 500
+      );
+    }
+  }
+
+  async getASubAdmin(req: Request, res: Response) {
+    try {
+      const { id } = req.params
+
+      let organizationId = await getOrganizationId(req, res);
+      if (!organizationId) {
+        return;
+      }
+
+      const organization = await Organization.findById(organizationId)
+      if (!organization) {
+        return ResponseHandler.failure(res, "Organization not found", 400);
+      }
+
+      const subadmin = await SubAdmin.findOne({ 
+        _id: id, 
+        organizationId 
+      }).select("-password")
+
+      if (!subadmin) {
+        return ResponseHandler.failure(res, "No subadmin found.")
+      }
+
+      ResponseHandler.success(res, subadmin, "Subadmin fetched successfully")
+    } catch (error: any) {
+      console.error("Error fetching subadmin:", error);
+      return ResponseHandler.failure(
+        res,
+        error.message || "An error occurred while fetching subadmin account.",
         error.status || 500
       );
     }
