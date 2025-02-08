@@ -359,6 +359,9 @@ export class CourseController {
         certificate,
         announcements,
         showInstructor,
+        isDuplicate,
+        duplicatedFrom,
+        
       } = req.body;
 
       // const adminId = req.admin._id;
@@ -454,9 +457,18 @@ export class CourseController {
       }
 
       if (price === 0) price === "free";
+      // Ensure isDuplicate is a boolean
+      isDuplicate = isDuplicate === "true";
 
       if (!instructor) instructor = "Raoatech";
 
+      if (isDuplicate) {
+        await Course.updateOne(
+          { _id: duplicatedFrom },
+          { $inc: { duplicateCount: 1 } }
+        );
+      }
+      
       const courseData: any = {
         courseCode: code,
         title,
@@ -472,8 +484,11 @@ export class CourseController {
         certificate,
         announcements: announcementIds,
         instructor,
+        isDuplicate,
+        duplicatedFrom,
       };
 
+      
       const newCourse = await Course.create(courseData);
 
       if (announcements) {
