@@ -8514,3 +8514,40 @@
 2025-02-06 10:42:13 [info]: PUT /67a476a02724f0b74eb5c2ab 200 - Request Body: {"courseCode":"UPD-246","title":"New and Updated Course Title","objective":"New and updated objective","description":"New and Updated Course Description","duration":"12 weeks","lessons":["67641a614e36b15a4278cb0b","67641ab04e36b15a4278cb0e"],"assessments":"67a476fc2724f0b74eb5c2cf","announcements":[],"cost":"10000","lessonFormat":".pdf","courseImage":["https://res.cloudinary.com/dldchwdkn/image/upload/v1738834932/course-content/orknjf7ryd5bcpkxxzre.png"]}
 2025-02-06 13:24:34 [info]: GET /all 200
 2025-02-06 13:29:20 [info]: GET /all 200
+2025-02-07 17:27:45 [info]: GET /auth/google 302
+2025-02-07 17:31:25 [info]: GET /auth/google 302
+2025-02-07 17:43:47 [info]: GET /auth/google 302
+2025-02-07 17:47:55 [info]: GET /auth/google 302
+2025-02-07 18:02:24 [info]: GET /auth/google 302
+2025-02-07 18:04:22 [info]: GET /auth/google 302
+2025-02-07 18:05:13 [info]: GET /oauth2callback?code=4/0ASVgi3KciFRczShYLZVpB3rGZLVtec2TrET4EveekG5OGpOrn8ESrIT5b6sLqvOihrZGIg&scope=https://www.googleapis.com/auth/calendar.events 200 - Query Params: {"code":"4/0ASVgi3KciFRczShYLZVpB3rGZLVtec2TrET4EveekG5OGpOrn8ESrIT5b6sLqvOihrZGIg","scope":"https://www.googleapis.com/auth/calendar.events"}
+2025-02-07 18:05:13 [info]: GET /oauth2callback?code=4/0ASVgi3KciFRczShYLZVpB3rGZLVtec2TrET4EveekG5OGpOrn8ESrIT5b6sLqvOihrZGIg&scope=https://www.googleapis.com/auth/calendar.events 200
+2025-02-07 18:05:13 [info]: GET /favicon.ico 404
+2025-02-07 18:27:07 [info]: GET /oauth2callback?code=4/0ASVgi3KciFRczShYLZVpB3rGZLVtec2TrET4EveekG5OGpOrn8ESrIT5b6sLqvOihrZGIg 500 - Query Params: {"code":"4/0ASVgi3KciFRczShYLZVpB3rGZLVtec2TrET4EveekG5OGpOrn8ESrIT5b6sLqvOihrZGIg"}
+2025-02-07 18:27:07 [info]: GET /oauth2callback?code=4/0ASVgi3KciFRczShYLZVpB3rGZLVtec2TrET4EveekG5OGpOrn8ESrIT5b6sLqvOihrZGIg 500
+2025-02-07 20:20:54 [info]: POST /login 200 - Request Body: {"email":"seunoduez@gmail.com","password":"Timpearl05$$$"}
+2025-02-07 20:21:58 [info]: POST /single-create 201 - Request Body: {"firstName":"Timpel","lastName":"Timpearl","email":"nana2@gmail.com","country":"United States of America","username":"Timpearl","otherName":"Timileyin","phone":"+2349066318539","userType":"learner","gender":"female","dateOfBirth":"05-04-2004","address":"38, Ogunlana street","city":"Alimosho","LGA":"Alimosho","state":"Lagos","officeAddress":"1A, Hughes Street","officeCity":"Alagomeji","officeLGA":"Yaba","officeState":"Lagos","employerName":"Mr Green","ids":"[\"678dec783210215f3ff3d061\", \"678decfffc769e07e57372a7\"]","sendEmail":"false"}
+2025-02-07 20:24:25 [info]: POST /login 400 - Request Body: {"email":"nana2@gmail.com","password":"TimpelTimearl123"}
+2025-02-07 20:24:32 [info]: POST /login 400 - Request Body: {"email":"nana2@gmail.com","password":"TimpelTimpearl123"}
+2025-02-07 20:25:03 [info]: POST /login 200 - Request Body: {"email":"nana2@gmail.com","password":"TimpelTimpearl123#"}
+2025-02-07 20:28:31 [info]: POST /single-create 201 - Request Body: {"firstName":"Timpel","lastName":"Timpearl","email":"nana3@gmail.com","password":"Timpearl05$$$","country":"United States of America","username":"Timpearl","otherName":"Timileyin","phone":"+2349066318539","userType":"learner","gender":"female","dateOfBirth":"05-04-2004","address":"38, Ogunlana street","city":"Alimosho","LGA":"Alimosho","state":"Lagos","officeAddress":"1A, Hughes Street","officeCity":"Alagomeji","officeLGA":"Yaba","officeState":"Lagos","employerName":"Mr Green","ids":"[\"678dec783210215f3ff3d061\", \"678decfffc769e07e57372a7\"]","sendEmail":"false"}
+2025-02-07 20:29:07 [info]: POST /login 200 - Request Body: {"email":"nana3@gmail.com","password":"Timpearl05$$$"}
+2025-02-07 20:32:57 [info]: POST /bulk-create 201
+2025-02-07 20:33:34 [info]: POST /login 200 - Request Body: {"email":"nana5@gmail.com","password":"Kishiii10#"}
+2025-02-07 20:33:43 [info]: POST /login 200 - Request Body: {"email":"nana6@gmail.com","password":"Kishiii10#"}
+2025-02-07 20:35:22 [info]: POST /bulk-create 201
+2025-02-07 20:36:00 [info]: POST /login 200 - Request Body: {"email":"nana8@gmail.com","password":"DefaultPassword123"}
+2025-02-07 20:36:09 [info]: POST /login 200 - Request Body: {"email":"nana9@gmail.com","password":"DefaultPassword123"}
+2025-02-07 20:36:22 [info]: POST /login 200 - Request Body: {"email":"nana10@gmail.com","password":"DefaultPassword123"}
+2025-02-08 07:56:11 [info]: POST /login 200 - Request Body: {"email":"nana10@gmail.com","password":"DefaultPassword123"}
+2025-02-08 07:59:33 [info]: PUT /users/change-password 401 - Request Body: {"email":"nana10@gmail.com","newPassword":"notYourDefaultPassword123"}
+2025-02-08 08:00:45 [info]: POST /login 200 - Request Body: {"email":"seunoduez@gmail.com","password":"Timpearl05$$$"}
+2025-02-08 08:01:05 [info]: POST /login 200 - Request Body: {"email":"seunoduez@gmail.com","password":"Timpearl05$$$"}
+2025-02-08 08:02:52 [info]: PUT /users/change-password 403 - Request Body: {"email":"nana10@gmail.com","newPassword":"notYourDefaultPassword123"}
+2025-02-08 08:06:38 [info]: PUT /users/change-password 200 - Request Body: {"email":"nana10@gmail.com","newPassword":"notYourDefaultPassword123"}
+2025-02-08 08:06:59 [info]: POST /login 400 - Request Body: {"email":"nana10@gmail.com","password":"DefaultPassword123"}
+2025-02-08 08:07:32 [info]: POST /login 200 - Request Body: {"email":"nana10@gmail.com","password":"notYourDefaultPassword123"}
+2025-02-08 08:08:07 [info]: POST /login 200 - Request Body: {"email":"nana10@gmail.com","password":"notYourDefaultPassword123"}
+2025-02-08 08:08:15 [info]: PUT /users/change-password 200 - Request Body: {"email":"nana10@gmail.com","newPassword":"DefaultPassword123"}
+2025-02-08 08:08:22 [info]: POST /login 400 - Request Body: {"email":"nana10@gmail.com","password":"notYourDefaultPassword123"}
+2025-02-08 08:08:27 [info]: POST /login 200 - Request Body: {"email":"nana10@gmail.com","password":"DefaultPassword123"}

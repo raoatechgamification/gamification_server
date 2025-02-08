@@ -10,6 +10,7 @@ import Submission from "../models/submission.model";
 import User from "../models/user.model";
 import { uploadToCloudinary } from "../utils/cloudinaryUpload";
 import { getOrganizationId } from "../utils/getOrganizationId.util";
+import { hashPassword } from "../utils/hash";
 
 class AdminController {
   // async viewAllUsers(req: Request, res: Response) {
@@ -1219,6 +1220,41 @@ class AdminController {
         `Error archiving course: ${error.message}`,
         500
       );
+    }
+  }
+
+  async changeUserPassword(req: Request, res: Response) {
+    try {
+      // const { userId } = req.params;
+      const { email, newPassword } = req.body;
+      const organizationId = req.admin._id
+
+      const user = await User.findOne({
+        email,
+        organizationId
+      })
+
+      if (!user) return ResponseHandler.failure(res, "User not found in your organization", 404);
+
+      const newHashedPassword = await hashPassword(newPassword);
+      user.password = newHashedPassword;
+      user.save()
+
+      const userResponse = await User.findById(user._id).select(
+        "-password -role"
+      );
+      return ResponseHandler.success(
+        res,
+        userResponse,
+        "User password updated successfully",
+        200
+      );
+    } catch (error: any) {
+      return res.status(500).json({
+        success: false,
+        message: "An error occurred while changing user password",
+        error: error.message,
+      });
     }
   }
 }
