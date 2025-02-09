@@ -8925,3 +8925,8 @@
 2025-02-08 08:08:15 [info]: PUT /users/change-password 200 - Request Body: {"email":"nana10@gmail.com","newPassword":"DefaultPassword123"}
 2025-02-08 08:08:22 [info]: POST /login 400 - Request Body: {"email":"nana10@gmail.com","password":"notYourDefaultPassword123"}
 2025-02-08 08:08:27 [info]: POST /login 200 - Request Body: {"email":"nana10@gmail.com","password":"DefaultPassword123"}
+2025-02-09 21:17:30 [info]: POST /login 200 - Request Body: {"email":"seunoduez@gmail.com","password":"Timpearl05$$$"}
+2025-02-09 21:19:20 [info]: POST /single-create 201 - Request Body: {"firstName":"Timpel","lastName":"Timpearl","email":"testuser@gmail.com","password":"Timpearl05$$$","country":"United States of America","username":"Timpearl","otherName":"Timileyin","phone":"+2349066318539","userType":"learner","gender":"female","dateOfBirth":"05-04-2004","address":"38, Ogunlana street","city":"Alimosho","LGA":"Alimosho","state":"Lagos","officeAddress":"1A, Hughes Street","officeCity":"Alagomeji","officeLGA":"Yaba","officeState":"Lagos","employerName":"Mr Green","ids":"[\"678dec783210215f3ff3d061\", \"678decfffc769e07e57372a7\"]","sendEmail":"false"}
+2025-02-09 21:22:43 [info]: PUT /users/change-password 200 - Request Body: {"email":"testuser@gmail.com","newPassword":"DefaultPassword123"}
+2025-02-09 21:23:34 [info]: POST /login 400 - Request Body: {"email":"testuser@gmail.com","newPassword":"DefaultPassword123"}
+2025-02-09 21:23:47 [info]: POST /login 200 - Request Body: {"email":"testuser@gmail.com","password":"DefaultPassword123"}
