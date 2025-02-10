@@ -198,7 +198,7 @@ const UserSchema: Schema<IUser> = new Schema(
         status: {
           type: String,
           enum: ["paid", "pending", "unpaid", "free"],
-          required: true,
+          required: false,
         },
       },
     ],
