@@ -8888,63 +8888,166 @@
 2025-02-08 00:43:54 [info]: GET / 304
 2025-02-08 00:43:54 [info]: GET / 304
 2025-02-08 00:43:54 [info]: GET /lesson/getAll 304
-2025-02-08 12:38:40 [info]: GET /6762d0ed42e63357479e70a7/report 500
-2025-02-08 12:38:41 [info]: GET /all 304
-2025-02-08 12:38:45 [info]: GET /users 200
-2025-02-08 12:39:40 [info]: POST /login 200 - Request Body: {"email":"test@gmail.com","password":"Test2024!"}
-2025-02-08 12:39:41 [info]: POST /login 200 - Request Body: {"email":"test@gmail.com","password":"Test2024!"}
-2025-02-08 12:39:45 [info]: GET / 200
-2025-02-08 12:39:52 [info]: GET /report 500
-2025-02-08 12:39:53 [info]: GET /all 304
-2025-02-08 12:39:53 [info]: GET /report 500
-2025-02-08 12:39:55 [info]: GET /users 304
-2025-02-08 12:39:55 [info]: GET /report 500
-2025-02-08 12:39:59 [info]: GET /report 500
-2025-02-08 12:40:05 [info]: GET /67654374ad6734f474e24e33/report 500
-2025-02-08 12:40:06 [info]: GET /67654374ad6734f474e24e33/report 500
-2025-02-08 12:40:09 [info]: GET /67654374ad6734f474e24e33/report 500
-2025-02-08 12:40:13 [info]: GET /67654374ad6734f474e24e33/report 500
-2025-02-08 12:40:38 [info]: GET /67654374ad6734f474e24e33/report 500
-2025-02-08 12:40:38 [info]: GET /all 304
-2025-02-08 12:40:40 [info]: GET /users 304
-2025-02-08 12:40:53 [info]: GET /67654374ad6734f474e24e33/report 500
-2025-02-08 12:40:53 [info]: GET /all 304
-2025-02-08 12:40:55 [info]: GET /users 304
-2025-02-08 12:40:55 [info]: GET /67654374ad6734f474e24e33/report 500
-2025-02-08 12:40:59 [info]: GET /67654374ad6734f474e24e33/report 500
-2025-02-08 12:43:08 [info]: GET /67654374ad6734f474e24e33/report 500
-2025-02-08 12:43:10 [info]: GET /all 304
-2025-02-08 12:43:10 [info]: GET /67654374ad6734f474e24e33/report 500
-2025-02-08 12:43:12 [info]: GET /67654374ad6734f474e24e33/report 500
-2025-02-08 12:43:17 [info]: GET /67654374ad6734f474e24e33/report 500
-2025-02-08 12:43:22 [info]: GET /users 304
-2025-02-08 12:43:39 [info]: GET /67654374ad6734f474e24e33/report 500
-2025-02-08 12:43:39 [info]: GET /all 304
-2025-02-08 12:43:41 [info]: GET /67654374ad6734f474e24e33/report 500
-2025-02-08 12:43:43 [info]: GET /users 304
-2025-02-08 12:43:43 [info]: GET /67654374ad6734f474e24e33/report 500
-2025-02-08 12:43:47 [info]: GET /67654374ad6734f474e24e33/report 500
-2025-02-08 12:48:33 [info]: GET /67654374ad6734f474e24e33/report 500
-2025-02-08 12:48:33 [info]: GET /all 304
-2025-02-08 12:48:35 [info]: GET /users 304
-2025-02-08 12:52:01 [info]: GET /67654374ad6734f474e24e33/report 500
-2025-02-08 12:52:01 [info]: GET /all 304
-2025-02-08 12:52:03 [info]: GET /users 304
-2025-02-08 12:52:03 [info]: GET /67654374ad6734f474e24e33/report 500
-2025-02-08 12:52:09 [info]: GET /67654374ad6734f474e24e33/report 500
-2025-02-08 12:52:10 [info]: GET /all 304
-2025-02-08 12:52:11 [info]: GET /users 304
-2025-02-08 12:52:17 [info]: GET /67654374ad6734f474e24e33/report 500
-2025-02-08 12:52:18 [info]: GET /all 304
-2025-02-08 12:52:20 [info]: GET /users 304
-2025-02-08 12:52:44 [info]: GET /67654374ad6734f474e24e33/report 500
-2025-02-08 12:52:45 [info]: GET /all 304
-2025-02-08 12:52:46 [info]: GET /users 304
-2025-02-08 13:06:21 [info]: GET /all 304
-2025-02-08 13:06:24 [info]: GET /users 304
-2025-02-08 13:18:10 [info]: GET /67654374ad6734f474e24e33/report 500
-2025-02-08 13:18:11 [info]: GET /all 304
-2025-02-08 13:18:13 [info]: GET /users 304
-2025-02-08 13:18:15 [info]: GET /67654374ad6734f474e24e33/report 500
-2025-02-08 13:19:51 [info]: GET /67654374ad6734f474e24e33/report 500
-2025-02-08 13:20:01 [info]: GET /all 304
+2025-02-07 17:27:45 [info]: GET /auth/google 302
+2025-02-07 17:31:25 [info]: GET /auth/google 302
+2025-02-07 17:43:47 [info]: GET /auth/google 302
+2025-02-07 17:47:55 [info]: GET /auth/google 302
+2025-02-07 18:02:24 [info]: GET /auth/google 302
+2025-02-07 18:04:22 [info]: GET /auth/google 302
+2025-02-07 18:05:13 [info]: GET /oauth2callback?code=4/0ASVgi3KciFRczShYLZVpB3rGZLVtec2TrET4EveekG5OGpOrn8ESrIT5b6sLqvOihrZGIg&scope=https://www.googleapis.com/auth/calendar.events 200 - Query Params: {"code":"4/0ASVgi3KciFRczShYLZVpB3rGZLVtec2TrET4EveekG5OGpOrn8ESrIT5b6sLqvOihrZGIg","scope":"https://www.googleapis.com/auth/calendar.events"}
+2025-02-07 18:05:13 [info]: GET /oauth2callback?code=4/0ASVgi3KciFRczShYLZVpB3rGZLVtec2TrET4EveekG5OGpOrn8ESrIT5b6sLqvOihrZGIg&scope=https://www.googleapis.com/auth/calendar.events 200
+2025-02-07 18:05:13 [info]: GET /favicon.ico 404
+2025-02-07 18:27:07 [info]: GET /oauth2callback?code=4/0ASVgi3KciFRczShYLZVpB3rGZLVtec2TrET4EveekG5OGpOrn8ESrIT5b6sLqvOihrZGIg 500 - Query Params: {"code":"4/0ASVgi3KciFRczShYLZVpB3rGZLVtec2TrET4EveekG5OGpOrn8ESrIT5b6sLqvOihrZGIg"}
+2025-02-07 18:27:07 [info]: GET /oauth2callback?code=4/0ASVgi3KciFRczShYLZVpB3rGZLVtec2TrET4EveekG5OGpOrn8ESrIT5b6sLqvOihrZGIg 500
+2025-02-07 20:20:54 [info]: POST /login 200 - Request Body: {"email":"seunoduez@gmail.com","password":"Timpearl05$$$"}
+2025-02-07 20:21:58 [info]: POST /single-create 201 - Request Body: {"firstName":"Timpel","lastName":"Timpearl","email":"nana2@gmail.com","country":"United States of America","username":"Timpearl","otherName":"Timileyin","phone":"+2349066318539","userType":"learner","gender":"female","dateOfBirth":"05-04-2004","address":"38, Ogunlana street","city":"Alimosho","LGA":"Alimosho","state":"Lagos","officeAddress":"1A, Hughes Street","officeCity":"Alagomeji","officeLGA":"Yaba","officeState":"Lagos","employerName":"Mr Green","ids":"[\"678dec783210215f3ff3d061\", \"678decfffc769e07e57372a7\"]","sendEmail":"false"}
+2025-02-07 20:24:25 [info]: POST /login 400 - Request Body: {"email":"nana2@gmail.com","password":"TimpelTimearl123"}
+2025-02-07 20:24:32 [info]: POST /login 400 - Request Body: {"email":"nana2@gmail.com","password":"TimpelTimpearl123"}
+2025-02-07 20:25:03 [info]: POST /login 200 - Request Body: {"email":"nana2@gmail.com","password":"TimpelTimpearl123#"}
+2025-02-07 20:28:31 [info]: POST /single-create 201 - Request Body: {"firstName":"Timpel","lastName":"Timpearl","email":"nana3@gmail.com","password":"Timpearl05$$$","country":"United States of America","username":"Timpearl","otherName":"Timileyin","phone":"+2349066318539","userType":"learner","gender":"female","dateOfBirth":"05-04-2004","address":"38, Ogunlana street","city":"Alimosho","LGA":"Alimosho","state":"Lagos","officeAddress":"1A, Hughes Street","officeCity":"Alagomeji","officeLGA":"Yaba","officeState":"Lagos","employerName":"Mr Green","ids":"[\"678dec783210215f3ff3d061\", \"678decfffc769e07e57372a7\"]","sendEmail":"false"}
+2025-02-07 20:29:07 [info]: POST /login 200 - Request Body: {"email":"nana3@gmail.com","password":"Timpearl05$$$"}
+2025-02-07 20:32:57 [info]: POST /bulk-create 201
+2025-02-07 20:33:34 [info]: POST /login 200 - Request Body: {"email":"nana5@gmail.com","password":"Kishiii10#"}
+2025-02-07 20:33:43 [info]: POST /login 200 - Request Body: {"email":"nana6@gmail.com","password":"Kishiii10#"}
+2025-02-07 20:35:22 [info]: POST /bulk-create 201
+2025-02-07 20:36:00 [info]: POST /login 200 - Request Body: {"email":"nana8@gmail.com","password":"DefaultPassword123"}
+2025-02-07 20:36:09 [info]: POST /login 200 - Request Body: {"email":"nana9@gmail.com","password":"DefaultPassword123"}
+2025-02-07 20:36:22 [info]: POST /login 200 - Request Body: {"email":"nana10@gmail.com","password":"DefaultPassword123"}
+2025-02-08 07:56:11 [info]: POST /login 200 - Request Body: {"email":"nana10@gmail.com","password":"DefaultPassword123"}
+2025-02-08 07:59:33 [info]: PUT /users/change-password 401 - Request Body: {"email":"nana10@gmail.com","newPassword":"notYourDefaultPassword123"}
+2025-02-08 08:00:45 [info]: POST /login 200 - Request Body: {"email":"seunoduez@gmail.com","password":"Timpearl05$$$"}
+2025-02-08 08:01:05 [info]: POST /login 200 - Request Body: {"email":"seunoduez@gmail.com","password":"Timpearl05$$$"}
+2025-02-08 08:02:52 [info]: PUT /users/change-password 403 - Request Body: {"email":"nana10@gmail.com","newPassword":"notYourDefaultPassword123"}
+2025-02-08 08:06:38 [info]: PUT /users/change-password 200 - Request Body: {"email":"nana10@gmail.com","newPassword":"notYourDefaultPassword123"}
+2025-02-08 08:06:59 [info]: POST /login 400 - Request Body: {"email":"nana10@gmail.com","password":"DefaultPassword123"}
+2025-02-08 08:07:32 [info]: POST /login 200 - Request Body: {"email":"nana10@gmail.com","password":"notYourDefaultPassword123"}
+2025-02-08 08:08:07 [info]: POST /login 200 - Request Body: {"email":"nana10@gmail.com","password":"notYourDefaultPassword123"}
+2025-02-08 08:08:15 [info]: PUT /users/change-password 200 - Request Body: {"email":"nana10@gmail.com","newPassword":"DefaultPassword123"}
+2025-02-08 08:08:22 [info]: POST /login 400 - Request Body: {"email":"nana10@gmail.com","password":"notYourDefaultPassword123"}
+2025-02-08 08:08:27 [info]: POST /login 200 - Request Body: {"email":"nana10@gmail.com","password":"DefaultPassword123"}
+2025-02-09 21:19:08 [info]: POST /login 200 - Request Body: {"email":"test@gmail.com","password":"Test2024!"}
+2025-02-09 21:19:11 [info]: GET / 200
+2025-02-09 21:19:42 [info]: GET / 200
+2025-02-09 21:19:43 [info]: GET /all 200
+2025-02-09 21:19:43 [info]: GET /users 200
+2025-02-09 21:20:26 [info]: POST /admin/users/change-password 200 - Request Body: {"email":"rash1@gmail.com","newPassword":"Test2024!!"}
+2025-02-09 21:21:36 [info]: GET /users 401
+2025-02-09 21:21:36 [info]: GET /all 401
+2025-02-09 21:21:36 [info]: GET / 401
+2025-02-09 21:21:37 [info]: GET / 304
+2025-02-09 21:21:37 [info]: GET /all 304
+2025-02-09 21:21:38 [info]: GET /users 304
+2025-02-09 21:21:57 [info]: GET / 304
+2025-02-09 21:21:57 [info]: GET /all 304
+2025-02-09 21:21:59 [info]: GET /users 304
+2025-02-09 21:22:12 [info]: POST /admin/users/change-password 200 - Request Body: {"email":"rash1@gmail.com","newPassword":"Test2024!!"}
+2025-02-09 21:24:30 [info]: POST /admin/users/change-password 200 - Request Body: {"email":"rash1@gmail.com","newPassword":"Test2024!!!"}
+2025-02-09 21:25:58 [info]: PUT /users/change-password 200 - Request Body: {"email":"rash1@gmail.com","newPassword":"Test2024!!"}
+2025-02-09 21:26:25 [info]: PUT /users/change-password 200 - Request Body: {"email":"rash1@gmail.com","newPassword":"Test2024!!!"}
+2025-02-09 21:26:25 [info]: GET / 304
+2025-02-09 21:26:26 [info]: GET /all 304
+2025-02-09 21:26:27 [info]: GET /users 200
+2025-02-09 21:26:41 [info]: POST /login 400 - Request Body: {"email":"rash1@gmail.com","password":"Test2024!!"}
+2025-02-09 21:26:56 [info]: POST /login 200 - Request Body: {"email":"rash1@gmail.com","password":"Test2024!!!"}
+2025-02-09 21:27:01 [info]: GET /status 200
+2025-02-09 21:27:01 [info]: GET /get-user/67405d421a49e4a70bfd2d3b 200
+2025-02-09 21:27:18 [info]: GET /status 304
+2025-02-09 21:27:18 [info]: GET /get-user/67405d421a49e4a70bfd2d3b 304
+2025-02-10 12:00:14 [info]: POST /login 200 - Request Body: {"email":"test@gmail.com","password":"Test2024!"}
+2025-02-10 12:00:18 [info]: GET / 200
+2025-02-10 12:00:25 [info]: GET / 200
+2025-02-10 12:00:25 [info]: GET /all 200
+2025-02-10 12:00:26 [info]: GET /users 200
+2025-02-10 12:00:42 [info]: GET / 304
+2025-02-10 12:00:43 [info]: GET /user-profile/677e7d48ad3ab554703e9cd4 200
+2025-02-10 12:00:49 [info]: PUT /user-details/677e7d48ad3ab554703e9cd4 200 - Request Body: {"firstName":"Marcus12","lastName":"Rashford1","phone":"","otherName":"MR","email":"rash1@gmail.com","password":"","role":"user","ids":"[]","userId":"rash10","gender":"","dateOfBirth":"2025-01-01","image":"https://res.cloudinary.com/dldchwdkn/image/upload/v1736348775/userDisplayPictures/bnjfmekkzjbady8bqlvs.png","country":"Nigeria","address":"Nigerian Meteorology Agency, close to Nigerian Armed Forces, Resettlement center, behind Blind center, off Fiiro road, Oshodi, Lagos","city":"Houston","LGA":"surulere","state":"Oyo","officeAddress":"40 ifelodun street","officeCity":"ota","officeLGA":"ado odo ota","employerName":"ajY","officeState":"ogun","contactPersonPlaceOfEmployment":"","nameOfContactPerson":"AJIBADE Emmanuel","contactEmail":"ajibadeemmanuel58@gmail.com","contactPersonPhoneNumber":"09056983150","sendEmail":"true"}
+2025-02-10 12:00:52 [info]: GET /users 200
+2025-02-10 12:01:44 [info]: GET / 304
+2025-02-10 12:01:45 [info]: GET /all 304
+2025-02-10 12:01:47 [info]: GET /users 304
+2025-02-10 12:01:50 [info]: PUT /users/change-password 200 - Request Body: {"email":"rash1@gmail.com","newPassword":"Test2024!"}
+2025-02-10 12:01:50 [info]: GET / 304
+2025-02-10 12:01:51 [info]: GET /all 304
+2025-02-10 12:01:52 [info]: GET /users 200
+2025-02-10 12:02:26 [info]: POST /login 200 - Request Body: {"email":"rash1@gmail.com","password":"Test2024!"}
+2025-02-10 12:02:30 [info]: GET /status 200
+2025-02-10 12:02:31 [info]: GET /get-user/67405d421a49e4a70bfd2d3b 200
+2025-02-10 12:02:59 [info]: POST /login 200 - Request Body: {"email":"test@gmail.com","password":"Test2024!"}
+2025-02-10 12:03:00 [info]: GET / 304
+2025-02-10 12:03:01 [info]: GET / 304
+2025-02-10 12:03:05 [info]: GET / 304
+2025-02-10 12:03:06 [info]: GET /all 304
+2025-02-10 12:03:07 [info]: GET /users 304
+2025-02-10 12:03:17 [info]: GET / 304
+2025-02-10 12:03:18 [info]: GET /user-profile/677e7d48ad3ab554703e9cd4 200
+2025-02-10 12:03:25 [info]: PUT /user-details/677e7d48ad3ab554703e9cd4 200 - Request Body: {"firstName":"Marcus1","lastName":"Rashford1","phone":"","otherName":"MR","email":"rash1@gmail.com","password":"","role":"user","ids":"[]","userId":"rash10","gender":"","dateOfBirth":"2025-01-01","image":"https://res.cloudinary.com/dldchwdkn/image/upload/v1736348775/userDisplayPictures/bnjfmekkzjbady8bqlvs.png","country":"Nigeria","address":"Nigerian Meteorology Agency, close to Nigerian Armed Forces, Resettlement center, behind Blind center, off Fiiro road, Oshodi, Lagos","city":"Houston","LGA":"surulere","state":"Oyo","officeAddress":"40 ifelodun street","officeCity":"ota","officeLGA":"ado odo ota","employerName":"ajY","officeState":"ogun","contactPersonPlaceOfEmployment":"","nameOfContactPerson":"AJIBADE Emmanuel","contactEmail":"ajibadeemmanuel58@gmail.com","contactPersonPhoneNumber":"09056983150","sendEmail":"true"}
+2025-02-10 12:03:28 [info]: GET /users 200
+2025-02-10 12:03:49 [info]: GET / 304
+2025-02-10 12:03:49 [info]: GET /all 304
+2025-02-10 12:03:50 [info]: GET /user-profile/677e7d48ad3ab554703e9cd4 200
+2025-02-10 12:03:50 [info]: GET /users 304
+2025-02-10 12:04:15 [info]: GET / 304
+2025-02-10 12:04:15 [info]: GET /all 304
+2025-02-10 12:04:16 [info]: GET /user-profile/677e7d48ad3ab554703e9cd4 304
+2025-02-10 12:04:16 [info]: GET /users 304
+2025-02-10 12:04:23 [info]: POST /login 400 - Request Body: {"email":"rash1@gmail.com","password":"Test2024!"}
+2025-02-10 12:04:31 [info]: POST /login 200 - Request Body: {"email":"test@gmail.com","password":"Test2024!"}
+2025-02-10 12:04:32 [info]: GET / 304
+2025-02-10 12:05:23 [info]: GET / 304
+2025-02-10 12:05:31 [info]: GET / 304
+2025-02-10 12:05:34 [info]: GET / 304
+2025-02-10 12:05:34 [info]: GET /all 304
+2025-02-10 12:05:35 [info]: GET /users 304
+2025-02-10 12:05:52 [info]: PUT /users/change-password 200 - Request Body: {"email":"rash1@gmail.com","newPassword":"Tet2024!"}
+2025-02-10 12:05:53 [info]: GET / 304
+2025-02-10 12:05:53 [info]: GET /all 304
+2025-02-10 12:05:54 [info]: GET /users 200
+2025-02-10 12:06:02 [info]: PUT /users/change-password 200 - Request Body: {"email":"rash1@gmail.com","newPassword":"Test2024!"}
+2025-02-10 12:06:02 [info]: GET / 304
+2025-02-10 12:06:03 [info]: GET /all 304
+2025-02-10 12:06:04 [info]: GET /users 200
+2025-02-10 12:06:13 [info]: POST /login 200 - Request Body: {"email":"rash1@gmail.com","password":"Test2024!"}
+2025-02-10 12:06:15 [info]: GET /status 304
+2025-02-10 12:06:16 [info]: GET /get-user/67405d421a49e4a70bfd2d3b 200
+2025-02-10 12:06:20 [info]: POST /login 200 - Request Body: {"email":"test@gmail.com","password":"Test2024!"}
+2025-02-10 12:06:21 [info]: GET / 304
+2025-02-10 12:06:29 [info]: GET / 304
+2025-02-10 12:06:30 [info]: GET /all 304
+2025-02-10 12:06:31 [info]: GET /users 304
+2025-02-10 12:06:39 [info]: GET / 304
+2025-02-10 12:06:40 [info]: GET /user-profile/677e7d48ad3ab554703e9cd4 200
+2025-02-10 12:06:55 [info]: GET / 304
+2025-02-10 12:06:56 [info]: GET /all 304
+2025-02-10 12:06:56 [info]: GET /user-profile/677e7d48ad3ab554703e9cd4 304
+2025-02-10 12:06:59 [info]: GET /users 304
+2025-02-10 12:07:00 [info]: PUT /user-details/677e7d48ad3ab554703e9cd4 200 - Request Body: {"firstName":"Marcus122","lastName":"Rashford1","phone":"","otherName":"MR","email":"rash1@gmail.com","password":"","role":"user","ids":"[]","userId":"rash10","gender":"","dateOfBirth":"2025-01-01","image":"https://res.cloudinary.com/dldchwdkn/image/upload/v1736348775/userDisplayPictures/bnjfmekkzjbady8bqlvs.png","country":"Nigeria","address":"Nigerian Meteorology Agency, close to Nigerian Armed Forces, Resettlement center, behind Blind center, off Fiiro road, Oshodi, Lagos","city":"Houston","LGA":"surulere","state":"Oyo","officeAddress":"40 ifelodun street","officeCity":"ota","officeLGA":"ado odo ota","employerName":"ajY","officeState":"ogun","contactPersonPlaceOfEmployment":"","nameOfContactPerson":"AJIBADE Emmanuel","contactEmail":"ajibadeemmanuel58@gmail.com","contactPersonPhoneNumber":"09056983150","sendEmail":"true"}
+2025-02-10 12:07:02 [info]: GET /users 200
+2025-02-10 12:07:25 [info]: POST /login 200 - Request Body: {"email":"rash1@gmail.com","password":"Test2024!"}
+2025-02-10 12:07:26 [info]: GET /status 304
+2025-02-10 12:07:27 [info]: GET /get-user/67405d421a49e4a70bfd2d3b 200
+2025-02-10 12:07:48 [info]: POST /login 200 - Request Body: {"email":"test@gmail.com","password":"Test2024!"}
+2025-02-10 12:07:49 [info]: GET / 304
+2025-02-10 12:08:03 [info]: GET / 304
+2025-02-10 12:08:03 [info]: GET /all 304
+2025-02-10 12:08:04 [info]: GET /users 304
+2025-02-10 12:08:13 [info]: GET / 304
+2025-02-10 12:08:14 [info]: GET /user-profile/677e98c0a96f2f0632d9ca29 200
+2025-02-10 12:08:19 [info]: PUT /users/change-password 200 - Request Body: {"email":"bruno2@gmail.com","newPassword":"Test2024!"}
+2025-02-10 12:08:20 [info]: GET / 304
+2025-02-10 12:08:20 [info]: GET /all 304
+2025-02-10 12:08:21 [info]: GET /users 200
+2025-02-10 12:08:23 [info]: GET / 304
+2025-02-10 12:08:24 [info]: GET /user-profile/677e98c0a96f2f0632d9ca29 200
+2025-02-10 12:08:28 [info]: PUT /user-details/677e98c0a96f2f0632d9ca29 200 - Request Body: {"firstName":"Bruno1","lastName":"Fernades","phone":"","otherName":"magic","email":"bruno2@gmail.com","password":"","role":"user","ids":"[]","userId":"rash11","gender":"","dateOfBirth":"2025-01-01","image":"https://res.cloudinary.com/dldchwdkn/image/upload/v1736349887/userDisplayPictures/gnan6chuhsia0thpysqv.png","country":"Nigeria","address":"Nigerian Meteorology Agency, close to Nigerian Armed Forces, Resettlement center, behind Blind center, off Fiiro road, Oshodi, Lagos","city":"Houston","LGA":"surulere","state":"Oyo","officeAddress":"40 ifelodun street","officeCity":"ota","officeLGA":"ado odo ota","employerName":"ajY","officeState":"ogun","contactPersonPlaceOfEmployment":"","nameOfContactPerson":"AJIBADE Emmanuel","contactEmail":"ajibadeemmanuel58@gmail.com","contactPersonPhoneNumber":"09056983150","sendEmail":"true"}
+2025-02-10 12:08:30 [info]: GET /users 200
+2025-02-10 12:08:44 [info]: POST /login 200 - Request Body: {"email":"bruno2@gmail.com","password":"Test2024!"}
+2025-02-10 12:08:44 [info]: GET /status 200
+2025-02-10 12:08:45 [info]: GET /get-user/67405d421a49e4a70bfd2d3b 200
+2025-02-10 12:08:51 [info]: GET /status 304
+2025-02-10 12:08:51 [info]: GET /get-user/67405d421a49e4a70bfd2d3b 304
+2025-02-10 12:09:38 [info]: GET /status 304
+2025-02-10 12:09:38 [info]: GET /get-user/67405d421a49e4a70bfd2d3b 304
+2025-02-10 12:30:46 [info]: GET /status 304
+2025-02-10 12:30:47 [info]: GET /get-user/67405d421a49e4a70bfd2d3b 304
+2025-02-10 12:40:39 [info]: GET /status 304
+2025-02-10 12:40:40 [info]: GET /get-user/67405d421a49e4a70bfd2d3b 304

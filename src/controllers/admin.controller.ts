@@ -10,6 +10,7 @@ import Submission from "../models/submission.model";
 import User from "../models/user.model";
 import { uploadToCloudinary } from "../utils/cloudinaryUpload";
 import { getOrganizationId } from "../utils/getOrganizationId.util";
+import { hashPassword } from "../utils/hash";
 
 class AdminController {
   // async viewAllUsers(req: Request, res: Response) {
@@ -562,7 +563,7 @@ class AdminController {
 
       const { userId } = req.params;
       const image = req.file;
-      const { ids, ...rest } = req.body;
+      const { ids, password, ...rest } = req.body;  // Explicitly destructure and exclude password
 
       if (!userId) {
         return ResponseHandler.failure(res, "User ID is required", 400);
@@ -657,7 +658,7 @@ class AdminController {
         );
       }
 
-      // **Update user with correct groups and subgroups**
+      // Update user with correct groups and subgroups
       user = await User.findByIdAndUpdate(
         userId,
         {
@@ -666,7 +667,7 @@ class AdminController {
             subGroups: updatedSubGroups.length
               ? updatedSubGroups
               : user.subGroups,
-            ...rest,
+            ...rest,  // rest object now explicitly excludes password
             image: fileUploadResult ? fileUploadResult.secure_url : user.image,
           },
         },
@@ -1219,6 +1220,43 @@ class AdminController {
         `Error archiving course: ${error.message}`,
         500
       );
+    }
+  }
+
+  async changeUserPassword(req: Request, res: Response) {
+
+     try {
+      // const { userId } = req.params;
+      const { email, newPassword } = req.body;
+      const organizationId = req.admin._id
+
+      const user = await User.findOne({
+        email,
+        organizationId
+      })
+      console.log(user?.password, "previous password")
+      if (!user) return ResponseHandler.failure(res, "User not found in your organization", 404);
+
+      const newHashedPassword = await hashPassword(newPassword);
+  
+      user.password = newHashedPassword;
+      user.save()
+
+      const userResponse = await User.findById(user._id).select(
+        "-password -role"
+      );
+      return ResponseHandler.success(
+        res,
+        userResponse,
+        "User password updated successfully",
+        200
+      );
+    } catch (error: any) {
+      return res.status(500).json({
+        success: false,
+        message: "An error occurred while changing user password",
+        error: error.message,
+      });
     }
   }
 }
