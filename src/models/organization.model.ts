@@ -41,6 +41,7 @@ export interface IOrganization extends Document {
   generalLearnerGroupTerm: string;
   generalSubLearnerGroupTerm: string;
   generalInstructorTerm: string;
+ 
 }
 const OrganizationSchema: Schema<IOrganization> = new Schema({
   name: { type: String, required: true },
@@ -58,6 +59,7 @@ const OrganizationSchema: Schema<IOrganization> = new Schema({
     email: { type: String },
     address: { type: String }
   },
+
   password: { type: String, required: true }, 
   role: { type: String, default: 'admin', required: true }, 
   generalLearnerTerm: { type: String, default: "user", required: true },

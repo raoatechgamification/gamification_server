@@ -16,10 +16,11 @@ const {
   archiveUser,
   enableUser,
   disableUser,
-  archiveCourse
+  archiveCourse,
+  changeUserPassword
 } = AdminController;
 
-const { getAllSubadmins } = new SubAdminController()
+const { getAllSubAdmins, getASubAdmin } = new SubAdminController()
 
 const router = Router();
 
@@ -27,7 +28,14 @@ router.get(
   "/subadmins",
   authenticate,
   authorize(["admin"]),
-  getAllSubadmins
+  getAllSubAdmins
+)
+
+router.get(
+  "/subadmins/:id",
+  authenticate,
+  authorize(["admin"]),
+  getASubAdmin
 )
 
 router.get(
@@ -86,7 +94,7 @@ router.put(
 )
 
 router.patch(
-  "/user/:userId/disable", 
+  "/users/:userId/disable", 
   authenticate,
   authorize(["admin", "subAdmin"]),
   checkSubadminPermission("User Management", "Disable User"),
@@ -94,7 +102,7 @@ router.patch(
 );
 
 router.patch(
-  "/user/:userId/archive", 
+  "/users/:userId/archive", 
   authenticate,
   authorize(["admin", "subAdmin"]),
   checkSubadminPermission("User Management", "Archive User"),
@@ -102,7 +110,7 @@ router.patch(
 );
 
 router.patch(
-  "/user/:userId/enable", 
+  "/users/:userId/enable", 
   authenticate,
   authorize(["admin", "subAdmin"]),
   checkSubadminPermission("User Management", "Enable User"),
@@ -115,6 +123,13 @@ router.patch(
   authorize(["admin", "subAdmin"]),
   checkSubadminPermission("Course Management", "Archive Course"),
   archiveCourse
+)
+
+router.put(
+  "/users/change-password",
+  authenticate,
+  authorize(["admin"]),
+  changeUserPassword
 )
 
 

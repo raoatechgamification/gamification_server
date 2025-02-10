@@ -93,6 +93,7 @@ router.put(
   authenticate,
   authorize(["admin", "subAdmin"]),
   checkSubadminPermission("Course Management", "Edit Course"),
+  upload.array("file", 10),
   ...validateCourseId,
   editCourse
 );

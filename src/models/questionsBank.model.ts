@@ -46,6 +46,8 @@ const questionsBankSchema = new Schema<IQuestionsBank>({
     ],
     default: [], 
   },
+}, {
+  timestamps: true,
 });
 
 const QuestionsBank =

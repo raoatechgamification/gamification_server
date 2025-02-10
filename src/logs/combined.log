@@ -8395,3 +8395,664 @@
 2025-02-04 00:21:24 [info]: GET /user/678110bc70afb170374c9881 304
 2025-02-04 00:21:41 [info]: GET /user/678110bc70afb170374c9881 304
 2025-02-04 00:21:43 [info]: GET /user/678110bc70afb170374c9881 304
+2025-02-01 14:23:47 [info]: PUT /user-details/6758b1e7e7681f7088ff6141 200 - Request Body: {"ids":"[\"679e1bead3e6034c61895b27\", \"679e1c52d3e6034c61895b2d\", \"679e1dd00b9e3fae51583a96\"]","firstName":"Emmanuel","lastName":"Adetomiwa","email":"richardsonmarcus@gmail.com","otherName":"Akin"}
+2025-02-01 14:24:21 [info]: PUT /user-details/6758b1e7e7681f7088ff6141 200 - Request Body: {"firstName":"Emmanuel","lastName":"Adetomiwa","email":"richardsonmarcus@gmail.com","otherName":"Akin"}
+2025-02-01 14:29:44 [info]: PUT /user-details/67377b6a206d906195b0d85e 200 - Request Body: {"firstName":"Emmanuel","lastName":"Adetomiwa","email":"Test1@gmail.com","otherName":"Akin"}
+2025-02-01 14:30:03 [info]: PUT /user-details/67377b6a206d906195b0d85e 200 - Request Body: {"ids":"[\"679e1bead3e6034c61895b27\", \"679e1c52d3e6034c61895b2d\", \"679e1dd00b9e3fae51583a96\"]","firstName":"Emmanuel","lastName":"Adetomiwa","email":"Test1@gmail.com","otherName":"Akin"}
+2025-02-03 09:14:53 [info]: POST /login 200 - Request Body: {"email":"seunoduez@gmail.com","password":"Timpearl05$$$"}
+2025-02-03 09:24:46 [info]: POST /theory 500 - Request Body: {"title":"Sample Assessment","description":"This is a test assessment.","position":"1","totalMark":"100","passMark":"50","duration":"60","assessmentCode":"ASMT-2024\t","questions":"[{\"question\": \"Explain gravity?\", \"marks\": 10}, {\"question\": \"Describe Newton's Laws?\", \"marks\": 15}, {\"question\": \"What is friction?\", \"marks\": 10}, {\"question\": \"Explain the theory of relativity?\", \"marks\": 20}, {\"question\": \"What is quantum mechanics?\", \"marks\": 15}]"}
+2025-02-03 09:25:52 [info]: POST /theory 500 - Request Body: {"title":"Sample Assessment","description":"This is a test assessment.","position":"1","totalMark":"100","passMark":"50","duration":"60","assessmentCode":"ASMT-2024\t","questions":"[{\"question\": \"Explain gravity?\", \"marks\": 10}, {\"question\": \"Describe Newton's Laws?\", \"marks\": 15}, {\"question\": \"What is friction?\", \"marks\": 10}, {\"question\": \"Explain the theory of relativity?\", \"marks\": 20}, {\"question\": \"What is quantum mechanics?\", \"marks\": 15}]"}
+2025-02-03 09:28:28 [info]: POST /theory 500 - Request Body: {"title":"Sample Assessment","description":"This is a test assessment.","position":"1","totalMark":"100","passMark":"50","duration":"60","assessmentCode":"ASMT-2024\t","questions":"[{\"question\": \"Explain gravity?\", \"marks\": 10}, {\"question\": \"Describe Newton's Laws?\", \"marks\": 15}, {\"question\": \"What is friction?\", \"marks\": 10}, {\"question\": \"Explain the theory of relativity?\", \"marks\": 20}, {\"question\": \"What is quantum mechanics?\", \"marks\": 15}]"}
+2025-02-03 09:31:02 [info]: POST /theory 500 - Request Body: {"title":"Sample Assessment","description":"This is a test assessment.","position":"1","totalMark":"100","passMark":"50","duration":"60","assessmentCode":"ASMT-2024\t","questions":"[{\"question\": \"Explain gravity?\", \"marks\": 10}, {\"question\": \"Describe Newton's Laws?\", \"marks\": 15}, {\"question\": \"What is friction?\", \"marks\": 10}, {\"question\": \"Explain the theory of relativity?\", \"marks\": 20}, {\"question\": \"What is quantum mechanics?\", \"marks\": 15}]"}
+2025-02-03 09:56:50 [info]: POST /theory 500 - Request Body: {"title":"Sample Assessment","description":"This is a test assessment.","position":"1","totalMark":"100","passMark":"50","duration":"60","assessmentCode":"ASMT-2024\t","questions":"[{\"question\": \"Explain gravity?\", \"marks\": 10}, {\"question\": \"Describe Newton's Laws?\", \"marks\": 15}, {\"question\": \"What is friction?\", \"marks\": 10}, {\"question\": \"Explain the theory of relativity?\", \"marks\": 20}, {\"question\": \"What is quantum mechanics?\", \"marks\": 15}]"}
+2025-02-03 10:10:16 [info]: POST /theory 500 - Request Body: {"title":"Sample Assessment","description":"This is a test assessment.","position":"1","totalMark":"100","passMark":"50","duration":"60","assessmentCode":"ASMT-2024\t","questions":"[{\"question\": \"Explain gravity?\", \"marks\": 10}, {\"question\": \"Describe Newton's Laws?\", \"marks\": 15}, {\"question\": \"What is friction?\", \"marks\": 10}, {\"question\": \"Explain the theory of relativity?\", \"marks\": 20}, {\"question\": \"What is quantum mechanics?\", \"marks\": 15}]"}
+2025-02-03 10:22:27 [info]: POST /theory 201 - Request Body: {"title":"Sample Assessment","description":"This is a test assessment.","position":"1","totalMark":"100","passMark":"50","duration":"60","assessmentCode":"ASMT-2024\t","questions":"[{\"question\": \"Explain gravity?\", \"marks\": 10}, {\"question\": \"Describe Newton's Laws?\", \"marks\": 15}, {\"question\": \"What is friction?\", \"marks\": 10}, {\"question\": \"Explain the theory of relativity?\", \"marks\": 20}, {\"question\": \"What is quantum mechanics?\", \"marks\": 15}]"}
+2025-02-03 10:31:02 [info]: POST /theory 201 - Request Body: {"title":"Sample Assessment","description":"This is a test assessment.","position":"1","totalMark":"100","passMark":"50","duration":"60","assessmentCode":"ASMT-2024","questions":"[{\"question\": \"Explain gravity?\", \"marks\": 10}, {\"question\": \"Describe Newton's Laws?\", \"marks\": 15}, {\"question\": \"What is friction?\", \"marks\": 10}, {\"question\": \"Explain the theory of relativity?\", \"marks\": 20}, {\"question\": \"What is quantum mechanics?\", \"marks\": 15}]"}
+2025-02-03 21:47:32 [info]: POST /theory 201 - Request Body: {"title":"Sample Assessment","description":"This is a test assessment.","position":"1","totalMark":"100","passMark":"50","duration":"60","assessmentCode":"ASMT-2024","questions":"[{\"question\": \"Explain gravity?\", \"marks\": 10}, {\"question\": \"Describe Newton's Laws?\", \"marks\": 15}, {\"question\": \"What is friction?\", \"marks\": 10}, {\"question\": \"Explain the theory of relativity?\", \"marks\": 20}, {\"question\": \"What is quantum mechanics?\", \"marks\": 15}]"}
+2025-02-03 21:48:43 [info]: POST /theory 201 - Request Body: {"title":"Sample Assessment","description":"This is a test assessment.","position":"1","totalMark":"100","passMark":"50","duration":"60","assessmentCode":"ASMT-2024","questions":"[{\"question\": \"Explain gravity?\", \"marks\": 10}, {\"question\": \"Describe Newton's Laws?\", \"marks\": 15}, {\"question\": \"What is friction?\", \"marks\": 10}, {\"question\": \"Explain the theory of relativity?\", \"marks\": 20}, {\"question\": \"What is quantum mechanics?\", \"marks\": 15}]"}
+2025-02-03 21:49:17 [info]: POST /theory 201 - Request Body: {"title":"Sample Assessment","description":"This is a test assessment.","position":"1","totalMark":"100","passMark":"50","duration":"60","assessmentCode":"ASMT-2024","questions":"[{\"question\": \"Explain gravity?\", \"marks\": 10}, {\"question\": \"Describe Newton's Laws?\", \"marks\": 15}, {\"question\": \"What is friction?\", \"marks\": 10}, {\"question\": \"Explain the theory of relativity?\", \"marks\": 20}, {\"question\": \"What is quantum mechanics?\", \"marks\": 15}]"}
+2025-02-03 22:44:10 [info]: PUT /theory/67a12bcd6affc73090cfad36 500
+2025-02-03 22:44:56 [info]: PUT /theory/67a12bcd6affc73090cfad36 500
+2025-02-03 22:45:48 [info]: PUT /theory/67a12bcd6affc73090cfad36 500
+2025-02-03 22:46:53 [info]: PUT /theory/67a12bcd6affc73090cfad36 500
+2025-02-03 22:47:30 [info]: PUT /theory/67a12bcd6affc73090cfad36 500
+2025-02-03 22:50:39 [info]: PUT /theory/67a12bcd6affc73090cfad36 500
+2025-02-03 22:52:32 [info]: PUT /theory/67a12bcd6affc73090cfad36 500
+2025-02-03 22:53:31 [info]: PUT /theory/67a12bcd6affc73090cfad36 500
+2025-02-03 22:55:08 [info]: PUT /theory/67a12bcd6affc73090cfad36 500
+2025-02-03 23:07:43 [info]: PUT /theory/67a12bcd6affc73090cfad36 500
+2025-02-03 23:46:46 [info]: PUT /theory/:id 500 - Request Body: {"title":"Assessment Title changed","description":"New description","questions":"[{\"question\": \"First question changed\", \"marks\": 10}, {\"question\": \"Describe Newton's Laws?\", \"marks\": 15}, {\"question\": \"What is friction?\", \"marks\": 10}, {\"question\": \"Explain the theory of relativity?\", \"marks\": 20}, {\"question\": \"What is quantum mechanics?\", \"marks\": 15}]"}
+2025-02-03 23:47:27 [info]: PUT /theory/67a12bcd6affc73090cfad36 500 - Request Body: {"title":"Assessment Title changed","description":"New description","questions":"[{\"question\": \"First question changed\", \"marks\": 10}, {\"question\": \"Describe Newton's Laws?\", \"marks\": 15}, {\"question\": \"What is friction?\", \"marks\": 10}, {\"question\": \"Explain the theory of relativity?\", \"marks\": 20}, {\"question\": \"What is quantum mechanics?\", \"marks\": 15}]"}
+2025-02-03 23:48:02 [info]: PUT /theory/67a12bcd6affc73090cfad36 500 - Request Body: {"title":"Assessment Title changed","description":"New description","questions":"[{\"question\": \"First question changed\", \"marks\": 10}, {\"question\": \"Describe Newton's Laws?\", \"marks\": 15}, {\"question\": \"What is friction?\", \"marks\": 10}, {\"question\": \"Explain the theory of relativity?\", \"marks\": 20}, {\"question\": \"What is quantum mechanics?\", \"marks\": 15}]","totalMark":"100"}
+2025-02-03 23:48:23 [info]: PUT /theory/67a12bcd6affc73090cfad36 500 - Request Body: {"title":"Assessment Title changed","description":"New description","questions":"[{\"question\": \"First question changed\", \"marks\": 10}, {\"question\": \"Describe Newton's Laws?\", \"marks\": 15}, {\"question\": \"What is friction?\", \"marks\": 10}, {\"question\": \"Explain the theory of relativity?\", \"marks\": 20}, {\"question\": \"What is quantum mechanics?\", \"marks\": 15}]","totalMark":"100","passMark":"50"}
+2025-02-03 23:49:02 [info]: PUT /theory/67a12bcd6affc73090cfad36 200 - Request Body: {"title":"Assessment Title changed","description":"New description","questions":"[{\"question\": \"First question changed\", \"marks\": 10}, {\"question\": \"Describe Newton's Laws?\", \"marks\": 15}, {\"question\": \"What is friction?\", \"marks\": 10}, {\"question\": \"Explain the theory of relativity?\", \"marks\": 20}, {\"question\": \"What is quantum mechanics?\", \"marks\": 15}]","totalMark":"100","passMark":"50","duration":"60"}
+2025-02-03 23:50:16 [info]: GET /67a12bcd6affc73090cfad36 200
+2025-02-03 23:51:14 [info]: PUT /theory/67a12bcd6affc73090cfad36 200 - Request Body: {"title":"Assessment Title changed","description":"New description","questions":"[{\"question\": \"Explain gravity?\", \"marks\": 10}, {\"question\": \"Describe Newton's Laws?\", \"marks\": 15}, {\"question\": \"What is friction?\", \"marks\": 10}, {\"question\": \"Explain the theory of relativity?\", \"marks\": 20}, {\"question\": \"What is quantum mechanics?\", \"marks\": 15}]","totalMark":"100","passMark":"50","duration":"60"}
+2025-02-03 23:53:25 [info]: PUT /theory/67a12bcd6affc73090cfad36 200 - Request Body: {"title":"Assessment Title changed","description":"New description","questions":"[{\"question\": \"Explain gravity?\", \"marks\": 10}, {\"question\": \"Describe Newton's Laws?\", \"marks\": 15}, {\"question\": \"What is friction?\", \"marks\": 10}, {\"question\": \"Explain the theory of relativity?\", \"marks\": 20}, {\"question\": \"What is quantum mechanics?\", \"marks\": 15}]","totalMark":"100","passMark":"50","duration":"60"}
+2025-02-03 23:53:40 [info]: GET /67a12bcd6affc73090cfad36 200
+2025-02-03 23:54:32 [info]: PUT /theory/67a12bcd6affc73090cfad36 200 - Request Body: {"title":"Assessment Title changed","description":"New description","questions":"[{\"question\": \"Explain gravity?\", \"marks\": 10}, {\"question\": \"Describe Newton's Laws?\", \"marks\": 15}, {\"question\": \"What is friction?\", \"marks\": 10}, {\"question\": \"Explain the theory of relativity?\", \"marks\": 20}, {\"question\": \"What is quantum mechanics?\", \"marks\": 15}]","totalMark":"100","passMark":"50","duration":"60"}
+2025-02-04 10:06:36 [info]: POST /login 200 - Request Body: {"email":"seunoduez@gmail.com","password":"Timpearl05$$$"}
+2025-02-04 10:42:42 [info]: GET /subadmins 500
+2025-02-04 10:58:51 [info]: GET /subadmins 403
+2025-02-04 10:58:58 [info]: POST /login 200 - Request Body: {"email":"seunoduez@gmail.com","password":"Timpearl05$$$"}
+2025-02-04 13:01:17 [info]: GET /subadmins 200
+2025-02-04 13:01:33 [info]: GET /subadmins/6788af25687d5051315a0ce3 200
+2025-02-04 13:02:23 [info]: GET /subadmins/679a7a97a954e144af79599f 200
+2025-02-04 15:30:38 [info]: POST /theory 201 - Request Body: {"title":"Sample Assessment","description":"This is a test assessment.","position":"1","totalMark":"100","passMark":"50","duration":"60","assessmentCode":"ASMT-2024","questions":"[{\"question\": \"Explain gravity?\", \"marks\": 10}, {\"question\": \"Describe Newton's Laws?\", \"marks\": 15}, {\"question\": \"What is friction?\", \"marks\": 10}, {\"question\": \"Explain the theory of relativity?\", \"marks\": 20}, {\"question\": \"What is quantum mechanics?\", \"marks\": 15}]"}
+2025-02-04 15:36:47 [info]: POST /theory/6706b26f95ef2722933b2f54 401
+2025-02-04 15:49:27 [info]: POST /login 200 - Request Body: {"email":"bimpe@gmail.com","password":"Timpearl05$$$"}
+2025-02-04 15:50:36 [info]: POST /theory/6706b26f95ef2722933b2f54 404 - Request Body: {"answers":"[{\"questionId\": \"67a2248ef1cddc0a996d44a0\", \"answer\": 10}, {\"questionId\": \"67a2248ef1cddc0a996d44a1\", \"answer\": 15}, {\"questionId\": \"67a2248ef1cddc0a996d44a2\", \"answer\": 10}, {\"questionId\": \"67a2248ef1cddc0a996d44a3\", \"answer\": 20}, {\"questionId: \"67a2248ef1cddc0a996d4450\", \"answer\": 10}]","answerFile1":"","answerFile2":"","answerFile3":""}
+2025-02-04 15:54:30 [info]: POST /add 400 - Request Body: {"code":"TEST-246","price":50000,"title":"Toxicology","objective":"Introduction to Biology I","instructorId":"67453884a835dc3c8062914d","duration":"six weeks","lessonFormat":".xls","assessments":["67a2248ef1cddc0a996d449f"],"announcements":[{"title":"Become a doctor now","details":"This is your very chance to become a doctor"}],"certificate":["675fec0e6fe5ccac4b4ac00b"],"showInstructor":true}
+2025-02-04 15:58:56 [info]: POST /add 400 - Request Body: {"code":"TEST-246","title":"Toxicology","objective":"Introduction to Biology I","instructorId":"67453884a835dc3c8062914d","duration":"six weeks","lessonFormat":".xls","assessments":["67a2248ef1cddc0a996d449f"],"announcements":[{"title":"Become a doctor now","details":"This is your very chance to become a doctor"}],"certificate":["675fec0e6fe5ccac4b4ac00b"],"showInstructor":true}
+2025-02-04 16:06:44 [info]: POST /add 201 - Request Body: {"code":"TEST-246","title":"Toxicology","objective":"Introduction to Biology I","instructorId":"67453884a835dc3c8062914d","duration":"six weeks","lessonFormat":".xls","assessments":["67a2248ef1cddc0a996d449f"],"announcements":[{"title":"Become a doctor now","details":"This is your very chance to become a doctor"}],"certificate":["675fec0e6fe5ccac4b4ac00b"],"showInstructor":true}
+2025-02-04 16:14:41 [info]: POST /add 400 - Request Body: {"code":"TEST2-246","title":"Toxicology","objective":"Introduction to Biology I","instructorId":"67453884a835dc3c8062914d","duration":"six weeks","lessonFormat":".xls","assessments":["67a2248ef1cddc0a996d449f"],"announcements":[{"title":"Become a doctor now","details":"This is your very chance to become a doctor"}],"certificate":["675fec0e6fe5ccac4b4ac00b"],"showInstructor":true}
+2025-02-04 16:15:48 [info]: POST /add 201 - Request Body: {"code":"TEST2-246","title":"Toxicology","objective":"Introduction to Biology I","instructorId":"67453884a835dc3c8062914d","duration":"six weeks","lessonFormat":".xls","assessments":["67a2248ef1cddc0a996d449f"],"announcements":[{"title":"Become a doctor now","details":"This is your very chance to become a doctor"}],"certificate":["675fec0e6fe5ccac4b4ac00b"],"showInstructor":true}
+2025-02-04 16:17:06 [info]: POST /67a22f243b0d364ad638636c/assign 200 - Request Body: {"userIds":["676965e49626eab20cafeb69"],"dueDate":"12-31-2025"}
+2025-02-04 16:18:20 [info]: POST /theory/67a22f243b0d364ad638636c/67a2248ef1cddc0a996d449f 500 - Request Body: {"answers":"[{\"questionId\": \"67a2248ef1cddc0a996d44a0\", \"answer\": 10}, {\"questionId\": \"67a2248ef1cddc0a996d44a1\", \"answer\": 15}, {\"questionId\": \"67a2248ef1cddc0a996d44a2\", \"answer\": 10}, {\"questionId\": \"67a2248ef1cddc0a996d44a3\", \"answer\": 20}, {\"questionId: \"67a2248ef1cddc0a996d4450\", \"answer\": 10}]","answerFile1":"","answerFile2":"","answerFile3":""}
+2025-02-04 16:23:11 [info]: POST /theory/67a22f243b0d364ad638636c/67a2248ef1cddc0a996d449f 500 - Request Body: {"answers":"[{\"questionId\": \"67a2248ef1cddc0a996d44a0\", \"answer\": 10}, {\"questionId\": \"67a2248ef1cddc0a996d44a1\", \"answer\": 15}, {\"questionId\": \"67a2248ef1cddc0a996d44a2\", \"answer\": 10}, {\"questionId\": \"67a2248ef1cddc0a996d44a3\", \"answer\": 20}, {\"questionId: \"67a2248ef1cddc0a996d4450\", \"answer\": 10}]"}
+2025-02-04 16:23:58 [info]: POST /theory/67a22f243b0d364ad638636c/67a2248ef1cddc0a996d449f 500 - Request Body: {"answers":"[{\"questionId\": \"67a2248ef1cddc0a996d44a0\", \"answer\": 10}, {\"questionId\": \"67a2248ef1cddc0a996d44a1\", \"answer\": 15}, {\"questionId\": \"67a2248ef1cddc0a996d44a2\", \"answer\": 10}, {\"questionId\": \"67a2248ef1cddc0a996d44a3\", \"answer\": 20}, {\"questionId: \"67a2248ef1cddc0a996d4450\", \"answer\": 10}]"}
+2025-02-05 08:58:26 [info]: POST /theory 201 - Request Body: {"title":"Sample Assessment","description":"This is a test assessment.","position":"1","totalMark":"100","passMark":"50","duration":"60","assessmentCode":"ASMT-2024","questions":"[{\"question\": \"Explain gravity?\", \"marks\": 10}, {\"question\": \"Describe Newton's Laws?\", \"marks\": 15}, {\"question\": \"What is friction?\", \"marks\": 10}, {\"question\": \"Explain the theory of relativity?\", \"marks\": 20}, {\"question\": \"What is quantum mechanics?\", \"marks\": 15}]"}
+2025-02-05 08:59:50 [info]: POST /add 201 - Request Body: {"code":"WIWI-252","price":50000,"title":"Toxicology","objective":"Introduction to Biology I","instructorId":"67453884a835dc3c8062914d","duration":"six weeks","lessonFormat":".xls","assessments":["67a31a220522bbabdbae6ec1"],"announcements":[{"title":"Become a doctor now","details":"This is your very chance to become a doctor"}],"certificate":["675fec0e6fe5ccac4b4ac00b"],"showInstructor":true}
+2025-02-05 09:00:19 [info]: POST /67a31a750522bbabdbae6ed3/assign 200 - Request Body: {"userIds":["676965e49626eab20cafeb69"],"dueDate":"12-31-2025"}
+2025-02-05 09:00:41 [info]: PATCH /67a31a750522bbabdbae6ed3/move-to-ongoing 200
+2025-02-05 09:11:08 [info]: POST /theory/67a31a750522bbabdbae6ed3/67a31a220522bbabdbae6ec1 200 - Request Body: {"answers":"[{\"questionId\": \"67a31a220522bbabdbae6ec2\", \"answer\": 10}, {\"questionId\": \"67a31a220522bbabdbae6ec3\", \"answer\": 15}, {\"questionId\": \"67a31a220522bbabdbae6ec4\", \"answer\": 10}, {\"questionId\": \"67a31a220522bbabdbae6ec5\", \"answer\": 20}, {\"questionId\": \"67a31a220522bbabdbae6ec6\", \"answer\": 15}]"}
+2025-02-05 09:15:10 [info]: POST /theory/67a31a750522bbabdbae6ed3/67a31a220522bbabdbae6ec1 200 - Request Body: {"answers":"[{\"questionId\": \"67a31a220522bbabdbae6ec2\", \"answer\": 10}, {\"questionId\": \"67a31a220522bbabdbae6ec3\", \"answer\": 15}, {\"questionId\": \"67a31a220522bbabdbae6ec4\", \"answer\": 10}, {\"questionId\": \"67a31a220522bbabdbae6ec5\", \"answer\": 20}, {\"questionId\": \"67a31a220522bbabdbae6ec6\", \"answer\": 15}]"}
+2025-02-05 16:18:39 [info]: POST /login 200 - Request Body: {"email":"seunoduez@gmail.com","password":"Timpearl05$$$"}
+2025-02-05 16:25:47 [info]: GET /67a31a750522bbabdbae6ed3 200
+2025-02-05 16:26:22 [info]: PUT /67a31a750522bbabdbae6ed3 400 - Request Body: {"code":"NWIWI-252","price":50000,"title":"This is not Toxicology","objective":"Introduction to Biology I","instructorId":"67453884a835dc3c8062914d","duration":"six weeks","lessonFormat":".xls","assessments":["67a31a220522bbabdbae6ec1"],"announcements":[{"title":"Become a doctor now","details":"This is your very chance to become a doctor"}],"certificate":["675fec0e6fe5ccac4b4ac00b"],"showInstructor":true}
+2025-02-05 16:27:56 [info]: PUT /67a31a750522bbabdbae6ed3 200 - Request Body: {"code":"NWIWI-252","price":50000,"title":"This is not Toxicology","objective":"Introduction to Biology I","instructorId":"67453884a835dc3c8062914d","duration":"six weeks","lessonFormat":".xls","assessments":["67a31a220522bbabdbae6ec1"],"announcements":["67a3837cba7c16db6752c3f5"],"certificate":["675fec0e6fe5ccac4b4ac00b"],"showInstructor":true}
+2025-02-05 16:28:35 [info]: PUT /67a31a750522bbabdbae6ed3 200 - Request Body: {"code":"NWIWI-252","price":50000,"title":"This is not Toxicology","objective":"Introduction to Biology I","instructorId":"67453884a835dc3c8062914d","duration":"six weeks","lessonFormat":".xls","assessments":["67a31a220522bbabdbae6ec1"],"announcements":["67a383a2ba7c16db6752c401"],"certificate":["675fec0e6fe5ccac4b4ac00b"],"showInstructor":true}
+2025-02-05 16:28:54 [info]: PUT /67a31a750522bbabdbae6ed3 200 - Request Body: {"code":"NWIWI-252","price":50000,"title":"This is not Toxicology","objective":"Introduction to Biology I","instructorId":"67453884a835dc3c8062914d","duration":"two weeks","lessonFormat":".xls","assessments":["67a31a220522bbabdbae6ec1"],"announcements":["67a383b6ba7c16db6752c40d"],"certificate":["675fec0e6fe5ccac4b4ac00b"],"showInstructor":true}
+2025-02-05 16:29:04 [info]: GET /67a31a750522bbabdbae6ed3 200
+2025-02-05 16:30:39 [info]: PUT /67a31a750522bbabdbae6ed3 200 - Request Body: {"code":"WOBOVO-252","price":50000,"title":"This is not Toxicology","objective":"Introduction to Biology I","instructorId":"67453884a835dc3c8062914d","duration":"two weeks","lessonFormat":".xls","assessments":["67a31a220522bbabdbae6ec1"],"announcements":["67a3841eba7c16db6752c41b"],"certificate":["675fec0e6fe5ccac4b4ac00b"],"showInstructor":true}
+2025-02-05 16:30:56 [info]: PUT /67a31a750522bbabdbae6ed3 200 - Request Body: {"code":"WOBOVO-252","price":50000,"title":"This is not Toxicology","objective":"Not Introduction to Biology I","instructorId":"67453884a835dc3c8062914d","duration":"two weeks","lessonFormat":".xls","assessments":["67a31a220522bbabdbae6ec1"],"announcements":["67a3842fba7c16db6752c427"],"certificate":["675fec0e6fe5ccac4b4ac00b"],"showInstructor":true}
+2025-02-05 16:32:18 [info]: PUT /67a31a750522bbabdbae6ed3 200 - Request Body: {"code":"WOBOVO-252","price":50000,"title":"This is not Toxicology","objective":"Not Introduction to Biology I","instructorId":"67453884a835dc3c8062914d","duration":"two weeks","lessonFormat":".pptx","assessments":["67a31a220522bbabdbae6ec1"],"announcements":["67a38481ba7c16db6752c433"],"certificate":["675fec0e6fe5ccac4b4ac00b"],"showInstructor":true}
+2025-02-05 16:32:23 [info]: GET /67a31a750522bbabdbae6ed3 200
+2025-02-05 17:05:24 [info]: PUT /67a31a750522bbabdbae6ed3 200 - Request Body: {"code":"MPP-252","price":50000,"title":"Pharmacology","objective":"This is Introduction","instructorId":"67453884a835dc3c8062914d","duration":"five weeks","lessonFormat":".pdf","assessments":["67a31a220522bbabdbae6ec1"],"announcements":["67a38c4332771f3c1a38d36c"],"certificate":["675fec0e6fe5ccac4b4ac00b"],"showInstructor":true}
+2025-02-05 17:05:58 [info]: GET /67a31a750522bbabdbae6ed3 200
+2025-02-05 17:08:37 [info]: POST /objective 201 - Request Body: {"title":"Mixed Question Types Quiz","description":"A quiz with various question types to test your knowledge.","marksPerQuestion":5,"numberOfTrials":5,"purpose":"Learning assessment","passMark":60,"duration":30,"totalMark":100,"startDate":"2024-11-25","endDate":"2024-12-01","questions":[{"question":"The Eiffel Tower is in London.","type":"True or False","answer":"false","mark":15},{"question":"______ is the largest ocean on Earth.","type":"Fill in the Gap","answer":"Pacific Ocean","mark":25},{"question":"Is climate change a global concern?","type":"Yes or No","answer":"yes","mark":15},{"question":"Which of these is a prime number?","type":"Multichoice","options":["4","6","7","9"],"answer":"7","mark":15},{"question":"Is a Dog a mammal?","type":"Yes or No","answer":"yes","mark":10}]}
+2025-02-05 17:08:53 [info]: POST /add 400 - Request Body: {"code":"WIWI-252","price":50000,"title":"Toxicology","objective":"Introduction to Biology I","instructorId":"67453884a835dc3c8062914d","duration":"six weeks","lessonFormat":".xls","assessments":["67a38d0583ab5aa68ffd93c0"],"announcements":[{"title":"Become a doctor now","details":"This is your very chance to become a doctor"}],"certificate":["675fec0e6fe5ccac4b4ac00b"],"showInstructor":true}
+2025-02-05 17:09:02 [info]: POST /add 201 - Request Body: {"code":"WIWIB-252","price":50000,"title":"Toxicology","objective":"Introduction to Biology I","instructorId":"67453884a835dc3c8062914d","duration":"six weeks","lessonFormat":".xls","assessments":["67a38d0583ab5aa68ffd93c0"],"announcements":[{"title":"Become a doctor now","details":"This is your very chance to become a doctor"}],"certificate":["675fec0e6fe5ccac4b4ac00b"],"showInstructor":true}
+2025-02-05 17:45:34 [info]: POST /login 200 - Request Body: {"email":"test@gmail.com","password":"Test2024!"}
+2025-02-05 17:46:32 [info]: POST /add 400 - Request Body: {"code":"WIWIB-252","price":50000,"title":"Toxicology","objective":"Introduction to Biology I","instructorId":"67453884a835dc3c8062914d","duration":"six weeks","lessonFormat":".xls","assessments":["67a38d0583ab5aa68ffd93c0"],"announcements":[{"title":"Become a doctor now","details":"This is your very chance to become a doctor"}],"certificate":["675fec0e6fe5ccac4b4ac00b"],"showInstructor":true}
+2025-02-05 17:47:13 [info]: POST /add 400 - Request Body: {"code":"NONO-246","price":50000,"title":"Toxicology","objective":"Introduction to Biology I","instructorId":"67453884a835dc3c8062914d","duration":"six weeks","lessonFormat":".xls","lessons":["67641a614e36b15a4278cb0b","67641ab04e36b15a4278cb0e","67641abd4e36b15a4278cb11","67641aca4e36b15a4278cb14","67641ad34e36b15a4278cb17"],"announcements":[{"title":"Become a doctor now","details":"This is your very chance to become a doctor"}],"certificate":["675fec0e6fe5ccac4b4ac00b"],"showInstructor":true}
+2025-02-05 17:47:34 [info]: POST /objective 201 - Request Body: {"title":"Mixed Question Types Quiz","description":"A quiz with various question types to test your knowledge.","marksPerQuestion":5,"numberOfTrials":5,"purpose":"Learning assessment","passMark":60,"duration":30,"totalMark":100,"startDate":"2024-11-25","endDate":"2024-12-01","questions":[{"question":"The Eiffel Tower is in London.","type":"True or False","answer":"false","mark":15},{"question":"______ is the largest ocean on Earth.","type":"Fill in the Gap","answer":"Pacific Ocean","mark":25},{"question":"Is climate change a global concern?","type":"Yes or No","answer":"yes","mark":15},{"question":"Which of these is a prime number?","type":"Multichoice","options":["4","6","7","9"],"answer":"7","mark":15},{"question":"Is a Dog a mammal?","type":"Yes or No","answer":"yes","mark":10}]}
+2025-02-05 17:48:35 [info]: POST /add 201 - Request Body: {"code":"NONO-246","price":50000,"title":"Toxicology","objective":"Introduction to Biology I","instructorId":"67453884a835dc3c8062914d","duration":"six weeks","lessonFormat":".xls","assessments":["67a396251f9cd81895b60b57"],"announcements":[{"title":"Become a doctor now","details":"This is your very chance to become a doctor"}],"certificate":["675fec0e6fe5ccac4b4ac00b"],"showInstructor":true}
+2025-02-05 17:49:12 [info]: PUT /67a396621f9cd81895b60b69 400 - Request Body: {"code":"MPP-252","price":50000,"title":"Pharmacology","objective":"This is Introduction","instructorId":"67453884a835dc3c8062914d","duration":"five weeks","lessonFormat":".pdf","assessments":["67a31a220522bbabdbae6ec1"],"announcements":[{"title":"Become a doctor now","details":"This is your very chance to become a doctor"}],"certificate":["675fec0e6fe5ccac4b4ac00b"],"showInstructor":true}
+2025-02-05 17:50:59 [info]: PUT /67a396621f9cd81895b60b69 200 - Request Body: {"code":"NP-246","price":50000,"title":"This is not toxicology","objective":"Introduction to Biology I","instructorId":"67453884a835dc3c8062914d","duration":"six weeks","lessonFormat":".xls","assessments":["67a396251f9cd81895b60b57"],"announcements":["67a396f21f9cd81895b60b77"],"certificate":["675fec0e6fe5ccac4b4ac00b"],"showInstructor":true}
+2025-02-05 17:51:42 [info]: GET /67a396621f9cd81895b60b69 200
+2025-02-06 09:43:19 [info]: POST /add 403 - Request Body: {"code":"NONO-246","price":50000,"title":"Toxicology","objective":"Introduction to Biology I","instructorId":"67453884a835dc3c8062914d","duration":"six weeks","lessonFormat":".xls","lessons":["67641a614e36b15a4278cb0b","67641ab04e36b15a4278cb0e","67641abd4e36b15a4278cb11","67641aca4e36b15a4278cb14","67641ad34e36b15a4278cb17"],"assessments":["67641b594e36b15a4278cb20"],"announcements":[{"title":"Become a doctor now","details":"This is your very chance to become a doctor"}],"certificate":["675fec0e6fe5ccac4b4ac00b"],"showInstructor":true}
+2025-02-06 09:44:47 [info]: POST /login 200 - Request Body: {"email":"seunoduez@gmail.com","password":"Timpearl05$$$"}
+2025-02-06 09:45:21 [info]: POST /add 201 - Request Body: {"code":"SMSM-246","price":50000,"title":"Toxicology","objective":"Introduction to Biology I","instructorId":"67453884a835dc3c8062914d","duration":"six weeks","lessonFormat":".xls","lessons":["67641a614e36b15a4278cb0b","67641ab04e36b15a4278cb0e","67641abd4e36b15a4278cb11","67641aca4e36b15a4278cb14","67641ad34e36b15a4278cb17"],"assessments":["67641b594e36b15a4278cb20"],"announcements":[{"title":"Become a doctor now","details":"This is your very chance to become a doctor"}],"certificate":["675fec0e6fe5ccac4b4ac00b"],"showInstructor":true}
+2025-02-06 09:45:46 [info]: PUT /67a476a02724f0b74eb5c2ab 400 - Request Body: {"title":"Update Course Title","description":"Updated Course Description","lessons":["67641a614e36b15a4278cb0b","67641ab04e36b15a4278cb0e"],"assessments":"67641b594e36b15a4278cb20","announcements":["{\"title\":\"Announcement 1\",\"details\":\"Details about announcement 1\"}\t","{\"title\":\"Announcement 2\",\"details\":\"Details about announcement 2\"}"]}
+2025-02-06 09:46:32 [info]: PUT /67a476a02724f0b74eb5c2ab 400 - Request Body: {"title":"Update Course Title","description":"Updated Course Description","lessons":"67641ab04e36b15a4278cb0e","assessments":"67641b594e36b15a4278cb20","announcements":["{\"title\":\"Announcement 1\",\"details\":\"Details about announcement 1\"}\t","{\"title\":\"Announcement 2\",\"details\":\"Details about announcement 2\"}"]}
+2025-02-06 09:46:39 [info]: PUT /67a476a02724f0b74eb5c2ab 400 - Request Body: {"title":"Update Course Title","description":"Updated Course Description","lessons":"67641a614e36b15a4278cb0b","assessments":"67641b594e36b15a4278cb20","announcements":["{\"title\":\"Announcement 1\",\"details\":\"Details about announcement 1\"}\t","{\"title\":\"Announcement 2\",\"details\":\"Details about announcement 2\"}"]}
+2025-02-06 09:46:53 [info]: POST /objective 201 - Request Body: {"title":"Mixed Question Types Quiz","description":"A quiz with various question types to test your knowledge.","marksPerQuestion":5,"numberOfTrials":5,"purpose":"Learning assessment","passMark":60,"duration":30,"totalMark":100,"startDate":"2024-11-25","endDate":"2024-12-01","questions":[{"question":"The Eiffel Tower is in London.","type":"True or False","answer":"false","mark":15},{"question":"______ is the largest ocean on Earth.","type":"Fill in the Gap","answer":"Pacific Ocean","mark":25},{"question":"Is climate change a global concern?","type":"Yes or No","answer":"yes","mark":15},{"question":"Which of these is a prime number?","type":"Multichoice","options":["4","6","7","9"],"answer":"7","mark":15},{"question":"Is a Dog a mammal?","type":"Yes or No","answer":"yes","mark":10}]}
+2025-02-06 09:47:38 [info]: PUT /67a476a02724f0b74eb5c2ab 400 - Request Body: {"title":"Update Course Title","description":"Updated Course Description","lessons":["67641a614e36b15a4278cb0b","67641ab04e36b15a4278cb0e"],"assessments":"67a476fc2724f0b74eb5c2cf","announcements":["{\"title\":\"Announcement 1\",\"details\":\"Details about announcement 1\"}\t","{\"title\":\"Announcement 2\",\"details\":\"Details about announcement 2\"}"]}
+2025-02-06 09:49:27 [info]: PUT /67a476a02724f0b74eb5c2ab 500 - Request Body: {"title":"Update Course Title","description":"Updated Course Description","lessons":["67641a614e36b15a4278cb0b","67641ab04e36b15a4278cb0e"],"assessments":"67a476fc2724f0b74eb5c2cf"}
+2025-02-06 09:50:29 [info]: PUT /67a476a02724f0b74eb5c2ab 500 - Request Body: {"title":"Update Course Title","description":"Updated Course Description","lessons":["67641a614e36b15a4278cb0b","67641ab04e36b15a4278cb0e"],"assessments":"67a476fc2724f0b74eb5c2cf"}
+2025-02-06 09:53:17 [info]: PUT /67a476a02724f0b74eb5c2ab 500 - Request Body: {"title":"Update Course Title","description":"Updated Course Description","lessons":["67641a614e36b15a4278cb0b","67641ab04e36b15a4278cb0e"],"assessments":"67a476fc2724f0b74eb5c2cf"}
+2025-02-06 09:53:43 [info]: PUT /67a476a02724f0b74eb5c2ab 500 - Request Body: {"title":"Update Course Title","description":"Updated Course Description","lessons":["67641a614e36b15a4278cb0b","67641ab04e36b15a4278cb0e"],"assessments":"67a476fc2724f0b74eb5c2cf"}
+2025-02-06 09:54:45 [info]: PUT /67a476a02724f0b74eb5c2ab 500 - Request Body: {"title":"Update Course Title","description":"Updated Course Description","lessons":["67641a614e36b15a4278cb0b","67641ab04e36b15a4278cb0e"],"assessments":"67a476fc2724f0b74eb5c2cf"}
+2025-02-06 09:59:13 [info]: PUT /67a476a02724f0b74eb5c2ab 500 - Request Body: {"title":"Update Course Title","description":"Updated Course Description","lessons":["67641a614e36b15a4278cb0b","67641ab04e36b15a4278cb0e"],"assessments":"67a476fc2724f0b74eb5c2cf"}
+2025-02-06 10:11:01 [info]: PUT /67a476a02724f0b74eb5c2ab 500 - Request Body: {"title":"Update Course Title","description":"Updated Course Description","lessons":["67641a614e36b15a4278cb0b","67641ab04e36b15a4278cb0e"],"assessments":"67a476fc2724f0b74eb5c2cf"}
+2025-02-06 10:12:40 [info]: PUT /67a476a02724f0b74eb5c2ab 500 - Request Body: {"title":"Update Course Title","description":"Updated Course Description","lessons":["67641a614e36b15a4278cb0b","67641ab04e36b15a4278cb0e"],"assessments":"67a476fc2724f0b74eb5c2cf"}
+2025-02-06 10:15:04 [info]: PUT /67a476a02724f0b74eb5c2ab 500 - Request Body: {"title":"Update Course Title","description":"Updated Course Description","lessons":["67641a614e36b15a4278cb0b","67641ab04e36b15a4278cb0e"],"assessments":"67a476fc2724f0b74eb5c2cf"}
+2025-02-06 10:15:28 [info]: PUT /67a476a02724f0b74eb5c2ab 500 - Request Body: {"title":"Update Course Title","description":"Updated Course Description","lessons":["67641a614e36b15a4278cb0b","67641ab04e36b15a4278cb0e"],"assessments":"[67a476fc2724f0b74eb5c2cf]"}
+2025-02-06 10:15:57 [info]: PUT /67a476a02724f0b74eb5c2ab 500 - Request Body: {"title":"Update Course Title","description":"Updated Course Description","lessons":["67641a614e36b15a4278cb0b","67641ab04e36b15a4278cb0e"],"assessments":"[\"67a476fc2724f0b74eb5c2cf\"]","courseImage":["https://res.cloudinary.com/dldchwdkn/image/upload/v1738833357/course-content/xikccjpztd9prbl4n26a.png"]}
+2025-02-06 10:19:19 [info]: PUT /67a476a02724f0b74eb5c2ab 500 - Request Body: {"title":"Update Course Title","description":"Updated Course Description","lessons":["67641a614e36b15a4278cb0b","67641ab04e36b15a4278cb0e"],"assessments":"67a476fc2724f0b74eb5c2cf"}
+2025-02-06 10:20:35 [info]: PUT /67a476a02724f0b74eb5c2ab 500 - Request Body: {"title":"Update Course Title","description":"Updated Course Description","lessons":["67641a614e36b15a4278cb0b","67641ab04e36b15a4278cb0e"],"assessments":"67a476fc2724f0b74eb5c2cf"}
+2025-02-06 10:22:54 [info]: PUT /67a476a02724f0b74eb5c2ab 500 - Request Body: {"title":"Update Course Title","description":"Updated Course Description","lessons":["67641a614e36b15a4278cb0b","67641ab04e36b15a4278cb0e"],"assessments":"67a476fc2724f0b74eb5c2cf"}
+2025-02-06 10:23:39 [info]: PUT /67a476a02724f0b74eb5c2ab 200 - Request Body: {"title":"Update Course Title","description":"Updated Course Description","lessons":["67641a614e36b15a4278cb0b","67641ab04e36b15a4278cb0e"],"assessments":"67a476fc2724f0b74eb5c2cf","courseImage":["https://res.cloudinary.com/dldchwdkn/image/upload/v1738833819/course-content/y0ukuirus1oq4lo30po8.png"]}
+2025-02-06 10:29:11 [info]: PUT /67a476a02724f0b74eb5c2ab 200 - Request Body: {"title":"Updated Course Title","description":"Updated Course Description","lessons":["67641a614e36b15a4278cb0b","67641ab04e36b15a4278cb0e"],"assessments":"67a476fc2724f0b74eb5c2cf","announcements":[],"courseImage":["https://res.cloudinary.com/dldchwdkn/image/upload/v1738834151/course-content/mkea395qv8ga1nzsz2eb.png"]}
+2025-02-06 10:30:35 [info]: PUT /67a476a02724f0b74eb5c2ab 200 - Request Body: {"code":"SMSP-246","title":"Updated Course Title","description":"Updated Course Description","lessons":["67641a614e36b15a4278cb0b","67641ab04e36b15a4278cb0e"],"assessments":"67a476fc2724f0b74eb5c2cf","announcements":[],"courseImage":["https://res.cloudinary.com/dldchwdkn/image/upload/v1738834233/course-content/jk7pyevegv1zburzvjlx.png"]}
+2025-02-06 10:31:50 [info]: PUT /67a476a02724f0b74eb5c2ab 200 - Request Body: {"code":"SMSP-246","title":"New and Updated Course Title","description":"New and Updated Course Description","lessons":["67641a614e36b15a4278cb0b","67641ab04e36b15a4278cb0e"],"assessments":"67a476fc2724f0b74eb5c2cf","announcements":[],"courseImage":["https://res.cloudinary.com/dldchwdkn/image/upload/v1738834310/course-content/awbllhod2ej5poeerzx0.png"]}
+2025-02-06 10:33:08 [info]: PUT /67a476a02724f0b74eb5c2ab 200 - Request Body: {"code":"SMSP-246","title":"New and Updated Course Title","objective":"New and updated objective","description":"New and Updated Course Description","lessons":["67641a614e36b15a4278cb0b","67641ab04e36b15a4278cb0e"],"assessments":"67a476fc2724f0b74eb5c2cf","announcements":[],"courseImage":["https://res.cloudinary.com/dldchwdkn/image/upload/v1738834388/course-content/j6frlvqvhiwnny8lftas.png"]}
+2025-02-06 10:39:45 [info]: PUT /67a476a02724f0b74eb5c2ab 200 - Request Body: {"courseCode":"SMSP-246","title":"New and Updated Course Title","objective":"New and updated objective","description":"New and Updated Course Description","lessons":["67641a614e36b15a4278cb0b","67641ab04e36b15a4278cb0e"],"assessments":"67a476fc2724f0b74eb5c2cf","announcements":[],"courseImage":["https://res.cloudinary.com/dldchwdkn/image/upload/v1738834785/course-content/tlfotcyqu4z7cs8gp7ag.png"]}
+2025-02-06 10:40:37 [info]: PUT /67a476a02724f0b74eb5c2ab 200 - Request Body: {"courseCode":"UPD-246","title":"New and Updated Course Title","objective":"New and updated objective","description":"New and Updated Course Description","duration":"12 weeks","lessons":["67641a614e36b15a4278cb0b","67641ab04e36b15a4278cb0e"],"assessments":"67a476fc2724f0b74eb5c2cf","announcements":[],"courseImage":["https://res.cloudinary.com/dldchwdkn/image/upload/v1738834837/course-content/lfpsmf92kmead9yi2cvo.png"]}
+2025-02-06 10:41:46 [info]: PUT /67a476a02724f0b74eb5c2ab 200 - Request Body: {"courseCode":"UPD-246","title":"New and Updated Course Title","objective":"New and updated objective","description":"New and Updated Course Description","duration":"12 weeks","lessons":["67641a614e36b15a4278cb0b","67641ab04e36b15a4278cb0e"],"assessments":"67a476fc2724f0b74eb5c2cf","announcements":[],"cost":"10000","courseImage":["https://res.cloudinary.com/dldchwdkn/image/upload/v1738834906/course-content/uutddlovspbw6tmwivas.png"]}
+2025-02-06 10:42:13 [info]: PUT /67a476a02724f0b74eb5c2ab 200 - Request Body: {"courseCode":"UPD-246","title":"New and Updated Course Title","objective":"New and updated objective","description":"New and Updated Course Description","duration":"12 weeks","lessons":["67641a614e36b15a4278cb0b","67641ab04e36b15a4278cb0e"],"assessments":"67a476fc2724f0b74eb5c2cf","announcements":[],"cost":"10000","lessonFormat":".pdf","courseImage":["https://res.cloudinary.com/dldchwdkn/image/upload/v1738834932/course-content/orknjf7ryd5bcpkxxzre.png"]}
+2025-02-06 13:24:34 [info]: GET /all 200
+2025-02-06 13:29:20 [info]: GET /all 200
+2025-02-05 18:03:47 [info]: GET /all 403
+2025-02-05 18:03:48 [info]: GET /all 401
+2025-02-05 18:03:54 [info]: POST /login 200 - Request Body: {"email":"test@gmail.com","password":"Test2024!"}
+2025-02-05 18:03:55 [info]: GET / 200
+2025-02-05 18:04:18 [info]: GET /all 200
+2025-02-05 18:04:30 [info]: GET /all 304
+2025-02-05 18:04:48 [info]: GET /678110bc70afb170374c9881 200
+2025-02-05 18:04:48 [info]: GET / 200
+2025-02-05 18:04:48 [info]: GET /lesson/getAll 200
+2025-02-05 18:04:48 [info]: GET / 200
+2025-02-05 18:05:03 [info]: PUT /678110bc70afb170374c9881 200
+2025-02-05 18:05:05 [info]: GET /all 304
+2025-02-05 18:06:30 [info]: GET /all 304
+2025-02-05 18:07:15 [info]: GET /all 304
+2025-02-05 18:07:44 [info]: GET /all 304
+2025-02-05 18:07:45 [info]: GET /all 304
+2025-02-05 18:07:56 [info]: GET /678110bc70afb170374c9881 200
+2025-02-05 18:07:56 [info]: GET / 304
+2025-02-05 18:07:57 [info]: GET / 304
+2025-02-05 18:07:57 [info]: GET /lesson/getAll 304
+2025-02-05 18:08:17 [info]: GET /all 304
+2025-02-05 18:08:19 [info]: GET /all 304
+2025-02-05 18:09:12 [info]: GET /all 304
+2025-02-05 18:10:09 [info]: GET /all 304
+2025-02-05 18:10:15 [info]: GET /all 304
+2025-02-05 19:54:19 [info]: GET /auth/login 200
+2025-02-05 19:54:19 [info]: GET /favicon.ico 404
+2025-02-05 19:54:27 [info]: POST /login 500 - Request Body: {"email":"test@gmail.com","password":"Test2024!"}
+2025-02-05 19:54:42 [info]: POST /login 200 - Request Body: {"email":"test@gmail.com","password":"Test2024!"}
+2025-02-05 19:54:42 [info]: GET / 304
+2025-02-05 19:54:49 [info]: GET /all 304
+2025-02-05 19:54:57 [info]: GET /678110bc70afb170374c9881 304
+2025-02-05 19:54:57 [info]: GET / 304
+2025-02-05 19:54:58 [info]: GET /lesson/getAll 304
+2025-02-05 19:54:58 [info]: GET / 304
+2025-02-05 19:55:05 [info]: POST /add 400 - Request Body: {"title":"Paid course duplicate","description":"pdtc","courseCode":"pdtc","duration":"2000","startDate":"","endDate":"","assessments":"undefined","certificate":"677befebd8d18bac8177fa5e","cost":"2000","lessons":["67780f67a0d2a9a95fa14fb8"],"file":"https://res.cloudinary.com/dldchwdkn/image/upload/v1736511675/course-content/gpt0klpapnqb1t2yixpj.png"}
+2025-02-05 19:55:15 [info]: POST /add 400 - Request Body: {"title":"Paid course duplicate","description":"pdtccc","courseCode":"pdtc","duration":"2000","startDate":"","endDate":"","assessments":"undefined","certificate":"677befebd8d18bac8177fa5e","cost":"2000","lessons":["67780f67a0d2a9a95fa14fb8"],"file":"https://res.cloudinary.com/dldchwdkn/image/upload/v1736511675/course-content/gpt0klpapnqb1t2yixpj.png"}
+2025-02-05 19:55:24 [info]: POST /add 400 - Request Body: {"title":"Paid course duplicate","description":"pdtccccc","courseCode":"pdtc","duration":"2000","startDate":"","endDate":"","assessments":"undefined","certificate":"677befebd8d18bac8177fa5e","cost":"2000","lessons":["67780f67a0d2a9a95fa14fb8"],"file":"https://res.cloudinary.com/dldchwdkn/image/upload/v1736511675/course-content/gpt0klpapnqb1t2yixpj.png"}
+2025-02-05 19:56:07 [info]: GET /678110bc70afb170374c9881 304
+2025-02-05 19:56:07 [info]: GET / 304
+2025-02-05 19:56:08 [info]: GET /lesson/getAll 304
+2025-02-05 19:56:08 [info]: GET / 304
+2025-02-05 19:56:25 [info]: GET /678110bc70afb170374c9881 304
+2025-02-05 19:56:25 [info]: GET / 304
+2025-02-05 19:56:25 [info]: GET / 304
+2025-02-05 19:56:25 [info]: GET /lesson/getAll 304
+2025-02-05 19:56:36 [info]: GET /678110bc70afb170374c9881 304
+2025-02-05 19:56:37 [info]: GET / 304
+2025-02-05 19:56:37 [info]: GET / 304
+2025-02-05 19:56:37 [info]: GET /lesson/getAll 304
+2025-02-05 19:56:38 [info]: GET /678110bc70afb170374c9881 304
+2025-02-05 19:56:38 [info]: GET / 304
+2025-02-05 19:56:38 [info]: GET /678110bc70afb170374c9881 304
+2025-02-05 19:56:38 [info]: GET / 304
+2025-02-05 19:56:38 [info]: GET /lesson/getAll 304
+2025-02-05 19:56:41 [info]: GET /all 304
+2025-02-05 19:56:47 [info]: GET /678110bc70afb170374c9881 304
+2025-02-05 19:56:47 [info]: GET / 304
+2025-02-05 19:56:47 [info]: GET /lesson/getAll 304
+2025-02-05 19:56:47 [info]: GET / 304
+2025-02-05 19:56:50 [info]: PUT /678110bc70afb170374c9881 200
+2025-02-05 19:56:51 [info]: GET /all 304
+2025-02-05 19:57:08 [info]: GET /678110bc70afb170374c9881 401
+2025-02-05 19:57:11 [info]: GET /all 304
+2025-02-05 19:57:28 [info]: GET /678110bc70afb170374c9881 200
+2025-02-05 19:57:29 [info]: GET / 304
+2025-02-05 19:57:29 [info]: GET / 304
+2025-02-05 19:57:29 [info]: GET /lesson/getAll 304
+2025-02-05 19:57:38 [info]: POST /add 400 - Request Body: {"title":"Paid course","description":"pdtc","code":"pdtc","duration":"2000","startDate":"","endDate":"","assessments":"undefined","certificate":"677befebd8d18bac8177fa5e","cost":"2000","lessons":["67780f67a0d2a9a95fa14fb8"],"file":"https://res.cloudinary.com/dldchwdkn/image/upload/v1736511675/course-content/gpt0klpapnqb1t2yixpj.png"}
+2025-02-07 16:19:22 [info]: POST /login 400 - Request Body: {"email":"isholalolade55@gmail.com","password":"Password@123"}
+2025-02-07 16:20:19 [info]: POST /login 400 - Request Body: {"email":"isholalolade55@gmail.com","password":"Password@123D"}
+2025-02-07 16:24:06 [info]: POST /login 400 - Request Body: {"email":"isholalolade55@gmail.com","password":"Password@123"}
+2025-02-07 16:24:57 [info]: POST /login 400 - Request Body: {"email":"isholalolade55@gmail.com","password":"Password@123"}
+2025-02-07 16:25:21 [info]: POST /login 400 - Request Body: {"email":"isholalolade55@gmail.com","password":"Password@123"}
+2025-02-07 16:26:29 [info]: POST /login 400 - Request Body: {"email":"isholalolade55@gmail.com","password":"Password@123"}
+2025-02-07 16:27:26 [info]: POST /login 400 - Request Body: {"email":"isholalolade55@gmail.com","password":"Password@123"}
+2025-02-07 16:28:10 [info]: POST /login 400 - Request Body: {"email":"isholalolade55@gmail.com","password":"Password@123"}
+2025-02-07 17:11:23 [info]: POST /login 400 - Request Body: {"email":"isholalolade55@gmail.com","password":"Password@123"}
+2025-02-07 17:12:21 [info]: POST /login 400 - Request Body: {"email":"isholalolade55@gmail.com","password":"Password@123"}
+2025-02-07 17:13:22 [info]: POST /login 400 - Request Body: {"email":"isholalolade55@gmail.com","password":"Password@123"}
+2025-02-07 17:13:41 [info]: POST /login 400 - Request Body: {"email":"Isholalolade55@gmail.com","password":"Password@123"}
+2025-02-07 17:17:19 [info]: POST /login 400 - Request Body: {"email":"Isholalolade55@gmail.com","password":"password@123"}
+2025-02-07 17:18:14 [info]: POST /login 400 - Request Body: {"email":"Isholalolade55@gmail.com","password":""}
+2025-02-07 17:18:14 [info]: POST /login 400 - Request Body: {"email":"Isholalolade55@gmail.com","password":""}
+2025-02-07 17:18:26 [info]: POST /login 400 - Request Body: {"email":"Isholalolade55@gmail.com","password":""}
+2025-02-07 17:19:03 [info]: POST /login 400 - Request Body: {"email":"Isholalolade55@gmail.com","password":"\"\""}
+2025-02-07 17:19:09 [info]: POST /login 400 - Request Body: {"email":"Isholalolade55@gmail.com","password":""}
+2025-02-07 20:21:02 [info]: POST /login 400 - Request Body: {"email":"test@gmail.com","password":"Test2024!"}
+2025-02-07 20:21:29 [info]: POST /login 200 - Request Body: {"email":"test@gmail.com","password":"Test2024!"}
+2025-02-07 20:21:35 [info]: GET / 200
+2025-02-07 20:22:25 [info]: GET /all 200
+2025-02-07 20:22:52 [info]: GET / 200
+2025-02-07 20:22:53 [info]: GET / 200
+2025-02-07 20:22:53 [info]: GET /all 304
+2025-02-07 20:24:07 [info]: GET /6786072435a35845f35c5a0a 200
+2025-02-07 20:24:14 [info]: GET /6786072435a35845f35c5a0a 304
+2025-02-07 20:24:14 [info]: GET / 304
+2025-02-07 20:24:14 [info]: GET / 304
+2025-02-07 20:24:15 [info]: GET /all 304
+2025-02-07 20:24:18 [info]: GET /lesson/getAll 200
+2025-02-07 20:25:20 [info]: GET /all 401
+2025-02-07 20:25:20 [info]: GET / 401
+2025-02-07 20:25:20 [info]: GET / 401
+2025-02-07 20:25:21 [info]: GET / 304
+2025-02-07 20:25:21 [info]: GET / 304
+2025-02-07 20:25:22 [info]: GET /all 304
+2025-02-07 20:28:39 [info]: GET / 304
+2025-02-07 20:28:40 [info]: GET / 304
+2025-02-07 20:28:40 [info]: GET /all 304
+2025-02-07 20:30:25 [info]: GET / 304
+2025-02-07 20:30:26 [info]: GET / 304
+2025-02-07 20:30:26 [info]: GET /all 304
+2025-02-07 20:31:13 [info]: GET / 304
+2025-02-07 20:31:13 [info]: GET / 304
+2025-02-07 20:31:14 [info]: GET /all 304
+2025-02-07 20:31:16 [info]: GET / 304
+2025-02-07 20:31:16 [info]: GET / 304
+2025-02-07 20:31:17 [info]: GET /all 304
+2025-02-07 20:31:17 [info]: GET / 304
+2025-02-07 20:31:18 [info]: GET / 304
+2025-02-07 20:31:18 [info]: GET /all 304
+2025-02-07 20:31:48 [info]: GET /67851e6ffe00b78e34a60dd5 200
+2025-02-07 20:31:52 [info]: GET /lesson/getAll 304
+2025-02-07 20:32:57 [info]: GET /67851e6ffe00b78e34a60dd5 304
+2025-02-07 20:32:57 [info]: GET / 304
+2025-02-07 20:32:57 [info]: GET /lesson/getAll 304
+2025-02-07 20:32:57 [info]: GET / 304
+2025-02-07 20:32:58 [info]: GET /all 304
+2025-02-07 20:33:30 [info]: GET /all 401
+2025-02-07 20:33:30 [info]: GET / 401
+2025-02-07 20:33:30 [info]: GET / 401
+2025-02-07 20:33:32 [info]: GET / 304
+2025-02-07 20:33:32 [info]: GET / 304
+2025-02-07 20:33:33 [info]: GET /all 304
+2025-02-07 20:34:22 [info]: GET /67a4e8020115b9c5daadf5cb 200
+2025-02-07 20:34:50 [info]: GET /lesson/getAll 304
+2025-02-07 20:36:24 [info]: GET /all 401
+2025-02-07 20:36:24 [info]: GET / 401
+2025-02-07 20:36:24 [info]: GET / 401
+2025-02-07 20:36:26 [info]: GET / 304
+2025-02-07 20:36:27 [info]: GET /all 304
+2025-02-07 20:36:27 [info]: GET / 304
+2025-02-07 20:37:03 [info]: GET /67a3cd6712a43d12521d117d 200
+2025-02-07 20:37:12 [info]: GET /67a4e8020115b9c5daadf5cb 304
+2025-02-07 20:37:44 [info]: GET /all 401
+2025-02-07 20:37:44 [info]: GET / 401
+2025-02-07 20:37:44 [info]: GET / 401
+2025-02-07 20:37:45 [info]: GET / 304
+2025-02-07 20:37:46 [info]: GET / 304
+2025-02-07 20:37:47 [info]: GET /all 304
+2025-02-07 20:38:30 [info]: GET /67a396621f9cd81895b60b69 200
+2025-02-07 20:38:59 [info]: GET /lesson/getAll 304
+2025-02-07 20:39:02 [info]: GET /all 401
+2025-02-07 20:39:04 [info]: GET /all 304
+2025-02-07 20:39:31 [info]: GET /67a4e8020115b9c5daadf5cb 304
+2025-02-07 20:39:31 [info]: GET / 304
+2025-02-07 20:39:31 [info]: GET /lesson/getAll 304
+2025-02-07 20:39:31 [info]: GET / 304
+2025-02-07 20:44:45 [info]: GET /67a4e8020115b9c5daadf5cb 304
+2025-02-07 20:44:46 [info]: GET / 304
+2025-02-07 20:44:46 [info]: GET / 304
+2025-02-07 20:44:46 [info]: GET /lesson/getAll 304
+2025-02-07 20:46:45 [info]: GET /67a4e8020115b9c5daadf5cb 500
+2025-02-07 20:47:29 [info]: GET /67a4e8020115b9c5daadf5cb 200
+2025-02-07 20:47:29 [info]: GET / 304
+2025-02-07 20:47:30 [info]: GET / 304
+2025-02-07 20:47:30 [info]: GET /lesson/getAll 304
+2025-02-07 20:47:47 [info]: GET /67a4e8020115b9c5daadf5cb 304
+2025-02-07 20:47:47 [info]: GET / 304
+2025-02-07 20:47:48 [info]: GET /lesson/getAll 304
+2025-02-07 20:47:48 [info]: GET / 304
+2025-02-07 20:47:57 [info]: GET /67a4e8020115b9c5daadf5cb 304
+2025-02-07 20:47:58 [info]: GET / 304
+2025-02-07 20:47:58 [info]: GET / 304
+2025-02-07 20:47:58 [info]: GET /lesson/getAll 304
+2025-02-07 20:48:17 [info]: GET /67a4e8020115b9c5daadf5cb 304
+2025-02-07 20:48:17 [info]: GET / 304
+2025-02-07 20:48:18 [info]: GET /lesson/getAll 304
+2025-02-07 20:48:18 [info]: GET / 304
+2025-02-07 20:48:23 [info]: GET /67a4e8020115b9c5daadf5cb 304
+2025-02-07 20:48:24 [info]: GET / 304
+2025-02-07 20:48:24 [info]: GET / 304
+2025-02-07 20:48:24 [info]: GET /lesson/getAll 304
+2025-02-07 20:55:37 [info]: GET /67a4e8020115b9c5daadf5cb 304
+2025-02-07 20:55:37 [info]: GET / 304
+2025-02-07 20:55:38 [info]: GET / 304
+2025-02-07 20:55:39 [info]: GET /lesson/getAll 304
+2025-02-07 20:56:03 [info]: GET /67a4e8020115b9c5daadf5cb 304
+2025-02-07 20:56:03 [info]: GET / 304
+2025-02-07 20:56:03 [info]: GET / 304
+2025-02-07 20:56:03 [info]: GET /lesson/getAll 304
+2025-02-07 20:56:45 [info]: GET /67a4e8020115b9c5daadf5cb 304
+2025-02-07 20:56:45 [info]: GET / 304
+2025-02-07 20:56:45 [info]: GET / 304
+2025-02-07 20:56:45 [info]: GET /lesson/getAll 304
+2025-02-07 20:56:56 [info]: GET /67a4e8020115b9c5daadf5cb 304
+2025-02-07 20:56:56 [info]: GET / 304
+2025-02-07 20:56:56 [info]: GET /lesson/getAll 304
+2025-02-07 20:56:56 [info]: GET / 304
+2025-02-07 20:57:40 [info]: GET /67a4e8020115b9c5daadf5cb 304
+2025-02-07 20:57:40 [info]: GET / 304
+2025-02-07 20:57:40 [info]: GET / 304
+2025-02-07 20:57:40 [info]: GET /lesson/getAll 304
+2025-02-07 20:58:53 [info]: GET /67a4e8020115b9c5daadf5cb 304
+2025-02-07 20:58:54 [info]: GET / 304
+2025-02-07 20:58:54 [info]: GET / 304
+2025-02-07 20:58:54 [info]: GET /lesson/getAll 304
+2025-02-07 21:05:02 [info]: GET /67a4e8020115b9c5daadf5cb 304
+2025-02-07 21:05:02 [info]: GET / 304
+2025-02-07 21:05:03 [info]: GET /lesson/getAll 304
+2025-02-07 21:05:03 [info]: GET / 304
+2025-02-07 21:28:38 [info]: GET /67a4e8020115b9c5daadf5cb 304
+2025-02-07 21:28:38 [info]: GET /lesson/getAll 304
+2025-02-07 21:28:39 [info]: GET / 304
+2025-02-07 21:28:40 [info]: GET / 304
+2025-02-07 21:28:56 [info]: GET /67a4e8020115b9c5daadf5cb 304
+2025-02-07 21:28:56 [info]: GET / 304
+2025-02-07 21:28:56 [info]: GET / 304
+2025-02-07 21:28:56 [info]: GET /lesson/getAll 304
+2025-02-07 21:29:13 [info]: GET /67a4e8020115b9c5daadf5cb 304
+2025-02-07 21:29:13 [info]: GET / 304
+2025-02-07 21:29:13 [info]: GET / 304
+2025-02-07 21:29:13 [info]: GET /lesson/getAll 304
+2025-02-07 21:29:31 [info]: GET /all 200
+2025-02-07 21:29:41 [info]: GET /all 304
+2025-02-07 21:30:29 [info]: GET /lesson/getAll 304
+2025-02-07 21:30:37 [info]: GET / 304
+2025-02-07 21:30:50 [info]: GET / 304
+2025-02-07 21:31:02 [info]: POST /add 500 - Request Body: {"title":"test course","objective":"ycs","price":"0","duration":"2 weeks","instructorId":"6734bd795f604ef68c0f4984","lessonFormat":"pdf","code":"tc","showInstructor":"true","assessments":["675d95e896d0319d030e5d68"],"lessons":["6762a3efd3cda33637014acd"],"certificate":["675c00a42a4d1f4da44b184a"]}
+2025-02-07 21:31:14 [info]: POST /add 201 - Request Body: {"title":"test course","objective":"ycs","price":"0","duration":"2 weeks","instructorId":"6734bd795f604ef68c0f4984","lessonFormat":"pdf","code":"tc","showInstructor":"true","assessments":["675d95e896d0319d030e5d68"],"lessons":["6762a3efd3cda33637014acd"],"certificate":["675c00a42a4d1f4da44b184a"]}
+2025-02-07 21:31:26 [info]: GET /all 200
+2025-02-07 21:31:33 [info]: GET /67a66d9147b57fb8258ced09 200
+2025-02-07 21:31:34 [info]: GET / 304
+2025-02-07 21:31:34 [info]: GET /lesson/getAll 200
+2025-02-07 21:31:34 [info]: GET / 304
+2025-02-07 21:31:42 [info]: POST /add 400 - Request Body: {"title":"test course - Duplicated 1","objective":"ycs","code":"tc","instructorId":"6734bd795f604ef68c0f4984","lessonFormat":"pdf","showInstructor":"true","duration":"2 weeks","startDate":"","endDate":"","assessments":["675d95e896d0319d030e5d68"],"certificate":"675c00a42a4d1f4da44b184a","cost":"0","lessons":["6762a3efd3cda33637014acd"],"file":"https://res.cloudinary.com/dldchwdkn/image/upload/v1738960273/course-content/mwlrfis4ebbinme0wc2q.jpg"}
+2025-02-07 21:32:01 [info]: POST /add 201 - Request Body: {"title":"test course - Duplicated 1","objective":"ycs","code":"tc1","instructorId":"6734bd795f604ef68c0f4984","lessonFormat":"pdf","showInstructor":"true","duration":"2 weeks","startDate":"","endDate":"","assessments":["675d95e896d0319d030e5d68"],"certificate":"675c00a42a4d1f4da44b184a","cost":"0","lessons":["6762a3efd3cda33637014acd"],"file":"https://res.cloudinary.com/dldchwdkn/image/upload/v1738960273/course-content/mwlrfis4ebbinme0wc2q.jpg"}
+2025-02-07 21:32:02 [info]: GET /all 200
+2025-02-07 21:32:11 [info]: GET /67a66dc047b57fb8258ceea4 200
+2025-02-07 21:32:11 [info]: GET / 304
+2025-02-07 21:32:11 [info]: GET /lesson/getAll 200
+2025-02-07 21:32:11 [info]: GET / 304
+2025-02-07 21:32:40 [info]: POST /add 400 - Request Body: {"title":"test course - Duplicated 1 - Duplicated 1","objective":"ycs","code":"tc1","instructorId":"6734bd795f604ef68c0f4984","lessonFormat":"pdf","showInstructor":"true","duration":"2 weeks","startDate":"","endDate":"","assessments":["675d95e896d0319d030e5d68"],"certificate":"675c00a42a4d1f4da44b184a","cost":"0","lessons":["6762a3efd3cda33637014acd"]}
+2025-02-07 21:32:53 [info]: POST /add 201 - Request Body: {"title":"test course - Duplicated 1 - Duplicated 1","objective":"ycs","code":"tc2","instructorId":"6734bd795f604ef68c0f4984","lessonFormat":"pdf","showInstructor":"true","duration":"2 weeks","startDate":"","endDate":"","assessments":["675d95e896d0319d030e5d68"],"certificate":"675c00a42a4d1f4da44b184a","cost":"0","lessons":["6762a3efd3cda33637014acd"]}
+2025-02-07 21:32:55 [info]: GET /all 200
+2025-02-07 21:33:02 [info]: GET /67a66dc047b57fb8258ceea4 304
+2025-02-07 21:33:03 [info]: GET / 304
+2025-02-07 21:33:03 [info]: GET / 304
+2025-02-07 21:33:03 [info]: GET /lesson/getAll 200
+2025-02-07 21:33:15 [info]: GET /all 304
+2025-02-07 21:33:20 [info]: GET /67a66d9147b57fb8258ced09 304
+2025-02-07 21:33:20 [info]: GET / 304
+2025-02-07 21:33:20 [info]: GET / 304
+2025-02-07 21:33:20 [info]: GET /lesson/getAll 304
+2025-02-07 21:33:46 [info]: GET /all 304
+2025-02-07 21:33:55 [info]: GET /67a66d9147b57fb8258ced09 304
+2025-02-07 21:33:55 [info]: GET / 304
+2025-02-07 21:33:55 [info]: GET / 304
+2025-02-07 21:33:55 [info]: GET /lesson/getAll 304
+2025-02-07 21:34:15 [info]: GET /67a66d9147b57fb8258ced09 304
+2025-02-07 21:34:15 [info]: GET / 304
+2025-02-07 21:34:15 [info]: GET / 304
+2025-02-07 21:34:15 [info]: GET /lesson/getAll 304
+2025-02-07 21:34:28 [info]: GET /67a66d9147b57fb8258ced09 304
+2025-02-07 21:34:28 [info]: GET / 304
+2025-02-07 21:34:28 [info]: GET /lesson/getAll 304
+2025-02-07 21:34:28 [info]: GET / 304
+2025-02-07 21:35:56 [info]: GET /67a66d9147b57fb8258ced09 304
+2025-02-07 21:35:56 [info]: GET / 304
+2025-02-07 21:35:56 [info]: GET / 304
+2025-02-07 21:35:56 [info]: GET /lesson/getAll 304
+2025-02-07 21:36:39 [info]: GET /67a66d9147b57fb8258ced09 304
+2025-02-07 21:36:40 [info]: GET / 304
+2025-02-07 21:36:40 [info]: GET /lesson/getAll 304
+2025-02-07 21:36:40 [info]: GET / 304
+2025-02-07 21:36:49 [info]: GET /67a66d9147b57fb8258ced09 304
+2025-02-07 21:36:50 [info]: GET / 304
+2025-02-07 21:36:50 [info]: GET /lesson/getAll 304
+2025-02-07 21:36:50 [info]: GET / 304
+2025-02-07 21:37:08 [info]: GET /67a66d9147b57fb8258ced09 304
+2025-02-07 21:37:08 [info]: GET / 304
+2025-02-07 21:37:08 [info]: GET /lesson/getAll 304
+2025-02-07 21:37:08 [info]: GET / 304
+2025-02-07 21:37:33 [info]: GET /67a66d9147b57fb8258ced09 304
+2025-02-07 21:37:33 [info]: GET / 304
+2025-02-07 21:37:33 [info]: GET / 304
+2025-02-07 21:37:34 [info]: GET /lesson/getAll 304
+2025-02-07 21:37:37 [info]: GET /all 304
+2025-02-07 21:38:23 [info]: GET /all 304
+2025-02-07 21:38:31 [info]: GET /67a66d9147b57fb8258ced09 304
+2025-02-07 21:38:31 [info]: GET / 304
+2025-02-07 21:38:31 [info]: GET /lesson/getAll 304
+2025-02-07 21:38:31 [info]: GET / 304
+2025-02-07 21:38:49 [info]: GET /all 304
+2025-02-07 21:38:53 [info]: GET /67a4e8020115b9c5daadf5cb 304
+2025-02-07 21:38:53 [info]: GET / 304
+2025-02-07 21:38:54 [info]: GET /lesson/getAll 304
+2025-02-07 21:38:54 [info]: GET / 304
+2025-02-07 21:39:20 [info]: POST /add 400 - Request Body: {"title":"Content test 22 - Duplicated 1","objective":"s","code":"CtSs22","instructorId":"6734bd795f604ef68c0f4984","duplicatedFrom":"67a4e8020115b9c5daadf5cb","lessonFormat":"pdf","showInstructor":"true","duration":"12","startDate":"","endDate":"","assessments":[""],"certificate":"675c00a42a4d1f4da44b184a","cost":"2000","lessons":["67619ac7b18c3c36fe04df47"]}
+2025-02-07 21:42:56 [info]: GET /67a4e8020115b9c5daadf5cb 304
+2025-02-07 21:42:56 [info]: GET / 304
+2025-02-07 21:42:56 [info]: GET / 304
+2025-02-07 21:42:56 [info]: GET /lesson/getAll 304
+2025-02-07 21:43:08 [info]: POST /add 400 - Request Body: {"title":"Content test 22 - Duplicated 1","objective":"s","code":"CtSs22","instructorId":"6734bd795f604ef68c0f4984","duplicatedFrom":"67a4e8020115b9c5daadf5cb","lessonFormat":"pdf","showInstructor":"true","duration":"12","startDate":"","endDate":"","assessments":["67a0f30377d591b7ef52f3f7"],"certificate":"675c00a42a4d1f4da44b184a","cost":"2000","lessons":["67619ac7b18c3c36fe04df47"]}
+2025-02-07 21:43:22 [info]: POST /add 201 - Request Body: {"title":"Content test 22 - Duplicated 1","objective":"s","code":"CtSs222","instructorId":"6734bd795f604ef68c0f4984","duplicatedFrom":"67a4e8020115b9c5daadf5cb","lessonFormat":"pdf","showInstructor":"true","duration":"12","startDate":"","endDate":"","assessments":["67a0f30377d591b7ef52f3f7"],"certificate":"675c00a42a4d1f4da44b184a","cost":"2000","lessons":["67619ac7b18c3c36fe04df47"]}
+2025-02-07 21:43:23 [info]: GET /all 200
+2025-02-07 21:43:30 [info]: GET /67a4e8020115b9c5daadf5cb 304
+2025-02-07 21:43:31 [info]: GET / 304
+2025-02-07 21:43:31 [info]: GET /lesson/getAll 200
+2025-02-07 21:43:31 [info]: GET / 304
+2025-02-08 00:28:43 [info]: GET /all 401
+2025-02-08 00:30:07 [info]: GET /all 304
+2025-02-08 00:30:27 [info]: GET /all 304
+2025-02-08 00:32:16 [info]: GET /all 304
+2025-02-08 00:33:11 [info]: GET /all 304
+2025-02-08 00:35:00 [info]: GET /all 304
+2025-02-08 00:39:08 [info]: GET /all 304
+2025-02-08 00:39:18 [info]: GET /67a66d9147b57fb8258ced09 304
+2025-02-08 00:39:18 [info]: GET / 304
+2025-02-08 00:39:19 [info]: GET / 304
+2025-02-08 00:39:19 [info]: GET /lesson/getAll 304
+2025-02-08 00:39:28 [info]: GET /67a66d9147b57fb8258ced09 304
+2025-02-08 00:39:29 [info]: GET / 304
+2025-02-08 00:39:29 [info]: GET /lesson/getAll 304
+2025-02-08 00:39:29 [info]: GET / 304
+2025-02-08 00:39:44 [info]: POST /add 400 - Request Body: {"title":"test course - Duplicated 1","objective":"ycsq","code":"tc","instructorId":"6734bd795f604ef68c0f4984","duplicatedFrom":"67a66d9147b57fb8258ced09","lessonFormat":"pdf","showInstructor":"true","duration":"2 weeks","startDate":"","endDate":"","assessments":["675d95e896d0319d030e5d68"],"certificate":"675c00a42a4d1f4da44b184a","cost":"0","lessons":["6762a3efd3cda33637014acd"],"file":"https://res.cloudinary.com/dldchwdkn/image/upload/v1738960273/course-content/mwlrfis4ebbinme0wc2q.jpg"}
+2025-02-08 00:39:51 [info]: POST /add 400 - Request Body: {"title":"test course - Duplicated 1","objective":"ycsq","code":"tc1","instructorId":"6734bd795f604ef68c0f4984","duplicatedFrom":"67a66d9147b57fb8258ced09","lessonFormat":"pdf","showInstructor":"true","duration":"2 weeks","startDate":"","endDate":"","assessments":["675d95e896d0319d030e5d68"],"certificate":"675c00a42a4d1f4da44b184a","cost":"0","lessons":["6762a3efd3cda33637014acd"],"file":"https://res.cloudinary.com/dldchwdkn/image/upload/v1738960273/course-content/mwlrfis4ebbinme0wc2q.jpg"}
+2025-02-08 00:39:59 [info]: POST /add 201 - Request Body: {"title":"test course - Duplicated 1","objective":"ycsq","code":"tc11","instructorId":"6734bd795f604ef68c0f4984","duplicatedFrom":"67a66d9147b57fb8258ced09","lessonFormat":"pdf","showInstructor":"true","duration":"2 weeks","startDate":"","endDate":"","assessments":["675d95e896d0319d030e5d68"],"certificate":"675c00a42a4d1f4da44b184a","cost":"0","lessons":["6762a3efd3cda33637014acd"],"file":"https://res.cloudinary.com/dldchwdkn/image/upload/v1738960273/course-content/mwlrfis4ebbinme0wc2q.jpg"}
+2025-02-08 00:40:00 [info]: GET /all 200
+2025-02-08 00:40:10 [info]: GET /67a66d9147b57fb8258ced09 304
+2025-02-08 00:40:10 [info]: GET / 304
+2025-02-08 00:40:10 [info]: GET / 304
+2025-02-08 00:40:10 [info]: GET /lesson/getAll 200
+2025-02-08 00:40:39 [info]: GET /67a66d9147b57fb8258ced09 304
+2025-02-08 00:40:39 [info]: GET / 304
+2025-02-08 00:40:39 [info]: GET / 304
+2025-02-08 00:40:39 [info]: GET /lesson/getAll 304
+2025-02-08 00:40:43 [info]: GET /67a66d9147b57fb8258ced09 304
+2025-02-08 00:40:43 [info]: GET / 304
+2025-02-08 00:40:43 [info]: GET /lesson/getAll 304
+2025-02-08 00:40:43 [info]: GET / 304
+2025-02-08 00:40:45 [info]: GET /67a66d9147b57fb8258ced09 304
+2025-02-08 00:40:45 [info]: GET / 304
+2025-02-08 00:40:45 [info]: GET / 304
+2025-02-08 00:40:45 [info]: GET /lesson/getAll 304
+2025-02-08 00:41:04 [info]: POST /add 400 - Request Body: {"title":"test course - Duplicated 11","objective":"ycs","code":"tc2","instructorId":"6734bd795f604ef68c0f4984","isDuplicate":"true","duplicatedFrom":"67a66d9147b57fb8258ced09","lessonFormat":"pdf","showInstructor":"true","duration":"2 weeks","startDate":"","endDate":"","assessments":["675d95e896d0319d030e5d68"],"certificate":"675c00a42a4d1f4da44b184a","cost":"0","lessons":["6762a3efd3cda33637014acd"],"file":"https://res.cloudinary.com/dldchwdkn/image/upload/v1738960273/course-content/mwlrfis4ebbinme0wc2q.jpg"}
+2025-02-08 00:41:13 [info]: POST /add 201 - Request Body: {"title":"test course - Duplicated 11","objective":"ycs","code":"tc22","instructorId":"6734bd795f604ef68c0f4984","isDuplicate":"true","duplicatedFrom":"67a66d9147b57fb8258ced09","lessonFormat":"pdf","showInstructor":"true","duration":"2 weeks","startDate":"","endDate":"","assessments":["675d95e896d0319d030e5d68"],"certificate":"675c00a42a4d1f4da44b184a","cost":"0","lessons":["6762a3efd3cda33637014acd"],"file":"https://res.cloudinary.com/dldchwdkn/image/upload/v1738960273/course-content/mwlrfis4ebbinme0wc2q.jpg"}
+2025-02-08 00:41:14 [info]: GET /all 200
+2025-02-08 00:41:26 [info]: GET /67a66d9147b57fb8258ced09 200
+2025-02-08 00:41:26 [info]: GET / 304
+2025-02-08 00:41:26 [info]: GET /lesson/getAll 200
+2025-02-08 00:41:26 [info]: GET / 304
+2025-02-08 00:41:59 [info]: GET /67a66d9147b57fb8258ced09 304
+2025-02-08 00:42:02 [info]: GET / 304
+2025-02-08 00:42:02 [info]: GET / 304
+2025-02-08 00:42:02 [info]: GET /lesson/getAll 304
+2025-02-08 00:42:23 [info]: GET /all 304
+2025-02-08 00:42:27 [info]: GET /67a66d9147b57fb8258ced09 304
+2025-02-08 00:42:27 [info]: GET / 304
+2025-02-08 00:42:27 [info]: GET /lesson/getAll 304
+2025-02-08 00:42:27 [info]: GET / 304
+2025-02-08 00:42:35 [info]: GET /all 304
+2025-02-08 00:42:42 [info]: GET /67a69a18729dd1aab3ce6930 200
+2025-02-08 00:42:42 [info]: GET / 304
+2025-02-08 00:42:43 [info]: GET /lesson/getAll 304
+2025-02-08 00:42:43 [info]: GET / 304
+2025-02-08 00:43:01 [info]: GET /67a69a18729dd1aab3ce6930 304
+2025-02-08 00:43:01 [info]: GET / 304
+2025-02-08 00:43:01 [info]: GET /lesson/getAll 304
+2025-02-08 00:43:01 [info]: GET / 304
+2025-02-08 00:43:54 [info]: GET /67a69a18729dd1aab3ce6930 304
+2025-02-08 00:43:54 [info]: GET / 304
+2025-02-08 00:43:54 [info]: GET / 304
+2025-02-08 00:43:54 [info]: GET /lesson/getAll 304
+2025-02-07 17:27:45 [info]: GET /auth/google 302
+2025-02-07 17:31:25 [info]: GET /auth/google 302
+2025-02-07 17:43:47 [info]: GET /auth/google 302
+2025-02-07 17:47:55 [info]: GET /auth/google 302
+2025-02-07 18:02:24 [info]: GET /auth/google 302
+2025-02-07 18:04:22 [info]: GET /auth/google 302
+2025-02-07 18:05:13 [info]: GET /oauth2callback?code=4/0ASVgi3KciFRczShYLZVpB3rGZLVtec2TrET4EveekG5OGpOrn8ESrIT5b6sLqvOihrZGIg&scope=https://www.googleapis.com/auth/calendar.events 200 - Query Params: {"code":"4/0ASVgi3KciFRczShYLZVpB3rGZLVtec2TrET4EveekG5OGpOrn8ESrIT5b6sLqvOihrZGIg","scope":"https://www.googleapis.com/auth/calendar.events"}
+2025-02-07 18:05:13 [info]: GET /oauth2callback?code=4/0ASVgi3KciFRczShYLZVpB3rGZLVtec2TrET4EveekG5OGpOrn8ESrIT5b6sLqvOihrZGIg&scope=https://www.googleapis.com/auth/calendar.events 200
+2025-02-07 18:05:13 [info]: GET /favicon.ico 404
+2025-02-07 18:27:07 [info]: GET /oauth2callback?code=4/0ASVgi3KciFRczShYLZVpB3rGZLVtec2TrET4EveekG5OGpOrn8ESrIT5b6sLqvOihrZGIg 500 - Query Params: {"code":"4/0ASVgi3KciFRczShYLZVpB3rGZLVtec2TrET4EveekG5OGpOrn8ESrIT5b6sLqvOihrZGIg"}
+2025-02-07 18:27:07 [info]: GET /oauth2callback?code=4/0ASVgi3KciFRczShYLZVpB3rGZLVtec2TrET4EveekG5OGpOrn8ESrIT5b6sLqvOihrZGIg 500
+2025-02-07 20:20:54 [info]: POST /login 200 - Request Body: {"email":"seunoduez@gmail.com","password":"Timpearl05$$$"}
+2025-02-07 20:21:58 [info]: POST /single-create 201 - Request Body: {"firstName":"Timpel","lastName":"Timpearl","email":"nana2@gmail.com","country":"United States of America","username":"Timpearl","otherName":"Timileyin","phone":"+2349066318539","userType":"learner","gender":"female","dateOfBirth":"05-04-2004","address":"38, Ogunlana street","city":"Alimosho","LGA":"Alimosho","state":"Lagos","officeAddress":"1A, Hughes Street","officeCity":"Alagomeji","officeLGA":"Yaba","officeState":"Lagos","employerName":"Mr Green","ids":"[\"678dec783210215f3ff3d061\", \"678decfffc769e07e57372a7\"]","sendEmail":"false"}
+2025-02-07 20:24:25 [info]: POST /login 400 - Request Body: {"email":"nana2@gmail.com","password":"TimpelTimearl123"}
+2025-02-07 20:24:32 [info]: POST /login 400 - Request Body: {"email":"nana2@gmail.com","password":"TimpelTimpearl123"}
+2025-02-07 20:25:03 [info]: POST /login 200 - Request Body: {"email":"nana2@gmail.com","password":"TimpelTimpearl123#"}
+2025-02-07 20:28:31 [info]: POST /single-create 201 - Request Body: {"firstName":"Timpel","lastName":"Timpearl","email":"nana3@gmail.com","password":"Timpearl05$$$","country":"United States of America","username":"Timpearl","otherName":"Timileyin","phone":"+2349066318539","userType":"learner","gender":"female","dateOfBirth":"05-04-2004","address":"38, Ogunlana street","city":"Alimosho","LGA":"Alimosho","state":"Lagos","officeAddress":"1A, Hughes Street","officeCity":"Alagomeji","officeLGA":"Yaba","officeState":"Lagos","employerName":"Mr Green","ids":"[\"678dec783210215f3ff3d061\", \"678decfffc769e07e57372a7\"]","sendEmail":"false"}
+2025-02-07 20:29:07 [info]: POST /login 200 - Request Body: {"email":"nana3@gmail.com","password":"Timpearl05$$$"}
+2025-02-07 20:32:57 [info]: POST /bulk-create 201
+2025-02-07 20:33:34 [info]: POST /login 200 - Request Body: {"email":"nana5@gmail.com","password":"Kishiii10#"}
+2025-02-07 20:33:43 [info]: POST /login 200 - Request Body: {"email":"nana6@gmail.com","password":"Kishiii10#"}
+2025-02-07 20:35:22 [info]: POST /bulk-create 201
+2025-02-07 20:36:00 [info]: POST /login 200 - Request Body: {"email":"nana8@gmail.com","password":"DefaultPassword123"}
+2025-02-07 20:36:09 [info]: POST /login 200 - Request Body: {"email":"nana9@gmail.com","password":"DefaultPassword123"}
+2025-02-07 20:36:22 [info]: POST /login 200 - Request Body: {"email":"nana10@gmail.com","password":"DefaultPassword123"}
+2025-02-08 07:56:11 [info]: POST /login 200 - Request Body: {"email":"nana10@gmail.com","password":"DefaultPassword123"}
+2025-02-08 07:59:33 [info]: PUT /users/change-password 401 - Request Body: {"email":"nana10@gmail.com","newPassword":"notYourDefaultPassword123"}
+2025-02-08 08:00:45 [info]: POST /login 200 - Request Body: {"email":"seunoduez@gmail.com","password":"Timpearl05$$$"}
+2025-02-08 08:01:05 [info]: POST /login 200 - Request Body: {"email":"seunoduez@gmail.com","password":"Timpearl05$$$"}
+2025-02-08 08:02:52 [info]: PUT /users/change-password 403 - Request Body: {"email":"nana10@gmail.com","newPassword":"notYourDefaultPassword123"}
+2025-02-08 08:06:38 [info]: PUT /users/change-password 200 - Request Body: {"email":"nana10@gmail.com","newPassword":"notYourDefaultPassword123"}
+2025-02-08 08:06:59 [info]: POST /login 400 - Request Body: {"email":"nana10@gmail.com","password":"DefaultPassword123"}
+2025-02-08 08:07:32 [info]: POST /login 200 - Request Body: {"email":"nana10@gmail.com","password":"notYourDefaultPassword123"}
+2025-02-08 08:08:07 [info]: POST /login 200 - Request Body: {"email":"nana10@gmail.com","password":"notYourDefaultPassword123"}
+2025-02-08 08:08:15 [info]: PUT /users/change-password 200 - Request Body: {"email":"nana10@gmail.com","newPassword":"DefaultPassword123"}
+2025-02-08 08:08:22 [info]: POST /login 400 - Request Body: {"email":"nana10@gmail.com","password":"notYourDefaultPassword123"}
+2025-02-08 08:08:27 [info]: POST /login 200 - Request Body: {"email":"nana10@gmail.com","password":"DefaultPassword123"}
+2025-02-09 21:19:08 [info]: POST /login 200 - Request Body: {"email":"test@gmail.com","password":"Test2024!"}
+2025-02-09 21:19:11 [info]: GET / 200
+2025-02-09 21:19:42 [info]: GET / 200
+2025-02-09 21:19:43 [info]: GET /all 200
+2025-02-09 21:19:43 [info]: GET /users 200
+2025-02-09 21:20:26 [info]: POST /admin/users/change-password 200 - Request Body: {"email":"rash1@gmail.com","newPassword":"Test2024!!"}
+2025-02-09 21:21:36 [info]: GET /users 401
+2025-02-09 21:21:36 [info]: GET /all 401
+2025-02-09 21:21:36 [info]: GET / 401
+2025-02-09 21:21:37 [info]: GET / 304
+2025-02-09 21:21:37 [info]: GET /all 304
+2025-02-09 21:21:38 [info]: GET /users 304
+2025-02-09 21:21:57 [info]: GET / 304
+2025-02-09 21:21:57 [info]: GET /all 304
+2025-02-09 21:21:59 [info]: GET /users 304
+2025-02-09 21:22:12 [info]: POST /admin/users/change-password 200 - Request Body: {"email":"rash1@gmail.com","newPassword":"Test2024!!"}
+2025-02-09 21:24:30 [info]: POST /admin/users/change-password 200 - Request Body: {"email":"rash1@gmail.com","newPassword":"Test2024!!!"}
+2025-02-09 21:25:58 [info]: PUT /users/change-password 200 - Request Body: {"email":"rash1@gmail.com","newPassword":"Test2024!!"}
+2025-02-09 21:26:25 [info]: PUT /users/change-password 200 - Request Body: {"email":"rash1@gmail.com","newPassword":"Test2024!!!"}
+2025-02-09 21:26:25 [info]: GET / 304
+2025-02-09 21:26:26 [info]: GET /all 304
+2025-02-09 21:26:27 [info]: GET /users 200
+2025-02-09 21:26:41 [info]: POST /login 400 - Request Body: {"email":"rash1@gmail.com","password":"Test2024!!"}
+2025-02-09 21:26:56 [info]: POST /login 200 - Request Body: {"email":"rash1@gmail.com","password":"Test2024!!!"}
+2025-02-09 21:27:01 [info]: GET /status 200
+2025-02-09 21:27:01 [info]: GET /get-user/67405d421a49e4a70bfd2d3b 200
+2025-02-09 21:27:18 [info]: GET /status 304
+2025-02-09 21:27:18 [info]: GET /get-user/67405d421a49e4a70bfd2d3b 304
+2025-02-10 12:00:14 [info]: POST /login 200 - Request Body: {"email":"test@gmail.com","password":"Test2024!"}
+2025-02-10 12:00:18 [info]: GET / 200
+2025-02-10 12:00:25 [info]: GET / 200
+2025-02-10 12:00:25 [info]: GET /all 200
+2025-02-10 12:00:26 [info]: GET /users 200
+2025-02-10 12:00:42 [info]: GET / 304
+2025-02-10 12:00:43 [info]: GET /user-profile/677e7d48ad3ab554703e9cd4 200
+2025-02-10 12:00:49 [info]: PUT /user-details/677e7d48ad3ab554703e9cd4 200 - Request Body: {"firstName":"Marcus12","lastName":"Rashford1","phone":"","otherName":"MR","email":"rash1@gmail.com","password":"","role":"user","ids":"[]","userId":"rash10","gender":"","dateOfBirth":"2025-01-01","image":"https://res.cloudinary.com/dldchwdkn/image/upload/v1736348775/userDisplayPictures/bnjfmekkzjbady8bqlvs.png","country":"Nigeria","address":"Nigerian Meteorology Agency, close to Nigerian Armed Forces, Resettlement center, behind Blind center, off Fiiro road, Oshodi, Lagos","city":"Houston","LGA":"surulere","state":"Oyo","officeAddress":"40 ifelodun street","officeCity":"ota","officeLGA":"ado odo ota","employerName":"ajY","officeState":"ogun","contactPersonPlaceOfEmployment":"","nameOfContactPerson":"AJIBADE Emmanuel","contactEmail":"ajibadeemmanuel58@gmail.com","contactPersonPhoneNumber":"09056983150","sendEmail":"true"}
+2025-02-10 12:00:52 [info]: GET /users 200
+2025-02-10 12:01:44 [info]: GET / 304
+2025-02-10 12:01:45 [info]: GET /all 304
+2025-02-10 12:01:47 [info]: GET /users 304
+2025-02-10 12:01:50 [info]: PUT /users/change-password 200 - Request Body: {"email":"rash1@gmail.com","newPassword":"Test2024!"}
+2025-02-10 12:01:50 [info]: GET / 304
+2025-02-10 12:01:51 [info]: GET /all 304
+2025-02-10 12:01:52 [info]: GET /users 200
+2025-02-10 12:02:26 [info]: POST /login 200 - Request Body: {"email":"rash1@gmail.com","password":"Test2024!"}
+2025-02-10 12:02:30 [info]: GET /status 200
+2025-02-10 12:02:31 [info]: GET /get-user/67405d421a49e4a70bfd2d3b 200
+2025-02-10 12:02:59 [info]: POST /login 200 - Request Body: {"email":"test@gmail.com","password":"Test2024!"}
+2025-02-10 12:03:00 [info]: GET / 304
+2025-02-10 12:03:01 [info]: GET / 304
+2025-02-10 12:03:05 [info]: GET / 304
+2025-02-10 12:03:06 [info]: GET /all 304
+2025-02-10 12:03:07 [info]: GET /users 304
+2025-02-10 12:03:17 [info]: GET / 304
+2025-02-10 12:03:18 [info]: GET /user-profile/677e7d48ad3ab554703e9cd4 200
+2025-02-10 12:03:25 [info]: PUT /user-details/677e7d48ad3ab554703e9cd4 200 - Request Body: {"firstName":"Marcus1","lastName":"Rashford1","phone":"","otherName":"MR","email":"rash1@gmail.com","password":"","role":"user","ids":"[]","userId":"rash10","gender":"","dateOfBirth":"2025-01-01","image":"https://res.cloudinary.com/dldchwdkn/image/upload/v1736348775/userDisplayPictures/bnjfmekkzjbady8bqlvs.png","country":"Nigeria","address":"Nigerian Meteorology Agency, close to Nigerian Armed Forces, Resettlement center, behind Blind center, off Fiiro road, Oshodi, Lagos","city":"Houston","LGA":"surulere","state":"Oyo","officeAddress":"40 ifelodun street","officeCity":"ota","officeLGA":"ado odo ota","employerName":"ajY","officeState":"ogun","contactPersonPlaceOfEmployment":"","nameOfContactPerson":"AJIBADE Emmanuel","contactEmail":"ajibadeemmanuel58@gmail.com","contactPersonPhoneNumber":"09056983150","sendEmail":"true"}
+2025-02-10 12:03:28 [info]: GET /users 200
+2025-02-10 12:03:49 [info]: GET / 304
+2025-02-10 12:03:49 [info]: GET /all 304
+2025-02-10 12:03:50 [info]: GET /user-profile/677e7d48ad3ab554703e9cd4 200
+2025-02-10 12:03:50 [info]: GET /users 304
+2025-02-10 12:04:15 [info]: GET / 304
+2025-02-10 12:04:15 [info]: GET /all 304
+2025-02-10 12:04:16 [info]: GET /user-profile/677e7d48ad3ab554703e9cd4 304
+2025-02-10 12:04:16 [info]: GET /users 304
+2025-02-10 12:04:23 [info]: POST /login 400 - Request Body: {"email":"rash1@gmail.com","password":"Test2024!"}
+2025-02-10 12:04:31 [info]: POST /login 200 - Request Body: {"email":"test@gmail.com","password":"Test2024!"}
+2025-02-10 12:04:32 [info]: GET / 304
+2025-02-10 12:05:23 [info]: GET / 304
+2025-02-10 12:05:31 [info]: GET / 304
+2025-02-10 12:05:34 [info]: GET / 304
+2025-02-10 12:05:34 [info]: GET /all 304
+2025-02-10 12:05:35 [info]: GET /users 304
+2025-02-10 12:05:52 [info]: PUT /users/change-password 200 - Request Body: {"email":"rash1@gmail.com","newPassword":"Tet2024!"}
+2025-02-10 12:05:53 [info]: GET / 304
+2025-02-10 12:05:53 [info]: GET /all 304
+2025-02-10 12:05:54 [info]: GET /users 200
+2025-02-10 12:06:02 [info]: PUT /users/change-password 200 - Request Body: {"email":"rash1@gmail.com","newPassword":"Test2024!"}
+2025-02-10 12:06:02 [info]: GET / 304
+2025-02-10 12:06:03 [info]: GET /all 304
+2025-02-10 12:06:04 [info]: GET /users 200
+2025-02-10 12:06:13 [info]: POST /login 200 - Request Body: {"email":"rash1@gmail.com","password":"Test2024!"}
+2025-02-10 12:06:15 [info]: GET /status 304
+2025-02-10 12:06:16 [info]: GET /get-user/67405d421a49e4a70bfd2d3b 200
+2025-02-10 12:06:20 [info]: POST /login 200 - Request Body: {"email":"test@gmail.com","password":"Test2024!"}
+2025-02-10 12:06:21 [info]: GET / 304
+2025-02-10 12:06:29 [info]: GET / 304
+2025-02-10 12:06:30 [info]: GET /all 304
+2025-02-10 12:06:31 [info]: GET /users 304
+2025-02-10 12:06:39 [info]: GET / 304
+2025-02-10 12:06:40 [info]: GET /user-profile/677e7d48ad3ab554703e9cd4 200
+2025-02-10 12:06:55 [info]: GET / 304
+2025-02-10 12:06:56 [info]: GET /all 304
+2025-02-10 12:06:56 [info]: GET /user-profile/677e7d48ad3ab554703e9cd4 304
+2025-02-10 12:06:59 [info]: GET /users 304
+2025-02-10 12:07:00 [info]: PUT /user-details/677e7d48ad3ab554703e9cd4 200 - Request Body: {"firstName":"Marcus122","lastName":"Rashford1","phone":"","otherName":"MR","email":"rash1@gmail.com","password":"","role":"user","ids":"[]","userId":"rash10","gender":"","dateOfBirth":"2025-01-01","image":"https://res.cloudinary.com/dldchwdkn/image/upload/v1736348775/userDisplayPictures/bnjfmekkzjbady8bqlvs.png","country":"Nigeria","address":"Nigerian Meteorology Agency, close to Nigerian Armed Forces, Resettlement center, behind Blind center, off Fiiro road, Oshodi, Lagos","city":"Houston","LGA":"surulere","state":"Oyo","officeAddress":"40 ifelodun street","officeCity":"ota","officeLGA":"ado odo ota","employerName":"ajY","officeState":"ogun","contactPersonPlaceOfEmployment":"","nameOfContactPerson":"AJIBADE Emmanuel","contactEmail":"ajibadeemmanuel58@gmail.com","contactPersonPhoneNumber":"09056983150","sendEmail":"true"}
+2025-02-10 12:07:02 [info]: GET /users 200
+2025-02-10 12:07:25 [info]: POST /login 200 - Request Body: {"email":"rash1@gmail.com","password":"Test2024!"}
+2025-02-10 12:07:26 [info]: GET /status 304
+2025-02-10 12:07:27 [info]: GET /get-user/67405d421a49e4a70bfd2d3b 200
+2025-02-10 12:07:48 [info]: POST /login 200 - Request Body: {"email":"test@gmail.com","password":"Test2024!"}
+2025-02-10 12:07:49 [info]: GET / 304
+2025-02-10 12:08:03 [info]: GET / 304
+2025-02-10 12:08:03 [info]: GET /all 304
+2025-02-10 12:08:04 [info]: GET /users 304
+2025-02-10 12:08:13 [info]: GET / 304
+2025-02-10 12:08:14 [info]: GET /user-profile/677e98c0a96f2f0632d9ca29 200
+2025-02-10 12:08:19 [info]: PUT /users/change-password 200 - Request Body: {"email":"bruno2@gmail.com","newPassword":"Test2024!"}
+2025-02-10 12:08:20 [info]: GET / 304
+2025-02-10 12:08:20 [info]: GET /all 304
+2025-02-10 12:08:21 [info]: GET /users 200
+2025-02-10 12:08:23 [info]: GET / 304
+2025-02-10 12:08:24 [info]: GET /user-profile/677e98c0a96f2f0632d9ca29 200
+2025-02-10 12:08:28 [info]: PUT /user-details/677e98c0a96f2f0632d9ca29 200 - Request Body: {"firstName":"Bruno1","lastName":"Fernades","phone":"","otherName":"magic","email":"bruno2@gmail.com","password":"","role":"user","ids":"[]","userId":"rash11","gender":"","dateOfBirth":"2025-01-01","image":"https://res.cloudinary.com/dldchwdkn/image/upload/v1736349887/userDisplayPictures/gnan6chuhsia0thpysqv.png","country":"Nigeria","address":"Nigerian Meteorology Agency, close to Nigerian Armed Forces, Resettlement center, behind Blind center, off Fiiro road, Oshodi, Lagos","city":"Houston","LGA":"surulere","state":"Oyo","officeAddress":"40 ifelodun street","officeCity":"ota","officeLGA":"ado odo ota","employerName":"ajY","officeState":"ogun","contactPersonPlaceOfEmployment":"","nameOfContactPerson":"AJIBADE Emmanuel","contactEmail":"ajibadeemmanuel58@gmail.com","contactPersonPhoneNumber":"09056983150","sendEmail":"true"}
+2025-02-10 12:08:30 [info]: GET /users 200
+2025-02-10 12:08:44 [info]: POST /login 200 - Request Body: {"email":"bruno2@gmail.com","password":"Test2024!"}
+2025-02-10 12:08:44 [info]: GET /status 200
+2025-02-10 12:08:45 [info]: GET /get-user/67405d421a49e4a70bfd2d3b 200
+2025-02-10 12:08:51 [info]: GET /status 304
+2025-02-10 12:08:51 [info]: GET /get-user/67405d421a49e4a70bfd2d3b 304
+2025-02-10 12:09:38 [info]: GET /status 304
+2025-02-10 12:09:38 [info]: GET /get-user/67405d421a49e4a70bfd2d3b 304
+2025-02-10 12:30:46 [info]: GET /status 304
+2025-02-10 12:30:47 [info]: GET /get-user/67405d421a49e4a70bfd2d3b 304
+2025-02-10 12:40:39 [info]: GET /status 304
+2025-02-10 12:40:40 [info]: GET /get-user/67405d421a49e4a70bfd2d3b 304
+2025-02-09 21:17:30 [info]: POST /login 200 - Request Body: {"email":"seunoduez@gmail.com","password":"Timpearl05$$$"}
+2025-02-09 21:19:20 [info]: POST /single-create 201 - Request Body: {"firstName":"Timpel","lastName":"Timpearl","email":"testuser@gmail.com","password":"Timpearl05$$$","country":"United States of America","username":"Timpearl","otherName":"Timileyin","phone":"+2349066318539","userType":"learner","gender":"female","dateOfBirth":"05-04-2004","address":"38, Ogunlana street","city":"Alimosho","LGA":"Alimosho","state":"Lagos","officeAddress":"1A, Hughes Street","officeCity":"Alagomeji","officeLGA":"Yaba","officeState":"Lagos","employerName":"Mr Green","ids":"[\"678dec783210215f3ff3d061\", \"678decfffc769e07e57372a7\"]","sendEmail":"false"}
+2025-02-09 21:22:43 [info]: PUT /users/change-password 200 - Request Body: {"email":"testuser@gmail.com","newPassword":"DefaultPassword123"}
+2025-02-09 21:23:34 [info]: POST /login 400 - Request Body: {"email":"testuser@gmail.com","newPassword":"DefaultPassword123"}
+2025-02-09 21:23:47 [info]: POST /login 200 - Request Body: {"email":"testuser@gmail.com","password":"DefaultPassword123"}

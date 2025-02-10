@@ -186,8 +186,6 @@ class ObjectAssessmentController {
         newGroupName,
       } = req.body;
 
-      // const organizationId = req.admin._id;
-
       let organizationId = await getOrganizationId(req, res);
       if (!organizationId) {
         return;
@@ -198,7 +196,6 @@ class ObjectAssessmentController {
         return ResponseHandler.failure(res, "Organization not found", 400);
       }
 
-      // Validate required fields
       if (
         !title ||
         !startDate ||
@@ -213,7 +210,6 @@ class ObjectAssessmentController {
         );
       }
 
-      // Validate questions array
       const invalidQuestion = questions.find(
         (q: { question: string; mark?: number }) =>
           !q.question || (q.mark !== undefined && q.mark <= 0)
@@ -227,7 +223,6 @@ class ObjectAssessmentController {
         );
       }
 
-      // Determine position for the new assessment
       const lastAssessment = await ObjectiveAssessment.findOne().sort({
         position: -1,
       });
@@ -235,7 +230,6 @@ class ObjectAssessmentController {
 
       const code = assessmentCode || `EXT-${position}`;
 
-      // Create new assessment
       const newAssessment = new ObjectiveAssessment({
         organizationId,
         title,
@@ -255,7 +249,6 @@ class ObjectAssessmentController {
 
       await newAssessment.save();
 
-      // Save to Questions Bank if required
       if (saveToQuestionsBank) {
         let questionBank;
 

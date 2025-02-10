@@ -8,10 +8,14 @@ export interface ITheorySubmission extends Document {
     submittedAnswer: string;
     mark?: number;
   }[];
+  score: number;
+  status: string;
+  submittedFile?: string;
+  comments?: string;
   submittedAt: Date;
 }
 
-const submissionSchema = new Schema<ITheorySubmission>(
+const TheorySubmissionSchema = new Schema<ITheorySubmission>(
   {
     assessmentId: { type: Schema.Types.ObjectId, required: true, ref: "TheoryAssessment" },
     learnerId: { type: Schema.Types.ObjectId, required: true, ref: "User" },
@@ -22,6 +26,10 @@ const submissionSchema = new Schema<ITheorySubmission>(
         mark: { type: Number },
       },
     ],
+    status: { type: String, enum: ['Submitted', 'Graded'], default: "Submitted"},
+    score: { type: Number, min: 0},
+    submittedFile: { type: String },
+    comments: { type: String },
     submittedAt: { type: Date, default: Date.now },
   },
   {
@@ -29,4 +37,4 @@ const submissionSchema = new Schema<ITheorySubmission>(
   }
 );
 
-export default mongoose.model<ITheorySubmission>("Submission", submissionSchema);
+export default mongoose.model<ITheorySubmission>("TheorySubmission", TheorySubmissionSchema);

@@ -475,7 +475,7 @@ export class UserAuthController {
   static async login(req: Request, res: Response) {
     try {
       const { email, password } = req.body;
-
+      console.log(req.body)
       const account: any =
         (await Organization.findOne({ email })) ||
         (await User.findOne({ email })) ||

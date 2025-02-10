@@ -61,6 +61,8 @@ const SubServiceSchema = new Schema<ISubService>({
   curriculum: [{ type: String }],
   teachingMethod: { type: String },
   
+}, {
+  timestamps: true,
 });
 
 export const Subservice = model<ISubService>('Subservice', SubServiceSchema);
