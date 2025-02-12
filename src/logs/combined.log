@@ -10229,3 +10229,30 @@
 2025-02-12 15:13:58 [info]: GET /all 304
 2025-02-12 15:14:07 [info]: GET /lesson/getAll 304
 2025-02-12 15:16:37 [info]: GET /lesson/getAll 200
+2025-02-12 15:19:51 [info]: GET /lesson/getAll 304
+2025-02-12 15:19:53 [info]: GET /lesson/getAll 304
+2025-02-12 15:19:56 [info]: GET /lesson/getAll 304
+2025-02-12 15:20:14 [info]: GET /lesson/getAll 304
+2025-02-12 15:20:15 [info]: GET /lesson/getAll 304
+2025-02-12 15:20:20 [info]: GET /lesson/getAll 304
+2025-02-12 15:20:42 [info]: GET /lesson/getAll 304
+2025-02-12 15:21:27 [info]: GET /lesson/getAll 304
+2025-02-12 15:50:26 [info]: GET / 401
+2025-02-12 15:54:57 [info]: GET / 200
+2025-02-12 15:55:02 [info]: GET / 401
+2025-02-12 15:55:03 [info]: GET / 304
+2025-02-12 15:56:38 [info]: GET / 304
+2025-02-12 15:56:40 [info]: GET / 304
+2025-02-12 15:59:14 [info]: GET /lesson/getAll 304
+2025-02-12 15:59:16 [info]: GET / 304
+2025-02-12 20:05:05 [info]: POST /create-user-self 500 - Request Body: {"firstName":"First","lastName":"User","organizationId":"6734bd795f604ef68c0f4984","email":"first@gmail.com","phone":"08178983150","password":"Test2024!","confirmPassword":"Test2024!"}
+2025-02-12 20:05:05 [info]: POST /create-user-self 500 - Request Body: {"firstName":"First","lastName":"User","organizationId":"6734bd795f604ef68c0f4984","email":"first@gmail.com","phone":"08178983150","password":"Test2024!","confirmPassword":"Test2024!"}
+2025-02-12 20:06:02 [info]: POST /create-user-self 201 - Request Body: {"firstName":"First","lastName":"User","organizationId":"6734bd795f604ef68c0f4984","email":"first@gmail.com","phone":"08178983150","password":"Test2024!","confirmPassword":"Test2024!"}
+2025-02-12 20:06:04 [info]: GET /auth/create-user-self 200
+2025-02-12 20:06:04 [info]: GET /favicon.ico 404
+2025-02-12 20:11:29 [info]: POST /create-user-self 201 - Request Body: {"firstName":"Second ","lastName":"User","organizationId":"6734bd795f604ef68c0f4984","email":"second@gmail.com","phone":"08178983151","password":"Test2024!","confirmPassword":"Test2024!"}
+2025-02-12 20:11:40 [info]: POST /login 200 - Request Body: {"email":"second@gmail.com","password":"Test2024!"}
+2025-02-12 20:11:45 [info]: GET /get-user/6734bd795f604ef68c0f4984 200
+2025-02-12 20:11:45 [info]: GET /status 200
+2025-02-12 20:12:09 [info]: GET /status 304
+2025-02-12 20:12:09 [info]: GET /get-user/6734bd795f604ef68c0f4984 304
