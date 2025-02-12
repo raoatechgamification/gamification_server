@@ -15,6 +15,53 @@ dotenv.config();
 import { getOrganizationId } from "../../utils/getOrganizationId.util";
 
 export class UserAuthController {
+
+  static async createSimpleUser(req: Request, res: Response) {
+    try {
+      const { firstName, lastName, email, phone, password, organizationId: orgaId } = req.body;
+      const organizationId = process.env.LANDINGPAGE_ID
+      if (!firstName || !lastName || !email || !phone || !password || !organizationId) {
+        return ResponseHandler.failure(res, "All fields are required", 400);
+      }
+
+      const existingUser = await User.findOne({ email });
+      if (existingUser) {
+        return ResponseHandler.failure(res, "Email already registered", 400);
+      }
+
+      const organization = await Organization.findById(organizationId);
+      if (!organization) {
+        return ResponseHandler.failure(res, "Organization not found", 400);
+      }
+
+      const hashedPassword = await hashPassword(password);
+
+      const newUser = await User.create({
+        firstName,
+        lastName,
+        email,
+        phone,
+        password: hashedPassword,
+        organizationId,
+      });
+
+      const userResponse = await User.findById(newUser._id).select("-password");
+
+      return ResponseHandler.success(
+        res,
+        userResponse,
+        "User account created successfully",
+        201
+      );
+    } catch (error: any) {
+      return ResponseHandler.failure(
+        res,
+        `Server error: ${error.message}`,
+        500
+      );
+    }
+  }
+
   static async createSingleUser(req: Request, res: Response) {
     try {
       const {

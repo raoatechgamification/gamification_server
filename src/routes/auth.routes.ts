@@ -20,7 +20,7 @@ import { SubAdminController } from "../controllers/auth/auth.subadmin.controller
 import { upload } from "../utils/upload.utils";
 
 const { registerOrganization, loginOrganization } = AdminAuthController;
-const { registerUser, bulkCreateUsers, createSingleUser, login } =
+const { registerUser, bulkCreateUsers, createSingleUser, createSimpleUser, login } =
   UserAuthController;
 const { registerSuperAdmin, loginSuperAdmin } = SuperAdminAuthController;
 const { createSubAdminAccount, loginSubAdmin, editSubAdminAccount } = new SubAdminController()
@@ -76,6 +76,11 @@ router.post(
   checkSubadminPermission("User Management", "Add User"), 
   upload.single("image"),
   createSingleUser
+);
+
+router.post(
+  "/create-user-self",
+  createSimpleUser
 );
 
 // Super Admin Auth

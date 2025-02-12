@@ -318,7 +318,7 @@ export class CourseController {
         return ResponseHandler.failure(res, "Organization not found", 404);
       }
 
-      const lessons = await Lesson.find({ instructorId });
+      const lessons = await Lesson.find({ instructorId }).sort({ createdAt: -1 }) ;
 
       if (!lessons || lessons.length === 0) {
         return ResponseHandler.failure(

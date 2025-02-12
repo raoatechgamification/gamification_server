@@ -250,7 +250,9 @@ class RolesAndPermissionsController {
         return ResponseHandler.failure(res, "Organization not found", 400);
       }
 
-      const roles = await Role.find({ organizationId }).populate("permissions");
+      const roles = await Role.find({ organizationId })
+        .sort({ createdAt: -1 })  // Sort by createdAt in descending order
+        .populate("permissions");
 
       if (!roles || roles.length === 0) {
         return ResponseHandler.failure(res, "No role found. Start by creating a role!")
