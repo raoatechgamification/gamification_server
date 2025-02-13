@@ -10291,3 +10291,6 @@
 2025-02-13 15:22:43 [info]: GET /lesson/getAll 200
 2025-02-13 15:24:05 [info]: POST /lesson 200 - Request Body: {"title":"random test","objectives":"random test"}
 2025-02-13 15:24:47 [info]: GET /lesson/getAll 200
+2025-02-13 15:25:55 [info]: GET /lesson/getAll 403
+2025-02-13 15:26:09 [info]: GET /lesson/getAll 403
+2025-02-13 15:28:48 [info]: GET /lesson/getAll 403
