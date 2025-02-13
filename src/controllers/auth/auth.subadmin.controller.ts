@@ -488,7 +488,7 @@ export class SubAdminController {
         return ResponseHandler.failure(res, "Organization not found", 400);
       }
 
-      const subadmins = await SubAdmin.find({ organizationId }).select("-password")
+      const subadmins = await SubAdmin.find({ organizationId }).sort({ createdAt: -1 }).select("-password")
 
       if (!subadmins || subadmins.length === 0) {
         return ResponseHandler.failure(res, "No subadmin found.")

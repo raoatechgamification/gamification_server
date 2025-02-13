@@ -10256,3 +10256,38 @@
 2025-02-12 20:11:45 [info]: GET /status 200
 2025-02-12 20:12:09 [info]: GET /status 304
 2025-02-12 20:12:09 [info]: GET /get-user/6734bd795f604ef68c0f4984 304
+2025-02-12 20:48:23 [info]: GET /raoatech 200
+2025-02-12 20:48:35 [info]: POST /create-user-self 201 - Request Body: {"firstName":"third ","lastName":"test","organizationId":"6734bd795f604ef68c0f4984","email":"third@gmail.com","phone":"08178983152","password":"Test2024!","confirmPassword":"Test2024!"}
+2025-02-13 08:40:31 [info]: POST /login 400 - Request Body: {"email":"tech@yopmail.com","password":""}
+2025-02-13 08:40:53 [info]: POST /login 400 - Request Body: {"email":"tech@yopmail.com","password":""}
+2025-02-13 08:40:54 [info]: POST /login 400 - Request Body: {"email":"tech@yopmail.com","password":""}
+2025-02-13 08:41:08 [info]: POST /login 400 - Request Body: {"email":"tech@yopmail.com","password":"Test2024!"}
+2025-02-13 08:42:32 [info]: POST /login 400 - Request Body: {"email":"tech@yopmail.com","password":"Test2024!"}
+2025-02-13 08:42:39 [info]: POST /login 200 - Request Body: {"email":"test@gmail.com","password":"Test2024!"}
+2025-02-13 08:42:52 [info]: GET / 200
+2025-02-13 08:43:15 [info]: POST /login 400 - Request Body: {"email":"test1@gmail.com","password":"Test2024!a"}
+2025-02-13 08:43:58 [info]: POST /login 400 - Request Body: {"email":"tech@yopmail.com","password":"Test2024!a"}
+2025-02-13 08:44:22 [info]: POST /login 400 - Request Body: {"email":"tech@yopmail.com","password":"Test2024!a"}
+2025-02-13 15:14:10 [info]: GET /raoatech 200
+2025-02-13 15:14:17 [info]: POST /login 200 - Request Body: {"email":"test@gmail.com","password":"Test2024!"}
+2025-02-13 15:14:22 [info]: GET / 304
+2025-02-13 15:15:24 [info]: GET / 200
+2025-02-13 15:15:25 [info]: GET /all 200
+2025-02-13 15:15:25 [info]: GET /subadmins 500
+2025-02-13 15:15:25 [info]: GET /users 200
+2025-02-13 15:15:26 [info]: GET /subadmins 500
+2025-02-13 15:15:29 [info]: GET /subadmins 500
+2025-02-13 15:15:33 [info]: GET /subadmins 500
+2025-02-13 15:16:04 [info]: GET / 304
+2025-02-13 15:16:04 [info]: GET /all 304
+2025-02-13 15:16:04 [info]: GET /subadmins 500
+2025-02-13 15:16:05 [info]: GET /users 304
+2025-02-13 15:16:06 [info]: GET /subadmins 500
+2025-02-13 15:16:09 [info]: GET /subadmins 500
+2025-02-13 15:16:13 [info]: GET /subadmins 500
+2025-02-13 15:17:54 [info]: GET / 200
+2025-02-13 15:18:20 [info]: GET / 304
+2025-02-13 15:18:21 [info]: GET / 304
+2025-02-13 15:22:43 [info]: GET /lesson/getAll 200
+2025-02-13 15:24:05 [info]: POST /lesson 200 - Request Body: {"title":"random test","objectives":"random test"}
+2025-02-13 15:24:47 [info]: GET /lesson/getAll 200
