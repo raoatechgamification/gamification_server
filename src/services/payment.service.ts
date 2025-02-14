@@ -13,6 +13,7 @@ class PaymentService {
   private flutterwaveSecretKey = process.env.FLUTTERWAVE_SECRET_KEY;
 
   async processPayment(data: PaymentData) {
+    console.log(data)
     const paymentPayload = {
       tx_ref: data.reference,
       amount: `${data.amount}`,

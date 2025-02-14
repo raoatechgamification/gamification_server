@@ -13,13 +13,17 @@ import { comparePassword, hashPassword } from "../../utils/hash";
 import { generateToken } from "../../utils/jwt";
 dotenv.config();
 import { getOrganizationId } from "../../utils/getOrganizationId.util";
+import Course from "../../models/course.model";
 
 export class UserAuthController {
 
   static async createSimpleUser(req: Request, res: Response) {
     try {
       const { firstName, lastName, email, phone, password, organizationId: orgaId } = req.body;
-      const organizationId = process.env.LANDINGPAGE_ID
+      const courseId: any = req.query.courseId;
+      console.log(courseId);
+      const organizationId = process.env.LANDINGPAGE_ID;
+      
       if (!firstName || !lastName || !email || !phone || !password || !organizationId) {
         return ResponseHandler.failure(res, "All fields are required", 400);
       }
@@ -37,6 +41,7 @@ export class UserAuthController {
       const hashedPassword = await hashPassword(password);
 
       const newUser = await User.create({
+        createdBy: "Self-registered",
         firstName,
         lastName,
         email,
@@ -45,11 +50,96 @@ export class UserAuthController {
         organizationId,
       });
 
-      const userResponse = await User.findById(newUser._id).select("-password");
+      const userResponse: any = await User.findById(newUser._id).select("-password");
+      let tokenPayload;
+      let token;
+      
+      if (courseId) {
+        const course = await Course.findById(courseId).lean();
+        if (!course) {
+          return ResponseHandler.failure(res, "Course not found", 404);
+        }
+        console.log(course, "course");
 
+        // Prepare course assignment
+        const adminId = newUser.organizationId; // Use the new user's organization ID
+        const userIds = [newUser._id]; // Array with just the new user's ID
+        const dueDate = new Date(); // You might want to make this configurable
+        dueDate.setMonth(dueDate.getMonth() + 1); // Set default due date to 1 month from now
+
+        let status = "unpaid";
+        if (!course.cost || course.cost === 0) {
+          status = "free";
+        }
+
+        const sanitizedCourse = { ...course };
+        delete sanitizedCourse.assignedLearnerIds;
+        delete sanitizedCourse.learnerIds;
+
+        // Update user's program arrays if they don't exist
+        await User.updateOne(
+          {
+            _id: newUser._id,
+            $or: [{ unattemptedPrograms: { $exists: false } }],
+          },
+          {
+            $set: {
+              ongoingPrograms: [],
+              completedPrograms: [],
+              unattemptedPrograms: [],
+            },
+          }
+        );
+
+        // Assign course to user
+        await User.updateOne(
+          {
+            _id: newUser._id,
+            "assignedPrograms.courseId": { $ne: courseId },
+          },
+          {
+            $push: {
+              assignedPrograms: {
+                courseId: new mongoose.Types.ObjectId(courseId),
+                dueDate: new Date(dueDate),
+                status,
+                amount: course.cost,
+              },
+              unattemptedPrograms: {
+                course: sanitizedCourse,
+                status,
+              },
+            },
+          }
+        );
+
+        // Update course with new learner
+        const learnersToAdd = [{
+          userId: newUser._id,
+          progress: 0,
+        }];
+
+        const updateQuery: any = {
+          $addToSet: {
+            learnerIds: { $each: learnersToAdd },
+          },
+        };
+
+        if (status === "free") {
+          updateQuery.$addToSet["learnerIds"] = { $each: learnersToAdd };
+        }
+
+        await Course.updateOne({ _id: courseId }, updateQuery);
+        
+        tokenPayload = UserAuthController.getUserTokenPayload(userResponse);
+        console.log(tokenPayload, "signup")
+        token = await generateToken(tokenPayload);
+      }
+      
+      const userResponseWithoutPassword = await User.findById(newUser._id).select("-password");
       return ResponseHandler.success(
         res,
-        userResponse,
+        { userResponse: userResponseWithoutPassword, token, newUser },
         "User account created successfully",
         201
       );
@@ -164,6 +254,7 @@ export class UserAuthController {
         nameOfContactPerson,
         contactEmail,
         contactPersonPhoneNumber,
+        createdBy: "Admin"
       });
 
       const userIdObject = newUser._id as mongoose.Types.ObjectId;
@@ -556,6 +647,7 @@ export class UserAuthController {
           break;
         case "user":
           tokenPayload = UserAuthController.getUserTokenPayload(account);
+          console.log(tokenPayload, "login")
           break;
 
         default:
@@ -582,6 +674,7 @@ export class UserAuthController {
   }
 
   private static getUserTokenPayload(account: IUser) {
+
     return {
       id: account._id,
       email: account.email,
@@ -595,7 +688,7 @@ export class UserAuthController {
       role: account.role,
     };
   }
-
+  
   private static getOrganizationTokenPayload(account: IOrganization) {
     return {
       id: account._id,

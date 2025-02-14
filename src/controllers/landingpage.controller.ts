@@ -11,7 +11,7 @@ export class LandingPageController {
       const organizationId = req.admin._id
       const {
         title,
-        description,
+        objective,
         requirement,
         topContent,
         landingPageTitle,
@@ -66,7 +66,7 @@ export class LandingPageController {
       if (course.length === 0) {
         course.push({
           title,
-          description,
+          objective,
           requirement,
           topContent,
           courseCode,
@@ -191,7 +191,7 @@ export class LandingPageController {
   
       const {
         title,
-          description,
+        objective,
           requirement,
           topContent,
         courseCode,
@@ -227,7 +227,7 @@ export class LandingPageController {
       // Prepare the course data
       let newCourseData = {
         title,
-          description,
+        objective,
           requirement,
           topContent,
         courseCode,

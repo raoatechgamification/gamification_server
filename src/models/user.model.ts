@@ -68,6 +68,7 @@ export interface IUser extends Document {
   }[];
   createdAt: Date;
   updatedAt: Date;
+  createdBy: string;
   lessonCompletionStatus?: {
     [courseId: string]: {
       [lessonId: string]: number;
@@ -240,6 +241,7 @@ const UserSchema: Schema<IUser> = new Schema(
         certificateId: { type: mongoose.Types.ObjectId, ref: "Certifcate" },
       },
     ],
+    createdBy: {type: String}
   },
   {
     timestamps: true,
