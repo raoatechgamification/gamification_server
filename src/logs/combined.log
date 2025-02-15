@@ -10725,3 +10725,65 @@
 2025-02-14 18:45:16 [info]: GET /get-user/6734bd795f604ef68c0f4984 304
 2025-02-14 18:54:41 [info]: GET /user/null 500
 2025-02-14 18:54:43 [info]: GET /get-user/6734bd795f604ef68c0f4984 200
+2025-02-15 09:47:46 [info]: GET /raoatech 200
+2025-02-15 09:47:52 [info]: GET /raoatech 304
+2025-02-15 09:49:22 [info]: POST /create-user-self?courseId=67ab5bc9952b69d96e6ddbdc 201 - Query Params: {"courseId":"67ab5bc9952b69d96e6ddbdc"}
+2025-02-15 09:49:22 [info]: POST /create-user-self?courseId=67ab5bc9952b69d96e6ddbdc 201 - Request Body: {"firstName":"First","lastName":"user","organizationId":"6734bd795f604ef68c0f4984","email":"firstuser@gmail.com","phone":"thirteenthuser@gmail.com","password":"Test2024!","confirmPassword":"Test2024!"}
+2025-02-15 09:49:28 [info]: GET /get-user/6734bd795f604ef68c0f4984 200
+2025-02-15 09:49:36 [info]: GET /user/67ab5bc9952b69d96e6ddbdc 304
+2025-02-15 09:49:55 [info]: POST /login 200 - Request Body: {"email":"test@gmail.com","password":"Test2024!"}
+2025-02-15 09:50:10 [info]: GET / 200
+2025-02-15 09:51:09 [info]: GET / 304
+2025-02-15 09:51:19 [info]: GET /all 200
+2025-02-15 09:52:14 [info]: GET / 304
+2025-02-15 09:52:32 [info]: GET / 304
+2025-02-15 09:52:33 [info]: GET / 304
+2025-02-15 09:52:37 [info]: GET /users 200
+2025-02-15 09:52:46 [info]: GET /all 304
+2025-02-15 09:53:14 [info]: GET /lesson/getAll 304
+2025-02-15 09:53:43 [info]: POST / 201 - Request Body: {"landingPageTitle":"lessons test","serviceTitleDescription":"lesson test","serviceType":"online","serviceItem":"lesson test","serviceItemDescription":"lesson test","title":"lesson test","objective":"lesson test","instructorId":"6734bd795f604ef68c0f4984","requirement":"No Requirement","courseCode":"lesson test","courseLevel":"","duration":"0","startDate":"","endDate":"","numberOfHoursPerDay":"0","numberOfDaysPerWeek":"0","cost":"0","promo":"0","promoCode":"","promoValue":"0","platformCharge":"0","actualCost":"0","sharing":"0","sharingValue":"0","visibilityStartDate":"","visibilityEndDate":"","visibilityStartTime":"","visibilityEndTime":"","topContent":"false","assessments":["67a0f30377d591b7ef52f3f7"],"certificate":"675c00a42a4d1f4da44b184a","lessons":["67ae4ab6d8de188829a50caa","678d101b50afad784f32dde1"],"file":"67ae4ab6d8de188829a50caa,678d101b50afad784f32dde1","teachingMethod":"online"}
+2025-02-15 09:53:47 [info]: GET / 200
+2025-02-15 09:55:47 [info]: GET / 304
+2025-02-15 09:57:18 [info]: GET / 304
+2025-02-15 10:01:59 [info]: GET / 304
+2025-02-15 10:02:03 [info]: GET / 304
+2025-02-15 10:02:56 [info]: GET / 304
+2025-02-15 10:03:01 [info]: GET / 304
+2025-02-15 10:03:05 [info]: GET /all 200
+2025-02-15 10:07:07 [info]: GET / 304
+2025-02-15 10:07:09 [info]: GET /lesson/getAll 304
+2025-02-15 10:07:09 [info]: GET / 304
+2025-02-15 10:07:12 [info]: GET /all 304
+2025-02-15 10:08:27 [info]: GET / 304
+2025-02-15 10:08:27 [info]: GET / 304
+2025-02-15 10:08:27 [info]: GET /lesson/getAll 304
+2025-02-15 10:08:33 [info]: GET /all 304
+2025-02-15 10:08:58 [info]: POST /api/v1/landing-page 500 - Request Body: {"landingPageTitle":"lessons test 2","serviceTitleDescription":"lessons test 2","serviceType":"online","serviceItem":"lessons test 2","serviceItemDescription":"lessons test 2","title":"lessons test 2","objective":"lessons test 2","instructorId":"6734bd795f604ef68c0f4984","requirement":"No Requirement","courseCode":"lessons test 2","courseLevel":"","duration":"0","startDate":"","endDate":"","numberOfHoursPerDay":"0","numberOfDaysPerWeek":"0","cost":"2999","promo":"0","promoCode":"","promoValue":"0","platformCharge":"0","actualCost":"0","sharing":"0","sharingValue":"0","visibilityStartDate":"","visibilityEndDate":"","visibilityStartTime":"","visibilityEndTime":"","topContent":"false","assessments":["67a396251f9cd81895b60b57"],"certificate":"6776a3456e5ed0a0f7335df3","lessons":["67ae4ab6d8de188829a50caa","67a0f03f77d591b7ef52e50a"],"file":"67ae4ab6d8de188829a50caa,67a0f03f77d591b7ef52e50a","teachingMethod":"online"}
+2025-02-15 10:10:25 [info]: GET / 304
+2025-02-15 10:10:27 [info]: GET /lesson/getAll 304
+2025-02-15 10:10:34 [info]: GET /all 304
+2025-02-15 10:10:35 [info]: GET / 304
+2025-02-15 10:10:36 [info]: POST / 201 - Request Body: {"landingPageTitle":"lessons test 2","serviceTitleDescription":"lessons test 2","serviceType":"online","serviceItem":"lessons test 2","serviceItemDescription":"lessons test 2","title":"lessons test 2","objective":"lessons test 2","instructorId":"6734bd795f604ef68c0f4984","requirement":"No Requirement","courseCode":"lessons test 2","courseLevel":"","duration":"0","startDate":"","endDate":"","numberOfHoursPerDay":"0","numberOfDaysPerWeek":"0","cost":"2999","promo":"0","promoCode":"","promoValue":"0","platformCharge":"0","actualCost":"0","sharing":"0","sharingValue":"0","visibilityStartDate":"","visibilityEndDate":"","visibilityStartTime":"","visibilityEndTime":"","topContent":"false","assessments":["67a396251f9cd81895b60b57"],"certificate":"6776a3456e5ed0a0f7335df3","lessons":["67ae4ab6d8de188829a50caa","67a0f03f77d591b7ef52e50a"],"file":"67ae4ab6d8de188829a50caa,67a0f03f77d591b7ef52e50a","teachingMethod":"online"}
+2025-02-15 10:10:41 [info]: GET / 200
+2025-02-15 10:13:27 [info]: GET / 304
+2025-02-15 10:14:15 [info]: GET / 304
+2025-02-15 10:15:18 [info]: GET / 304
+2025-02-15 10:16:08 [info]: GET /raoatech 200
+2025-02-15 10:17:11 [info]: POST /create-user-self?courseId=67b05a0bbac3d285856e8b1f 201 - Query Params: {"courseId":"67b05a0bbac3d285856e8b1f"}
+2025-02-15 10:17:11 [info]: POST /create-user-self?courseId=67b05a0bbac3d285856e8b1f 201 - Request Body: {"firstName":"Second","lastName":"user","organizationId":"6734bd795f604ef68c0f4984","email":"seconduser@gmail.com","phone":"seconduser@gmail.com","password":"Test2024!","confirmPassword":"Test2024!"}
+2025-02-15 10:17:18 [info]: GET /get-user/6734bd795f604ef68c0f4984 200
+2025-02-15 10:17:18 [info]: GET /user/67b05a0bbac3d285856e8b1f 200
+2025-02-15 10:17:36 [info]: GET /user/67b05a0bbac3d285856e8b1f 304
+2025-02-15 10:17:42 [info]: GET /get-user/6734bd795f604ef68c0f4984 304
+2025-02-15 10:23:27 [info]: GET /user/67b05a0bbac3d285856e8b1f 304
+2025-02-15 10:23:28 [info]: GET /get-user/6734bd795f604ef68c0f4984 304
+2025-02-15 10:23:36 [info]: POST /login 200 - Request Body: {"email":"test@gmail.com","password":"Test2024!"}
+2025-02-15 10:23:42 [info]: GET / 200
+2025-02-15 10:23:48 [info]: GET / 304
+2025-02-15 10:23:57 [info]: GET /all 200
+2025-02-15 10:24:52 [info]: GET /lesson/getAll 304
+2025-02-15 10:25:58 [info]: GET / 304
+2025-02-15 10:26:02 [info]: GET /lesson/getAll 304
+2025-02-15 10:26:21 [info]: POST / 201 - Request Body: {"landingPageTitle":"file length","serviceTitleDescription":"file length","serviceType":"online","serviceItem":"file length","serviceItemDescription":"file length","title":"file length","objective":"file length","instructorId":"6734bd795f604ef68c0f4984","requirement":"No Requirement","courseCode":"221ee","courseLevel":"file length","duration":"0","startDate":"","endDate":"","numberOfHoursPerDay":"0","numberOfDaysPerWeek":"0","cost":"1999","promo":"0","promoCode":"","promoValue":"0","platformCharge":"0","actualCost":"0","sharing":"0","sharingValue":"0","visibilityStartDate":"","visibilityEndDate":"","visibilityStartTime":"","visibilityEndTime":"","topContent":"false","assessments":["675bffdf2a4d1f4da44b1827"],"certificate":"675c00a42a4d1f4da44b184a","lessons":["67a0f03f77d591b7ef52e50a"],"file":"67a0f03f77d591b7ef52e50a","teachingMethod":"online"}
+2025-02-15 10:26:25 [info]: GET / 200
+2025-02-15 10:26:32 [info]: GET / 304

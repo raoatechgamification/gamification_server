@@ -40,6 +40,9 @@ export class LandingPageController {
         visibilityEndTime,
         teachingMethod,
         subservice,
+        lessons,
+        assessments,
+        certificate,
       } = req.body;
   
 
@@ -71,6 +74,9 @@ export class LandingPageController {
           topContent,
           courseCode,
           courseLevel,
+          lessons,
+          certificate,
+          assessments,
           duration,
           startDate,
           endDate,
@@ -94,6 +100,7 @@ export class LandingPageController {
       }
   
       let Urls: string[] = [];
+    
       if (files && files.length > 0) {
         for (let i = 0; i < files.length; i++) {
           const file = files[i];
@@ -108,6 +115,7 @@ export class LandingPageController {
         }
       }
   
+   
       const courseIds: Types.ObjectId[] = [];
       const subserviceIds: Types.ObjectId[] = [];
   
