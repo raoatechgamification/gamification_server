@@ -1374,6 +1374,8 @@ export class CourseController {
         return {
           id: lesson._id,
           title: lesson.title,
+          curriculum: course.curriculum ?? [],
+          description: course.objective || "",
           objectives: lesson.objectives || "",
           completionPercentage,
           link: lesson.link || "",

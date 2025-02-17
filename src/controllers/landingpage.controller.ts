@@ -116,6 +116,7 @@ export class LandingPageController {
       }
   
    
+      console.log(Urls)
       const courseIds: Types.ObjectId[] = [];
       const subserviceIds: Types.ObjectId[] = [];
   
