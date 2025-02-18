@@ -44,9 +44,7 @@ export class LandingPageController {
         assessments,
         certificate,
       } = req.body;
-  
 
-      
         // if(title){
         //    const existingCourse = await Course.findOne({ title });
         // if (existingCourse) {

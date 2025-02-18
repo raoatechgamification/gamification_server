@@ -21,7 +21,7 @@ export class UserAuthController {
     try {
       const { firstName, lastName, email, phone, password, organizationId: orgaId } = req.body;
       const courseId: any = req.query.courseId;
-      console.log(courseId);
+    
       const organizationId = process.env.LANDINGPAGE_ID;
       
       if (!firstName || !lastName || !email || !phone || !password || !organizationId) {
@@ -31,6 +31,11 @@ export class UserAuthController {
       const existingUser = await User.findOne({ email });
       if (existingUser) {
         return ResponseHandler.failure(res, "Email already registered", 400);
+      }
+
+      const existingPhone = await User.findOne({ phone });
+      if (existingPhone) {
+        return ResponseHandler.failure(res, "Phone Number already registered", 400);
       }
 
       const organization = await Organization.findById(organizationId);
@@ -193,6 +198,11 @@ export class UserAuthController {
       const organization = await Organization.findById(organizationId);
       if (!organization) {
         return ResponseHandler.failure(res, "Organization not found", 400);
+      }
+
+      const existingPhone = await User.findOne({ phone });
+      if (existingPhone) {
+        return ResponseHandler.failure(res, "Phone Number already registered", 400);
       }
 
       let parsedIds: string[] = [];
