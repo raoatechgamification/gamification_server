@@ -11486,3 +11486,26 @@
 2025-02-18 11:47:12 [info]: GET / 304
 2025-02-18 11:51:46 [info]: GET / 304
 2025-02-18 11:51:53 [info]: GET / 304
+2025-02-18 11:56:33 [info]: GET / 304
+2025-02-18 11:58:23 [info]: POST /create-user-self?courseId=null 400 - Query Params: {"courseId":"null"}
+2025-02-18 11:58:23 [info]: POST /create-user-self?courseId=null 400 - Request Body: {"firstName":"twentyseventh","lastName":"User","organizationId":"6734bd795f604ef68c0f4984","email":"twentyseventhuser@gmail.com","phone":"08178983150","password":"Test2024!","confirmPassword":"Test2024!"}
+2025-02-18 11:58:49 [info]: POST /create-user-self?courseId=null 400 - Query Params: {"courseId":"null"}
+2025-02-18 11:58:49 [info]: POST /create-user-self?courseId=null 400 - Request Body: {"firstName":"twentyeight","lastName":"User","organizationId":"6734bd795f604ef68c0f4984","email":"twentyeightuser@gmail.com","phone":"08178983150","password":"Test2024!","confirmPassword":"Test2024!"}
+2025-02-18 11:59:29 [info]: POST /create-user-self?courseId=null 400 - Query Params: {"courseId":"null"}
+2025-02-18 11:59:29 [info]: POST /create-user-self?courseId=null 400 - Request Body: {"firstName":"twentyeight","lastName":"User","organizationId":"6734bd795f604ef68c0f4984","email":"twentyeightuser@gmail.com","phone":"08178983150","password":"Test2024!","confirmPassword":"Test2024!"}
+2025-02-18 12:01:39 [info]: POST /create-user-self?courseId=null 400 - Query Params: {"courseId":"null"}
+2025-02-18 12:01:39 [info]: POST /create-user-self?courseId=null 400 - Request Body: {"firstName":"twentyeight","lastName":"User","organizationId":"6734bd795f604ef68c0f4984","email":"twentyeightuser@gmail.com","phone":"08178983150","password":"Test2024!","confirmPassword":"Test2024!"}
+2025-02-18 12:01:50 [info]: POST /create-user-self?courseId=null 500 - Query Params: {"courseId":"null"}
+2025-02-18 12:01:50 [info]: POST /create-user-self?courseId=null 500 - Request Body: {"firstName":"twentyeight","lastName":"User","organizationId":"6734bd795f604ef68c0f4984","email":"twentyeightuser@gmail.com","phone":"08178983178","password":"Test2024!","confirmPassword":"Test2024!"}
+2025-02-18 12:04:55 [info]: POST /create-user-self 400 - Request Body: {"firstName":"twentyeight","lastName":"User","organizationId":"6734bd795f604ef68c0f4984","email":"twentyeightuser@gmail.com","phone":"08178983178","password":"Test2024!","confirmPassword":"Test2024!"}
+2025-02-18 12:05:09 [info]: POST /create-user-self 400 - Request Body: {"firstName":"twentynine","lastName":"User","organizationId":"6734bd795f604ef68c0f4984","email":"twentynineuser@gmail.com","phone":"08178983178","password":"Test2024!","confirmPassword":"Test2024!"}
+2025-02-18 12:05:17 [info]: POST /create-user-self 201 - Request Body: {"firstName":"twentynine","lastName":"User","organizationId":"6734bd795f604ef68c0f4984","email":"twentynineuser@gmail.com","phone":"08178983179","password":"Test2024!","confirmPassword":"Test2024!"}
+2025-02-18 12:05:28 [info]: GET /raoatech 304
+2025-02-18 12:06:22 [info]: POST /create-user-self?courseId=67b464eda9fefd533353448c 201 - Query Params: {"courseId":"67b464eda9fefd533353448c"}
+2025-02-18 12:06:22 [info]: POST /create-user-self?courseId=67b464eda9fefd533353448c 201 - Request Body: {"firstName":"thirtheeth","lastName":"User","organizationId":"6734bd795f604ef68c0f4984","email":"thirtheethuser@gmail.com","phone":"2349056983150","password":"Test2024!","confirmPassword":"Test2024!"}
+2025-02-18 12:06:25 [info]: GET /user/67b464eda9fefd533353448c 200
+2025-02-18 12:06:25 [info]: GET /get-user/6734bd795f604ef68c0f4984 200
+2025-02-18 12:06:52 [info]: GET /user/67b464eda9fefd533353448c 304
+2025-02-18 12:06:52 [info]: GET /get-user/6734bd795f604ef68c0f4984 304
+2025-02-18 12:07:16 [info]: GET /user/67b464eda9fefd533353448c 304
+2025-02-18 12:07:17 [info]: GET /get-user/6734bd795f604ef68c0f4984 304
