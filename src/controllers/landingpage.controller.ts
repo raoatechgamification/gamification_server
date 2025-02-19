@@ -313,6 +313,7 @@ export class LandingPageController {
 
   async GetAllLandingPages(req: Request, res: Response, next: NextFunction) {
     try {
+      console.log(req.subAdmin, "subAdmin")
       const organizationId = req.admin._id; 
       console.log(organizationId)
       const landingPages = await LandingPage.find({ organizationId })

@@ -32,3 +32,18 @@ export async function sendOrganizationOnboardingMail(
     throw error;
   }
 }
+
+export async function sendSubadminMail(
+  mailPayload: OrganizationOnboardingVariablesInterface
+) {
+  try {
+    await sendEmail({
+      service: process.env.EMAIL_SERVICE!,
+      templateName: "subAdminMail.html",
+      variables: mailPayload,
+    });
+  } catch (error) {
+    console.log(error);
+    throw error;
+  }
+}

@@ -8,7 +8,7 @@ export interface ISubAdmin extends Document {
   lastName: string;
   otherName?: string;
   email: string;
-  phone?: string;
+  phone: { type: String, sparse: true },
   organizationId: mongoose.Schema.Types.ObjectId;
   units?: mongoose.Schema.Types.ObjectId[];
   role: string;

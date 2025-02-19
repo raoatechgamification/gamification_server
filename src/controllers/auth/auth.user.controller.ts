@@ -624,7 +624,32 @@ export class UserAuthController {
   static async login(req: Request, res: Response) {
     try {
       const { email, password } = req.body;
-      console.log(req.body)
+
+   
+      // Find all records with empty phone values
+      const emptyPhoneOrgs = await Organization.find({ phone: "" });
+      console.log(emptyPhoneOrgs, "631")
+      const emptyPhoneUsers = await User.find({ phone: "" });
+      console.log(emptyPhoneUsers, "633")
+      const emptyPhoneSubAdmins = await SubAdmin.find({ phone: "" });
+      console.log(emptyPhoneSubAdmins, "635")
+      const emptyPhoneSuperAdmins = await SuperAdmin.find({ phone: "" });
+
+      // Delete records with empty phone values
+      if (emptyPhoneOrgs.length > 0) {
+        await Organization.deleteMany({ phone: "" });
+      }
+      if (emptyPhoneUsers.length > 0) {
+        await User.deleteMany({ phone: "" });
+      }
+      if (emptyPhoneSubAdmins.length > 0) {
+        await SubAdmin.deleteMany({ phone: "" });
+      }
+      if (emptyPhoneSuperAdmins.length > 0) {
+        await SuperAdmin.deleteMany({ phone: "" });
+      }
+
+        // console.log(ajibade, "ajibade")
       const account: any =
         (await Organization.findOne({ email })) ||
         (await User.findOne({ email })) ||

@@ -48,7 +48,7 @@ const OrganizationSchema: Schema<IOrganization> = new Schema({
   firstName: { type: String },
   lastName: { type: String},
   email: { type: String, required: true, unique: true }, 
-  phone: { type: String },
+  phone: { type: String, sparse: true },
   preferredUrl: { type: String },
   referral: { type: String },
   referralSource: { type: String },
