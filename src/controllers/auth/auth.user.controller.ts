@@ -657,6 +657,9 @@ export class UserAuthController {
         case "superAdmin":
           tokenPayload = UserAuthController.getSuperAdminTokenPayload(account);
           break;
+          case "subAdmin":
+            tokenPayload = UserAuthController.getOrganizationTokenPayload(account);
+            break;
         case "user":
           tokenPayload = UserAuthController.getUserTokenPayload(account);
           console.log(tokenPayload, "login")
