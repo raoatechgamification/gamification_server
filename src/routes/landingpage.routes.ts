@@ -23,7 +23,7 @@ router.post(
   CreateLandingPage
 );
 
-router.get("/", authenticate, authorize(["admin"]), GetAllLandingPages);
+router.get("/", authenticate, authorize(["admin", "subAdmin"]), GetAllLandingPages);
 router.get("/raoatech", GetAllRaoatechLandingPages);
 router.get(
   "/all-landing-page",

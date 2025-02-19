@@ -14,6 +14,7 @@ import { generateToken } from "../../utils/jwt";
 dotenv.config();
 import { getOrganizationId } from "../../utils/getOrganizationId.util";
 import Course from "../../models/course.model";
+import SubAdmin from "../../models/subadmin.model";
 
 export class UserAuthController {
 
@@ -627,6 +628,7 @@ export class UserAuthController {
       const account: any =
         (await Organization.findOne({ email })) ||
         (await User.findOne({ email })) ||
+        (await SubAdmin.findOne({email})) ||
         (await SuperAdmin.findOne({ email }));
 
       if (!account) {

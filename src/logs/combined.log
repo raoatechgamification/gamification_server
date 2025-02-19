@@ -11509,3 +11509,67 @@
 2025-02-18 12:06:52 [info]: GET /get-user/6734bd795f604ef68c0f4984 304
 2025-02-18 12:07:16 [info]: GET /user/67b464eda9fefd533353448c 304
 2025-02-18 12:07:17 [info]: GET /get-user/6734bd795f604ef68c0f4984 304
+2025-02-18 14:48:27 [info]: POST /subadmin/login 500 - Request Body: {"email":"test@gmail.com","password":"Test2024!"}
+2025-02-18 14:49:11 [info]: POST /subadmin/login 400 - Request Body: {"email":"refresh@gmail.com","password":"Test2024!"}
+2025-02-18 14:49:37 [info]: POST /subadmin/login 200 - Request Body: {"email":"subadmin4@gmail.com","password":"Test2024!"}
+2025-02-18 14:51:05 [info]: POST /subadmin/login 200 - Request Body: {"email":"subadmin4@gmail.com","password":"Test2024!"}
+2025-02-18 14:51:07 [info]: GET /auth/subadmin/login 200
+2025-02-18 14:51:08 [info]: GET /favicon.ico 404
+2025-02-18 14:52:16 [info]: POST /subadmin/login 200 - Request Body: {"email":"subadmin4@gmail.com","password":"Test2024!"}
+2025-02-18 14:52:21 [info]: GET / 403
+2025-02-18 14:52:23 [info]: GET / 403
+2025-02-18 14:52:25 [info]: GET / 403
+2025-02-18 14:52:29 [info]: GET / 403
+2025-02-18 14:52:39 [info]: GET / 403
+2025-02-18 14:52:43 [info]: GET / 403
+2025-02-18 14:52:46 [info]: GET / 403
+2025-02-18 14:52:50 [info]: GET / 403
+2025-02-18 14:56:21 [info]: GET / 403
+2025-02-18 14:56:22 [info]: GET / 403
+2025-02-18 14:56:24 [info]: GET / 403
+2025-02-18 14:56:33 [info]: GET / 403
+2025-02-18 14:57:52 [info]: GET / 403
+2025-02-18 14:57:53 [info]: GET / 403
+2025-02-18 14:57:55 [info]: GET / 403
+2025-02-18 14:58:00 [info]: GET / 403
+2025-02-18 15:01:02 [info]: GET / 403
+2025-02-18 15:01:03 [info]: GET / 403
+2025-02-18 15:01:39 [info]: GET / 403
+2025-02-18 15:03:28 [info]: GET / 403
+2025-02-18 15:03:45 [info]: GET / 403
+2025-02-18 15:03:49 [info]: GET / 403
+2025-02-18 15:03:51 [info]: GET / 403
+2025-02-18 15:03:55 [info]: GET / 403
+2025-02-18 15:04:04 [info]: GET / 403
+2025-02-18 15:04:05 [info]: GET / 403
+2025-02-18 15:04:44 [info]: GET / 403
+2025-02-18 15:04:59 [info]: GET / 403
+2025-02-18 15:05:05 [info]: GET / 403
+2025-02-18 15:05:06 [info]: GET / 403
+2025-02-18 15:05:27 [info]: GET / 403
+2025-02-18 15:05:33 [info]: GET / 403
+2025-02-18 15:05:35 [info]: GET / 403
+2025-02-19 08:29:53 [info]: POST /subadmin/login 200 - Request Body: {"email":"refresh4@gmail.com","password":"Test2024!"}
+2025-02-19 08:30:00 [info]: GET / 403
+2025-02-19 08:30:01 [info]: GET / 403
+2025-02-19 08:30:03 [info]: GET / 403
+2025-02-19 08:30:08 [info]: GET / 403
+2025-02-19 08:30:30 [info]: GET / 403
+2025-02-19 08:30:31 [info]: GET / 403
+2025-02-19 08:30:34 [info]: GET / 403
+2025-02-19 08:30:38 [info]: GET / 403
+2025-02-19 08:31:01 [info]: GET / 403
+2025-02-19 08:31:03 [info]: GET / 403
+2025-02-19 08:31:05 [info]: GET / 403
+2025-02-19 08:31:10 [info]: GET / 403
+2025-02-19 08:32:36 [info]: GET / 403
+2025-02-19 08:33:34 [info]: GET / 403
+2025-02-19 08:33:36 [info]: GET / 403
+2025-02-19 08:33:38 [info]: GET / 403
+2025-02-19 08:34:51 [info]: GET /api/v1/landing-page 500
+2025-02-19 08:34:51 [info]: GET /api/v1/landing-page 500
+2025-02-19 08:34:53 [info]: GET /api/v1/landing-page 500
+2025-02-19 08:34:55 [info]: GET /api/v1/landing-page 500
+2025-02-19 08:35:22 [info]: GET /api/v1/landing-page 500
+2025-02-19 08:35:23 [info]: GET /api/v1/landing-page 500
+2025-02-19 08:35:24 [info]: GET /api/v1/landing-page 500
