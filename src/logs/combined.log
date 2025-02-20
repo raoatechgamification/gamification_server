@@ -12763,3 +12763,40 @@
 2025-02-20 10:06:46 [info]: GET / 304
 2025-02-20 10:06:46 [info]: GET /all 304
 2025-02-20 10:06:48 [info]: GET /users 304
+2025-02-20 16:06:56 [info]: GET /get-user/undefined 403
+2025-02-20 16:06:59 [info]: GET /get-user/undefined 403
+2025-02-20 16:07:01 [info]: GET /get-user/undefined 403
+2025-02-20 16:08:54 [info]: POST /login 200 - Request Body: {"email":"test@gmail.com","password":"Test2024!"}
+2025-02-20 16:08:59 [info]: GET / 304
+2025-02-20 16:09:11 [info]: GET / 304
+2025-02-20 16:12:58 [info]: GET / 304
+2025-02-20 16:12:58 [info]: GET / 304
+2025-02-20 16:12:59 [info]: GET /all 304
+2025-02-20 16:13:01 [info]: GET /users 304
+2025-02-20 16:13:04 [info]: GET /user-profile/undefined 400
+2025-02-20 16:13:05 [info]: GET / 304
+2025-02-20 16:13:06 [info]: GET /user-profile/undefined 400
+2025-02-20 16:13:08 [info]: GET /user-profile/undefined 400
+2025-02-20 16:13:12 [info]: GET /user-profile/undefined 400
+2025-02-20 16:13:30 [info]: POST /single-create 201 - Request Body: {"firstName":"thirthythird","lastName":"user","phone":"","otherName":"","email":"thirthythirduser@gmail.com","password":"Test2024!","role":"user","ids":"[]","userId":"test@gmail.com","gender":"","dateOfBirth":"","country":"","address":"","city":"","LGA":"","state":"","officeAddress":"","officeCity":"","officeLGA":"","employerName":"","officeState":"","contactPersonPlaceOfEmployment":"","nameOfContactPerson":"","contactEmail":"","contactPersonPhoneNumber":"","sendEmail":"true"}
+2025-02-20 16:13:34 [info]: GET /users 200
+2025-02-20 16:13:35 [info]: GET /user-profile/undefined 400
+2025-02-20 16:13:35 [info]: GET / 304
+2025-02-20 16:13:37 [info]: GET /user-profile/undefined 400
+2025-02-20 16:13:39 [info]: GET /user-profile/undefined 400
+2025-02-20 16:13:43 [info]: GET /user-profile/undefined 400
+2025-02-20 16:13:53 [info]: GET /auth/single-create 200
+2025-02-20 16:13:53 [info]: GET /favicon.ico 404
+2025-02-20 16:13:55 [info]: GET /user-profile/undefined 400
+2025-02-20 16:13:56 [info]: GET / 304
+2025-02-20 16:13:56 [info]: GET /all 304
+2025-02-20 16:13:57 [info]: GET /user-profile/undefined 400
+2025-02-20 16:13:59 [info]: GET /user-profile/undefined 400
+2025-02-20 16:13:59 [info]: GET /users 200
+2025-02-20 16:14:03 [info]: POST /single-create 201 - Request Body: {"firstName":"thirthyfourth","lastName":"user","phone":"","otherName":"","email":"thirthyfourthuser@gmail.com","password":"Test2024!","role":"user","ids":"[]","userId":"test@gmail.com","gender":"","dateOfBirth":"","country":"","address":"","city":"","LGA":"","state":"","officeAddress":"","officeCity":"","officeLGA":"","employerName":"","officeState":"","contactPersonPlaceOfEmployment":"","nameOfContactPerson":"","contactEmail":"","contactPersonPhoneNumber":"","sendEmail":"true"}
+2025-02-20 16:14:03 [info]: GET /user-profile/undefined 400
+2025-02-20 16:14:05 [info]: GET /users 304
+2025-02-20 16:14:34 [info]: GET / 304
+2025-02-20 16:14:35 [info]: GET /all 304
+2025-02-20 16:14:36 [info]: GET / 304
+2025-02-20 16:14:37 [info]: GET /users 304
