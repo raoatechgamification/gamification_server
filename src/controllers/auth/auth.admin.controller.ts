@@ -56,7 +56,7 @@ export class AdminAuthController {
       const newOrganization = await Organization.create({
         name,
         email,
-        phone,
+        phone: phone || null,
         preferredUrl,
         password: hashedPassword,
         referral,

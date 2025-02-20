@@ -106,7 +106,7 @@ export class SubAdminController {
         lastName,
         otherName,
         email,
-        phone,
+        phone: phone || null,
         userId,
         gender,
         dateOfBirth,
