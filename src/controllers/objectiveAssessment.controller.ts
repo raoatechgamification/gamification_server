@@ -1374,8 +1374,8 @@ class ObjectAssessmentController {
       // const assessments = await ObjectiveAssessment.find({ organizationId });
 
       const [objectiveAssessments, theoryAssessments] = await Promise.all([
-        ObjectiveAssessment.find({ organizationId }),
-        TheoryAssessment.find({ organizationId }),
+        ObjectiveAssessment.find({ organizationId }).sort({ createdAt: -1 }),
+        TheoryAssessment.find({ organizationId }).sort({ createdAt: -1 }),
       ]);
   
       // Combine results from both models

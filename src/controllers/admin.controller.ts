@@ -84,6 +84,7 @@ class AdminController {
 
       const users = await User.find({ organizationId })
         .select("-password")
+        .sort({ createdAt: -1 }) 
         .populate([{ path: "groups", select: "name" }]);
 
       if (!users || users.length === 0) {

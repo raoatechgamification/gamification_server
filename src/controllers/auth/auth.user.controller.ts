@@ -13,8 +13,151 @@ import { comparePassword, hashPassword } from "../../utils/hash";
 import { generateToken } from "../../utils/jwt";
 dotenv.config();
 import { getOrganizationId } from "../../utils/getOrganizationId.util";
+import Course from "../../models/course.model";
+import SubAdmin from "../../models/subadmin.model";
 
 export class UserAuthController {
+
+  static async createSimpleUser(req: Request, res: Response) {
+    try {
+      const { firstName, lastName, email, phone, password, organizationId: orgaId } = req.body;
+      const courseId: any = req.query.courseId;
+    
+      const organizationId = process.env.LANDINGPAGE_ID;
+      
+      if (!firstName || !lastName || !email || !phone || !password || !organizationId) {
+        return ResponseHandler.failure(res, "All fields are required", 400);
+      }
+
+      const existingUser = await User.findOne({ email });
+      if (existingUser) {
+        return ResponseHandler.failure(res, "Email already registered", 400);
+      }
+
+      const existingPhone = await User.findOne({ phone });
+      if (existingPhone) {
+        return ResponseHandler.failure(res, "Phone Number already registered", 400);
+      }
+
+      const organization = await Organization.findById(organizationId);
+      if (!organization) {
+        return ResponseHandler.failure(res, "Organization not found", 400);
+      }
+
+      const hashedPassword = await hashPassword(password);
+
+      const newUser = await User.create({
+        createdBy: "Self-registered",
+        firstName,
+        lastName,
+        email,
+        phone,
+        password: hashedPassword,
+        organizationId,
+      });
+
+      const userResponse: any = await User.findById(newUser._id).select("-password");
+      let tokenPayload;
+      let token;
+      
+      if (courseId) {
+        const course = await Course.findById(courseId).lean();
+        if (!course) {
+          return ResponseHandler.failure(res, "Course not found", 404);
+        }
+        console.log(course, "course");
+
+        // Prepare course assignment
+        const adminId = newUser.organizationId; // Use the new user's organization ID
+        const userIds = [newUser._id]; // Array with just the new user's ID
+        const dueDate = new Date(); // You might want to make this configurable
+        dueDate.setMonth(dueDate.getMonth() + 1); // Set default due date to 1 month from now
+
+        let status = "unpaid";
+        if (!course.cost || course.cost === 0) {
+          status = "free";
+        }
+
+        const sanitizedCourse = { ...course };
+        delete sanitizedCourse.assignedLearnerIds;
+        delete sanitizedCourse.learnerIds;
+
+        // Update user's program arrays if they don't exist
+        await User.updateOne(
+          {
+            _id: newUser._id,
+            $or: [{ unattemptedPrograms: { $exists: false } }],
+          },
+          {
+            $set: {
+              ongoingPrograms: [],
+              completedPrograms: [],
+              unattemptedPrograms: [],
+            },
+          }
+        );
+
+        // Assign course to user
+        await User.updateOne(
+          {
+            _id: newUser._id,
+            "assignedPrograms.courseId": { $ne: courseId },
+          },
+          {
+            $push: {
+              assignedPrograms: {
+                courseId: new mongoose.Types.ObjectId(courseId),
+                dueDate: new Date(dueDate),
+                status,
+                amount: course.cost,
+              },
+              unattemptedPrograms: {
+                course: sanitizedCourse,
+                status,
+              },
+            },
+          }
+        );
+
+        // Update course with new learner
+        const learnersToAdd = [{
+          userId: newUser._id,
+          progress: 0,
+        }];
+
+        const updateQuery: any = {
+          $addToSet: {
+            learnerIds: { $each: learnersToAdd },
+          },
+        };
+
+        if (status === "free") {
+          updateQuery.$addToSet["learnerIds"] = { $each: learnersToAdd };
+        }
+
+        await Course.updateOne({ _id: courseId }, updateQuery);
+        
+        tokenPayload = UserAuthController.getUserTokenPayload(userResponse);
+        console.log(tokenPayload, "signup")
+        token = await generateToken(tokenPayload);
+      }
+      
+      const userResponseWithoutPassword = await User.findById(newUser._id).select("-password");
+      return ResponseHandler.success(
+        res,
+        { userResponse: userResponseWithoutPassword, token, newUser },
+        "User account created successfully",
+        201
+      );
+    } catch (error: any) {
+      return ResponseHandler.failure(
+        res,
+        `Server error: ${error.message}`,
+        500
+      );
+    }
+  }
+
   static async createSingleUser(req: Request, res: Response) {
     try {
       const {
@@ -58,6 +201,11 @@ export class UserAuthController {
         return ResponseHandler.failure(res, "Organization not found", 400);
       }
 
+      const existingPhone = await User.findOne({ phone });
+      if (existingPhone) {
+        return ResponseHandler.failure(res, "Phone Number already registered", 400);
+      }
+
       let parsedIds: string[] = [];
       try {
         parsedIds = JSON.parse(ids);
@@ -95,7 +243,7 @@ export class UserAuthController {
         lastName,
         otherName,
         email,
-        phone,
+        phone: phone || null,
         gender,
         dateOfBirth,
         image: fileUploadResult ? fileUploadResult.secure_url : null,
@@ -117,6 +265,7 @@ export class UserAuthController {
         nameOfContactPerson,
         contactEmail,
         contactPersonPhoneNumber,
+        createdBy: "Admin"
       });
 
       const userIdObject = newUser._id as mongoose.Types.ObjectId;
@@ -475,10 +624,36 @@ export class UserAuthController {
   static async login(req: Request, res: Response) {
     try {
       const { email, password } = req.body;
-      console.log(req.body)
+
+   
+      // Find all records with empty phone values
+      // const emptyPhoneOrgs = await Organization.find({ phone: "" });
+      // console.log(emptyPhoneOrgs, "631")
+      // const emptyPhoneUsers = await User.find({ phone: "" });
+      // console.log(emptyPhoneUsers, "633")
+      // const emptyPhoneSubAdmins = await SubAdmin.find({ phone: "" });
+      // console.log(emptyPhoneSubAdmins, "635")
+      // const emptyPhoneSuperAdmins = await SuperAdmin.find({ phone: "" });
+      // console.log(emptyPhoneSuperAdmins, "637")
+      // // Delete records with empty phone values
+      // if (emptyPhoneOrgs.length > 0) {
+      //   await Organization.deleteMany({ phone: "" });
+      // }
+      // if (emptyPhoneUsers.length > 0) {
+      //   await User.deleteMany({ phone: "" });
+      // }
+      // if (emptyPhoneSubAdmins.length > 0) {
+      //   await SubAdmin.deleteMany({ phone: "" });
+      // }
+      // if (emptyPhoneSuperAdmins.length > 0) {
+      //   await SuperAdmin.deleteMany({ phone: "" });
+      // }
+
+        // console.log(ajibade, "ajibade")
       const account: any =
         (await Organization.findOne({ email })) ||
         (await User.findOne({ email })) ||
+        (await SubAdmin.findOne({email})) ||
         (await SuperAdmin.findOne({ email }));
 
       if (!account) {
@@ -507,8 +682,12 @@ export class UserAuthController {
         case "superAdmin":
           tokenPayload = UserAuthController.getSuperAdminTokenPayload(account);
           break;
+          case "subAdmin":
+            tokenPayload = UserAuthController.getOrganizationTokenPayload(account);
+            break;
         case "user":
           tokenPayload = UserAuthController.getUserTokenPayload(account);
+          console.log(tokenPayload, "login")
           break;
 
         default:
@@ -535,6 +714,7 @@ export class UserAuthController {
   }
 
   private static getUserTokenPayload(account: IUser) {
+
     return {
       id: account._id,
       email: account.email,
@@ -548,7 +728,7 @@ export class UserAuthController {
       role: account.role,
     };
   }
-
+  
   private static getOrganizationTokenPayload(account: IOrganization) {
     return {
       id: account._id,

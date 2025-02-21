@@ -174,7 +174,7 @@ class CertificateController {
     
     try {
       const organizationId = req.admin._id;
-       const certificates = await Certificate.find({organizationId: organizationId});
+       const certificates = await Certificate.find({organizationId: organizationId}).sort({ createdAt: -1 });
       return ResponseHandler.success(res, certificates);
     } catch (error: any) {
       return ResponseHandler.failure(

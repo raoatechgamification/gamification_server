@@ -8,7 +8,7 @@ export interface ISubAdmin extends Document {
   lastName: string;
   otherName?: string;
   email: string;
-  phone?: string;
+  phone: { type: String, sparse: true },
   organizationId: mongoose.Schema.Types.ObjectId;
   units?: mongoose.Schema.Types.ObjectId[];
   role: string;
@@ -41,7 +41,7 @@ const SubAdminSchema: Schema<ISubAdmin> = new Schema({
   lastName: { type: String, required: true },
   otherName: { type: String, default: null },
   email: { type: String, required: true, unique: true },
-  phone: { type: String, sparse: true },
+  phone: { type: String, sparse: true, default: null },
   units: [
     { type: mongoose.Schema.Types.ObjectId, sparse: true, ref: "Group" },
   ],

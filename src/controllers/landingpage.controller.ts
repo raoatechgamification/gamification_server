@@ -11,7 +11,7 @@ export class LandingPageController {
       const organizationId = req.admin._id
       const {
         title,
-        description,
+        objective,
         requirement,
         topContent,
         landingPageTitle,
@@ -40,10 +40,11 @@ export class LandingPageController {
         visibilityEndTime,
         teachingMethod,
         subservice,
+        lessons,
+        assessments,
+        certificate,
       } = req.body;
-  
 
-      
         // if(title){
         //    const existingCourse = await Course.findOne({ title });
         // if (existingCourse) {
@@ -66,11 +67,14 @@ export class LandingPageController {
       if (course.length === 0) {
         course.push({
           title,
-          description,
+          objective,
           requirement,
           topContent,
           courseCode,
           courseLevel,
+          lessons,
+          certificate,
+          assessments,
           duration,
           startDate,
           endDate,
@@ -94,6 +98,7 @@ export class LandingPageController {
       }
   
       let Urls: string[] = [];
+    
       if (files && files.length > 0) {
         for (let i = 0; i < files.length; i++) {
           const file = files[i];
@@ -108,6 +113,8 @@ export class LandingPageController {
         }
       }
   
+   
+      console.log(Urls)
       const courseIds: Types.ObjectId[] = [];
       const subserviceIds: Types.ObjectId[] = [];
   
@@ -191,7 +198,7 @@ export class LandingPageController {
   
       const {
         title,
-          description,
+        objective,
           requirement,
           topContent,
         courseCode,
@@ -227,7 +234,7 @@ export class LandingPageController {
       // Prepare the course data
       let newCourseData = {
         title,
-          description,
+        objective,
           requirement,
           topContent,
         courseCode,
@@ -306,8 +313,11 @@ export class LandingPageController {
 
   async GetAllLandingPages(req: Request, res: Response, next: NextFunction) {
     try {
+      console.log(req.subAdmin, "subAdmin")
       const organizationId = req.admin._id; 
-      const landingPages = await LandingPage.find({organizationId})
+      console.log(organizationId)
+      const landingPages = await LandingPage.find({ organizationId })
+        .sort({ createdAt: -1 }) // Sort by creation date in descending order
         .populate('course') // Populate course details
         .populate('subservice'); // Populate subservice details
       res.status(200).json({ data: landingPages });
@@ -317,9 +327,10 @@ export class LandingPageController {
   }
 
   async GetAllRaoatechLandingPages(req: Request, res: Response, next: NextFunction) {
-    try {
+    try { 
       const organizationId = process.env.LANDINGPAGE_ID
       const landingPages = await LandingPage.find({organizationId})
+        .sort({ createdAt: -1 })
         .populate('course') // Populate course details
         .populate('subservice'); // Populate subservice details
       res.status(200).json({ data: landingPages });

@@ -11,6 +11,8 @@ import { uploadToCloudinary } from "../../utils/cloudinaryUpload"
 import { comparePassword, hashPassword } from "../../utils/hash";
 import { generateToken } from "../../utils/jwt";
 import { getOrganizationId } from "../../utils/getOrganizationId.util";
+import { cond } from "lodash";
+import { sendOrganizationOnboardingMail, sendSubadminMail } from "../../services/sendMail.service";
 
 
 export class SubAdminController {
@@ -67,6 +69,7 @@ export class SubAdminController {
       if (!organization) {
         return ResponseHandler.failure(res, "Organization not found", 400);
       }
+      console.log(organization, "organisation")
 
       const existingAccount =
         (await Organization.findOne({ email })) ||
@@ -103,7 +106,7 @@ export class SubAdminController {
         lastName,
         otherName,
         email,
-        phone,
+        phone: phone || null,
         userId,
         gender,
         dateOfBirth,
@@ -136,6 +139,18 @@ export class SubAdminController {
         .populate("roles permissions")
         .select("-password");
 
+         const emailVariables = {
+                name: firstName + lastName,
+            
+                email,
+                password,
+                subject: "Welcome to Gamai!",
+                organizationName: organization.name
+
+              };
+        
+              await sendSubadminMail(emailVariables);
+              console.log("Sent email with email variables:", emailVariables);
       return res.status(201).json({
         message: "Sub-admin account created successfully",
         data: response,
@@ -488,7 +503,7 @@ export class SubAdminController {
         return ResponseHandler.failure(res, "Organization not found", 400);
       }
 
-      const subadmins = await SubAdmin.find({ organizationId }).select("-password")
+      const subadmins = await SubAdmin.find({ organizationId }).sort({ createdAt: -1 }).select("-password")
 
       if (!subadmins || subadmins.length === 0) {
         return ResponseHandler.failure(res, "No subadmin found.")
