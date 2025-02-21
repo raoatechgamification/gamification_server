@@ -312,10 +312,14 @@ export class LandingPageController {
   
 
   async GetAllLandingPages(req: Request, res: Response, next: NextFunction) {
-    try {
-      console.log(req.subAdmin, "subAdmin")
-      const organizationId = req.admin._id; 
-      console.log(organizationId)
+    try { 
+      let organizationId 
+      if(req.user.role === "subAdmin"){
+        organizationId = req.user.organizationId
+      } else{
+        organizationId = req.admin._id; 
+      }
+      console.log(organizationId, 322)
       const landingPages = await LandingPage.find({ organizationId })
         .sort({ createdAt: -1 }) // Sort by creation date in descending order
         .populate('course') // Populate course details
