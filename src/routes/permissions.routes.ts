@@ -11,7 +11,7 @@ const router = Router();
 router.get(
   "/",
   authenticate,
-  authorize(["admin", "superAdmin"]),
+  authorize(["admin", "superAdmin", "subAdmin"]),
   getAllPermissions
 )
 
