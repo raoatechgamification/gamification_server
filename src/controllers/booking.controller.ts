@@ -32,11 +32,13 @@ class BookingController {
         title,
         description,
         startDate,
+       
         endDate,
         timeZone,
         frequency,
         participants,
         reminder,
+        courseId,
       } = req.body;
 
       const organizationId = req.admin._id;
@@ -49,6 +51,7 @@ class BookingController {
         description,
         startTime: startDate,
         endTime: endDate,
+        courseId,
         attendees: emails.map((email) => ({ email })),
         timeZone,
       };

@@ -151,7 +151,7 @@ export const checkSubadminPermission = (module: string, action: string) => {
       return res.status(403).json({ success: false, message: "Forbidden access" });
     }
 
-    console.log("Checking subadmin permissions:", req.subadminPermissions);
+
     if (!req.subadminPermissions || req.subadminPermissions.length === 0) {
       console.log("No permissions found for subAdmin");
       return res.status(403).json({ success: false, message: "No permissions assigned to subadmin" });
@@ -161,7 +161,7 @@ export const checkSubadminPermission = (module: string, action: string) => {
       (perm: any) => perm.module === module && perm.action === action
     );
 
-    console.log("Checking specific permission:", { module, action, hasPermission });
+   
     if (!hasPermission) {
       console.log("Permission denied for module:", module, "action:", action);
       return res.status(403).json({ message: "Permission denied" });

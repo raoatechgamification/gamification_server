@@ -14227,3 +14227,300 @@
 2025-02-22 22:26:11 [info]: GET /all 403
 2025-02-22 22:26:15 [info]: GET / 304
 2025-02-22 22:26:16 [info]: GET /users 304
+2025-02-24 12:45:41 [info]: GET /679cc4f43a2a4fadcf7d6fe6 200
+2025-02-24 12:45:44 [info]: GET /679cc4f43a2a4fadcf7d6fe6 200
+2025-02-24 12:45:48 [info]: GET /679cc4f43a2a4fadcf7d6fe6 304
+2025-02-24 12:45:56 [info]: POST /login 200 - Request Body: {"email":"subadmin8@gmail.com","password":"Test2024!"}
+2025-02-24 12:45:57 [info]: GET /auth/login 200
+2025-02-24 12:45:58 [info]: GET /favicon.ico 404
+2025-02-24 12:46:00 [info]: GET /679cc4f43a2a4fadcf7d6fe6 304
+2025-02-24 12:46:03 [info]: GET / 200
+2025-02-24 12:48:37 [info]: GET / 304
+2025-02-24 12:52:55 [info]: POST /login 200 - Request Body: {"email":"subadmin8@gmail.com","password":"Test2024!"}
+2025-02-24 12:53:01 [info]: GET /679cc4f43a2a4fadcf7d6fe6 304
+2025-02-24 12:53:02 [info]: GET / 304
+2025-02-24 12:53:28 [info]: GET / 304
+2025-02-24 12:53:30 [info]: POST /login 200 - Request Body: {"email":"subadmin8@gmail.com","password":"Test2024!"}
+2025-02-24 12:53:33 [info]: GET /679cc4f43a2a4fadcf7d6fe6 304
+2025-02-24 12:53:35 [info]: GET / 304
+2025-02-24 12:54:48 [info]: GET / 304
+2025-02-24 12:55:02 [info]: GET /users 403
+2025-02-24 12:55:03 [info]: GET /all 403
+2025-02-24 12:55:03 [info]: GET / 403
+2025-02-24 12:55:04 [info]: GET /users 403
+2025-02-24 12:55:04 [info]: GET / 403
+2025-02-24 12:55:06 [info]: GET /all 403
+2025-02-24 12:55:08 [info]: POST /login 200 - Request Body: {"email":"refresh4@gmail.com","password":"Test2024!"}
+2025-02-24 12:55:10 [info]: GET / 401
+2025-02-24 12:55:12 [info]: GET / 401
+2025-02-24 12:55:14 [info]: GET / 401
+2025-02-24 12:55:19 [info]: GET / 401
+2025-02-24 12:55:27 [info]: GET /all 401
+2025-02-24 12:55:27 [info]: GET /subadmins 401
+2025-02-24 12:55:27 [info]: GET /users 401
+2025-02-24 12:55:27 [info]: GET / 401
+2025-02-24 12:55:28 [info]: GET /all 401
+2025-02-24 12:55:28 [info]: GET /users 401
+2025-02-24 12:55:28 [info]: GET / 401
+2025-02-24 12:55:29 [info]: GET /subadmins 401
+2025-02-24 12:55:30 [info]: GET /all 401
+2025-02-24 12:55:31 [info]: GET /users 401
+2025-02-24 12:55:31 [info]: GET / 401
+2025-02-24 12:55:31 [info]: GET /subadmins 401
+2025-02-24 12:55:35 [info]: GET /all 401
+2025-02-24 12:55:35 [info]: GET /users 401
+2025-02-24 12:55:35 [info]: GET / 401
+2025-02-24 12:55:36 [info]: GET /subadmins 401
+2025-02-24 12:55:46 [info]: POST /login 200 - Request Body: {"email":"test@gmail.com","password":"Test2024!"}
+2025-02-24 12:55:50 [info]: GET / 200
+2025-02-24 12:55:51 [info]: GET / 304
+2025-02-24 12:55:51 [info]: GET /subadmins 200
+2025-02-24 12:55:55 [info]: GET /all 200
+2025-02-24 12:56:03 [info]: POST /login 200 - Request Body: {"email":"subadmin8@gmail.com","password":"Test2024!"}
+2025-02-24 12:56:05 [info]: GET /679cc4f43a2a4fadcf7d6fe6 304
+2025-02-24 12:56:09 [info]: GET / 304
+2025-02-24 12:56:17 [info]: GET /users 200
+2025-02-24 12:56:18 [info]: GET /all 403
+2025-02-24 12:56:20 [info]: GET / 403
+2025-02-24 12:56:20 [info]: GET /all 403
+2025-02-24 12:56:23 [info]: POST /login 200 - Request Body: {"email":"test@gmail.com","password":"Test2024!"}
+2025-02-24 12:56:27 [info]: GET / 304
+2025-02-24 12:57:08 [info]: GET / 200
+2025-02-24 12:57:08 [info]: GET / 200
+2025-02-24 12:57:11 [info]: GET /user-profile/undefined 400
+2025-02-24 12:57:12 [info]: GET / 304
+2025-02-24 12:57:13 [info]: GET /user-profile/undefined 400
+2025-02-24 12:57:13 [info]: GET /all 200
+2025-02-24 12:57:15 [info]: GET /user-profile/undefined 400
+2025-02-24 12:57:20 [info]: GET /user-profile/undefined 400
+2025-02-24 12:57:55 [info]: POST /single-create 201 - Request Body: {"firstName":"subadmin","lastName":"create","phone":"","otherName":"","email":"subadmincreate1@gmail.com","password":"Test2024!","role":"user","ids":"[]","userId":"test@gmail.com","gender":"","dateOfBirth":"","country":"","address":"","city":"","LGA":"","state":"","officeAddress":"","officeCity":"","officeLGA":"","employerName":"","officeState":"","contactPersonPlaceOfEmployment":"","nameOfContactPerson":"","contactEmail":"","contactPersonPhoneNumber":"","sendEmail":"true"}
+2025-02-24 12:58:05 [info]: GET /users 304
+2025-02-24 12:59:47 [info]: POST /login 200 - Request Body: {"email":"test@gmail.com","password":"Test2024!"}
+2025-02-24 12:59:51 [info]: GET /users 200
+2025-02-24 12:59:51 [info]: GET / 304
+2025-02-24 12:59:52 [info]: GET / 304
+2025-02-24 13:00:01 [info]: GET / 304
+2025-02-24 13:00:04 [info]: GET /679cc4f43a2a4fadcf7d6fe6 304
+2025-02-24 13:00:14 [info]: PUT /679cc4f43a2a4fadcf7d6fe6 200 - Request Body: {"name":"edit role","permissions":["6798e5436f9cadd8ad855ef1","6798e5436f9cadd8ad855ef2","6798e5436f9cadd8ad855ef3"]}
+2025-02-24 13:00:15 [info]: GET / 200
+2025-02-24 13:00:18 [info]: GET / 304
+2025-02-24 13:00:21 [info]: GET /all 304
+2025-02-24 13:00:24 [info]: GET /users 304
+2025-02-24 13:00:44 [info]: POST /login 200 - Request Body: {"email":"subadmin8@gmail.com","password":"Test2024!"}
+2025-02-24 13:00:47 [info]: GET /679cc4f43a2a4fadcf7d6fe6 200
+2025-02-24 13:00:48 [info]: GET / 304
+2025-02-24 13:00:48 [info]: GET / 403
+2025-02-24 13:00:49 [info]: GET /all 403
+2025-02-24 13:00:50 [info]: GET / 403
+2025-02-24 13:00:52 [info]: GET /all 403
+2025-02-24 13:00:53 [info]: GET / 403
+2025-02-24 13:00:53 [info]: GET /user-profile/undefined 403
+2025-02-24 13:00:55 [info]: GET /user-profile/undefined 403
+2025-02-24 13:00:55 [info]: GET /all 403
+2025-02-24 13:00:57 [info]: GET / 403
+2025-02-24 13:00:58 [info]: GET /user-profile/undefined 403
+2025-02-24 13:01:03 [info]: GET /all 403
+2025-02-24 13:01:03 [info]: GET /user-profile/undefined 403
+2025-02-24 13:01:15 [info]: GET /users 304
+2025-02-24 13:01:17 [info]: POST /single-create 500 - Request Body: {"firstName":"subadmin","lastName":"create2","phone":"","otherName":"","email":"subadmincreate2@gmail.com","password":"Test2024!","role":"user","ids":"[]","userId":"subadmin8@gmail.com","gender":"","dateOfBirth":"","country":"","address":"","city":"","LGA":"","state":"","officeAddress":"","officeCity":"","officeLGA":"","employerName":"","officeState":"","contactPersonPlaceOfEmployment":"","nameOfContactPerson":"","contactEmail":"","contactPersonPhoneNumber":"","sendEmail":"true"}
+2025-02-24 13:01:20 [info]: POST /single-create 201 - Request Body: {"firstName":"subadmin","lastName":"create2","phone":"","otherName":"","email":"subadmincreate2@gmail.com","password":"Test2024!","role":"user","ids":"[]","userId":"subadmin8@gmail.com","gender":"","dateOfBirth":"","country":"","address":"","city":"","LGA":"","state":"","officeAddress":"","officeCity":"","officeLGA":"","employerName":"","officeState":"","contactPersonPlaceOfEmployment":"","nameOfContactPerson":"","contactEmail":"","contactPersonPhoneNumber":"","sendEmail":"true"}
+2025-02-24 13:01:42 [info]: GET /users 200
+2025-02-24 13:02:05 [info]: GET /user-profile/67bc5f8a792df59892e6e766 403
+2025-02-24 13:02:05 [info]: GET / 403
+2025-02-24 13:02:07 [info]: GET /user-profile/67bc5f8a792df59892e6e766 403
+2025-02-24 13:02:07 [info]: GET / 403
+2025-02-24 13:02:09 [info]: GET / 403
+2025-02-24 13:02:11 [info]: GET /user-profile/67bc5f8a792df59892e6e766 403
+2025-02-24 13:02:14 [info]: GET /user-profile/67b746b1a70ab4937ee8a884 403
+2025-02-24 13:02:14 [info]: GET / 403
+2025-02-24 13:02:18 [info]: GET /user-profile/67b746b1a70ab4937ee8a884 403
+2025-02-24 13:02:25 [info]: GET /679cc4f43a2a4fadcf7d6fe6 304
+2025-02-24 13:02:27 [info]: GET / 403
+2025-02-24 13:02:27 [info]: GET /all 403
+2025-02-24 13:02:28 [info]: GET /679cc4f43a2a4fadcf7d6fe6 304
+2025-02-24 13:02:28 [info]: GET / 403
+2025-02-24 13:02:29 [info]: GET /all 403
+2025-02-24 13:02:31 [info]: GET / 403
+2025-02-24 13:02:32 [info]: GET /all 403
+2025-02-24 13:02:35 [info]: GET /679cc4f43a2a4fadcf7d6fe6 401
+2025-02-24 13:02:37 [info]: GET / 403
+2025-02-24 13:02:38 [info]: GET /all 403
+2025-02-24 13:02:39 [info]: GET / 401
+2025-02-24 13:02:41 [info]: GET / 403
+2025-02-24 13:02:43 [info]: GET /all 403
+2025-02-24 13:02:43 [info]: GET / 403
+2025-02-24 13:02:45 [info]: GET /all 403
+2025-02-24 13:02:52 [info]: POST /login 200 - Request Body: {"email":"subadmin8@gmail.com","password":"Test2024!"}
+2025-02-24 13:02:57 [info]: GET /679cc4f43a2a4fadcf7d6fe6 304
+2025-02-24 13:02:58 [info]: GET / 304
+2025-02-24 13:03:01 [info]: GET /users 304
+2025-02-24 13:03:38 [info]: GET / 403
+2025-02-24 13:03:39 [info]: GET / 403
+2025-02-24 13:03:39 [info]: GET /all 403
+2025-02-24 13:03:41 [info]: GET /user-profile/67bc5f8a792df59892e6e766 403
+2025-02-24 13:03:41 [info]: GET /all 403
+2025-02-24 13:03:42 [info]: GET / 403
+2025-02-24 13:03:44 [info]: GET /user-profile/67bc5f8a792df59892e6e766 403
+2025-02-24 13:03:44 [info]: GET /all 403
+2025-02-24 13:03:46 [info]: GET / 403
+2025-02-24 13:03:50 [info]: GET /all 403
+2025-02-24 13:03:50 [info]: GET /user-profile/67bc5f8a792df59892e6e766 403
+2025-02-24 13:03:58 [info]: POST /login 200 - Request Body: {"email":"test@gmail.com","password":"Test2024!"}
+2025-02-24 13:04:03 [info]: GET / 304
+2025-02-24 13:04:04 [info]: GET /users 304
+2025-02-24 13:04:05 [info]: GET / 304
+2025-02-24 13:04:07 [info]: GET / 304
+2025-02-24 13:04:08 [info]: GET /679cc4f43a2a4fadcf7d6fe6 304
+2025-02-24 13:05:16 [info]: POST /login 200 - Request Body: {"email":"test@gmail.com","password":"Test2024!"}
+2025-02-24 13:05:20 [info]: GET / 200
+2025-02-24 13:05:21 [info]: GET / 304
+2025-02-24 13:05:22 [info]: GET / 304
+2025-02-24 13:05:23 [info]: GET / 304
+2025-02-24 13:05:23 [info]: GET /679cc4f43a2a4fadcf7d6fe6 304
+2025-02-24 13:05:25 [info]: GET /all 200
+2025-02-24 13:05:31 [info]: PUT /679cc4f43a2a4fadcf7d6fe6 200 - Request Body: {"name":"edit role","permissions":["6798e5436f9cadd8ad855ef1","6798e5436f9cadd8ad855ef2","6798e5436f9cadd8ad855ef3","6798e5436f9cadd8ad855ef7"]}
+2025-02-24 13:05:33 [info]: GET / 200
+2025-02-24 13:05:41 [info]: POST /login 200 - Request Body: {"email":"subadmin8@gmail.com","password":"Test2024!"}
+2025-02-24 13:05:43 [info]: GET /users 304
+2025-02-24 13:05:44 [info]: GET /679cc4f43a2a4fadcf7d6fe6 200
+2025-02-24 13:05:45 [info]: GET / 304
+2025-02-24 13:06:25 [info]: GET / 403
+2025-02-24 13:06:26 [info]: GET /all 403
+2025-02-24 13:06:27 [info]: GET / 403
+2025-02-24 13:06:28 [info]: GET /all 403
+2025-02-24 13:06:30 [info]: GET / 403
+2025-02-24 13:06:33 [info]: GET /all 403
+2025-02-24 13:06:34 [info]: GET / 403
+2025-02-24 13:06:35 [info]: GET /user-profile/67bc5f8a792df59892e6e766 200
+2025-02-24 13:06:38 [info]: GET /all 403
+2025-02-24 13:06:50 [info]: GET /users 304
+2025-02-24 13:06:57 [info]: PUT /user-details/67bc5f8a792df59892e6e766 200 - Request Body: {"firstName":"subadmin","lastName":"create2","phone":"","otherName":"","email":"subadmincreate2@gmail.com","password":"","role":"user","ids":"[]","userId":"","gender":"","dateOfBirth":"","country":"","address":"","city":"","LGA":"","state":"","officeAddress":"","officeCity":"","officeLGA":"","employerName":"","officeState":"","contactPersonPlaceOfEmployment":"","nameOfContactPerson":"","contactEmail":"","contactPersonPhoneNumber":"","sendEmail":"true"}
+2025-02-24 13:07:28 [info]: GET /users 200
+2025-02-24 13:08:04 [info]: GET / 403
+2025-02-24 13:08:07 [info]: GET /all 403
+2025-02-24 13:08:08 [info]: GET /user-profile/67bc5f8a792df59892e6e766 200
+2025-02-24 13:08:34 [info]: GET /users 304
+2025-02-24 13:12:28 [info]: GET / 403
+2025-02-24 13:12:29 [info]: GET /all 403
+2025-02-24 13:12:31 [info]: GET / 403
+2025-02-24 13:12:33 [info]: GET /all 403
+2025-02-24 13:12:36 [info]: GET / 403
+2025-02-24 13:12:39 [info]: GET /all 403
+2025-02-24 13:12:44 [info]: GET / 403
+2025-02-24 13:12:45 [info]: GET / 403
+2025-02-24 13:12:47 [info]: GET /user-profile/67bc5f8a792df59892e6e766 304
+2025-02-24 13:12:48 [info]: GET / 403
+2025-02-24 13:12:51 [info]: GET /user-profile/67bc5f8a792df59892e6e766 304
+2025-02-24 13:12:53 [info]: GET / 403
+2025-02-24 13:13:08 [info]: GET /users 304
+2025-02-24 13:14:10 [info]: POST /login 200 - Request Body: {"email":"subadmin8@gmail.com","password":"Test2024!"}
+2025-02-24 13:14:13 [info]: GET /679cc4f43a2a4fadcf7d6fe6 304
+2025-02-24 13:14:14 [info]: GET / 304
+2025-02-24 13:14:22 [info]: GET / 304
+2025-02-24 13:14:24 [info]: GET / 403
+2025-02-24 13:14:24 [info]: GET /all 403
+2025-02-24 13:14:25 [info]: GET / 403
+2025-02-24 13:14:26 [info]: GET /all 403
+2025-02-24 13:14:28 [info]: GET / 403
+2025-02-24 13:14:29 [info]: GET /all 403
+2025-02-24 13:15:06 [info]: GET / 403
+2025-02-24 13:15:09 [info]: GET /all 403
+2025-02-24 13:16:03 [info]: GET / 403
+2025-02-24 13:16:04 [info]: GET /all 403
+2025-02-24 13:16:05 [info]: GET / 403
+2025-02-24 13:16:07 [info]: GET /all 403
+2025-02-24 13:16:08 [info]: GET / 403
+2025-02-24 13:16:08 [info]: GET /user-profile/undefined 400
+2025-02-24 13:16:13 [info]: GET / 403
+2025-02-24 13:16:13 [info]: GET /user-profile/undefined 400
+2025-02-24 13:16:13 [info]: GET /all 403
+2025-02-24 13:16:16 [info]: GET /user-profile/undefined 400
+2025-02-24 13:16:17 [info]: POST /single-create 400 - Request Body: {"firstName":"subadmin","lastName":"create3","phone":"","otherName":"","email":"subadmincreate3@gmail.com","password":"Test2024!","role":"user","ids":"[]","userId":"subadmin8@gmail.com","gender":"","dateOfBirth":"","country":"","address":"","city":"","LGA":"","state":"","officeAddress":"","officeCity":"","officeLGA":"","employerName":"","officeState":"","contactPersonPlaceOfEmployment":"","nameOfContactPerson":"","contactEmail":"","contactPersonPhoneNumber":"","sendEmail":"true"}
+2025-02-24 13:16:18 [info]: POST /single-create 400 - Request Body: {"firstName":"subadmin","lastName":"create3","phone":"","otherName":"","email":"subadmincreate3@gmail.com","password":"Test2024!","role":"user","ids":"[]","userId":"subadmin8@gmail.com","gender":"","dateOfBirth":"","country":"","address":"","city":"","LGA":"","state":"","officeAddress":"","officeCity":"","officeLGA":"","employerName":"","officeState":"","contactPersonPlaceOfEmployment":"","nameOfContactPerson":"","contactEmail":"","contactPersonPhoneNumber":"","sendEmail":"true"}
+2025-02-24 13:16:19 [info]: GET /all 403
+2025-02-24 13:16:22 [info]: GET /user-profile/undefined 400
+2025-02-24 13:16:40 [info]: GET /users 304
+2025-02-24 13:19:05 [info]: GET / 403
+2025-02-24 13:19:07 [info]: GET / 403
+2025-02-24 13:19:08 [info]: GET /user-profile/67bc5f8a792df59892e6e766 304
+2025-02-24 13:19:09 [info]: GET / 403
+2025-02-24 13:19:10 [info]: GET /all 403
+2025-02-24 13:19:13 [info]: GET /all 403
+2025-02-24 13:19:14 [info]: GET / 403
+2025-02-24 13:19:17 [info]: GET /all 403
+2025-02-24 13:20:39 [info]: GET / 403
+2025-02-24 13:20:40 [info]: GET /all 403
+2025-02-24 13:20:43 [info]: GET / 403
+2025-02-24 13:20:43 [info]: GET /all 403
+2025-02-24 13:20:46 [info]: GET /all 403
+2025-02-24 13:20:48 [info]: GET / 403
+2025-02-24 13:20:48 [info]: GET /user-profile/67bc5f8a792df59892e6e766 304
+2025-02-24 13:20:50 [info]: GET /user-profile/67bc5f8a792df59892e6e766 401
+2025-02-24 13:20:52 [info]: GET / 403
+2025-02-24 13:20:53 [info]: GET /all 403
+2025-02-24 13:20:54 [info]: GET / 403
+2025-02-24 13:20:55 [info]: GET /user-profile/67b746b1a70ab4937ee8a884 200
+2025-02-24 13:20:56 [info]: GET / 403
+2025-02-24 13:21:01 [info]: GET / 403
+2025-02-24 13:21:06 [info]: GET /users 304
+2025-02-24 13:21:09 [info]: PUT /user-details/67b746b1a70ab4937ee8a884 200 - Request Body: {"firstName":"thirthyfourth","lastName":"user","phone":"","otherName":"","email":"thirthyfourthuser@gmail.com","password":"","role":"user","ids":"[]","userId":"","gender":"","dateOfBirth":"","country":"","address":"","city":"","LGA":"","state":"","officeAddress":"","officeCity":"","officeLGA":"","employerName":"","officeState":"","contactPersonPlaceOfEmployment":"","nameOfContactPerson":"","contactEmail":"","contactPersonPhoneNumber":"","sendEmail":"true"}
+2025-02-24 13:21:09 [info]: PUT /user-details/67b746b1a70ab4937ee8a884 200 - Request Body: {"firstName":"thirthyfourth","lastName":"user","phone":"","otherName":"","email":"thirthyfourthuser@gmail.com","password":"","role":"user","ids":"[]","userId":"","gender":"","dateOfBirth":"","country":"","address":"","city":"","LGA":"","state":"","officeAddress":"","officeCity":"","officeLGA":"","employerName":"","officeState":"","contactPersonPlaceOfEmployment":"","nameOfContactPerson":"","contactEmail":"","contactPersonPhoneNumber":"","sendEmail":"true"}
+2025-02-24 13:21:39 [info]: GET /admin/user-details/67b746b1a70ab4937ee8a884 200
+2025-02-24 13:21:42 [info]: GET / 403
+2025-02-24 13:21:46 [info]: GET / 403
+2025-02-24 13:21:46 [info]: GET /all 403
+2025-02-24 13:21:48 [info]: GET / 403
+2025-02-24 13:21:49 [info]: GET /user-profile/67bc5f8a792df59892e6e766 304
+2025-02-24 13:21:49 [info]: GET /all 403
+2025-02-24 13:21:51 [info]: GET /users 200
+2025-02-24 13:21:53 [info]: GET / 403
+2025-02-24 13:22:00 [info]: GET /users 200
+2025-02-24 13:22:00 [info]: GET /all 403
+2025-02-24 13:22:34 [info]: GET /all 403
+2025-02-24 13:22:34 [info]: GET / 403
+2025-02-24 13:22:36 [info]: GET / 403
+2025-02-24 13:22:39 [info]: GET / 403
+2025-02-24 13:22:43 [info]: GET / 403
+2025-02-24 13:22:54 [info]: GET /users 304
+2025-02-24 13:24:06 [info]: GET /all 403
+2025-02-24 13:24:06 [info]: GET / 403
+2025-02-24 13:24:09 [info]: GET / 403
+2025-02-24 13:24:10 [info]: GET /all 403
+2025-02-24 13:24:17 [info]: GET / 403
+2025-02-24 13:24:20 [info]: GET /all 403
+2025-02-24 13:24:39 [info]: GET /users 304
+2025-02-24 13:24:46 [info]: POST /login 200 - Request Body: {"email":"subadmin8@gmail.com","password":"Test2024!"}
+2025-02-24 13:24:48 [info]: GET /679cc4f43a2a4fadcf7d6fe6 304
+2025-02-24 13:24:53 [info]: GET / 304
+2025-02-24 13:24:56 [info]: GET / 304
+2025-02-24 13:25:02 [info]: GET / 403
+2025-02-24 13:25:03 [info]: GET /all 403
+2025-02-24 13:25:04 [info]: GET / 403
+2025-02-24 13:25:05 [info]: GET /all 403
+2025-02-24 13:25:07 [info]: GET / 403
+2025-02-24 13:25:10 [info]: GET /all 403
+2025-02-24 13:25:12 [info]: GET / 403
+2025-02-24 13:25:16 [info]: GET /all 403
+2025-02-24 13:25:22 [info]: GET / 403
+2025-02-24 13:25:24 [info]: GET /user-profile/67bc5f8a792df59892e6e766 200
+2025-02-24 13:25:24 [info]: GET / 403
+2025-02-24 13:25:27 [info]: GET / 403
+2025-02-24 13:25:31 [info]: GET / 403
+2025-02-24 13:25:34 [info]: GET /users 200
+2025-02-24 13:26:09 [info]: GET / 403
+2025-02-24 13:26:09 [info]: GET /all 403
+2025-02-24 13:26:10 [info]: GET / 403
+2025-02-24 13:26:11 [info]: GET /all 403
+2025-02-24 13:28:54 [info]: GET / 403
+2025-02-24 13:28:57 [info]: GET /all 403
+2025-02-24 13:29:19 [info]: POST /login 200 - Request Body: {"email":"subadmin8@gmail.com","password":"Test2024!"}
+2025-02-24 13:29:22 [info]: GET /679cc4f43a2a4fadcf7d6fe6 304
+2025-02-24 13:29:23 [info]: GET /users 304
+2025-02-24 13:29:24 [info]: GET / 304
+2025-02-24 13:31:28 [info]: POST /login 400 - Request Body: {"email":"techtrainings@raoatech.com","password":"Test2024!"}
+2025-02-24 13:35:31 [info]: POST /login 400 - Request Body: {"email":"techtrainings@raoatech.com","password":"Test2024!"}
+2025-02-24 13:36:19 [info]: POST /login 500 - Request Body: {"email":"techtrainings@raoatech.com","password":"Test2024!"}
+2025-02-24 13:36:37 [info]: POST /login 400 - Request Body: {"email":"techtrainings@raoatech.com","password":"Test2024!"}
+2025-02-24 13:38:43 [info]: POST /login 200 - Request Body: {"email":"test@gmail.com","password":"Test2024!"}
+2025-02-24 13:38:46 [info]: GET / 304
+2025-02-24 13:38:52 [info]: GET / 304

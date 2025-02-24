@@ -627,14 +627,23 @@ export class UserAuthController {
 
    
       // Find all records with empty phone values
+
+      // await Organization.updateMany({ phone: "" }, { $set: { phone: null } });
+      // await User.updateMany({ phone: "" }, { $set: { phone: null } });
+      // await SubAdmin.updateMany({ phone: "" }, { $set: { phone: null } });
+      // await SuperAdmin.updateMany({ phone: "" }, { $set: { phone: null } });
+      
+      
       // const emptyPhoneOrgs = await Organization.find({ phone: "" });
-      // console.log(emptyPhoneOrgs, "631")
+      // console.log(emptyPhoneOrgs, "631", emptyPhoneOrgs.length)
       // const emptyPhoneUsers = await User.find({ phone: "" });
-      // console.log(emptyPhoneUsers, "633")
+      // console.log(emptyPhoneUsers, "633", emptyPhoneOrgs.length)
       // const emptyPhoneSubAdmins = await SubAdmin.find({ phone: "" });
-      // console.log(emptyPhoneSubAdmins, "635")
+      // console.log(emptyPhoneSubAdmins, "635", emptyPhoneSubAdmins.length)
       // const emptyPhoneSuperAdmins = await SuperAdmin.find({ phone: "" });
-      // console.log(emptyPhoneSuperAdmins, "637")
+      // console.log(emptyPhoneSuperAdmins, "637", emptyPhoneSuperAdmins.length)
+
+
       // // Delete records with empty phone values
       // if (emptyPhoneOrgs.length > 0) {
       //   await Organization.deleteMany({ phone: "" });
