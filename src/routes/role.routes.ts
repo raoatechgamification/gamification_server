@@ -30,14 +30,14 @@ router.put(
 router.get(
   "/",
   authenticate,
-  authorize(["admin"]),
+  authorize(["admin", "subAdmin"]),
   getAllRoles
 )
 
 router.get(
   "/:id",
   authenticate,
-  authorize(["admin"]),
+  authorize(["admin", "subAdmin"]),
   getRole
 )
 

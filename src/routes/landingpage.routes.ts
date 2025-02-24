@@ -18,7 +18,7 @@ const {
 router.post(
   "/",
   authenticate,
-  authorize(["admin"]),
+  authorize(["admin", "subAdmin"]),
   upload.array("file", 3),
   CreateLandingPage
 );

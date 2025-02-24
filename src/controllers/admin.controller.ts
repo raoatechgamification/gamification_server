@@ -564,7 +564,7 @@ class AdminController {
 
       const { userId } = req.params;
       const image = req.file;
-      const { ids, password, ...rest } = req.body;  // Explicitly destructure and exclude password
+      const { ids, password, phone, ...rest } = req.body;  // Explicitly destructure and exclude password
 
       if (!userId) {
         return ResponseHandler.failure(res, "User ID is required", 400);
@@ -668,6 +668,7 @@ class AdminController {
             subGroups: updatedSubGroups.length
               ? updatedSubGroups
               : user.subGroups,
+              phone: phone || null,
             ...rest,  // rest object now explicitly excludes password
             image: fileUploadResult ? fileUploadResult.secure_url : user.image,
           },
