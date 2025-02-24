@@ -1,7 +1,6 @@
 import { Request, Response } from "express";
-import { ResponseHandler } from "../middlewares/responseHandler.middleware";
-import { scheduleMeeting } from "../services/googleCalendar.service";
 import { getTokens } from "../config/googleAuth.config";
+import { ResponseHandler } from "../middlewares/responseHandler.middleware";
 import Booking from "../models/booking.model";
 import User from "../models/user.model";
 
@@ -32,7 +31,7 @@ class BookingController {
         title,
         description,
         startDate,
-       
+
         endDate,
         timeZone,
         frequency,
@@ -46,17 +45,18 @@ class BookingController {
       const users = await User.find({ _id: { $in: participants } });
       const emails = users.map((user) => user.email);
 
-      const eventDetails = {
-        summary: title,
-        description,
-        startTime: startDate,
-        endTime: endDate,
-        courseId,
-        attendees: emails.map((email) => ({ email })),
-        timeZone,
-      };
+      // const eventDetails = {
+      //   summary: title,
+      //   description,
+      //   startTime: startDate,
+      //   endTime: endDate,
 
-      const bookingResponse = await scheduleMeeting(eventDetails);
+      //   attendees: emails.map((email) => ({ email })),
+      //   timeZone,
+      //    courseId,
+      // };
+
+      // const bookingResponse = await scheduleMeeting(eventDetails);
 
       const newBooking = await Booking.create({
         title,
@@ -67,9 +67,10 @@ class BookingController {
         frequency,
         participants,
         organizationId,
-        calendarEventId: bookingResponse.id,
-        conferenceData: bookingResponse,
+        // calendarEventId: bookingResponse.id,
+        // conferenceData: bookingResponse,
         reminder,
+        courseId,
       });
 
       return ResponseHandler.success(
@@ -81,6 +82,100 @@ class BookingController {
       return ResponseHandler.failure(
         res,
         error.message || "An error occurred while creating your booking",
+        error.status || 500
+      );
+    }
+  }
+
+  async getAllBookings(req: Request, res: Response) {
+    try {
+      const bookings = await Booking.find();
+      return ResponseHandler.success(
+        res,
+        bookings,
+        "Bookings retrieved successfully"
+      );
+    } catch (error: any) {
+      return ResponseHandler.failure(
+        res,
+        error.message || "Failed to retrieve bookings",
+        error.status || 500
+      );
+    }
+  }
+
+  async getOneBooking(req: Request, res: Response) {
+    try {
+      const { id } = req.params;
+      const booking = await Booking.findById(id);
+
+      if (!booking) {
+        return ResponseHandler.failure(res, "Booking not found", 404);
+      }
+
+      return ResponseHandler.success(
+        res,
+        booking,
+        "Booking retrieved successfully"
+      );
+    } catch (error: any) {
+      return ResponseHandler.failure(
+        res,
+        error.message || "Failed to retrieve booking",
+        error.status || 500
+      );
+    }
+  }
+
+  async editBooking(req: Request, res: Response) {
+    try {
+      const { id } = req.params;
+      const updateData = req.body;
+
+      const updatedBooking = await Booking.findByIdAndUpdate(id, updateData, {
+        new: true,
+      });
+
+      if (!updatedBooking) {
+        return ResponseHandler.failure(
+          res,
+          "Booking not found or update failed",
+          404
+        );
+      }
+
+      return ResponseHandler.success(
+        res,
+        updatedBooking,
+        "Booking updated successfully"
+      );
+    } catch (error: any) {
+      return ResponseHandler.failure(
+        res,
+        error.message || "Failed to update booking",
+        error.status || 500
+      );
+    }
+  }
+  // Delete booking
+  async deleteBooking(req: Request, res: Response) {
+    try {
+      const { id } = req.params;
+      const deletedBooking = await Booking.findByIdAndDelete(id);
+
+      if (!deletedBooking) {
+        return ResponseHandler.failure(
+          res,
+          "Booking not found or already deleted",
+          404
+        );
+      }
+
+      return ResponseHandler.success(res, null, "Booking deleted successfully");
+    } catch (error: any) {
+      return ResponseHandler.failure(
+        res,
+        error.message || "Failed to delete booking",
         error.status || 500
       );
     }

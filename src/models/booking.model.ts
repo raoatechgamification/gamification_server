@@ -12,6 +12,8 @@ export interface IBooking extends Document {
   calendarEventId?: string;
   reminder?: "email" | "sms" | string; 
   conferenceData?: Record<string, any>; 
+  courseId?: mongoose.Types.ObjectId;
+  time?: string;
 }
 
 const BookingSchema: Schema<IBooking> = new Schema(
@@ -47,7 +49,9 @@ const BookingSchema: Schema<IBooking> = new Schema(
     },
     calendarEventId: { type: String, trim: true },
     reminder: { type: String, enum: ["email", "sms", "push"], trim: true },
-    conferenceData: { type: mongoose.Schema.Types.Mixed }, 
+    conferenceData: { type: mongoose.Schema.Types.Mixed },
+    courseId: { type: mongoose.Schema.Types.ObjectId, ref: "Course" }, 
+    time: { type: String, required: false },
   },
   {
     timestamps: true,
