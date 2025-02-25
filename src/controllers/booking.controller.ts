@@ -2,7 +2,10 @@ import { Request, Response } from "express";
 import { getTokens } from "../config/googleAuth.config";
 import { ResponseHandler } from "../middlewares/responseHandler.middleware";
 import Booking from "../models/booking.model";
+import Organization from "../models/organization.model";
+import SubAdmin from "../models/subadmin.model";
 import User from "../models/user.model";
+import { sendBookingNotification } from "../services/sendMail.service";
 
 class BookingController {
   async oauth2Callback(req: Request, res: Response) {
@@ -41,9 +44,19 @@ class BookingController {
       } = req.body;
 
       const organizationId = req.admin._id;
-
+      const organization = await Organization.findById(organizationId);
+      console.log(organization, "organization");
       const users = await User.find({ _id: { $in: participants } });
-      const emails = users.map((user) => user.email);
+      const subAdmins = await SubAdmin.find({ _id: { $in: participants } });
+
+      // const emails = userDetails.map((user) => user.email);
+      // const subAdminEmails = subAdminDetails.map(subAdmin => subAdmin.email);
+      // const firstNames = [...userDetails, ...subAdminDetails].map(person => person.firstName);
+
+      // const allEmails = [...emails, ...subAdminEmails];
+
+      // Remove any potential duplicates (in case a user appears in both collections)
+      // const uniqueEmails = [...new Set(allEmails)];
 
       // const eventDetails = {
       //   summary: title,
@@ -72,6 +85,31 @@ class BookingController {
         reminder,
         courseId,
       });
+
+      if (reminder === "email") {
+        const userDetails = [
+          ...users.map((user) => ({
+            email: user.email,
+            firstName: user.firstName,
+          })),
+          ...subAdmins.map((subAdmin) => ({
+            email: subAdmin.email,
+            firstName: subAdmin.firstName,
+          })),
+        ];
+
+        console.log(userDetails, "userdetails");
+        for (const user of userDetails) {
+          const emailVariables = {
+            email: user.email,
+            firstName: user.firstName,
+            bookingName: newBooking.title,
+            organizationName: organization?.name || "Raoatech",
+            subject: "Booking Notification",
+          };
+          await sendBookingNotification(emailVariables);
+        }
+      }
 
       return ResponseHandler.success(
         res,

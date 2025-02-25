@@ -1,31 +1,44 @@
-import mongoose from "mongoose";
 import dotenv from "dotenv";
 import { Request, Response } from "express";
+import mongoose from "mongoose";
 import { ResponseHandler } from "../../middlewares/responseHandler.middleware";
+import Course from "../../models/course.model";
 import Group from "../../models/group.model";
 import Organization, { IOrganization } from "../../models/organization.model";
+import SubAdmin from "../../models/subadmin.model";
 import SuperAdmin, { ISuperAdmin } from "../../models/superadmin.model";
 import User, { IUser } from "../../models/user.model";
 import { sendLoginEmail } from "../../services/sendMail.service";
 import UserService from "../../services/user.service";
 import { uploadToCloudinary } from "../../utils/cloudinaryUpload";
+import { getOrganizationId } from "../../utils/getOrganizationId.util";
 import { comparePassword, hashPassword } from "../../utils/hash";
 import { generateToken } from "../../utils/jwt";
 dotenv.config();
-import { getOrganizationId } from "../../utils/getOrganizationId.util";
-import Course from "../../models/course.model";
-import SubAdmin from "../../models/subadmin.model";
 
 export class UserAuthController {
-
   static async createSimpleUser(req: Request, res: Response) {
     try {
-      const { firstName, lastName, email, phone, password, organizationId: orgaId } = req.body;
+      const {
+        firstName,
+        lastName,
+        email,
+        phone,
+        password,
+        organizationId: orgaId,
+      } = req.body;
       const courseId: any = req.query.courseId;
-    
+
       const organizationId = process.env.LANDINGPAGE_ID;
-      
-      if (!firstName || !lastName || !email || !phone || !password || !organizationId) {
+
+      if (
+        !firstName ||
+        !lastName ||
+        !email ||
+        !phone ||
+        !password ||
+        !organizationId
+      ) {
         return ResponseHandler.failure(res, "All fields are required", 400);
       }
 
@@ -36,7 +49,11 @@ export class UserAuthController {
 
       const existingPhone = await User.findOne({ phone });
       if (existingPhone) {
-        return ResponseHandler.failure(res, "Phone Number already registered", 400);
+        return ResponseHandler.failure(
+          res,
+          "Phone Number already registered",
+          400
+        );
       }
 
       const organization = await Organization.findById(organizationId);
@@ -56,10 +73,12 @@ export class UserAuthController {
         organizationId,
       });
 
-      const userResponse: any = await User.findById(newUser._id).select("-password");
+      const userResponse: any = await User.findById(newUser._id).select(
+        "-password"
+      );
       let tokenPayload;
       let token;
-      
+
       if (courseId) {
         const course = await Course.findById(courseId).lean();
         if (!course) {
@@ -120,10 +139,12 @@ export class UserAuthController {
         );
 
         // Update course with new learner
-        const learnersToAdd = [{
-          userId: newUser._id,
-          progress: 0,
-        }];
+        const learnersToAdd = [
+          {
+            userId: newUser._id,
+            progress: 0,
+          },
+        ];
 
         const updateQuery: any = {
           $addToSet: {
@@ -136,13 +157,15 @@ export class UserAuthController {
         }
 
         await Course.updateOne({ _id: courseId }, updateQuery);
-        
+
         tokenPayload = UserAuthController.getUserTokenPayload(userResponse);
-        console.log(tokenPayload, "signup")
+        console.log(tokenPayload, "signup");
         token = await generateToken(tokenPayload);
       }
-      
-      const userResponseWithoutPassword = await User.findById(newUser._id).select("-password");
+
+      const userResponseWithoutPassword = await User.findById(
+        newUser._id
+      ).select("-password");
       return ResponseHandler.success(
         res,
         { userResponse: userResponseWithoutPassword, token, newUser },
@@ -203,7 +226,11 @@ export class UserAuthController {
 
       const existingPhone = await User.findOne({ phone });
       if (existingPhone) {
-        return ResponseHandler.failure(res, "Phone Number already registered", 400);
+        return ResponseHandler.failure(
+          res,
+          "Phone Number already registered",
+          400
+        );
       }
 
       let parsedIds: string[] = [];
@@ -265,7 +292,7 @@ export class UserAuthController {
         nameOfContactPerson,
         contactEmail,
         contactPersonPhoneNumber,
-        createdBy: "Admin"
+        createdBy: "Admin",
       });
 
       const userIdObject = newUser._id as mongoose.Types.ObjectId;
@@ -625,15 +652,32 @@ export class UserAuthController {
     try {
       const { email, password } = req.body;
 
-   
+      // var data = getTextMessageInput(
+      //   process.env.RECIPIENT_WAID,
+      //   "Welcome to the Movie Ticket Demo App for Node.js!"
+      // );
+
+      // sendMessage(data)
+      //   .then(function (response) {
+      //     console.log(response.data, 622);
+      //     // res.redirect("/");
+      //     // res.sendStatus(200);
+      //     // return;
+      //   })
+      //   .catch(function (error) {
+      //     // console.log(error);
+      //     console.log(error.response.data);
+      //     // res.sendStatus(500);
+      //     // return;
+      //   });
+
       // Find all records with empty phone values
 
       // await Organization.updateMany({ phone: "" }, { $set: { phone: null } });
       // await User.updateMany({ phone: "" }, { $set: { phone: null } });
       // await SubAdmin.updateMany({ phone: "" }, { $set: { phone: null } });
       // await SuperAdmin.updateMany({ phone: "" }, { $set: { phone: null } });
-      
-      
+
       // const emptyPhoneOrgs = await Organization.find({ phone: "" });
       // console.log(emptyPhoneOrgs, "631", emptyPhoneOrgs.length)
       // const emptyPhoneUsers = await User.find({ phone: "" });
@@ -643,26 +687,11 @@ export class UserAuthController {
       // const emptyPhoneSuperAdmins = await SuperAdmin.find({ phone: "" });
       // console.log(emptyPhoneSuperAdmins, "637", emptyPhoneSuperAdmins.length)
 
-
-      // // Delete records with empty phone values
-      // if (emptyPhoneOrgs.length > 0) {
-      //   await Organization.deleteMany({ phone: "" });
-      // }
-      // if (emptyPhoneUsers.length > 0) {
-      //   await User.deleteMany({ phone: "" });
-      // }
-      // if (emptyPhoneSubAdmins.length > 0) {
-      //   await SubAdmin.deleteMany({ phone: "" });
-      // }
-      // if (emptyPhoneSuperAdmins.length > 0) {
-      //   await SuperAdmin.deleteMany({ phone: "" });
-      // }
-
-        // console.log(ajibade, "ajibade")
+      // console.log(ajibade, "ajibade")
       const account: any =
         (await Organization.findOne({ email })) ||
         (await User.findOne({ email })) ||
-        (await SubAdmin.findOne({email})) ||
+        (await SubAdmin.findOne({ email })) ||
         (await SuperAdmin.findOne({ email }));
 
       if (!account) {
@@ -691,12 +720,13 @@ export class UserAuthController {
         case "superAdmin":
           tokenPayload = UserAuthController.getSuperAdminTokenPayload(account);
           break;
-          case "subAdmin":
-            tokenPayload = UserAuthController.getOrganizationTokenPayload(account);
-            break;
+        case "subAdmin":
+          tokenPayload =
+            UserAuthController.getOrganizationTokenPayload(account);
+          break;
         case "user":
           tokenPayload = UserAuthController.getUserTokenPayload(account);
-          console.log(tokenPayload, "login")
+          console.log(tokenPayload, "login");
           break;
 
         default:
@@ -723,7 +753,6 @@ export class UserAuthController {
   }
 
   private static getUserTokenPayload(account: IUser) {
-
     return {
       id: account._id,
       email: account.email,
@@ -737,7 +766,7 @@ export class UserAuthController {
       role: account.role,
     };
   }
-  
+
   private static getOrganizationTokenPayload(account: IOrganization) {
     return {
       id: account._id,

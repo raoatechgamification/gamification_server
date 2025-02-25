@@ -1,6 +1,6 @@
-import * as postmark from "postmark";
 import fs from "fs";
 import path from "path";
+import * as postmark from "postmark";
 import { emailTransport } from "../config/email.config";
 import MailjetService from "../services/mailjetMail.service";
 
@@ -8,7 +8,6 @@ const mailjetService = new MailjetService();
 const postmarkClient = new postmark.ServerClient(
   process.env.POSTMARK_API_TOKEN!
 );
-
 
 export interface VariablesInterface {
   firstName: string;
@@ -23,6 +22,14 @@ export interface OrganizationOnboardingVariablesInterface {
   password: string;
   subject: string;
   name: string;
+}
+
+export interface BookingVariablesInterface {
+  firstName: string;
+  email: string;
+  bookingName: string;
+  subject: string;
+  organizationName: string;
 }
 
 function getEmailTemplate(templateName: string, variables: VariablesInterface) {
@@ -79,7 +86,7 @@ export async function sendEmail({
 
   try {
     if (service === "postmark") {
-      console.log("The handler got here")
+      console.log("The handler got here");
       await postmarkClient.sendEmail({
         From: senderEmail,
         To: variables.email,
@@ -111,14 +118,13 @@ export async function sendEmail({
   }
 }
 
-
 // export async function sendEmaiil(templateName: string, variables: any) {
 //   try {
 //     const emailTemplate = getEmailTemplate(templateName, variables);
 
 //     await mailjetService.sendEmail(
 //       process.env.EMAIL_USER,
-//       `Gamai Support <${process.env.EMAIL_USER}>`, 
+//       `Gamai Support <${process.env.EMAIL_USER}>`,
 //       variables.email,
 //       variables.name,
 
