@@ -5,7 +5,11 @@ import Booking from "../models/booking.model";
 import Organization from "../models/organization.model";
 import SubAdmin from "../models/subadmin.model";
 import User from "../models/user.model";
-import { sendBookingNotification } from "../services/sendMail.service";
+import {
+  getTextMessageInput,
+  sendBookingNotification,
+  sendMessage,
+} from "../services/sendMail.service";
 
 class BookingController {
   async oauth2Callback(req: Request, res: Response) {
@@ -111,6 +115,26 @@ class BookingController {
         }
       }
 
+      if (reminder === "whatsapp") {
+        var data = getTextMessageInput(
+          "2349056983150",
+          "Welcome to the Movie Ticket Demo App for Node.js!"
+        );
+
+        sendMessage(data)
+          .then(function (response) {
+            console.log(response.data, 622);
+            // res.redirect("/");
+            // res.sendStatus(200);
+            // return;
+          })
+          .catch(function (error) {
+            // console.log(error);
+            console.log(error.response.data);
+            // res.sendStatus(500);
+            // return;
+          });
+      }
       return ResponseHandler.success(
         res,
         newBooking,

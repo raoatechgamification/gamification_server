@@ -1,4 +1,4 @@
-import { NextFunction, Request, Response } from "express";
+import { Request, Response } from "express";
 import mongoose from "mongoose";
 import { NotificationController } from "../controllers/notification.controller";
 import { ResponseHandler } from "../middlewares/responseHandler.middleware";
@@ -8,7 +8,6 @@ import Lesson, { CompletionDetails } from "../models/lesson.model";
 import ObjectiveAssessment, {
   IObjectiveAssessment,
 } from "../models/objectiveAssessment.model";
-import TheoryAssessment from "../models/theoryAssessment.model";
 import Organization from "../models/organization.model";
 import Submission from "../models/submission.model";
 import User, { IUser } from "../models/user.model";
@@ -318,7 +317,9 @@ export class CourseController {
         return ResponseHandler.failure(res, "Organization not found", 404);
       }
 
-      const lessons = await Lesson.find({ instructorId }).sort({ createdAt: -1 }) ;
+      const lessons = await Lesson.find({ instructorId }).sort({
+        createdAt: -1,
+      });
 
       if (!lessons || lessons.length === 0) {
         return ResponseHandler.failure(
@@ -361,7 +362,6 @@ export class CourseController {
         showInstructor,
         isDuplicate,
         duplicatedFrom,
-        
       } = req.body;
 
       // const adminId = req.admin._id;
@@ -389,15 +389,15 @@ export class CourseController {
         //   organizationId: adminI333333333333333333d,
         // });
 
-        const validAssessments = 
-        // (await ObjectiveAssessment.find({
-        //   _id: { $in: assessments },
-        //   organizationId: adminId,
-        // })) ||
-        (await ObjectiveAssessment.find({
-          _id: { $in: assessments },
-          organizationId: adminId,
-        }))
+        const validAssessments =
+          // (await ObjectiveAssessment.find({
+          //   _id: { $in: assessments },
+          //   organizationId: adminId,
+          // })) ||
+          await ObjectiveAssessment.find({
+            _id: { $in: assessments },
+            organizationId: adminId,
+          });
 
         if (validAssessments.length !== assessments.length) {
           return ResponseHandler.failure(
@@ -468,7 +468,7 @@ export class CourseController {
           { $inc: { duplicateCount: 1 } }
         );
       }
-      
+
       const courseData: any = {
         courseCode: code,
         title,
@@ -488,7 +488,6 @@ export class CourseController {
         duplicatedFrom,
       };
 
-      
       const newCourse = await Course.create(courseData);
 
       if (announcements) {
@@ -661,32 +660,38 @@ export class CourseController {
       if (!organization) {
         return ResponseHandler.failure(res, "Organization not found", 404);
       }
-  
+
       const updates = req.body;
-      
+      console.log(updates.assessments, "assess");
+
       // Parse arrays (if they come as strings)
       const lessons = Array.isArray(updates.lessons)
         ? updates.lessons
         : JSON.parse(updates.lessons || "[]");
-  
-      const assessments = []
-      assessments.push(updates.assessments)
 
-      // Validate assessments
-      if (assessments.length) {
-        const validAssessments = await ObjectiveAssessment.find({
-          _id: { $in: assessments },
-          organizationId: adminId,
-        });
-        if (validAssessments.length !== assessments.length) {
-          return ResponseHandler.failure(
-            res,
-            "One or more assessments are invalid",
-            400
-          );
+      // Parse assessments and filter out empty strings
+      let assessments = [];
+      if (updates.assessments) {
+        assessments = Array.isArray(updates.assessments)
+          ? updates.assessments
+          : JSON.parse(updates.assessments || "[]");
+
+        // Filter out empty strings or invalid values
+        assessments = assessments.filter(
+          (id: any) => id && String(id).trim() !== ""
+        );
+
+        // If assessments is empty after filtering, remove it from updates
+        if (assessments.length === 0) {
+          delete updates.assessments;
+        } else {
+          updates.assessments = assessments;
         }
+      } else {
+        // If no assessments provided, remove the field
+        delete updates.assessments;
       }
-  
+      console.log("after assessment");
       // Validate lessons
       if (lessons.length) {
         const validLessons = await Lesson.find({
@@ -701,7 +706,7 @@ export class CourseController {
           );
         }
       }
-      
+      console.log("after lessons");
       // Handle file uploads
       const files = req.files as Express.Multer.File[];
       if (files && files.length > 0) {
@@ -718,7 +723,7 @@ export class CourseController {
         }
         updates.courseImage = Urls;
       }
-  
+      console.log("after files");
       // Handle announcements
       if (updates.announcements) {
         const announcementIds: mongoose.Types.ObjectId[] = [];
@@ -735,17 +740,19 @@ export class CourseController {
         }
         updates.announcements = announcementIds;
       }
-  
+      console.log("after announcements");
+      console.log(updates);
       const updatedCourse = await Course.findByIdAndUpdate(
         courseId,
         { $set: updates },
         { new: true, runValidators: true }
       );
-  
+
       if (!updatedCourse) {
         return ResponseHandler.failure(res, "Course not found", 404);
       }
-  
+
+      console.log("before update");
       // Update lessons with courseId
       if (lessons.length) {
         await Lesson.updateMany(
@@ -753,7 +760,7 @@ export class CourseController {
           { $push: { courseIds: updatedCourse._id } }
         );
       }
-      
+
       return ResponseHandler.success(
         res,
         updatedCourse.toObject(),
@@ -761,14 +768,14 @@ export class CourseController {
         200
       );
     } catch (error: any) {
-      console.error("Error updating course:", error.message);
+      console.error("Error updating course:", error);
       return ResponseHandler.failure(
         res,
         `Server error: ${error.message}`,
         500
       );
     }
-  }  
+  }
 
   async assignCourseToUsers(req: Request, res: Response) {
     try {
@@ -1350,7 +1357,7 @@ export class CourseController {
 
       // Find the course by ID and populate lessons and assessments
       // const course = await Course.findById(courseId)
-      const course = await Course.findOne({ _id: courseId})
+      const course = await Course.findOne({ _id: courseId })
         .populate<{ lessons: LessonDocument[] }>("lessons")
         .populate<{ assessments: AssessmentDocument[] }>("assessments"); // Ensure assessments are populated too
 

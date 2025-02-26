@@ -16,6 +16,7 @@ const router = Router();
 
 router.post("/schedule", authenticate, authorize(["admin"]), createBooking);
 router.get("/schedule", authenticate, authorize(["admin"]), getAllBookings);
+// router.get("/user/schedule", authenticate, authorize(["user"]), getAllBookings);
 
 router.get("/schedule/:id", authenticate, authorize(["admin"]), getOneBooking);
 router.put("/schedule/:id", authenticate, authorize(["admin"]), editBooking);

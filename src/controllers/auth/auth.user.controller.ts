@@ -652,25 +652,6 @@ export class UserAuthController {
     try {
       const { email, password } = req.body;
 
-      // var data = getTextMessageInput(
-      //   process.env.RECIPIENT_WAID,
-      //   "Welcome to the Movie Ticket Demo App for Node.js!"
-      // );
-
-      // sendMessage(data)
-      //   .then(function (response) {
-      //     console.log(response.data, 622);
-      //     // res.redirect("/");
-      //     // res.sendStatus(200);
-      //     // return;
-      //   })
-      //   .catch(function (error) {
-      //     // console.log(error);
-      //     console.log(error.response.data);
-      //     // res.sendStatus(500);
-      //     // return;
-      //   });
-
       // Find all records with empty phone values
 
       // await Organization.updateMany({ phone: "" }, { $set: { phone: null } });

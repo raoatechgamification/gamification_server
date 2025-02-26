@@ -14757,3 +14757,204 @@
 2025-02-26 13:03:28 [info]: GET /schedule/67be2babfe398f3e485326d7 200
 2025-02-26 13:03:31 [info]: GET /schedule 200
 2025-02-26 13:04:12 [info]: GET /schedule/67be2babfe398f3e485326d7 200
+2025-02-26 13:44:07 [info]: GET /sendMessage 200
+2025-02-26 13:44:36 [info]: GET /sendMessage 200
+2025-02-26 14:01:33 [info]: GET /sendMessage 200
+2025-02-26 14:06:25 [info]: GET /sendMessage 200
+2025-02-26 15:06:53 [info]: GET /sendMessage 200
+2025-02-26 15:07:31 [info]: GET /sendMessage 200
+2025-02-26 15:07:35 [info]: GET /sendMessage 200
+2025-02-26 15:08:45 [info]: GET / 200
+2025-02-26 15:08:45 [info]: GET /favicon.ico 404
+2025-02-26 15:08:57 [info]: GET /sendMessage 200
+2025-02-26 15:13:11 [info]: GET /sendMessage 404
+2025-02-26 15:13:26 [info]: POST /sendMessage 200
+2025-02-26 15:16:06 [info]: POST /sendMessage 200
+2025-02-26 15:26:40 [info]: POST /sendMessage 200
+2025-02-26 16:00:50 [info]: GET / 304
+2025-02-26 16:00:51 [info]: GET /all 304
+2025-02-26 16:00:56 [info]: GET /users 304
+2025-02-26 16:02:58 [info]: GET / 304
+2025-02-26 16:02:59 [info]: GET /all 304
+2025-02-26 16:03:02 [info]: GET /users 304
+2025-02-26 16:03:10 [info]: POST /login 200 - Request Body: {"email":"test@gmail.com","password":"Test2024!"}
+2025-02-26 16:03:12 [info]: GET / 304
+2025-02-26 16:03:25 [info]: GET / 304
+2025-02-26 16:06:40 [info]: POST /login 200 - Request Body: {"email":"test@gmail.com","password":"Test2024!"}
+2025-02-26 16:06:41 [info]: GET / 304
+2025-02-26 16:08:13 [info]: GET / 304
+2025-02-26 16:10:15 [info]: GET / 304
+2025-02-26 16:10:21 [info]: GET / 304
+2025-02-26 16:11:19 [info]: GET / 304
+2025-02-26 16:17:23 [info]: POST /schedule 200 - Request Body: {"title":"Team Meeting","description":"Weekly team sync-up meeting","startDate":"2025-03-01T10:00:00Z","endDate":"2025-03-01T11:00:00Z","timeZone":"America/New_York","frequency":"weekly","participants":["67be1d3f81771638cccdcd1a"],"reminder":"email","courseId":"67b464eda9fefd533353448c"}
+2025-02-26 16:17:45 [info]: POST /schedule 200 - Request Body: {"title":"Team Meeting","description":"Weekly team sync-up meeting","startDate":"2025-03-01T10:00:00Z","endDate":"2025-03-01T11:00:00Z","timeZone":"America/New_York","frequency":"weekly","participants":["67be1d3f81771638cccdcd1a"],"reminder":"whatsapp","courseId":"67b464eda9fefd533353448c"}
+2025-02-26 22:08:47 [info]: POST /login 200 - Request Body: {"email":"test@gmail.com","password":"Test2024!"}
+2025-02-26 22:08:48 [info]: GET / 304
+2025-02-26 22:08:59 [info]: GET /all 304
+2025-02-26 22:09:05 [info]: GET /67bdc06f5c84150a198b8a70 200
+2025-02-26 22:09:05 [info]: GET / 200
+2025-02-26 22:09:05 [info]: GET / 200
+2025-02-26 22:09:05 [info]: GET /lesson/getAll 200
+2025-02-26 22:09:21 [info]: PUT /67bdc06f5c84150a198b8a70 500 - Request Body: {"title":"Failing Test ","objective":"ft","code":"ft","instructorId":"6734bd795f604ef68c0f4984","lessonFormat":"pdf","showInstructor":"true","duration":"2 weeks","startDate":"","endDate":"","assessments":[""],"certificate":"6776a3456e5ed0a0f7335df3","price":"0","lessons":["677bba8d4ebb46e000aa445c"],"file":"https://res.cloudinary.com/dldchwdkn/image/upload/v1740488815/course-content/scve3alnwnpr0jpp8jvz.jpg"}
+2025-02-26 22:11:19 [info]: GET /67bdc06f5c84150a198b8a70 304
+2025-02-26 22:11:19 [info]: GET / 304
+2025-02-26 22:11:19 [info]: GET / 304
+2025-02-26 22:11:19 [info]: GET /lesson/getAll 304
+2025-02-26 22:11:44 [info]: PUT /67bdc06f5c84150a198b8a70 500 - Request Body: {"title":"Failing Test ","objective":"ft","code":"ft","instructorId":"6734bd795f604ef68c0f4984","lessonFormat":"pdf","showInstructor":"true","duration":"2 weeks","startDate":"","endDate":"","assessments":[""],"certificate":"6776a3456e5ed0a0f7335df3","price":"0","lessons":["677bba8d4ebb46e000aa445c"],"file":"https://res.cloudinary.com/dldchwdkn/image/upload/v1740488815/course-content/scve3alnwnpr0jpp8jvz.jpg"}
+2025-02-26 22:12:14 [info]: GET /67bdc06f5c84150a198b8a70 304
+2025-02-26 22:12:14 [info]: GET / 304
+2025-02-26 22:12:14 [info]: GET / 304
+2025-02-26 22:12:15 [info]: GET /lesson/getAll 304
+2025-02-26 22:12:27 [info]: GET /67bdc06f5c84150a198b8a70 304
+2025-02-26 22:12:27 [info]: GET / 304
+2025-02-26 22:12:27 [info]: GET / 304
+2025-02-26 22:12:27 [info]: GET /lesson/getAll 304
+2025-02-26 22:13:00 [info]: GET /67bdc06f5c84150a198b8a70 304
+2025-02-26 22:13:01 [info]: GET / 304
+2025-02-26 22:13:01 [info]: GET / 304
+2025-02-26 22:13:01 [info]: GET /lesson/getAll 304
+2025-02-26 22:13:05 [info]: PUT /67bdc06f5c84150a198b8a70 500 - Request Body: {"title":"Failing Test ","objective":"ft","code":"ft","instructorId":"6734bd795f604ef68c0f4984","lessonFormat":"pdf","showInstructor":"true","duration":"2 weeks","startDate":"","endDate":"","assessments":[""],"certificate":"6776a3456e5ed0a0f7335df3","price":"0","lessons":["677bba8d4ebb46e000aa445c"],"file":"https://res.cloudinary.com/dldchwdkn/image/upload/v1740488815/course-content/scve3alnwnpr0jpp8jvz.jpg"}
+2025-02-26 22:15:14 [info]: GET /67bdc06f5c84150a198b8a70 304
+2025-02-26 22:15:14 [info]: GET / 304
+2025-02-26 22:15:14 [info]: GET /lesson/getAll 304
+2025-02-26 22:15:14 [info]: GET / 304
+2025-02-26 22:20:48 [info]: GET /67bdc06f5c84150a198b8a70 304
+2025-02-26 22:20:48 [info]: GET / 304
+2025-02-26 22:20:48 [info]: GET / 304
+2025-02-26 22:20:48 [info]: GET /lesson/getAll 304
+2025-02-26 22:20:53 [info]: PUT /67bdc06f5c84150a198b8a70 500 - Request Body: {"title":"Failing Test ","objective":"ft","code":"ft","instructorId":"6734bd795f604ef68c0f4984","lessonFormat":"pdf","showInstructor":"true","duration":"2 weeks","startDate":"","endDate":"","assessments":[""],"certificate":"6776a3456e5ed0a0f7335df3","price":"0","lessons":["677bba8d4ebb46e000aa445c"],"file":"https://res.cloudinary.com/dldchwdkn/image/upload/v1740488815/course-content/scve3alnwnpr0jpp8jvz.jpg"}
+2025-02-26 22:23:11 [info]: GET /67bdc06f5c84150a198b8a70 304
+2025-02-26 22:23:11 [info]: GET / 304
+2025-02-26 22:23:11 [info]: GET / 304
+2025-02-26 22:23:11 [info]: GET /lesson/getAll 304
+2025-02-26 22:23:12 [info]: PUT /67bdc06f5c84150a198b8a70 500 - Request Body: {"title":"Failing Test ","objective":"ft","code":"ft","instructorId":"6734bd795f604ef68c0f4984","lessonFormat":"pdf","showInstructor":"true","duration":"2 weeks","startDate":"","endDate":"","assessments":[""],"certificate":"6776a3456e5ed0a0f7335df3","price":"0","lessons":["677bba8d4ebb46e000aa445c"],"file":"https://res.cloudinary.com/dldchwdkn/image/upload/v1740488815/course-content/scve3alnwnpr0jpp8jvz.jpg"}
+2025-02-26 22:25:12 [info]: GET /67bdc06f5c84150a198b8a70 304
+2025-02-26 22:25:13 [info]: GET / 304
+2025-02-26 22:25:13 [info]: GET / 304
+2025-02-26 22:25:13 [info]: GET /lesson/getAll 304
+2025-02-26 22:25:17 [info]: PUT /67bdc06f5c84150a198b8a70 500 - Request Body: {"title":"Failing Test ","objective":"ft","code":"ft","instructorId":"6734bd795f604ef68c0f4984","lessonFormat":"pdf","showInstructor":"true","duration":"2 weeks","startDate":"","endDate":"","assessments":[""],"certificate":"6776a3456e5ed0a0f7335df3","price":"0","lessons":["677bba8d4ebb46e000aa445c"],"file":"https://res.cloudinary.com/dldchwdkn/image/upload/v1740488815/course-content/scve3alnwnpr0jpp8jvz.jpg"}
+2025-02-26 22:27:01 [info]: GET /67bdc06f5c84150a198b8a70 304
+2025-02-26 22:27:01 [info]: GET / 304
+2025-02-26 22:27:01 [info]: GET / 304
+2025-02-26 22:27:01 [info]: GET /lesson/getAll 304
+2025-02-26 22:27:12 [info]: PUT /67bdc06f5c84150a198b8a70 500 - Request Body: {"title":"Failing Test ","objective":"ft","code":"ft","instructorId":"6734bd795f604ef68c0f4984","lessonFormat":"pdf","showInstructor":"true","duration":"2 weeks","startDate":"","endDate":"","assessments":["675bffdf2a4d1f4da44b1827"],"certificate":"6776a3456e5ed0a0f7335df3","price":"0","lessons":["677bba8d4ebb46e000aa445c"],"file":"https://res.cloudinary.com/dldchwdkn/image/upload/v1740488815/course-content/scve3alnwnpr0jpp8jvz.jpg"}
+2025-02-26 22:29:19 [info]: GET /67bdc06f5c84150a198b8a70 304
+2025-02-26 22:29:21 [info]: GET / 304
+2025-02-26 22:29:21 [info]: GET / 304
+2025-02-26 22:29:21 [info]: GET /lesson/getAll 304
+2025-02-26 22:33:24 [info]: GET /67bdc06f5c84150a198b8a70 500
+2025-02-26 22:34:32 [info]: GET /67bdc06f5c84150a198b8a70 200
+2025-02-26 22:34:34 [info]: GET / 304
+2025-02-26 22:34:34 [info]: GET / 304
+2025-02-26 22:34:34 [info]: GET /lesson/getAll 304
+2025-02-26 22:34:39 [info]: GET /67bdc06f5c84150a198b8a70 304
+2025-02-26 22:34:40 [info]: GET / 304
+2025-02-26 22:34:40 [info]: GET / 304
+2025-02-26 22:34:40 [info]: GET /lesson/getAll 304
+2025-02-26 22:34:47 [info]: GET /67bdc06f5c84150a198b8a70 304
+2025-02-26 22:34:47 [info]: GET / 304
+2025-02-26 22:34:48 [info]: GET / 304
+2025-02-26 22:34:48 [info]: GET /lesson/getAll 304
+2025-02-26 22:34:56 [info]: PUT /67bdc06f5c84150a198b8a70 500 - Request Body: {"title":"Failing Test ","objective":"ft","code":"ft","instructorId":"6734bd795f604ef68c0f4984","lessonFormat":"pdf","showInstructor":"true","duration":"2 weeks","startDate":"","endDate":"","assessments":[""],"certificate":"6776a3456e5ed0a0f7335df3","price":"0","lessons":["677bba8d4ebb46e000aa445c"],"file":"https://res.cloudinary.com/dldchwdkn/image/upload/v1740488815/course-content/scve3alnwnpr0jpp8jvz.jpg"}
+2025-02-26 22:35:35 [info]: GET /67bdc06f5c84150a198b8a70 304
+2025-02-26 22:35:37 [info]: GET / 304
+2025-02-26 22:35:37 [info]: GET / 304
+2025-02-26 22:35:37 [info]: GET /lesson/getAll 304
+2025-02-26 22:35:37 [info]: GET /67bdc06f5c84150a198b8a70 304
+2025-02-26 22:35:37 [info]: GET / 304
+2025-02-26 22:35:42 [info]: GET /67bdc06f5c84150a198b8a70 304
+2025-02-26 22:35:42 [info]: GET / 304
+2025-02-26 22:35:42 [info]: GET /lesson/getAll 304
+2025-02-26 22:35:42 [info]: GET / 304
+2025-02-26 22:35:45 [info]: PUT /67bdc06f5c84150a198b8a70 500 - Request Body: {"title":"Failing Test ","objective":"ft","code":"ft","instructorId":"6734bd795f604ef68c0f4984","lessonFormat":"pdf","showInstructor":"true","duration":"2 weeks","startDate":"","endDate":"","assessments":[""],"certificate":"6776a3456e5ed0a0f7335df3","price":"0","lessons":["677bba8d4ebb46e000aa445c"],"file":"https://res.cloudinary.com/dldchwdkn/image/upload/v1740488815/course-content/scve3alnwnpr0jpp8jvz.jpg"}
+2025-02-26 22:36:04 [info]: GET /67bdc06f5c84150a198b8a70 304
+2025-02-26 22:36:04 [info]: GET / 304
+2025-02-26 22:36:04 [info]: GET /lesson/getAll 304
+2025-02-26 22:36:04 [info]: GET / 304
+2025-02-26 22:37:24 [info]: GET /67bdc06f5c84150a198b8a70 304
+2025-02-26 22:37:24 [info]: GET / 304
+2025-02-26 22:37:25 [info]: GET /lesson/getAll 304
+2025-02-26 22:37:25 [info]: GET / 304
+2025-02-26 22:37:26 [info]: PUT /67bdc06f5c84150a198b8a70 500 - Request Body: {"title":"Failing Test ","objective":"ft","code":"ft","instructorId":"6734bd795f604ef68c0f4984","lessonFormat":"pdf","showInstructor":"true","duration":"2 weeks","startDate":"","endDate":"","assessments":[""],"certificate":"6776a3456e5ed0a0f7335df3","price":"0","lessons":["677bba8d4ebb46e000aa445c"],"file":"https://res.cloudinary.com/dldchwdkn/image/upload/v1740488815/course-content/scve3alnwnpr0jpp8jvz.jpg"}
+2025-02-26 22:38:03 [info]: GET /67bdc06f5c84150a198b8a70 304
+2025-02-26 22:38:03 [info]: GET / 304
+2025-02-26 22:38:03 [info]: GET / 304
+2025-02-26 22:38:03 [info]: GET /lesson/getAll 304
+2025-02-26 22:40:31 [info]: GET /67bdc06f5c84150a198b8a70 304
+2025-02-26 22:40:31 [info]: GET / 304
+2025-02-26 22:40:31 [info]: GET / 304
+2025-02-26 22:40:31 [info]: GET /lesson/getAll 304
+2025-02-26 22:40:33 [info]: PUT /67bdc06f5c84150a198b8a70 500 - Request Body: {"title":"Failing Test ","objective":"ft","code":"ft","instructorId":"6734bd795f604ef68c0f4984","lessonFormat":"pdf","showInstructor":"true","duration":"2 weeks","startDate":"","endDate":"","assessments":[""],"certificate":"6776a3456e5ed0a0f7335df3","price":"0","lessons":["677bba8d4ebb46e000aa445c"],"file":"https://res.cloudinary.com/dldchwdkn/image/upload/v1740488815/course-content/scve3alnwnpr0jpp8jvz.jpg"}
+2025-02-26 22:41:16 [info]: GET /67bdc06f5c84150a198b8a70 304
+2025-02-26 22:41:16 [info]: GET / 304
+2025-02-26 22:41:17 [info]: GET / 304
+2025-02-26 22:41:17 [info]: GET /lesson/getAll 304
+2025-02-26 22:41:29 [info]: GET /67bdc06f5c84150a198b8a70 304
+2025-02-26 22:41:29 [info]: GET / 304
+2025-02-26 22:41:29 [info]: GET / 304
+2025-02-26 22:41:29 [info]: GET /lesson/getAll 304
+2025-02-26 22:43:57 [info]: GET /67bdc06f5c84150a198b8a70 304
+2025-02-26 22:43:57 [info]: GET / 304
+2025-02-26 22:43:58 [info]: GET /lesson/getAll 304
+2025-02-26 22:43:58 [info]: GET / 304
+2025-02-26 22:44:06 [info]: PUT /67bdc06f5c84150a198b8a70 500 - Request Body: {"title":"Failing Test ","objective":"ft","code":"ft","instructorId":"6734bd795f604ef68c0f4984","lessonFormat":"pdf","showInstructor":"true","duration":"2 weeks","startDate":"","endDate":"","assessments":[""],"certificate":"6776a3456e5ed0a0f7335df3","price":"0","lessons":["677bba8d4ebb46e000aa445c"],"file":"https://res.cloudinary.com/dldchwdkn/image/upload/v1740488815/course-content/scve3alnwnpr0jpp8jvz.jpg"}
+2025-02-26 22:45:56 [info]: GET /67bdc06f5c84150a198b8a70 304
+2025-02-26 22:45:57 [info]: GET / 304
+2025-02-26 22:45:57 [info]: GET / 304
+2025-02-26 22:45:57 [info]: GET /lesson/getAll 304
+2025-02-26 22:45:58 [info]: GET /67bdc06f5c84150a198b8a70 304
+2025-02-26 22:45:58 [info]: GET / 304
+2025-02-26 22:45:58 [info]: GET / 304
+2025-02-26 22:46:02 [info]: GET /67bdc06f5c84150a198b8a70 304
+2025-02-26 22:46:03 [info]: GET / 304
+2025-02-26 22:46:03 [info]: GET / 304
+2025-02-26 22:46:03 [info]: GET /lesson/getAll 304
+2025-02-26 22:46:17 [info]: PUT /67bdc06f5c84150a198b8a70 500 - Request Body: {"title":"Failing Test ","objective":"ft","code":"ft","instructorId":"6734bd795f604ef68c0f4984","lessonFormat":"pdf","showInstructor":"true","duration":"2 weeks","startDate":"","endDate":"","assessments":[""],"certificate":"6776a3456e5ed0a0f7335df3","price":"0","lessons":["677bba8d4ebb46e000aa445c"],"file":"https://res.cloudinary.com/dldchwdkn/image/upload/v1740488815/course-content/scve3alnwnpr0jpp8jvz.jpg"}
+2025-02-26 22:47:55 [info]: GET /67bdc06f5c84150a198b8a70 304
+2025-02-26 22:47:57 [info]: GET / 304
+2025-02-26 22:47:57 [info]: GET / 304
+2025-02-26 22:47:57 [info]: GET /lesson/getAll 304
+2025-02-26 22:48:01 [info]: PUT /67bdc06f5c84150a198b8a70 500 - Request Body: {"title":"Failing Test ","objective":"ft","code":"ft","instructorId":"6734bd795f604ef68c0f4984","lessonFormat":"pdf","showInstructor":"true","duration":"2 weeks","startDate":"","endDate":"","assessments":[""],"certificate":"6776a3456e5ed0a0f7335df3","price":"0","lessons":["677bba8d4ebb46e000aa445c"],"file":"https://res.cloudinary.com/dldchwdkn/image/upload/v1740488815/course-content/scve3alnwnpr0jpp8jvz.jpg"}
+2025-02-26 22:49:44 [info]: GET /67bdc06f5c84150a198b8a70 304
+2025-02-26 22:49:44 [info]: GET / 304
+2025-02-26 22:49:44 [info]: GET /lesson/getAll 304
+2025-02-26 22:49:44 [info]: GET / 304
+2025-02-26 22:49:52 [info]: GET /67bdc06f5c84150a198b8a70 304
+2025-02-26 22:49:52 [info]: GET / 304
+2025-02-26 22:49:52 [info]: GET / 304
+2025-02-26 22:49:52 [info]: GET /lesson/getAll 304
+2025-02-26 22:49:54 [info]: PUT /67bdc06f5c84150a198b8a70 500 - Request Body: {"title":"Failing Test ","objective":"ft","code":"ft","instructorId":"6734bd795f604ef68c0f4984","lessonFormat":"pdf","showInstructor":"true","duration":"2 weeks","startDate":"","endDate":"","assessments":[""],"certificate":"6776a3456e5ed0a0f7335df3","price":"0","lessons":["677bba8d4ebb46e000aa445c"],"file":"https://res.cloudinary.com/dldchwdkn/image/upload/v1740488815/course-content/scve3alnwnpr0jpp8jvz.jpg"}
+2025-02-26 22:52:04 [info]: GET /67bdc06f5c84150a198b8a70 304
+2025-02-26 22:52:04 [info]: GET / 304
+2025-02-26 22:52:04 [info]: GET / 304
+2025-02-26 22:52:05 [info]: GET /lesson/getAll 304
+2025-02-26 22:52:06 [info]: PUT /67bdc06f5c84150a198b8a70 500 - Request Body: {"title":"Failing Test ","objective":"ft","code":"ft","instructorId":"6734bd795f604ef68c0f4984","lessonFormat":"pdf","showInstructor":"true","duration":"2 weeks","startDate":"","endDate":"","assessments":[""],"certificate":"6776a3456e5ed0a0f7335df3","price":"0","lessons":["677bba8d4ebb46e000aa445c"],"file":"https://res.cloudinary.com/dldchwdkn/image/upload/v1740488815/course-content/scve3alnwnpr0jpp8jvz.jpg"}
+2025-02-26 22:53:08 [info]: GET /67bdc06f5c84150a198b8a70 304
+2025-02-26 22:53:08 [info]: GET / 304
+2025-02-26 22:53:08 [info]: GET /lesson/getAll 304
+2025-02-26 22:53:08 [info]: GET / 304
+2025-02-26 22:53:09 [info]: PUT /67bdc06f5c84150a198b8a70 500 - Request Body: {"title":"Failing Test ","objective":"ft","code":"ft","instructorId":"6734bd795f604ef68c0f4984","lessonFormat":"pdf","showInstructor":"true","duration":"2 weeks","startDate":"","endDate":"","assessments":[""],"certificate":"6776a3456e5ed0a0f7335df3","price":"0","lessons":["677bba8d4ebb46e000aa445c"],"file":"https://res.cloudinary.com/dldchwdkn/image/upload/v1740488815/course-content/scve3alnwnpr0jpp8jvz.jpg"}
+2025-02-26 22:53:43 [info]: GET /67bdc06f5c84150a198b8a70 304
+2025-02-26 22:53:43 [info]: GET / 304
+2025-02-26 22:53:44 [info]: GET / 304
+2025-02-26 22:53:44 [info]: GET /lesson/getAll 304
+2025-02-26 22:55:07 [info]: GET /67bdc06f5c84150a198b8a70 304
+2025-02-26 22:55:07 [info]: GET / 304
+2025-02-26 22:55:07 [info]: GET /lesson/getAll 304
+2025-02-26 22:55:07 [info]: GET / 304
+2025-02-26 23:00:01 [info]: GET /67bdc06f5c84150a198b8a70 304
+2025-02-26 23:00:01 [info]: GET / 304
+2025-02-26 23:00:01 [info]: GET / 304
+2025-02-26 23:00:01 [info]: GET /lesson/getAll 304
+2025-02-26 23:00:06 [info]: PUT /67bdc06f5c84150a198b8a70 200 - Request Body: {"title":"Failing Test ","objective":"ft","code":"ft","instructorId":"6734bd795f604ef68c0f4984","lessonFormat":"pdf","showInstructor":"true","duration":"2 weeks","startDate":"","endDate":"","certificate":"6776a3456e5ed0a0f7335df3","price":"0","lessons":["677bba8d4ebb46e000aa445c"],"file":"https://res.cloudinary.com/dldchwdkn/image/upload/v1740488815/course-content/scve3alnwnpr0jpp8jvz.jpg"}
+2025-02-26 23:00:08 [info]: GET /all 200
+2025-02-26 23:00:14 [info]: GET /67bdc06f5c84150a198b8a70 200
+2025-02-26 23:00:14 [info]: GET / 304
+2025-02-26 23:00:15 [info]: GET / 304
+2025-02-26 23:00:15 [info]: GET /lesson/getAll 200
+2025-02-26 23:00:23 [info]: PUT /67bdc06f5c84150a198b8a70 200 - Request Body: {"title":"Failing Test ","objective":"ft","code":"ft","instructorId":"6734bd795f604ef68c0f4984","lessonFormat":"pdf","showInstructor":"true","duration":"2 weeks","startDate":"","endDate":"","assessments":["67a396251f9cd81895b60b57"],"certificate":"6776a3456e5ed0a0f7335df3","price":"0","lessons":["677bba8d4ebb46e000aa445c"],"file":"https://res.cloudinary.com/dldchwdkn/image/upload/v1740488815/course-content/scve3alnwnpr0jpp8jvz.jpg"}
+2025-02-26 23:00:24 [info]: GET /all 200
+2025-02-26 23:00:29 [info]: GET /67bdc06f5c84150a198b8a70 200
+2025-02-26 23:00:30 [info]: GET / 304
+2025-02-26 23:00:30 [info]: GET / 304
+2025-02-26 23:00:30 [info]: GET /lesson/getAll 200
