@@ -127,7 +127,8 @@ class BookingController {
 
   async getAllBookings(req: Request, res: Response) {
     try {
-      const bookings = await Booking.find();
+      const bookings = await Booking.find().populate("courseId");
+
       return ResponseHandler.success(
         res,
         bookings,
@@ -145,7 +146,9 @@ class BookingController {
   async getOneBooking(req: Request, res: Response) {
     try {
       const { id } = req.params;
-      const booking = await Booking.findById(id);
+      const booking = await Booking.findById(id)
+        .populate("courseId")
+        .populate("participants");
 
       if (!booking) {
         return ResponseHandler.failure(res, "Booking not found", 404);

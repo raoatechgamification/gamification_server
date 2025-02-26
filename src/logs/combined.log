@@ -14748,3 +14748,11 @@
 2025-02-25 21:57:28 [info]: GET /all 304
 2025-02-25 21:57:32 [info]: GET /users 304
 2025-02-25 21:57:54 [info]: POST /schedule 500 - Request Body: {"title":"Team Meeting","description":"Weekly team sync-up meeting","startDate":"2025-03-01T10:00:00Z","endDate":"2025-03-01T11:00:00Z","timeZone":"America/New_York","frequency":"weekly","participants":["67be1d3f81771638cccdcd1a"],"reminder":"email","courseId":"67b464eda9fefd533353448c"}
+2025-02-26 12:59:59 [info]: POST /login 200 - Request Body: {"email":"test@gmail.com","password":"Test2024!"}
+2025-02-26 13:00:35 [info]: GET /schedule 200
+2025-02-26 13:01:02 [info]: POST /schedule 200 - Request Body: {"title":"Team Meeting","description":"Weekly team sync-up meeting","startDate":"2025-03-01T10:00:00Z","endDate":"2025-03-01T11:00:00Z","timeZone":"America/New_York","frequency":"weekly","participants":["67be1d3f81771638cccdcd1a"],"reminder":"email","courseId":"67b464eda9fefd533353448c"}
+2025-02-26 13:01:10 [info]: GET /schedule 200
+2025-02-26 13:02:06 [info]: GET /schedule/67be2babfe398f3e485326d7 401
+2025-02-26 13:02:22 [info]: GET /schedule/67be2babfe398f3e485326d7 200
+2025-02-26 13:03:28 [info]: GET /schedule/67be2babfe398f3e485326d7 200
+2025-02-26 13:03:31 [info]: GET /schedule 200
