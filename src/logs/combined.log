@@ -15018,3 +15018,15 @@
 2025-02-27 12:20:40 [info]: GET / 304
 2025-02-27 12:20:40 [info]: GET /lesson/getAll 304
 2025-02-27 12:20:40 [info]: GET / 304
+2025-02-27 12:32:42 [info]: GET /67c049e11b353c7856128732 304
+2025-02-27 12:32:43 [info]: GET / 304
+2025-02-27 12:32:44 [info]: GET /lesson/getAll 304
+2025-02-27 12:32:44 [info]: GET / 304
+2025-02-27 12:32:49 [info]: PUT /67c049e11b353c7856128732 200 - Request Body: {"title":"empty certificate","objective":"ec","code":"ec","instructorId":"6734bd795f604ef68c0f4984","lessonFormat":"powerpoint","showInstructor":"true","duration":"2 weeks","startDate":"","endDate":"","price":"0","file":"https://res.cloudinary.com/dldchwdkn/image/upload/v1740655072/course-content/cc9pgajgrbij51zigmnt.jpg"}
+2025-02-27 12:32:58 [info]: GET /all 200
+2025-02-27 12:33:21 [info]: GET /67c049e11b353c7856128732 200
+2025-02-27 12:33:22 [info]: GET / 304
+2025-02-27 12:33:22 [info]: GET / 304
+2025-02-27 12:33:23 [info]: GET /lesson/getAll 304
+2025-02-27 12:33:29 [info]: PUT /67c049e11b353c7856128732 200 - Request Body: {"title":"empty certificate","objective":"ec","code":"ec","instructorId":"6734bd795f604ef68c0f4984","lessonFormat":"powerpoint","showInstructor":"true","duration":"2 weeks","startDate":"","endDate":"","certificate":"6776a3456e5ed0a0f7335df3","price":"0","file":"https://res.cloudinary.com/dldchwdkn/image/upload/v1740655072/course-content/cc9pgajgrbij51zigmnt.jpg"}
+2025-02-27 12:33:42 [info]: GET /all 200
