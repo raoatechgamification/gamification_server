@@ -740,7 +740,9 @@ export class CourseController {
         }
         updates.announcements = announcementIds;
       }
-      console.log("after announcements");
+      if (updates.certificate === "" || updates.certificate === null) {
+        delete updates.certificate;
+      }
       console.log(updates);
       const updatedCourse = await Course.findByIdAndUpdate(
         courseId,
