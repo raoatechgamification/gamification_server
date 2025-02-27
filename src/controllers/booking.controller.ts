@@ -90,7 +90,13 @@ class BookingController {
         courseId,
       });
 
+      await User.updateMany(
+        { _id: { $in: users } },
+        { $push: { userBookings: newBooking._id } }
+      );
+
       if (reminder === "email") {
+        console.log("email reminder");
         const userDetails = [
           ...users.map((user) => ({
             email: user.email,
@@ -106,7 +112,7 @@ class BookingController {
         for (const user of userDetails) {
           const emailVariables = {
             email: user.email,
-            firstName: user.firstName,
+            name: user.firstName,
             bookingName: newBooking.title,
             organizationName: organization?.name || "Raoatech",
             subject: "Booking Notification",
@@ -151,7 +157,9 @@ class BookingController {
 
   async getAllBookings(req: Request, res: Response) {
     try {
-      const bookings = await Booking.find().populate("courseId");
+      const bookings = await Booking.find()
+        .populate("courseId")
+        .populate("participants");
 
       return ResponseHandler.success(
         res,
@@ -278,6 +286,26 @@ class BookingController {
       return ResponseHandler.failure(
         res,
         error.message || "An error occurred while confirming availability",
+        error.status || 500
+      );
+    }
+  }
+
+  async getUserBookings(req: Request, res: Response) {
+    try {
+      const userId = req.user.id;
+
+      const user = await User.findById(userId).populate("userBookings");
+      console.log(user);
+      return ResponseHandler.success(
+        res,
+        user?.userBookings,
+        "User bookings retrieved successfully"
+      );
+    } catch (error: any) {
+      return ResponseHandler.failure(
+        res,
+        error.message || "An error occurred while retrieving user bookings",
         error.status || 500
       );
     }

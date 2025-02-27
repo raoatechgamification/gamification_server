@@ -25,7 +25,7 @@ export interface OrganizationOnboardingVariablesInterface {
 }
 
 export interface BookingVariablesInterface {
-  firstName: string;
+  name: string;
   email: string;
   bookingName: string;
   subject: string;
@@ -82,6 +82,14 @@ export async function sendEmail({
   variables: any;
 }) {
   const emailTemplate = getEmailTemplate(templateName, variables);
+  console.log(
+    service,
+    "service",
+    "templateName",
+    templateName,
+    variables,
+    "variables"
+  );
   const senderEmail = `Gamai Support <${process.env.EMAIL_USER}>`;
 
   try {

@@ -79,6 +79,7 @@ export interface IUser extends Document {
   contactEmail?: string;
   contactPersonPhoneNumber?: string;
   purchasedPrograms?: mongoose.Schema.Types.ObjectId[];
+  userBookings: mongoose.Schema.Types.ObjectId[];
 }
 
 const AssignedProgramSchema = new Schema<IAssignedProgram>(
@@ -103,7 +104,7 @@ const UserSchema: Schema<IUser> = new Schema(
     lastName: { type: String, required: true },
     otherName: { type: String, default: null },
     email: { type: String, required: true, unique: true },
-    phone: { type: String, sparse: true, default: null},
+    phone: { type: String, sparse: true, default: null },
     userId: { type: String, default: null, required: false },
     groups: [
       { type: mongoose.Schema.Types.ObjectId, sparse: true, ref: "Group" },
@@ -116,7 +117,7 @@ const UserSchema: Schema<IUser> = new Schema(
     userType: { type: String, default: "learner" },
     isArchived: { type: Boolean, default: false },
     isEnabled: { type: Boolean, default: true },
-    isDisabled: { type: Boolean, default: false},
+    isDisabled: { type: Boolean, default: false },
     yearsOfExperience: { type: Number, default: null },
     highestEducationLevel: { type: String, default: null },
     gender: { type: String, default: null },
@@ -241,7 +242,8 @@ const UserSchema: Schema<IUser> = new Schema(
         certificateId: { type: mongoose.Types.ObjectId, ref: "Certifcate" },
       },
     ],
-    createdBy: {type: String}
+    userBookings: [{ type: mongoose.Schema.Types.ObjectId, ref: "Booking" }],
+    createdBy: { type: String },
   },
   {
     timestamps: true,

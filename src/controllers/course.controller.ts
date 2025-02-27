@@ -488,6 +488,7 @@ export class CourseController {
         duplicatedFrom,
       };
 
+      console.log(courseData);
       const newCourse = await Course.create(courseData);
 
       if (announcements) {
