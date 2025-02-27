@@ -15225,3 +15225,8 @@
 2025-02-27 16:18:03 [info]: POST /add 400 - Request Body: {"title":"empty certificate - Duplicated 2","objective":"ec","code":"ec","instructorId":"6734bd795f604ef68c0f4984","isDuplicate":"true","duplicatedFrom":"67c049e11b353c7856128732","lessonFormat":"powerpoint","showInstructor":"true","duration":"2 weeks","startDate":"","endDate":"","certificate":"6776a3456e5ed0a0f7335df3","price":"0","file":"https://res.cloudinary.com/dldchwdkn/image/upload/v1740655072/course-content/cc9pgajgrbij51zigmnt.jpg"}
 2025-02-27 16:18:18 [info]: POST /add 201 - Request Body: {"title":"empty certificate - Duplicated 2","objective":"ec","code":"ec3","instructorId":"6734bd795f604ef68c0f4984","isDuplicate":"true","duplicatedFrom":"67c049e11b353c7856128732","lessonFormat":"powerpoint","showInstructor":"true","duration":"2 weeks","startDate":"","endDate":"","certificate":"6776a3456e5ed0a0f7335df3","price":"0","file":"https://res.cloudinary.com/dldchwdkn/image/upload/v1740655072/course-content/cc9pgajgrbij51zigmnt.jpg"}
 2025-02-27 16:18:20 [info]: GET /all 200
+2025-02-27 17:29:05 [info]: GET /schedule 401
+2025-02-27 17:32:04 [info]: POST /login 200 - Request Body: {"email":"test@gmail.com","password":"Test2024!"}
+2025-02-27 17:32:27 [info]: GET /bookings 403
+2025-02-27 17:32:40 [info]: GET /bookings 403
+2025-02-27 17:33:15 [info]: GET /schedule 200
