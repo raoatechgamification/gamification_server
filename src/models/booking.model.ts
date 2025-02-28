@@ -14,6 +14,7 @@ export interface IBooking extends Document {
   conferenceData?: Record<string, any>;
   courseId?: mongoose.Types.ObjectId;
   time?: string;
+  endTime?: string;
 }
 
 const BookingSchema: Schema<IBooking> = new Schema(
@@ -58,6 +59,7 @@ const BookingSchema: Schema<IBooking> = new Schema(
     conferenceData: { type: mongoose.Schema.Types.Mixed },
     courseId: { type: mongoose.Schema.Types.ObjectId, ref: "Course" },
     time: { type: String, required: false },
+    endTime: { type: String, required: false },
   },
   {
     timestamps: true,

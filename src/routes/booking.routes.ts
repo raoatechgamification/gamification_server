@@ -10,6 +10,7 @@ const {
   getOneBooking,
   editBooking,
   deleteBooking,
+  availabilityPercentage,
 } = bookingController;
 
 const router = Router();
@@ -31,6 +32,12 @@ router.post(
   authenticate,
   authorize(["admin"]),
   confirmAvailability
+);
+router.post(
+  "/availability-percentage",
+  authenticate,
+  authorize(["admin"]),
+  availabilityPercentage
 );
 
 router.get("/auth/google", (req, res) => {

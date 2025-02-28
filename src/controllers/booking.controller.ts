@@ -291,6 +291,56 @@ class BookingController {
     }
   }
 
+  async availabilityPercentage(req: Request, res: Response) {
+    try {
+      const { startDate, endDate, participants } = req.body;
+
+      // Find conflicts where the booking overlaps and participants are involved
+      const conflicts = await Booking.find({
+        $or: [{ startDate: { $lt: endDate }, endDate: { $gt: startDate } }],
+        participants: { $in: participants },
+      }).populate("participants", "firstName lastName _id");
+
+      // Extract unavailable user IDs
+      const unavailableUserIds = new Set(
+        conflicts.flatMap((conflict) =>
+          conflict.participants.map((user: any) => user._id.toString())
+        )
+      );
+
+      // Separate available and unavailable participants
+      const unavailableUsers = participants.filter((id: string) =>
+        unavailableUserIds.has(id)
+      );
+      const availableUsers = participants.filter(
+        (id: string) => !unavailableUserIds.has(id)
+      );
+
+      // Calculate percentage available
+      const totalParticipants = participants.length;
+      const availablePercentage = (
+        (availableUsers.length / totalParticipants) *
+        100
+      ).toFixed(2);
+
+      return ResponseHandler.success(
+        res,
+        {
+          availablePercentage,
+          availableUsers,
+          unavailableUsers,
+        },
+        "Availability check completed"
+      );
+    } catch (error: any) {
+      return ResponseHandler.failure(
+        res,
+        error.message || "An error occurred while confirming availability",
+        error.status || 500
+      );
+    }
+  }
+
   async getUserBookings(req: Request, res: Response) {
     try {
       const userId = req.user.id;

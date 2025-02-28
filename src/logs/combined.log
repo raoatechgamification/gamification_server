@@ -15230,3 +15230,9 @@
 2025-02-27 17:32:27 [info]: GET /bookings 403
 2025-02-27 17:32:40 [info]: GET /bookings 403
 2025-02-27 17:33:15 [info]: GET /schedule 200
+2025-02-28 11:59:01 [info]: POST /bookings/confirmAvailability 200 - Request Body: {"startDate":"2025-03-01T10:00:00Z","endDate":"2025-03-01T11:00:00Z","participants":["67be1d3f81771638cccdcd1a"]}
+2025-02-28 11:59:32 [info]: POST /bookings/confirmAvailability 200 - Request Body: {"startDate":"2025-03-01T10:00:00Z","endDate":"2025-03-01T11:00:00Z","participants":["67be1d3f81771638cccdcd1a"]}
+2025-02-28 11:59:50 [info]: POST /check-availability 400 - Request Body: {"startDate":"2025-03-01T10:00:00Z","endDate":"2025-03-01T11:00:00Z","participants":["67be1d3f81771638cccdcd1a"]}
+2025-02-28 12:14:57 [info]: POST /availability-percentage 200 - Request Body: {"startDate":"2025-03-01T10:00:00Z","endDate":"2025-03-01T11:00:00Z","participants":["67be1d3f81771638cccdcd1a","67bc5f8a792df59892e6e766"]}
+2025-02-28 12:21:57 [info]: POST /availability-percentage 200 - Request Body: {"startDate":"2025-03-01T10:00:00Z","endDate":"2025-03-01T11:00:00Z","participants":["67be1d3f81771638cccdcd1a","67bc5f8a792df59892e6e766"]}
+2025-02-28 12:23:27 [info]: POST /availability-percentage 200 - Request Body: {"startDate":"2025-03-01T10:00:00Z","endDate":"2025-03-01T11:00:00Z","participants":["67be1d3f81771638cccdcd1a","67bc5f8a792df59892e6e766"]}
