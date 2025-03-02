@@ -38,7 +38,8 @@ class BookingController {
         title,
         description,
         startDate,
-
+        time,
+        endTime,
         endDate,
         timeZone,
         frequency,
@@ -88,6 +89,8 @@ class BookingController {
         // conferenceData: bookingResponse,
         reminder,
         courseId,
+        time,
+        endTime,
       });
 
       await User.updateMany(
@@ -156,8 +159,9 @@ class BookingController {
   }
 
   async getAllBookings(req: Request, res: Response) {
+    const organizationId = req.admin._id;
     try {
-      const bookings = await Booking.find()
+      const bookings = await Booking.find({ organizationId })
         .populate("courseId")
         .populate("participants");
 

@@ -15236,3 +15236,241 @@
 2025-02-28 12:14:57 [info]: POST /availability-percentage 200 - Request Body: {"startDate":"2025-03-01T10:00:00Z","endDate":"2025-03-01T11:00:00Z","participants":["67be1d3f81771638cccdcd1a","67bc5f8a792df59892e6e766"]}
 2025-02-28 12:21:57 [info]: POST /availability-percentage 200 - Request Body: {"startDate":"2025-03-01T10:00:00Z","endDate":"2025-03-01T11:00:00Z","participants":["67be1d3f81771638cccdcd1a","67bc5f8a792df59892e6e766"]}
 2025-02-28 12:23:27 [info]: POST /availability-percentage 200 - Request Body: {"startDate":"2025-03-01T10:00:00Z","endDate":"2025-03-01T11:00:00Z","participants":["67be1d3f81771638cccdcd1a","67bc5f8a792df59892e6e766"]}
+2025-02-28 16:18:18 [info]: GET /users 401
+2025-02-28 16:18:18 [info]: GET / 401
+2025-02-28 16:18:18 [info]: GET /all 401
+2025-02-28 16:18:19 [info]: GET /users 401
+2025-02-28 16:18:19 [info]: GET / 401
+2025-02-28 16:18:19 [info]: GET /all 401
+2025-02-28 16:18:23 [info]: GET /users 401
+2025-02-28 16:18:23 [info]: GET /all 401
+2025-02-28 16:18:23 [info]: GET / 401
+2025-02-28 16:18:35 [info]: POST /login 400 - Request Body: {"email":"richardsonmarcus520@gmail.com","password":"Test2024!"}
+2025-02-28 16:19:28 [info]: POST /login 200 - Request Body: {"email":"test@gmail.com","password":"Test2024!"}
+2025-02-28 16:19:32 [info]: GET / 304
+2025-02-28 16:19:58 [info]: GET / 304
+2025-02-28 16:19:59 [info]: GET /all 200
+2025-02-28 16:20:01 [info]: GET /users 304
+2025-02-28 16:20:03 [info]: GET /user-profile/undefined 400
+2025-02-28 16:20:03 [info]: GET / 304
+2025-02-28 16:20:04 [info]: GET /user-profile/undefined 400
+2025-02-28 16:20:06 [info]: GET /user-profile/undefined 400
+2025-02-28 16:20:10 [info]: GET /user-profile/undefined 400
+2025-02-28 16:20:22 [info]: GET /user-profile/undefined 400
+2025-02-28 16:20:22 [info]: GET / 304
+2025-02-28 16:20:22 [info]: GET /all 304
+2025-02-28 16:20:23 [info]: GET /user-profile/undefined 400
+2025-02-28 16:20:24 [info]: GET /users 304
+2025-02-28 16:20:31 [info]: GET /user-profile/undefined 400
+2025-02-28 16:20:32 [info]: GET / 304
+2025-02-28 16:20:32 [info]: GET /all 304
+2025-02-28 16:20:33 [info]: GET / 304
+2025-02-28 16:20:33 [info]: GET /users 304
+2025-02-28 16:20:34 [info]: GET /all 304
+2025-02-28 16:20:36 [info]: GET /user-profile/undefined 400
+2025-02-28 16:20:41 [info]: POST /single-create 400 - Request Body: {"firstName":"Emmanuel","lastName":"Ajibade","phone":"09056983150","otherName":"","email":"richardsonmarcus520@gmail.com","password":"Test2024!","role":"user","ids":"[]","userId":"test@gmail.com","gender":"","dateOfBirth":"","country":"Nigeria","address":"Lagos","city":"Lagos","LGA":"","state":"Lagos","officeAddress":"","officeCity":"","officeLGA":"","employerName":"","officeState":"","contactPersonPlaceOfEmployment":"","nameOfContactPerson":"","contactEmail":"","contactPersonPhoneNumber":"","sendEmail":"true"}
+2025-02-28 16:21:00 [info]: POST /single-create 201 - Request Body: {"firstName":"Emmanuel","lastName":"Ajibade","phone":"09056983112","otherName":"","email":"richardsonmarcus520@gmail.com","password":"Test2024!","role":"user","ids":"[]","userId":"test@gmail.com","gender":"","dateOfBirth":"","country":"Nigeria","address":"Lagos","city":"Lagos","LGA":"","state":"Lagos","officeAddress":"","officeCity":"","officeLGA":"","employerName":"","officeState":"","contactPersonPlaceOfEmployment":"","nameOfContactPerson":"","contactEmail":"","contactPersonPhoneNumber":"","sendEmail":"true"}
+2025-02-28 16:21:03 [info]: GET /users 200
+2025-02-28 16:21:12 [info]: GET /user-profile/undefined 400
+2025-02-28 16:21:12 [info]: GET / 304
+2025-02-28 16:21:13 [info]: GET /user-profile/undefined 400
+2025-02-28 16:21:15 [info]: GET /user-profile/undefined 400
+2025-02-28 16:21:19 [info]: GET /user-profile/undefined 400
+2025-02-28 16:21:33 [info]: GET /user-profile/undefined 400
+2025-02-28 16:21:33 [info]: GET / 304
+2025-02-28 16:21:33 [info]: GET /all 304
+2025-02-28 16:21:34 [info]: GET /user-profile/undefined 400
+2025-02-28 16:21:34 [info]: GET /users 304
+2025-02-28 16:21:36 [info]: GET /user-profile/undefined 400
+2025-02-28 16:21:40 [info]: GET /user-profile/undefined 400
+2025-02-28 16:22:42 [info]: GET /user-profile/undefined 400
+2025-02-28 16:22:43 [info]: GET / 304
+2025-02-28 16:22:43 [info]: GET /all 304
+2025-02-28 16:22:44 [info]: GET /user-profile/undefined 400
+2025-02-28 16:22:44 [info]: GET /users 304
+2025-02-28 16:22:49 [info]: GET /user-profile/undefined 400
+2025-02-28 16:22:49 [info]: GET / 304
+2025-02-28 16:22:49 [info]: GET /all 304
+2025-02-28 16:22:50 [info]: GET /users 304
+2025-02-28 16:22:53 [info]: GET /user-profile/undefined 400
+2025-02-28 16:24:04 [info]: GET /user-profile/undefined 400
+2025-02-28 16:24:04 [info]: GET / 304
+2025-02-28 16:24:04 [info]: GET /all 304
+2025-02-28 16:24:05 [info]: GET /user-profile/undefined 400
+2025-02-28 16:24:06 [info]: GET /users 304
+2025-02-28 16:24:14 [info]: POST /login 200 - Request Body: {"email":"richardsonmarcus520@gmail.com","password":"Test2024!"}
+2025-02-28 16:24:17 [info]: GET /status 200
+2025-02-28 16:24:17 [info]: GET /get-user/6734bd795f604ef68c0f4984 200
+2025-02-28 16:24:38 [info]: GET /status 304
+2025-02-28 16:24:38 [info]: GET /get-user/6734bd795f604ef68c0f4984 304
+2025-02-28 16:24:40 [info]: GET /status 304
+2025-02-28 16:24:40 [info]: GET /get-user/6734bd795f604ef68c0f4984 304
+2025-02-28 16:24:44 [info]: GET /status 304
+2025-02-28 16:24:44 [info]: GET /get-user/6734bd795f604ef68c0f4984 304
+2025-02-28 16:25:40 [info]: POST /login 400 - Request Body: {"email":"richardsonmarcus520@gmail.com","password":"Test2024!"}
+2025-02-28 16:25:45 [info]: POST /login 200 - Request Body: {"email":"test@gmail.com","password":"Test2024!"}
+2025-02-28 16:25:45 [info]: GET / 304
+2025-02-28 16:25:51 [info]: GET / 304
+2025-02-28 16:25:51 [info]: GET /all 304
+2025-02-28 16:25:52 [info]: GET /user-profile/undefined 400
+2025-02-28 16:25:53 [info]: GET / 304
+2025-02-28 16:25:53 [info]: GET /users 200
+2025-02-28 16:25:54 [info]: GET /user-profile/undefined 400
+2025-02-28 16:25:56 [info]: GET /user-profile/undefined 400
+2025-02-28 16:26:00 [info]: GET /user-profile/undefined 400
+2025-02-28 16:26:09 [info]: POST /single-create 201 - Request Body: {"firstName":"Emmanuel","lastName":"Ajibade","phone":"09056983113","otherName":"","email":"richardsonmarcus520@gmail.com","password":"Test2024!","role":"user","ids":"[]","userId":"test@gmail.com","gender":"","dateOfBirth":"","country":"Nigeria","address":"Lagos","city":"Lagos","LGA":"","state":"Lagos","officeAddress":"","officeCity":"","officeLGA":"","employerName":"","officeState":"","contactPersonPlaceOfEmployment":"","nameOfContactPerson":"","contactEmail":"","contactPersonPhoneNumber":"","sendEmail":"true"}
+2025-02-28 16:26:11 [info]: GET /users 200
+2025-02-28 16:26:23 [info]: POST /login 200 - Request Body: {"email":"test@gmail.com","password":"Test2024!"}
+2025-02-28 16:26:23 [info]: GET / 304
+2025-02-28 16:26:57 [info]: GET /user-profile/undefined 400
+2025-02-28 16:26:57 [info]: GET / 304
+2025-02-28 16:26:58 [info]: GET /all 304
+2025-02-28 16:26:59 [info]: GET /user-profile/undefined 400
+2025-02-28 16:26:59 [info]: GET / 304
+2025-02-28 16:27:00 [info]: GET /all 304
+2025-02-28 16:27:00 [info]: GET /users 200
+2025-02-28 16:27:01 [info]: GET /user-profile/undefined 400
+2025-02-28 16:27:01 [info]: POST /single-create 201 - Request Body: {"firstName":"Emmanuel","lastName":"Ajibade","phone":"09056983113","otherName":"","email":"richardsonmarcus520@gmail.com","password":"Test2024!","role":"user","ids":"[]","userId":"test@gmail.com","gender":"","dateOfBirth":"","country":"Nigeria","address":"Lagos","city":"Lagos","LGA":"","state":"Lagos","officeAddress":"","officeCity":"","officeLGA":"","employerName":"","officeState":"","contactPersonPlaceOfEmployment":"","nameOfContactPerson":"","contactEmail":"","contactPersonPhoneNumber":"","sendEmail":"true"}
+2025-02-28 16:27:03 [info]: GET /users 200
+2025-02-28 16:27:05 [info]: GET /user-profile/undefined 400
+2025-02-28 16:27:37 [info]: GET /user-profile/undefined 400
+2025-02-28 16:27:37 [info]: GET / 304
+2025-02-28 16:27:38 [info]: GET /all 304
+2025-02-28 16:27:38 [info]: GET /user-profile/undefined 400
+2025-02-28 16:27:39 [info]: GET /users 304
+2025-02-28 16:27:40 [info]: GET /user-profile/undefined 400
+2025-02-28 16:28:23 [info]: GET /user-profile/undefined 400
+2025-02-28 16:28:23 [info]: GET / 304
+2025-02-28 16:28:23 [info]: GET /all 304
+2025-02-28 16:28:25 [info]: GET /users 304
+2025-02-28 16:28:32 [info]: GET /user-profile/undefined 400
+2025-02-28 16:28:32 [info]: GET / 304
+2025-02-28 16:28:33 [info]: GET /all 304
+2025-02-28 16:28:34 [info]: GET /users 304
+2025-02-28 16:29:17 [info]: GET /user-profile/undefined 400
+2025-02-28 16:29:17 [info]: GET / 304
+2025-02-28 16:29:17 [info]: GET /all 304
+2025-02-28 16:29:19 [info]: GET /users 304
+2025-02-28 16:29:20 [info]: GET / 304
+2025-02-28 16:29:21 [info]: GET /user-profile/67be1d3f81771638cccdcd1a 200
+2025-02-28 16:29:34 [info]: GET / 304
+2025-02-28 16:29:34 [info]: GET /user-profile/67c1d5c4b370b4e7f774ce69 200
+2025-02-28 16:30:00 [info]: POST /schedule 401 - Request Body: {"title":"Team Meeting","description":"Weekly team sync-up meeting","startDate":"2025-03-01T10:00:00Z","endDate":"2025-03-01T11:00:00Z","timeZone":"America/New_York","frequency":"weekly","participants":["67be1d3f81771638cccdcd1a","c1d5c4b370b4e7f774ce69"],"reminder":"email","courseId":"67b464eda9fefd533353448c"}
+2025-02-28 16:30:13 [info]: POST /login 200 - Request Body: {"email":"test@gmail.com","password":"Test2024!"}
+2025-02-28 16:30:29 [info]: POST /availability-percentage 200 - Request Body: {"startDate":"2025-03-01T10:00:00Z","endDate":"2025-03-01T11:00:00Z","participants":["67be1d3f81771638cccdcd1a","67bc5f8a792df59892e6e766"]}
+2025-02-28 16:30:56 [info]: POST /schedule 500 - Request Body: {"title":"Team Meeting","description":"Weekly team sync-up meeting","startDate":"2025-03-01T10:00:00Z","endDate":"2025-03-01T11:00:00Z","timeZone":"America/New_York","frequency":"weekly","participants":["67be1d3f81771638cccdcd1a","c1d5c4b370b4e7f774ce69"],"reminder":"email","courseId":"67b464eda9fefd533353448c"}
+2025-02-28 16:31:21 [info]: POST /schedule 200 - Request Body: {"title":"Team Meeting","description":"Weekly team sync-up meeting","startDate":"2025-03-01T10:00:00Z","endDate":"2025-03-01T11:00:00Z","timeZone":"America/New_York","frequency":"weekly","participants":["67be1d3f81771638cccdcd1a"],"reminder":"email","courseId":"67b464eda9fefd533353448c"}
+2025-02-28 16:31:29 [info]: GET / 304
+2025-02-28 16:31:29 [info]: GET /all 304
+2025-02-28 16:31:29 [info]: GET /user-profile/67c1d5c4b370b4e7f774ce69 304
+2025-02-28 16:31:32 [info]: GET /users 200
+2025-02-28 16:34:13 [info]: GET / 304
+2025-02-28 16:34:14 [info]: GET /all 304
+2025-02-28 16:34:14 [info]: GET /user-profile/67c1d5c4b370b4e7f774ce69 304
+2025-02-28 16:34:16 [info]: GET /users 304
+2025-02-28 16:34:43 [info]: GET / 304
+2025-02-28 16:34:44 [info]: GET /user-profile/67c1d5c4b370b4e7f774ce69 304
+2025-02-28 16:34:44 [info]: GET /all 304
+2025-02-28 16:34:45 [info]: GET / 304
+2025-02-28 16:34:45 [info]: GET /users 304
+2025-02-28 16:34:45 [info]: GET / 304
+2025-02-28 16:34:46 [info]: GET /user-profile/67c1d5c4b370b4e7f774ce69 304
+2025-02-28 16:34:46 [info]: GET /all 304
+2025-02-28 16:35:01 [info]: POST /schedule 200 - Request Body: {"title":"Team Meeting","description":"Weekly team sync-up meeting","startDate":"2025-03-01T10:00:00Z","endDate":"2025-03-01T11:00:00Z","timeZone":"America/New_York","frequency":"weekly","participants":["67be1d3f81771638cccdcd1a","67c1d5c4b370b4e7f774ce69"],"reminder":"email","courseId":"67b464eda9fefd533353448c"}
+2025-02-28 16:35:09 [info]: GET / 304
+2025-02-28 16:35:10 [info]: GET /all 304
+2025-02-28 16:35:10 [info]: GET /user-profile/67c1d5c4b370b4e7f774ce69 200
+2025-02-28 16:35:12 [info]: GET /users 200
+2025-02-28 16:35:58 [info]: POST /schedule 200 - Request Body: {"title":"Team Meeting","description":"Weekly team sync-up meeting","startDate":"2025-03-01T10:00:00Z","endDate":"2025-03-01T11:00:00Z","timeZone":"America/New_York","frequency":"weekly","participants":["67c1d5c4b370b4e7f774ce69"],"reminder":"email","courseId":"67b464eda9fefd533353448c"}
+2025-02-28 16:37:08 [info]: GET / 304
+2025-02-28 16:37:08 [info]: GET /user-profile/67c1d5c4b370b4e7f774ce69 200
+2025-02-28 16:37:08 [info]: GET /all 304
+2025-02-28 16:37:11 [info]: GET /users 200
+2025-02-28 16:37:19 [info]: GET / 304
+2025-02-28 16:37:20 [info]: GET / 304
+2025-02-28 16:37:20 [info]: GET /all 304
+2025-02-28 16:37:20 [info]: GET /user-profile/67c1d5c4b370b4e7f774ce69 304
+2025-02-28 16:37:21 [info]: GET /users 304
+2025-02-28 16:38:03 [info]: POST /schedule 200 - Request Body: {"title":"Team Meeting","description":"Weekly team sync-up meeting","startDate":"2025-03-01T10:00:00Z","endDate":"2025-03-01T11:00:00Z","timeZone":"America/New_York","frequency":"weekly","participants":["67be1d3f81771638cccdcd1a"],"reminder":"email","courseId":"67b464eda9fefd533353448c"}
+2025-02-28 16:39:45 [info]: POST /login 200 - Request Body: {"email":"test@gmail.com","password":"Test2024!"}
+2025-02-28 16:39:46 [info]: GET / 304
+2025-02-28 16:39:50 [info]: GET / 304
+2025-02-28 16:39:50 [info]: GET /all 304
+2025-02-28 16:39:52 [info]: GET /user-profile/undefined 400
+2025-02-28 16:39:52 [info]: GET / 304
+2025-02-28 16:39:52 [info]: GET /users 200
+2025-02-28 16:39:53 [info]: GET /user-profile/undefined 400
+2025-02-28 16:39:55 [info]: GET /user-profile/undefined 400
+2025-02-28 16:39:59 [info]: POST /single-create 201 - Request Body: {"firstName":"Emmanuel","lastName":"Ajibade","phone":"09056983113","otherName":"","email":"richardsonmarcus520@gmail.com","password":"Test2024!","role":"user","ids":"[]","userId":"test@gmail.com","gender":"","dateOfBirth":"","country":"Nigeria","address":"Lagos","city":"Lagos","LGA":"","state":"Lagos","officeAddress":"","officeCity":"","officeLGA":"","employerName":"","officeState":"","contactPersonPlaceOfEmployment":"","nameOfContactPerson":"","contactEmail":"","contactPersonPhoneNumber":"","sendEmail":"true"}
+2025-02-28 16:39:59 [info]: GET /user-profile/undefined 400
+2025-02-28 16:40:01 [info]: GET /users 200
+2025-02-28 16:40:48 [info]: GET /user-profile/undefined 400
+2025-02-28 16:40:48 [info]: GET / 304
+2025-02-28 16:40:48 [info]: GET /all 304
+2025-02-28 16:40:49 [info]: GET /user-profile/undefined 400
+2025-02-28 16:40:50 [info]: GET /users 304
+2025-02-28 16:59:53 [info]: GET /user-profile/undefined 400
+2025-02-28 16:59:53 [info]: GET / 304
+2025-02-28 16:59:54 [info]: GET /all 304
+2025-02-28 16:59:55 [info]: GET /user-profile/undefined 400
+2025-02-28 16:59:56 [info]: GET /users 304
+2025-02-28 16:59:57 [info]: GET / 304
+2025-02-28 16:59:57 [info]: GET /user-profile/undefined 400
+2025-02-28 16:59:57 [info]: GET /all 304
+2025-02-28 16:59:59 [info]: GET /users 304
+2025-02-28 17:00:02 [info]: GET /user-profile/undefined 400
+2025-02-28 17:00:02 [info]: GET / 304
+2025-02-28 17:00:03 [info]: GET /all 304
+2025-02-28 17:00:04 [info]: GET /users 304
+2025-02-28 17:00:07 [info]: GET / 304
+2025-02-28 17:00:08 [info]: GET /user-profile/67c1d8ce7d30168e1139c45e 200
+2025-02-28 17:00:39 [info]: GET / 304
+2025-02-28 17:00:39 [info]: GET /all 304
+2025-02-28 17:00:39 [info]: GET /user-profile/67c1d8ce7d30168e1139c45e 304
+2025-02-28 17:00:41 [info]: GET /users 304
+2025-02-28 17:00:43 [info]: GET / 304
+2025-02-28 17:00:43 [info]: GET /all 304
+2025-02-28 17:00:43 [info]: GET /user-profile/67c1d8ce7d30168e1139c45e 304
+2025-02-28 17:00:45 [info]: GET /users 304
+2025-02-28 17:00:48 [info]: GET / 304
+2025-02-28 17:00:48 [info]: GET /all 304
+2025-02-28 17:00:48 [info]: GET /user-profile/67c1d8ce7d30168e1139c45e 304
+2025-02-28 17:00:50 [info]: GET /users 304
+2025-02-28 17:00:59 [info]: GET / 304
+2025-02-28 17:01:00 [info]: GET /all 304
+2025-02-28 17:01:00 [info]: GET /user-profile/67c1d8ce7d30168e1139c45e 304
+2025-02-28 17:01:01 [info]: GET /users 304
+2025-02-28 17:01:10 [info]: GET / 304
+2025-02-28 17:01:10 [info]: GET /all 304
+2025-02-28 17:01:10 [info]: GET /user-profile/67c1d8ce7d30168e1139c45e 304
+2025-02-28 17:01:11 [info]: GET /users 304
+2025-02-28 17:01:13 [info]: GET / 304
+2025-02-28 17:01:13 [info]: GET /user-profile/67c1d8ce7d30168e1139c45e 304
+2025-02-28 17:01:14 [info]: GET /all 304
+2025-02-28 17:01:14 [info]: GET /users 304
+2025-02-28 17:01:15 [info]: GET / 304
+2025-02-28 17:01:16 [info]: GET /all 304
+2025-02-28 17:01:16 [info]: GET /user-profile/67c1d8ce7d30168e1139c45e 304
+2025-02-28 17:01:17 [info]: GET /users 304
+2025-02-28 17:01:18 [info]: GET / 304
+2025-02-28 17:01:18 [info]: GET /all 304
+2025-02-28 17:01:18 [info]: GET /user-profile/67c1d8ce7d30168e1139c45e 304
+2025-02-28 17:01:19 [info]: GET /users 304
+2025-02-28 17:01:20 [info]: GET / 304
+2025-02-28 17:01:20 [info]: GET /all 304
+2025-02-28 17:01:20 [info]: GET /user-profile/67c1d8ce7d30168e1139c45e 304
+2025-02-28 17:01:22 [info]: GET /users 304
+2025-02-28 17:01:26 [info]: GET / 304
+2025-02-28 17:01:26 [info]: GET /all 304
+2025-02-28 17:01:26 [info]: GET /user-profile/67c1d8ce7d30168e1139c45e 304
+2025-02-28 17:01:27 [info]: GET /users 304
+2025-02-28 17:01:36 [info]: GET / 304
+2025-02-28 17:01:37 [info]: GET /all 304
+2025-02-28 17:01:39 [info]: GET /users 304
+2025-02-28 17:02:23 [info]: POST /schedule 200 - Request Body: {"title":"Team Meeting","description":"Weekly team sync-up meeting","startDate":"2025-03-01T10:00:00Z","endDate":"2025-03-01T11:00:00Z","timeZone":"America/New_York","frequency":"weekly","participants":["67be1d3f81771638cccdcd1a","67c1d8ce7d30168e1139c45e"],"reminder":"email","courseId":"67b464eda9fefd533353448c"}
+2025-02-28 17:03:06 [info]: GET / 304
+2025-02-28 17:03:08 [info]: GET /all 304
+2025-02-28 17:03:13 [info]: GET /users 200
+2025-03-02 10:51:12 [info]: POST /login 200 - Request Body: {"email":"test@gmail.com","password":"Test2024!"}
+2025-03-02 10:52:10 [info]: POST /schedule 200 - Request Body: {"title":"Team Meeting","description":"Weekly team sync-up meeting","startDate":"2025-03-01T10:00:00Z","endDate":"2025-03-01T11:00:00Z","timeZone":"America/New_York","frequency":"weekly","participants":["67be1d3f81771638cccdcd1a","67c1d8ce7d30168e1139c45e"],"reminder":"email","courseId":"67b464eda9fefd533353448c"}
+2025-03-02 14:50:19 [info]: POST /schedule 200 - Request Body: {"title":"Team Meeting","description":"Weekly team sync-up meeting","startDate":"2025-03-01T10:00:00Z","endDate":"2025-03-01T11:00:00Z","timeZone":"America/New_York","frequency":"weekly","participants":["67be1d3f81771638cccdcd1a","67c1d8ce7d30168e1139c45e"],"reminder":"email","courseId":"67b464eda9fefd533353448c"}

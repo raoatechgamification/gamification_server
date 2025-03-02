@@ -654,6 +654,17 @@ export class UserAuthController {
 
       // Find all records with empty phone values
 
+      // await Organization.findOneAndDelete({
+      //   email: "richardsonmarcus520@gmail.com",
+      // });
+      // await User.findOneAndDelete({ email: "richardsonmarcus520@gmail.com" });
+      // await SubAdmin.findOneAndDelete({
+      //   email: "richardsonmarcus520@gmail.com",
+      // });
+      // await SuperAdmin.findOneAndDelete({
+      //   email: "richardsonmarcus520@gmail.com",
+      // });
+
       // await Organization.updateMany({ phone: "" }, { $set: { phone: null } });
       // await User.updateMany({ phone: "" }, { $set: { phone: null } });
       // await SubAdmin.updateMany({ phone: "" }, { $set: { phone: null } });
