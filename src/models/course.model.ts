@@ -1,5 +1,4 @@
-import { timeStamp } from "console";
-import mongoose, { Schema, model, Document } from "mongoose";
+import mongoose, { Document, Schema, model } from "mongoose";
 
 export interface ICourse extends Document {
   title: string;
@@ -45,71 +44,74 @@ export interface ICourse extends Document {
   duplicateCount: number;
 }
 
-const CourseSchema = new Schema<ICourse>({
-  title: { type: String, required: true },
-  description: { type: String },
-  requirement: { type: String },
-  topContent: { type: Boolean },
-  objective: { type: String },
-  isArchived: { type: Boolean, default: false },
-  organizationId: { type: String },
-  lessonFormat: { type: String },
-  // instructor: { type: Schema.Types.ObjectId, ref: 'User' },
-  instructor: {
-    type: Schema.Types.Mixed, // Accepts both ObjectId and String
-    validate: {
-      validator: (value: any) => {
-        return (
-          mongoose.Types.ObjectId.isValid(value) || typeof value === "string"
-        );
+const CourseSchema = new Schema<ICourse>(
+  {
+    title: { type: String, required: true },
+    description: { type: String },
+    requirement: { type: String },
+    topContent: { type: Boolean },
+    objective: { type: String },
+    isArchived: { type: Boolean, default: false },
+    organizationId: { type: String },
+    lessonFormat: { type: String },
+    // instructor: { type: Schema.Types.ObjectId, ref: 'User' },
+    instructor: {
+      type: Schema.Types.Mixed, // Accepts both ObjectId and String
+      validate: {
+        validator: (value: any) => {
+          return (
+            mongoose.Types.ObjectId.isValid(value) || typeof value === "string"
+          );
+        },
+        message: "Instructor must be either a valid ObjectId or a string.",
       },
-      message: "Instructor must be either a valid ObjectId or a string.",
     },
+    lessons: [{ type: Schema.Types.ObjectId, ref: "Lesson" }],
+    learnerIds: [
+      {
+        userId: { type: Schema.Types.ObjectId, ref: "User" },
+        progress: { type: Number, default: 0 },
+      },
+    ],
+    assignedLearnerIds: [
+      {
+        userId: { type: Schema.Types.ObjectId, ref: "User" },
+      },
+    ],
+    assessments: [{ type: Schema.Types.ObjectId, ref: "ObjectiveAssessment" }],
+    certificate: { type: Schema.Types.ObjectId, ref: "Certificate" },
+    duration: { type: String },
+    courseCode: { type: String },
+    courseLevel: { type: String },
+    startDate: { type: Date },
+    endDate: { type: Date },
+    numberOfHoursPerDay: { type: Number },
+    numberOfDaysPerWeek: { type: Number },
+    cost: { type: Number },
+    promo: { type: String },
+    promoCode: { type: String },
+    promoValue: { type: Number },
+    platformCharge: { type: Number },
+    actualCost: { type: Number },
+    sharing: { type: String },
+    sharingValue: { type: Number },
+    visibilityStartDate: { type: Date },
+    visibilityEndDate: { type: Date },
+    visibilityStartTime: { type: String },
+    visibilityEndTime: { type: String },
+    courseImage: [{ type: String }],
+    curriculum: [{ type: String }],
+    teachingMethod: { type: String },
+    passMark: { type: Number },
+    maximumNumberOfTrials: { type: Number },
+    isDuplicate: { type: Boolean, default: false },
+    duplicateCount: { type: Number, default: 0 },
+    duplicatedFrom: { type: String },
   },
-  lessons: [{ type: Schema.Types.ObjectId, ref: "Lesson" }],
-  learnerIds: [
-    {
-      userId: { type: Schema.Types.ObjectId, ref: "User" },
-      progress: { type: Number, default: 0 },
-    },
-  ],
-  assignedLearnerIds: [
-    {
-      userId: { type: Schema.Types.ObjectId, ref: "User" },
-    },
-  ],
-  assessments: [{ type: Schema.Types.ObjectId, ref: "ObjectiveAssessment" }],
-  certificate: { type: Schema.Types.ObjectId, ref: "Certificate" },
-  duration: { type: String },
-  courseCode: { type: String },
-  courseLevel: { type: String },
-  startDate: { type: Date },
-  endDate: { type: Date },
-  numberOfHoursPerDay: { type: Number },
-  numberOfDaysPerWeek: { type: Number },
-  cost: { type: Number },
-  promo: { type: String },
-  promoCode: { type: String },
-  promoValue: { type: Number },
-  platformCharge: { type: Number },
-  actualCost: { type: Number },
-  sharing: { type: String },
-  sharingValue: { type: Number },
-  visibilityStartDate: { type: Date },
-  visibilityEndDate: { type: Date },
-  visibilityStartTime: { type: String },
-  visibilityEndTime: { type: String },
-  courseImage: [{ type: String }],
-  curriculum: [{ type: String }],
-  teachingMethod: { type: String },
-  passMark: { type: Number },
-  maximumNumberOfTrials: { type: Number },
-  isDuplicate: { type: Boolean, default: false },
-  duplicateCount: { type: Number, default: 0 },
-  duplicatedFrom: { type: String },
-}, {
-  timestamps: true,
-});
+  {
+    timestamps: true,
+  }
+);
 
 const Course = model<ICourse>("Course", CourseSchema);
 export default Course;

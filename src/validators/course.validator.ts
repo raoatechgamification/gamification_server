@@ -1,4 +1,4 @@
-import { Request, Response, NextFunction } from "express";
+import { NextFunction, Request, Response } from "express";
 import { body, param, validationResult } from "express-validator";
 
 const validateOptionalFile = [
@@ -10,16 +10,16 @@ const validateOptionalFile = [
         "image/png",
         "image/gif",
 
-        "application/pdf", 
+        "application/pdf",
 
-        "application/msword", 
-        "application/vnd.openxmlformats-officedocument.wordprocessingml.document", 
+        "application/msword",
+        "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
 
-        "application/vnd.ms-excel", 
-        "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet", 
+        "application/vnd.ms-excel",
+        "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
 
-        // "application/vnd.ms-powerpoint", 
-        // "application/vnd.openxmlformats-officedocument.presentationml.presentation", 
+        // "application/vnd.ms-powerpoint",
+        // "application/vnd.openxmlformats-officedocument.presentationml.presentation",
 
         "audio/mpeg",
         "video/mp4",
@@ -57,7 +57,6 @@ const errorResponse = (req: Request, res: Response, next: NextFunction) => {
   next();
 };
 
-
 export const createCourseValidator = [
   body("title")
     .notEmpty()
@@ -86,7 +85,6 @@ export const createCourseValidator = [
 
   errorResponse,
 ];
-
 
 export const courseContentValidator = [
   body("title")
@@ -155,39 +153,39 @@ export const validateCreateCourse = [
     .isBoolean()
     .withMessage("showInstructor value must be boolean"),
 
-  body('title')
+  body("title")
     .notEmpty()
-    .withMessage('Title is required')
+    .withMessage("Title is required")
     .isString()
-    .withMessage('Title must be a string'),
+    .withMessage("Title must be a string"),
 
-  body('objective')
+  body("objective")
     .notEmpty()
-    .withMessage('Objective is required')
+    .withMessage("Objective is required")
     .isString()
-    .withMessage('Objective must be a string'),
+    .withMessage("Objective must be a string"),
 
   // body('price')
   //   .optional()
   //   .isFloat({ gt: 1000 })
   //   .withMessage('Price must be a greater than NGN1000'),
 
-  body('instructorId')
+  body("instructorId")
     .optional()
     .isMongoId()
-    .withMessage('Instructor ID must be a valid MongoDB ObjectId'),
+    .withMessage("Instructor ID must be a valid MongoDB ObjectId"),
 
-  body('duration')
+  body("duration")
     .notEmpty()
-    .withMessage('Duration is required')
+    .withMessage("Duration is required")
     .isString()
-    .withMessage('Duration must be a string'),
+    .withMessage("Duration must be a string"),
 
-  body('lessonFormat')
+  body("lessonFormat")
     .notEmpty()
-    .withMessage('Lesson format is required')
+    .withMessage("Lesson format is required")
     .isString()
-    .withMessage('Lesson format must be a string'),
+    .withMessage("Lesson format must be a string"),
 
   // body('lessons')
   //   .notEmpty()
@@ -201,31 +199,43 @@ export const validateCreateCourse = [
   //     return true;
   //   }),
 
-    body("assessments")
-      .optional({ nullable: true })
-      .isArray()
-      .withMessage("Assessments must be an array")
-      .custom((assessments) => {
-        if (assessments && !assessments.every((assessment: string) => /^[a-f\d]{24}$/i.test(assessment))) {
-          throw new Error("Assessments must be an array of valid MongoDB ObjectIds");
-        }
-        return true;
-      }),
+  body("assessments")
+    .optional({ nullable: true })
+    .isArray()
+    .withMessage("Assessments must be an array")
+    .custom((assessments) => {
+      if (
+        assessments &&
+        !assessments.every((assessment: string) =>
+          /^[a-f\d]{24}$/i.test(assessment)
+        )
+      ) {
+        throw new Error(
+          "Assessments must be an array of valid MongoDB ObjectIds"
+        );
+      }
+      return true;
+    }),
 
-    body("announcements")
-      .optional({ nullable: true })
-      .isArray()
-      .withMessage("Announcements must be an array")
-      .custom((announcements) => {
-        if (announcements && !announcements.every(
+  body("announcements")
+    .optional({ nullable: true })
+    .isArray()
+    .withMessage("Announcements must be an array")
+    .custom((announcements) => {
+      if (
+        announcements &&
+        !announcements.every(
           (announcement: { title: string; details: string }) =>
             typeof announcement.title === "string" &&
             typeof announcement.details === "string"
-        )) {
-          throw new Error("Each announcement must contain a title and details as strings");
-        }
-        return true;
-      }),
+        )
+      ) {
+        throw new Error(
+          "Each announcement must contain a title and details as strings"
+        );
+      }
+      return true;
+    }),
 
-  errorResponse
+  errorResponse,
 ];

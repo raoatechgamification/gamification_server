@@ -1,4 +1,4 @@
-import * as Mailjet from 'node-mailjet';
+import * as Mailjet from "node-mailjet";
 
 class MailjetService {
   private mailjet: Mailjet.Client;
@@ -9,9 +9,11 @@ class MailjetService {
     const apiKey = process.env.MAILJET_API_KEY!;
     const secretKey = process.env.MAILJET_SECRET_KEY!;
     this.senderName = process.env.EMAIL_USER!;
-    
+
     if (!apiKey || !secretKey || !this.senderName) {
-      throw new Error('Mailjet configuration is incomplete in environment variables.');
+      throw new Error(
+        "Mailjet configuration is incomplete in environment variables."
+      );
     }
 
     this.mailjet = new Mailjet.Client({ apiKey, apiSecret: secretKey });
@@ -25,8 +27,9 @@ class MailjetService {
     htmlContent: string,
     plainTextContent?: string
   ): Promise<void> {
+    // console.log(recipientEmail, recipientName, subject, plainTextContent);
     try {
-      const request = this.mailjet.post('send', { version: 'v3.1' }).request({
+      const request = this.mailjet.post("send", { version: "v3.1" }).request({
         Messages: [
           {
             From: {
@@ -47,10 +50,10 @@ class MailjetService {
       });
 
       const response = await request;
-      console.log('Email sent successfully:', response.body);
+      console.log("Email sent successfully:", response);
     } catch (error) {
-      console.error('Failed to send email:', error);
-      throw new Error('Email sending failed');
+      console.error("Failed to send email:", error);
+      throw new Error("Email sending failed");
     }
   }
 }
