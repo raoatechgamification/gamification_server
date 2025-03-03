@@ -760,7 +760,7 @@ class AdminController {
       }
 
       const assignedUsers =
-        course.assignedLearnerIds?.map((learner: any) => learner.userId) || [];
+        course.learnerIds?.map((learner: any) => learner.userId) || [];
 
       console.log("assignedUsers", assignedUsers);
 
@@ -816,7 +816,8 @@ class AdminController {
       for (const user of assignedUsers) {
         const userDetails = await User.findById(user._id);
         if (!userDetails) {
-          return ResponseHandler.failure(res, "User not found", 400);
+          console.log(`User with id ${user._id} not found, skipping...`);
+          continue; // Skip to next user if not found
         }
 
         const submission = submissions.find(
