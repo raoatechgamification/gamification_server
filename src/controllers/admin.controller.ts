@@ -84,7 +84,7 @@ class AdminController {
 
       const users = await User.find({ organizationId })
         .select("-password")
-        .sort({ createdAt: -1 }) 
+        .sort({ createdAt: -1 })
         .populate([{ path: "groups", select: "name" }]);
 
       if (!users || users.length === 0) {
@@ -564,7 +564,7 @@ class AdminController {
 
       const { userId } = req.params;
       const image = req.file;
-      const { ids, password, phone, ...rest } = req.body;  // Explicitly destructure and exclude password
+      const { ids, password, phone, ...rest } = req.body; // Explicitly destructure and exclude password
 
       if (!userId) {
         return ResponseHandler.failure(res, "User ID is required", 400);
@@ -668,8 +668,8 @@ class AdminController {
             subGroups: updatedSubGroups.length
               ? updatedSubGroups
               : user.subGroups,
-              phone: phone || null,
-            ...rest,  // rest object now explicitly excludes password
+            phone: phone || null,
+            ...rest, // rest object now explicitly excludes password
             image: fileUploadResult ? fileUploadResult.secure_url : user.image,
           },
         },
@@ -753,7 +753,7 @@ class AdminController {
       const { courseId } = req.params;
 
       const course = await Course.findById(courseId)
-        .populate("assignedLearnersIds.userId")
+        .populate("assignedLearnerIds.userId")
         .populate("assessments");
       if (!course) {
         return res.status(404).json({ message: "Course not found" });
@@ -1226,23 +1226,27 @@ class AdminController {
   }
 
   async changeUserPassword(req: Request, res: Response) {
-
-     try {
+    try {
       // const { userId } = req.params;
       const { email, newPassword } = req.body;
-      const organizationId = req.admin._id
+      const organizationId = req.admin._id;
 
       const user = await User.findOne({
         email,
-        organizationId
-      })
-      console.log(user?.password, "previous password")
-      if (!user) return ResponseHandler.failure(res, "User not found in your organization", 404);
+        organizationId,
+      });
+      console.log(user?.password, "previous password");
+      if (!user)
+        return ResponseHandler.failure(
+          res,
+          "User not found in your organization",
+          404
+        );
 
       const newHashedPassword = await hashPassword(newPassword);
-  
+
       user.password = newHashedPassword;
-      user.save()
+      user.save();
 
       const userResponse = await User.findById(user._id).select(
         "-password -role"
