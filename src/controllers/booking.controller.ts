@@ -159,9 +159,9 @@ class BookingController {
   }
 
   async getAllBookings(req: Request, res: Response) {
-    const organizationId = req.admin._id;
     try {
-      const bookings = await Booking.find({ organizationId })
+      const organizationId = req.admin._id;
+      const bookings = await Booking.find({ organizationId: organizationId })
         .populate("courseId")
         .populate("participants");
 

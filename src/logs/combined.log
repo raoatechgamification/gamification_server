@@ -15474,3 +15474,23 @@
 2025-03-02 10:51:12 [info]: POST /login 200 - Request Body: {"email":"test@gmail.com","password":"Test2024!"}
 2025-03-02 10:52:10 [info]: POST /schedule 200 - Request Body: {"title":"Team Meeting","description":"Weekly team sync-up meeting","startDate":"2025-03-01T10:00:00Z","endDate":"2025-03-01T11:00:00Z","timeZone":"America/New_York","frequency":"weekly","participants":["67be1d3f81771638cccdcd1a","67c1d8ce7d30168e1139c45e"],"reminder":"email","courseId":"67b464eda9fefd533353448c"}
 2025-03-02 14:50:19 [info]: POST /schedule 200 - Request Body: {"title":"Team Meeting","description":"Weekly team sync-up meeting","startDate":"2025-03-01T10:00:00Z","endDate":"2025-03-01T11:00:00Z","timeZone":"America/New_York","frequency":"weekly","participants":["67be1d3f81771638cccdcd1a","67c1d8ce7d30168e1139c45e"],"reminder":"email","courseId":"67b464eda9fefd533353448c"}
+2025-03-03 10:47:47 [info]: GET /schedule 200
+2025-03-03 10:48:23 [info]: GET /schedule 200
+2025-03-03 10:48:24 [info]: GET /schedule 304
+2025-03-03 10:49:06 [info]: GET /schedule 304
+2025-03-03 10:51:22 [info]: GET /schedule 200
+2025-03-03 10:53:36 [info]: GET /schedule 304
+2025-03-03 10:53:37 [info]: GET /schedule 401
+2025-03-03 10:53:37 [info]: GET /favicon.ico 404
+2025-03-03 10:58:29 [info]: GET /schedule 304
+2025-03-03 10:58:31 [info]: GET /schedule 401
+2025-03-03 10:58:33 [info]: GET /schedule 304
+2025-03-03 10:58:37 [info]: GET /schedule 304
+2025-03-03 10:59:38 [info]: GET /schedule 304
+2025-03-03 10:59:39 [info]: GET /schedule 304
+2025-03-03 10:59:42 [info]: GET / 200
+2025-03-03 10:59:42 [info]: GET /schedule 304
+2025-03-03 10:59:42 [info]: GET /all 200
+2025-03-03 10:59:45 [info]: GET /users 200
+2025-03-03 11:00:33 [info]: POST /availability-percentage 200 - Request Body: {"startDate":"2025-03-01","endDate":"2025-03-30","participants":["67c1d8ce7d30168e1139c45e","67be1d3f81771638cccdcd1a"]}
+2025-03-03 11:00:41 [info]: POST /schedule 500 - Request Body: {"title":"test ","description":"test","courseId":"675d977096d0319d030e5e5d","startDate":"2025-03-01T03:00:00.000Z","endDate":"2025-03-30T08:00:00.000Z","timeZone":"UTC","frequency":"monthly","reminder":"email","reminderTime":"30 minutes","participants":["67c1d8ce7d30168e1139c45e","67be1d3f81771638cccdcd1a"],"confirmPurchase":false,"time":"04:00","endTime":""}
