@@ -47,13 +47,17 @@ class BookingController {
         reminder,
         courseId,
       } = req.body;
-
+      console.log(participants, "participanyts");
       const organizationId = req.admin._id;
       const organization = await Organization.findById(organizationId);
       console.log(organization, "organization");
       const users = await User.find({ _id: { $in: participants } });
       const subAdmins = await SubAdmin.find({ _id: { $in: participants } });
-
+      const allParticipantIds = [
+        ...users.map((user) => user._id),
+        ...subAdmins.map((subAdmin) => subAdmin._id),
+      ];
+      console.log(allParticipantIds, "allpart");
       // const emails = userDetails.map((user) => user.email);
       // const subAdminEmails = subAdminDetails.map(subAdmin => subAdmin.email);
       // const firstNames = [...userDetails, ...subAdminDetails].map(person => person.firstName);
@@ -83,7 +87,7 @@ class BookingController {
         endDate,
         timeZone,
         frequency,
-        participants,
+        participants: allParticipantIds,
         organizationId,
         // calendarEventId: bookingResponse.id,
         // conferenceData: bookingResponse,
@@ -97,7 +101,10 @@ class BookingController {
         { _id: { $in: users } },
         { $push: { userBookings: newBooking._id } }
       );
-
+      await SubAdmin.updateMany(
+        { _id: { $in: subAdmins } },
+        { $push: { userBookings: newBooking._id } }
+      );
       if (reminder === "email") {
         console.log("email reminder");
         const userDetails = [
@@ -163,7 +170,8 @@ class BookingController {
       const organizationId = req.admin._id;
       const bookings = await Booking.find({ organizationId: organizationId })
         .populate("courseId")
-        .populate("participants");
+        .populate("participants")
+        .sort({ CreatedAt: -1 });
 
       return ResponseHandler.success(
         res,

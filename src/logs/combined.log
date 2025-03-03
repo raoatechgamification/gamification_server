@@ -15711,3 +15711,51 @@
 2025-03-03 18:40:19 [info]: GET /users 304
 2025-03-03 18:40:21 [info]: GET /67654374ad6734f474e24e33/report 200
 2025-03-03 18:40:54 [info]: GET /67ab6c51952b69d96e6e2cf2/report 304
+2025-03-03 18:41:30 [info]: GET /all 304
+2025-03-03 18:41:32 [info]: GET /67ab6c51952b69d96e6e2cf2/report 304
+2025-03-03 18:41:32 [info]: GET /all 304
+2025-03-03 18:41:32 [info]: GET /users 304
+2025-03-03 21:48:24 [info]: GET /report 500
+2025-03-03 21:48:25 [info]: GET /all 304
+2025-03-03 21:48:26 [info]: GET /report 500
+2025-03-03 21:48:28 [info]: GET /all 304
+2025-03-03 21:48:28 [info]: GET /users 304
+2025-03-03 21:49:29 [info]: GET /report 500
+2025-03-03 21:49:30 [info]: GET /all 304
+2025-03-03 21:49:33 [info]: GET /users 304
+2025-03-03 21:49:33 [info]: GET /report 500
+2025-03-03 21:49:42 [info]: GET /schedule 304
+2025-03-03 21:49:54 [info]: GET / 304
+2025-03-03 21:49:54 [info]: GET /schedule 304
+2025-03-03 21:49:55 [info]: GET /all 304
+2025-03-03 21:49:58 [info]: GET /users 304
+2025-03-03 21:50:47 [info]: GET /subadmins 200
+2025-03-03 21:52:14 [info]: GET /subadmins 304
+2025-03-03 21:53:09 [info]: GET / 304
+2025-03-03 21:53:09 [info]: GET /subadmins 304
+2025-03-03 21:53:09 [info]: GET /schedule 304
+2025-03-03 21:53:09 [info]: GET /all 304
+2025-03-03 21:53:17 [info]: GET /subadmins 304
+2025-03-03 21:54:13 [info]: GET /subadmins 304
+2025-03-03 21:57:31 [info]: GET / 304
+2025-03-03 21:57:31 [info]: GET /schedule 304
+2025-03-03 21:57:31 [info]: GET /subadmins 304
+2025-03-03 21:57:31 [info]: GET /all 304
+2025-03-03 22:02:41 [info]: GET /subadmins 200
+2025-03-03 22:02:41 [info]: GET / 304
+2025-03-03 22:02:41 [info]: GET /schedule 304
+2025-03-03 22:02:41 [info]: GET /all 304
+2025-03-03 22:02:49 [info]: POST /availability-percentage 200 - Request Body: {"startDate":"","endDate":"","participants":["67b86da4c3b6400dca8debe8","67b86d86c3b6400dca8de34b","67b5d79b9a1ffcd4ac0f136c"]}
+2025-03-03 22:03:50 [info]: POST /schedule 500 - Request Body: {"title":"subadmin meeting","description":"subadmin meeting","courseId":"67b31b71e3651525dcc2d913","startDate":"2025-03-01T02:00:00.000Z","endDate":"2025-03-27T21:00:00.000Z","timeZone":"West African Time Zone","frequency":"weekly","reminder":"email","reminderTime":"30 minutes","participants":["67b86da4c3b6400dca8debe8","67b86d86c3b6400dca8de34b","67b5d79b9a1ffcd4ac0f136c"],"confirmPurchase":false,"time":"03:00","endTime":""}
+2025-03-03 22:04:23 [info]: GET / 304
+2025-03-03 22:04:23 [info]: GET /schedule 200
+2025-03-03 22:04:23 [info]: GET /subadmins 200
+2025-03-03 22:04:23 [info]: GET /all 304
+2025-03-03 22:04:27 [info]: GET / 304
+2025-03-03 22:04:27 [info]: GET /subadmins 304
+2025-03-03 22:04:27 [info]: GET /schedule 304
+2025-03-03 22:04:28 [info]: GET /all 304
+2025-03-03 22:04:29 [info]: POST /availability-percentage 200 - Request Body: {"startDate":"2025-03-01","endDate":"2025-03-28","participants":["67b86da4c3b6400dca8debe8","67b86d86c3b6400dca8de34b","67b5d79b9a1ffcd4ac0f136c"]}
+2025-03-03 22:04:36 [info]: GET /users 304
+2025-03-03 22:04:38 [info]: POST /schedule 200 - Request Body: {"title":"subadmin meeting","description":"subadmin meeting","courseId":"67b31b71e3651525dcc2d913","startDate":"2025-03-01T02:00:00.000Z","endDate":"2025-03-27T21:00:00.000Z","timeZone":"West African Time Zone","frequency":"weekly","reminder":"email","reminderTime":"30 minutes","participants":["67c1d8ce7d30168e1139c45e"],"confirmPurchase":false,"time":"03:00","endTime":""}
+2025-03-03 22:04:38 [info]: GET /schedule 200
