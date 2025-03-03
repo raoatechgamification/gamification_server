@@ -15494,3 +15494,9 @@
 2025-03-03 10:59:45 [info]: GET /users 200
 2025-03-03 11:00:33 [info]: POST /availability-percentage 200 - Request Body: {"startDate":"2025-03-01","endDate":"2025-03-30","participants":["67c1d8ce7d30168e1139c45e","67be1d3f81771638cccdcd1a"]}
 2025-03-03 11:00:41 [info]: POST /schedule 500 - Request Body: {"title":"test ","description":"test","courseId":"675d977096d0319d030e5e5d","startDate":"2025-03-01T03:00:00.000Z","endDate":"2025-03-30T08:00:00.000Z","timeZone":"UTC","frequency":"monthly","reminder":"email","reminderTime":"30 minutes","participants":["67c1d8ce7d30168e1139c45e","67be1d3f81771638cccdcd1a"],"confirmPurchase":false,"time":"04:00","endTime":""}
+2025-03-03 11:01:59 [info]: GET / 304
+2025-03-03 11:01:59 [info]: GET /schedule 200
+2025-03-03 11:01:59 [info]: GET /all 304
+2025-03-03 11:02:02 [info]: GET /users 200
+2025-03-03 11:02:03 [info]: POST /schedule 200 - Request Body: {"title":"test ","description":"test","courseId":"675d977096d0319d030e5e5d","startDate":"2025-03-01T03:00:00.000Z","endDate":"2025-03-30T08:00:00.000Z","timeZone":"UTC","frequency":"monthly","reminder":"email","reminderTime":"30 minutes","participants":["67c1d8ce7d30168e1139c45e","67be1d3f81771638cccdcd1a"],"confirmPurchase":false,"time":"04:00","endTime":""}
+2025-03-03 11:02:04 [info]: GET /schedule 200
