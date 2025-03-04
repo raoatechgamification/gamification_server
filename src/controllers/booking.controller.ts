@@ -1,10 +1,13 @@
 import { Request, Response } from "express";
-import { getTokens } from "../config/googleAuth.config";
+// import { getTokens } from "../config/googleAuth.config";
+import { getOAuthClient, getTokens } from "../config/googleAuth.config";
+import TokenManager from "../config/tokenStorage";
 import { ResponseHandler } from "../middlewares/responseHandler.middleware";
 import Booking from "../models/booking.model";
 import Organization from "../models/organization.model";
 import SubAdmin from "../models/subadmin.model";
 import User from "../models/user.model";
+import { scheduleMeeting } from "../services/googleCalendar.service";
 import {
   getTextMessageInput,
   sendBookingNotification,
@@ -14,17 +17,47 @@ import {
 class BookingController {
   async oauth2Callback(req: Request, res: Response) {
     try {
+      console.log("OAuth Callback Started");
+      console.log("Request Query:", req.query);
+      console.log("Request Admin:", req.admin);
+
       const code = req.query.code as string;
+
+      if (!code) {
+        throw new Error("No authorization code received");
+      }
+
+      console.log("Authorization Code:", code);
+
       const tokens = await getTokens(code);
 
-      console.log("Tokens: ", tokens);
+      console.log("Received Tokens:", {
+        hasAccessToken: !!tokens.access_token,
+        hasRefreshToken: !!tokens.refresh_token,
+      });
+
+      // Determine user ID
+      const userId = req.admin?._id || req.user?._id || "default";
+      console.log("User ID for token storage:", userId);
+
+      // Ensure tokens have the expected structure
+      if (!tokens.access_token || !tokens.refresh_token) {
+        throw new Error("Invalid or incomplete tokens received");
+      }
+
+      // Store tokens
+      const tokenManager = TokenManager.getInstance();
+      tokenManager.setTokens(userId, tokens);
+
+      console.log("Tokens stored successfully");
 
       res.status(200).json({
         success: true,
         message: "Authentication successful",
-        tokens,
+        userId,
       });
     } catch (error: any) {
+      console.error("FULL OAuth Callback Error:", error);
       res.status(500).json({
         success: false,
         message: error.message || "OAuth2 callback failed",
@@ -47,18 +80,32 @@ class BookingController {
         reminder,
         courseId,
       } = req.body;
-      console.log(participants, "participanyts");
+
       const organizationId = req.admin._id;
+      if (!req.admin?._id) {
+        throw new Error("No admin ID found in request");
+      }
       const organization = await Organization.findById(organizationId);
-      console.log(organization, "organization");
+
       const users = await User.find({ _id: { $in: participants } });
       const subAdmins = await SubAdmin.find({ _id: { $in: participants } });
       const allParticipantIds = [
         ...users.map((user) => user._id),
         ...subAdmins.map((subAdmin) => subAdmin._id),
       ];
-      console.log(allParticipantIds, "allpart");
-      // const emails = userDetails.map((user) => user.email);
+
+      const userDetails = [
+        ...users.map((user) => ({
+          email: user.email,
+          firstName: user.firstName,
+        })),
+        ...subAdmins.map((subAdmin) => ({
+          email: subAdmin.email,
+          firstName: subAdmin.firstName,
+        })),
+      ];
+
+      const emails = userDetails.map((user) => user.email);
       // const subAdminEmails = subAdminDetails.map(subAdmin => subAdmin.email);
       // const firstNames = [...userDetails, ...subAdminDetails].map(person => person.firstName);
 
@@ -67,18 +114,22 @@ class BookingController {
       // Remove any potential duplicates (in case a user appears in both collections)
       // const uniqueEmails = [...new Set(allEmails)];
 
-      // const eventDetails = {
-      //   summary: title,
-      //   description,
-      //   startTime: startDate,
-      //   endTime: endDate,
+      const oauth2Client = getOAuthClient(req.admin._id);
+      const eventDetails = {
+        summary: title,
+        description,
+        startTime: startDate,
+        endTime: endDate,
 
-      //   attendees: emails.map((email) => ({ email })),
-      //   timeZone,
-      //    courseId,
-      // };
+        attendees: emails.map((email) => ({ email })),
+        timeZone,
+        courseId,
+      };
 
-      // const bookingResponse = await scheduleMeeting(eventDetails);
+      const bookingResponse = await scheduleMeeting(
+        eventDetails,
+        organizationId
+      );
 
       const newBooking = await Booking.create({
         title,
@@ -89,8 +140,8 @@ class BookingController {
         frequency,
         participants: allParticipantIds,
         organizationId,
-        // calendarEventId: bookingResponse.id,
-        // conferenceData: bookingResponse,
+        calendarEventId: bookingResponse.id,
+        conferenceData: bookingResponse,
         reminder,
         courseId,
         time,
@@ -107,16 +158,6 @@ class BookingController {
       );
       if (reminder === "email") {
         console.log("email reminder");
-        const userDetails = [
-          ...users.map((user) => ({
-            email: user.email,
-            firstName: user.firstName,
-          })),
-          ...subAdmins.map((subAdmin) => ({
-            email: subAdmin.email,
-            firstName: subAdmin.firstName,
-          })),
-        ];
 
         console.log(userDetails, "userdetails");
         for (const user of userDetails) {
