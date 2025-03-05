@@ -1,38 +1,18 @@
 import { calendar_v3, google } from "googleapis";
 import { v4 as uuidv4 } from "uuid";
 import { getOAuthClient } from "../config/googleAuth.config";
-import TokenManager from "../config/tokenStorage";
 
-export const scheduleMeeting = async (
-  eventDetails: {
-    summary: string;
-    description: string;
-    startTime: string;
-    endTime: string;
-    attendees: { email: string }[];
-    timeZone: string;
-  },
-  userId?: string
-) => {
+export const scheduleMeeting = async (eventDetails: {
+  summary: string;
+  description: string;
+  startTime: string;
+  endTime: string;
+  attendees: { email: string }[];
+  timeZone: string;
+}) => {
   try {
-    // Always pass the userId
-    const oauth2Client = getOAuthClient(userId || "default");
+    const calendar = google.calendar({ version: "v3", auth: getOAuthClient() });
 
-    // Log tokens to debug
-    const tokenManager = TokenManager.getInstance();
-    const tokens = tokenManager.getTokens(userId || "default");
-
-    console.log("Tokens for user:", userId);
-    console.log("Actual tokens:", tokens);
-
-    // If no tokens found, throw a meaningful error
-    if (!tokens) {
-      throw new Error(
-        "No authentication tokens found. Please complete Google OAuth flow."
-      );
-    }
-
-    const calendar = google.calendar({ version: "v3", auth: oauth2Client });
     const requestId = uuidv4();
 
     const event: calendar_v3.Schema$Event = {
@@ -58,9 +38,10 @@ export const scheduleMeeting = async (
       conferenceDataVersion: 1,
     });
 
+    console.log(response.data);
     return response.data;
   } catch (error: any) {
-    console.error("Detailed Error scheduling meeting:", error);
+    console.error("Error scheduling meeting:", error);
     throw new Error(error.message || "Failed to schedule meeting");
   }
 };
