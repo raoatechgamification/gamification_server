@@ -1,12 +1,14 @@
 import { Request, Response } from "express";
 // import { getTokens } from "../config/googleAuth.config";
 import { getTokens } from "../config/googleAuth.config";
+
+import TokenManager from "../config/tokenStorage";
+
 import { ResponseHandler } from "../middlewares/responseHandler.middleware";
 import Booking from "../models/booking.model";
 import Organization from "../models/organization.model";
 import SubAdmin from "../models/subadmin.model";
 import User from "../models/user.model";
-import { scheduleMeeting } from "../services/googleCalendar.service";
 import {
   getTextMessageInput,
   sendBookingNotification,
@@ -79,18 +81,26 @@ class BookingController {
       // Remove any potential duplicates (in case a user appears in both collections)
       // const uniqueEmails = [...new Set(allEmails)];
 
-      const eventDetails = {
-        summary: title,
-        description,
-        startTime: startDate,
-        endTime: endDate,
 
-        attendees: emails.map((email) => ({ email })),
-        timeZone,
-        courseId,
-      };
+      // const oauth2Client = getOAuthClient(req.admin._id);
+      // const eventDetails = {
+      //   summary: title,
+      //   description,
+      //   startTime: startDate,
+      //   endTime: endDate,
 
-      const bookingResponse = await scheduleMeeting(eventDetails);
+
+      //   attendees: emails.map((email) => ({ email })),
+      //   timeZone,
+      //   courseId,
+      // };
+
+
+      // const bookingResponse = await scheduleMeeting(
+      //   eventDetails,
+      //   organizationId
+      // );
+
 
       const newBooking = await Booking.create({
         title,
@@ -101,8 +111,8 @@ class BookingController {
         frequency,
         participants: allParticipantIds,
         organizationId,
-        calendarEventId: bookingResponse.id,
-        conferenceData: bookingResponse,
+        // calendarEventId: bookingResponse.id,
+        // conferenceData: bookingResponse,
         reminder,
         courseId,
         time,
