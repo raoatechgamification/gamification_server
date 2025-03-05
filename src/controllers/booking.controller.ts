@@ -173,7 +173,7 @@ class BookingController {
       const bookings = await Booking.find({ organizationId: organizationId })
         .populate("courseId")
         .populate("participants")
-        .sort({ CreatedAt: -1 });
+        .sort({ createdAt: -1 }); // Sort by creation date in descending order
 
       return ResponseHandler.success(
         res,
