@@ -11,6 +11,7 @@ const {
   editBooking,
   deleteBooking,
   availabilityPercentage,
+  createMeeting,
 } = bookingController;
 
 const router = Router();
@@ -47,5 +48,6 @@ router.get("/auth/google", (req, res) => {
 });
 
 router.get("/oauth2callback", oauth2Callback);
+router.post("/generate-meeting", createMeeting);
 
 export default router;

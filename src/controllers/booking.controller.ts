@@ -1,5 +1,6 @@
 import { Request, Response } from "express";
 // import { getTokens } from "../config/googleAuth.config";
+import { v4 as uuidv4 } from "uuid";
 import { getTokens } from "../config/googleAuth.config";
 import TokenManager from "../config/tokenStorage";
 import { ResponseHandler } from "../middlewares/responseHandler.middleware";
@@ -78,6 +79,7 @@ class BookingController {
         participants,
         reminder,
         courseId,
+        reminderTime,
       } = req.body;
 
       const organizationId = req.admin._id;
@@ -145,6 +147,7 @@ class BookingController {
         courseId,
         time,
         endTime,
+        reminderTime,
       });
 
       await User.updateMany(
@@ -408,6 +411,38 @@ class BookingController {
       return ResponseHandler.failure(
         res,
         error.message || "An error occurred while retrieving user bookings",
+        error.status || 500
+      );
+    }
+  }
+
+  async createMeeting(req: Request, res: Response) {
+    try {
+      // if (req.method !== "POST") {
+      //   return res
+      //     .status(405)
+      //     .json({ message: `Method ${req.method} Not Allowed` });
+      // }
+
+      // Generate a unique meeting ID
+      const meetingId = uuidv4();
+
+      // In a real-world scenario, you'd:
+      // 1. Check user authentication
+      // 2. Store meeting details in the database
+      // 3. Implement access controls
+
+      return ResponseHandler.success(
+        res,
+        { meetingId, meetingLink: `/meeting/${meetingId}` },
+        "Meeting created successfully.",
+        201
+      );
+    } catch (error: any) {
+      console.error("Error creating meeting:", error);
+      return ResponseHandler.failure(
+        res,
+        error.message || "An error occurred while creating the meeting.",
         error.status || 500
       );
     }

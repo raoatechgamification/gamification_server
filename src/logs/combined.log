@@ -16132,3 +16132,28 @@
 2025-03-04 15:44:21 [info]: GET /users 304
 2025-03-04 15:44:26 [info]: POST /schedule 500 - Request Body: {"title":"google test","description":"google test","courseId":"67b31b71e3651525dcc2d913","startDate":"2025-03-01T06:00:00.000Z","endDate":"2025-03-28T14:00:00.000Z","timeZone":"West African Time Zone","frequency":"weekly","reminder":"email","reminderTime":"30 minutes","participants":["67c1d8ce7d30168e1139c45e","67be1d3f81771638cccdcd1a"],"confirmPurchase":false,"time":"07:00","endTime":""}
 2025-03-04 15:46:06 [info]: GET /bookings 200
+2025-03-05 15:07:08 [info]: POST //api/v1/bookings/generate-meeting 404
+2025-03-05 15:07:37 [info]: POST /bookings/generate-meeting 200
+2025-03-05 15:12:30 [info]: POST /generate-meeting 201
+2025-03-05 18:20:55 [info]: POST /generate-meeting 201
+2025-03-05 18:21:03 [info]: GET /schedule 200
+2025-03-05 18:21:03 [info]: POST /generate-meeting 201
+2025-03-05 18:22:54 [info]: POST /generate-meeting 201
+2025-03-05 18:23:41 [info]: POST /generate-meeting 201
+2025-03-05 18:27:43 [info]: POST /generate-meeting 201
+2025-03-05 18:33:09 [info]: GET /raoatech 200
+2025-03-05 18:33:41 [info]: GET /raoatech 304
+2025-03-05 18:37:44 [info]: GET /schedule 200
+2025-03-06 11:47:52 [info]: GET /raoatech 304
+2025-03-06 11:49:33 [info]: GET /raoatech 304
+2025-03-06 11:50:19 [info]: GET /raoatech 304
+2025-03-06 11:50:32 [info]: POST /login 200 - Request Body: {"email":"richardsonmarcus5@gmail.com","password":"Test2024!"}
+2025-03-06 11:50:35 [info]: GET /status 200
+2025-03-06 11:50:35 [info]: GET /get-user/6734bd795f604ef68c0f4984 200
+2025-03-06 11:51:04 [info]: GET /status 304
+2025-03-06 11:51:04 [info]: GET /get-user/6734bd795f604ef68c0f4984 304
+2025-03-06 11:51:06 [info]: GET /status 304
+2025-03-06 11:51:06 [info]: GET /get-user/6734bd795f604ef68c0f4984 304
+2025-03-06 11:51:06 [info]: GET /status 304
+2025-03-06 11:51:10 [info]: GET /status 304
+2025-03-06 11:51:10 [info]: GET /get-user/6734bd795f604ef68c0f4984 304
