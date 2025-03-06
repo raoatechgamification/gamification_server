@@ -16132,6 +16132,15 @@
 2025-03-04 15:44:21 [info]: GET /users 304
 2025-03-04 15:44:26 [info]: POST /schedule 500 - Request Body: {"title":"google test","description":"google test","courseId":"67b31b71e3651525dcc2d913","startDate":"2025-03-01T06:00:00.000Z","endDate":"2025-03-28T14:00:00.000Z","timeZone":"West African Time Zone","frequency":"weekly","reminder":"email","reminderTime":"30 minutes","participants":["67c1d8ce7d30168e1139c45e","67be1d3f81771638cccdcd1a"],"confirmPurchase":false,"time":"07:00","endTime":""}
 2025-03-04 15:46:06 [info]: GET /bookings 200
+2025-03-04 19:23:09 [info]: GET /auth/google 302
+2025-03-04 19:34:32 [info]: GET /auth/google 302
+2025-03-04 19:35:59 [info]: GET /auth/google 200
+2025-03-04 20:03:50 [info]: GET /auth/google 200
+2025-03-05 09:22:03 [info]: GET /schedule 401
+2025-03-05 09:22:18 [info]: POST /login 200 - Request Body: {"email":"test@gmail.com","password":"Test2024!"}
+2025-03-05 09:22:59 [info]: GET /schedule 200
+2025-03-05 09:26:15 [info]: GET /schedule 200
+2025-03-05 09:28:38 [info]: GET /schedule 200
 2025-03-05 15:07:08 [info]: POST //api/v1/bookings/generate-meeting 404
 2025-03-05 15:07:37 [info]: POST /bookings/generate-meeting 200
 2025-03-05 15:12:30 [info]: POST /generate-meeting 201
