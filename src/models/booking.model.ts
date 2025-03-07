@@ -15,6 +15,7 @@ export interface IBooking extends Document {
   courseId?: mongoose.Types.ObjectId;
   time?: string;
   endTime?: string;
+  reminderTime?: string;
 }
 
 const BookingSchema: Schema<IBooking> = new Schema(
@@ -60,6 +61,7 @@ const BookingSchema: Schema<IBooking> = new Schema(
     courseId: { type: mongoose.Schema.Types.ObjectId, ref: "Course" },
     time: { type: String, required: false },
     endTime: { type: String, required: false },
+    reminderTime: { type: String, required: false },
   },
   {
     timestamps: true,
