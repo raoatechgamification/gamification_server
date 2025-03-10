@@ -1966,13 +1966,25 @@ class ObjectAssessmentController {
         return ResponseHandler.failure(res, "Invalid user ID format", 400);
       }
 
+      // First, get the user to check purchasedPrograms
+      const user = await User.findById(userId);
+      if (!user) {
+        return ResponseHandler.failure(res, "User not found", 404);
+      }
+
+      // Convert user's purchasedPrograms to string array for easier comparison
+      const purchasedProgramIds =
+        user.purchasedPrograms?.map((id) => id.toString()) || [];
+
       // Find courses where the user is a learner
-      const userCourses = await Course.find(
+      const userCourses = await Course.find<ICourse>(
         {
           "learnerIds.userId": userId,
         },
-        "_id title objective certificate organizationId lessons learnerIds assessments"
-      ).populate("assessments");
+        "_id title objective certificate organizationId lessons learnerIds assessments cost"
+      )
+        .populate("assessments")
+        .sort({ createdAt: -1 });
 
       if (!userCourses || userCourses.length === 0) {
         return ResponseHandler.failure(
@@ -1982,26 +1994,40 @@ class ObjectAssessmentController {
         );
       }
 
-      // Filter courses based on conditions:
-      // 1. User progress >= 50% OR
-      // 2. Course has no lessons
+      // Filter courses based on updated conditions:
+      // 1. If has lessons: User progress >= 50%
+      // 2. If no lessons:
+      //    a. If course cost is 0: include
+      //    b. If course cost > 0: only include if in purchasedPrograms
       const eligibleCourses = userCourses.filter((course) => {
-        // Find user's progress in this course
-        const learner = course.learnerIds?.find(
-          (learner) => learner.userId.toString() === userId
-        );
-
-        // Check if course has no lessons or if progress is >= 50
         const hasNoLessons = !course.lessons || course.lessons.length === 0;
-        const hasEligibleProgress = learner && learner.progress >= 50;
 
-        return hasNoLessons || hasEligibleProgress;
+        if (hasNoLessons) {
+          // If course has no lessons, check cost
+          const courseCost = course.cost || 0;
+
+          if (courseCost > 0) {
+            // For paid courses with no lessons, check if purchased
+            return (
+              course._id && purchasedProgramIds.includes(course._id.toString())
+            );
+          } else {
+            // Free courses with no lessons are always eligible
+            return true;
+          }
+        } else {
+          // For courses with lessons, check progress
+          const learner = course.learnerIds?.find(
+            (learner) => learner.userId.toString() === userId
+          );
+          return learner && learner.progress >= 50;
+        }
       });
 
       if (eligibleCourses.length === 0) {
         return ResponseHandler.failure(
           res,
-          "No eligible courses found. Complete more course content to unlock assessments.",
+          "No eligible courses found. Complete more course content or purchase required courses.",
           404
         );
       }

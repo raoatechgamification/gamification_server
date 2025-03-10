@@ -1,3 +1,4 @@
+import crypto from "crypto";
 import dotenv from "dotenv";
 import { Request, Response } from "express";
 import mongoose from "mongoose";
@@ -8,7 +9,10 @@ import Organization, { IOrganization } from "../../models/organization.model";
 import SubAdmin from "../../models/subadmin.model";
 import SuperAdmin, { ISuperAdmin } from "../../models/superadmin.model";
 import User, { IUser } from "../../models/user.model";
-import { sendLoginEmail } from "../../services/sendMail.service";
+import {
+  sendLoginEmail,
+  sendPasswordResetEmail,
+} from "../../services/sendMail.service";
 import UserService from "../../services/user.service";
 import { uploadToCloudinary } from "../../utils/cloudinaryUpload";
 import { getOrganizationId } from "../../utils/getOrganizationId.util";
@@ -652,34 +656,6 @@ export class UserAuthController {
     try {
       const { email, password } = req.body;
 
-      // Find all records with empty phone values
-
-      // await Organization.findOneAndDelete({
-      //   email: "richardsonmarcus520@gmail.com",
-      // });
-      // await User.findOneAndDelete({ email: "richardsonmarcus520@gmail.com" });
-      // await SubAdmin.findOneAndDelete({
-      //   email: "richardsonmarcus520@gmail.com",
-      // });
-      // await SuperAdmin.findOneAndDelete({
-      //   email: "richardsonmarcus520@gmail.com",
-      // });
-
-      // await Organization.updateMany({ phone: "" }, { $set: { phone: null } });
-      // await User.updateMany({ phone: "" }, { $set: { phone: null } });
-      // await SubAdmin.updateMany({ phone: "" }, { $set: { phone: null } });
-      // await SuperAdmin.updateMany({ phone: "" }, { $set: { phone: null } });
-
-      // const emptyPhoneOrgs = await Organization.find({ phone: "" });
-      // console.log(emptyPhoneOrgs, "631", emptyPhoneOrgs.length)
-      // const emptyPhoneUsers = await User.find({ phone: "" });
-      // console.log(emptyPhoneUsers, "633", emptyPhoneOrgs.length)
-      // const emptyPhoneSubAdmins = await SubAdmin.find({ phone: "" });
-      // console.log(emptyPhoneSubAdmins, "635", emptyPhoneSubAdmins.length)
-      // const emptyPhoneSuperAdmins = await SuperAdmin.find({ phone: "" });
-      // console.log(emptyPhoneSuperAdmins, "637", emptyPhoneSuperAdmins.length)
-
-      // console.log(ajibade, "ajibade")
       const account: any =
         (await Organization.findOne({ email })) ||
         (await User.findOne({ email })) ||
@@ -734,6 +710,152 @@ export class UserAuthController {
         token,
         accountData,
         "Login Successful"
+      );
+    } catch (error: any) {
+      return ResponseHandler.failure(
+        res,
+        `Server error: ${error.message}`,
+        500
+      );
+    }
+  }
+
+  static async forgotPassword(req: Request, res: Response) {
+    try {
+      const { email } = req.body;
+
+      if (!email) {
+        return ResponseHandler.failure(res, "Email is required", 400);
+      }
+
+      // Find the account based on email across all user types
+      const account: any =
+        (await Organization.findOne({ email })) ||
+        (await User.findOne({ email })) ||
+        (await SubAdmin.findOne({ email })) ||
+        (await SuperAdmin.findOne({ email }));
+
+      if (!account) {
+        // For security reasons, we still return success even if account doesn't exist
+        // This prevents email enumeration attacks
+        return ResponseHandler.success(
+          res,
+          "If an account with that email exists, we have sent a password reset link"
+        );
+      }
+
+      // Generate a reset token
+      const resetToken = crypto.randomBytes(32).toString("hex");
+      const resetTokenExpiry = new Date(Date.now() + 60 * 60 * 1000); // 1 hour
+
+      // Hash the token for security before storing
+      const hashedResetToken = crypto
+        .createHash("sha256")
+        .update(resetToken)
+        .digest("hex");
+
+      // Save the token to the user account
+      account.resetPasswordToken = hashedResetToken;
+      account.resetPasswordExpires = resetTokenExpiry;
+      await account.save();
+
+      // Construct reset URL (frontend URL with token)
+      const resetUrl = `${process.env.FRONTEND_URL}/auth/reset-password/${resetToken}`;
+
+      // Email content
+      const emailSubject = "Password Reset Request";
+      const emailBody = `
+        <h1>You requested a password reset</h1>
+        <p>Please click on the following link to reset your password:</p>
+        <a href="${resetUrl}" target="_blank">Reset Password</a>
+        <p>If you did not request this, please ignore this email and your password will remain unchanged.</p>
+        <p>This link is valid for 1 hour.</p>
+      `;
+
+      // Send the email
+      const emailVariables = {
+        email,
+        firstName: account.firstName,
+        resetUrl,
+        subject: "Password reset",
+      };
+      await sendPasswordResetEmail(emailVariables);
+
+      return ResponseHandler.success(
+        res,
+        "Password reset instructions sent to your email"
+      );
+    } catch (error: any) {
+      console.error("Forgot password error:", error);
+      return ResponseHandler.failure(
+        res,
+        `Server error: ${error.message}`,
+        500
+      );
+    }
+  }
+
+  /**
+   * Reset password with token
+   * Verifies token and updates password
+   */
+  static async resetPassword(req: Request, res: Response) {
+    try {
+      const { token, newPassword } = req.body;
+
+      if (!token || !newPassword) {
+        return ResponseHandler.failure(
+          res,
+          "Token and new password are required",
+          400
+        );
+      }
+
+      // Hash the token for comparison with stored token
+      const hashedToken = crypto
+        .createHash("sha256")
+        .update(token)
+        .digest("hex");
+
+      // Find account with valid token
+      const account: any =
+        (await Organization.findOne({
+          resetPasswordToken: hashedToken,
+          resetPasswordExpires: { $gt: Date.now() },
+        })) ||
+        (await User.findOne({
+          resetPasswordToken: hashedToken,
+          resetPasswordExpires: { $gt: Date.now() },
+        })) ||
+        (await SubAdmin.findOne({
+          resetPasswordToken: hashedToken,
+          resetPasswordExpires: { $gt: Date.now() },
+        })) ||
+        (await SuperAdmin.findOne({
+          resetPasswordToken: hashedToken,
+          resetPasswordExpires: { $gt: Date.now() },
+        }));
+
+      if (!account) {
+        return ResponseHandler.failure(
+          res,
+          "Invalid or expired password reset token",
+          400
+        );
+      }
+
+      // Hash the new password
+      account.password = await hashPassword(newPassword);
+
+      // Clear reset token fields
+      account.resetPasswordToken = undefined;
+      account.resetPasswordExpires = undefined;
+
+      await account.save();
+
+      return ResponseHandler.success(
+        res,
+        "Password has been reset successfully"
       );
     } catch (error: any) {
       return ResponseHandler.failure(
