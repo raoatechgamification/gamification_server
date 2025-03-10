@@ -34,6 +34,8 @@ export interface ISubAdmin extends Document {
   permissions?: mongoose.Types.ObjectId[] | IPermission[];
   roles?: mongoose.Types.ObjectId[] | IRole[];
   userBookings: mongoose.Schema.Types.ObjectId[];
+  resetPasswordToken: string;
+  resetPasswordExpires: Date;
 }
 
 const SubAdminSchema: Schema<ISubAdmin> = new Schema(
@@ -74,6 +76,8 @@ const SubAdminSchema: Schema<ISubAdmin> = new Schema(
     permissions: [{ type: Schema.Types.ObjectId, ref: "Permission" }],
     roles: [{ type: Schema.Types.ObjectId, ref: "Role" }],
     userBookings: [{ type: mongoose.Schema.Types.ObjectId, ref: "Booking" }],
+    resetPasswordToken: { type: String },
+    resetPasswordExpires: { type: Date },
   },
   {
     timestamps: true,

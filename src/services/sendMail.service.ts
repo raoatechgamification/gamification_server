@@ -1,5 +1,6 @@
 import {
   BookingVariablesInterface,
+  forgotPasswordInterface,
   OrganizationOnboardingVariablesInterface,
   sendEmail,
   VariablesInterface,
@@ -57,6 +58,22 @@ export async function sendBookingNotification(
     await sendEmail({
       service: process.env.EMAIL_SERVICE!,
       templateName: "bookingNotification.html",
+      variables: mailPayload,
+    });
+    console.log("The handler got here");
+  } catch (error) {
+    console.log(error);
+    throw error;
+  }
+}
+
+export async function sendPasswordResetEmail(
+  mailPayload: forgotPasswordInterface
+) {
+  try {
+    await sendEmail({
+      service: process.env.EMAIL_SERVICE!,
+      templateName: "resetPasswordMail.html",
       variables: mailPayload,
     });
     console.log("The handler got here");

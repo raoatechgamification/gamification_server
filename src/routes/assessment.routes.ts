@@ -157,6 +157,11 @@ router.post(
   upload.any(),
   submitTheoryAssessment
 );
-router.get("/user/:id", getUserEligibleCourses);
+router.get(
+  "/user/:id",
+  authenticate,
+  authorize(["user"]),
+  getUserEligibleCourses
+);
 
 export default router;
