@@ -3,8 +3,6 @@ import { Request, Response } from "express";
 import { v4 as uuidv4 } from "uuid";
 import { getTokens } from "../config/googleAuth.config";
 
-import TokenManager from "../config/tokenStorage";
-
 import { ResponseHandler } from "../middlewares/responseHandler.middleware";
 import Booking from "../models/booking.model";
 import Organization from "../models/organization.model";
@@ -37,148 +35,144 @@ class BookingController {
     }
   }
 
-  async createBooking(req: Request, res: Response) {
-    try {
-      const {
-        title,
-        description,
-        startDate,
-        time,
-        endTime,
-        endDate,
-        timeZone,
-        frequency,
-        participants,
-        reminder,
-        courseId,
-        reminderTime,
-      } = req.body;
-      console.log(participants, "participanyts");
-      const organizationId = req.admin._id;
-      const organization = await Organization.findById(organizationId);
-      console.log(organization, "organization");
-      const users = await User.find({ _id: { $in: participants } });
-      const subAdmins = await SubAdmin.find({ _id: { $in: participants } });
-      const userDetails = [
-        ...users.map((user) => ({
-          email: user.email,
-          firstName: user.firstName,
-        })),
-        ...subAdmins.map((subAdmin) => ({
-          email: subAdmin.email,
-          firstName: subAdmin.firstName,
-        })),
-      ];
-      const allParticipantIds = [
-        ...users.map((user) => user._id),
-        ...subAdmins.map((subAdmin) => subAdmin._id),
-      ];
-      console.log(allParticipantIds, "allpart");
-      const emails = userDetails.map((user) => user.email);
-      // const subAdminEmails = subAdminDetails.map(subAdmin => subAdmin.email);
-      // const firstNames = [...userDetails, ...subAdminDetails].map(person => person.firstName);
+  // async createBooking(req: Request, res: Response) {
+  //   try {
+  //     const {
+  //       title,
+  //       description,
+  //       startDate,
+  //       time,
+  //       endTime,
+  //       endDate,
+  //       timeZone,
+  //       frequency,
+  //       participants,
+  //       reminder,
+  //       courseId,
+  //       reminderTime,
+  //     } = req.body;
 
-      // const allEmails = [...emails, ...subAdminEmails];
+  //     const organizationId = req.admin._id;
+  //     const organization = await Organization.findById(organizationId);
+  //     console.log(organization, "organization");
+  //     const users = await User.find({ _id: { $in: participants } });
+  //     const subAdmins = await SubAdmin.find({ _id: { $in: participants } });
+  //     const userDetails = [
+  //       ...users.map((user) => ({
+  //         email: user.email,
+  //         firstName: user.firstName,
+  //       })),
+  //       ...subAdmins.map((subAdmin) => ({
+  //         email: subAdmin.email,
+  //         firstName: subAdmin.firstName,
+  //       })),
+  //     ];
+  //     const allParticipantIds = [
+  //       ...users.map((user) => user._id),
+  //       ...subAdmins.map((subAdmin) => subAdmin._id),
+  //     ];
+  //     console.log(allParticipantIds, "allpart");
+  //     const emails = userDetails.map((user) => user.email);
+  //     // const subAdminEmails = subAdminDetails.map(subAdmin => subAdmin.email);
+  //     // const firstNames = [...userDetails, ...subAdminDetails].map(person => person.firstName);
 
-      // Remove any potential duplicates (in case a user appears in both collections)
-      // const uniqueEmails = [...new Set(allEmails)];
+  //     // const allEmails = [...emails, ...subAdminEmails];
 
+  //     // Remove any potential duplicates (in case a user appears in both collections)
+  //     // const uniqueEmails = [...new Set(allEmails)];
 
-      // const oauth2Client = getOAuthClient(req.admin._id);
-      // const eventDetails = {
-      //   summary: title,
-      //   description,
-      //   startTime: startDate,
-      //   endTime: endDate,
+  //     // const oauth2Client = getOAuthClient(req.admin._id);
+  //     // const eventDetails = {
+  //     //   summary: title,
+  //     //   description,
+  //     //   startTime: startDate,
+  //     //   endTime: endDate,
 
+  //     //   attendees: emails.map((email) => ({ email })),
+  //     //   timeZone,
+  //     //   courseId,
+  //     // };
 
-      //   attendees: emails.map((email) => ({ email })),
-      //   timeZone,
-      //   courseId,
-      // };
+  //     // const bookingResponse = await scheduleMeeting(
+  //     //   eventDetails,
+  //     //   organizationId
+  //     // );
 
+  //     const newBooking = await Booking.create({
+  //       title,
+  //       description,
+  //       startDate,
+  //       endDate,
+  //       timeZone,
+  //       frequency,
+  //       participants: allParticipantIds,
+  //       organizationId,
+  //       // calendarEventId: bookingResponse.id,
+  //       // conferenceData: bookingResponse,
+  //       reminder,
+  //       courseId,
+  //       time,
+  //       endTime,
+  //       reminderTime,
+  //     });
 
-      // const bookingResponse = await scheduleMeeting(
-      //   eventDetails,
-      //   organizationId
-      // );
+  //     await User.updateMany(
+  //       { _id: { $in: users } },
+  //       { $push: { userBookings: newBooking._id } }
+  //     );
+  //     await SubAdmin.updateMany(
+  //       { _id: { $in: subAdmins } },
+  //       { $push: { userBookings: newBooking._id } }
+  //     );
+  //     if (reminder === "email") {
+  //       console.log("email reminder");
 
+  //       console.log(userDetails, "userdetails");
+  //       for (const user of userDetails) {
+  //         const emailVariables = {
+  //           email: user.email,
+  //           name: user.firstName,
+  //           bookingName: newBooking.title,
+  //           organizationName: organization?.name || "Raoatech",
+  //           subject: "Booking Notification",
+  //         };
+  //         await sendBookingNotification(emailVariables);
+  //       }
+  //     }
 
-      const newBooking = await Booking.create({
-        title,
-        description,
-        startDate,
-        endDate,
-        timeZone,
-        frequency,
-        participants: allParticipantIds,
-        organizationId,
-        // calendarEventId: bookingResponse.id,
-        // conferenceData: bookingResponse,
-        reminder,
-        courseId,
-        time,
-        endTime,
-        reminderTime,
-      });
+  //     if (reminder === "whatsapp") {
+  //       var data = getTextMessageInput(
+  //         "2349056983150",
+  //         "Welcome to the Movie Ticket Demo App for Node.js!"
+  //       );
 
-      await User.updateMany(
-        { _id: { $in: users } },
-        { $push: { userBookings: newBooking._id } }
-      );
-      await SubAdmin.updateMany(
-        { _id: { $in: subAdmins } },
-        { $push: { userBookings: newBooking._id } }
-      );
-      if (reminder === "email") {
-        console.log("email reminder");
-
-        console.log(userDetails, "userdetails");
-        for (const user of userDetails) {
-          const emailVariables = {
-            email: user.email,
-            name: user.firstName,
-            bookingName: newBooking.title,
-            organizationName: organization?.name || "Raoatech",
-            subject: "Booking Notification",
-          };
-          await sendBookingNotification(emailVariables);
-        }
-      }
-
-      if (reminder === "whatsapp") {
-        var data = getTextMessageInput(
-          "2349056983150",
-          "Welcome to the Movie Ticket Demo App for Node.js!"
-        );
-
-        sendMessage(data)
-          .then(function (response) {
-            console.log(response.data, 622);
-            // res.redirect("/");
-            // res.sendStatus(200);
-            // return;
-          })
-          .catch(function (error) {
-            // console.log(error);
-            console.log(error.response.data);
-            // res.sendStatus(500);
-            // return;
-          });
-      }
-      return ResponseHandler.success(
-        res,
-        newBooking,
-        "Booking created successfully"
-      );
-    } catch (error: any) {
-      return ResponseHandler.failure(
-        res,
-        error.message || "An error occurred while creating your booking",
-        error.status || 500
-      );
-    }
-  }
+  //       sendMessage(data)
+  //         .then(function (response) {
+  //           console.log(response.data, 622);
+  //           // res.redirect("/");
+  //           // res.sendStatus(200);
+  //           // return;
+  //         })
+  //         .catch(function (error) {
+  //           // console.log(error);
+  //           console.log(error.response.data);
+  //           // res.sendStatus(500);
+  //           // return;
+  //         });
+  //     }
+  //     return ResponseHandler.success(
+  //       res,
+  //       newBooking,
+  //       "Booking created successfully"
+  //     );
+  //   } catch (error: any) {
+  //     return ResponseHandler.failure(
+  //       res,
+  //       error.message || "An error occurred while creating your booking",
+  //       error.status || 500
+  //     );
+  //   }
+  // }
 
   async getAllBookings(req: Request, res: Response) {
     try {
@@ -406,7 +400,7 @@ class BookingController {
 
       return ResponseHandler.success(
         res,
-        { meetingId, meetingLink: `/meeting/${meetingId}` },
+        { meetingId, meetingLink: `/meeting/${meetingId}?creator=true` },
         "Meeting created successfully.",
         201
       );
@@ -415,6 +409,278 @@ class BookingController {
       return ResponseHandler.failure(
         res,
         error.message || "An error occurred while creating the meeting.",
+        error.status || 500
+      );
+    }
+  }
+
+  async createBooking(req: Request, res: Response) {
+    try {
+      const {
+        title,
+        description,
+        startDate,
+        time,
+        endTime,
+        endDate,
+        timeZone,
+        frequency,
+        participants,
+        reminder,
+        courseId,
+        reminderTime,
+      } = req.body;
+
+      const organizationId = req.admin._id;
+      const organization = await Organization.findById(organizationId);
+
+      const users = await User.find({ _id: { $in: participants } });
+      const subAdmins = await SubAdmin.find({ _id: { $in: participants } });
+      const userDetails = [
+        ...users.map((user) => ({
+          email: user.email,
+          firstName: user.firstName,
+        })),
+        ...subAdmins.map((subAdmin) => ({
+          email: subAdmin.email,
+          firstName: subAdmin.firstName,
+        })),
+      ];
+      const allParticipantIds = [
+        ...users.map((user) => user._id),
+        ...subAdmins.map((subAdmin) => subAdmin._id),
+      ];
+
+      const emails = userDetails.map((user) => user.email);
+
+      // Generate unique meeting ID and password for Jitsi
+      const meetingId = uuidv4();
+      const meetingPassword = Math.random()
+        .toString(36)
+        .substring(2, 8)
+        .toUpperCase();
+
+      // Create meeting link
+      // Base URL should be your domain where Jitsi is integrated
+      const baseUrl = process.env.APP_URL || "https://your-app-domain.com";
+      const meetingLink = `${baseUrl}/meeting/${meetingId}?creator=true`;
+
+      // Store conference data
+      const conferenceData = {
+        provider: "jitsi",
+        meetingId,
+        password: meetingPassword,
+        joinUrl: meetingLink,
+      };
+
+      const newBooking = await Booking.create({
+        title,
+        description,
+        startDate,
+        endDate,
+        timeZone,
+        frequency,
+        participants: allParticipantIds,
+        organizationId,
+        reminder,
+        courseId,
+        time,
+        endTime,
+        reminderTime,
+        // Jitsi integration fields
+        meetingId,
+        meetingLink,
+        meetingPassword,
+        meetingStatus: "scheduled",
+        conferenceData,
+      });
+
+      await User.updateMany(
+        { _id: { $in: users } },
+        { $push: { userBookings: newBooking._id } }
+      );
+      await SubAdmin.updateMany(
+        { _id: { $in: subAdmins } },
+        { $push: { userBookings: newBooking._id } }
+      );
+
+      if (reminder === "email") {
+        console.log("email reminder");
+
+        console.log(userDetails, "userdetails");
+        for (const user of userDetails) {
+          const emailVariables = {
+            email: user.email,
+            name: user.firstName,
+            bookingName: newBooking.title,
+            organizationName: organization?.name || "Raoatech",
+            subject: "Booking Notification",
+            meetingLink: meetingLink,
+            meetingTime: `${new Date(startDate).toLocaleDateString()} ${time}`,
+            meetingPassword: meetingPassword,
+          };
+          await sendBookingNotification(emailVariables);
+        }
+      }
+
+      if (reminder === "whatsapp") {
+        // Assuming you have a whatsapp message template for meetings
+        const messageTemplate = `You have been invited to a meeting: ${newBooking.title} 
+        Date: ${new Date(startDate).toLocaleDateString()} 
+        Time: ${time} 
+        Join link: ${meetingLink}
+        Password: ${meetingPassword}`;
+
+        // Using your existing whatsapp service
+        var data = getTextMessageInput(
+          "2349056983150", // This should be dynamic based on participant's number
+          messageTemplate
+        );
+
+        sendMessage(data)
+          .then(function (response) {
+            console.log(response.data, 622);
+          })
+          .catch(function (error) {
+            console.log(error.response.data);
+          });
+      }
+
+      return ResponseHandler.success(
+        res,
+        newBooking,
+        "Booking created successfully"
+      );
+    } catch (error: any) {
+      return ResponseHandler.failure(
+        res,
+        error.message || "An error occurred while creating your booking",
+        error.status || 500
+      );
+    }
+  }
+
+  async joinMeeting(req: Request, res: Response) {
+    try {
+      const { bookingId } = req.params;
+      const userId = req.user?._id || req.admin?._id;
+
+      const booking = await Booking.findById(bookingId);
+
+      if (!booking) {
+        return ResponseHandler.failure(res, "Booking not found", 404);
+      }
+
+      // Check if user is a participant or organizer
+      const isParticipant = booking.participants.some(
+        (participantId) => participantId.toString() === userId.toString()
+      );
+
+      const isOrganizer =
+        booking.organizationId.toString() === userId.toString();
+
+      if (!isParticipant && !isOrganizer) {
+        return ResponseHandler.failure(
+          res,
+          "You are not authorized to join this meeting",
+          403
+        );
+      }
+
+      // Check if meeting is within scheduled time (give a buffer of 15 minutes before start time)
+      const now = new Date();
+      const meetingStartDate = new Date(booking.startDate);
+
+      // Parse meeting time if available
+      if (booking.time) {
+        const [hours, minutes] = booking.time.split(":").map(Number);
+        meetingStartDate.setHours(hours, minutes);
+      }
+
+      // Allow joining 15 minutes before scheduled time
+      meetingStartDate.setMinutes(meetingStartDate.getMinutes() - 15);
+
+      const meetingEndDate = new Date(booking.endDate);
+      if (booking.endTime) {
+        const [hours, minutes] = booking.endTime.split(":").map(Number);
+        meetingEndDate.setHours(hours, minutes);
+      }
+
+      if (now < meetingStartDate) {
+        return ResponseHandler.failure(
+          res,
+          "This meeting hasn't started yet. You can join 15 minutes before the scheduled time.",
+          400
+        );
+      }
+
+      if (now > meetingEndDate) {
+        return ResponseHandler.failure(
+          res,
+          "This meeting has already ended.",
+          400
+        );
+      }
+
+      // If meeting is in progress, update status
+      if (booking.meetingStatus === "scheduled") {
+        booking.meetingStatus = "ongoing";
+        await booking.save();
+      }
+
+      // Return meeting details
+      const meetingDetails = {
+        meetingId: booking.meetingId,
+        meetingLink: booking.meetingLink,
+        meetingPassword: booking.meetingPassword,
+        isCreator: isOrganizer, // Admins/organizers get creator privileges
+        title: booking.title,
+        description: booking.description,
+      };
+
+      return ResponseHandler.success(
+        res,
+        meetingDetails,
+        "Meeting joined successfully"
+      );
+    } catch (error: any) {
+      return ResponseHandler.failure(
+        res,
+        error.message || "An error occurred while joining the meeting",
+        error.status || 500
+      );
+    }
+  }
+
+  async updateMeetingStatus(req: Request, res: Response) {
+    try {
+      const { bookingId } = req.params;
+      const { status } = req.body;
+
+      // Verify valid status
+      if (!["scheduled", "ongoing", "completed", "canceled"].includes(status)) {
+        return ResponseHandler.failure(res, "Invalid meeting status", 400);
+      }
+
+      const booking = await Booking.findByIdAndUpdate(
+        bookingId,
+        { meetingStatus: status },
+        { new: true }
+      );
+
+      if (!booking) {
+        return ResponseHandler.failure(res, "Booking not found", 404);
+      }
+
+      return ResponseHandler.success(
+        res,
+        booking,
+        "Meeting status updated successfully"
+      );
+    } catch (error: any) {
+      return ResponseHandler.failure(
+        res,
+        error.message || "An error occurred while updating meeting status",
         error.status || 500
       );
     }
