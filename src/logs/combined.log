@@ -16653,3 +16653,87 @@
 2025-03-10 23:05:59 [info]: GET / 304
 2025-03-10 23:05:59 [info]: GET /all 200
 2025-03-10 23:06:02 [info]: GET /users 200
+2025-03-11 12:09:23 [info]: POST /get-jitsi-token 200 - Request Body: {"name":"John Doe","email":"test@gmail.com"}
+2025-03-11 12:09:23 [info]: POST /get-jitsi-token 200 - Request Body: {"name":"John Doe","email":"test@gmail.com"}
+2025-03-11 12:19:39 [info]: POST /get-jitsi-token 200 - Request Body: {"name":"John Doe","email":"test@gmail.com"}
+2025-03-11 12:19:39 [info]: POST /get-jitsi-token 200 - Request Body: {"name":"John Doe","email":"test@gmail.com"}
+2025-03-11 12:20:27 [info]: POST /get-jitsi-token 200 - Request Body: {"name":"John Doe","email":"test@gmail.com"}
+2025-03-11 12:20:27 [info]: POST /get-jitsi-token 200 - Request Body: {"name":"John Doe","email":"test@gmail.com"}
+2025-03-11 12:22:20 [info]: POST /get-jitsi-token 200
+2025-03-11 12:22:20 [info]: POST /get-jitsi-token 200
+2025-03-11 12:23:17 [info]: POST /get-jitsi-token 200
+2025-03-11 12:23:17 [info]: POST /get-jitsi-token 200
+2025-03-11 12:23:31 [info]: POST /get-jitsi-token 200
+2025-03-11 12:23:31 [info]: POST /get-jitsi-token 200
+2025-03-11 12:27:04 [info]: POST /get-jitsi-token 200
+2025-03-11 12:27:04 [info]: POST /get-jitsi-token 200
+2025-03-11 12:27:44 [info]: POST /get-jitsi-token 200
+2025-03-11 12:27:44 [info]: POST /get-jitsi-token 200
+2025-03-11 12:28:17 [info]: POST /get-jitsi-token 200
+2025-03-11 12:28:17 [info]: POST /get-jitsi-token 200
+2025-03-11 12:30:02 [info]: POST /get-jitsi-token 200
+2025-03-11 12:30:02 [info]: POST /get-jitsi-token 200
+2025-03-11 12:31:14 [info]: POST /get-jitsi-token 200
+2025-03-11 12:31:14 [info]: POST /get-jitsi-token 200
+2025-03-11 12:32:33 [info]: POST /get-jitsi-token 200
+2025-03-11 12:32:33 [info]: POST /get-jitsi-token 200
+2025-03-11 12:33:23 [info]: POST /get-jitsi-token 200
+2025-03-11 12:33:23 [info]: POST /get-jitsi-token 200
+2025-03-11 12:34:38 [info]: POST /get-jitsi-token 200
+2025-03-11 12:34:38 [info]: POST /get-jitsi-token 200
+2025-03-11 12:52:31 [info]: POST /get-jitsi-token 200
+2025-03-11 12:52:31 [info]: POST /get-jitsi-token 200
+2025-03-11 12:54:04 [info]: POST /get-jitsi-token 200
+2025-03-11 12:54:04 [info]: POST /get-jitsi-token 200
+2025-03-11 12:54:15 [info]: POST /get-jitsi-token 200
+2025-03-11 12:54:15 [info]: POST /get-jitsi-token 200
+2025-03-11 13:44:47 [info]: POST /get-jitsi-token 400
+2025-03-11 13:44:47 [info]: POST /get-jitsi-token 400
+2025-03-11 13:48:42 [info]: POST /get-jitsi-token 400
+2025-03-11 13:48:42 [info]: POST /get-jitsi-token 400
+2025-03-11 16:00:37 [info]: POST /login 200 - Request Body: {"email":"richardsonmarcus5@gmail.com","password":"Test2024!"}
+2025-03-11 16:00:47 [info]: GET /bookings 304
+2025-03-11 16:00:47 [info]: GET /status 304
+2025-03-11 16:00:48 [info]: GET /get-user/6734bd795f604ef68c0f4984 200
+2025-03-11 16:01:00 [info]: GET /user/6758b330e7681f7088ff6162 304
+2025-03-11 16:01:30 [info]: GET /bookings 304
+2025-03-11 16:01:30 [info]: GET /status 304
+2025-03-11 16:01:30 [info]: GET /get-user/6734bd795f604ef68c0f4984 304
+2025-03-11 16:01:56 [info]: GET /user/67cf61ea07777c64428d2029 200
+2025-03-11 16:01:56 [info]: GET /get-user/6734bd795f604ef68c0f4984 304
+2025-03-11 16:02:06 [info]: GET /user/67cf61ea07777c64428d2029 304
+2025-03-11 16:02:06 [info]: GET /get-user/6734bd795f604ef68c0f4984 304
+2025-03-11 16:02:07 [info]: PATCH /67cf61ea07777c64428d2029/move-to-ongoing 200
+2025-03-11 16:02:07 [info]: PATCH /67cf61ea07777c64428d2029/move-to-ongoing 200
+2025-03-11 16:02:48 [info]: GET /user/67cf61ea07777c64428d2029 304
+2025-03-11 16:02:48 [info]: GET /get-user/6734bd795f604ef68c0f4984 200
+2025-03-11 16:02:49 [info]: GET /get-user/6734bd795f604ef68c0f4984 304
+2025-03-11 16:02:49 [info]: GET /user/67cf61ea07777c64428d2029 304
+2025-03-11 16:02:50 [info]: GET /user/67cf61ea07777c64428d2029 304
+2025-03-11 16:02:51 [info]: GET /get-user/6734bd795f604ef68c0f4984 304
+2025-03-11 16:02:51 [info]: GET /user/67cf61ea07777c64428d2029 304
+2025-03-11 16:02:52 [info]: GET /get-user/6734bd795f604ef68c0f4984 304
+2025-03-11 16:03:42 [info]: GET /user/67cf61ea07777c64428d2029 304
+2025-03-11 16:03:43 [info]: GET /get-user/6734bd795f604ef68c0f4984 304
+2025-03-11 16:03:43 [info]: GET /user/67cf61ea07777c64428d2029 304
+2025-03-11 16:04:00 [info]: GET /user/67cf61ea07777c64428d2029 304
+2025-03-11 16:04:00 [info]: GET /get-user/6734bd795f604ef68c0f4984 304
+2025-03-11 16:05:34 [info]: GET /user/67cf61ea07777c64428d2029 304
+2025-03-11 16:05:34 [info]: GET /get-user/6734bd795f604ef68c0f4984 304
+2025-03-11 16:09:14 [info]: GET /user/67cf61ea07777c64428d2029 304
+2025-03-11 16:09:14 [info]: GET /get-user/6734bd795f604ef68c0f4984 304
+2025-03-11 16:09:33 [info]: GET /user/6758b330e7681f7088ff6162 304
+2025-03-11 16:11:16 [info]: GET /user/6758b330e7681f7088ff6162 304
+2025-03-11 16:11:28 [info]: GET /user/6758b330e7681f7088ff6162 304
+2025-03-11 16:11:31 [info]: GET /user/6758b330e7681f7088ff6162 304
+2025-03-11 16:11:38 [info]: GET /user/6758b330e7681f7088ff6162 304
+2025-03-11 16:11:43 [info]: GET /user/67cf61ea07777c64428d2029 304
+2025-03-11 16:11:43 [info]: GET /get-user/6734bd795f604ef68c0f4984 304
+2025-03-11 16:12:03 [info]: POST /login 200 - Request Body: {"email":"richardsonmarcus5@gmail.com","password":"Test2024!"}
+2025-03-11 16:12:03 [info]: GET /status 200
+2025-03-11 16:12:03 [info]: GET /bookings 304
+2025-03-11 16:12:04 [info]: GET /get-user/6734bd795f604ef68c0f4984 304
+2025-03-11 16:15:07 [info]: GET /status 304
+2025-03-11 16:15:07 [info]: GET /bookings 304
+2025-03-11 16:15:07 [info]: GET /get-user/6734bd795f604ef68c0f4984 304
+2025-03-11 16:15:13 [info]: GET /user/6758b330e7681f7088ff6162 200

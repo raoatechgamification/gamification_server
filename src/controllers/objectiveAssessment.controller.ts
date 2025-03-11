@@ -1959,7 +1959,8 @@ class ObjectAssessmentController {
 
   async getUserEligibleCourses(req: Request, res: Response) {
     try {
-      const userId = req.params.id;
+      const userId = req.user.id;
+      console.log(userId);
 
       // Validate userId
       if (!mongoose.Types.ObjectId.isValid(userId)) {
@@ -1974,8 +1975,9 @@ class ObjectAssessmentController {
 
       // Convert user's purchasedPrograms to string array for easier comparison
       const purchasedProgramIds =
-        user.purchasedPrograms?.map((id) => id.toString()) || [];
+        user.purchasedCourses?.map((id) => id.toString()) || [];
 
+      console.log(purchasedProgramIds, 1979);
       // Find courses where the user is a learner
       const userCourses = await Course.find<ICourse>(
         {
