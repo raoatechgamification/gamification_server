@@ -1,16 +1,16 @@
 import { Request, Response } from "express";
-import mongoose from "mongoose";
 import { shuffle } from "lodash";
+import mongoose from "mongoose";
 import * as XLSX from "xlsx";
+import { ResponseHandler } from "../middlewares/responseHandler.middleware";
+import Course, { ICourse } from "../models/course.model";
+import Group, { SubGroup } from "../models/group.model";
 import ObjectiveAssessment from "../models/objectiveAssessment.model";
-import TheoryAssessment from "../models/theoryAssessment.model";
+import Organization from "../models/organization.model";
 import QuestionsBank from "../models/questionsBank.model";
 import Submission from "../models/submission.model";
-import Course, { ICourse } from "../models/course.model";
+import TheoryAssessment from "../models/theoryAssessment.model";
 import User, { IUser } from "../models/user.model";
-import Group, { SubGroup } from "../models/group.model";
-import Organization from "../models/organization.model";
-import { ResponseHandler } from "../middlewares/responseHandler.middleware";
 import { getOrganizationId } from "../utils/getOrganizationId.util";
 
 class ObjectAssessmentController {
@@ -1377,7 +1377,7 @@ class ObjectAssessmentController {
         ObjectiveAssessment.find({ organizationId }).sort({ createdAt: -1 }),
         TheoryAssessment.find({ organizationId }).sort({ createdAt: -1 }),
       ]);
-  
+
       // Combine results from both models
       const assessments = [
         ...objectiveAssessments.map((a) => ({
@@ -1449,10 +1449,9 @@ class ObjectAssessmentController {
     try {
       const { assessmentId } = req.params;
 
-      const assessment = (
-        await ObjectiveAssessment.findById(assessmentId) ||
-        await TheoryAssessment.findById(assessmentId)
-      );
+      const assessment =
+        (await ObjectiveAssessment.findById(assessmentId)) ||
+        (await TheoryAssessment.findById(assessmentId));
 
       if (!assessment) {
         return ResponseHandler.failure(res, "Assessment not found", 404);
@@ -1546,32 +1545,32 @@ class ObjectAssessmentController {
 
   async assessmentResultSlipByAdmin(req: Request, res: Response) {
     const { userId, subGroupId, groupId, courseId } = req.query;
-  
+
     try {
       // Validate the courseId
       if (!courseId) {
         return res.status(400).json({ message: "Course ID is required" });
       }
 
-      if (typeof courseId !== 'string') {
+      if (typeof courseId !== "string") {
         return res.status(400).json({ message: "Invalid course ID" });
       }
-  
+
       // Fetch the assessmentId from the course
       const course = await Course.findById(courseId).populate("assessments");
       if (!course) {
         return res.status(404).json({ message: "Course not found" });
       }
-  
+
       const assessmentId = course.assessments?.[0];
       if (!assessmentId) {
         return res
           .status(404)
           .json({ message: "No assessments found for the specified course" });
       }
-  
+
       let submissions;
-  
+
       // 1. Query by userId
       if (userId) {
         submissions = await Submission.find({
@@ -1581,34 +1580,40 @@ class ObjectAssessmentController {
         })
           .populate("learnerId", "firstName lastName userId image")
           .populate("assessmentId", "totalMark")
-          .populate("courseId", "title code") 
+          .populate("courseId", "title code")
           .sort({ createdAt: -1 }) // Sort submissions by creation date (most recent first)
           .limit(1);
       }
-  
+
       // 2. Query by subGroupId
-      else if (subGroupId) {  
+      else if (subGroupId) {
         // Fetch the specific subgroup by subGroupId
         const group = await Group.findOne(
           { "subGroups._id": subGroupId },
           { "subGroups.$": 1 } // Select only the matching subgroup
         );
-      
+
         if (!group || !group.subGroups || group.subGroups.length === 0) {
           return res.status(404).json({ message: "SubGroup not found" });
         }
-      
+
         // Get the specific subgroup and its members
-        const subGroup = group.subGroups.find((sg) => sg._id.toString() === subGroupId.toString());
+        const subGroup = group.subGroups.find(
+          (sg) => sg._id.toString() === subGroupId.toString()
+        );
         if (!subGroup) {
-          return res.status(404).json({ message: "SubGroup not found in the group" });
+          return res
+            .status(404)
+            .json({ message: "SubGroup not found in the group" });
         }
-      
+
         // const memberIds = subGroup.members;
-        const memberIds = subGroup.members.map((id) => new mongoose.Types.ObjectId(id));
-        console.log("membersIds: ", memberIds)
+        const memberIds = subGroup.members.map(
+          (id) => new mongoose.Types.ObjectId(id)
+        );
+        console.log("membersIds: ", memberIds);
         const courseIdObjectId = new mongoose.Types.ObjectId(courseId);
-      
+
         // Query the submissions
         submissions = await Submission.find({
           learnerId: { $in: memberIds },
@@ -1617,25 +1622,27 @@ class ObjectAssessmentController {
         })
           .populate("learnerId", "firstName lastName userId image")
           .populate("assessmentId", "totalMark")
-          .populate("courseId", "title code") 
+          .populate("courseId", "title code")
           .sort({ createdAt: -1 }) // Sort submissions by creation date (most recent first)
           .limit(1);
 
-        console.log("Submissions: ", submissions)
-      }      
-  
+        console.log("Submissions: ", submissions);
+      }
+
       // 3. Query by groupId
       else if (groupId) {
         const group = await Group.findById(groupId).select("members subGroups");
         if (!group) {
           return res.status(404).json({ message: "Group not found" });
         }
-  
+
         // Collect all member IDs from both group members and subgroup members
         const groupMemberIds = group.members;
-        const subGroupMemberIds = group.subGroups.flatMap((subGroup) => subGroup.members);
+        const subGroupMemberIds = group.subGroups.flatMap(
+          (subGroup) => subGroup.members
+        );
         const allMemberIds = [...groupMemberIds, ...subGroupMemberIds];
-  
+
         submissions = await Submission.find({
           learnerId: { $in: allMemberIds },
           courseId,
@@ -1643,18 +1650,18 @@ class ObjectAssessmentController {
         })
           .populate("learnerId", "firstName lastName userId image")
           .populate("assessmentId", "totalMark")
-          .populate("courseId", "title code") 
+          .populate("courseId", "title code")
           .sort({ createdAt: -1 }) // Sort submissions by creation date (most recent first)
           .limit(1);
       }
-  
+
       // If no query parameter is valid
       else {
         return res
           .status(400)
           .json({ message: "Provide userId, subGroupId, or groupId" });
       }
-  
+
       return res.status(200).json({ submissions });
     } catch (error) {
       console.error("Error fetching submissions:", error);
@@ -1700,11 +1707,11 @@ class ObjectAssessmentController {
   //     if (subGroupId) filters.subGroupId = subGroupId;
 
   //     // Fetch submissions and sort by createdAt in descending order to get the latest one
-      // const submissions = await Submission.find(filters)
-      //   .populate("learnerId", "firstName lastName userId image")
-      //   .populate("assessmentId", "totalMark")
-      //   .sort({ createdAt: -1 }) // Sort submissions by creation date (most recent first)
-      //   .limit(1); // Limit to the latest submission
+  // const submissions = await Submission.find(filters)
+  //   .populate("learnerId", "firstName lastName userId image")
+  //   .populate("assessmentId", "totalMark")
+  //   .sort({ createdAt: -1 }) // Sort submissions by creation date (most recent first)
+  //   .limit(1); // Limit to the latest submission
 
   //     if (!submissions || submissions.length === 0) {
   //       return ResponseHandler.failure(
@@ -1719,21 +1726,21 @@ class ObjectAssessmentController {
   //       const learner = submission.learnerId as any;
   //       const assessment = submission.assessmentId as any;
 
-      //   return {
-      //     courseTitle,
-      //     courseCode,
-      //     firstName: learner?.firstName || null, D
-      //     lastName: learner?.lastName || null, D
-      //     userId: learner?.userId || null, D
-      //     realUserId: learner?._id || null,
-      //     totalMarksObtained: submission.score || 0, D
-      //     totalObtainableMarks: assessment?.totalMark || 0, D
-      //     percentageOfTotalObtainableMarks: submission.percentageScore || 0, D
-      //     status: submission.passOrFail === "Fail" ? "Retake" : "Pass", D
-      //     picture: learner?.image || null, D
-      //     resultGeneratedOn: new Date().toLocaleDateString("en-GB"), // Format: DD/MM/YYYY
-      //   };
-      // });
+  //   return {
+  //     courseTitle,
+  //     courseCode,
+  //     firstName: learner?.firstName || null, D
+  //     lastName: learner?.lastName || null, D
+  //     userId: learner?.userId || null, D
+  //     realUserId: learner?._id || null,
+  //     totalMarksObtained: submission.score || 0, D
+  //     totalObtainableMarks: assessment?.totalMark || 0, D
+  //     percentageOfTotalObtainableMarks: submission.percentageScore || 0, D
+  //     status: submission.passOrFail === "Fail" ? "Retake" : "Pass", D
+  //     picture: learner?.image || null, D
+  //     resultGeneratedOn: new Date().toLocaleDateString("en-GB"), // Format: DD/MM/YYYY
+  //   };
+  // });
 
   //     return ResponseHandler.success(
   //       res,
@@ -1946,6 +1953,108 @@ class ObjectAssessmentController {
         res,
         error.message || "Error processing assessment slip",
         error.status || 500
+      );
+    }
+  }
+
+  async getUserEligibleCourses(req: Request, res: Response) {
+    try {
+      const userId = req.user.id;
+      console.log(userId);
+
+      // Validate userId
+      if (!mongoose.Types.ObjectId.isValid(userId)) {
+        return ResponseHandler.failure(res, "Invalid user ID format", 400);
+      }
+
+      // First, get the user to check purchasedPrograms
+      const user = await User.findById(userId);
+      if (!user) {
+        return ResponseHandler.failure(res, "User not found", 404);
+      }
+
+      // Convert user's purchasedPrograms to string array for easier comparison
+      const purchasedProgramIds =
+        user.purchasedCourses?.map((id) => id.toString()) || [];
+
+      console.log(purchasedProgramIds, 1979);
+      // Find courses where the user is a learner
+      const userCourses = await Course.find<ICourse>(
+        {
+          "learnerIds.userId": userId,
+        },
+        "_id title objective certificate organizationId lessons learnerIds assessments cost"
+      )
+        .populate("assessments")
+        .sort({ createdAt: -1 });
+
+      if (!userCourses || userCourses.length === 0) {
+        return ResponseHandler.failure(
+          res,
+          "No courses found for this user",
+          404
+        );
+      }
+
+      // Filter courses based on updated conditions:
+      // 1. If has lessons: User progress >= 50%
+      // 2. If no lessons:
+      //    a. If course cost is 0: include
+      //    b. If course cost > 0: only include if in purchasedPrograms
+      const eligibleCourses = userCourses.filter((course) => {
+        const hasNoLessons = !course.lessons || course.lessons.length === 0;
+
+        if (hasNoLessons) {
+          // If course has no lessons, check cost
+          const courseCost = course.cost || 0;
+
+          if (courseCost > 0) {
+            // For paid courses with no lessons, check if purchased
+            return (
+              course._id && purchasedProgramIds.includes(course._id.toString())
+            );
+          } else {
+            // Free courses with no lessons are always eligible
+            return true;
+          }
+        } else {
+          // For courses with lessons, check progress
+          const learner = course.learnerIds?.find(
+            (learner) => learner.userId.toString() === userId
+          );
+          return learner && learner.progress >= 50;
+        }
+      });
+
+      if (eligibleCourses.length === 0) {
+        return ResponseHandler.failure(
+          res,
+          "No eligible courses found. Complete more course content or purchase required courses.",
+          404
+        );
+      }
+
+      // Create a clean result with only the requested fields
+      const result = eligibleCourses.map((course) => ({
+        _id: course._id,
+        title: course.title,
+        objective: course.objective,
+        certificate: course.certificate,
+        organizationId: course.organizationId,
+        assessments: course.assessments,
+      }));
+
+      return ResponseHandler.success(
+        res,
+        result,
+        "Eligible courses retrieved successfully",
+        200
+      );
+    } catch (error: any) {
+      return ResponseHandler.failure(
+        res,
+        `Server error: ${error.message}`,
+        500
       );
     }
   }

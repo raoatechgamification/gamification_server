@@ -80,6 +80,8 @@ export interface IUser extends Document {
   contactPersonPhoneNumber?: string;
   purchasedPrograms?: mongoose.Schema.Types.ObjectId[];
   userBookings: mongoose.Schema.Types.ObjectId[];
+  resetPasswordToken: string;
+  resetPasswordExpires: Date;
 }
 
 const AssignedProgramSchema = new Schema<IAssignedProgram>(
@@ -244,6 +246,8 @@ const UserSchema: Schema<IUser> = new Schema(
     ],
     userBookings: [{ type: mongoose.Schema.Types.ObjectId, ref: "Booking" }],
     createdBy: { type: String },
+    resetPasswordToken: { type: String },
+    resetPasswordExpires: { type: Date },
   },
   {
     timestamps: true,

@@ -32,6 +32,13 @@ export interface BookingVariablesInterface {
   organizationName: string;
 }
 
+export interface forgotPasswordInterface {
+  firstName: string;
+  email: string;
+  resetUrl: string;
+  subject: string;
+}
+
 function getEmailTemplate(templateName: string, variables: VariablesInterface) {
   // let templatePath;
 

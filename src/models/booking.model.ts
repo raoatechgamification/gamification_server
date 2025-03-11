@@ -10,11 +10,17 @@ export interface IBooking extends Document {
   participants: mongoose.Types.ObjectId[];
   organizationId: mongoose.Types.ObjectId;
   calendarEventId?: string;
-  reminder?: "email" | "sms" | string;
+  reminder?: "email" | "sms" | "push" | "whatsapp";
   conferenceData?: Record<string, any>;
   courseId?: mongoose.Types.ObjectId;
   time?: string;
   endTime?: string;
+  reminderTime?: string;
+  // New fields for Jitsi integration
+  meetingId: string;
+  meetingLink: string;
+  meetingPassword?: string;
+  meetingStatus: "scheduled" | "ongoing" | "completed" | "canceled";
 }
 
 const BookingSchema: Schema<IBooking> = new Schema(
@@ -60,6 +66,16 @@ const BookingSchema: Schema<IBooking> = new Schema(
     courseId: { type: mongoose.Schema.Types.ObjectId, ref: "Course" },
     time: { type: String, required: false },
     endTime: { type: String, required: false },
+    reminderTime: { type: String, required: false },
+    // New fields for Jitsi integration
+    meetingId: { type: String, required: true, unique: true },
+    meetingLink: { type: String, required: true },
+    meetingPassword: { type: String },
+    meetingStatus: {
+      type: String,
+      enum: ["scheduled", "ongoing", "completed", "canceled"],
+      default: "scheduled",
+    },
   },
   {
     timestamps: true,

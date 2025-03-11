@@ -1,4 +1,4 @@
-import mongoose, { Document, Schema, Model } from "mongoose";
+import mongoose, { Document, Model, Schema } from "mongoose";
 import { IPermission } from "./permission.model";
 import { IRole } from "./role.model";
 
@@ -8,7 +8,7 @@ export interface ISubAdmin extends Document {
   lastName: string;
   otherName?: string;
   email: string;
-  phone: { type: String, sparse: true },
+  phone: { type: String; sparse: true };
   organizationId: mongoose.Schema.Types.ObjectId;
   units?: mongoose.Schema.Types.ObjectId[];
   role: string;
@@ -33,43 +33,56 @@ export interface ISubAdmin extends Document {
   employerName?: string;
   permissions?: mongoose.Types.ObjectId[] | IPermission[];
   roles?: mongoose.Types.ObjectId[] | IRole[];
+  userBookings: mongoose.Schema.Types.ObjectId[];
+  resetPasswordToken: string;
+  resetPasswordExpires: Date;
 }
 
-const SubAdminSchema: Schema<ISubAdmin> = new Schema({
-  username: { type: String, unique: false },
-  firstName: { type: String, required: true },
-  lastName: { type: String, required: true },
-  otherName: { type: String, default: null },
-  email: { type: String, required: true, unique: true },
-  phone: { type: String, sparse: true, default: null },
-  units: [
-    { type: mongoose.Schema.Types.ObjectId, sparse: true, ref: "Group" },
-  ],
-  organizationId: { type: mongoose.Schema.Types.ObjectId, default: null, required: true },
-  role: { type: String, default: "subAdmin", required: true },
-  password: { type: String, required: true },
-  batch: { type: String },
-  userType: { type: String, default: "learner" },
-  yearsOfExperience: { type: Number, default: null },
-  highestEducationLevel: { type: String, default: null },
-  gender: { type: String, default: null },
-  dateOfBirth: { type: String, default: null },
-  image: { type: String, default: null },
-  country: { type: String, default: null },
-  address: { type: String, default: null },
-  city: { type: String, default: null },
-  LGA: { type: String, default: null },
-  state: { type: String, default: null },
-  officeAddress: { type: String, default: null },
-  officeCity: { type: String, default: null },
-  officeLGA: { type: String, default: null },
-  officeState: { type: String, default: null },
-  employerName: { type: String, default: null },
-  permissions: [{ type: Schema.Types.ObjectId, ref: "Permission" }],
-  roles: [{ type: Schema.Types.ObjectId, ref: "Role" }]
-}, {
-  timestamps: true,
-});
+const SubAdminSchema: Schema<ISubAdmin> = new Schema(
+  {
+    username: { type: String, unique: false },
+    firstName: { type: String, required: true },
+    lastName: { type: String, required: true },
+    otherName: { type: String, default: null },
+    email: { type: String, required: true, unique: true },
+    phone: { type: String, sparse: true, default: null },
+    units: [
+      { type: mongoose.Schema.Types.ObjectId, sparse: true, ref: "Group" },
+    ],
+    organizationId: {
+      type: mongoose.Schema.Types.ObjectId,
+      default: null,
+      required: true,
+    },
+    role: { type: String, default: "subAdmin", required: true },
+    password: { type: String, required: true },
+    batch: { type: String },
+    userType: { type: String, default: "learner" },
+    yearsOfExperience: { type: Number, default: null },
+    highestEducationLevel: { type: String, default: null },
+    gender: { type: String, default: null },
+    dateOfBirth: { type: String, default: null },
+    image: { type: String, default: null },
+    country: { type: String, default: null },
+    address: { type: String, default: null },
+    city: { type: String, default: null },
+    LGA: { type: String, default: null },
+    state: { type: String, default: null },
+    officeAddress: { type: String, default: null },
+    officeCity: { type: String, default: null },
+    officeLGA: { type: String, default: null },
+    officeState: { type: String, default: null },
+    employerName: { type: String, default: null },
+    permissions: [{ type: Schema.Types.ObjectId, ref: "Permission" }],
+    roles: [{ type: Schema.Types.ObjectId, ref: "Role" }],
+    userBookings: [{ type: mongoose.Schema.Types.ObjectId, ref: "Booking" }],
+    resetPasswordToken: { type: String },
+    resetPasswordExpires: { type: Date },
+  },
+  {
+    timestamps: true,
+  }
+);
 
 const SubAdmin: Model<ISubAdmin> = mongoose.model<ISubAdmin>(
   "SubAdmin",

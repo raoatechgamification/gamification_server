@@ -1,6 +1,6 @@
-import { google, calendar_v3 } from "googleapis";
-import { getOAuthClient } from "../config/googleAuth.config";
+import { calendar_v3, google } from "googleapis";
 import { v4 as uuidv4 } from "uuid";
+import { getOAuthClient } from "../config/googleAuth.config";
 
 export const scheduleMeeting = async (eventDetails: {
   summary: string;
@@ -13,7 +13,7 @@ export const scheduleMeeting = async (eventDetails: {
   try {
     const calendar = google.calendar({ version: "v3", auth: getOAuthClient() });
 
-    const requestId = uuidv4()
+    const requestId = uuidv4();
 
     const event: calendar_v3.Schema$Event = {
       summary: eventDetails.summary,
@@ -33,15 +33,15 @@ export const scheduleMeeting = async (eventDetails: {
     };
 
     const response = await calendar.events.insert({
-      calendarId: "primary", 
-      requestBody: event, 
-      conferenceDataVersion: 1, 
+      calendarId: "primary",
+      requestBody: event,
+      conferenceDataVersion: 1,
     });
 
-    console.log(response.data)
+    console.log(response.data);
     return response.data;
   } catch (error: any) {
-    console.error("Error scheduling meeting:", error); 
+    console.error("Error scheduling meeting:", error);
     throw new Error(error.message || "Failed to schedule meeting");
   }
 };

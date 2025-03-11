@@ -11,6 +11,7 @@ const {
   editBooking,
   deleteBooking,
   availabilityPercentage,
+  createMeeting,
 } = bookingController;
 
 const router = Router();
@@ -43,9 +44,10 @@ router.post(
 router.get("/auth/google", (req, res) => {
   const googleAuthUrl = `https://accounts.google.com/o/oauth2/v2/auth?client_id=${process.env.GOOGLE_CLIENT_ID}&redirect_uri=${process.env.GOOGLE_REDIRECT_URI}&response_type=code&scope=https://www.googleapis.com/auth/calendar.events`;
   console.log("Google Auth URL: ", googleAuthUrl);
-  res.redirect(googleAuthUrl);
+  res.send(googleAuthUrl);
 });
 
 router.get("/oauth2callback", oauth2Callback);
+router.post("/generate-meeting", createMeeting);
 
 export default router;

@@ -1,21 +1,21 @@
-import { Request, Response, NextFunction, Router } from "express";
-import { authenticate, authorize, checkSubadminPermission } from "../middlewares/auth.middleware";
+import { Router } from "express";
+import {
+  authenticate,
+  authorize,
+  checkSubadminPermission,
+} from "../middlewares/auth.middleware";
 // import { AssessmentController } from "../controllers/assessment.controller";
-import { SubmissionController } from "../controllers/submission.controller";
 import ObjectAssessmentController from "../controllers/objectiveAssessment.controller";
 import TheoryAssessmentController from "../controllers/theoryAssessment.controller";
 
 import {
-  createAssessmentValidator,
-  createObjectiveAssessmentValidator,
-  validateBulkUploadRequest,
-  validateManualQuestionsUpload,
-  submissionValidator,
-  gradeAssessmentValidator,
   assessmentIdValidator,
+  createObjectiveAssessmentValidator,
   submissionIdValidator,
   submissionIdsValidator,
-  validateObjectiveAssessmentUsingQuestionsBank
+  validateBulkUploadRequest,
+  validateManualQuestionsUpload,
+  validateObjectiveAssessmentUsingQuestionsBank,
 } from "../validators/assessment.validator";
 
 import { upload } from "../utils/upload.utils";
@@ -33,13 +33,11 @@ const {
   getAllAssessmentsForAnOrganization,
   assessmentResultSlipByAdmin,
   assessmentResultSlip,
+  getUserEligibleCourses,
 } = ObjectAssessmentController;
 
-const {
-  createTheoryAssessment,
-  editTheoryAssessment,
-  submitTheoryAssessment
-} = TheoryAssessmentController;
+const { createTheoryAssessment, editTheoryAssessment, submitTheoryAssessment } =
+  TheoryAssessmentController;
 
 router.post(
   "/theory",
@@ -55,7 +53,10 @@ router.post(
   "/objective",
   authenticate,
   authorize(["admin", "subAdmin"]),
-  checkSubadminPermission("Assessment Management", "Create Objective Assessment"),
+  checkSubadminPermission(
+    "Assessment Management",
+    "Create Objective Assessment"
+  ),
   ...createObjectiveAssessmentValidator,
   createObjectiveAssessment
 );
@@ -64,7 +65,10 @@ router.post(
   "/objective/from-question-bank",
   authenticate,
   authorize(["admin", "subAdmin"]),
-  checkSubadminPermission("Assessment Management", "Create Objective Assessment"),
+  checkSubadminPermission(
+    "Assessment Management",
+    "Create Objective Assessment"
+  ),
   ...validateObjectiveAssessmentUsingQuestionsBank,
   createObjectiveAssessmentFromQuestionsBank
 );
@@ -104,7 +108,7 @@ router.put(
   checkSubadminPermission("Assessment Management", "Edit Assessment"),
   upload.any(),
   editTheoryAssessment
-)
+);
 
 router.post(
   "/:courseId/:assessmentId/take",
@@ -152,6 +156,12 @@ router.post(
   authorize(["user"]),
   upload.any(),
   submitTheoryAssessment
-)
+);
+router.get(
+  "/user/:id",
+  authenticate,
+  authorize(["user"]),
+  getUserEligibleCourses
+);
 
 export default router;
