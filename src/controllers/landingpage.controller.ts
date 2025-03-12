@@ -1,15 +1,15 @@
-import { Request, Response, NextFunction } from 'express';
-import { LandingPage } from '../models/landingPage.model';
-import  Course  from '../models/course.model';
-import {Types} from "mongoose"
-import { Subservice } from '../models/subService.model';
-import { uploadToCloudinary } from '../utils/cloudinaryUpload';
+import { NextFunction, Request, Response } from "express";
+import { Types } from "mongoose";
+import Course from "../models/course.model";
+import { LandingPage } from "../models/landingPage.model";
+import { Subservice } from "../models/subService.model";
+import { uploadToCloudinary } from "../utils/cloudinaryUpload";
 export class LandingPageController {
   async CreateLandingPage(req: Request, res: Response, next: NextFunction) {
     try {
       const files = req.files as Express.Multer.File[];
-      const organizationId = req.admin._id
-      const {
+      const organizationId = req.admin._id;
+      let {
         title,
         objective,
         requirement,
@@ -45,24 +45,48 @@ export class LandingPageController {
         certificate,
       } = req.body;
 
-        // if(title){
-        //    const existingCourse = await Course.findOne({ title });
-        // if (existingCourse) {
-        //     return res.status(400).json({
-        //         success: false,
-        //         message: `A course with the title "${title}" already exists.`,
-        //     });
-        // }
-        // }
-       
+      // if(title){
+      //    const existingCourse = await Course.findOne({ title });
+      // if (existingCourse) {
+      //     return res.status(400).json({
+      //         success: false,
+      //         message: `A course with the title "${title}" already exists.`,
+      //     });
+      // }
+      // }
+
       let { course } = req.body;
-  
+
       // Ensure course is an array
       if (!Array.isArray(course)) {
         // If course is undefined or an object, convert it to an array
         course = course ? [course] : [];
       }
-  
+      // Parse assessments and filter out empty strings
+      let TempAssessments = [];
+      if (assessments) {
+        TempAssessments = Array.isArray(assessments)
+          ? assessments
+          : JSON.parse(assessments || "[]");
+
+        // Filter out empty strings or invalid values
+        TempAssessments = assessments.filter(
+          (id: any) => id && String(id).trim() !== ""
+        );
+
+        // If assessments is empty after filtering, remove it from updates
+        if (assessments.length === 0) {
+          assessments = null;
+        } else {
+          assessments = TempAssessments;
+        }
+      } else {
+        // If no assessments provided, set to undefined
+        assessments = null;
+      }
+      if (certificate === "" || certificate === null) {
+        certificate = undefined;
+      }
       // If no course data exists, create one from the extracted fields
       if (course.length === 0) {
         course.push({
@@ -93,12 +117,12 @@ export class LandingPageController {
           visibilityStartTime,
           visibilityEndTime,
           teachingMethod,
-          organizationId
+          organizationId,
         });
       }
-  
+
       let Urls: string[] = [];
-    
+
       if (files && files.length > 0) {
         for (let i = 0; i < files.length; i++) {
           const file = files[i];
@@ -112,15 +136,19 @@ export class LandingPageController {
           }
         }
       }
-  
-   
-      console.log(Urls)
+
+      console.log(Urls);
       const courseIds: Types.ObjectId[] = [];
       const subserviceIds: Types.ObjectId[] = [];
-  
-      const existingLandingPage = await LandingPage.findOne({ landingPageTitle });
+
+      const existingLandingPage = await LandingPage.findOne({
+        landingPageTitle,
+      });
       if (existingLandingPage) {
-        return res.status(400).json({ success: false, message: `A landing page with the title "${landingPageTitle}" already exists.` });
+        return res.status(400).json({
+          success: false,
+          message: `A landing page with the title "${landingPageTitle}" already exists.`,
+        });
       }
       // Create or fetch Courses
       for (const courseData of course) {
@@ -128,23 +156,24 @@ export class LandingPageController {
           // If course ID exists, validate it
           const existingCourse = await Course.findById(courseData._id);
           if (!existingCourse) {
-            return res
-              .status(400)
-              .json({ success: false, message: `Course with ID ${courseData._id} not found.` });
+            return res.status(400).json({
+              success: false,
+              message: `Course with ID ${courseData._id} not found.`,
+            });
           }
           courseIds.push(existingCourse._id as Types.ObjectId);
         } else {
           // Create a new Course
-           if(title){
-           const existingCourse = await Course.findOne({ title });
-        if (existingCourse) {
-            return res.status(400).json({
+          if (title) {
+            const existingCourse = await Course.findOne({ title });
+            if (existingCourse) {
+              return res.status(400).json({
                 success: false,
                 message: `A course with the title "${title}" already exists.`,
-            });
-        }
-        }
-         courseData.courseImage = Urls[1]
+              });
+            }
+          }
+          courseData.courseImage = Urls[1];
           courseData.curriculum = Urls[2];
           console.log(courseData, "courseData");
           const newCourse = await Course.create(courseData);
@@ -159,7 +188,10 @@ export class LandingPageController {
           // If service ID exists, validate it
           const existingService = await Subservice.findById(subserviceData._id);
           if (!existingService) {
-            return res.status(400).json({ success: false, message: `Service with ID ${subserviceData._id} not found.` });
+            return res.status(400).json({
+              success: false,
+              message: `Service with ID ${subserviceData._id} not found.`,
+            });
           }
           subserviceIds.push(existingService._id as Types.ObjectId);
         } else {
@@ -175,7 +207,7 @@ export class LandingPageController {
         landingPageTitle,
         serviceTitleDescription,
         servicePicture: Urls[0], // Cloudinary URL for service picture
-        
+
         serviceType,
         serviceItem,
         serviceItemDescription,
@@ -189,18 +221,22 @@ export class LandingPageController {
     }
   }
 
-  async UpdateLandingPageWithCourse(req: Request, res: Response, next: NextFunction) {
+  async UpdateLandingPageWithCourse(
+    req: Request,
+    res: Response,
+    next: NextFunction
+  ) {
     try {
       const { id } = req.params; // LandingPage ID
-     console.log(id)
+      console.log(id);
       const files = req.files as Express.Multer.File[]; // Uploaded files
       const organizationId = req.admin._id; // Admin ID from authentication middleware
-  
+
       const {
         title,
         objective,
-          requirement,
-          topContent,
+        requirement,
+        topContent,
         courseCode,
         courseLevel,
         duration,
@@ -221,22 +257,21 @@ export class LandingPageController {
         visibilityStartTime,
         visibilityEndTime,
         teachingMethod,
-        
       } = req.body;
-  
+
       const existingCourse = await Course.findOne({ title });
-        if (existingCourse) {
-            return res.status(400).json({
-                success: false,
-                message: `A course with the title "${title}" already exists.`,
-            });
-        }
+      if (existingCourse) {
+        return res.status(400).json({
+          success: false,
+          message: `A course with the title "${title}" already exists.`,
+        });
+      }
       // Prepare the course data
       let newCourseData = {
         title,
         objective,
-          requirement,
-          topContent,
+        requirement,
+        topContent,
         courseCode,
         courseLevel,
         duration,
@@ -259,9 +294,9 @@ export class LandingPageController {
         teachingMethod,
         organizationId,
         courseImage: "",
-        curriculum: ""
+        curriculum: "",
       };
-  
+
       let Urls: string[] = [];
       if (files && files.length > 0) {
         for (let i = 0; i < files.length; i++) {
@@ -276,30 +311,30 @@ export class LandingPageController {
           }
         }
       }
-  
+
       // Attach curriculum file if provided
       if (Urls.length > 0) {
-              newCourseData["courseImage"] = Urls[0];
+        newCourseData["courseImage"] = Urls[0];
         newCourseData["curriculum"] = Urls[1];
       }
-  
+
       // Create the new course
       const newCourse = await Course.create(newCourseData);
-  
+
       // Validate and update the LandingPage
       const landingPage = await LandingPage.findById(id);
-    
+
       if (!landingPage) {
         return res.status(404).json({
           success: false,
           message: `LandingPage with ID ${id} not found.`,
         });
       }
-  
+
       // Update the LandingPage with the new course
       landingPage.course.push(newCourse._id as Types.ObjectId);
       await landingPage.save();
-  
+
       res.status(200).json({
         success: true,
         message: "New course created and added to the LandingPage.",
@@ -309,48 +344,54 @@ export class LandingPageController {
       next(error);
     }
   }
-  
 
   async GetAllLandingPages(req: Request, res: Response, next: NextFunction) {
-    try { 
-      let organizationId 
-      if(req.user.role === "subAdmin"){
-        organizationId = req.user.organizationId
-      } else{
-        organizationId = req.admin._id; 
+    try {
+      let organizationId;
+      if (req.user.role === "subAdmin") {
+        organizationId = req.user.organizationId;
+      } else {
+        organizationId = req.admin._id;
       }
-      console.log(organizationId, 322)
+      console.log(organizationId, 322);
       const landingPages = await LandingPage.find({ organizationId })
         .sort({ createdAt: -1 }) // Sort by creation date in descending order
-        .populate('course') // Populate course details
-        .populate('subservice'); // Populate subservice details
+        .populate("course") // Populate course details
+        .populate("subservice"); // Populate subservice details
       res.status(200).json({ data: landingPages });
     } catch (error) {
       next(error);
     }
   }
 
-  async GetAllRaoatechLandingPages(req: Request, res: Response, next: NextFunction) {
-    try { 
-      const organizationId = process.env.LANDINGPAGE_ID
-      const landingPages = await LandingPage.find({organizationId})
-        .sort({ createdAt: -1 })
-        .populate('course') // Populate course details
-        .populate('subservice'); // Populate subservice details
-      res.status(200).json({ data: landingPages });
-    } catch (error) {
-      next(error);
-    }
-  }
-
-  async GetAllTotalLandingPages(req: Request, res: Response, next: NextFunction) {
+  async GetAllRaoatechLandingPages(
+    req: Request,
+    res: Response,
+    next: NextFunction
+  ) {
     try {
-      
+      const organizationId = process.env.LANDINGPAGE_ID;
+      const landingPages = await LandingPage.find({ organizationId })
+        .sort({ createdAt: -1 })
+        .populate("course") // Populate course details
+        .populate("subservice"); // Populate subservice details
+      res.status(200).json({ data: landingPages });
+    } catch (error) {
+      next(error);
+    }
+  }
+
+  async GetAllTotalLandingPages(
+    req: Request,
+    res: Response,
+    next: NextFunction
+  ) {
+    try {
       const landingPages = await LandingPage.find()
-        .populate('course') // Populate course details
-        .populate('subservice'); // Populate subservice details
-    
-        res.status(200).json({ data: landingPages });
+        .populate("course") // Populate course details
+        .populate("subservice"); // Populate subservice details
+
+      res.status(200).json({ data: landingPages });
     } catch (error) {
       next(error);
     }
@@ -360,11 +401,11 @@ export class LandingPageController {
     try {
       const landingPageId = req.params.id;
       const landingPage = await LandingPage.findById(landingPageId)
-        .populate('course') // Populate course details
-        .populate('subservice'); // Populate subservice details
+        .populate("course") // Populate course details
+        .populate("subservice"); // Populate subservice details
 
       if (!landingPage) {
-        return res.status(404).json({ message: 'Landing Page not found' });
+        return res.status(404).json({ message: "Landing Page not found" });
       }
 
       res.status(200).json({ data: landingPage });
@@ -372,7 +413,11 @@ export class LandingPageController {
       next(error);
     }
   }
-  async UpdateLandingPageWithContact(req: Request, res: Response, next: NextFunction) {
+  async UpdateLandingPageWithContact(
+    req: Request,
+    res: Response,
+    next: NextFunction
+  ) {
     try {
       const { id } = req.params; // ID of the landing page to update
       const { contactName, contactEmail, contactPhone } = req.body;
@@ -396,16 +441,20 @@ export class LandingPageController {
           .json({ success: false, message: "Landing page not found" });
       }
 
-      res
-        .status(200)
-        .json({ success: true, message: "Landing page updated with contact", data: updatedLandingPage });
+      res.status(200).json({
+        success: true,
+        message: "Landing page updated with contact",
+        data: updatedLandingPage,
+      });
     } catch (error) {
       next(error);
     }
   }
-  async updateLandingPageDetails(req: Request, res: Response, next: NextFunction) {
-   
-
+  async updateLandingPageDetails(
+    req: Request,
+    res: Response,
+    next: NextFunction
+  ) {
     try {
       const { id } = req.params; // ID of the landing page to update
       const {
@@ -416,7 +465,7 @@ export class LandingPageController {
         serviceItemDescription,
         servicePicture: existingPicture, // If it's a Cloudinary URL
       } = req.body;
-  
+
       const updateData: Record<string, any> = {
         landingPageTitle,
         serviceTitleDescription,
@@ -424,9 +473,9 @@ export class LandingPageController {
         serviceItem,
         serviceItemDescription,
       };
-  
+
       const files = req.files as Express.Multer.File[];
-      console.log(files, "files 359")
+      console.log(files, "files 359");
       // Handle servicePicture
       let Urls: string[] = [];
       if (files && files.length > 0) {
@@ -443,29 +492,29 @@ export class LandingPageController {
           }
         }
       }
-   
-  
+
       // Update the landing page in the database
       const updatedLandingPage = await LandingPage.findByIdAndUpdate(
         id,
         updateData,
         { new: true, runValidators: true }
       );
-  
+
       if (!updatedLandingPage) {
         return res
           .status(404)
           .json({ success: false, message: "Landing page not found" });
       }
-  
-      res
-        .status(200)
-        .json({ success: true, message: "Landing page updated", data: updatedLandingPage });
+
+      res.status(200).json({
+        success: true,
+        message: "Landing page updated",
+        data: updatedLandingPage,
+      });
     } catch (error) {
       next(error);
     }
   }
-  
 
   // PUT - Update a Landing Page by ID
   // async UpdateLandingPage(req: Request, res: Response, next: NextFunction) {
@@ -529,10 +578,10 @@ export class LandingPageController {
       const landingPage = await LandingPage.findByIdAndDelete(landingPageId);
 
       if (!landingPage) {
-        return res.status(404).json({ message: 'Landing Page not found' });
+        return res.status(404).json({ message: "Landing Page not found" });
       }
 
-      res.status(200).json({ message: 'Landing Page deleted successfully' });
+      res.status(200).json({ message: "Landing Page deleted successfully" });
     } catch (error) {
       next(error);
     }
