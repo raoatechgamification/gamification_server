@@ -79,7 +79,11 @@ const CourseSchema = new Schema<ICourse>(
       },
     ],
     assessments: [{ type: Schema.Types.ObjectId, ref: "ObjectiveAssessment" }],
-    certificate: { type: Schema.Types.ObjectId, ref: "Certificate" },
+    certificate: {
+      type: Schema.Types.ObjectId,
+      ref: "Certificate",
+      default: null,
+    },
     duration: { type: String },
     courseCode: { type: String },
     courseLevel: { type: String },
