@@ -18,10 +18,7 @@ import { SuperAdminAuthController } from "../controllers/auth/auth.superadmin.co
 import { UserAuthController } from "../controllers/auth/auth.user.controller";
 
 // import { generateJitsiJWT } from "../utils/JitsiJWT";
-
-import { generateJitsiToken } from "../utils/JitsiJWT";
 import { upload } from "../utils/upload.utils";
-
 const { registerOrganization, loginOrganization } = AdminAuthController;
 const {
   registerUser,
@@ -93,11 +90,27 @@ router.post("/create-user-self", createSimpleUser);
 // Super Admin Auth
 router.post("/super-admin/signup", ...superAdminValidator, registerSuperAdmin);
 
-// router.post("/get-jitsi-token", (req, res) => {
-
-//   const { name, email, avatar } = req.body;
-//   const token = Jwttoken;
-//   res.json({ token });
+// router.get("/get-jitsi-token", async (req, res) => {
+//   try {
+//     // Read the private key, ensure it's a valid RSA PEM private key
+//     const privateKey = fs.readFileSync(
+//       path.join(__dirname, "Key 3_12_2025, 11_29_45 AM.pk"),
+//       "utf8"
+//     );
+//     //const privateKey = process.env.PRIVATE_KEY;
+//     console.log(privateKey, 109);
+//     const token = generate(privateKey, {
+//       id: uuidv4(),
+//       name: "ajibadeemmanuel58",
+//       avatar: "",
+//       email: "ajibadeemmanuel58@gmail.com",
+//       appId: "vpaas-magic-cookie-e2c62d128f394864a5c13e8fc9f9bc0c",
+//       kid: "vpaas-magic-cookie-e2c62d128f394864a5c13e8fc9f9bc0c/2bda53",
+//     });
+//     res.json({ token });
+//   } catch (err: any) {
+//     console.error("Error generating token:", err.message); // Log the actual error message
+//     res.status(500).json({ error: "Error generating token" });
+//   }
 // });
-router.post("/get-jitsi-token", generateJitsiToken);
 export default router;

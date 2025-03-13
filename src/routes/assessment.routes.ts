@@ -5,7 +5,10 @@ import {
   checkSubadminPermission,
 } from "../middlewares/auth.middleware";
 // import { AssessmentController } from "../controllers/assessment.controller";
-import ObjectAssessmentController from "../controllers/objectiveAssessment.controller";
+import ObjectAssessmentController, {
+  addGroup,
+  getQuestionsBankByOrganization,
+} from "../controllers/objectiveAssessment.controller";
 import TheoryAssessmentController from "../controllers/theoryAssessment.controller";
 
 import {
@@ -162,6 +165,19 @@ router.get(
   authenticate,
   authorize(["user"]),
   getUserEligibleCourses
+);
+
+router.get(
+  "/questions-bank/one",
+  authenticate,
+  authorize(["admin", "subAdmin"]),
+  getQuestionsBankByOrganization
+);
+router.post(
+  "/create-groups",
+  authenticate,
+  authorize(["admin", "subAdmin"]),
+  addGroup
 );
 
 export default router;

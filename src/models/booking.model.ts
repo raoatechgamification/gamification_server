@@ -11,16 +11,18 @@ export interface IBooking extends Document {
   organizationId: mongoose.Types.ObjectId;
   calendarEventId?: string;
   reminder?: "email" | "sms" | "push" | "whatsapp";
-  conferenceData?: Record<string, any>;
+  conferenceData?: {
+    roomName: string;
+    appId: string;
+    isRecorded: boolean;
+    recordingUrl?: string;
+    status: "scheduled" | "active" | "completed" | "cancelled";
+  };
   courseId?: mongoose.Types.ObjectId;
   time?: string;
   endTime?: string;
   reminderTime?: string;
-  // New fields for Jitsi integration
-  meetingId: string;
-  meetingLink: string;
-  meetingPassword?: string;
-  meetingStatus: "scheduled" | "ongoing" | "completed" | "canceled";
+  participantModel?: string;
 }
 
 const BookingSchema: Schema<IBooking> = new Schema(
@@ -47,10 +49,15 @@ const BookingSchema: Schema<IBooking> = new Schema(
     participants: [
       {
         type: mongoose.Schema.Types.ObjectId,
-        ref: "User",
-        required: true,
+        refPath: "participantModel",
       },
     ],
+    participantModel: {
+      type: String,
+      required: false,
+      enum: ["User", "SubAdmin"],
+      default: "User",
+    },
     organizationId: {
       type: mongoose.Schema.Types.ObjectId,
       ref: "Organization",
@@ -62,20 +69,21 @@ const BookingSchema: Schema<IBooking> = new Schema(
       enum: ["email", "sms", "push", "whatsapp"],
       trim: true,
     },
-    conferenceData: { type: mongoose.Schema.Types.Mixed },
+    conferenceData: {
+      roomName: { type: String },
+      appId: { type: String },
+      isRecorded: { type: Boolean, default: true },
+      recordingUrl: { type: String },
+      status: {
+        type: String,
+        enum: ["scheduled", "active", "completed", "cancelled"],
+        default: "scheduled",
+      },
+    },
     courseId: { type: mongoose.Schema.Types.ObjectId, ref: "Course" },
     time: { type: String, required: false },
     endTime: { type: String, required: false },
     reminderTime: { type: String, required: false },
-    // New fields for Jitsi integration
-    meetingId: { type: String, required: true, unique: true },
-    meetingLink: { type: String, required: true },
-    meetingPassword: { type: String },
-    meetingStatus: {
-      type: String,
-      enum: ["scheduled", "ongoing", "completed", "canceled"],
-      default: "scheduled",
-    },
   },
   {
     timestamps: true,
