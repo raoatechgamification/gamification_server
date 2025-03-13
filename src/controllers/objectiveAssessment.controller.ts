@@ -2060,4 +2060,512 @@ class ObjectAssessmentController {
   }
 }
 
+export const getQuestionsBankByOrganization = async (
+  req: Request,
+  res: Response
+) => {
+  try {
+    const organizationId = req.admin._id;
+
+    if (!mongoose.Types.ObjectId.isValid(organizationId)) {
+      return res
+        .status(400)
+        .json({ success: false, message: "Invalid organization ID format" });
+    }
+
+    const questionsBank = await QuestionsBank.findOne({ organizationId });
+
+    if (!questionsBank) {
+      return res.status(404).json({
+        success: false,
+        message: "Questions bank not found for this organization",
+      });
+    }
+
+    return res.status(200).json({ success: true, data: questionsBank });
+  } catch (error) {
+    console.error("Error fetching questions bank:", error);
+    return res.status(500).json({ success: false, message: "Server error" });
+  }
+};
+
+// Create a new QuestionsBank for an organization (if one doesn't already exist)
+export const createQuestionsBank = async (req: Request, res: Response) => {
+  try {
+    const { organizationId } = req.body;
+
+    if (!mongoose.Types.ObjectId.isValid(organizationId)) {
+      return res
+        .status(400)
+        .json({ success: false, message: "Invalid organization ID format" });
+    }
+
+    // Check if QuestionsBank already exists for this organization
+    const existingBank = await QuestionsBank.findOne({ organizationId });
+
+    if (existingBank) {
+      return res.status(400).json({
+        success: false,
+        message: "A questions bank already exists for this organization",
+      });
+    }
+
+    // Create new QuestionsBank
+    const newQuestionsBank = await QuestionsBank.create({
+      organizationId,
+      groups: [],
+    });
+
+    return res.status(201).json({ success: true, data: newQuestionsBank });
+  } catch (error) {
+    console.error("Error creating questions bank:", error);
+    return res.status(500).json({ success: false, message: "Server error" });
+  }
+};
+
+// Add a new group to an organization's QuestionsBank
+export const addGroup = async (req: Request, res: Response) => {
+  try {
+    const organizationId = req.admin._id;
+    const { groupName, questions } = req.body;
+
+    if (!mongoose.Types.ObjectId.isValid(organizationId)) {
+      return res
+        .status(400)
+        .json({ success: false, message: "Invalid organization ID format" });
+    }
+
+    if (!groupName) {
+      return res
+        .status(400)
+        .json({ success: false, message: "Group name is required" });
+    }
+
+    // Find QuestionsBank or create if doesn't exist
+    let questionsBank = await QuestionsBank.findOne({ organizationId });
+
+    if (!questionsBank) {
+      // Create new QuestionsBank for this organization
+      questionsBank = await QuestionsBank.create({
+        organizationId,
+        groups: [],
+      });
+    }
+
+    // Check if group with this name already exists
+    const groupExists = questionsBank.groups?.some(
+      (group: { name: any }) => group.name === groupName
+    );
+
+    if (groupExists) {
+      return res.status(400).json({
+        success: false,
+        message: `Group "${groupName}" already exists in this questions bank`,
+      });
+    }
+
+    // Validate questions if provided
+    if (questions && Array.isArray(questions)) {
+      for (const q of questions) {
+        if (!q.question || !q.type || !q.answer || q.mark === undefined) {
+          return res.status(400).json({
+            success: false,
+            message:
+              "Each question must include question, type, answer, and mark fields",
+          });
+        }
+
+        // Validate multichoice questions have options
+        if (
+          q.type === "Multichoice" &&
+          (!q.options || q.options.length === 0)
+        ) {
+          return res.status(400).json({
+            success: false,
+            message: "Multichoice questions must include options",
+          });
+        }
+      }
+    }
+
+    // Add new group
+    const newGroup = {
+      name: groupName,
+      questions: questions || [],
+    };
+
+    questionsBank.groups?.push(newGroup);
+    await questionsBank.save();
+
+    return res.status(201).json({
+      success: true,
+      message: "Group added successfully",
+      data: questionsBank,
+    });
+  } catch (error) {
+    console.error("Error adding group:", error);
+    return res.status(500).json({ success: false, message: "Server error" });
+  }
+};
+
+// Update an existing group
+export const updateGroup = async (req: Request, res: Response) => {
+  try {
+    const { groupName } = req.params;
+    const { newGroupName, questions } = req.body;
+    const organizationId = req.admin.id;
+    if (!mongoose.Types.ObjectId.isValid(organizationId)) {
+      return res
+        .status(400)
+        .json({ success: false, message: "Invalid organization ID format" });
+    }
+
+    const questionsBank = await QuestionsBank.findOne({ organizationId });
+
+    if (!questionsBank) {
+      return res.status(404).json({
+        success: false,
+        message: "Questions bank not found for this organization",
+      });
+    }
+
+    // Find the group index
+    const groupIndex = questionsBank.groups?.findIndex(
+      (group: { name: string }) => group.name === groupName
+    );
+
+    if (groupIndex === undefined || groupIndex === -1) {
+      return res
+        .status(404)
+        .json({ success: false, message: `Group "${groupName}" not found` });
+    }
+
+    // If new name is provided and different, check for duplicates
+    if (newGroupName && newGroupName !== groupName) {
+      const nameExists = questionsBank.groups?.some(
+        (group: { name: any }) => group.name === newGroupName
+      );
+
+      if (nameExists) {
+        return res.status(400).json({
+          success: false,
+          message: `Group "${newGroupName}" already exists in this questions bank`,
+        });
+      }
+
+      // Update name
+      questionsBank.groups[groupIndex].name = newGroupName;
+    }
+
+    // Update questions if provided
+    if (questions && Array.isArray(questions)) {
+      for (const q of questions) {
+        if (!q.question || !q.type || !q.answer || q.mark === undefined) {
+          return res.status(400).json({
+            success: false,
+            message:
+              "Each question must include question, type, answer, and mark fields",
+          });
+        }
+
+        // Validate multichoice questions have options
+        if (
+          q.type === "Multichoice" &&
+          (!q.options || q.options.length === 0)
+        ) {
+          return res.status(400).json({
+            success: false,
+            message: "Multichoice questions must include options",
+          });
+        }
+      }
+
+      questionsBank.groups[groupIndex].questions = questions;
+    }
+
+    await questionsBank.save();
+
+    return res.status(200).json({
+      success: true,
+      message: "Group updated successfully",
+      data: questionsBank,
+    });
+  } catch (error) {
+    console.error("Error updating group:", error);
+    return res.status(500).json({ success: false, message: "Server error" });
+  }
+};
+
+// Delete a group
+export const deleteGroup = async (req: Request, res: Response) => {
+  try {
+    const organizationId = req.admin.id;
+    const { groupName } = req.params;
+
+    if (!mongoose.Types.ObjectId.isValid(organizationId)) {
+      return res
+        .status(400)
+        .json({ success: false, message: "Invalid organization ID format" });
+    }
+
+    const questionsBank = await QuestionsBank.findOne({ organizationId });
+
+    if (!questionsBank) {
+      return res.status(404).json({
+        success: false,
+        message: "Questions bank not found for this organization",
+      });
+    }
+
+    // Find the group index
+    const groupIndex = questionsBank.groups?.findIndex(
+      (group: { name: string }) => group.name === groupName
+    );
+
+    if (groupIndex === undefined || groupIndex === -1) {
+      return res
+        .status(404)
+        .json({ success: false, message: `Group "${groupName}" not found` });
+    }
+
+    // Remove the group
+    questionsBank.groups?.splice(groupIndex, 1);
+    await questionsBank.save();
+
+    return res.status(200).json({
+      success: true,
+      message: "Group deleted successfully",
+      data: questionsBank,
+    });
+  } catch (error) {
+    console.error("Error deleting group:", error);
+    return res.status(500).json({ success: false, message: "Server error" });
+  }
+};
+
+// Add question to a group
+export const addQuestion = async (req: Request, res: Response) => {
+  try {
+    const { organizationId, groupName } = req.params;
+    const { question, type, options, answer, mark } = req.body;
+
+    if (!mongoose.Types.ObjectId.isValid(organizationId)) {
+      return res
+        .status(400)
+        .json({ success: false, message: "Invalid organization ID format" });
+    }
+
+    // Validate question data
+    if (!question || !type || !answer || mark === undefined) {
+      return res.status(400).json({
+        success: false,
+        message: "Question, type, answer, and mark are required fields",
+      });
+    }
+
+    // Validate type is one of the allowed values
+    const validTypes = [
+      "True or False",
+      "Yes or No",
+      "Fill in the Gap",
+      "Multichoice",
+    ];
+    if (!validTypes.includes(type)) {
+      return res.status(400).json({
+        success: false,
+        message: `Invalid question type. Must be one of: ${validTypes.join(", ")}`,
+      });
+    }
+
+    // Validate multichoice questions have options
+    if (type === "Multichoice" && (!options || options.length === 0)) {
+      return res.status(400).json({
+        success: false,
+        message: "Multichoice questions must include options",
+      });
+    }
+
+    const questionsBank = await QuestionsBank.findOne({ organizationId });
+
+    if (!questionsBank) {
+      return res.status(404).json({
+        success: false,
+        message: "Questions bank not found for this organization",
+      });
+    }
+
+    // Find the group
+    const groupIndex = questionsBank.groups?.findIndex(
+      (group: { name: string }) => group.name === groupName
+    );
+
+    if (groupIndex === undefined || groupIndex === -1) {
+      return res
+        .status(404)
+        .json({ success: false, message: `Group "${groupName}" not found` });
+    }
+
+    // Create the new question
+    const newQuestion = {
+      question,
+      type,
+      options: options || [],
+      answer,
+      mark,
+    };
+
+    // Add question to the group
+    questionsBank.groups[groupIndex].questions.push(newQuestion);
+    await questionsBank.save();
+
+    return res.status(201).json({
+      success: true,
+      message: "Question added successfully",
+      data: questionsBank,
+    });
+  } catch (error) {
+    console.error("Error adding question:", error);
+    return res.status(500).json({ success: false, message: "Server error" });
+  }
+};
+
+// Update a question
+export const updateQuestion = async (req: Request, res: Response) => {
+  try {
+    const { organizationId, groupName, questionIndex } = req.params;
+    const { question, type, options, answer, mark } = req.body;
+    const qIndex = parseInt(questionIndex);
+
+    if (!mongoose.Types.ObjectId.isValid(organizationId) || isNaN(qIndex)) {
+      return res
+        .status(400)
+        .json({ success: false, message: "Invalid ID format" });
+    }
+
+    // Validate type if provided
+    if (type) {
+      const validTypes = [
+        "True or False",
+        "Yes or No",
+        "Fill in the Gap",
+        "Multichoice",
+      ];
+      if (!validTypes.includes(type)) {
+        return res.status(400).json({
+          success: false,
+          message: `Invalid question type. Must be one of: ${validTypes.join(", ")}`,
+        });
+      }
+
+      // Validate multichoice questions have options
+      if (type === "Multichoice" && (!options || options.length === 0)) {
+        return res.status(400).json({
+          success: false,
+          message: "Multichoice questions must include options",
+        });
+      }
+    }
+
+    const questionsBank = await QuestionsBank.findOne({ organizationId });
+
+    if (!questionsBank) {
+      return res.status(404).json({
+        success: false,
+        message: "Questions bank not found for this organization",
+      });
+    }
+
+    // Find the group
+    const groupIndex = questionsBank.groups?.findIndex(
+      (group: { name: string }) => group.name === groupName
+    );
+
+    if (groupIndex === undefined || groupIndex === -1) {
+      return res
+        .status(404)
+        .json({ success: false, message: `Group "${groupName}" not found` });
+    }
+
+    // Check if question exists
+    if (!questionsBank.groups[groupIndex].questions[qIndex]) {
+      return res
+        .status(404)
+        .json({ success: false, message: "Question not found" });
+    }
+
+    // Update question fields if provided
+    const currentQuestion = questionsBank.groups[groupIndex].questions[qIndex];
+
+    if (question) currentQuestion.question = question;
+    if (type) currentQuestion.type = type as any;
+    if (options) currentQuestion.options = options;
+    if (answer !== undefined) currentQuestion.answer = answer;
+    if (mark !== undefined) currentQuestion.mark = mark;
+
+    await questionsBank.save();
+
+    return res.status(200).json({
+      success: true,
+      message: "Question updated successfully",
+      data: questionsBank,
+    });
+  } catch (error) {
+    console.error("Error updating question:", error);
+    return res.status(500).json({ success: false, message: "Server error" });
+  }
+};
+
+// Delete a question
+export const deleteQuestion = async (req: Request, res: Response) => {
+  try {
+    const { organizationId, groupName, questionIndex } = req.params;
+    const qIndex = parseInt(questionIndex);
+
+    if (!mongoose.Types.ObjectId.isValid(organizationId) || isNaN(qIndex)) {
+      return res
+        .status(400)
+        .json({ success: false, message: "Invalid ID format" });
+    }
+
+    const questionsBank = await QuestionsBank.findOne({ organizationId });
+
+    if (!questionsBank) {
+      return res.status(404).json({
+        success: false,
+        message: "Questions bank not found for this organization",
+      });
+    }
+
+    // Find the group
+    const groupIndex = questionsBank.groups?.findIndex(
+      (group: { name: string }) => group.name === groupName
+    );
+
+    if (groupIndex === undefined || groupIndex === -1) {
+      return res
+        .status(404)
+        .json({ success: false, message: `Group "${groupName}" not found` });
+    }
+
+    // Check if question exists
+    if (!questionsBank.groups[groupIndex].questions[qIndex]) {
+      return res
+        .status(404)
+        .json({ success: false, message: "Question not found" });
+    }
+
+    // Remove the question
+    questionsBank.groups[groupIndex].questions.splice(qIndex, 1);
+    await questionsBank.save();
+
+    return res.status(200).json({
+      success: true,
+      message: "Question deleted successfully",
+      data: questionsBank,
+    });
+  } catch (error) {
+    console.error("Error deleting question:", error);
+    return res.status(500).json({ success: false, message: "Server error" });
+  }
+};
 export default new ObjectAssessmentController();
